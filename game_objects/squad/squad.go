@@ -21,7 +21,6 @@ type Squad struct {
 	UUIDGame           string                 `json:"-"` // если игрок не находится в UUIDGame то отряд перестает существовать
 	ReturnSquadID      int                    `json:"-"` // после того как отряд перестал сущесовать возвращается ReturnSquadID
 	Active             bool                   `json:"active"`
-	InGame             bool                   `json:"in_game"`
 	BaseID             int                    `json:"base_id"`              /* если отряд не у игрока то он храниться на этой базе */
 	LastGlobalPosition *coordinate.Coordinate `json:"last_global_position"` // если отряд был в данже, но по какой то причине сервак вырубило и данж пропал, эта та точка куда упадет отряд при заходе в игру
 	softTransition     int

@@ -6,6 +6,7 @@ import (
 
 type Request struct {
 	Event      string                       `json:"-"`
+	Api        string                       `json:"-"`
 	OK         bool                         `json:"-"`
 	UUID       string                       `json:"-"`
 	BattleUUID string                       `json:"-"`
@@ -23,5 +24,5 @@ type Request struct {
 	Fire       bool                         `json:"-"`
 	X          int                          `json:"-"`
 	Y          int                          `json:"-"`
-	Data       string                       `json:"-"`
+	Data       interface{}                  `json:"-"`
 }

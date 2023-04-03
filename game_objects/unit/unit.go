@@ -243,6 +243,7 @@ func (unit *Unit) SetLastDamage(playerID, damage int) {
 		return
 	}
 
+	// TODO NODES
 	unit.Damage = append(unit.Damage, Damage{
 		PlayerID:   playerID,
 		TimeDamage: time.Now().Unix(),

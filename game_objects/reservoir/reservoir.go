@@ -5,24 +5,22 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"strconv"
 	"sync"
-	"time"
 )
 
 type Reservoir struct {
-	ID          int       `json:"id"`
-	Name        string    `json:"name"`
-	Texture     string    `json:"texture"`
-	Type        string    `json:"type"`
-	TypeID      int       `json:"type_id"`
-	ResourceID  int       `json:"resource_id"`
-	Count       int       `json:"count"`
-	MapID       int       `json:"map_id"`
-	X           int       `json:"x"`
-	Y           int       `json:"y"`
-	Rotate      float64   `json:"rotate"`
-	DestroyTime time.Time `json:"-"`
-	MaxCount    int       `json:"max_count"`
-	MinCount    int       `json:"min_count"`
+	ID         int     `json:"id"`
+	Name       string  `json:"name"`
+	Texture    string  `json:"texture"`
+	Type       string  `json:"type"`
+	TypeID     int     `json:"type_id"`
+	ResourceID int     `json:"resource_id"`
+	Count      int     `json:"count"`
+	MapID      int     `json:"map_id"`
+	X          int     `json:"x"`
+	Y          int     `json:"y"`
+	Rotate     float64 `json:"rotate"`
+	MaxCount   int     `json:"max_count"`
+	MinCount   int     `json:"min_count"`
 
 	Scale   int                             `json:"scale"`
 	Shadow  bool                            `json:"shadow"`

@@ -153,6 +153,7 @@ func (s *Squad) SetEquipPanelFromJSON(jsonData []byte) {
 		s.equipPanel = make(map[int]*EquipSell)
 	}
 	s.equipPanel[0] = &EquipSell{TypeSlot: -1, Source: "empty"}
+	s.fillStateEquip()
 }
 
 func (s *Squad) GetJSONEquipPanel() string {

@@ -50,6 +50,12 @@ func (s *SubGroup) AddMember(id int) {
 	s.members = append(s.members, id)
 }
 
+func (s *SubGroup) SetMember(ids []int) {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+	s.members = ids
+}
+
 func (s *SubGroup) RemoveMember(id int) {
 	s.mx.Lock()
 	defer s.mx.Unlock()

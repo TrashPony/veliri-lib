@@ -34,9 +34,8 @@ type Drone struct {
 	weaponTarget *target.Target
 	targetMX     sync.Mutex
 
-	CacheJson      []byte      `json:"-"`
-	CreateJsonTime int64       `json:"-"`
-	PosData        interface{} `json:"pos_data"`
+	CacheJson      []byte `json:"-"`
+	CreateJsonTime int64  `json:"-"`
 
 	physicalModel *physical_model.PhysicalModel
 
