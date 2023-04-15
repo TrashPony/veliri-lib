@@ -1,6 +1,7 @@
 package special_hostiles
 
 import (
+	"encoding/json"
 	"strconv"
 	"sync"
 	"time"
@@ -155,4 +156,25 @@ func (s *SpecialHostiles) AddIgnore(typeHostile string, id int) {
 	}
 
 	s.ignoreHate[uuid] = true
+}
+
+func (s *SpecialHostiles) GetJsonData() ([]byte, []byte) {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	ignoreHate, _ := json.Marshal(s.ignoreHate)
+	specialHostiles, _ := json.Marshal(s.specialHostiles)
+
+	return ignoreHate, specialHostiles
+}
+
+func (s *SpecialHostiles) LoadFromJson(ignoreHate, specialHostiles []byte) {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	s.ignoreHate = make(map[string]bool)
+	s.specialHostiles = make(map[string]*SpecialHostile)
+
+	json.Unmarshal(ignoreHate, &s.ignoreHate)
+	json.Unmarshal(specialHostiles, &s.specialHostiles)
 }

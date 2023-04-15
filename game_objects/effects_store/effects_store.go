@@ -31,19 +31,6 @@ func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
 	return true
 }
 
-func (e *EffectsStore) GetEffectByUUID(uuid string) *effect.Effect {
-	e.mx.Lock()
-	defer e.mx.Unlock()
-
-	for _, ef := range e.Effects {
-		if ef.UUID == uuid {
-			return ef
-		}
-	}
-
-	return nil
-}
-
 func (e *EffectsStore) RemoveEffect(uuid string) bool {
 	e.mx.Lock()
 	defer e.mx.Unlock()
@@ -84,6 +71,19 @@ func (e *EffectsStore) RemoveBySlot(slotType, slotNumber int) bool {
 	}
 
 	return remove
+}
+
+func (e *EffectsStore) GetEffectByUUID(uuid string) *effect.Effect {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+
+	for _, ef := range e.Effects {
+		if ef.UUID == uuid {
+			return ef
+		}
+	}
+
+	return nil
 }
 
 func (e *EffectsStore) GetCountByName(parameter string, percent bool) int {

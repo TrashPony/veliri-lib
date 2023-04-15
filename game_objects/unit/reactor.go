@@ -60,7 +60,6 @@ func (unit *Unit) EfficiencyReactor() float64 {
 var reactorChangeParameters = []string{"radar", "view", "turn_speed", "reverse_factor", "power_factor", "reverse_speed", "speed", "charging_speed"}
 
 func (unit *Unit) AppendFuelModifier() {
-	return
 	for _, parameter := range reactorChangeParameters {
 		unit.RemoveEffect("fuel_" + parameter)
 	}

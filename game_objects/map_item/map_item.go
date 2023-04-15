@@ -16,7 +16,6 @@ type MapItem struct {
 	MapID          int             `json:"map_id"`
 	CacheJson      []byte          `json:"-"`
 	CreateJsonTime int64           `json:"-"`
-	PosData        interface{}     `json:"pos_data"`
 	physicalModel  *physical_model.PhysicalModel
 }
 

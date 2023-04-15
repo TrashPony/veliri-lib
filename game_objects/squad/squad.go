@@ -104,6 +104,22 @@ func (s *Squad) ClearHostile() {
 	s.specialHostiles = &special_hostiles.SpecialHostiles{}
 }
 
+func (s *Squad) GetSpecialHostileData() ([]byte, []byte) {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	return s.specialHostiles.GetJsonData()
+}
+
+func (s *Squad) LoadSpecialHostileFromJson(ignoreHate, specialHostiles []byte) {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	s.specialHostiles.LoadFromJson(ignoreHate, specialHostiles)
+}
+
 func (s *Squad) CheckHostile(typeHostile string, id int, ownerID int) (bool, int) {
 
 	if s == nil {

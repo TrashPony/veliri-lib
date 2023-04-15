@@ -80,6 +80,7 @@ func (unit *Unit) GetEffects() *effects_store.EffectsStore {
 }
 
 func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
+	// TODO API
 	add := unit.GetEffects().AddEffect(newEffect)
 	if add {
 		unit.UpdatePhysicalModel()
@@ -90,6 +91,7 @@ func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
 }
 
 func (unit *Unit) RemoveEffect(uuid string) bool {
+	// TODO API
 	remove := unit.GetEffects().RemoveEffect(uuid)
 	if remove {
 		unit.UpdatePhysicalModel()
@@ -100,6 +102,7 @@ func (unit *Unit) RemoveEffect(uuid string) bool {
 }
 
 func (unit *Unit) RemoveBySlot(slotType, slotNumber int) bool {
+	// TODO API
 	remove := unit.GetEffects().RemoveBySlot(slotType, slotNumber)
 	if remove {
 		unit.UpdatePhysicalModel()
@@ -238,17 +241,18 @@ type Damage struct {
 	Damage     int   `json:"damage"`
 }
 
-func (unit *Unit) SetLastDamage(playerID, damage int) {
+func (unit *Unit) SetLastDamage(playerID, damage int) *Damage {
 	if playerID == unit.OwnerID {
-		return
+		return nil
 	}
 
-	// TODO NODES
-	unit.Damage = append(unit.Damage, Damage{
+	newDamage := Damage{
 		PlayerID:   playerID,
 		TimeDamage: time.Now().Unix(),
 		Damage:     damage,
-	})
+	}
+	unit.Damage = append(unit.Damage, newDamage)
+	return &newDamage
 }
 
 func (unit *Unit) GetLastDamage() int {
