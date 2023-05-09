@@ -286,11 +286,11 @@ func (o *Object) GetRotate() float64 {
 }
 
 func (o *Object) GetBurstOfShots() *burst_of_shots.BurstOfShots {
-	if o.BurstOfShots == nil {
-		o.BurstOfShots = &burst_of_shots.BurstOfShots{}
+	if o.burstOfShots == nil {
+		o.burstOfShots = &burst_of_shots.BurstOfShots{}
 	}
 
-	return o.BurstOfShots
+	return o.burstOfShots
 }
 
 func (o *Object) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {

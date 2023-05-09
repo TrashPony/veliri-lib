@@ -3,7 +3,6 @@ package target
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/getlantern/deepcopy"
-	"sync"
 	"time"
 )
 
@@ -29,8 +28,6 @@ type Target struct {
 
 	Update   int64 `json:"-"`
 	MouseTap bool  `json:"-"`
-
-	mx sync.RWMutex
 }
 
 func (t *Target) GetX() int {

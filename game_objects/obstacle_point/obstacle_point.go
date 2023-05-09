@@ -2,7 +2,6 @@ package obstacle_point
 
 import (
 	"encoding/json"
-	"sync"
 	"sync/atomic"
 )
 
@@ -17,7 +16,6 @@ type ObstaclePoint struct {
 	ParentType string  `json:"-"`
 	Key        string  `json:"-"`
 	Height     float64 `json:"height"`
-	mx         sync.RWMutex
 }
 
 func (o *ObstaclePoint) GetID() int {

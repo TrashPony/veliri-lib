@@ -63,7 +63,6 @@ type Object struct {
 	/* постройка */
 	Build      bool              `json:"build"` // если билд true, то обьект считает завершенным если Complete == 100, иначе он не работает
 	Immortal   bool              `json:"immortal"`
-	BuildMX    sync.Mutex        `json:"-"`           // специальный мьютекс для методов строительства и демонтажа
 	Complete   float64           `json:"complete"`    // процент завершенности
 	StartItems []*inventory.Slot `json:"start_items"` // необхоидимые ресурсы для производства на старте
 	NeedItems  []*inventory.Slot `json:"need_items"`  // необходимо ресурсов для завершения,
@@ -129,7 +128,7 @@ type Object struct {
 	physicalModel           *physical_model.PhysicalModel
 	NoAutoDestroy           bool `json:"-"`
 	gunner                  *gunner.Gunner
-	BurstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
+	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	mx                      sync.RWMutex
 }
 
@@ -140,7 +139,7 @@ func (o *Object) GetFraction() string {
 func (o *Object) Reset() {
 	o.gunner = nil
 	o.physicalModel = nil
-	o.BurstOfShots = nil
+	o.burstOfShots = nil
 	o.visibleObjects = nil
 	o.memoryDynamicObjects = nil
 	o.specialHostiles = nil
@@ -617,4 +616,12 @@ func (o *Object) SetFractionWarrior(ok bool) {
 
 func (o *Object) FractionWarrior() bool {
 	return o.fractionWarrior
+}
+
+func (o *Object) BuildMXLock() {
+	o.mx.Lock()
+}
+
+func (o *Object) BuildMXUnlock() {
+	o.mx.Unlock()
 }

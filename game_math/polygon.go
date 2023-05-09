@@ -1,13 +1,10 @@
 package game_math
 
-import "sync"
-
 type Polygon struct {
 	RotateSides      []*SideRec `json:"-"`
 	startSides       []*SideRec
 	CenterX, CenterY float64
 	Angle            float64
-	mx               sync.RWMutex
 }
 
 func (r *Polygon) GetCenter() (float64, float64) {

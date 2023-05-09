@@ -27,13 +27,10 @@ type Reservoir struct {
 	GeoData []*obstacle_point.ObstaclePoint `json:"geo_data"`
 	Height  float64                         `json:"height"`
 
-	Mining     sync.Mutex `json:"-"`
-	Complexity int        `json:"complexity"`
+	Complexity int `json:"complexity"`
 	// все пользователи которые добывают эту руду отображаются тут [user_id] progress_points
 	// progress_points - % завершения циклы добычи
-	miningUsers   map[int]float64
-	miningUsersMX sync.Mutex
-
+	miningUsers    map[int]float64
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`
 
@@ -41,8 +38,8 @@ type Reservoir struct {
 }
 
 func (m *Reservoir) AddMiningUser(userID int, count float64) {
-	m.miningUsersMX.Lock()
-	defer m.miningUsersMX.Unlock()
+	m.mx.Lock()
+	defer m.mx.Unlock()
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде
@@ -54,8 +51,8 @@ func (m *Reservoir) AddMiningUser(userID int, count float64) {
 }
 
 func (m *Reservoir) ResetMiningUser(userID int) {
-	m.miningUsersMX.Lock()
-	defer m.miningUsersMX.Unlock()
+	m.mx.Lock()
+	defer m.mx.Unlock()
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде
@@ -66,8 +63,8 @@ func (m *Reservoir) ResetMiningUser(userID int) {
 }
 
 func (m *Reservoir) GetMiningUser(userID int) float64 {
-	m.miningUsersMX.Lock()
-	defer m.miningUsersMX.Unlock()
+	m.mx.Lock()
+	defer m.mx.Unlock()
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде
@@ -201,4 +198,12 @@ func (m *Reservoir) GetUpdateData(mapTime int64) []byte {
 	game_math.ReuseByteSlice(&command, 0, game_math.GetIntBytes(m.GetCount()))
 
 	return command
+}
+
+func (m *Reservoir) MiningLock() {
+	m.mx.Lock()
+}
+
+func (m *Reservoir) MiningUnlock() {
+	m.mx.Unlock()
 }
