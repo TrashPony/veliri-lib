@@ -33,6 +33,7 @@ type Body struct {
 	CapacitySize int `json:"capacity_size"` /* вместимость корпуса к кубо-метрах */
 	StandardSize int `json:"standard_size"` /* small - 1, medium - 2, big - 3, размер корпуса (если корпус мс то неучитывается)*/
 
+	// TODO передалать это на 1 мапу
 	EquippingI   map[int]*BodyEquipSlot `json:"-"`
 	EquippingII  map[int]*BodyEquipSlot `json:"-"`
 	EquippingIII map[int]*BodyEquipSlot `json:"-"`
@@ -134,36 +135,40 @@ type Bonus struct {
 func (body *Body) GetAllEquips() []*BodyEquipSlot {
 	equips := make([]*BodyEquipSlot, 0)
 
-	var addEquips = func(equip map[int]*BodyEquipSlot) {
-		for _, slot := range equip {
-			if slot.Equip != nil {
-				equips = append(equips, slot)
+	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
+		for slot, s := range equip {
+			if s.Equip != nil {
+				s.TypeSlot = typeSlot
+				s.Slot = slot
+				equips = append(equips, s)
 			}
 		}
 	}
 
-	addEquips(body.EquippingI)
-	addEquips(body.EquippingII)
-	addEquips(body.EquippingIII)
-	addEquips(body.EquippingIV)
-	addEquips(body.EquippingV)
+	addEquips(body.EquippingI, 1) // TODO передалать это на 1 мапу
+	addEquips(body.EquippingII, 2)
+	addEquips(body.EquippingIII, 3)
+	addEquips(body.EquippingIV, 4)
+	addEquips(body.EquippingV, 5)
 
 	return equips
 }
 
 func (body *Body) GetAllEquipSlots() []*BodyEquipSlot {
 	equips := make([]*BodyEquipSlot, 0)
-	var addEquips = func(equip map[int]*BodyEquipSlot) {
-		for _, slot := range equip {
-			equips = append(equips, slot)
+	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
+		for slot, s := range equip {
+			s.TypeSlot = typeSlot
+			s.Slot = slot
+			equips = append(equips, s)
 		}
 	}
 
-	addEquips(body.EquippingI)
-	addEquips(body.EquippingII)
-	addEquips(body.EquippingIII)
-	addEquips(body.EquippingIV)
-	addEquips(body.EquippingV)
+	addEquips(body.EquippingI, 1) // TODO передалать это на 1 мапу
+	addEquips(body.EquippingII, 2)
+	addEquips(body.EquippingIII, 3)
+	addEquips(body.EquippingIV, 4)
+	addEquips(body.EquippingV, 5)
 
 	return equips
 }
@@ -172,25 +177,27 @@ func (body *Body) GetApplicableEquips(applicable string) []*BodyEquipSlot {
 
 	equips := make([]*BodyEquipSlot, 0)
 
-	var findEquip = func(equip map[int]*BodyEquipSlot) {
-		for _, slot := range equip {
-			if slot.Equip != nil && slot.Equip.Applicable == applicable {
-				equips = append(equips, slot)
+	var findEquip = func(equip map[int]*BodyEquipSlot, typeSlot int) {
+		for slot, s := range equip {
+			if s.Equip != nil && s.Equip.Applicable == applicable {
+				s.TypeSlot = typeSlot
+				s.Slot = slot
+				equips = append(equips, s)
 			}
 		}
 	}
 
-	findEquip(body.EquippingI)
-	findEquip(body.EquippingII)
-	findEquip(body.EquippingIII)
-	findEquip(body.EquippingIV)
-	findEquip(body.EquippingV)
+	findEquip(body.EquippingI, 1) // TODO передалать это на 1 мапу
+	findEquip(body.EquippingII, 2)
+	findEquip(body.EquippingIII, 3)
+	findEquip(body.EquippingIV, 4)
+	findEquip(body.EquippingV, 5)
 
 	return equips
 }
 
 func (body *Body) GetEquipSlot(typeSlot, numberSlot int) *BodyEquipSlot {
-	if typeSlot == 1 {
+	if typeSlot == 1 { // TODO передалать это на 1 мапу
 		return body.EquippingI[numberSlot]
 	}
 	if typeSlot == 2 {
@@ -230,7 +237,7 @@ func (body *Body) GetRandomEquip() *BodyEquipSlot {
 		return body.GetRandomEquip()
 	}
 
-	if typeSlot == 1 {
+	if typeSlot == 1 { // TODO передалать это на 1 мапу
 		return randEquip(body.EquippingI)
 	}
 	if typeSlot == 2 {
@@ -262,7 +269,7 @@ func (body *Body) GetUseEnergy() int {
 		return power
 	}
 
-	allPower = allPower + counter(body.EquippingI)
+	allPower = allPower + counter(body.EquippingI) // TODO передалать это на 1 мапу
 	allPower = allPower + counter(body.EquippingII)
 	allPower = allPower + counter(body.EquippingIII)
 	allPower = allPower + counter(body.EquippingIV)
@@ -290,7 +297,7 @@ func (body *Body) GetUseCapacitySize() int {
 		return size
 	}
 
-	allSize = allSize + counter(body.EquippingI)
+	allSize = allSize + counter(body.EquippingI) // TODO передалать это на 1 мапу
 	allSize = allSize + counter(body.EquippingII)
 	allSize = allSize + counter(body.EquippingIII)
 	allSize = allSize + counter(body.EquippingIV)

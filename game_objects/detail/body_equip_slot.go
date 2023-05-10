@@ -13,8 +13,6 @@ type BodyEquipSlot struct {
 	UUID             string         `json:"uuid"`
 	Number           int            `json:"number_slot"`
 	Equip            *equip.Equip   `json:"equip"`
-	Used             bool           `json:"-"` /* использовано или нет */ // todo remove
-	StepsForReload   int            `json:"-"` // todo
 	HP               int            `json:"-"`
 	Target           *target.Target `json:"-"`
 	StandardSize     int            `json:"standard_size"` /* определяет тип вмещаемого юнита если это ангар */
@@ -36,6 +34,9 @@ type BodyEquipSlot struct {
 	CatchBulletUUID string
 	StartReloadTime int64 `json:"-"`
 	EndReloadTime   int64 `json:"-"`
+
+	TypeSlot int `json:"-"`
+	Slot     int `json:"-"`
 }
 
 func (s *BodyEquipSlot) GetReload() bool {

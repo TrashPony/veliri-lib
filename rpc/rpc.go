@@ -4,6 +4,7 @@ import (
 	"encoding/gob"
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
+	"github.com/TrashPony/veliri-lib/game_objects/db"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/dynamic_map_object"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
@@ -31,6 +32,8 @@ func GobRegister() {
 	gob.Register(map[string]int{})
 	gob.Register(map[int][]byte{})
 	gob.Register(map[string]interface{}{})
+	gob.Register(map[int]map[string]interface{}{})
+	gob.Register([]map[string]interface{}{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
@@ -38,6 +41,9 @@ func GobRegister() {
 
 	gob.Register(map[int]*skin.Skin{})
 	gob.Register(skin.Skin{})
+
+	gob.Register([]db.DynObject{})
+	gob.Register([]db.ReservoirOption{})
 
 	gob.Register(map[int]map[int]lvl_map.LvlMap{})
 	gob.Register(dynamic_map_object.Object{})
@@ -51,4 +57,5 @@ func GobRegister() {
 	gob.Register(effects_store.EffectsStore{})
 	gob.Register(detail.Body{})
 	gob.Register(map[int]map[int]*dynamic_map_object.Flore{})
+
 }
