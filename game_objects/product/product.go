@@ -1,0 +1,36 @@
+package product
+
+type Product struct {
+	ID           int    `json:"id"`
+	Name         string `json:"name"`
+	Size         int    `json:"size"`
+	DefaultPrice int    `json:"default_price"`
+}
+
+func (p *Product) GetName() string {
+	return p.Name
+}
+
+func (p *Product) GetItemType() string {
+	return ""
+}
+
+func (p *Product) GetItemName() string {
+	return ""
+}
+
+func (p *Product) GetInMap() bool {
+	return false
+}
+
+func (p *Product) GetIcon() string {
+	return ""
+}
+
+func (p *Product) GetStandardSize() int {
+	return 0
+}
+
+func (p *Product) GetTypeSlot() int {
+	return 0
+}

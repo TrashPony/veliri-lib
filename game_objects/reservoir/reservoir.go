@@ -38,8 +38,9 @@ type Reservoir struct {
 }
 
 func (m *Reservoir) AddMiningUser(userID int, count float64) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
+	// мы используем этот метод только в лоченом состояние
+	//m.mx.Lock()
+	//defer m.mx.Unlock()
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде
@@ -51,8 +52,9 @@ func (m *Reservoir) AddMiningUser(userID int, count float64) {
 }
 
 func (m *Reservoir) ResetMiningUser(userID int) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
+	// мы используем этот метод только в лоченом состояние
+	//m.mx.Lock()
+	//defer m.mx.Unlock()
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде
@@ -62,9 +64,11 @@ func (m *Reservoir) ResetMiningUser(userID int) {
 	m.miningUsers[userID] = 0
 }
 
-func (m *Reservoir) GetMiningUser(userID int) float64 {
-	m.mx.Lock()
-	defer m.mx.Unlock()
+func (m *Reservoir) GetMiningUser(userID int, lock bool) float64 {
+	if lock {
+		m.mx.Lock()
+		defer m.mx.Unlock()
+	}
 
 	// копание руды, пополняем виртуальную еденицу руды до 100, когда она стала 100 то мы добавляем в инвентарь,
 	// если мышку отпустили/промахнулись прогрес сохраняется, в конкретной руде

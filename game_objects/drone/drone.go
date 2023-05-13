@@ -47,7 +47,7 @@ type Drone struct {
 	jobs            []*job
 	visibleObjects  *visible_objects.VisibleObjectsStore
 	gunner          *gunner.Gunner
-	BurstOfShots    *burst_of_shots.BurstOfShots `json:"-"`
+	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
 }
@@ -81,11 +81,11 @@ func (d *Drone) GetScale() int {
 }
 
 func (d *Drone) GetBurstOfShots() *burst_of_shots.BurstOfShots {
-	if d.BurstOfShots == nil {
-		d.BurstOfShots = &burst_of_shots.BurstOfShots{}
+	if d.burstOfShots == nil {
+		d.burstOfShots = &burst_of_shots.BurstOfShots{}
 	}
 
-	return d.BurstOfShots
+	return d.burstOfShots
 }
 
 func (d *Drone) GetType() string {
