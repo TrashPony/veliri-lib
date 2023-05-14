@@ -17,6 +17,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/lvl_map"
 	"github.com/TrashPony/veliri-lib/game_objects/map_item"
 	"github.com/TrashPony/veliri-lib/game_objects/notify"
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/product"
 	"github.com/TrashPony/veliri-lib/game_objects/reservoir"
 	"github.com/TrashPony/veliri-lib/game_objects/resource"
@@ -27,6 +28,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/trash_item"
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
+	"github.com/TrashPony/veliri-lib/game_objects/violator"
 	"github.com/valyala/gorpc"
 )
 
@@ -58,6 +60,8 @@ func GobRegister() {
 	gob.Register(map_item.MapItem{})
 	gob.Register([]drone.Drone{})
 	gob.Register(rpc_request.Request{})
+	gob.Register(violator.Violator{})
+	gob.Register(obstacle_point.ObstaclePoint{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
@@ -71,6 +75,8 @@ func GobRegister() {
 
 	gob.Register(map[string]map[int]*inventory.Slot{})
 	gob.Register(map[int]*inventory.Slot{})
+	gob.Register([]*inventory.Slot{})
+	gob.Register(map[int]*detail.ThoriumSlot{})
 
 	gob.Register(resource.Resource{})
 	gob.Register(resource.RecycledResource{})
