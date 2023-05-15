@@ -24,12 +24,10 @@ type BodyWeaponSlot struct {
 	Reload              bool       `json:"reload"`
 	AmmoReload          bool       `json:"-"`
 	GunRotate           float64    `json:"gun_rotate"`
-	TimeReload          int        `json:"time_reload"`
 	CurrentReload       int        `json:"current_reload"`
 	WeaponTexture       string     `json:"weapon_texture"`
 	WeaponColor1        string     `json:"weapon_color_1"`
 	WeaponColor2        string     `json:"weapon_color_2"`
-	freeze              bool
 	lastFirePosition    int
 	AccumulationCurrent float64 `json:"-"` // 0-100, от этого зависит урон
 	AccumulationTimeOut int     `json:"-"`
@@ -39,7 +37,6 @@ type BodyWeaponSlot struct {
 
 func (s *BodyWeaponSlot) StartReload(reloadTime int, ammoReload bool) {
 	s.SetReload(true)
-	s.setTimeReload(reloadTime)
 	s.SetCurrentReload(reloadTime)
 	s.AmmoReload = ammoReload
 
@@ -82,14 +79,6 @@ func (s *BodyWeaponSlot) SetAnchor() {
 	s.XAnchor, s.YAnchor, s.RealXAttach, s.RealYAttach = game_math.GetAnchorWeapon(s.Weapon.XAttach, s.Weapon.YAttach, s.XAttach, s.YAttach)
 }
 
-func (s *BodyWeaponSlot) GetFreeze() bool {
-	return s.freeze
-}
-
-func (s *BodyWeaponSlot) SetFreeze(freeze bool) {
-	s.freeze = freeze
-}
-
 func (s *BodyWeaponSlot) GetAmmo() *ammo.Ammo {
 	return s.Ammo
 }
@@ -104,14 +93,6 @@ func (s *BodyWeaponSlot) GetGunRotate() float64 {
 
 func (s *BodyWeaponSlot) SetGunRotate(rotate float64) {
 	s.GunRotate = rotate
-}
-
-func (s *BodyWeaponSlot) getTimeReload() int {
-	return s.TimeReload
-}
-
-func (s *BodyWeaponSlot) setTimeReload(time int) {
-	s.TimeReload = time
 }
 
 func (s *BodyWeaponSlot) GetCurrentReload() int {

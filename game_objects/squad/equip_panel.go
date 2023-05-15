@@ -148,10 +148,8 @@ func (s *Squad) SwitchEquipPanelCell(src, dst int) {
 }
 
 func (s *Squad) SetEquipPanelFromJSON(jsonData []byte) {
-	err := json.Unmarshal(jsonData, &s.equipPanel)
-	if err != nil {
-		s.equipPanel = make(map[int]*EquipSell)
-	}
+	s.equipPanel = make(map[int]*EquipSell)
+	_ = json.Unmarshal(jsonData, &s.equipPanel)
 	s.equipPanel[0] = &EquipSell{TypeSlot: -1, Source: "empty"}
 	s.equipPanelRerender = true
 	s.fillStateEquip()

@@ -6,6 +6,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
 	"github.com/TrashPony/veliri-lib/game_objects/blueprints"
 	"github.com/TrashPony/veliri-lib/game_objects/box"
+	"github.com/TrashPony/veliri-lib/game_objects/box_trap"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/db"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
@@ -62,6 +63,7 @@ func GobRegister() {
 	gob.Register(rpc_request.Request{})
 	gob.Register(violator.Violator{})
 	gob.Register(obstacle_point.ObstaclePoint{})
+	gob.Register(box_trap.BoxTrap{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
