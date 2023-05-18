@@ -18,6 +18,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/lvl_map"
 	"github.com/TrashPony/veliri-lib/game_objects/map_item"
 	"github.com/TrashPony/veliri-lib/game_objects/notify"
+	"github.com/TrashPony/veliri-lib/game_objects/npc_request"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/product"
 	"github.com/TrashPony/veliri-lib/game_objects/reservoir"
@@ -64,6 +65,8 @@ func GobRegister() {
 	gob.Register(violator.Violator{})
 	gob.Register(obstacle_point.ObstaclePoint{})
 	gob.Register(box_trap.BoxTrap{})
+	gob.Register(behavior_rule.BehaviorRule{})
+	gob.Register(npc_request.DialogRequest{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
