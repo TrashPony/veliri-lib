@@ -41,7 +41,7 @@ type Squad struct {
 	countUpdateViewObjects int
 
 	BodySkin    *skin.Skin         `json:"body_skin"`
-	WeaponSkins map[int]*skin.Skin `json:"weapon_skins"`
+	weaponSkins map[int]*skin.Skin `json:"weapon_skins"`
 
 	updateDB sync.Mutex
 	mx       sync.RWMutex
@@ -376,4 +376,35 @@ func (s *Squad) FractionWarrior() bool {
 
 func (s *Squad) GetFraction() string {
 	return s.GetMS().OwnerFraction
+}
+
+func (s *Squad) SetWeaponSkin(slotNumber int, sk *skin.Skin) {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	if s.weaponSkins == nil {
+		s.weaponSkins = make(map[int]*skin.Skin)
+	}
+
+	s.weaponSkins[slotNumber] = sk
+}
+
+func (s *Squad) GetWeaponSkin(slotNumber int) *skin.Skin {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	return s.weaponSkins[slotNumber]
+}
+
+func (s *Squad) RangeWeaponSkins() map[int]*skin.Skin {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	weaponSkins := make(map[int]*skin.Skin)
+
+	for k, v := range s.weaponSkins {
+		weaponSkins[k] = v
+	}
+
+	return weaponSkins
 }
