@@ -1,7 +1,9 @@
 package rpc
 
 import (
+	"bytes"
 	"encoding/gob"
+	"fmt"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
 	"github.com/TrashPony/veliri-lib/game_objects/blueprints"
@@ -32,12 +34,35 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
 	"github.com/TrashPony/veliri-lib/game_objects/violator"
 	"github.com/valyala/gorpc"
+	"log"
 )
 
 type RPC struct {
 	Server           *gorpc.Server
 	VeliriMainClient *gorpc.Client
 	Error            bool
+}
+
+func CheckMsg(request interface{}) {
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
+
+	if request == nil {
+		return
+	}
+
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+
+	if err := enc.Encode(request); err != nil {
+		log.Fatal(err)
+	}
+
+	return
 }
 
 func GobRegister() {
@@ -68,6 +93,7 @@ func GobRegister() {
 	gob.Register(behavior_rule.BehaviorRule{})
 	gob.Register(npc_request.DialogRequest{})
 	gob.Register(behavior_rule.Meta{})
+	gob.Register(map[int]int{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
