@@ -67,6 +67,7 @@ func GobRegister() {
 	gob.Register(box_trap.BoxTrap{})
 	gob.Register(behavior_rule.BehaviorRule{})
 	gob.Register(npc_request.DialogRequest{})
+	gob.Register(behavior_rule.Meta{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
