@@ -9,6 +9,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/blueprints"
 	"github.com/TrashPony/veliri-lib/game_objects/box"
 	"github.com/TrashPony/veliri-lib/game_objects/box_trap"
+	"github.com/TrashPony/veliri-lib/game_objects/build_option"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/db"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
@@ -16,6 +17,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/dynamic_map_object"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/equip"
+	"github.com/TrashPony/veliri-lib/game_objects/info_map"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/lvl_map"
 	"github.com/TrashPony/veliri-lib/game_objects/map_item"
@@ -94,6 +96,9 @@ func GobRegister() {
 	gob.Register(npc_request.DialogRequest{})
 	gob.Register(behavior_rule.Meta{})
 	gob.Register(map[int]int{})
+	gob.Register([]*build_option.BuildOption{})
+	gob.Register(info_map.InfoMap{})
+	gob.Register(behavior_rule.SubGroup{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
@@ -109,6 +114,7 @@ func GobRegister() {
 	gob.Register(map[int]*inventory.Slot{})
 	gob.Register([]*inventory.Slot{})
 	gob.Register(map[int]*detail.ThoriumSlot{})
+	gob.Register([]*inventory.PlaceMayItems{})
 
 	gob.Register(resource.Resource{})
 	gob.Register(resource.RecycledResource{})

@@ -13,12 +13,12 @@ type Inventory struct {
 }
 
 type PlaceMayItems struct {
-	Slot         int   `json:"slot"`
-	CountMayPut  int   `json:"count_may_put"`
-	SlotQuantity int   `json:"slot_quantity"`
-	Count        int   `json:"count"`
-	Error        error `json:"error"`
-	AllPlace     bool  `json:"all_place"`
+	Slot         int    `json:"slot"`
+	CountMayPut  int    `json:"count_may_put"`
+	SlotQuantity int    `json:"slot_quantity"`
+	Count        int    `json:"count"`
+	Error        string `json:"error"`
+	AllPlace     bool   `json:"all_place"`
 }
 
 func (inv *Inventory) CheckAndPlaceItems(toInventory *Inventory, toInventoryCapSize int, slots map[int]int, noPlace bool, userAccessID int) ([]*PlaceMayItems, error) {
@@ -65,12 +65,18 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 			if !fillCount && placeMayItems[slot] != nil {
 				placeMayItems[slot].CountMayPut = placeMayItems[slot].Count + countMayPut
 			} else {
+
+				var errString string
+				if err != nil {
+					errString = err.Error()
+				}
+
 				placeMayItems[slot] = &PlaceMayItems{
 					Slot:         slot,
 					CountMayPut:  countMayPut,
 					SlotQuantity: slotQuantity,
 					Count:        count,
-					Error:        err,
+					Error:        errString,
 					AllPlace:     count != 0 && count <= countMayPut,
 				}
 
@@ -97,8 +103,8 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 
 		if err != nil {
 			allPlace = false
-			if placeMayItems[slot] != nil && placeMayItems[slot].Error == nil {
-				placeMayItems[slot].Error = err
+			if placeMayItems[slot] != nil && placeMayItems[slot].Error == "" {
+				placeMayItems[slot].Error = ""
 			}
 		}
 	}

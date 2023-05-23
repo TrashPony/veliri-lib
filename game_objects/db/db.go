@@ -26,6 +26,7 @@ type DynObject struct {
 	FractionWarrior  bool
 	Attributes       []byte
 	EquipID          int
+	BoxID            int
 }
 
 type ReservoirOption struct {
