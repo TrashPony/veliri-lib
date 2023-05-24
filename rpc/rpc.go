@@ -46,6 +46,8 @@ type RPC struct {
 }
 
 func CheckMsg(request interface{}) {
+	return
+
 	defer func() {
 		err := recover()
 		if err != nil {

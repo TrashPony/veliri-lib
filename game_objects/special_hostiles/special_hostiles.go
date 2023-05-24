@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"strconv"
 	"sync"
-	"time"
 )
 
 // отношение бота к другим ботам и игрокм
@@ -87,62 +86,14 @@ func (s *SpecialHostiles) AddPoints(typeHostile string, id, hatePoint int) {
 func (s *SpecialHostiles) CheckHostile(typeHostile string, id int) (bool, int) {
 	hostile := s.getHostile(typeHostile, id)
 	hatePoints := hostile.GetPoints()
+
+	if hatePoints == 0 {
+		s.mx.Lock()
+		delete(s.specialHostiles, hostile.UUID)
+		s.mx.Unlock()
+	}
+
 	return hatePoints > 100, hatePoints
-}
-
-type SpecialHostile struct {
-	UUID                string `json:"uuid"`
-	ID                  int    `json:"id"`
-	Type                string `json:"type"`
-	Points              int    `json:"points"`
-	takeAwayPointsEvent map[int64]int
-	mx                  sync.RWMutex
-}
-
-func (s *SpecialHostile) SetPoints(hatePoint int) {
-	s.mx.Lock()
-	defer s.mx.Unlock()
-
-	s.Points = hatePoint
-	s.takeAwayPointsEvent = make(map[int64]int)
-}
-
-func (s *SpecialHostile) AddPoints(hatePoint int) {
-	s.mx.Lock()
-	defer s.mx.Unlock()
-
-	s.Points += hatePoint
-
-	if s.Points > 200 {
-		hatePoint = 200
-	}
-
-	if s.Points < -200 {
-		hatePoint = -200
-	}
-
-	if s.takeAwayPointsEvent == nil {
-		s.takeAwayPointsEvent = make(map[int64]int)
-	}
-
-	s.takeAwayPointsEvent[time.Now().UnixNano()] = hatePoint
-}
-
-func (s *SpecialHostile) GetPoints() int {
-	s.mx.Lock()
-	defer s.mx.Unlock()
-
-	if len(s.takeAwayPointsEvent) > 0 {
-		// отнимаем все поинты у которых вышло время
-		for unixNanoTime, points := range s.takeAwayPointsEvent {
-			if time.Now().UnixNano()-unixNanoTime > int64(time.Second*30) {
-				s.Points -= points
-				delete(s.takeAwayPointsEvent, unixNanoTime)
-			}
-		}
-	}
-
-	return s.Points
 }
 
 func (s *SpecialHostiles) AddIgnore(typeHostile string, id int) {

@@ -112,7 +112,7 @@ func (s *Squad) GetSpecialHostileData() ([]byte, []byte) {
 	return s.specialHostiles.GetJsonData()
 }
 
-func (s *Squad) LoadSpecialHostileFromJson(ignoreHate, specialHostiles []byte) {
+func (s *Squad) LoadSpecialHostileFromJson(ignoreHate []byte, specialHostiles []byte) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
