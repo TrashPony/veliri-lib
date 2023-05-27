@@ -157,10 +157,10 @@ type Meta struct {
 	FixedSector                   bool              `json:"fixed_sector"`
 	Global                        bool              `json:"global"`
 	TimeOut                       int               `json:"time_out"`
-	NpcRequestTimeOut             int               `json:"npc_request_time_out"`
-	Stop                          bool              `json:"stop"`
-	NotWarTypePath                string            `json:"not_war_type_path"`
-	mx                            sync.RWMutex
+	//NpcRequestTimeOut             int               `json:"npc_request_time_out"`
+	Stop           bool   `json:"stop"`
+	NotWarTypePath string `json:"not_war_type_path"`
+	mx             sync.RWMutex
 }
 
 type ResourceSendTask struct {
