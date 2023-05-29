@@ -27,6 +27,7 @@ const (
 	Explores = "Explores"
 	Reverses = "Reverses"
 	APD      = "APD"
+	FAUNA    = "Fauna"
 	ALL      = "ALL"
 
 	QuickBattle = "quick_battle"
