@@ -56,8 +56,10 @@ type Unit struct {
 	Damage         []Damage `json:"-"`
 	Immortal       bool     `json:"-"`
 
-	LastDamageTime int64 `json:"-"` // время последнего урона неважно от кого
-	LastFireTime   int64 `json:"-"` // время последнего выстрела, включая активные модули
+	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
+	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
+	FearTimer      int     `json:"-"`
+	FearAngle      float64 `json:"-"`
 
 	effects        *effects_store.EffectsStore
 	visibleObjects *visible_objects.VisibleObjectsStore
@@ -165,6 +167,8 @@ func (unit *Unit) UpdateWeaponsState() {
 }
 
 type MovePath struct {
+	typeFind     string
+	angle        float64
 	path         *[]*coordinate.Coordinate
 	followTarget *target.Target
 	currentPoint int
@@ -172,15 +176,15 @@ type MovePath struct {
 	time         int64
 }
 
-func (unit *Unit) GetMovePathState() (*target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
+func (unit *Unit) GetMovePathState() (string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
 	unit.moveMx.Lock()
 	defer unit.moveMx.Unlock()
 
 	if unit.movePath == nil {
-		return nil, nil, 0, false, 0
+		return "", 0, nil, nil, 0, false, 0
 	}
 
-	return unit.movePath.followTarget, unit.movePath.path, unit.movePath.currentPoint, unit.movePath.needFindPath, unit.movePath.time
+	return unit.movePath.typeFind, unit.movePath.angle, unit.movePath.followTarget, unit.movePath.path, unit.movePath.currentPoint, unit.movePath.needFindPath, unit.movePath.time
 }
 
 func (unit *Unit) NextMovePoint() {
@@ -232,6 +236,17 @@ func (unit *Unit) SetMovePathTarget(t *target.Target) {
 		needFindPath: true,
 		path:         &[]*coordinate.Coordinate{{X: t.X, Y: t.Y}},
 		followTarget: t,
+	}
+}
+
+func (unit *Unit) SetMovePathAngle(angle float64) {
+	unit.moveMx.Lock()
+	defer unit.moveMx.Unlock()
+
+	unit.movePath = &MovePath{
+		typeFind:     "angle",
+		needFindPath: true,
+		angle:        angle,
 	}
 }
 
@@ -342,6 +357,7 @@ func (unit *Unit) initPhysicalModel() {
 		Type:          "unit",
 		ID:            unit.GetID(),
 		ChassisType:   unit.body.ChassisType,
+		MoveDestroyer: unit.body.Fraction == _const.FAUNA,
 	}
 
 	// применяем настройки размера к обьектам колизий

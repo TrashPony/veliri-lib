@@ -47,6 +47,7 @@ type PhysicalModel struct {
 	BlockControl    bool                            `json:"-"`
 	TransportUnitID int                             `json:"-"`
 	Static          bool                            `json:"static"`
+	MoveDestroyer   bool                            `json:"-"`
 	polygon         *game_math.Polygon
 	nextPolygon     *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
 }
@@ -335,4 +336,8 @@ func (m *PhysicalModel) SetNextPolygon(p *game_math.Polygon) {
 func (m *PhysicalModel) SubVelocity(x float64, y float64) {
 	m.XVelocity -= x
 	m.YVelocity -= y
+}
+
+func (m *PhysicalModel) GetMoveDestroyer() bool {
+	return m.MoveDestroyer
 }

@@ -125,6 +125,14 @@ func (unit *Unit) SetBodySpeed(speed float64) {
 	unit.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
 }
 
+func (unit *Unit) SetSpeed(speed float64) {
+	unit.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
+}
+
+func (unit *Unit) SetTurnSpeed(speed float64) {
+	unit.GetPhysicalModel().TurnSpeed = speed / _const.ServerTickSecPart
+}
+
 func (unit *Unit) SetBodyMaxHP(maxHP int) {
 	unit.getBody().MaxHP = maxHP
 }

@@ -67,4 +67,5 @@ type MoveObject interface {
 	SetNextPos(x, y float64)
 	GetNextPos() (float64, float64)
 	GetChassisType() string
+	GetMoveDestroyer() bool
 }
