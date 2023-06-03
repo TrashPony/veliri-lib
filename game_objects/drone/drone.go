@@ -3,7 +3,9 @@ package drone
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/anchor"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
+	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
@@ -16,19 +18,21 @@ import (
 )
 
 type Drone struct {
-	UUID          string                `json:"uuid"`
-	ID            int                   `json:"id"`
-	Sprite        string                `json:"sprite"`
-	EquipSlot     *detail.BodyEquipSlot `json:"equip_slot"` // сылка на эквип который запустил дрона
-	OwnerPlayerID int                   `json:"owner_player_id"`
-	OwnerType     string                `json:"owner_type"`
-	OwnerID       int                   `json:"owner_id"`
-	MaxHP         int                   `json:"max_hp"`
-	HP            int                   `json:"hp"`
-	MapID         int                   `json:"map_id"`
-	RangeView     int                   `json:"range_view"`
-	Scale         int                   `json:"scale"`
-	Fraction      string                `json:"fraction"`
+	UUID             string                           `json:"uuid"`
+	ID               int                              `json:"id"`
+	Sprite           string                           `json:"sprite"`
+	EquipSlot        *detail.BodyEquipSlot            `json:"equip_slot"` // сылка на эквип который запустил дрона
+	OwnerPlayerID    int                              `json:"owner_player_id"`
+	OwnerType        string                           `json:"owner_type"`
+	OwnerID          int                              `json:"owner_id"`
+	MaxHP            int                              `json:"max_hp"`
+	HP               int                              `json:"hp"`
+	MapID            int                              `json:"map_id"`
+	RangeView        int                              `json:"range_view"`
+	Scale            int                              `json:"scale"`
+	Fraction         string                           `json:"fraction"`
+	EngagePosNoScale map[string]coordinate.Coordinate `json:"wheels_pos_no_scale"`
+	EngageAnchors    map[string]anchor.Anchor         `json:"wheel_anchors"`
 
 	followTarget *target.Target
 	weaponTarget *target.Target
@@ -385,4 +389,31 @@ func (d *Drone) SetFractionWarrior(ok bool) {
 
 func (d *Drone) FractionWarrior() bool {
 	return d.fractionWarrior
+}
+
+func (d *Drone) SetEngagePositions() {
+
+	if d.EngageAnchors == nil {
+		d.EngageAnchors = make(map[string]anchor.Anchor)
+	}
+
+	for key, pos := range d.EngagePosNoScale {
+		xAnchor, yAnchor, realXAttach, realYAttach := game_math.GetAnchorWeapon(64, 64, pos.X, pos.Y)
+		newAnc := anchor.Anchor{
+			XAnchor:     xAnchor,
+			YAnchor:     yAnchor,
+			RealXAttach: realXAttach,
+			RealYAttach: realYAttach,
+		}
+
+		ancState, ok := d.EngageAnchors[key]
+		if ok {
+			newAnc.Type = ancState.Type
+			newAnc.Scale = ancState.Scale
+			newAnc.Rotate = ancState.Rotate
+			newAnc.Height = ancState.Height
+		}
+
+		d.EngageAnchors[key] = newAnc
+	}
 }

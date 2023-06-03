@@ -3,6 +3,7 @@ package detail
 import (
 	"encoding/json"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/anchor"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"math/rand"
@@ -56,7 +57,7 @@ type Body struct {
 	Bonuses          map[string]*Bonus                `json:"bonuses"`
 	ChassisType      string                           `json:"chassis_type"`
 	WheelsPosNoScale map[string]coordinate.Coordinate `json:"wheels_pos_no_scale"`
-	WheelAnchors     map[string]Anchor                `json:"wheel_anchors"`
+	WheelAnchors     map[string]anchor.Anchor         `json:"wheel_anchors"`
 
 	MoveDrag    float64 `json:"move_drag"`
 	AngularDrag float64 `json:"angular_drag"`
@@ -369,24 +370,29 @@ func (body *Body) GetJSON() string {
 	return string(jsonBody)
 }
 
-type Anchor struct {
-	XAnchor     float64 `json:"x_anchor"`
-	YAnchor     float64 `json:"y_anchor"`
-	RealXAttach int     `json:"real_x_attach"`
-	RealYAttach int     `json:"real_y_attach"`
-}
-
 func (body *Body) SetWheelsPositions() {
 
-	body.WheelAnchors = make(map[string]Anchor)
+	if body.WheelAnchors == nil {
+		body.WheelAnchors = make(map[string]anchor.Anchor)
+	}
 
 	for key, pos := range body.WheelsPosNoScale {
 		xAnchor, yAnchor, realXAttach, realYAttach := game_math.GetAnchorWeapon(64, 64, int(pos.X), int(pos.Y))
-		body.WheelAnchors[key] = Anchor{
+		newAnc := anchor.Anchor{
 			XAnchor:     xAnchor,
 			YAnchor:     yAnchor,
 			RealXAttach: realXAttach,
 			RealYAttach: realYAttach,
 		}
+
+		ancState, ok := body.WheelAnchors[key]
+		if ok {
+			newAnc.Type = ancState.Type
+			newAnc.Scale = ancState.Scale
+			newAnc.Rotate = ancState.Rotate
+			newAnc.Height = ancState.Height
+		}
+
+		body.WheelAnchors[key] = newAnc
 	}
 }
