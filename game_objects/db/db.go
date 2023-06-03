@@ -15,7 +15,6 @@ type DynObject struct {
 	OwnerBaseID      int
 	MaxScale         int
 	Complete         int
-	GrowCycle        int
 	GrowTime         int
 	GrowLeftTime     int
 	Fraction         string

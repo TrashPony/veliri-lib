@@ -38,7 +38,8 @@ type Object struct {
 	TypeMaxHP           int    `json:"-"`
 	HP                  int    `json:"hp"`
 	Scale               int    `json:"scale"`
-	MaxScale            int    `json:"-"`         // определяется рандомно для растений максимальный размер куста
+	MaxScale            int    `json:"-"` // определяется рандомно для растений максимальный размер куста
+	GrowCollision       bool   `json:"-"`
 	GrowTime            int    `json:"grow_time"` // говорит время цикла когда растение росло для гладкой отрисовки
 	Shadow              bool   `json:"shadow"`
 	AnimationSpeed      int    `json:"animation_speed"`
@@ -111,7 +112,6 @@ type Object struct {
 
 	PosFunc      func() `json:"-"`
 	MemoryID     int    `json:"-"`
-	GrowCycle    int    `json:"-"`
 	GrowLeftTime int    `json:"-"`
 
 	CacheJson              []byte `json:"-"`

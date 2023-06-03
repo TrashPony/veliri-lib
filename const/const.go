@@ -61,8 +61,7 @@ const (
 
 	ItemSizeRadius = 5
 
-	GrowCycle       = 25
-	TerrainGrowTime = 1000
+	TerrainGrowTime = 3000
 
 	// шанс 1 к chanceMeteoriteRain
 	ChanceMeteoriteRain = 10000
@@ -151,6 +150,7 @@ var FractionByte = map[string]byte{
 	Explores:         2,
 	Reverses:         3,
 	APD:              4,
+	FAUNA:            5,
 }
 
 var PointType = map[string]byte{
