@@ -40,10 +40,6 @@ func (o *Object) SetGeoData() {
 
 	for i, geoPoint := range o.GetPhysicalModel().GeoData {
 
-		if geoPoint.Radius == 0 {
-			println(123)
-		}
-
 		if geoPoint == nil {
 			continue
 		}

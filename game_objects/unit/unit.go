@@ -82,7 +82,6 @@ func (unit *Unit) GetEffects() *effects_store.EffectsStore {
 }
 
 func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
-	// TODO API
 	add := unit.GetEffects().AddEffect(newEffect)
 	if add {
 		unit.UpdatePhysicalModel()
@@ -93,7 +92,6 @@ func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
 }
 
 func (unit *Unit) RemoveEffect(uuid string) bool {
-	// TODO API
 	remove := unit.GetEffects().RemoveEffect(uuid)
 	if remove {
 		unit.UpdatePhysicalModel()
@@ -133,6 +131,11 @@ func (unit *Unit) initGunner() {
 	}
 
 	unit.UpdateWeaponsState()
+}
+
+func (unit *Unit) UpdateViewState() {
+	unit.viewRange = unit.getRangeView()
+	unit.radarRange = unit.getRadarRange()
 }
 
 func (unit *Unit) UpdateWeaponsState() {

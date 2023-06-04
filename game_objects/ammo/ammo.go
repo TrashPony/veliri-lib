@@ -29,6 +29,8 @@ type Ammo struct {
 	Gravity                float64     `json:"-"`
 	ForceAnimate           bool        `json:"force_animate"`
 	LifeTime               int         `json:"life_time"`
+	ClusterID              int         `json:"cluster_id"`
+	ClusterCount           int         `json:"cluster_count"`
 }
 
 func (a *Ammo) GetName() string {

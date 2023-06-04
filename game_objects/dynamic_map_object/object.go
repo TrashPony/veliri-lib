@@ -224,6 +224,11 @@ func (o *Object) initPhysicalModel() {
 		Weight:      weight,
 	}
 }
+
+func (o *Object) IgnoreSmoke() bool {
+	return false
+}
+
 func (o *Object) SetAllGunRotate(addRotate float64) {
 	o.GetWeaponSlot(1).SetGunRotate(o.GetWeaponSlot(1).GetGunRotate() + addRotate)
 }
