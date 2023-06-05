@@ -6,9 +6,6 @@ import (
 )
 
 func (unit *Unit) SetBody(body *detail.Body) {
-	unit.mx.Lock()
-	defer unit.mx.Unlock()
-
 	unit.body = body
 }
 
@@ -17,9 +14,6 @@ func (unit *Unit) getBody() *detail.Body {
 }
 
 func (unit *Unit) GetBody() *detail.Body {
-	unit.mx.Lock()
-	defer unit.mx.Unlock()
-
 	return unit.body
 }
 
@@ -29,9 +23,6 @@ func (unit *Unit) GetBodyItem() *detail.Body {
 }
 
 func (unit *Unit) GetUseEnergy() int {
-	unit.mx.RLock()
-	defer unit.mx.RUnlock()
-
 	return unit.getBody().GetUseEnergy()
 }
 
@@ -113,9 +104,6 @@ func (unit *Unit) GetBodyApplicableEquips(applicable string) []*detail.BodyEquip
 }
 
 func (unit *Unit) GetBodyJSON() string {
-	unit.mx.Lock()
-	defer unit.mx.Unlock()
-
 	return unit.getBody().GetJSON()
 }
 

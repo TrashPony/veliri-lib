@@ -50,17 +50,21 @@ func DirectionRotate(unitAngle, needAngle float64) bool {
 	direction := false
 
 	if unitAngle < needAngle {
-		for unitAngle < needAngle {
-			count++
-			direction = true
-			unitAngle++
-		}
+		count = int(needAngle - unitAngle)
+		direction = true
+		//for unitAngle < needAngle {
+		//	count++
+		//	direction = true
+		//	unitAngle++
+		//}
 	} else {
-		for unitAngle > needAngle {
-			count++
-			direction = false
-			needAngle++
-		}
+		count = int(unitAngle - needAngle)
+		direction = false
+		//for unitAngle > needAngle {
+		//	count++
+		//	direction = false
+		//	needAngle++
+		//}
 	}
 
 	if direction {

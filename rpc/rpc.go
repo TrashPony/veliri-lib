@@ -29,6 +29,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/resource"
 	"github.com/TrashPony/veliri-lib/game_objects/rpc_request"
 	"github.com/TrashPony/veliri-lib/game_objects/select_mouse_equip"
+	"github.com/TrashPony/veliri-lib/game_objects/skill"
 	"github.com/TrashPony/veliri-lib/game_objects/skin"
 	"github.com/TrashPony/veliri-lib/game_objects/spawn"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
@@ -101,6 +102,7 @@ func GobRegister() {
 	gob.Register([]*build_option.BuildOption{})
 	gob.Register(info_map.InfoMap{})
 	gob.Register(behavior_rule.SubGroup{})
+	gob.Register(map[string]*skill.Skill{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})

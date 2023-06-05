@@ -180,14 +180,12 @@ type MovePath struct {
 }
 
 func (unit *Unit) GetMovePathState() (string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	if unit.movePath == nil {
+	mp := unit.movePath
+	if mp == nil {
 		return "", 0, nil, nil, 0, false, 0
 	}
 
-	return unit.movePath.typeFind, unit.movePath.angle, unit.movePath.followTarget, unit.movePath.path, unit.movePath.currentPoint, unit.movePath.needFindPath, unit.movePath.time
+	return mp.typeFind, mp.angle, mp.followTarget, mp.path, mp.currentPoint, mp.needFindPath, mp.time
 }
 
 func (unit *Unit) NextMovePoint() {

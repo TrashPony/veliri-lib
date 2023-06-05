@@ -12,6 +12,18 @@ type UserSkills struct {
 	mx               sync.RWMutex
 }
 
+func (u *UserSkills) GetCopyMap() map[string]*skill.Skill {
+	u.mx.RLock()
+	defer u.mx.RUnlock()
+
+	skills := make(map[string]*skill.Skill)
+	for k, s := range u.skills {
+		skills[k] = s
+	}
+
+	return skills
+}
+
 func (u *UserSkills) AddSkill(newSkill *skill.Skill) {
 
 	if u == nil {
