@@ -8,7 +8,6 @@ import (
 
 type Inventory struct {
 	slots map[int]*Slot
-	size  int
 	mx    sync.RWMutex
 }
 
@@ -179,7 +178,7 @@ func (inv *Inventory) GetCopyInventory() *Inventory {
 	inv.mx.RLock()
 	defer inv.mx.RUnlock()
 
-	copyInventory := Inventory{size: inv.size}
+	copyInventory := Inventory{}
 	if inv.slots == nil {
 		return &copyInventory
 	} else {
@@ -202,16 +201,13 @@ func (inv *Inventory) GetCopyInventory() *Inventory {
 }
 
 func (inv *Inventory) IsNil() bool {
-	return inv == nil || inv.slots == nil || inv.size == 0
+	return inv == nil || inv.slots == nil
 }
 
-func (inv *Inventory) SetSlotsSize(size int) {
-
+func (inv *Inventory) Init() {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
-
 	inv.slots = make(map[int]*Slot)
-	inv.size = size
 }
 
 func (inv *Inventory) SetSlots(slots map[int]*Slot) {
@@ -232,23 +228,6 @@ func (inv *Inventory) GetSlots() map[int]*Slot {
 	slots := make(map[int]*Slot)
 	for _, slot := range inv.slots {
 		slots[slot.GetNumber()] = slot
-	}
-
-	return slots
-}
-
-func (inv *Inventory) GetArraySlots() []*Slot {
-
-	if inv == nil {
-		return nil
-	}
-
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	slots := make([]*Slot, 0, len(inv.slots))
-	for _, slot := range inv.slots {
-		slots = append(slots, slot)
 	}
 
 	return slots
@@ -296,7 +275,7 @@ func (inv *Inventory) DeleteEmptySlot(number int) {
 	defer inv.mx.Unlock()
 
 	slot := inv.slots[number]
-	if slot != nil && slot.Quantity == 0 {
+	if slot != nil && slot.IsEmpty() {
 		delete(inv.slots, number)
 	}
 }
@@ -389,7 +368,6 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			Item:         GetInfoByItem(item),
 			Type:         itemType,
 			ItemID:       itemID,
-			InsertToDB:   true,
 			Quantity:     quantity,
 			HP:           hp,
 			MaxHP:        maxHP,
@@ -407,7 +385,7 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 }
 
 func (inv *Inventory) GetEmptySlot() int {
-	for i := 1; i <= inv.size; i++ { // ищем пустой слот
+	for i := 1; i <= 9999; i++ { // ищем пустой слот
 		_, ok := inv.slots[i]
 		if !ok {
 			return i

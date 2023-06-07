@@ -37,7 +37,7 @@ func (unit *Unit) EfficiencyReactor() float64 {
 	}
 
 	if full == 0 {
-		return 0.2
+		return 0
 	}
 
 	return full / float64(len(unit.getBody().ThoriumSlots))
@@ -50,16 +50,17 @@ func (unit *Unit) AppendFuelModifier() {
 		unit.RemoveEffect("fuel_" + parameter)
 	}
 
-	percentFuel := int(unit.EfficiencyReactor() * 100)
-	if percentFuel == 100 {
+	percentFuel := unit.EfficiencyReactor() * 100
+	if int(percentFuel) == 100 {
 		return
 	}
 
+	doublePercentFuel := float64(50) * (percentFuel / 100.0)
 	for _, parameter := range reactorChangeParameters {
 		unit.AddEffect(&effect.Effect{
 			UUID:        "fuel_" + parameter,
 			Parameter:   parameter,
-			Quantity:    100 - percentFuel,
+			Quantity:    50 - int(doublePercentFuel),
 			Percentages: true,
 			Subtract:    true,
 		})
