@@ -17,6 +17,8 @@ const (
 	ServerTickSecPart = float64(int(1000 / ServerTick))
 	AiTick            = 1000 // если меняешь посмотри что везде правильно сработает таймаут
 
+	PowerInWork = 5000 // 1 заряд равен 100 энергии
+
 	// очки опыта
 	// Оружия
 	KillStructure      = 40

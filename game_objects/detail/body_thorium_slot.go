@@ -5,6 +5,7 @@ import (
 )
 
 type ThoriumSlot struct {
+	ID                int  `json:"id"`
 	Number            int  `json:"number_slot"`
 	Count             int  `json:"count"`
 	MaxCount          int  `json:"max_count"`

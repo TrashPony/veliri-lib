@@ -8,13 +8,14 @@ import (
 )
 
 type BodyWeaponSlot struct {
+	ID                  int        `json:"id"`
+	AmmoSlotID          int        `json:"ammo_slot_id"`
 	Type                int        `json:"type_slot"` // по диз доку он может быть только 3
 	Number              int        `json:"number_slot"`
 	Weapon              *Weapon    `json:"weapon"`
 	WeaponType          string     `json:"weapon_type"`
 	Ammo                *ammo.Ammo `json:"ammo"`
 	AmmoQuantity        int        `json:"ammo_quantity"`
-	HP                  int        `json:"hp"`
 	XAttach             int        `json:"x_attach"`
 	YAttach             int        `json:"y_attach"`
 	RealXAttach         int        `json:"real_x_attach"`

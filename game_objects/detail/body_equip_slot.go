@@ -9,11 +9,11 @@ import (
 )
 
 type BodyEquipSlot struct {
+	ID               int            `json:"id"`
 	Type             int            `json:"type_slot"`
 	UUID             string         `json:"uuid"`
 	Number           int            `json:"number_slot"`
 	Equip            *equip.Equip   `json:"equip"`
-	HP               int            `json:"-"`
 	Target           *target.Target `json:"-"`
 	StandardSize     int            `json:"standard_size"` /* определяет тип вмещаемого юнита если это ангар */
 	XAttach          int            `json:"x_attach"`

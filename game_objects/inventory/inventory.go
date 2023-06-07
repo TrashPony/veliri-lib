@@ -520,6 +520,7 @@ func (inv *Inventory) ViewItems(itemID int, itemType string, quantityFind int) b
 
 func (inv *Inventory) AddSlot(slot int, inventorySlot *Slot) {
 	inv.mx.Lock()
+	inventorySlot.SetNumber(slot)
 	inv.slots[slot] = inventorySlot
 	inv.mx.Unlock()
 }

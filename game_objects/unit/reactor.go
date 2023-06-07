@@ -1,6 +1,9 @@
 package unit
 
-import "github.com/TrashPony/veliri-lib/game_objects/effect"
+import (
+	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_objects/effect"
+)
 
 func (unit *Unit) WorkReactorPower(removeCount int) {
 
@@ -16,27 +19,10 @@ func (unit *Unit) WorkReactorPower(removeCount int) {
 		for _, slot := range unit.getBody().ThoriumSlots {
 			if slot.GetCount() > 0 {
 				slot.WorkedOut++
-				if slot.WorkedOut >= 100 {
+				if slot.WorkedOut >= _const.PowerInWork {
 					slot.WorkedOut = 0
 					slot.SetCount(slot.GetCount() - 1)
 				}
-			}
-		}
-	}
-}
-
-func (unit *Unit) WorkOutMovePower() {
-	if unit.GetID() < 0 {
-		// что б у ботов небыло проблем)
-		return
-	}
-
-	for _, slot := range unit.getBody().ThoriumSlots {
-		if slot.GetCount() > 0 {
-			slot.WorkedOut++
-			if slot.WorkedOut >= 100 {
-				slot.WorkedOut = 0
-				slot.SetCount(slot.GetCount() - 1)
 			}
 		}
 	}

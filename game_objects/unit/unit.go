@@ -747,42 +747,6 @@ func (unit *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 	return false, false
 }
 
-func (unit *Unit) CheckGrowthPower() bool {
-	if unit.GetPhysicalModel().CheckGrowthPower() && !unit.GetEvacuation() {
-		unit.WorkOutMovePower()
-		return true
-	}
-
-	return false
-}
-
-func (unit *Unit) CheckGrowthRevers() bool {
-	if unit.GetPhysicalModel().CheckGrowthRevers() && !unit.GetEvacuation() {
-		unit.WorkOutMovePower()
-		return true
-	}
-
-	return false
-}
-
-func (unit *Unit) CheckLeftRotate() bool {
-	if unit.GetPhysicalModel().CheckLeftRotate() && !unit.GetEvacuation() {
-		unit.WorkOutMovePower()
-		return true
-	}
-
-	return false
-}
-
-func (unit *Unit) CheckRightRotate() bool {
-	if unit.GetPhysicalModel().CheckRightRotate() && !unit.GetEvacuation() {
-		unit.WorkOutMovePower()
-		return true
-	}
-
-	return false
-}
-
 func (unit *Unit) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	// мы никогда не пишут в карту слотов оружия поэтому этот метод безопасен (по крайне мере пока)
 	return unit.getBody().Weapons

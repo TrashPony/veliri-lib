@@ -164,15 +164,15 @@ func (u *UserSkills) GetProductionTimeSkillFactor() int {
 	}
 }
 
-func (u *UserSkills) UpSkill(skill *skill.Skill) (bool, *skill.Skill) {
-	if u == nil || skill == nil {
+func (u *UserSkills) UpSkill(skillName string) (bool, *skill.Skill) {
+	if u == nil {
 		return false, nil
 	}
 
-	upgradeSkill := u.GetSkill(skill.Name)
+	upgradeSkill := u.GetSkill(skillName)
 	if upgradeSkill == nil {
-		u.AddSkill(skill)
-		upgradeSkill = u.GetSkill(skill.Name)
+		u.AddSkill(upgradeSkill)
+		upgradeSkill = u.GetSkill(skillName)
 	}
 
 	needToLvlUp := upgradeSkill.GetPointToUp()
