@@ -131,12 +131,14 @@ type Meta struct {
 	Radius                        int               `json:"radius"`
 	Parameter                     string            `json:"parameter"`
 	Count                         int               `json:"count"`
+	Count2                        int               `json:"count_2"`
 	Current                       int               `json:"current"`
 	Percent                       bool              `json:"percent"`
 	MapID                         int               `json:"map_id"`
 	BaseID                        int               `json:"base_id"`
 	TypeTarget                    string            `json:"type_target"`
 	IDTarget                      int               `json:"id_target"`
+	IDPlayerTarget                int               `json:"id_player_target"`
 	TypeInteraction               string            `json:"type_interaction"`
 	TypeID                        int               `json:"type_id"`
 	X                             int               `json:"x"`

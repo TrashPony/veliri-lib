@@ -94,7 +94,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 					Action: "find_hostile_in_range_view",
 					PassRule: &BehaviorRule{
 						Action: "warrior_check_battle_solution",
-						Meta:   &Meta{Type: "secure", Count: 35},
+						Meta:   &Meta{Type: "secure", Count: 50, Count2: -15},
 						PassRule: &BehaviorRule{
 							Action: "send_npc_request",
 							Meta:   &Meta{Type: "demand"},
