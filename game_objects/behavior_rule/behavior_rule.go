@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"sync"
+	"time"
 )
 
 type BehaviorRules struct {
@@ -159,10 +160,59 @@ type Meta struct {
 	FixedSector                   bool              `json:"fixed_sector"`
 	Global                        bool              `json:"global"`
 	TimeOut                       int               `json:"time_out"`
-	//NpcRequestTimeOut             int               `json:"npc_request_time_out"`
-	Stop           bool   `json:"stop"`
-	NotWarTypePath string `json:"not_war_type_path"`
-	mx             sync.RWMutex
+	Stop                          bool              `json:"stop"`
+	NotWarTypePath                string            `json:"not_war_type_path"`
+	robberyIgnore                 map[int]int64
+	mx                            sync.RWMutex
+}
+
+func (m *Meta) GetRobberyIgnore(unitID int) bool {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	for id, unixTime := range m.robberyIgnore {
+		if time.Now().UnixNano()-unixTime > int64(time.Minute*3) {
+			delete(m.robberyIgnore, id)
+		}
+	}
+
+	_, ok := m.robberyIgnore[unitID]
+	return ok
+}
+
+func (m *Meta) AddRobberyIgnore(unitID int) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+	if m.robberyIgnore == nil {
+		m.robberyIgnore = make(map[int]int64)
+	}
+
+	m.robberyIgnore[unitID] = time.Now().UnixNano()
+}
+
+func (m *Meta) GetJsonRobberyIgnore() []byte {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	data, err := json.Marshal(m.robberyIgnore)
+	if err != nil {
+		fmt.Println("error get json robbery ignore")
+	}
+
+	return data
+}
+
+func (m *Meta) LoadRobberyIgnore(data []byte) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	ids := make(map[int]int64, 0)
+	err := json.Unmarshal(data, &ids)
+	if err != nil {
+		fmt.Println("error load robbery ignore")
+	}
+
+	m.robberyIgnore = ids
 }
 
 type ResourceSendTask struct {

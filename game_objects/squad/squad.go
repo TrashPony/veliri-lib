@@ -42,6 +42,7 @@ type Squad struct {
 
 	BodySkin    *skin.Skin         `json:"body_skin"`
 	weaponSkins map[int]*skin.Skin `json:"weapon_skins"`
+	Transfer    bool
 
 	updateDB sync.Mutex
 	mx       sync.RWMutex
@@ -93,6 +94,7 @@ func (s *Squad) SetHostilePoints(typeHostile string, id, hatePoint int) {
 	}
 
 	s.specialHostiles.SetPoints(typeHostile, id, hatePoint)
+	// TODO NODES
 }
 
 func (s *Squad) ClearHostile() {
