@@ -47,12 +47,16 @@ func GetTransportRules() (*BehaviorRules, *BehaviorRules) {
 					PassRule: getBackRules(),
 					StopRule: &BehaviorRule{
 						Action: "send_npc_request",
-						Meta:   &Meta{Type: "defend"},
+						Meta:   &Meta{Type: "attack"},
 						PassRule: &BehaviorRule{
-							Action: "to_sector_target",
-							Meta:   &Meta{Type: "Fraction"},
+							Action: "send_npc_request",
+							Meta:   &Meta{Type: "defend"},
 							PassRule: &BehaviorRule{
-								Action: "to_base",
+								Action: "to_sector_target",
+								Meta:   &Meta{Type: "Fraction"},
+								PassRule: &BehaviorRule{
+									Action: "to_base",
+								},
 							},
 						},
 					},

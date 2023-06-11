@@ -33,15 +33,23 @@ func peacefulCheckBattleSolution() *BehaviorRule {
 					},
 				},
 				StopRule: &BehaviorRule{
+					Action: "send_npc_request",
+					Meta:   &Meta{Type: "attack"},
+					PassRule: &BehaviorRule{
+						Action:   "send_npc_request",
+						Meta:     &Meta{Type: "defend"},
+						PassRule: getBackRules(),
+					},
+				},
+			},
+			StopRule: &BehaviorRule{
+				Action: "send_npc_request",
+				Meta:   &Meta{Type: "attack"},
+				PassRule: &BehaviorRule{
 					Action:   "send_npc_request",
 					Meta:     &Meta{Type: "defend"},
 					PassRule: getBackRules(),
 				},
-			},
-			StopRule: &BehaviorRule{
-				Action:   "send_npc_request",
-				Meta:     &Meta{Type: "defend"},
-				PassRule: getBackRules(),
 			},
 		},
 	}

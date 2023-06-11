@@ -111,9 +111,13 @@ func GetOutScoutRules() (*BehaviorRules, *BehaviorRules) {
 							Meta:   &Meta{Type: "secure", Count: 35},
 							PassRule: &BehaviorRule{
 								Action: "send_npc_request",
-								Meta:   &Meta{Type: "demand"},
+								Meta:   &Meta{Type: "attack"},
 								PassRule: &BehaviorRule{
-									Action: "follow_attack_target",
+									Action: "send_npc_request",
+									Meta:   &Meta{Type: "demand"},
+									PassRule: &BehaviorRule{
+										Action: "follow_attack_target",
+									},
 								},
 							},
 							StopRule: &BehaviorRule{
@@ -133,9 +137,13 @@ func GetOutScoutRules() (*BehaviorRules, *BehaviorRules) {
 									},
 								},
 								StopRule: &BehaviorRule{
-									Action:   "send_npc_request",
-									Meta:     &Meta{Type: "defend"},
-									PassRule: getBackRules(),
+									Action: "send_npc_request",
+									Meta:   &Meta{Type: "attack"},
+									PassRule: &BehaviorRule{
+										Action:   "send_npc_request",
+										Meta:     &Meta{Type: "defend"},
+										PassRule: getBackRules(),
+									},
 								},
 							},
 						},

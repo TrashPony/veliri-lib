@@ -53,47 +53,51 @@ func GetMinerRules() (*BehaviorRules, *BehaviorRules) {
 				Action:   "find_hostile_in_range_view",
 				PassRule: peacefulCheckBattleSolution(),
 				StopRule: &BehaviorRule{
-					Action:   "check_back_to_base",
-					PassRule: getBackRules(),
-					StopRule: &BehaviorRule{
-						Action: "check_cargo_full",
-						Meta:   &Meta{Count: 75},
-						PassRule: &BehaviorRule{
-							Action: "find_fraction_processing_plant",
+					Action: "send_npc_request",
+					Meta:   &Meta{Type: "attack"},
+					PassRule: &BehaviorRule{
+						Action:   "check_back_to_base",
+						PassRule: getBackRules(),
+						StopRule: &BehaviorRule{
+							Action: "check_cargo_full",
+							Meta:   &Meta{Count: 75},
 							PassRule: &BehaviorRule{
-								Action: "to_sector_target",
-								Meta:   &Meta{Type: "Fraction"},
+								Action: "find_fraction_processing_plant",
 								PassRule: &BehaviorRule{
-									Action: "to_base",
+									Action: "to_sector_target",
+									Meta:   &Meta{Type: "Fraction"},
+									PassRule: &BehaviorRule{
+										Action: "to_base",
+									},
 								},
 							},
-						},
-						StopRule: &BehaviorRule{
-							Action: "find_drop_items", // смотри брошеные вещи которые можно поднять, если такие есть берем любой и кладем в мету
-							PassRule: &BehaviorRule{
-								Action: "get_drop_item", // идем к упавшему предмету и пытаемся его взять, ид предмета указать в мете
-							},
 							StopRule: &BehaviorRule{
-								Action: "to_reservoir_mine",
+								Action: "find_drop_items", // смотри брошеные вещи которые можно поднять, если такие есть берем любой и кладем в мету
+								PassRule: &BehaviorRule{
+									Action: "get_drop_item", // идем к упавшему предмету и пытаемся его взять, ид предмета указать в мете
+								},
 								StopRule: &BehaviorRule{
-									Action: "check_hp",
-									Meta: &Meta{
-										Parameter: "HP",
-										Count:     90,
-										Percent:   true,
-									},
-									PassRule: &BehaviorRule{
-										Action: "to_fraction_sector",
-										Meta:   &Meta{SetBackToBaseWhenChangeSector: true},
-										StopRule: &BehaviorRule{
-											Action: "find_random_sector",
-											PassRule: &BehaviorRule{
-												Action: "to_sector_target",
-												Meta:   &Meta{Type: "Fraction"},
+									Action: "to_reservoir_mine",
+									StopRule: &BehaviorRule{
+										Action: "check_hp",
+										Meta: &Meta{
+											Parameter: "HP",
+											Count:     90,
+											Percent:   true,
+										},
+										PassRule: &BehaviorRule{
+											Action: "to_fraction_sector",
+											Meta:   &Meta{SetBackToBaseWhenChangeSector: true},
+											StopRule: &BehaviorRule{
+												Action: "find_random_sector",
+												PassRule: &BehaviorRule{
+													Action: "to_sector_target",
+													Meta:   &Meta{Type: "Fraction"},
+												},
 											},
 										},
+										StopRule: getBackRules(),
 									},
-									StopRule: getBackRules(),
 								},
 							},
 						},

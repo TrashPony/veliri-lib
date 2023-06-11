@@ -31,7 +31,11 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 				PassRule: &BehaviorRule{
 					Action: "warrior_check_battle_solution",
 					PassRule: &BehaviorRule{
-						Action: "follow_attack_target",
+						Action: "send_npc_request",
+						Meta:   &Meta{Type: "attack"},
+						PassRule: &BehaviorRule{
+							Action: "follow_attack_target",
+						},
 					},
 					StopRule: &BehaviorRule{
 						Action: "send_npc_request",
