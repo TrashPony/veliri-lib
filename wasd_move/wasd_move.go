@@ -63,7 +63,7 @@ func wheel(obj MoveObject) {
 
 	move := obj.GetPowerMove() > 0 || obj.GetReverse() > 0
 
-	if obj.GetChassisType() == "caterpillars" || obj.GetChassisType() == "fly" || (obj.GetChassisType() == "wheels" || obj.GetChassisType() == "fly-2" && move) {
+	if obj.GetChassisType() == "caterpillars" || obj.GetChassisType() == "fly" || ((obj.GetChassisType() == "wheels" || obj.GetChassisType() == "fly-2") && move) {
 		if obj.CheckLeftRotate() {
 			obj.SetAngularVelocity(obj.GetAngularVelocity() - (direction * obj.GetTurnSpeed()))
 		}
