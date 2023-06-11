@@ -162,6 +162,7 @@ type Meta struct {
 	TimeOut                       int               `json:"time_out"`
 	Stop                          bool              `json:"stop"`
 	NotWarTypePath                string            `json:"not_war_type_path"`
+	MissionTarget                 int               `json:"mission_target"`
 	robberyIgnore                 map[int]int64
 	mx                            sync.RWMutex
 }
