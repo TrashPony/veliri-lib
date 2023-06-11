@@ -34,23 +34,12 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 						Action: "follow_attack_target",
 					},
 					StopRule: &BehaviorRule{
-						Action: "check_hp",
-						Meta: &Meta{
-							Parameter: "HP",
-							Count:     33,
-							Percent:   true,
-						},
+						Action: "send_npc_request",
+						Meta:   &Meta{Type: "attack"},
 						PassRule: &BehaviorRule{
-							Action: "send_npc_request",
-							Meta:   &Meta{Type: "attack"},
-							PassRule: &BehaviorRule{
-								Action:   "send_npc_request",
-								Meta:     &Meta{Type: "defend"},
-								PassRule: getBackRules(),
-							},
-						},
-						StopRule: &BehaviorRule{
-							Action: "follow_attack_target",
+							Action:   "send_npc_request",
+							Meta:     &Meta{Type: "defend"},
+							PassRule: getBackRules(),
 						},
 					},
 				},

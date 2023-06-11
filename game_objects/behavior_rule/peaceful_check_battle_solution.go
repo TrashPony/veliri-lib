@@ -5,9 +5,13 @@ func peacefulCheckBattleSolution() *BehaviorRule {
 		Action: "peaceful_check_battle_solution",
 		PassRule: &BehaviorRule{
 			Action: "send_npc_request",
-			Meta:   &Meta{Type: "demand"},
+			Meta:   &Meta{Type: "attack"},
 			PassRule: &BehaviorRule{
-				Action: "follow_attack_target",
+				Action: "send_npc_request",
+				Meta:   &Meta{Type: "demand"},
+				PassRule: &BehaviorRule{
+					Action: "follow_attack_target",
+				},
 			},
 		},
 		StopRule: &BehaviorRule{
