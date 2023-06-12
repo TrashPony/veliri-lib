@@ -384,8 +384,9 @@ func (unit *Unit) GetFullJSON() string {
 }
 
 func (unit *Unit) GetFollowTarget() *target.Target {
-	if unit.movePath != nil {
-		return unit.movePath.followTarget
+	mp := unit.movePath
+	if mp != nil {
+		return mp.GetFollowTarget()
 	}
 
 	return nil

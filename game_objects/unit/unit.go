@@ -10,6 +10,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
+	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
@@ -22,8 +23,8 @@ type Unit struct {
 	Owner         string `json:"owner"`
 	OwnerID       int    `json:"owner_id"`
 	OwnerFraction string `json:"of"`
-
-	body *detail.Body
+	Ready         bool
+	body          *detail.Body
 
 	HP          int    `json:"hp"`
 	Power       int    `json:"power"`
@@ -35,8 +36,7 @@ type Unit struct {
 	forceEvacuation bool
 	inSky           bool /* отряд по той или иной причине летит Оо */
 
-	movePath *MovePath // специальный обьект для пути
-	moveMx   sync.Mutex
+	movePath *move_path.MovePath // специальный обьект для пути
 
 	Inventory           *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
 	AdditionalInventory map[string]*inventory.Inventory `json:"-"`
@@ -169,86 +169,63 @@ func (unit *Unit) UpdateWeaponsState() {
 	}
 }
 
-type MovePath struct {
-	typeFind     string
-	angle        float64
-	path         *[]*coordinate.Coordinate
-	followTarget *target.Target
-	currentPoint int
-	needFindPath bool
-	time         int64
-}
-
-func (unit *Unit) GetMovePathState() (string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
+func (unit *Unit) GetMovePathTime() int64 {
 	mp := unit.movePath
-	if mp == nil {
-		return "", 0, nil, nil, 0, false, 0
+	if mp == nil || !mp.GetNeedCalc() {
+		return time.Now().UnixNano() + int64(time.Hour)
 	}
 
-	return mp.typeFind, mp.angle, mp.followTarget, mp.path, mp.currentPoint, mp.needFindPath, mp.time
+	return mp.GetMovePathTime()
+}
+
+func (unit *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
+	mp := unit.movePath
+	if mp == nil {
+		return false, "", 0, nil, nil, 0, false, 0
+	}
+
+	return mp.GetMovePathState()
 }
 
 func (unit *Unit) NextMovePoint() {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	if unit.movePath == nil {
+	mp := unit.movePath
+	if mp == nil {
 		return
 	}
 
-	unit.movePath.currentPoint++
+	mp.NextMovePoint()
 }
 
 func (unit *Unit) SetFindMovePath() {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	if unit.movePath != nil {
-		unit.movePath.needFindPath = true
+	mp := unit.movePath
+	if mp != nil {
+		mp.SetFindMovePath()
 	}
 }
 
 func (unit *Unit) RemoveMovePath() {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
 	unit.movePath = nil
 }
 
 func (unit *Unit) SetMovePath(path *[]*coordinate.Coordinate) {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	if unit.movePath == nil {
+	mp := unit.movePath
+	if mp == nil {
 		return
 	}
 
-	unit.movePath.needFindPath = false
-	unit.movePath.path = path
-	unit.movePath.currentPoint = 0
-	unit.movePath.time = time.Now().Unix()
+	mp.SetMovePath(path)
 }
 
 func (unit *Unit) SetMovePathTarget(t *target.Target) {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	unit.movePath = &MovePath{
-		needFindPath: true,
-		path:         &[]*coordinate.Coordinate{{X: t.X, Y: t.Y}},
-		followTarget: t,
-	}
+	mp := &move_path.MovePath{}
+	mp.SetMovePathTarget(t, unit.GetOwnerPlayerID(), unit.ID)
+	unit.movePath = mp
 }
 
 func (unit *Unit) SetMovePathAngle(angle float64) {
-	unit.moveMx.Lock()
-	defer unit.moveMx.Unlock()
-
-	unit.movePath = &MovePath{
-		typeFind:     "angle",
-		needFindPath: true,
-		angle:        angle,
-	}
+	mp := &move_path.MovePath{}
+	mp.SetMovePathAngle(angle, unit.GetOwnerPlayerID(), unit.ID)
+	unit.movePath = mp
 }
 
 type Damage struct {

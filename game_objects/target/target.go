@@ -25,9 +25,9 @@ type Target struct {
 	PlaceObject  bool    `json:"place_object"`
 	Rotate       float64 `json:"rotate"`
 	BaseID       int     `json:"base_id"`
-
-	Update   int64 `json:"-"`
-	MouseTap bool  `json:"-"`
+	Ignore       bool    `json:"ignore"`
+	Update       int64   `json:"-"`
+	MouseTap     bool    `json:"-"`
 }
 
 func (t *Target) GetX() int {
