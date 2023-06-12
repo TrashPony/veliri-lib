@@ -32,8 +32,6 @@ type Coordinate struct {
 	ToMapID   int           `json:"to_map_id,omitempty"`
 
 	Find bool `json:"-"`
-	End  bool `json:"end,omitempty"`
-	Line bool `json:"line,omitempty"`
 	key  string
 }
 

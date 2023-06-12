@@ -4,6 +4,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"math/rand"
@@ -25,6 +26,7 @@ type GunUser interface {
 	SetWeaponTarget(target *target.Target)
 	GetBurstOfShots() *burst_of_shots.BurstOfShots
 	UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex)
+	GetPhysicalModel() *physical_model.PhysicalModel
 }
 
 type Gunner struct {
@@ -305,4 +307,8 @@ func (g *Gunner) getSlotState(number int) *WeaponSlotState {
 	}
 
 	return nil
+}
+
+func (g *Gunner) GetPhysicalModel() *physical_model.PhysicalModel {
+	return g.GunUser.GetPhysicalModel()
 }
