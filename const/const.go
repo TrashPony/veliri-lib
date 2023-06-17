@@ -46,7 +46,7 @@ const (
 	IntelligenceDamageK = 1 * 100
 	DestroyStructure    = 200 * 100
 	CaptureK            = 250 * 100
-	CaptureSector       = 1500 * 100
+	CaptureSector       = 1000 * 100
 
 	//MaxBaseTax = 50
 	//MinBaseTax = 10

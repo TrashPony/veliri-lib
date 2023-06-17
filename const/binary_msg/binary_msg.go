@@ -818,22 +818,8 @@ func CreateViolatorsBin(vs []*violator.Violator) []byte {
 	command := []byte{75}
 
 	for _, v := range vs {
-
-		vType := 0
-		if v.Type == _const.PK {
-			vType = 1
-		}
-
-		if v.Type == _const.PVP {
-			vType = 2
-		}
-
-		if v.Type == _const.PVP && v.Time <= 3 {
-			vType = 3
-		}
-
 		command = append(command, game_math.GetIntBytes(v.PlayerID)...)
-		command = append(command, byte(vType))
+		command = append(command, byte(getVioTypeInt(v.Type, v.GetTime())))
 	}
 
 	return command
@@ -948,4 +934,43 @@ func KillBinaryMsg(deadName, deadFraction, killerName, killerFraction string, am
 	command = append(command, killerName...)
 
 	return command
+}
+
+func CreatePlayerVioBin(vType string, time int) []byte {
+	command := []byte{85}
+
+	command = append(command, game_math.GetIntBytes(time)...)
+	command = append(command, byte(getVioTypeInt(vType, time)))
+
+	return command
+}
+
+func CreateUpRankBin(up bool) []byte {
+	command := []byte{86}
+
+	command = append(command, byte(game_math.BoolToByte(up)))
+
+	return command
+}
+
+func getVioTypeInt(vType string, time int) byte {
+	vTypeInt := byte(0)
+
+	if vType == "" {
+		return 0
+	}
+
+	if vType == _const.PK {
+		vTypeInt = 1
+	}
+
+	if vType == _const.PVP {
+		vTypeInt = 2
+	}
+
+	if vType == _const.PVP && time <= 3 {
+		vTypeInt = 3
+	}
+
+	return vTypeInt
 }

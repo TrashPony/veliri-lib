@@ -1,12 +1,19 @@
 package violator
 
-import "sync"
+import (
+	"sync"
+	"time"
+)
 
 type Violator struct {
 	PlayerID int    `json:"player_id"`
 	Type     string `json:"type"`  // (pvp/pk)
 	Price    int    `json:"price"` // награда за голову, пока она всегда на 1 убийство
-	Time     int    `json:"time"`
+	EndTime  int64  `json:"end_time"`
+}
+
+func (v *Violator) GetTime() int {
+	return int(v.EndTime - time.Now().Unix())
 }
 
 type DistressSignals struct {

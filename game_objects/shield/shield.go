@@ -47,6 +47,7 @@ type Shield struct {
 
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`
+	Key            string `json:"-"`
 
 	mx sync.RWMutex
 }
