@@ -491,6 +491,7 @@ func (o *Object) GetJSON(mapTime int64) []byte {
 	command = append(command, game_math.BoolToByte(o.Static))
 	command = append(command, game_math.BoolToByte(o.fractionWarrior))
 	command = append(command, _const.FractionByte[o.Fraction])
+	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell)) // interactive
 
 	command = append(command, byte(len(o.Type)))
 	command = append(command, []byte(o.Type)...)
