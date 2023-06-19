@@ -38,6 +38,20 @@ func (s *Squad) GetEquipPanel() map[int]*EquipSell {
 	return s.equipPanel
 }
 
+func (s *Squad) GetCopyEquipPanel() map[int]*EquipSell {
+	s.GetEquipPanel()
+
+	s.mx.RLock()
+	defer s.mx.RUnlock()
+
+	equipPanel := make(map[int]*EquipSell)
+	for k, v := range s.equipPanel {
+		equipPanel[k] = v
+	}
+
+	return equipPanel
+}
+
 func (s *Squad) GetBinEquipPanel() []byte {
 
 	s.fillStateEquip()

@@ -393,6 +393,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"scientific_data":               {ID: 0, Name: "Scientific evidence", Description: "<p> Scientific data - archived, classified and infinitely valuable data for those who value the contribution of science to everyday life. </p>"},
 		"living_flora_and_fauna":        {ID: 0, Name: "Living flora and fauna", Description: "<p> Living flora and fauna - sealed flasks with an artificial atmosphere, where both dangerous and safe representatives of the living flora and fauna of the planet Veliri-6 are reserved </p>"},
 		"subatomic_reactor":             {ID: 0, Name: "Subatomic reactor", Description: "<p> A subatomic reactor is a fragile and incredibly dangerous in its own destruction engineering facility, capable of powering entire bases of \"Synthets\". </p>"},
+		"ice_liquor":                    {ID: 0, Name: "Ice-liquor", Description: "<p>\nA mysterious artifact, fraught with great power. </p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -426,6 +427,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"atmospheric_domes":             {Name: "Атмосферные купола", Description: "<p>Атмосферные купола - разобранные и закрепленные для транспортировки системы упоров, стен и стеклянных покрытий по воссозданию искусственной атмосферы нужного типа на глобальной участке той или иной территории.</p>"},
 		"supplies":                      {Name: "Припасы", Description: "<p>Припасы - набор узко заказанных или крайне необходимых товаров для поддержания исправности и жизнеспособности различных объектов. </p>"},
 		"security_bots":                 {Name: "Охранные боты", Description: "<p>Охранные боты - боты сугубо военного образца, что используются в патрулировании округи, проведении военных и миротворческих операций. Из-за простоты конструкторской идеи, их ИИ нередко склонен к девиантному поведению.</p>"},
+		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>Загадочный артефакт, таящий в себе великую силу.</p>"},
 	},
 }
 

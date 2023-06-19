@@ -104,6 +104,7 @@ func GobRegister() {
 	gob.Register(info_map.InfoMap{})
 	gob.Register(behavior_rule.SubGroup{})
 	gob.Register(map[string]*skill.Skill{})
+	gob.Register([]*reservoir.Reservoir{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
