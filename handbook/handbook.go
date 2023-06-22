@@ -395,6 +395,8 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"subatomic_reactor":             {ID: 0, Name: "Subatomic reactor", Description: "<p> A subatomic reactor is a fragile and incredibly dangerous in its own destruction engineering facility, capable of powering entire bases of \"Synthets\". </p>"},
 		"ice_liquor":                    {ID: 0, Name: "Ice-liquor", Description: "<p>A mysterious artifact, fraught with great power. </p>"},
 		"weapon_nutrients":              {ID: 0, Name: "Weapon nutrients", Description: "<p>Consumables are used in industrial types of tools</p>"},
+		"egg":                           {Name: "Egg", Description: "<p>Яиичко11</p>"},
+		"orbital_drop_beacons":          {Name: "Orbital drop beacons", Description: "<p>Used to signal orbital systems</p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -430,6 +432,8 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"security_bots":                 {Name: "Охранные боты", Description: "<p>Охранные боты - боты сугубо военного образца, что используются в патрулировании округи, проведении военных и миротворческих операций. Из-за простоты конструкторской идеи, их ИИ нередко склонен к девиантному поведению.</p>"},
 		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>Загадочный артефакт, таящий в себе великую силу.</p>"},
 		"weapon_nutrients":              {Name: "Питательные элементы орудий", Description: "<p>Расходные элементы использующиеся в энергетических видах орудий</p>"},
+		"egg":                           {Name: "Яйцо", Description: "<p>Яиичко11</p>"},
+		"orbital_drop_beacons":          {Name: "Маяки орбитального сброса", Description: "<p>Используются для подачи сигнала орбитальным системам</p>"},
 	},
 }
 

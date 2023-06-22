@@ -24,6 +24,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/notify"
 	"github.com/TrashPony/veliri-lib/game_objects/npc_request"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
+	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/product"
 	"github.com/TrashPony/veliri-lib/game_objects/reservoir"
 	"github.com/TrashPony/veliri-lib/game_objects/resource"
@@ -105,6 +106,8 @@ func GobRegister() {
 	gob.Register(behavior_rule.SubGroup{})
 	gob.Register(map[string]*skill.Skill{})
 	gob.Register([]*reservoir.Reservoir{})
+	gob.Register(drone.Drone{})
+	gob.Register(physical_model.PhysicalModel{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})

@@ -328,7 +328,6 @@ func (unit *Unit) initPhysicalModel() {
 		PowerFactor:   unit.GetPowerFactor() / _const.ServerTickSecPart,
 		ReverseFactor: unit.GetReverseFactor() / _const.ServerTickSecPart,
 		TurnSpeed:     unit.GetTurnSpeed() / _const.ServerTickSecPart,
-		WASD:          physical_model.WASD{},
 		MoveDrag:      unit.GetBody().MoveDrag,
 		AngularDrag:   unit.GetBody().AngularDrag,
 		Weight:        float64(unit.GetBody().CapacitySize),

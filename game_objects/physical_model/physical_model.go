@@ -30,7 +30,7 @@ type PhysicalModel struct {
 	PowerFactor     float64                         `json:"power_factor"`     // -- сила ускорения вперед
 	ReverseFactor   float64                         `json:"reverse_factor"`   // -- сила ускорения назад
 	TurnSpeed       float64                         `json:"turn_speed"`       // -- скорость поворота в радианах
-	WASD            WASD                            `json:"-"`                // обьект который говорти когда нажата какая клавиша
+	wasd            WASD                            `json:"-"`                // обьект который говорти когда нажата какая клавиша
 	MoveDrag        float64                         `json:"-"`                // сопротивление земли при движение (XVelocity * MoveDrag), (YVelocity * MoveDrag)
 	AngularDrag     float64                         `json:"-"`                // сопротивление земли при повороте (AngularVelocity * AngularDrag)
 	Weight          float64                         `json:"-"`                // вес
@@ -170,19 +170,19 @@ func (m *PhysicalModel) GetRadius() int {
 }
 
 func (m *PhysicalModel) CheckGrowthPower() bool {
-	return m.WASD.GetW() && !m.BlockControl
+	return m.wasd.GetW() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckGrowthRevers() bool {
-	return m.WASD.GetS() && !m.BlockControl
+	return m.wasd.GetS() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckLeftRotate() bool {
-	return m.WASD.GetA() && !m.BlockControl
+	return m.wasd.GetA() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckRightRotate() bool {
-	return m.WASD.GetD() && !m.BlockControl
+	return m.wasd.GetD() && !m.BlockControl
 }
 
 func (m *PhysicalModel) SetReverse(reverse float64) {
@@ -258,7 +258,7 @@ func (m *PhysicalModel) GetWeight() float64 {
 }
 
 func (m *PhysicalModel) SetWASD(w, a, s, d, sp, st, z bool) {
-	m.WASD.Set(w, a, s, d, sp, st, z)
+	m.wasd.Set(w, a, s, d, sp, st, z)
 }
 
 func (m *PhysicalModel) GetMoveDrag() float64 {
@@ -317,7 +317,7 @@ func (m *PhysicalModel) SetPowerRight(powerRight float64) {
 }
 
 func (m *PhysicalModel) CheckHandBrake() bool {
-	return m.WASD.GetSpace()
+	return m.wasd.GetSpace()
 }
 
 func (m *PhysicalModel) GetNextPolygon() *game_math.Polygon {
@@ -340,4 +340,8 @@ func (m *PhysicalModel) SubVelocity(x float64, y float64) {
 
 func (m *PhysicalModel) GetMoveDestroyer() bool {
 	return m.MoveDestroyer
+}
+
+func (m *PhysicalModel) GetWasd() *WASD {
+	return &m.wasd
 }

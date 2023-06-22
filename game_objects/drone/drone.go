@@ -44,7 +44,7 @@ type Drone struct {
 	physicalModel *physical_model.PhysicalModel
 
 	TransportUnitID int                            `json:"transport_unit_id"`
-	LifeTime        int                            `json:"-"` // Время жизни дрона
+	LifeTime        int                            `json:"life_time"`
 	WorkTime        int                            `json:"-"`
 	Weapons         map[int]*detail.BodyWeaponSlot `json:"-"`
 	effects         *effects_store.EffectsStore
@@ -187,6 +187,10 @@ func (d *Drone) GetPhysicalModel() *physical_model.PhysicalModel {
 	return d.physicalModel
 }
 
+func (d *Drone) SetPhysicalModel(p *physical_model.PhysicalModel) {
+	d.physicalModel = p
+}
+
 func (d *Drone) initPhysicalModel() {
 	d.physicalModel = &physical_model.PhysicalModel{
 		Speed:         0.75,
@@ -194,7 +198,6 @@ func (d *Drone) initPhysicalModel() {
 		PowerFactor:   0.15,
 		ReverseFactor: 0.1,
 		TurnSpeed:     0.01,
-		WASD:          physical_model.WASD{},
 		MoveDrag:      0.9,
 		AngularDrag:   0.9,
 		Fly:           true,

@@ -29,7 +29,6 @@ func GetBodyAttributes(u *unit.Unit) map[string]int {
 		PowerFactor:   u.GetPowerFactor() / _const.ServerTickSecPart,
 		ReverseFactor: u.GetReverseFactor() / _const.ServerTickSecPart,
 		TurnSpeed:     u.GetTurnSpeed() / _const.ServerTickSecPart,
-		WASD:          physical_model.WASD{},
 		MoveDrag:      u.GetBody().MoveDrag,
 		AngularDrag:   u.GetBody().AngularDrag,
 		Weight:        float64(u.GetBody().CapacitySize),

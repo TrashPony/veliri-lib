@@ -54,7 +54,6 @@ func (i *MapItem) GetPhysicalModel() *physical_model.PhysicalModel {
 
 func (i *MapItem) initPhysicalModel() {
 	i.physicalModel = &physical_model.PhysicalModel{
-		WASD:        physical_model.WASD{},
 		MoveDrag:    0.60,
 		AngularDrag: 0.60,
 		Weight:      3000.0,

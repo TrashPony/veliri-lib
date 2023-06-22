@@ -215,7 +215,6 @@ func (o *Object) initPhysicalModel() {
 	}
 
 	o.physicalModel = &physical_model.PhysicalModel{
-		WASD:        physical_model.WASD{},
 		MoveDrag:    0.7,
 		AngularDrag: 0.7,
 		Type:        "object",
