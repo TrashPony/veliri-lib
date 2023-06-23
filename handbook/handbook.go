@@ -649,6 +649,9 @@ var ProductsDescription = map[string]map[string]DescriptionItem{
 		"weapon_parts":              {ID: 0, Name: "Weapon parts", Description: "Weapon parts are disassembled modules that can later be used in weapons production or in barter transactions."},
 		"technological_maps":        {ID: 0, Name: "Technological maps", Description: "Technological maps are digital schemes that are used in the development of experimental samples of technologies or data storage."},
 		"subatomic_composites":      {ID: 0, Name: "Subatomic composites", Description: "Subatomic composites are an indispensable, expensive and critical component in the production of energy-storage “subatomic cells”."},
+		"civilian_weapon":           {Name: "Civilian weapon", Description: "Patterns of an easy-to-emergent manifestation, often an integral part of uprisings and the activity of pirate clusters."},
+		"neutrino_processors":       {Name: "Neutrino processors", Description: "Experimental overclocking modules of an evaluative-analytical nature, often without the use of safety locks, leading to the melting of the synaptic nucleus."},
+		"fox_crystals":              {Name: "Fox crystals", Description: "An officially uncommissioned fuel analog of the Synthet power plant. The consequences are not fully understood."},
 	},
 	_const.RU: {
 		"industrial_materials":      {Name: "Промышленные материалы", Description: "Промышленные материалы - переработанное и готовое к любым нуждам скомпилированное сырьё общего применения."},
@@ -657,6 +660,9 @@ var ProductsDescription = map[string]map[string]DescriptionItem{
 		"weapon_parts":              {Name: "Оружейные части", Description: "Оружейные части - разобранные модули, которые впоследствии можно использовать в оружейном производстве или при бартерных сделках."},
 		"technological_maps":        {Name: "Технологические карты", Description: "Технологические карты - цифровые схемы, которые применяются при разработке экспериментальных образцов технологий или хранения данных."},
 		"subatomic_composites":      {Name: "Субатомные композиты", Description: "Субатомные композиты - незаменимый, дорогостоящий и крайне необходимый в производстве энергоаккумулирующих “субатомных ячеек” - компонент."},
+		"civilian_weapon":           {Name: "Гражданское Летальное Вооружение", Description: "Образцы легко - создаваемого вооружения, часто являющегося неотъемлемым элементом при восстаниях и деятельности пиратских кластеров."},
+		"neutrino_processors":       {Name: "Нейтринные Процессоры", Description: "Экспериментальные разгонные модули оценочно-аналитического толка, зачастую, без использования замков предохранения, приводящие к расплаву синаптического ядра."},
+		"fox_crystals":              {Name: "Фокс Кристаллы", Description: "Официально не введённый в эксплуатацию топливный аналог силовой установки Синтетов. Последствия до конца не изучены."},
 	},
 }
 

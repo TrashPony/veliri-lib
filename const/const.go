@@ -71,12 +71,17 @@ const (
 	// шанс 1 к chanceSimpleMeteorite
 	ChanceSimpleMeteorite = 10
 
-	MaxRelations                  = 200
-	MinRelations                  = -200
-	DefaultUnionRelations         = 50
-	DefaultHostileRelations       = -50
-	ChangeRelationKill            = 0.06 // 6%
-	ChangeRelationMissionComplete = 0.2  // 20%
+	MaxRelations            = 200
+	MinRelations            = -200
+	DefaultUnionRelations   = 50
+	DefaultHostileRelations = -50
+
+	ChangeRelationFailTrade       = 0.0001   // 0.001% * (count + default_price)
+	ChangeRelationTrade           = 0.000002 // 0.000001% * (count + default_price)
+	ChangeRelationProcess         = 0.0001   // 0.01% * count
+	ChangeRelationKill            = 0.06     // 6%
+	ChangeRelationMissionComplete = 0.2      // 20%
+	ChangeRelationSectorCapture   = 0.2      // 20%
 
 	LaserWeapon    = "laser"
 	FirearmsWeapon = "firearms"

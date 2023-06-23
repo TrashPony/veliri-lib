@@ -1,10 +1,11 @@
 package product
 
 type Product struct {
-	ID           int    `json:"id"`
-	Name         string `json:"name"`
-	Size         int    `json:"size"`
-	DefaultPrice int    `json:"default_price"`
+	ID           int      `json:"id"`
+	Name         string   `json:"name"`
+	Size         int      `json:"size"`
+	DefaultPrice int      `json:"default_price"`
+	FairTrade    []string `json:"fair_trade"`
 }
 
 func (p *Product) GetName() string {
