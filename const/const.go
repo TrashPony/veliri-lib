@@ -79,9 +79,9 @@ const (
 	ChangeRelationFailTrade       = 0.0001   // 0.001% * (count + default_price)
 	ChangeRelationTrade           = 0.000002 // 0.000001% * (count + default_price)
 	ChangeRelationProcess         = 0.0001   // 0.01% * count
-	ChangeRelationKill            = 0.06     // 6%
-	ChangeRelationMissionComplete = 0.2      // 20%
-	ChangeRelationSectorCapture   = 0.2      // 20%
+	ChangeRelationKill            = 0.006    // 6%
+	ChangeRelationMissionComplete = 0.05     // 20%
+	ChangeRelationSectorCapture   = 0.05     // 20%
 
 	LaserWeapon    = "laser"
 	FirearmsWeapon = "firearms"
@@ -107,6 +107,8 @@ const (
 
 	AfterburnerSlotNumber = -1
 	MaxPoints             = 60 * 3 // (600 сек * 3 базы) по 1 очку в секунду == 10 минут
+
+	BaseMarketTax = 0.1
 )
 
 var ItemBinTypes = map[string]int{

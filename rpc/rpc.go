@@ -26,6 +26,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/product"
+	"github.com/TrashPony/veliri-lib/game_objects/relation_bonuses"
 	"github.com/TrashPony/veliri-lib/game_objects/reservoir"
 	"github.com/TrashPony/veliri-lib/game_objects/resource"
 	"github.com/TrashPony/veliri-lib/game_objects/rpc_request"
@@ -108,6 +109,7 @@ func GobRegister() {
 	gob.Register([]*reservoir.Reservoir{})
 	gob.Register(drone.Drone{})
 	gob.Register(physical_model.PhysicalModel{})
+	gob.Register(map[string]relation_bonuses.RelationBonuses{})
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
