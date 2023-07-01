@@ -40,6 +40,8 @@ type Notify struct {
 	FromUserName      string              `json:"from_user_name,omitempty"`
 	ToUserName        string              `json:"to_user_name,omitempty"`
 	Answers           []map[string]Answer `json:"answers,omitempty"`
+	MapID             int                 `json:"map_id,omitempty"`
+	BaseID            int                 `json:"base_id,omitempty"`
 }
 
 type Answer struct {
