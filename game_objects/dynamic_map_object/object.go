@@ -92,7 +92,7 @@ type Object struct {
 	/* Для кусков туш */
 	BodyID int `json:"-"`
 	/* ловушки */
-	TrapUnits []int `json:"trap_units"`
+	TrapUnits []*TrapUnit `json:"trap_units"`
 
 	MoveDestroyer bool `json:"-"`
 
@@ -130,6 +130,13 @@ type Object struct {
 	gunner                  *gunner.Gunner
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	mx                      sync.RWMutex
+}
+
+type TrapUnit struct {
+	ID       int  `json:"id"`
+	BreakOut int  `json:"breakOut"`
+	Skip     int  `json:"skip"`
+	Attack   bool `json:"attack"`
 }
 
 func (o *Object) GetFraction() string {
