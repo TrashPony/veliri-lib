@@ -106,7 +106,7 @@ const (
 	SpriteSize2 = SpriteSize / 2
 
 	AfterburnerSlotNumber = -1
-	MaxPoints             = 60 * 3 // (600 сек * 3 базы) по 1 очку в секунду == 10 минут
+	MaxPoints             = 300 * 3 // (300 сек * 3 базы) по 1 очку в секунду == 5 минут
 
 	BaseMarketTax = 0.1
 )
