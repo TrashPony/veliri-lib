@@ -3,6 +3,7 @@ package unit
 import (
 	"encoding/json"
 	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
@@ -39,6 +40,8 @@ type StateMS struct {
 	RecoveryPowerCycle int `json:"recovery_power_cycle"`
 
 	// оружие
+	WeaponType        string  `json:"wt"`
+	WeaponSize        int     `json:"ws"`
 	WeaponInstall     bool    `json:"install"`
 	WeaponMaxDamage   int     `json:"weapon_max_damage"`
 	WeaponMinDamage   int     `json:"weapon_min_damage"`
@@ -56,6 +59,11 @@ type StateMS struct {
 
 func (unit *Unit) GetState() *StateMS {
 
+	var weapon *detail.Weapon
+	if unit.GetWeaponSlot(1) != nil {
+		weapon = unit.GetWeaponSlot(1).Weapon
+	}
+
 	state := StateMS{
 		UseEnergy:             unit.getBody().GetUseEnergy(),
 		MaxEnergy:             unit.GetMaxEnergy(),
@@ -71,7 +79,7 @@ func (unit *Unit) GetState() *StateMS {
 		RangeView:             unit.GetRangeView(),
 		RangeRadar:            unit.GetRadarRange(),
 		WeaponInstall: unit.GetWeaponSlot(1) != nil &&
-			unit.GetWeaponSlot(1).Weapon != nil &&
+			weapon != nil &&
 			unit.GetWeaponSlot(1).GetAmmo() != nil &&
 			unit.GetWeaponSlot(1).GetAmmoQuantity() > 0,
 		EfficiencyReactor:  unit.EfficiencyReactor(),
@@ -83,6 +91,8 @@ func (unit *Unit) GetState() *StateMS {
 	}
 
 	if state.WeaponInstall {
+		state.WeaponType = weapon.Type
+		state.WeaponSize = weapon.StandardSize
 		state.WeaponMaxDamage = unit.GetGunner().GetMaxDamage(unit.GetWeaponSlot(1).Number)
 		state.WeaponMinDamage = unit.GetGunner().GetMinDamage(unit.GetWeaponSlot(1).Number)
 		state.DamageType = unit.GetGunner().GetDamageType(unit.GetWeaponSlot(1).Number)
@@ -99,7 +109,7 @@ func (unit *Unit) GetState() *StateMS {
 	return &state
 }
 
-// метод возвращает полное состоиня машинки, влияние навыков, влияние снаряжения штрафы
+// GetAllState метод возвращает полное состоиня машинки, влияние навыков, влияние снаряжения штрафы
 func (unit *Unit) GetAllState() (all *StateMS, effects []*effect.Effect) {
 
 	all = unit.GetState()
@@ -110,21 +120,28 @@ func (unit *Unit) GetAllState() (all *StateMS, effects []*effect.Effect) {
 
 func (unit *Unit) GetProtection(typeVulnerabilities string) int {
 
-	var startValue int
+	var startValue float64
 
 	if typeVulnerabilities == "thermo" {
-		startValue = unit.body.ProtectionToThermo
+		startValue = float64(unit.body.ProtectionToThermo)
 	}
 
 	if typeVulnerabilities == "kinetics" {
-		startValue = unit.body.ProtectionToKinetics
+		startValue = float64(unit.body.ProtectionToKinetics)
 	}
 
 	if typeVulnerabilities == "explosion" {
-		startValue = unit.body.ProtectionToExplosion
+		startValue = float64(unit.body.ProtectionToExplosion)
 	}
 
-	return int(unit.GetEffects().GetAllBonus(float64(startValue), "protect_"+typeVulnerabilities))
+	for _, e := range unit.GetEffects().GetAllEffects() {
+		if e.Parameter == "protect_"+typeVulnerabilities {
+			free := 100 - startValue
+			startValue += free * (float64(e.Quantity) / 100)
+		}
+	}
+
+	return int(startValue)
 }
 
 func (unit *Unit) GetOwnerID() int {
@@ -260,7 +277,7 @@ func (unit *Unit) getGunAccuracy(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
@@ -268,7 +285,7 @@ func (unit *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
@@ -276,7 +293,7 @@ func (unit *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Weapon.ReloadTime), "reload"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
@@ -284,7 +301,7 @@ func (unit *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) getMaxDamage(weaponSlotNumber int) int {
@@ -292,7 +309,7 @@ func (unit *Unit) getMaxDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Ammo.MaxDamage), "damage"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) getMinDamage(weaponSlotNumber int) int {
@@ -300,7 +317,7 @@ func (unit *Unit) getMinDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllBonus(float64(weaponSlot.Ammo.MinDamage), "damage"))
+	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
 func (unit *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {

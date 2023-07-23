@@ -2,7 +2,7 @@ package effect
 
 type Effect struct {
 	UUID        string `json:"u"` // equip_slot_number или еще чет
-	Name        string `json:"-"`
+	Name        string `json:"n"`
 	Parameter   string `json:"p"`
 	Quantity    int    `json:"q"`
 	Percentages bool   `json:"pr"`

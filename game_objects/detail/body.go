@@ -128,9 +128,10 @@ func (body *Body) GetTypeSlot() int {
 }
 
 type Bonus struct {
-	ID           int            `json:"'id'"`
-	Bonus        *effect.Effect `json:"bonus"`
-	Requirements map[int]int    `json:"requirements"` // [skill_name] level
+	ID                  int            `json:"'id'"`
+	Bonus               *effect.Effect `json:"bonus"`
+	OverrideDescription string         `json:"od"`
+	Requirements        map[int]int    `json:"requirements"` // [skill_name] level
 }
 
 func (body *Body) GetAllEquips() []*BodyEquipSlot {

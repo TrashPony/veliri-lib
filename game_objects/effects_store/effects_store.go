@@ -109,6 +109,37 @@ func (e *EffectsStore) GetCountByName(parameter string, percent bool) int {
 	return allValue
 }
 
+func (e *EffectsStore) GetCountByWeaponTypeAndSize(parameter string, percent bool, typeWeapon string, sizeWeapon int) int {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+
+	allValue := 0
+	for _, ef := range e.Effects {
+
+		if ef.Percentages != percent {
+			continue
+		}
+
+		if ef.StandardSize > 0 && ef.StandardSize != sizeWeapon {
+			continue
+		}
+
+		if ef.WeaponType != "" && ef.WeaponType != typeWeapon {
+			continue
+		}
+
+		if ef.Parameter == parameter {
+			if ef.Subtract {
+				allValue -= ef.Quantity
+			} else {
+				allValue += ef.Quantity
+			}
+		}
+	}
+
+	return allValue
+}
+
 func (e *EffectsStore) GetAllBonus(startValue float64, parameterName string) float64 {
 	sumEffects := effect.Effect{
 		Quantity:    e.GetCountByName(parameterName, false),
@@ -120,6 +151,28 @@ func (e *EffectsStore) GetAllBonus(startValue float64, parameterName string) flo
 
 	sumEffectsPercent := effect.Effect{
 		Quantity:    e.GetCountByName(parameterName, true),
+		Parameter:   parameterName,
+		Percentages: true,
+	}
+
+	if sumEffectsPercent.Quantity < -90 {
+		sumEffectsPercent.Quantity = -90 // что бы не уйти в минус)
+	}
+
+	return sumEffectsPercent.ToAccept(absoluteValue, parameterName)
+}
+
+func (e *EffectsStore) GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	sumEffects := effect.Effect{
+		Quantity:    e.GetCountByWeaponTypeAndSize(parameterName, false, typeWeapon, sizeWeapon),
+		Parameter:   parameterName,
+		Percentages: false,
+	}
+
+	absoluteValue := sumEffects.ToAccept(startValue, parameterName)
+
+	sumEffectsPercent := effect.Effect{
+		Quantity:    e.GetCountByWeaponTypeAndSize(parameterName, true, typeWeapon, sizeWeapon),
 		Parameter:   parameterName,
 		Percentages: true,
 	}
