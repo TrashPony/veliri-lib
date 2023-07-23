@@ -224,6 +224,15 @@ func (unit *Unit) GetCapSize() int {
 	return int(unit.GetEffects().GetAllBonus(float64(unit.body.CapacitySize), "cap_size"))
 }
 
+func (unit *Unit) GetAdditionalCapSize(key string) int {
+	if unit == nil {
+		return 0
+	}
+
+	inv := unit.body.AdditionalInventory[key]
+	return int(unit.GetEffects().GetAllBonus(float64(inv.GetCapSize()), key+"_cap_size"))
+}
+
 func (unit *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
 	freeSize := unit.GetCapSize() - unit.Inventory.GetSize()
 
@@ -233,7 +242,7 @@ func (unit *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
 			if fType == itemType {
 				for _, id := range ids {
 					if id == itemID {
-						freeSize += unit.body.AdditionalInventory[key].CapacitySize - inv.GetSize()
+						freeSize += unit.GetAdditionalCapSize(key) - inv.GetSize()
 					}
 				}
 			}

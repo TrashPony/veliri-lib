@@ -603,9 +603,9 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"missile_medium_damage_15":       {Description: "<span class=\"importantly\">Урон средних пусковых установок</span> увеличен на <span class=\"importantly\">15%</span>"},
 		"missile_medium_reload_10":       {Description: "<span class=\"importantly\">Скорость перезарядки средних пусковых установок</span> увеличена на <span class=\"importantly\">10%</span>"},
 		"missile_big_reload_10":          {Description: "<span class=\"importantly\">Скорость перезарядки больших пусковых установок</span> увеличена на <span class=\"importantly\">10%</span>"},
-		"jammer_saving_energy_50":        {Description: "Уменьшает потребление энергии <span class=\"importantly\">подавителей связи</span> на <span class=\"importantly\">50%</span>"},
+		"jammer_saving_energy_25":        {Description: "Уменьшает потребление энергии <span class=\"importantly\">подавителей связи</span> на <span class=\"importantly\">25%</span>"},
 		"body_power_charging_15":         {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">15%</span>"},
-		"invisibility_saving_energy_50":  {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">50%</span>"},
+		"invisibility_saving_energy_25":  {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">25%</span>"},
 		"body_resource_capacity_size_25": {Description: "На <span class=\"importantly\">25%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_40": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для руды"},
 		//

@@ -83,6 +83,14 @@ type AdditionalInventory struct {
 	Key          string           `json:"key"`
 }
 
+func (a *AdditionalInventory) GetCapSize() int {
+	return a.CapacitySize
+}
+
+func (a *AdditionalInventory) SetCapSize(c int) {
+	a.CapacitySize = c
+}
+
 type DamageZone struct {
 	StartAngle int     `json:"start_angle"`
 	EndAngle   int     `json:"end_angle"`
