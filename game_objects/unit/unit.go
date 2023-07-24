@@ -101,6 +101,15 @@ func (unit *Unit) RemoveEffect(uuid string) bool {
 	return remove
 }
 
+func (u *Unit) GetMinQuantityByParameter(parameter string) (bool, int) {
+	return u.GetEffects().GetMinQuantityByParameter(parameter)
+}
+
+func (u *Unit) Invisibility() bool {
+	ok, quantity := u.GetMinQuantityByParameter("invisibility")
+	return ok && quantity <= 0
+}
+
 func (unit *Unit) RemoveBySlot(slotType, slotNumber int) bool {
 	// TODO API
 	remove := unit.GetEffects().RemoveBySlot(slotType, slotNumber)
@@ -465,12 +474,15 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetY())...)
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(int(unit.GetRotate()))...)
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetBody().MaxHP)...)
+	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetMaxHP())...)
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetRangeView())...)
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetRadarRange())...)
 
 	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.fractionWarrior))
 	unit.CacheJson = append(unit.CacheJson, _const.FractionByte[unit.OwnerFraction])
+
+	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetMaxPower())...)
+	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Invisibility()))
 
 	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.GetBody().Texture))))
 	unit.CacheJson = append(unit.CacheJson, []byte(unit.GetBody().Texture)...)

@@ -192,3 +192,22 @@ func (e *EffectsStore) GetAllEffects() []*effect.Effect {
 
 	return effects
 }
+
+func (e *EffectsStore) GetMinQuantityByParameter(parameter string) (bool, int) {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+
+	find := false
+	minQuantity := 0
+
+	for _, ef := range e.Effects {
+		if ef.Parameter == parameter {
+			if ef.Quantity < minQuantity || !find {
+				find = true
+				minQuantity = ef.Quantity
+			}
+		}
+	}
+
+	return find, minQuantity
+}

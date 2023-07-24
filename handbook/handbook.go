@@ -133,7 +133,7 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"small_missile_bullet":        {Name: "System.A-2 - Medium missile", Description: "<p> Massive and military-standardized missile of medium destructive power. Cannot be used in high-dimensional missile system weapons. </p>"},
 		"big_missile_bullet":          {Name: "System.O-5 - Large rocket", Description: "<p> Massive and military-standardized missile of great destructive power. Cannot be used in missile weapons with an average overall weight or less. </p>"},
 		"small_lens":                  {Name: "Small focusing cartridge", Description: "<p> Standardized cartridge for charging small and medium-sized laser beam impact tools. </p>"},
-		"small_lens_beam":             {Name: "Малый лучевой снаряд", Description: ""},
+		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"piu-piu":                     {Name: "Б-а среднекалиберной снаряд", Description: "<p>Стандартизированный тип среднекалиберных снарядов для кинетических и баллистических орудий, обеспечивающих ощутимый урон, но, как правило, не всегда отличающихся кучностью и высокой скорострельностью.</p>"},
@@ -145,7 +145,7 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"piu-piu_2":                   {Name: "Б-а мелкокалиберный снаряд", Description: "<p>Стандартизированный тип мелкокалиберных снарядов для кинетических и баллистических орудий, не обеспечивающих высокий урон, но, как правило, способствующие высокой кучности и скорострельности.</p>"},
 		"aim_small_missile_bullet":    {Name: "Цикада - Самонаводящиеся средняя ракета", Description: "<p>Цикада – развитие линейки неуправляемых ракет семейства «Система» с целью создания самонаводящихся на цель снарядов. Обеспечивает усреднённый урон по любым захваченным целям.</p>"},
 		"aim_big_missile_bullet":      {Name: "Воздаятель - Самонаводящиеся большая ракета", Description: "<p>Воздаятель – продолжение идей, начатых в «Цикада» и линейке семейства неуправляемых ракет «Система». Эта самонаводящаяся ракета, что может быть использована только в крупногабаритных ракетных огневых системах, истинный ужас для врагов, что были ею захвачены.</p>"},
-		"small_lens_beam":             {Name: "Малый лучевой снаряд", Description: ""},
+		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"},
 	},
 }
 
@@ -185,7 +185,7 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"wall_1":                         {Name: "Стена", Description: "Выбрасывает строительный модуль который автоматически возводит небольшую стену, позволяет закрыть узкую область или защититься"},
 		"energy_shield_mini_structure_1": {Name: "Дистанционное силовое поле", Description: "Выбрасывает капсулу с ядром щита, щит работает до тех пор пока в нем есть энергия"},
 		"pump_extracted":                 {Name: "Насос", Description: "Позволяет добывать жидкие ресурсы, включая нефть."},
-		"inventory_scanner_1":            {Name: "Сканер", Description: "Позволяет сканировать трюмы других транспортов."},
+		"inventory_scanner_1":            {Name: "Сканер", Description: "<p>Позволяет сканировать трюмы других транспортов.</p> <p>Использование в безопасных секторах - нарушает закон.</p>"},
 		// пассивное
 		"radar_booster_1":                {Name: "radar_booster_1", Description: ""},
 		"view_booster_1":                 {Name: "view_booster_1", Description: ""},
@@ -379,7 +379,7 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"radar_small_reverses_body":     {Name: "Разведка легких корпусов \"Reverses\""},
 		"radar_medium_reverses_body":    {Name: "Разведка средних корпусов \"Reverses\""},
 		"radar_big_reverses_body":       {Name: "Разведка тяжелых корпусов \"Reverses\""},
-		"replic_hauler":                 {Name: "Грузоперевозки \"Replic\""},
+		"replics_hauler":                {Name: "Грузоперевозки \"Replic\""},
 		"explores_hauler":               {Name: "Грузоперевозки \"Explores\""},
 		"reverses_hauler":               {Name: "Грузоперевозки \"Reverses\""},
 	},
@@ -496,7 +496,7 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"charging_small_reverses_body":  {Name: "Энергосеть легких корпусов \"Reverses\""},
 		"charging_medium_reverses_body": {Name: "Энергосеть средних корпусов \"Reverses\""},
 		"charging_big_reverses_body":    {Name: "Энергосеть тяжелых корпусов \"Reverses\""},
-		"replic_hauler":                 {Name: "Грузоперевозки \"Replic\""},
+		"replics_hauler":                {Name: "Грузоперевозки \"Replic\""},
 		"explores_hauler":               {Name: "Грузоперевозки \"Explores\""},
 		"reverses_hauler":               {Name: "Грузоперевозки \"Reverses\""},
 		"speed_small_explores_body":     {Name: "Скорость легких корпусов \"Explores\""},
