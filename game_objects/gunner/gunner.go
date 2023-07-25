@@ -290,13 +290,13 @@ func (g *Gunner) GetID() int {
 	return g.GunUser.GetID()
 }
 
-func (g *Gunner) GetDamageType(slotNumber int) string {
+func (g *Gunner) GetDamageType(slotNumber int) (int, int, int) {
 	weaponSlot := g.GunUser.GetWeaponSlot(slotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
-		return ""
+		return 0, 0, 0
 	}
 
-	return weaponSlot.Ammo.TypeAttack
+	return weaponSlot.Ammo.KineticsDamage, weaponSlot.Ammo.ThermoDamage, weaponSlot.Ammo.ExplosionDamage
 }
 
 func (g *Gunner) getSlotState(number int) *WeaponSlotState {

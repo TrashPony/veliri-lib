@@ -7,7 +7,6 @@ type Ammo struct {
 	Name                   string      `json:"name"`
 	Specification          string      `json:"specification"`
 	Type                   string      `json:"type"`
-	TypeAttack             string      `json:"type_attack"`
 	MinDamage              int         `json:"min_damage"`
 	MaxDamage              int         `json:"max_damage"`
 	AreaCovers             int         `json:"area_covers"`
@@ -31,6 +30,9 @@ type Ammo struct {
 	LifeTime               int         `json:"life_time"`
 	ClusterID              int         `json:"cluster_id"`
 	ClusterCount           int         `json:"cluster_count"`
+	KineticsDamage         int         `json:"kinetics_damage"`
+	ExplosionDamage        int         `json:"explosion_damage"`
+	ThermoDamage           int         `json:"thermo_damage"`
 }
 
 func (a *Ammo) GetName() string {

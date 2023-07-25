@@ -9,10 +9,29 @@ func (unit *Unit) SetPower(power int) {
 	unit.Power = power
 }
 
-func (unit *Unit) SetDamage(damage int, typeDamage string) int {
+func (unit *Unit) SetDamage(damage, k, t, e int) int {
+
+	kDamage := float64(damage) * (float64(k) / 100.0)
+	tDamage := float64(damage) * (float64(t) / 100.0)
+	eDamage := float64(damage) * (float64(e) / 100.0)
 
 	// влияние типа атаки на урон, за счет защиты корпуса
-	damage -= int(float64(damage) * float64(unit.GetProtection(typeDamage)) / 100)
+	kDamage -= kDamage * float64(unit.GetProtection("kinetics")) / 100
+	if kDamage < 0 {
+		kDamage = 0
+	}
+
+	tDamage -= tDamage * float64(unit.GetProtection("thermo")) / 100
+	if tDamage < 0 {
+		tDamage = 0
+	}
+
+	eDamage -= eDamage * float64(unit.GetProtection("explosion")) / 100
+	if eDamage < 0 {
+		eDamage = 0
+	}
+
+	damage = int(kDamage + tDamage + eDamage)
 	if damage > unit.GetHP() {
 		damage = unit.GetHP()
 	}

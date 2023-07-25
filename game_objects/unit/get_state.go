@@ -45,7 +45,6 @@ type StateMS struct {
 	WeaponInstall     bool    `json:"install"`
 	WeaponMaxDamage   int     `json:"weapon_max_damage"`
 	WeaponMinDamage   int     `json:"weapon_min_damage"`
-	DamageType        string  `json:"damage_type"`
 	CountFireBullet   int     `json:"count_fire_bullet"`
 	WeaponMinRange    int     `json:"weapon_min_range"`
 	WeaponMaxRange    int     `json:"weapon_max_range"`
@@ -55,6 +54,9 @@ type StateMS struct {
 	ReloadTime        int     `json:"reload_time"`
 	ReloadAmmoTime    int     `json:"reload_ammo_time"`
 	EfficiencyReactor float64 `json:"efficiency_reactor"`
+	KineticsDamage    int     `json:"kinetics_damage"`
+	ExplosionDamage   int     `json:"explosion_damage"`
+	ThermoDamage      int     `json:"thermo_damage"`
 }
 
 func (unit *Unit) GetState() *StateMS {
@@ -95,7 +97,6 @@ func (unit *Unit) GetState() *StateMS {
 		state.WeaponSize = weapon.StandardSize
 		state.WeaponMaxDamage = unit.GetGunner().GetMaxDamage(unit.GetWeaponSlot(1).Number)
 		state.WeaponMinDamage = unit.GetGunner().GetMinDamage(unit.GetWeaponSlot(1).Number)
-		state.DamageType = unit.GetGunner().GetDamageType(unit.GetWeaponSlot(1).Number)
 		state.CountFireBullet = unit.GetGunner().GetCountFireBullet(unit.GetWeaponSlot(1).Number)
 		state.WeaponMinRange, _ = unit.GetGunner().GetWeaponMinRange(0.0, unit.GetWeaponSlot(1).Number)
 		state.WeaponMaxRange, _ = unit.GetGunner().GetWeaponMaxRange(0.0, unit.GetWeaponSlot(1).Number, false)
@@ -104,6 +105,11 @@ func (unit *Unit) GetState() *StateMS {
 		state.BulletSpeed = unit.GetGunner().GetBulletSpeed(unit.GetWeaponSlot(1).Number)
 		state.ReloadTime = unit.GetGunner().GetWeaponReloadTime(unit.GetWeaponSlot(1).Number)
 		state.ReloadAmmoTime = unit.GetGunner().GetWeaponReloadAmmoTime(unit.GetWeaponSlot(1).Number)
+
+		k, t, e := unit.GetGunner().GetDamageType(unit.GetWeaponSlot(1).Number)
+		state.KineticsDamage = k
+		state.ThermoDamage = t
+		state.ExplosionDamage = e
 	}
 
 	return &state

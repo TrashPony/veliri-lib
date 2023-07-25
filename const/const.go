@@ -22,7 +22,7 @@ const (
 	// очки опыта
 	// Оружия
 	KillStructure      = 40
-	KillUserExperience = 20 // * body_size
+	KillUserExperience = 50 // * body_size
 
 	// TODO начать их использовать)
 	Replicas = "Replics"

@@ -1,6 +1,6 @@
 module github.com/TrashPony/veliri-lib
 
-go 1.20
+go 1.19
 
 require (
 	github.com/getlantern/deepcopy v0.0.0-20160317154340-7f45deb8130a

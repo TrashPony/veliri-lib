@@ -99,6 +99,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"replic_weapon_3":   {Name: "Condor", Description: "<p> If you are looking for something in between - Condor - the recommendation from Replic. This gun has managed to establish itself as reliable, powerful enough and comfortable enough to firmly take a place in the Replic army. </p>"},
 		"reverses_weapon_2": {Name: "Discharge", Description: "<p> Standardized for military needs, Reverses cannon - capable of hitting targets by firing two swift missiles. The average rate of fire and the small volume of charged charges are compensated for by the quick turn of the gun. </p>"},
 		"reverses_weapon_3": {Name: "Rank-Mark 2", Description: "<p> Discharge-Mark 2 is a continuation of the ideas laid down by the previous version of Discharge. This is a more advanced weapon that combines the advantages of its predecessor. Those who like to stand aside and watch an explosive show will love this product twice. </p>"},
+		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"replic_weapon_1":   {Name: "Фуриоса", Description: "<p>Желаете по достоинству оценить мощь Replic? Фуриоса – даст вам такую последнюю возможность. Эта мортира наносит настолько сокрушительный урон, что не оставит от ваших соперников и следа. Идеальное решение для тех, кто предпочитает поражать цели на большом расстоянии по навесной траектории, пожертвовав взамен точностью и скоростью поворота орудия.</p>"},
@@ -119,6 +120,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"small_laser":       {Name: "УКВ", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  Но из-за недостаточной материальной базы, а также задействования схем предыдущей эпохи, изделие не может похвастаться чем-то выдающимся, хотя и не стоит на ступени ниже по сравнению с аналогами «Синтетов» касательно лазерно-лучевого вооружения.</p>"},
 		"small_missile":     {Name: "Центурион", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Центурион» - представлен ракетной системой, собранной из образцов некогда существовавших на планете ракетно-залповых систем и, пытающийся вместить в себе лучшие их стороны.  В частности, возможно ведения огня как «самонаводящимися», так и «неуправляемыми» ракетами.</p>"},
 		"tank_gun":          {Name: "Ингибитор", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Ингибитор» - самая обыденная и достаточная эффективная в своих рамках пушка. Она способна поражать различные цели, не слишком дорога в производстве и конкурентоспособна с аналогами «Синтетов».</p>"},
+		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"},
 	},
 }
 
@@ -127,25 +129,27 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"piu-piu":                     {Name: "B-a medium-caliber projectile", Description: "<p> A standardized type of medium-caliber projectiles for kinetic and ballistic weapons that provide significant damage, but, as a rule, are not always distinguished by accuracy and high rate of fire. </p>"},
 		"piu-piu_2":                   {Name: "B-a small-caliber projectile", Description: "<p> A standardized type of small-bore projectiles for kinetic and ballistic weapons that do not provide high damage, but, as a rule, contribute to high accuracy and rate of fire. </p>"},
 		"medium_lens":                 {Name: "Medium focusing cartridge", Description: "<p> Standardized cartridge for charging medium and large laser beam impact equipment. </p>"},
-		"aim_small_missile_bullet":    {Name: "Cicada - Homing Medium Missile", Description: "<p> Cicada - development of a line of unguided missiles of the Sistema family with the aim of creating homing shells. Provides average damage to any captured targets. </p>"},
+		"aim_medium_missile_bullet":   {Name: "Cicada - Homing Medium Missile", Description: "<p> Cicada - development of a line of unguided missiles of the Sistema family with the aim of creating homing shells. Provides average damage to any captured targets. </p>"},
 		"aim_big_missile_bullet":      {Name: "Vindicator - Homing Large Rocket", Description: "<p> The Vindicator is a continuation of ideas started in Cicada and the Sistema unguided rockets family. This homing missile, which can only be used in large rocket firing systems, is a real terror to the enemies it captures. </p>"},
 		"ballistics_artillery_bullet": {Name: "B-a large-caliber projectile", Description: "<p> A standardized type of large-caliber projectiles for kinetic and ballistic weapons that guarantee devastating damage, but cannot be used with rapid-fire or extremely accurate weapons. </p>"},
-		"small_missile_bullet":        {Name: "System.A-2 - Medium missile", Description: "<p> Massive and military-standardized missile of medium destructive power. Cannot be used in high-dimensional missile system weapons. </p>"},
+		"medium_missile_bullet":       {Name: "System.A-2 - Medium missile", Description: "<p> Massive and military-standardized missile of medium destructive power. Cannot be used in high-dimensional missile system weapons. </p>"},
 		"big_missile_bullet":          {Name: "System.O-5 - Large rocket", Description: "<p> Massive and military-standardized missile of great destructive power. Cannot be used in missile weapons with an average overall weight or less. </p>"},
 		"small_lens":                  {Name: "Small focusing cartridge", Description: "<p> Standardized cartridge for charging small and medium-sized laser beam impact tools. </p>"},
 		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"},
+		"small_missile_bullet":        {Name: "Маля ракета", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"piu-piu":                     {Name: "Б-а среднекалиберной снаряд", Description: "<p>Стандартизированный тип среднекалиберных снарядов для кинетических и баллистических орудий, обеспечивающих ощутимый урон, но, как правило, не всегда отличающихся кучностью и высокой скорострельностью.</p>"},
 		"ballistics_artillery_bullet": {Name: "Б-а крупнокалиберный снаряд", Description: "<p>Стандартизированный тип крупнокалиберных снарядов для кинетических и баллистических орудий, гарантирующих сокрушительный урон, но невозможных к применению в скорострельных или крайне точных орудиях.</p>"},
-		"small_missile_bullet":        {Name: "Система.А-2 - Средняя ракета", Description: "<p>Массовая и стандартизированная под военные нужды ракета средней поражающей силы. Невозможна к использования в орудиях ракетной системы высоко-габаритного образца.</p>"},
+		"medium_missile_bullet":       {Name: "Система.А-2 - Средняя ракета", Description: "<p>Массовая и стандартизированная под военные нужды ракета средней поражающей силы. Невозможна к использования в орудиях ракетной системы высоко-габаритного образца.</p>"},
 		"big_missile_bullet":          {Name: "Система.О-5 - Большая ракета", Description: "<p>Массовая и стандартизированная под военные нужды ракета большой поражающей силы. Невозможна к использования в ракетных орудиях средней габаритной массы или меньше.</p>"},
 		"small_lens":                  {Name: "Малый фокусирующий картридж", Description: "<p>Стандартизированный картридж для зарядки в малые и средние орудия лазерно-лучевого воздействия.</p>"},
 		"medium_lens":                 {Name: "Средний фокусирующий картридж", Description: "<p>Стандартизированный картридж для зарядки в средние и крупные орудия лазерно-лучевого воздействия.</p>"},
 		"piu-piu_2":                   {Name: "Б-а мелкокалиберный снаряд", Description: "<p>Стандартизированный тип мелкокалиберных снарядов для кинетических и баллистических орудий, не обеспечивающих высокий урон, но, как правило, способствующие высокой кучности и скорострельности.</p>"},
-		"aim_small_missile_bullet":    {Name: "Цикада - Самонаводящиеся средняя ракета", Description: "<p>Цикада – развитие линейки неуправляемых ракет семейства «Система» с целью создания самонаводящихся на цель снарядов. Обеспечивает усреднённый урон по любым захваченным целям.</p>"},
+		"aim_medium_missile_bullet":   {Name: "Цикада - Самонаводящиеся средняя ракета", Description: "<p>Цикада – развитие линейки неуправляемых ракет семейства «Система» с целью создания самонаводящихся на цель снарядов. Обеспечивает усреднённый урон по любым захваченным целям.</p>"},
 		"aim_big_missile_bullet":      {Name: "Воздаятель - Самонаводящиеся большая ракета", Description: "<p>Воздаятель – продолжение идей, начатых в «Цикада» и линейке семейства неуправляемых ракет «Система». Эта самонаводящаяся ракета, что может быть использована только в крупногабаритных ракетных огневых системах, истинный ужас для врагов, что были ею захвачены.</p>"},
 		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"},
+		"small_missile_bullet":        {Name: "Маля ракета", Description: "<p></p>"},
 	},
 }
 
