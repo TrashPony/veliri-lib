@@ -5,6 +5,7 @@ type AssortmentPoint struct {
 	ItemID   int    `json:"item_id"`
 	ItemType string `json:"item_type"`
 	Points   int    `json:"points"`
+	Credits  int    `json:"credits"`
 	Count    int    `json:"count"`
 	MinRank  int    `json:"min_rank"`
 }
@@ -12,9 +13,9 @@ type AssortmentPoint struct {
 // TODO баланс
 var ReplicAssortment = []AssortmentPoint{
 	// ammo bp
-	{ID: 1, ItemID: 21, ItemType: "blueprints", Count: 1, Points: 10000, MinRank: 2},
-	{ID: 2, ItemID: 22, ItemType: "blueprints", Count: 1, Points: 15000, MinRank: 2},
-	{ID: 3, ItemID: 74, ItemType: "blueprints", Count: 1, Points: 5000, MinRank: 2},
+	{ID: 1, ItemID: 21, ItemType: "blueprints", Count: 5, Points: 8000, MinRank: 4},
+	{ID: 2, ItemID: 22, ItemType: "blueprints", Count: 5, Points: 16000, MinRank: 6},
+	{ID: 3, ItemID: 74, ItemType: "blueprints", Count: 5, Points: 4000, MinRank: 2},
 	// equip bp
 	{ID: 4, ItemID: 13, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 2},
 	{ID: 5, ItemID: 19, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 2},

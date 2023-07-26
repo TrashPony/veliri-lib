@@ -74,6 +74,7 @@ type Body struct {
 	AdditionalInventory map[string]AdditionalInventory `json:"additional_inventory"`
 
 	DamageZones []DamageZone `json:"damage_zones"`
+	Variants    []int        `json:"variants"`
 	mx          sync.RWMutex
 }
 

@@ -27,8 +27,8 @@ type BodyEquipSlot struct {
 	CurrentReload    int            `json:"-"`
 	CurrentAmmoCount int            `json:"-"`
 	On               bool           `json:"on"`
-
-	Rotate float64 `json:"rotate"`
+	LockSlot         int            `json:"lock_slot"`
+	Rotate           float64        `json:"rotate"`
 
 	Mining          bool `json:"mining"` //todo переименовать в "наружний"
 	CatchBulletUUID string

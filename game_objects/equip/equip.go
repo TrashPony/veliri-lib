@@ -34,6 +34,7 @@ type Equip struct {
 	FirePositions   []*coordinate.Coordinate `json:"fire_positions"`
 	RotateSpeed     int                      `json:"rotate_speed"`
 	PassAngle       int                      `json:"pass_angle"`
+	Variants        []int                    `json:"variants"`
 
 	MaxAmmoCount int            `json:"max_ammo_count"` // 0 - бесконечно
 	LifeTime     int            `json:"life_time"`      // время жизни обьекта или дрона

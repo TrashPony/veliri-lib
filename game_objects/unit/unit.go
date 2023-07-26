@@ -467,7 +467,7 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetID())...)
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.OwnerID)...)
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.HP)...)
-	unit.CacheJson = append(unit.CacheJson, byte(unit.GetBody().ID))
+	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetBody().ID)...)
 
 	// position data
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetX())...)

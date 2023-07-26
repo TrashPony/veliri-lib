@@ -29,6 +29,7 @@ type BodyWeaponSlot struct {
 	WeaponTexture       string     `json:"weapon_texture"`
 	WeaponColor1        string     `json:"weapon_color_1"`
 	WeaponColor2        string     `json:"weapon_color_2"`
+	LockSlot            int        `json:"lock_slot"`
 	lastFirePosition    int
 	AccumulationCurrent float64 `json:"-"` // 0-100, от этого зависит урон
 	AccumulationTimeOut int     `json:"-"`
