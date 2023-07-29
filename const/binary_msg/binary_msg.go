@@ -149,7 +149,7 @@ func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int) []
 	// [1[eventID] 4[typeID], 4[x], 4[y], 4[z], 4[rotate], 4[mpID]]
 	command := []byte{9}
 
-	command = append(command, byte(typeID))
+	command = append(command, game_math.GetIntBytes(typeID)...)
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(z)...)
