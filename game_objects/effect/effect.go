@@ -11,6 +11,7 @@ type Effect struct {
 	Subtract    bool   `json:"st"`
 	// Все что ниже это для скилов
 	WeaponType   string `json:"wt"`
+	BodyType     string `json:"bt"`
 	Fraction     string `json:"-"`
 	StandardSize int    `json:"ss"`
 	// ячейки эквипа, что бы удалять потом эффекты

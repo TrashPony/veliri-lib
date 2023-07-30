@@ -203,23 +203,23 @@ func (unit *Unit) GetWeight() float64 {
 }
 
 func (unit *Unit) GetMoveMaxPower() float64 {
-	return unit.GetEffects().GetAllBonus(unit.body.Speed, "speed")
+	return unit.GetEffects().GetAllBodyBonus(unit.body.Speed, "speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
 }
 
 func (unit *Unit) GetMaxReverse() float64 {
-	return unit.GetEffects().GetAllBonus(unit.body.ReverseSpeed, "reverse_speed")
+	return unit.GetEffects().GetAllBodyBonus(unit.body.ReverseSpeed, "reverse_speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
 }
 
 func (unit *Unit) GetPowerFactor() float64 {
-	return unit.GetEffects().GetAllBonus(unit.body.PowerFactor, "power_factor")
+	return unit.GetEffects().GetAllBodyBonus(unit.body.PowerFactor, "power_factor", unit.getBody().ChassisType, unit.getBody().StandardSize)
 }
 
 func (unit *Unit) GetReverseFactor() float64 {
-	return unit.GetEffects().GetAllBonus(unit.body.ReverseFactor, "reverse_factor")
+	return unit.GetEffects().GetAllBodyBonus(unit.body.ReverseFactor, "reverse_factor", unit.getBody().ChassisType, unit.getBody().StandardSize)
 }
 
 func (unit *Unit) GetTurnSpeed() float64 {
-	return unit.GetEffects().GetAllBonus(unit.body.TurnSpeed, "turn_speed")
+	return unit.GetEffects().GetAllBodyBonus(unit.body.TurnSpeed, "turn_speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
 }
 
 func (unit *Unit) GetCapSize() int {
@@ -227,7 +227,7 @@ func (unit *Unit) GetCapSize() int {
 		return 0
 	}
 
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.CapacitySize), "cap_size"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.CapacitySize), "cap_size", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetAdditionalCapSize(key string) int {
@@ -236,7 +236,7 @@ func (unit *Unit) GetAdditionalCapSize(key string) int {
 	}
 
 	inv := unit.body.AdditionalInventory[key]
-	return int(unit.GetEffects().GetAllBonus(float64(inv.GetCapSize()), key+"_cap_size"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(inv.GetCapSize()), key+"_cap_size", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
@@ -263,7 +263,7 @@ func (unit *Unit) GetRangeView() int {
 }
 
 func (unit *Unit) getRangeView() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.RangeView), "view"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.RangeView), "view", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetRadarRange() int {
@@ -271,19 +271,19 @@ func (unit *Unit) GetRadarRange() int {
 }
 
 func (unit *Unit) getRadarRange() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.RangeRadar), "radar"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.RangeRadar), "radar", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetMaxHP() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.MaxHP), "max_hp"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxHP), "max_hp", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetMaxPower() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.MaxPower), "max_power"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxPower), "max_power", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 func (unit *Unit) GetMaxEnergy() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.body.MaxEnergy), "max_energy"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxEnergy), "max_energy", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
 
 // weapon
@@ -425,5 +425,5 @@ func (unit *Unit) GetFollowTarget() *target.Target {
 }
 
 func (unit *Unit) GetRecoveryPower() int {
-	return int(unit.GetEffects().GetAllBonus(float64(unit.getBody().RecoveryPower), "charging_speed"))
+	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.getBody().RecoveryPower), "charging_speed", unit.getBody().ChassisType, unit.getBody().StandardSize))
 }
