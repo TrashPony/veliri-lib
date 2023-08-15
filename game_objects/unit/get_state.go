@@ -42,6 +42,8 @@ type StateMS struct {
 	// оружие
 	WeaponType        string  `json:"wt"`
 	WeaponSize        int     `json:"ws"`
+	BodyType          string  `json:"bt"`
+	BodySize          int     `json:"bs"`
 	WeaponInstall     bool    `json:"install"`
 	WeaponMaxDamage   int     `json:"weapon_max_damage"`
 	WeaponMinDamage   int     `json:"weapon_min_damage"`
@@ -90,6 +92,8 @@ func (unit *Unit) GetState() *StateMS {
 		MaxPower:           unit.GetMaxPower(),
 		RecoveryPower:      unit.GetRecoveryPower(),
 		RecoveryPowerCycle: unit.body.RecoveryPowerCycle,
+		BodyType:           unit.body.ChassisType,
+		BodySize:           unit.body.StandardSize,
 	}
 
 	if state.WeaponInstall {
@@ -365,13 +369,17 @@ func (unit *Unit) AppendPassiveEquipModifier() {
 		if slot.Equip != nil && !slot.Equip.Active && len(slot.Equip.Effects) > 0 {
 			for _, e := range slot.Equip.Effects {
 				unit.AddEffect(&effect.Effect{
-					UUID:        "equip_passive_" + strconv.Itoa(slot.Type) + ":" + strconv.Itoa(slot.Number) + e.Name,
-					Parameter:   e.Parameter,
-					Quantity:    e.Quantity,
-					Percentages: e.Percentages,
-					Subtract:    e.Subtract,
-					SlotType:    slot.Type,
-					SlotNumber:  slot.Number,
+					UUID:         "equip_passive_" + strconv.Itoa(slot.Type) + ":" + strconv.Itoa(slot.Number) + e.Name,
+					Parameter:    e.Parameter,
+					Quantity:     e.Quantity,
+					Percentages:  e.Percentages,
+					Subtract:     e.Subtract,
+					SlotType:     slot.Type,
+					SlotNumber:   slot.Number,
+					WeaponType:   e.WeaponType,
+					BodyType:     e.BodyType,
+					StandardSize: e.StandardSize,
+					Fraction:     e.Fraction,
 				})
 			}
 		}
