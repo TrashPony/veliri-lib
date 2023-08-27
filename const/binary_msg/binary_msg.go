@@ -197,6 +197,10 @@ func WeaponMouseTargetBinary(x, y, radius, ammoCount, ammoAvailable, accumulatio
 
 	command := make([]byte, 28)
 
+	if radius > math.MaxUint8 {
+		radius = math.MaxUint8
+	}
+
 	command[0] = 13
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(x))
 	game_math.ReuseByteSlice(&command, 5, game_math.GetIntBytes(y))

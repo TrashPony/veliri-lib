@@ -86,16 +86,30 @@ func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
 	if add {
 		unit.UpdatePhysicalModel()
 		unit.UpdateWeaponsState()
+
+		if newEffect.Parameter == "max_hp" && !newEffect.Percentages {
+			unit.HP += newEffect.Quantity
+			if unit.GetMaxHP() < unit.HP {
+				unit.HP = unit.GetMaxHP()
+			}
+		}
 	}
 
 	return add
 }
 
 func (unit *Unit) RemoveEffect(uuid string) bool {
-	remove := unit.GetEffects().RemoveEffect(uuid)
+	remove, ef := unit.GetEffects().RemoveEffect(uuid)
 	if remove {
 		unit.UpdatePhysicalModel()
 		unit.UpdateWeaponsState()
+
+		if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
+			unit.HP -= ef.Quantity
+			if unit.HP < 1 {
+				unit.HP = 1
+			}
+		}
 	}
 
 	return remove
@@ -111,11 +125,19 @@ func (u *Unit) Invisibility() bool {
 }
 
 func (unit *Unit) RemoveBySlot(slotType, slotNumber int) bool {
-	// TODO API
-	remove := unit.GetEffects().RemoveBySlot(slotType, slotNumber)
+	remove, remEffects := unit.GetEffects().RemoveBySlot(slotType, slotNumber)
 	if remove {
 		unit.UpdatePhysicalModel()
 		unit.UpdateWeaponsState()
+
+		for _, ef := range remEffects {
+			if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
+				unit.HP -= ef.Quantity
+				if unit.HP < 1 {
+					unit.HP = 1
+				}
+			}
+		}
 	}
 
 	return remove

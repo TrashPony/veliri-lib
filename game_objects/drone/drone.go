@@ -63,7 +63,7 @@ func (d *Drone) AddEffect(newEffect *effect.Effect) bool {
 }
 
 func (d *Drone) RemoveEffect(uuid string) bool {
-	remove := d.GetEffects().RemoveEffect(uuid)
+	remove, _ := d.GetEffects().RemoveEffect(uuid)
 	d.UpdatePhysicalModel()
 	return remove
 }

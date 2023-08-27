@@ -638,7 +638,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_resource_capacity_size_25": {Description: "На <span class=\"importantly\">25%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_40": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для руды"},
 		"body_max_energy_10":             {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
-		"body_max_hp_15":                 {Description: "На <span class=\"importantly\">15%</span> увеличивается кол-во жизней корпуса."},
+		"body_max_hp_150":                {Description: "На <span class=\"importantly\">150</span> ед. увеличивается кол-во жизней корпуса."},
 		//
 		"bonus_max_move_speed_15": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">15%</span>"},
 		"bonus_max_move_speed_10": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">10%</span>"},
@@ -725,7 +725,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_resource_capacity_size_25": {Description: "На <span class=\"importantly\">25%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_40": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для руды"},
 		"body_max_energy_10":             {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
-		"body_max_hp_15":                 {Description: "На <span class=\"importantly\">15%</span> увеличивается кол-во жизней корпуса."},
+		"body_max_hp_150":                {Description: "На <span class=\"importantly\">150</span> ед. увеличивается кол-во жизней корпуса."},
 		//
 		"bonus_max_move_speed_15": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">15%</span>"},
 		"bonus_max_move_speed_10": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">10%</span>"},

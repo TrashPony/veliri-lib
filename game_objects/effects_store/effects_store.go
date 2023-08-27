@@ -31,7 +31,7 @@ func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
 	return true
 }
 
-func (e *EffectsStore) RemoveEffect(uuid string) bool {
+func (e *EffectsStore) RemoveEffect(uuid string) (bool, *effect.Effect) {
 	e.mx.Lock()
 	defer e.mx.Unlock()
 
@@ -40,9 +40,11 @@ func (e *EffectsStore) RemoveEffect(uuid string) bool {
 	}
 
 	index := -1
+	var removeEffect *effect.Effect
 	for i, ef := range e.Effects {
 		if ef.UUID == uuid {
 			index = i
+			removeEffect = ef
 			break
 		}
 	}
@@ -51,10 +53,10 @@ func (e *EffectsStore) RemoveEffect(uuid string) bool {
 		e.Effects = append(e.Effects[:index], e.Effects[index+1:]...)
 	}
 
-	return index >= 0
+	return index >= 0, removeEffect
 }
 
-func (e *EffectsStore) RemoveBySlot(slotType, slotNumber int) bool {
+func (e *EffectsStore) RemoveBySlot(slotType, slotNumber int) (bool, []*effect.Effect) {
 	var uuids []string
 
 	e.mx.RLock()
@@ -66,11 +68,18 @@ func (e *EffectsStore) RemoveBySlot(slotType, slotNumber int) bool {
 	e.mx.RUnlock()
 
 	remove := false
+	removeEffects := make([]*effect.Effect, 0)
 	for _, u := range uuids {
-		remove = e.RemoveEffect(u) || remove
+
+		rem, remEf := e.RemoveEffect(u)
+		if remEf != nil {
+			removeEffects = append(removeEffects, remEf)
+		}
+
+		remove = rem || remove
 	}
 
-	return remove
+	return remove, removeEffects
 }
 
 func (e *EffectsStore) GetEffectByUUID(uuid string) *effect.Effect {
