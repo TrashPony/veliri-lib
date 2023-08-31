@@ -69,6 +69,7 @@ func GetMinerRules() (*BehaviorRules, *BehaviorRules) {
 									PassRule: &BehaviorRule{
 										Action: "to_base",
 									},
+									StopRule: getBackRules(),
 								},
 							},
 							StopRule: &BehaviorRule{
@@ -94,6 +95,7 @@ func GetMinerRules() (*BehaviorRules, *BehaviorRules) {
 													Action: "to_sector_target",
 													Meta:   &Meta{Type: "Fraction"},
 												},
+												StopRule: getBackRules(),
 											},
 										},
 										StopRule: getBackRules(),

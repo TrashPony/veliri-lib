@@ -87,7 +87,8 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 						PassRule: &BehaviorRule{
 							Action: "to_base",
 						},
-						Meta: &Meta{Type: "Fraction"},
+						Meta:     &Meta{Type: "Fraction"},
+						StopRule: getBackRules(),
 					},
 				},
 				StopRule: &BehaviorRule{
@@ -124,6 +125,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 											PassRule: &BehaviorRule{
 												Action: "to_base",
 											},
+											StopRule: getBackRules(),
 										},
 									},
 								},
@@ -140,6 +142,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 										PassRule: &BehaviorRule{
 											Action: "to_base",
 										},
+										StopRule: getBackRules(),
 									},
 								},
 							},
@@ -187,6 +190,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 													PassRule: &BehaviorRule{
 														Action: "to_base",
 													},
+													StopRule: getBackRules(),
 												},
 											},
 										},
