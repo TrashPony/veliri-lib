@@ -57,6 +57,7 @@ func GetTransportRules() (*BehaviorRules, *BehaviorRules) {
 								PassRule: &BehaviorRule{
 									Action: "to_base",
 								},
+								StopRule: getBackRules(),
 							},
 						},
 					},

@@ -42,7 +42,7 @@ func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate) {
 	m.needFindPath = false
 	m.path = path
 	m.currentPoint = 0
-	m.time = time.Now().UnixNano()
+	m.time = time.Now().Unix()
 }
 
 func (m *MovePath) GetFollowTarget() *target.Target {
