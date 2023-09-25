@@ -83,24 +83,22 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 						},
 					},
 					StopRule: &BehaviorRule{
+						Action: "find_hostile_in_range_view",
 						PassRule: &BehaviorRule{
-							Action: "find_hostile_in_range_view",
+							Action: "to_sector_target",
 							PassRule: &BehaviorRule{
-								Action: "to_sector_target",
-								PassRule: &BehaviorRule{
-									Action: "to_base",
-								},
-								Meta:     &Meta{Type: "Fraction"},
-								StopRule: getBackRules(),
+								Action: "to_base",
 							},
-							StopRule: &BehaviorRule{
-								Action: "to_sector_target",
-								PassRule: &BehaviorRule{
-									Action: "to_base",
-								},
-								Meta:     &Meta{Type: "Fraction"},
-								StopRule: getBackRules(),
+							Meta:     &Meta{Type: "Fraction"},
+							StopRule: getBackRules(),
+						},
+						StopRule: &BehaviorRule{
+							Action: "to_sector_target",
+							PassRule: &BehaviorRule{
+								Action: "to_base",
 							},
+							Meta:     &Meta{Type: "Fraction"},
+							StopRule: getBackRules(),
 						},
 					},
 				},
