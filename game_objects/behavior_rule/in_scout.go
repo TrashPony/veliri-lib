@@ -90,7 +90,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 								Action: "to_base",
 							},
 							Meta:     &Meta{Type: "Fraction"},
-							StopRule: getBackRules(),
+							StopRule: getBackRules2(),
 						},
 						StopRule: &BehaviorRule{
 							Action: "to_sector_target",
@@ -98,7 +98,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 								Action: "to_base",
 							},
 							Meta:     &Meta{Type: "Fraction"},
-							StopRule: getBackRules(),
+							StopRule: getBackRules2(),
 						},
 					},
 				},
@@ -129,14 +129,14 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 									Meta:   &Meta{Type: "defend"},
 									PassRule: &BehaviorRule{
 										Action:   "check_profitability_sector",
-										PassRule: getBackRules(),
+										PassRule: getBackRules2(),
 										StopRule: &BehaviorRule{
 											Action: "to_sector_target",
 											Meta:   &Meta{Type: "Fraction"},
 											PassRule: &BehaviorRule{
 												Action: "to_base",
 											},
-											StopRule: getBackRules(),
+											StopRule: getBackRules2(),
 										},
 									},
 								},
@@ -146,14 +146,14 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 								Meta:   &Meta{Type: "defend"},
 								PassRule: &BehaviorRule{
 									Action:   "check_profitability_sector",
-									PassRule: getBackRules(),
+									PassRule: getBackRules2(),
 									StopRule: &BehaviorRule{
 										Action: "to_sector_target",
 										Meta:   &Meta{Type: "Fraction"},
 										PassRule: &BehaviorRule{
 											Action: "to_base",
 										},
-										StopRule: getBackRules(),
+										StopRule: getBackRules2(),
 									},
 								},
 							},
@@ -161,11 +161,11 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 					},
 					StopRule: &BehaviorRule{
 						Action:   "check_back_to_base",
-						PassRule: getBackRules(),
+						PassRule: getBackRules2(),
 						StopRule: &BehaviorRule{
 							Action:   "check_cargo_full", // проверка трюма, если он заполнен на 50% то ливаем на базу
 							Meta:     &Meta{Count: 80},
-							PassRule: getBackRules(),
+							PassRule: getBackRules2(),
 							StopRule: &BehaviorRule{
 								Action: "find_unit_wreckage",
 								PassRule: &BehaviorRule{
@@ -201,11 +201,11 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 													PassRule: &BehaviorRule{
 														Action: "to_base",
 													},
-													StopRule: getBackRules(),
+													StopRule: getBackRules2(),
 												},
 											},
 										},
-										StopRule: getBackRules(),
+										StopRule: getBackRules2(),
 									},
 								},
 							},
