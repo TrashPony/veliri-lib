@@ -163,6 +163,8 @@ type Meta struct {
 	Stop                          bool              `json:"stop"`
 	NotWarTypePath                string            `json:"not_war_type_path"`
 	MissionTarget                 int               `json:"mission_target"`
+	IgnoreBaseID                  int               `json:"ignore_base_id"`
+	IgnoreMapID                   int               `json:"ignore_map_id"`
 	robberyIgnore                 map[int]int64
 	mx                            sync.RWMutex
 }
