@@ -19,6 +19,7 @@ func (s *SpecialHostile) SetPoints(hatePoint int) {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 	s.Points = hatePoint
+	s.LastUpdate = time.Now().UnixNano()
 }
 
 func (s *SpecialHostile) AddPoints(hatePoint int) {
