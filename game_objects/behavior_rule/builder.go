@@ -46,7 +46,7 @@ func GetBuilderRules() (*BehaviorRules, *BehaviorRules) {
 				PassRule: peacefulCheckBattleSolution(),
 				StopRule: &BehaviorRule{
 					Action:   "check_back_to_base",
-					PassRule: getBackRules(),
+					PassRule: getBackRules3(),
 					StopRule: &BehaviorRule{
 						Action: "send_npc_request",
 						Meta:   &Meta{Type: "defend"},
@@ -68,7 +68,7 @@ func GetBuilderRules() (*BehaviorRules, *BehaviorRules) {
 										},
 									},
 								},
-								StopRule: getBackRules(),
+								StopRule: getBackRules3(),
 								Meta:     &Meta{Type: "Fraction"},
 							},
 						},

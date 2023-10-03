@@ -40,3 +40,15 @@ func getBackRules2() *BehaviorRule {
 		},
 	}
 }
+
+func getBackRules3() *BehaviorRule {
+	return &BehaviorRule{
+		Action: "to_fraction_base",
+		StopRule: &BehaviorRule{
+			Action: "find_fraction_sector",
+			PassRule: &BehaviorRule{
+				Action: "to_sector_target",
+			},
+		},
+	}
+}
