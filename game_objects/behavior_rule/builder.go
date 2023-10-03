@@ -43,7 +43,7 @@ func GetBuilderRules() (*BehaviorRules, *BehaviorRules) {
 		Rules: []*BehaviorRule{
 			{
 				Action:   "find_hostile_in_range_view",
-				PassRule: peacefulCheckBattleSolution(),
+				PassRule: peacefulCheckBattleSolution(getBackRules3()),
 				StopRule: &BehaviorRule{
 					Action:   "check_back_to_base",
 					PassRule: getBackRules3(),
@@ -56,10 +56,11 @@ func GetBuilderRules() (*BehaviorRules, *BehaviorRules) {
 								Action: "build",
 							},
 							StopRule: &BehaviorRule{
-								Action: "to_sector_target", // ищет путь до целли которая указана в мета (map_id, type_target, id_target)
-								// мета информация должна быть заполнена уже т.к. задание выдает база
+								Action: "check_fraction_request",
 								PassRule: &BehaviorRule{
-									Action: "check_fraction_request",
+									Action: "to_sector_target", // ищет путь до целли которая указана в мета (map_id, type_target, id_target)
+									// мета информация должна быть заполнена уже т.к. задание выдает база
+									Meta: &Meta{Type: "Fraction"},
 									PassRule: &BehaviorRule{
 										//ид, х, у - указано в мета
 										Action: "place_object",
@@ -69,7 +70,6 @@ func GetBuilderRules() (*BehaviorRules, *BehaviorRules) {
 									},
 								},
 								StopRule: getBackRules3(),
-								Meta:     &Meta{Type: "Fraction"},
 							},
 						},
 					},

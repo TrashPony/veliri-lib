@@ -41,7 +41,7 @@ func GetTransportRules() (*BehaviorRules, *BehaviorRules) {
 		Rules: []*BehaviorRule{
 			{
 				Action:   "find_hostile_in_range_view",
-				PassRule: peacefulCheckBattleSolution(),
+				PassRule: peacefulCheckBattleSolution(getBackRules()),
 				StopRule: &BehaviorRule{
 					Action:   "check_back_to_base",
 					PassRule: getBackRules(),

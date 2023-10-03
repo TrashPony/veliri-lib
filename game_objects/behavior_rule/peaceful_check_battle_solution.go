@@ -1,6 +1,6 @@
 package behavior_rule
 
-func peacefulCheckBattleSolution() *BehaviorRule {
+func peacefulCheckBattleSolution(backRules *BehaviorRule) *BehaviorRule {
 	return &BehaviorRule{
 		Action: "peaceful_check_battle_solution",
 		PassRule: &BehaviorRule{
@@ -25,7 +25,7 @@ func peacefulCheckBattleSolution() *BehaviorRule {
 					PassRule: &BehaviorRule{
 						Action:   "send_npc_request",
 						Meta:     &Meta{Type: "defend"},
-						PassRule: getBackRules(),
+						PassRule: backRules,
 					},
 				},
 				StopRule: &BehaviorRule{
@@ -34,7 +34,7 @@ func peacefulCheckBattleSolution() *BehaviorRule {
 					PassRule: &BehaviorRule{
 						Action:   "send_npc_request",
 						Meta:     &Meta{Type: "defend"},
-						PassRule: getBackRules(),
+						PassRule: backRules,
 					},
 				},
 			},
@@ -44,7 +44,7 @@ func peacefulCheckBattleSolution() *BehaviorRule {
 				PassRule: &BehaviorRule{
 					Action:   "send_npc_request",
 					Meta:     &Meta{Type: "defend"},
-					PassRule: getBackRules(),
+					PassRule: backRules,
 				},
 			},
 		},

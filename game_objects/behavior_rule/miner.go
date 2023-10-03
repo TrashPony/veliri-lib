@@ -51,7 +51,7 @@ func GetMinerRules() (*BehaviorRules, *BehaviorRules) {
 		Rules: []*BehaviorRule{
 			{
 				Action:   "find_hostile_in_range_view",
-				PassRule: peacefulCheckBattleSolution(),
+				PassRule: peacefulCheckBattleSolution(getBackRules()),
 				StopRule: &BehaviorRule{
 					Action: "send_npc_request",
 					Meta:   &Meta{Type: "attack"},
