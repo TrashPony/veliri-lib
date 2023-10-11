@@ -129,8 +129,12 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "repair_station" || o.Texture == "zone_repair_station" {
+	if o.Texture == "repair_station" {
 		o.SetScale(50)
+	}
+
+	if o.Texture == "zone_repair_station" {
+		o.SetScale(75)
 	}
 
 	if o.Texture == "mini_turret_1" || o.Texture == "mini_turret_2" {

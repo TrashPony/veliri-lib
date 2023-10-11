@@ -2,21 +2,24 @@ package unit
 
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 )
 
-func (unit *Unit) WorkReactorPower(removeCount int) {
+func (u *Unit) WorkReactorPower(removeCount int) {
+	u.mx.Lock()
+	defer u.mx.Unlock()
 
 	// если эффективность реактор изменилась то применяем изменения
-	startEfficiency := unit.EfficiencyReactor()
+	startEfficiency := u.EfficiencyReactor()
 	defer func() {
-		if startEfficiency != unit.EfficiencyReactor() {
-			unit.AppendFuelModifier()
+		if startEfficiency != u.EfficiencyReactor() {
+			u.AppendFuelModifier()
 		}
 	}()
 
 	for i := 0; i < removeCount; i++ {
-		for _, slot := range unit.getBody().ThoriumSlots {
+		for _, slot := range u.getBody().ThoriumSlots {
 			if slot.GetCount() > 0 {
 				slot.WorkedOut++
 				if slot.WorkedOut >= _const.PowerInWork {
@@ -28,9 +31,22 @@ func (unit *Unit) WorkReactorPower(removeCount int) {
 	}
 }
 
-func (unit *Unit) EfficiencyReactor() float64 {
+func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot) {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	for key, slot := range u.getBody().ThoriumSlots {
+		s := slots[key]
+		if s != nil {
+			slot.Count = s.Count
+			slot.WorkedOut = s.WorkedOut
+		}
+	}
+}
+
+func (u *Unit) EfficiencyReactor() float64 {
 	full := 0.0
-	for _, slot := range unit.getBody().ThoriumSlots {
+	for _, slot := range u.getBody().ThoriumSlots {
 		if slot.GetCount() > 0 {
 			full++
 		}
@@ -40,24 +56,24 @@ func (unit *Unit) EfficiencyReactor() float64 {
 		return 0
 	}
 
-	return full / float64(len(unit.getBody().ThoriumSlots))
+	return full / float64(len(u.getBody().ThoriumSlots))
 }
 
 var reactorChangeParameters = []string{"radar", "view", "turn_speed", "reverse_factor", "power_factor", "reverse_speed", "speed", "charging_speed"}
 
-func (unit *Unit) AppendFuelModifier() {
+func (u *Unit) AppendFuelModifier() {
 	for _, parameter := range reactorChangeParameters {
-		unit.RemoveEffect("fuel_" + parameter)
+		u.RemoveEffect("fuel_" + parameter)
 	}
 
-	percentFuel := unit.EfficiencyReactor() * 100
+	percentFuel := u.EfficiencyReactor() * 100
 	if int(percentFuel) == 100 {
 		return
 	}
 
 	doublePercentFuel := float64(50) * (percentFuel / 100.0)
 	for _, parameter := range reactorChangeParameters {
-		unit.AddEffect(&effect.Effect{
+		u.AddEffect(&effect.Effect{
 			UUID:        "fuel_" + parameter,
 			Parameter:   parameter,
 			Quantity:    50 - int(doublePercentFuel),

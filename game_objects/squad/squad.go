@@ -45,6 +45,7 @@ type Squad struct {
 	Transfer    bool
 
 	updateDB sync.Mutex
+	tmx      sync.Mutex
 	mx       sync.RWMutex
 }
 
@@ -206,6 +207,14 @@ func (s *Squad) UpdateLock() {
 
 func (s *Squad) UpdateUnlock() {
 	s.updateDB.Unlock()
+}
+
+func (s *Squad) ThoriumLock() {
+	s.tmx.Lock()
+}
+
+func (s *Squad) ThoriumUnlock() {
+	s.tmx.Unlock()
 }
 
 func (s *Squad) GetFormationCoordinate(x, y int) (int, int) {
