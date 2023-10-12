@@ -13,7 +13,7 @@ type InfoMap struct {
 	YGlobal             int                      `json:"y_global"`
 	Fraction            string                   `json:"fraction"`
 	PossibleBattle      bool                     `json:"possible_battle"`
-	Battle              bool                     `json:"battle"`
+	Battle              int                      `json:"battle"`
 	FreeLand            bool                     `json:"free_land"`
 	HandlersCoordinates []*coordinate.Coordinate `json:"handlers_coordinates"`
 }
