@@ -53,7 +53,7 @@ type Unit struct {
 	damageMX       sync.Mutex // специальный мьютекс для получения урона, todo возможно не нужен
 	mx             sync.RWMutex
 	AutoPilot      bool     `json:"auto_pilot"`
-	Damage         []Damage `json:"-"`
+	damage         []Damage `json:"-"`
 	Immortal       bool     `json:"-"`
 
 	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
@@ -265,8 +265,29 @@ type Damage struct {
 	Damage     int   `json:"damage"`
 }
 
-func (unit *Unit) SetLastDamage(playerID, damage int) *Damage {
-	if playerID == unit.OwnerID {
+func (u *Unit) FillLastDamage(d []Damage) {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+	u.damage = d
+}
+
+func (u *Unit) GetArrayLastDamage() []Damage {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+	d := make([]Damage, len(u.damage))
+
+	for i, v := range u.damage {
+		d[i] = v
+	}
+
+	return d
+}
+
+func (u *Unit) SetLastDamage(playerID, damage int) *Damage {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	if playerID == u.OwnerID {
 		return nil
 	}
 
@@ -275,33 +296,38 @@ func (unit *Unit) SetLastDamage(playerID, damage int) *Damage {
 		TimeDamage: time.Now().Unix(),
 		Damage:     damage,
 	}
-	unit.Damage = append(unit.Damage, newDamage)
+	u.damage = append(u.damage, newDamage)
 	return &newDamage
 }
 
-func (unit *Unit) GetLastDamage() int {
+func (u *Unit) GetLastDamage() int {
+	u.mx.Lock()
+	defer u.mx.Unlock()
 
-	if len(unit.Damage) == 0 {
+	if len(u.damage) == 0 {
 		return 0
 	}
 
-	last := unit.Damage[len(unit.Damage)-1]
+	last := u.damage[len(u.damage)-1]
 	// если урон наносился больше чем 30 сек назад то он не учитывается
 	if time.Now().Unix()-last.TimeDamage > 30 {
-		unit.Damage = unit.Damage[:0]
+		u.damage = u.damage[:0]
 		return 0
 	}
 
 	return last.PlayerID
 }
 
-func (unit *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
-	if len(unit.Damage) == 0 {
+func (u *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	if len(u.damage) == 0 {
 		return 0
 	}
 
 	allDamage := 0
-	for _, d := range unit.Damage {
+	for _, d := range u.damage {
 		if d.PlayerID == playerID {
 			if time.Now().Unix()-d.TimeDamage < int64(sec) {
 				allDamage += d.Damage
@@ -312,14 +338,17 @@ func (unit *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
 	return allDamage
 }
 
-func (unit *Unit) GetAllDamage() map[int]int {
+func (u *Unit) GetAllDamage() map[int]int {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
 	r := make(map[int]int)
 
-	if len(unit.Damage) == 0 {
+	if len(u.damage) == 0 {
 		return r
 	}
 
-	for _, d := range unit.Damage {
+	for _, d := range u.damage {
 		if time.Now().Unix()-d.TimeDamage < 30 {
 			r[d.PlayerID] += d.Damage
 		}
