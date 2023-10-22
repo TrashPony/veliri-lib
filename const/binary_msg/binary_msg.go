@@ -958,6 +958,12 @@ func CreateUpRankBin(up bool) []byte {
 	return command
 }
 
+func ServerTime(unixTime int64) []byte {
+	command := []byte{87}
+	command = append(command, game_math.GetInt64Bytes(unixTime)...)
+	return command
+}
+
 func getVioTypeInt(vType string, time int) byte {
 	vTypeInt := byte(0)
 
