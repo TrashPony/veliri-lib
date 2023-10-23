@@ -301,7 +301,7 @@ func (inv *Inventory) GetSlot(number, userID int) (*Slot, bool) {
 
 func (inv *Inventory) AddItemFromSlot(slot *Slot, userID, accessUserID int) bool {
 
-	if slot.GetQuantity() <= 0 { // slot.Size/float32(slot.Quantity) деление на ноль все сломает
+	if slot.GetQuantity() <= 0 || slot.Item == nil { // slot.Size/float32(slot.Quantity) деление на ноль все сломает
 		return false
 	}
 
