@@ -32,6 +32,7 @@ type Coordinate struct {
 	ToBaseID  int           `json:"to_base_id,omitempty"`
 	ToMapID   int           `json:"to_map_id,omitempty"`
 	Find      bool          `json:"-"`
+	Quest     bool
 	access    map[int]bool
 	key       string
 	mx        sync.Mutex
