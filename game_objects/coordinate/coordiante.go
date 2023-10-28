@@ -2,6 +2,7 @@ package coordinate
 
 import (
 	"strconv"
+	"sync"
 )
 
 type Coordinate struct {
@@ -30,9 +31,10 @@ type Coordinate struct {
 	Positions []*Coordinate `json:"positions,omitempty"`
 	ToBaseID  int           `json:"to_base_id,omitempty"`
 	ToMapID   int           `json:"to_map_id,omitempty"`
-
-	Find bool `json:"-"`
-	key  string
+	Find      bool          `json:"-"`
+	access    map[int]bool
+	key       string
+	mx        sync.Mutex
 }
 
 func (coor *Coordinate) GetY() int {
@@ -49,4 +51,35 @@ func (coor *Coordinate) Key() string { //создает уникальный к�
 	}
 
 	return coor.key
+}
+
+func (coor *Coordinate) AddAccess(id int) {
+	coor.mx.Lock()
+	defer coor.mx.Unlock()
+
+	if coor.access == nil {
+		coor.access = make(map[int]bool)
+	}
+
+	coor.access[id] = true
+}
+
+func (coor *Coordinate) RemoveAccess(id int) {
+	coor.mx.Lock()
+	defer coor.mx.Unlock()
+
+	if coor.access != nil {
+		delete(coor.access, id)
+	}
+}
+
+func (coor *Coordinate) GetAccess(id int) bool {
+	coor.mx.Lock()
+	defer coor.mx.Unlock()
+
+	if coor.access == nil {
+		return false
+	}
+
+	return coor.access[id]
 }
