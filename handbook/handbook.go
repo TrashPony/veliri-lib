@@ -774,6 +774,9 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"weapon_nutrients":              {ID: 0, Name: "Weapon nutrients", Description: "<p>Consumables are used in industrial types of tools</p>"},
 		"egg":                           {Name: "Egg", Description: "<p>Яиичко11</p>"},
 		"orbital_drop_beacons":          {Name: "Orbital drop beacons", Description: "<p>Used to signal orbital systems</p>"},
+		"blue_fragile_capsule":          {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
+		"red_fragile_capsule":           {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
+		"ground_drone_3":                {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -811,6 +814,9 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"weapon_nutrients":              {Name: "Питательные элементы орудий", Description: "<p>Расходные элементы использующиеся в энергетических видах орудий</p>"},
 		"egg":                           {Name: "Яйцо", Description: "<p>Яиичко11</p>"},
 		"orbital_drop_beacons":          {Name: "Маяки орбитального сброса", Description: "<p>Используются для подачи сигнала орбитальным системам</p>"},
+		"blue_fragile_capsule":          {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
+		"red_fragile_capsule":           {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
+		"ground_drone_3":                {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
 	},
 }
 

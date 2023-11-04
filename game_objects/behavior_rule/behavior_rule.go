@@ -138,6 +138,7 @@ type Meta struct {
 	MapID                         int               `json:"map_id"`
 	BaseID                        int               `json:"base_id"`
 	TypeTarget                    string            `json:"type_target"`
+	IDTargets                     []int             `json:"id_targets"`
 	IDTarget                      int               `json:"id_target"`
 	IDPlayerTarget                int               `json:"id_player_target"`
 	TypeInteraction               string            `json:"type_interaction"`

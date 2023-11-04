@@ -32,6 +32,7 @@ type Coordinate struct {
 	ToBaseID  int           `json:"to_base_id,omitempty"`
 	ToMapID   int           `json:"to_map_id,omitempty"`
 	Find      bool          `json:"-"`
+	attr      map[string]interface{}
 	Quest     bool
 	access    map[int]bool
 	key       string
@@ -83,4 +84,12 @@ func (coor *Coordinate) GetAccess(id int) bool {
 	}
 
 	return coor.access[id]
+}
+
+func (coor *Coordinate) AddAttr(attr map[string]interface{}) {
+	coor.attr = attr
+}
+
+func (coor *Coordinate) GetAttr() map[string]interface{} {
+	return coor.attr
 }

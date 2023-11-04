@@ -59,11 +59,12 @@ type Bullet struct {
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`
 
-	ForceExplosion     bool           `json:"-"`
-	DetonationDistance int            `json:"-"`
-	DetonationTimeOut  int            `json:"detonation_time_out"`
-	Attributes         map[string]int `json:"-"`
-	ObjectID           int            `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
+	ForceExplosion      bool           `json:"-"`
+	DetonationDistance  int            `json:"-"`
+	DetonationTimeOut   int            `json:"detonation_time_out"`
+	Attributes          map[string]int `json:"-"`
+	ObjectID            int            `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
+	DetonationForceView bool           `json:"-"` // все видят взрыв, независимо от тумана войны
 
 	stopTimeMS int
 	mx         sync.RWMutex

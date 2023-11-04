@@ -16,6 +16,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"github.com/TrashPony/veliri-lib/generate_ids"
 	"math"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -82,7 +83,8 @@ type Object struct {
 	MaxEnergy            int                 `json:"max_energy"`
 	EquipID              int                 `json:"equip_id"`
 	SpecialCell          bool                `json:"special_cell"`
-	placeUserSpecialCell map[int]bool
+	Interactive          bool                `json:"interactive"`
+	placeUserSpecialCell map[string]bool
 
 	Weapons map[int]*detail.BodyWeaponSlot `json:"weapons"`
 	Equips  map[int]*detail.BodyEquipSlot  `json:"equips"`
@@ -497,7 +499,7 @@ func (o *Object) GetJSON(mapTime int64) []byte {
 	command = append(command, game_math.BoolToByte(o.Static))
 	command = append(command, game_math.BoolToByte(o.fractionWarrior))
 	command = append(command, _const.FractionByte[o.Fraction])
-	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell)) // interactive
+	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell || o.Interactive)) // interactive
 
 	command = append(command, byte(len(o.Type)))
 	command = append(command, []byte(o.Type)...)
@@ -605,21 +607,26 @@ func (o *Object) GetMaxHP() int {
 	return o.MaxHP
 }
 
-func (o *Object) PlaceItemToSpecialCell(PlayerID int) {
+func (o *Object) PlaceItemToSpecialCell(playerID, actionNumber int) {
 	o.mx.Lock()
 	defer o.mx.Unlock()
 
 	if o.placeUserSpecialCell == nil {
-		o.placeUserSpecialCell = make(map[int]bool)
+		o.placeUserSpecialCell = make(map[string]bool)
 	}
 
-	o.placeUserSpecialCell[PlayerID] = true
+	o.placeUserSpecialCell[strconv.Itoa(playerID)+":"+strconv.Itoa(actionNumber)] = true
 }
 
-func (o *Object) GetPlayersPlaceItemToSpecialCell(PlayerID int) bool {
+func (o *Object) GetPlayersPlaceItemToSpecialCell(playerID, actionNumber int) bool {
 	o.mx.Lock()
 	defer o.mx.Unlock()
-	return o.placeUserSpecialCell[PlayerID]
+
+	if o.placeUserSpecialCell == nil {
+		o.placeUserSpecialCell = make(map[string]bool)
+	}
+
+	return o.placeUserSpecialCell[strconv.Itoa(playerID)+":"+strconv.Itoa(actionNumber)]
 }
 
 func (o *Object) SetFractionWarrior(ok bool) {

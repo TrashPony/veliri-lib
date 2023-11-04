@@ -80,6 +80,8 @@ func GobRegister() {
 	gob.Register(map[int]map[string]interface{}{})
 	gob.Register([]map[string]interface{}{})
 	gob.Register(map[int]interface{}{})
+	gob.Register(map[string]string{})
+	gob.Register(map[string]bool{})
 
 	gob.Register(map[int]map[int]lvl_map.LvlMap{})
 	gob.Register(dynamic_map_object.Object{})
