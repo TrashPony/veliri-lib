@@ -83,6 +83,7 @@ func GobRegister() {
 	gob.Register(map[string]string{})
 	gob.Register(map[string]bool{})
 
+	gob.Register(map[int]*info_map.InfoMap{})
 	gob.Register(map[int]map[int]lvl_map.LvlMap{})
 	gob.Register(dynamic_map_object.Object{})
 	gob.Register(reservoir.Reservoir{})
