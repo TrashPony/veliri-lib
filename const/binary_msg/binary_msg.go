@@ -985,3 +985,13 @@ func getVioTypeInt(vType string, time int) byte {
 
 	return vTypeInt
 }
+
+func OpenAnomaly(x, y, t int) []byte {
+	command := []byte{88}
+
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(t)...)
+
+	return command
+}

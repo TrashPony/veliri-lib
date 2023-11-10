@@ -166,7 +166,7 @@ func (body *Body) GetAllEquips() []*BodyEquipSlot {
 }
 
 func (body *Body) GetAllEquipSlots() []*BodyEquipSlot {
-	equips := make([]*BodyEquipSlot, 0)
+	equips := make([]*BodyEquipSlot, 0, len(body.EquippingI)+len(body.EquippingII)+len(body.EquippingIII)+len(body.EquippingIV)+len(body.EquippingV))
 	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
 		for slot, s := range equip {
 			s.TypeSlot = typeSlot

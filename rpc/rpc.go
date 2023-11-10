@@ -5,6 +5,7 @@ import (
 	"encoding/gob"
 	"fmt"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
+	"github.com/TrashPony/veliri-lib/game_objects/anomaly"
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
 	"github.com/TrashPony/veliri-lib/game_objects/blueprints"
 	"github.com/TrashPony/veliri-lib/game_objects/box"
@@ -130,6 +131,7 @@ func GobRegister() {
 	gob.Register(map[int]*detail.ThoriumSlot{})
 	gob.Register([]*inventory.PlaceMayItems{})
 
+	gob.Register(anomaly.Anomaly{})
 	gob.Register(resource.Resource{})
 	gob.Register(resource.RecycledResource{})
 	gob.Register(resource.CraftDetail{})
