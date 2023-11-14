@@ -1,5 +1,7 @@
 package _const
 
+import "time"
+
 const (
 	CellSize              = 32
 	DiscreteSize          = 4 * CellSize
@@ -108,7 +110,10 @@ const (
 	AfterburnerSlotNumber = -1
 	MaxPoints             = 300 * 3 // (300 сек * 3 базы) по 1 очку в секунду == 5 минут
 
-	BaseMarketTax = 0.05
+	BaseMarketTax         = 0.05
+	OfficeStorage         = 10000000
+	OfficeRentalTime      = time.Hour * 24 * 30
+	OfficeRentalBasePrice = 250000
 )
 
 var ItemBinTypes = map[string]int{
@@ -135,6 +140,7 @@ var SourceItemBin = map[string]int{
 	"scanner":              6,
 	"aInv:resource":        7,
 	"scannerAInv:resource": 8,
+	"office_stock":         9,
 }
 
 var MapBinItems = map[string]int{

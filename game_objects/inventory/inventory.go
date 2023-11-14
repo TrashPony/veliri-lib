@@ -12,6 +12,8 @@ type Inventory struct {
 }
 
 type PlaceMayItems struct {
+	Type         string `json:"type"`
+	ID           int    `json:"id"`
 	Slot         int    `json:"slot"`
 	CountMayPut  int    `json:"count_may_put"`
 	SlotQuantity int    `json:"slot_quantity"`
@@ -28,13 +30,13 @@ func (inv *Inventory) CheckAndPlaceItems(toInventory *Inventory, toInventoryCapS
 
 	if allPlace {
 		for slot, count := range slots {
-			_, _, err := inv.InventoryToInventory(toInventory, toInventoryCapSize, slot, userAccessID, count, noPlace)
+			_, _, err, _, _ := inv.InventoryToInventory(toInventory, toInventoryCapSize, slot, userAccessID, count, noPlace)
 			if err != nil {
-				return nil, err
+				return placeMayItems, err
 			}
 		}
 
-		return nil, nil
+		return placeMayItems, nil
 	} else {
 		return placeMayItems, errors.New("weight exceeded")
 	}
@@ -60,7 +62,7 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 
 			noPlace := !fillCount
 
-			slotQuantity, countMayPut, err := srcInvCopy.InventoryToInventory(toInvCopy, toInventoryCapSize, slot, userAccessID, count, noPlace)
+			slotQuantity, countMayPut, err, itemType, itemID := srcInvCopy.InventoryToInventory(toInvCopy, toInventoryCapSize, slot, userAccessID, count, noPlace)
 			if !fillCount && placeMayItems[slot] != nil {
 				placeMayItems[slot].CountMayPut = placeMayItems[slot].Count + countMayPut
 			} else {
@@ -71,6 +73,8 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 				}
 
 				placeMayItems[slot] = &PlaceMayItems{
+					Type:         itemType,
+					ID:           itemID,
 					Slot:         slot,
 					CountMayPut:  countMayPut,
 					SlotQuantity: slotQuantity,
@@ -98,7 +102,7 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 	toInvCopy2 := toInventory.GetCopyInventory()
 	allPlace := true
 	for slot, count := range slots {
-		_, _, err := srcInvCopy2.InventoryToInventory(toInvCopy2, toInventoryCapSize, slot, userAccessID, count, false)
+		_, _, err, _, _ := srcInvCopy2.InventoryToInventory(toInvCopy2, toInventoryCapSize, slot, userAccessID, count, false)
 
 		if err != nil {
 			allPlace = false
@@ -117,24 +121,24 @@ func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize
 	return placeMayItemsArray, allPlace
 }
 
-func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCapSize int, inventorySlotNumber, accessUserID, count int, noPlace bool) (int, int, error) {
+func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCapSize int, inventorySlotNumber, accessUserID, count int, noPlace bool) (int, int, error, string, int) {
 
 	if inv == nil {
-		return 0, 0, errors.New("no inventory")
+		return 0, 0, errors.New("no inventory"), "", 0
 	}
 
 	slot, _ := inv.GetSlot(inventorySlotNumber, accessUserID)
 
 	if slot == nil {
-		return 0, 0, errors.New("no find slot")
+		return 0, 0, errors.New("no find slot"), "", 0
 	}
 
 	if slot.Infinite {
-		return 0, 0, errors.New("no allow")
+		return 0, 0, errors.New("no allow"), slot.Type, slot.ItemID
 	}
 
 	if slot.Quantity == 0 || slot.GetItem() == nil {
-		return 0, 0, nil
+		return 0, 0, nil, slot.Type, slot.ItemID
 	}
 
 	countPlace := slot.Quantity
@@ -144,7 +148,7 @@ func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCa
 	}
 
 	if countPlace > slot.Quantity || slot.GetOneSize() == 0 {
-		return 0, 0, errors.New("wrong count items")
+		return 0, 0, errors.New("wrong count items"), slot.Type, slot.ItemID
 	}
 
 	FreeSize := toInventoryCapSize - toInventory.GetSize()
@@ -152,20 +156,20 @@ func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCa
 	countPut := FreeSize / slot.GetOneSize()
 
 	if countPut < countPlace && toInventoryCapSize != -1 { // -1 означает что инвентарь бесконечен
-		return startQuantity, countPut, errors.New("weight exceeded")
+		return startQuantity, countPut, errors.New("weight exceeded"), slot.Type, slot.ItemID
 	} else {
 		if !noPlace {
 			ok := toInventory.AddItem(slot.GetItem(), slot.Type, slot.ItemID, countPlace,
 				slot.HP, slot.GetOneSize(), slot.MaxHP, false, accessUserID, 0)
 
 			if !ok {
-				return startQuantity, countPut, errors.New("no free slots")
+				return startQuantity, countPut, errors.New("no free slots"), slot.Type, slot.ItemID
 			}
 
 			slot.RemoveItemBySlot(countPlace)
 		}
 
-		return startQuantity, countPut, nil
+		return startQuantity, countPut, nil, slot.Type, slot.ItemID
 	}
 }
 
