@@ -2,13 +2,17 @@ package inventory
 
 import (
 	"errors"
-	"github.com/getlantern/deepcopy"
 	"sync"
 )
 
+// TODO рефакторинг
+
 type Inventory struct {
-	slots map[int]*Slot
-	mx    sync.RWMutex
+	slots      map[int]*Slot
+	parentType string
+	parentID   int
+	logger     func(parentType string, parentID int, event string, data map[string]interface{})
+	mx         sync.RWMutex
 }
 
 type PlaceMayItems struct {
@@ -42,236 +46,74 @@ func (inv *Inventory) CheckAndPlaceItems(toInventory *Inventory, toInventoryCapS
 	}
 }
 
-func (inv *Inventory) CheckPlaceItems(toInventory *Inventory, toInventoryCapSize int, slots map[int]int, userAccessID int) ([]*PlaceMayItems, bool) {
-
-	srcInvCopy := inv.GetCopyInventory()
-	toInvCopy := toInventory.GetCopyInventory()
-
-	placeMayItems := make(map[int]*PlaceMayItems)
-
-	put := func(fillCount bool) {
-		for slot, count := range slots {
-
-			if count == 0 && fillCount {
-				continue
-			}
-
-			if !fillCount {
-				count = 0
-			}
-
-			noPlace := !fillCount
-
-			slotQuantity, countMayPut, err, itemType, itemID := srcInvCopy.InventoryToInventory(toInvCopy, toInventoryCapSize, slot, userAccessID, count, noPlace)
-			if !fillCount && placeMayItems[slot] != nil {
-				placeMayItems[slot].CountMayPut = placeMayItems[slot].Count + countMayPut
-			} else {
-
-				var errString string
-				if err != nil {
-					errString = err.Error()
-				}
-
-				placeMayItems[slot] = &PlaceMayItems{
-					Type:         itemType,
-					ID:           itemID,
-					Slot:         slot,
-					CountMayPut:  countMayPut,
-					SlotQuantity: slotQuantity,
-					Count:        count,
-					Error:        errString,
-					AllPlace:     count != 0 && count <= countMayPut,
-				}
-
-				if count > countMayPut {
-					placeMayItems[slot].Count = countMayPut
-				}
-			}
-
-			if placeMayItems[slot] != nil && placeMayItems[slot].AllPlace {
-				continue
-			}
-		}
-	}
-
-	put(true)
-	put(false)
-
-	// todo мега еба костыль что бы посмотреть рально ли все итемы поместяться
-	srcInvCopy2 := inv.GetCopyInventory()
-	toInvCopy2 := toInventory.GetCopyInventory()
-	allPlace := true
-	for slot, count := range slots {
-		_, _, err, _, _ := srcInvCopy2.InventoryToInventory(toInvCopy2, toInventoryCapSize, slot, userAccessID, count, false)
-
-		if err != nil {
-			allPlace = false
-			if placeMayItems[slot] != nil && placeMayItems[slot].Error == "" {
-				placeMayItems[slot].Error = ""
-			}
-		}
-	}
-
-	placeMayItemsArray := make([]*PlaceMayItems, 0)
-
-	for _, item := range placeMayItems {
-		placeMayItemsArray = append(placeMayItemsArray, item)
-	}
-
-	return placeMayItemsArray, allPlace
-}
-
 func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCapSize int, inventorySlotNumber, accessUserID, count int, noPlace bool) (int, int, error, string, int) {
 
 	if inv == nil {
 		return 0, 0, errors.New("no inventory"), "", 0
 	}
 
-	slot, _ := inv.GetSlot(inventorySlotNumber, accessUserID)
+	s, _ := inv.GetSlot(inventorySlotNumber, accessUserID)
 
-	if slot == nil {
+	if s == nil {
 		return 0, 0, errors.New("no find slot"), "", 0
 	}
 
-	if slot.Infinite {
-		return 0, 0, errors.New("no allow"), slot.Type, slot.ItemID
+	if s.Infinite {
+		return 0, 0, errors.New("no allow"), s.Type, s.ItemID
 	}
 
-	if slot.Quantity == 0 || slot.GetItem() == nil {
-		return 0, 0, nil, slot.Type, slot.ItemID
+	if s.Quantity == 0 || s.GetItem() == nil {
+		return 0, 0, nil, s.Type, s.ItemID
 	}
 
-	countPlace := slot.Quantity
-	startQuantity := slot.Quantity
+	countPlace := s.Quantity
+	startQuantity := s.Quantity
 	if count > 0 {
 		countPlace = count
 	}
 
-	if countPlace > slot.Quantity || slot.GetOneSize() == 0 {
-		return 0, 0, errors.New("wrong count items"), slot.Type, slot.ItemID
+	if countPlace > s.Quantity || s.GetOneSize() == 0 {
+		return 0, 0, errors.New("wrong count items"), s.Type, s.ItemID
 	}
 
 	FreeSize := toInventoryCapSize - toInventory.GetSize()
 
-	countPut := FreeSize / slot.GetOneSize()
+	countPut := FreeSize / s.GetOneSize()
 
 	if countPut < countPlace && toInventoryCapSize != -1 { // -1 означает что инвентарь бесконечен
-		return startQuantity, countPut, errors.New("weight exceeded"), slot.Type, slot.ItemID
+		return startQuantity, countPut, errors.New("weight exceeded"), s.Type, s.ItemID
 	} else {
 		if !noPlace {
-			ok := toInventory.AddItem(slot.GetItem(), slot.Type, slot.ItemID, countPlace,
-				slot.HP, slot.GetOneSize(), slot.MaxHP, false, accessUserID, 0)
+			ok := toInventory.AddItem(s.GetItem(), s.Type, s.ItemID, countPlace,
+				s.HP, s.GetOneSize(), s.MaxHP, false, accessUserID, 0)
 
 			if !ok {
-				return startQuantity, countPut, errors.New("no free slots"), slot.Type, slot.ItemID
+				return startQuantity, countPut, errors.New("no free slots"), s.Type, s.ItemID
 			}
-
-			slot.RemoveItemBySlot(countPlace)
+			inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": countPlace, "real_remove": s.RemoveItemBySlot(countPlace)})
 		}
 
-		return startQuantity, countPut, nil, slot.Type, slot.ItemID
+		return startQuantity, countPut, nil, s.Type, s.ItemID
 	}
-}
-
-func (inv *Inventory) GetCopyInventory() *Inventory {
-
-	if inv == nil {
-		return nil
-	}
-
-	inv.mx.RLock()
-	defer inv.mx.RUnlock()
-
-	copyInventory := Inventory{}
-	if inv.slots == nil {
-		return &copyInventory
-	} else {
-		copyInventory.slots = make(map[int]*Slot)
-	}
-
-	for number, slot := range inv.slots {
-
-		var copySlot Slot
-
-		err := deepcopy.Copy(&copySlot, &slot)
-		if err != nil {
-			println("GetCopyInventory", err.Error())
-		}
-
-		copyInventory.slots[number] = &copySlot
-	}
-
-	return &copyInventory
 }
 
 func (inv *Inventory) IsNil() bool {
 	return inv == nil || inv.slots == nil
 }
 
-func (inv *Inventory) Init() {
+func (inv *Inventory) Init(parentType string, parentID int, logger func(parentType string, parentID int, event string, data map[string]interface{})) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 	inv.slots = make(map[int]*Slot)
+	inv.parentType = parentType
+	inv.parentID = parentID
+	inv.logger = logger
 }
 
 func (inv *Inventory) SetSlots(slots map[int]*Slot) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 	inv.slots = slots
-}
-
-func (inv *Inventory) GetSlots() map[int]*Slot {
-
-	if inv == nil {
-		return nil
-	}
-
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	slots := make(map[int]*Slot)
-	for _, slot := range inv.slots {
-		slots[slot.GetNumber()] = slot
-	}
-
-	return slots
-}
-
-func (inv *Inventory) GetJsonSlots() map[int]string {
-
-	if inv == nil {
-		return nil
-	}
-
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	slots := make(map[int]string)
-
-	for _, slot := range inv.slots {
-		slots[slot.GetNumber()] = slot.GetJson()
-	}
-
-	return slots
-}
-
-func (inv *Inventory) GetSlotsChan() <-chan *Slot {
-	inv.mx.Lock()
-	chanSlots := make(chan *Slot, len(inv.slots))
-
-	go func() {
-		defer func() {
-			close(chanSlots)
-			inv.mx.Unlock()
-		}()
-
-		for number, slot := range inv.slots {
-			slot.SetNumber(number)
-			chanSlots <- slot
-		}
-	}()
-
-	return chanSlots
 }
 
 func (inv *Inventory) DeleteEmptySlot(number int) {
@@ -288,19 +130,13 @@ func (inv *Inventory) DeleteSlot(number int) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 
-	delete(inv.slots, number)
-}
-
-func (inv *Inventory) GetSlot(number, userID int) (*Slot, bool) {
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	slot, ok := inv.slots[number]
-	if slot != nil && (slot.AccessUserID == 0 || slot.AccessUserID == userID || userID == -1) {
-		return slot, ok
-	} else {
-		return nil, false
+	s, ok := inv.slots[number]
+	if !ok {
+		return
 	}
+
+	inv.log("DeleteSlot", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity": s.Quantity})
+	delete(inv.slots, number)
 }
 
 func (inv *Inventory) AddItemFromSlot(slot *Slot, userID, accessUserID int) bool {
@@ -323,27 +159,7 @@ func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID
 		slot.HP, slot.GetSize()/slot.GetQuantity(), slot.MaxHP, false, userID, accessUserID)
 }
 
-func (inv *Inventory) GetSize() int {
-
-	if inv == nil {
-		return 0
-	}
-
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	var inventorySquadSize int
-	for _, slot := range inv.slots {
-		if slot.GetItem() != nil {
-			inventorySquadSize = inventorySquadSize + slot.GetSize()
-		}
-	}
-
-	return inventorySquadSize
-}
-
 func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, itemSize int, maxHP int, newSlot bool, userID, accessUserID int) bool {
-
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 
@@ -353,12 +169,16 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 
 	//newSlot говорит о том что этот айтем надо положить в строго новый слот
 	if !newSlot {
-		for _, slot := range inv.slots { // ищем стопку с такими же элементами
-			if slot.AccessUserID == accessUserID {
-				if slot.ItemID == itemID && slot.Type == itemType && slot.HP == hp && slot.GetItem() != nil {
-					slot.SetQuantity(slot.GetQuantity() + quantity)
-					slot.SetSize(slot.GetSize() + (itemSize * quantity))
-					slot.PlaceUserID = userID
+		for _, s := range inv.slots { // ищем стопку с такими же элементами
+			if s.AccessUserID == accessUserID {
+				if s.ItemID == itemID && s.Type == itemType && s.HP == hp && s.GetItem() != nil {
+
+					s.SetQuantity(s.GetQuantity() + quantity)
+					s.SetSize(s.GetSize() + (itemSize * quantity))
+					s.PlaceUserID = userID
+
+					inv.log("AddItem", map[string]interface{}{"up_slot": true, "item_type": s.Type, "item_id": s.ItemID, "quantity": quantity})
+
 					return true
 				}
 			}
@@ -381,21 +201,12 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			AccessUserID: accessUserID,
 		}
 
+		inv.log("AddItem", map[string]interface{}{"new_slot": true, "item_type": newItem.Type, "item_id": newItem.ItemID, "quantity": quantity})
 		inv.slots[newNumberSlot] = &newItem
 		return true
 	}
 
 	return false
-}
-
-func (inv *Inventory) GetEmptySlot() int {
-	for i := 1; i <= 9999; i++ { // ищем пустой слот
-		_, ok := inv.slots[i]
-		if !ok {
-			return i
-		}
-	}
-	return 0
 }
 
 func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int) error {
@@ -405,16 +216,16 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 		inv.mx.Lock()
 		defer inv.mx.Unlock()
 
-		for _, slot := range inv.slots {
-			if slot.ItemID == itemID && slot.Type == itemType {
-				if slot.GetQuantity() >= quantityRemove {
-					slot.RemoveItemBySlot(quantityRemove)
+		for _, s := range inv.slots {
+			if s.ItemID == itemID && s.Type == itemType {
+				if s.GetQuantity() >= quantityRemove {
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(quantityRemove)})
 					return nil
 				} else {
 					// если в слоте не чего либо для полного удаления,
 					// то удаляем все из слота, и уменьшаем количество итемов которые еще надо удалить
-					quantityRemove -= slot.GetQuantity()
-					slot.RemoveItemBySlot(slot.GetQuantity())
+					quantityRemove -= s.GetQuantity()
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(s.GetQuantity())})
 				}
 			}
 		}
@@ -425,29 +236,7 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 	}
 }
 
-// метод делает сравнение инвентарей слот к слоту
-func (inv *Inventory) ViewItemsBySlots(slots map[int]*Slot) bool {
-	checkItems := true
-	for number, slot := range slots {
-		realSlot, findSlot := inv.slots[number]
-		if !findSlot || slot == nil || slot.GetQuantity() > realSlot.GetQuantity() {
-			checkItems = false
-		}
-	}
-	return checkItems
-}
-
-// метод смотрит все предметы inv2 что бы они были в inv на наличие
-func (inv *Inventory) SearchItemsByOtherInventory(inv2 *Inventory) bool {
-	for _, slot := range inv2.slots {
-		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity()) {
-			return false
-		}
-	}
-	return true
-}
-
-// метод удаляем все итемы из inv которые есть в inv2 если они все в наличие
+// RemoveItemsByOtherInventory метод удаляем все итемы из inv которые есть в inv2 если они все в наличие
 func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) bool {
 	for _, slot := range inv2.slots {
 		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity()) {
@@ -459,15 +248,15 @@ func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) b
 
 	for _, removeSlot := range inv2.slots {
 		quantityRemove := removeSlot.GetQuantity()
-		for slot := range inv.GetSlotsChan() {
-			if slot.ItemID == removeSlot.ItemID && slot.Type == removeSlot.Type {
-				if slot.GetQuantity() >= quantityRemove {
-					slot.RemoveItemBySlot(quantityRemove)
+		for s := range inv.GetSlotsChan() {
+			if s.ItemID == removeSlot.ItemID && s.Type == removeSlot.Type {
+				if s.GetQuantity() >= quantityRemove {
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(quantityRemove)})
 				} else {
 					// если в слоте не чего либо для полного удаления,
 					// то удаляем все из слота, и уменьшаем количество итемов которые еще надо удалить
-					quantityRemove -= slot.GetQuantity()
-					slot.RemoveItemBySlot(slot.GetQuantity())
+					quantityRemove -= s.GetQuantity()
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(s.GetQuantity())})
 				}
 			}
 		}
@@ -476,64 +265,55 @@ func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) b
 	return true
 }
 
-// метод считает все итемы в инвентаре
-func (inv *Inventory) ViewQuantityItems(itemID int, itemType string) int {
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	countRealItems := 0
-	for _, slot := range inv.slots {
-		if slot.ItemID == itemID && slot.Type == itemType {
-			countRealItems += slot.GetQuantity()
-		}
-	}
-
-	return countRealItems
-}
-
-// метод смотрим естли необходимое количество предметов в инвентаре
-func (inv *Inventory) ViewItems(itemID int, itemType string, quantityFind int) bool {
-	if inv.ViewQuantityItems(itemID, itemType) >= quantityFind {
-		return true
-	} else {
+func (inv *Inventory) AddItemBySlot(slot, quantity, userID int) bool {
+	s, ok := inv.GetSlot(slot, userID)
+	if !ok {
 		return false
 	}
+
+	s.addItemBySlot(quantity, userID)
+	inv.log("AddItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity": quantity})
+
+	return true
+}
+
+func (inv *Inventory) RemoveItemBySlot(slot, quantityRemove, userID int) int {
+	s, ok := inv.GetSlot(slot, userID)
+	if !ok {
+		return -1
+	}
+
+	realRemove := s.RemoveItemBySlot(quantityRemove)
+	inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": realRemove})
+
+	return realRemove
 }
 
 func (inv *Inventory) AddSlot(slot int, inventorySlot *Slot) {
 	inv.mx.Lock()
-	inventorySlot.SetNumber(slot)
+	defer inv.mx.Unlock()
+
+	inventorySlot.setNumber(slot)
 	inv.slots[slot] = inventorySlot
-	inv.mx.Unlock()
 }
 
-func (inv *Inventory) GetCellsByType(itemType string) []*Slot {
-
+func (inv *Inventory) InitSlot(slot int, item *ItemInfo, size, maxHP int) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
-
-	slots := make([]*Slot, 0)
-
-	for _, slot := range inv.slots {
-		if slot != nil && slot.Type == itemType || itemType == "all" {
-			slots = append(slots, slot)
-		}
+	s, ok := inv.slots[slot]
+	if !ok {
+		return
 	}
 
-	return slots
+	s.setItem(item)
+	s.SetSize(size)
+	s.MaxHP = maxHP
 }
 
-func (inv *Inventory) GetSlotByTypeAndIDItem(itemID int, itemType string) []*Slot {
-	inv.mx.Lock()
-	defer inv.mx.Unlock()
-
-	slots := make([]*Slot, 0)
-
-	for _, slot := range inv.slots {
-		if slot != nil && slot.Type == itemType && slot.ItemID == itemID {
-			slots = append(slots, slot)
-		}
+func (inv *Inventory) log(event string, data map[string]interface{}) {
+	if inv.logger == nil || inv.parentType == "" || inv.parentID == 0 {
+		return
 	}
 
-	return slots
+	inv.logger(inv.parentType, inv.parentID, event, data)
 }

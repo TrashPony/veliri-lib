@@ -108,17 +108,6 @@ func (slot *Slot) GetQuantity() int {
 	return slot.Quantity
 }
 
-func (slot *Slot) SetQuantity(quantity int) {
-	slot.mx.Lock()
-	defer slot.mx.Unlock()
-
-	if quantity <= 0 && slot.Infinite {
-		return
-	}
-
-	slot.Quantity = quantity
-}
-
 func (slot *Slot) GetSize() int {
 	slot.mx.RLock()
 	defer slot.mx.RUnlock()
@@ -133,17 +122,6 @@ func (slot *Slot) GetOneSize() int {
 	return slot.GetSize() / slot.GetQuantity()
 }
 
-func (slot *Slot) SetSize(size int) {
-	slot.mx.Lock()
-	defer slot.mx.Unlock()
-
-	if slot.Infinite {
-		size = 0
-	}
-
-	slot.Size = size
-}
-
 func (slot *Slot) GetItem() *ItemInfo {
 	slot.mx.RLock()
 	defer slot.mx.RUnlock()
@@ -151,66 +129,11 @@ func (slot *Slot) GetItem() *ItemInfo {
 	return slot.Item
 }
 
-func (slot *Slot) SetItem(item *ItemInfo) {
-	slot.mx.Lock()
-	defer slot.mx.Unlock()
-
-	if item == nil && slot.Infinite {
-		return
-	}
-
-	slot.Item = item
-}
-
 func (slot *Slot) GetNumber() int {
 	slot.mx.RLock()
 	defer slot.mx.RUnlock()
 
 	return slot.Number
-}
-
-func (slot *Slot) SetNumber(number int) {
-	slot.mx.Lock()
-	defer slot.mx.Unlock()
-
-	slot.Number = number
-}
-
-func (slot *Slot) AddItemBySlot(quantity, userID int) {
-	// определяем вес 1 вещи
-	sizeOneItem := slot.GetSize() / slot.GetQuantity()
-	slot.SetQuantity(slot.GetQuantity() + quantity)
-	slot.PlaceUserID = userID
-	// находим новый вес для всей стопки
-	slot.SetSize(sizeOneItem * slot.GetQuantity())
-}
-
-/* когда slot.Item = nil он удалиться из бд при обновление данных */
-func (slot *Slot) RemoveItemBySlot(quantityRemove int) (CountRemove int) {
-
-	if slot.GetQuantity() == 0 {
-		slot.SetItem(nil)
-		countRemove := slot.GetQuantity()
-		slot.SetQuantity(0)
-		slot.SetSize(0)
-		return countRemove
-	}
-
-	if quantityRemove < slot.GetQuantity() {
-		// определяем вес 1 вещи
-		itemSize := slot.GetSize() / slot.GetQuantity()
-		// отнимает вес по количеству предметов
-		slot.SetSize(slot.GetSize() - (itemSize * quantityRemove))
-		// отнимаем количество итемов
-		slot.SetQuantity(slot.GetQuantity() - quantityRemove)
-		return quantityRemove
-	} else {
-		slot.SetItem(nil)
-		countRemove := slot.GetQuantity()
-		slot.SetQuantity(0)
-		slot.SetSize(0)
-		return countRemove
-	}
 }
 
 func (slot *Slot) GetCopy() *Slot {
@@ -236,4 +159,83 @@ func (slot *Slot) GetJson() string {
 	}
 
 	return string(jsonSlot)
+}
+
+func (slot *Slot) setNumber(number int) {
+	slot.mx.Lock()
+	defer slot.mx.Unlock()
+
+	slot.Number = number
+}
+
+func (slot *Slot) setItem(item *ItemInfo) {
+	slot.mx.Lock()
+	defer slot.mx.Unlock()
+
+	if item == nil && slot.Infinite {
+		return
+	}
+
+	slot.Item = item
+}
+
+// TODO сделать этот метод приватным и вызывать его через инвнвентарь
+func (slot *Slot) SetSize(size int) {
+	slot.mx.Lock()
+	defer slot.mx.Unlock()
+
+	if slot.Infinite {
+		size = 0
+	}
+
+	slot.Size = size
+}
+
+// TODO сделать этот метод приватным и вызывать его через инвнвентарь
+func (slot *Slot) SetQuantity(quantity int) {
+	slot.mx.Lock()
+	defer slot.mx.Unlock()
+
+	if quantity <= 0 && slot.Infinite {
+		return
+	}
+
+	slot.Quantity = quantity
+}
+
+func (slot *Slot) addItemBySlot(quantity, userID int) {
+	// определяем вес 1 вещи
+	sizeOneItem := slot.GetSize() / slot.GetQuantity()
+	slot.SetQuantity(slot.GetQuantity() + quantity)
+	slot.PlaceUserID = userID
+	// находим новый вес для всей стопки
+	slot.SetSize(sizeOneItem * slot.GetQuantity())
+}
+
+// RemoveItemBySlot когда slot.Item = nil он удалиться из бд при обновление данных
+func (slot *Slot) RemoveItemBySlot(quantityRemove int) (CountRemove int) {
+
+	if slot.GetQuantity() == 0 {
+		slot.setItem(nil)
+		countRemove := slot.GetQuantity()
+		slot.SetQuantity(0)
+		slot.SetSize(0)
+		return countRemove
+	}
+
+	if quantityRemove < slot.GetQuantity() {
+		// определяем вес 1 вещи
+		itemSize := slot.GetSize() / slot.GetQuantity()
+		// отнимает вес по количеству предметов
+		slot.SetSize(slot.GetSize() - (itemSize * quantityRemove))
+		// отнимаем количество итемов
+		slot.SetQuantity(slot.GetQuantity() - quantityRemove)
+		return quantityRemove
+	} else {
+		slot.setItem(nil)
+		countRemove := slot.GetQuantity()
+		slot.SetQuantity(0)
+		slot.SetSize(0)
+		return countRemove
+	}
 }
