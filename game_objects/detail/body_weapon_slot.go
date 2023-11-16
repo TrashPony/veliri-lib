@@ -8,8 +8,8 @@ import (
 )
 
 type BodyWeaponSlot struct {
-	ID                  int        `json:"id"`
-	AmmoSlotID          int        `json:"ammo_slot_id"`
+	ID                  int64      `json:"id"`
+	AmmoSlotID          int64      `json:"ammo_slot_id"`
 	Type                int        `json:"type_slot"` // по диз доку он может быть только 3
 	Number              int        `json:"number_slot"`
 	Weapon              *Weapon    `json:"weapon"`

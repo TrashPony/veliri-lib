@@ -5,13 +5,13 @@ import (
 )
 
 type ThoriumSlot struct {
-	ID                int  `json:"id"`
-	Number            int  `json:"number_slot"`
-	Count             int  `json:"count"`
-	MaxCount          int  `json:"max_count"`
-	WorkedOut         int  `json:"worked_out"` /* параметр показывает что топливо вырабатано на сколь-ко то процентов */
-	Inversion         bool `json:"inversion"`
-	ProcessingThorium int  `json:"processing_thorium"`
+	ID                int64 `json:"id"`
+	Number            int   `json:"number_slot"`
+	Count             int   `json:"count"`
+	MaxCount          int   `json:"max_count"`
+	WorkedOut         int   `json:"worked_out"` /* параметр показывает что топливо вырабатано на сколь-ко то процентов */
+	Inversion         bool  `json:"inversion"`
+	ProcessingThorium int   `json:"processing_thorium"`
 }
 
 func (t *ThoriumSlot) GetCount() int {

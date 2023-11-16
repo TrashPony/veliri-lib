@@ -19,7 +19,7 @@ import (
 )
 
 type Unit struct {
-	ID            int    `json:"id"`
+	ID            int    `json:"id"` // TODO int64
 	Owner         string `json:"owner"`
 	OwnerID       int    `json:"owner_id"`
 	OwnerFraction string `json:"of"`

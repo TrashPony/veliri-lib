@@ -9,7 +9,7 @@ import (
 )
 
 type BodyEquipSlot struct {
-	ID               int            `json:"id"`
+	ID               int64          `json:"id"`
 	Type             int            `json:"type_slot"`
 	UUID             string         `json:"uuid"`
 	Number           int            `json:"number_slot"`

@@ -74,7 +74,7 @@ func GetInfoByItem(informer ItemInformer) *ItemInfo {
 }
 
 type Slot struct {
-	ID           int       `json:"id"`
+	ID           int64     `json:"id"`
 	Item         *ItemInfo `json:"item"`
 	Quantity     int       `json:"quantity"`
 	Type         string    `json:"type"`

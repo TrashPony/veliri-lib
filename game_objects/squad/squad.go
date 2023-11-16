@@ -15,7 +15,7 @@ import (
 )
 
 type Squad struct {
-	ID                 int                    `json:"id"`
+	ID                 int                    `json:"id"` // TODO int64
 	Name               string                 `json:"name"`
 	OwnerGame          bool                   `json:"-"` // если true то значит отряд привязан к игре UUIDGame
 	UUIDGame           string                 `json:"-"` // если игрок не находится в UUIDGame то отряд перестает существовать
