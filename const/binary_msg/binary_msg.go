@@ -995,3 +995,12 @@ func OpenAnomaly(x, y, t int) []byte {
 
 	return command
 }
+
+func DiableObject(id int, disable bool) []byte {
+	command := []byte{89}
+
+	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, game_math.BoolToByte(disable))
+
+	return command
+}
