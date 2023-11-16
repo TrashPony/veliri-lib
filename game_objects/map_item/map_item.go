@@ -9,13 +9,13 @@ import (
 )
 
 type MapItem struct {
-	ID             int             `json:"id"`
-	ItemID         int             `json:"item_id"`
-	ItemType       string          `json:"item_type"`
-	Slot           *inventory.Slot `json:"slot"`
-	MapID          int             `json:"map_id"`
-	CacheJson      []byte          `json:"-"`
-	CreateJsonTime int64           `json:"-"`
+	ID             int    `json:"id"`
+	ItemID         int    `json:"item_id"`
+	ItemType       string `json:"item_type"`
+	MapID          int    `json:"map_id"`
+	CacheJson      []byte `json:"-"`
+	CreateJsonTime int64  `json:"-"`
+	inv            *inventory.Inventory
 	physicalModel  *physical_model.PhysicalModel
 }
 
@@ -36,11 +36,24 @@ func (i *MapItem) GetID() int {
 }
 
 func (i *MapItem) SetSlot(slot *inventory.Slot) {
-	i.Slot = slot
+	inv := &inventory.Inventory{}
+	inv.Init("", 0, nil)
+	slot.Number = 1
+	inv.AddSlot(slot.Number, slot)
+	i.inv = inv
+}
+
+func (i *MapItem) GetInventory() *inventory.Inventory {
+	return i.inv
 }
 
 func (i *MapItem) GetSlot() *inventory.Slot {
-	return i.Slot
+	if i.inv == nil {
+		return nil
+	}
+
+	s, _ := i.inv.GetSlot(1, -1)
+	return s
 }
 
 func (i *MapItem) GetPhysicalModel() *physical_model.PhysicalModel {
@@ -74,6 +87,15 @@ func (i *MapItem) GetJSON(mapTime int64) []byte {
 		return i.CacheJson
 	}
 
+	if i.inv == nil {
+		return []byte{}
+	}
+
+	s, _ := i.inv.GetSlot(1, -1)
+	if s == nil {
+		return []byte{}
+	}
+
 	if i.CacheJson == nil {
 		i.CacheJson = []byte{}
 	}
@@ -84,9 +106,9 @@ func (i *MapItem) GetJSON(mapTime int64) []byte {
 	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.GetY())...)
 	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(int(i.GetPhysicalModel().GetRotate()))...)
 	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.MapID)...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.Slot.Quantity)...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.Slot.ItemID)...)
-	i.CacheJson = append(i.CacheJson, byte(_const.ItemBinTypes[i.Slot.Type]))
+	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(s.Quantity)...)
+	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(s.ItemID)...)
+	i.CacheJson = append(i.CacheJson, byte(_const.ItemBinTypes[s.Type]))
 	i.CacheJson = append(i.CacheJson, byte(i.GetPhysicalModel().GetRadius()))
 
 	i.CreateJsonTime = mapTime
@@ -96,6 +118,16 @@ func (i *MapItem) GetJSON(mapTime int64) []byte {
 
 func (i *MapItem) GetUpdateData(mapTime int64) []byte {
 	command := make([]byte, 4)
-	game_math.ReuseByteSlice(&command, 0, game_math.GetIntBytes(i.Slot.GetQuantity()))
+
+	if i.inv == nil {
+		return []byte{}
+	}
+
+	s, _ := i.inv.GetSlot(1, -1)
+	if s == nil {
+		return []byte{}
+	}
+
+	game_math.ReuseByteSlice(&command, 0, game_math.GetIntBytes(s.GetQuantity()))
 	return command
 }

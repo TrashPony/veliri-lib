@@ -213,7 +213,7 @@ func (slot *Slot) addItemBySlot(quantity, userID int) {
 }
 
 // RemoveItemBySlot когда slot.Item = nil он удалиться из бд при обновление данных
-func (slot *Slot) RemoveItemBySlot(quantityRemove int) (CountRemove int) {
+func (slot *Slot) removeItemBySlot(quantityRemove int) (CountRemove int) {
 
 	if slot.GetQuantity() == 0 {
 		slot.setItem(nil)

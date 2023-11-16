@@ -90,7 +90,7 @@ func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCa
 			if !ok {
 				return startQuantity, countPut, errors.New("no free slots"), s.Type, s.ItemID
 			}
-			inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": countPlace, "real_remove": s.RemoveItemBySlot(countPlace)})
+			inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": countPlace, "real_remove": s.removeItemBySlot(countPlace)})
 		}
 
 		return startQuantity, countPut, nil, s.Type, s.ItemID
@@ -219,13 +219,13 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 		for _, s := range inv.slots {
 			if s.ItemID == itemID && s.Type == itemType {
 				if s.GetQuantity() >= quantityRemove {
-					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(quantityRemove)})
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(quantityRemove)})
 					return nil
 				} else {
 					// если в слоте не чего либо для полного удаления,
 					// то удаляем все из слота, и уменьшаем количество итемов которые еще надо удалить
 					quantityRemove -= s.GetQuantity()
-					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(s.GetQuantity())})
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(s.GetQuantity())})
 				}
 			}
 		}
@@ -251,12 +251,12 @@ func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) b
 		for s := range inv.GetSlotsChan() {
 			if s.ItemID == removeSlot.ItemID && s.Type == removeSlot.Type {
 				if s.GetQuantity() >= quantityRemove {
-					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(quantityRemove)})
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(quantityRemove)})
 				} else {
 					// если в слоте не чего либо для полного удаления,
 					// то удаляем все из слота, и уменьшаем количество итемов которые еще надо удалить
 					quantityRemove -= s.GetQuantity()
-					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.RemoveItemBySlot(s.GetQuantity())})
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(s.GetQuantity())})
 				}
 			}
 		}
@@ -283,7 +283,7 @@ func (inv *Inventory) RemoveItemBySlot(slot, quantityRemove, userID int) int {
 		return -1
 	}
 
-	realRemove := s.RemoveItemBySlot(quantityRemove)
+	realRemove := s.removeItemBySlot(quantityRemove)
 	inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": realRemove})
 
 	return realRemove
