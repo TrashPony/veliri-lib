@@ -120,7 +120,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"small_laser":       {Name: "УКВ", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  Но из-за недостаточной материальной базы, а также задействования схем предыдущей эпохи, изделие не может похвастаться чем-то выдающимся, хотя и не стоит на ступени ниже по сравнению с аналогами «Синтетов» касательно лазерно-лучевого вооружения.</p>"},
 		"small_missile":     {Name: "Центурион", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Центурион» - представлен ракетной системой, собранной из образцов некогда существовавших на планете ракетно-залповых систем и, пытающийся вместить в себе лучшие их стороны.  В частности, возможно ведения огня как «самонаводящимися», так и «неуправляемыми» ракетами.</p>"},
 		"tank_gun":          {Name: "Ингибитор", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Ингибитор» - самая обыденная и достаточная эффективная в своих рамках пушка. Она способна поражать различные цели, не слишком дорога в производстве и конкурентоспособна с аналогами «Синтетов».</p>"},
-		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"},
+		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"}, // TODO
 	},
 }
 
@@ -148,8 +148,8 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"piu-piu_2":                   {Name: "Б-а мелкокалиберный снаряд", Description: "<p>Стандартизированный тип мелкокалиберных снарядов для кинетических и баллистических орудий, не обеспечивающих высокий урон, но, как правило, способствующие высокой кучности и скорострельности.</p>"},
 		"aim_medium_missile_bullet":   {Name: "Цикада - Самонаводящиеся средняя ракета", Description: "<p>Цикада – развитие линейки неуправляемых ракет семейства «Система» с целью создания самонаводящихся на цель снарядов. Обеспечивает усреднённый урон по любым захваченным целям.</p>"},
 		"aim_big_missile_bullet":      {Name: "Воздаятель - Самонаводящиеся большая ракета", Description: "<p>Воздаятель – продолжение идей, начатых в «Цикада» и линейке семейства неуправляемых ракет «Система». Эта самонаводящаяся ракета, что может быть использована только в крупногабаритных ракетных огневых системах, истинный ужас для врагов, что были ею захвачены.</p>"},
-		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"},
-		"small_missile_bullet":        {Name: "Маля ракета", Description: "<p></p>"},
+		"small_lens_beam":             {Name: "Малый лучевой картридж", Description: "<p></p>"}, // TODO
+		"small_missile_bullet":        {Name: "Малая ракета", Description: "<p></p>"},           // TODO
 	},
 }
 
@@ -228,7 +228,6 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"reverses_builder":               {Name: "Инженерный модуль \"Reverses\"", Description: "<p>Стандартизированное устройство по сборке и разборке объектов, а также детальнейшей добыче полезных частей из обломков.</p>"},
 		"gravity_gun":                    {Name: "Устройство МЭП-0", Description: "<p>Манипулятор гравитационного воздействия, применяемый для притягивания направленным лучом абсолютно любых захваченных объектов к позиции работы устройства и, мощным импульсом – их отправки в иное направление.</p>"},
 		"gravity_square":                 {Name: "Резонатор гравитационного возмущения", Description: "<p>Устройство накопительного действия, создающего волны гравитационной природы и затягивающего в центр собственного притяжения всякую вещь, включая боевые снаряды.</p>"},
-		"mine_bomb_1":                    {Name: "Мины", Description: "Мина"},
 		"mini_turret_1":                  {Name: "Переносная турель 1", Description: "Переносная пулеметная турель"},
 		"mini_turret_2":                  {Name: "Переносная турель 2", Description: "Переносная ракетная турель"},
 		"smoke_screen_local":             {Name: "Дымовая завеса в корпусе", Description: "Дымовая завеса установленная в корпусе, мешает обзору"},
@@ -245,24 +244,25 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"energy_shield_mini_structure_1": {Name: "Дистанционное силовое поле", Description: "Выбрасывает капсулу с ядром щита, щит работает до тех пор пока в нем есть энергия"},
 		"pump_extracted":                 {Name: "Насос", Description: "Позволяет добывать жидкие ресурсы, включая нефть."},
 		"inventory_scanner_1":            {Name: "Сканер", Description: "Позволяет сканировать трюмы других транспортов."},
+		"mine_bomb_1":                    {Name: "Миноукладчик", Description: "<p>Это устройство, которое позволяет транспортному средству устанавливать мину позади себя.</p><p>Мина срабатывает, если вражеский транспорт попадает в зону поражения мины и взрывается, нанося большой урон и отбрасывая цель.</p>"},
 		// пассивное
-		"radar_booster_1":                {Name: "radar_booster_1", Description: ""},
-		"view_booster_1":                 {Name: "view_booster_1", Description: ""},
-		"improved_inventory_capacity_1":  {Name: "improved_inventory_capacity_1", Description: ""},
-		"antigravity_speed_booster_1":    {Name: "antigravity_speed_booster_1", Description: ""},
-		"caterpillars_speed_booster_1":   {Name: "caterpillars_speed_booster_1", Description: ""},
-		"antigravity_mobility_booster_1": {Name: "antigravity_mobility_booster_1", Description: ""},
-		"wheels_mobility_booster_1":      {Name: "wheels_mobility_booster_1", Description: ""},
-		"ballistic_rotate_booster_1":     {Name: "ballistic_rotate_booster_1", Description: ""},
-		"ballistic_damage_booster_1":     {Name: "ballistic_damage_booster_1", Description: ""},
-		"missile_rotate_booster_1":       {Name: "missile_rotate_booster_1", Description: ""},
-		"missile_damage_booster_1":       {Name: "missile_damage_booster_1", Description: ""},
-		"laser_rotate_booster_1":         {Name: "laser_rotate_booster_1", Description: ""},
-		"laser_damage_booster_1":         {Name: "laser_damage_booster_1", Description: ""},
-		"energy_capacity_1":              {Name: "energy_capacity_1", Description: ""},
-		"energy_charging_speed_1":        {Name: "energy_charging_speed_1", Description: ""},
-		"power_booster_1":                {Name: "power_booster_1", Description: ""},
-		"body_structure_booster_1":       {Name: "body_structure_booster_1", Description: ""},
+		"radar_booster_1":                {Name: "Усилитель радара", Description: "<p>Это устройство, которое увеличивает дальность радара.</p><p>Радар позволяет обнаруживать и идентифицировать объекты в мире, такие как ресурсы, структуры, транспорты и дроны/ракеты.</p>"},
+		"view_booster_1":                 {Name: "Улучшенная оптика", Description: "<p>Это устройство, которое увеличивает дальность и качество обзора транспорта.</p>"},
+		"improved_inventory_capacity_1":  {Name: "Модуль расширения трюма", Description: "<p>Это устройство, которое позволяет транспорту увеличить объем своего трюма.</p>"},
+		"antigravity_speed_booster_1":    {Name: "Ускоритель", Description: "<p>Это устройство, которое позволяет транспортам на антиграве увеличить свою скорость.</p>"},
+		"caterpillars_speed_booster_1":   {Name: "Облегченные гусеницы", Description: "<p>Это устройство, которое позволяет транспортам на гусеницах увеличить свою скорость.</p>"},
+		"antigravity_mobility_booster_1": {Name: "Маневровые двигатели", Description: "<p>Это устройство, которое позволяет транспортам на антиграве увеличить свою маневренность.</p>"},
+		"wheels_mobility_booster_1":      {Name: "Шарниры", Description: "<p>Это устройство, которое позволяет транспортам на колесах поворачивать более резко.</p>"},
+		"ballistic_rotate_booster_1":     {Name: "Башенный вращатель: баллистика", Description: "<p>Это устройство позволяет более быстро поворачивать баллистическое оружие.</p>"},
+		"ballistic_damage_booster_1":     {Name: "Урон: баллистика", Description: "<p>Это устройство увеличивает урон баллистического оружия.</p>"},
+		"missile_rotate_booster_1":       {Name: "Башенный вращатель: ракеты", Description: "<p>Это устройство позволяет более быстро поворачивать пусковые установки.</p>"},
+		"missile_damage_booster_1":       {Name: "Урон: ракеты", Description: "<p>Это устройство увеличивает урон ракет.</p>"},
+		"laser_rotate_booster_1":         {Name: "Башенный вращатель: лазер", Description: "<p>Это устройство позволяет более быстро поворачивать лазерное оружие.</p>"},
+		"laser_damage_booster_1":         {Name: "Урон: лазер", Description: "<p>Это устройство увеличивает урон лазеров.</p>"},
+		"energy_capacity_1":              {Name: "Аккумулятор", Description: "<p>Это устройство, которое позволяет транспорту увеличить количество энергии, которое оно может хранить и использовать для различных целей.</p>"},
+		"energy_charging_speed_1":        {Name: "Зарядка", Description: "<p>Это устройство, которое позволяет транспортному средству быстрее и эффективнее заряжать свой аккумулятор от главного ториевого реактора.</p>"},
+		"power_booster_1":                {Name: "Реактор", Description: "<p>Это устройство, которое позволяет транспортному средству повысить эффективность и мощность своего главного реактора. За счет чего можно установить более мощное снаряжение или оружие.</p>"},
+		"body_structure_booster_1":       {Name: "Дополнительная броня", Description: "<p>Это снаряжение, которое позволяет транспортному средству выдержать больше повреждений от вражеского огня.</p>"},
 	},
 }
 
@@ -780,8 +780,6 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
-		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"},
-		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвествного происхождение, постоянно излучает сильный сигнал.</p>"},
 		"datasheet":                     {Name: "Инфопакет", Description: "<p>Инфопакет с различной информацией.</p>"},
 		"reliquary":                     {Name: "Реликварий", Description: "<p>Реликварий - небольших размеров, весом не больше трёх килограммов вакуумный куб, чья технология позволяет “вмещать” внутрь него множество объектов физической, так и информационной природы.</p>"},
 		"block_il":                      {Name: "Блок “ИЛ”", Description: "<p>Блок “ИЛ” -габаритные загрузочные блоки искусственной личности, которые “Синтеты” используют для хранения, переноса и установки собственного сознания в ту или иную форму.</p>"},
@@ -812,11 +810,13 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"security_bots":                 {Name: "Охранные боты", Description: "<p>Охранные боты - боты сугубо военного образца, что используются в патрулировании округи, проведении военных и миротворческих операций. Из-за простоты конструкторской идеи, их ИИ нередко склонен к девиантному поведению.</p>"},
 		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>Загадочный артефакт, таящий в себе великую силу.</p>"},
 		"weapon_nutrients":              {Name: "Питательные элементы орудий", Description: "<p>Расходные элементы использующиеся в энергетических видах орудий</p>"},
-		"egg":                           {Name: "Яйцо", Description: "<p>Яиичко11</p>"},
 		"orbital_drop_beacons":          {Name: "Маяки орбитального сброса", Description: "<p>Используются для подачи сигнала орбитальным системам</p>"},
-		"blue_fragile_capsule":          {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
-		"red_fragile_capsule":           {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
-		"ground_drone_3":                {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
+		"egg":                           {Name: "Яйцо", Description: "<p>Яиичко11</p>"},                                                                                 // TODO
+		"blue_fragile_capsule":          {Name: "Голубая капсула", Description: "<p></p>"},                                                                              // TODO
+		"red_fragile_capsule":           {Name: "Красная капсула", Description: "<p></p>"},                                                                              // TODO
+		"ground_drone_3":                {Name: "Древний боевой дрон", Description: "<p></p>"},                                                                          // TODO
+		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"},                                                                     // TODO
+		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвестного происхождение, постоянно излучает сильный сигнал.</p>"}, // TODO
 	},
 }
 
