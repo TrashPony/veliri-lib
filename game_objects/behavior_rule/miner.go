@@ -87,16 +87,12 @@ func GetMinerRules() (*BehaviorRules, *BehaviorRules) {
 											Percent:   true,
 										},
 										PassRule: &BehaviorRule{
-											Action: "to_fraction_sector",
-											Meta:   &Meta{SetBackToBaseWhenChangeSector: true},
-											StopRule: &BehaviorRule{
-												Action: "find_random_sector",
-												PassRule: &BehaviorRule{
-													Action: "to_sector_target",
-													Meta:   &Meta{Type: "Fraction"},
-												},
-												StopRule: getBackRules(),
+											Action: "find_random_sector",
+											PassRule: &BehaviorRule{
+												Action: "to_sector_target",
+												Meta:   &Meta{Type: "Fraction"},
 											},
+											StopRule: getBackRules(),
 										},
 										StopRule: getBackRules(),
 									},
