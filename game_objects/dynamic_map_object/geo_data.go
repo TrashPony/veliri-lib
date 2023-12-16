@@ -40,7 +40,7 @@ func (o *Object) SetGeoData() {
 
 	for i, geoPoint := range o.GetPhysicalModel().GeoData {
 
-		if geoPoint == nil {
+		if geoPoint == nil || len(o.TypeGeoData) <= i {
 			continue
 		}
 
