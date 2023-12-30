@@ -113,9 +113,9 @@ func (s *Squad) fillStateEquip() {
 					slot.EndReload = weaponSlot.EndReloadTime
 					slot.AmmoQuantity = weaponSlot.GetAmmoQuantity()
 				} else {
-					slot.Source = ""
-					slot.TypeSlot = 0
-					slot.Slot = 0
+					//slot.Source = ""
+					//slot.TypeSlot = 0
+					//slot.Slot = 0
 				}
 			}
 
@@ -128,9 +128,9 @@ func (s *Squad) fillStateEquip() {
 					slot.On = equipSlot.On
 					slot.Mode = 0 // TODO equipSlot.Mode
 				} else {
-					slot.Source = ""
-					slot.TypeSlot = 0
-					slot.Slot = 0
+					//slot.Source = ""
+					//slot.TypeSlot = 0
+					//slot.Slot = 0
 				}
 			}
 		}
