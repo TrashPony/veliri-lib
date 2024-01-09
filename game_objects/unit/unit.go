@@ -22,6 +22,7 @@ type Unit struct {
 	ID            int    `json:"id"` // TODO int64
 	Owner         string `json:"owner"`
 	OwnerID       int    `json:"owner_id"`
+	CorporationID int    `json:"Corporation_id"`
 	OwnerFraction string `json:"of"`
 	Ready         bool
 	body          *detail.Body
@@ -839,4 +840,12 @@ func (unit *Unit) SetFractionWarrior(ok bool) {
 
 func (unit *Unit) FractionWarrior() bool {
 	return unit.fractionWarrior
+}
+
+func (unit *Unit) GetCorporationID() int {
+	return unit.CorporationID
+}
+
+func (unit *Unit) SetCorporationID(id int) {
+	unit.CorporationID = id
 }

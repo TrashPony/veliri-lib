@@ -156,6 +156,10 @@ func (o *Object) GetStartScale() {
 	if o.Texture == "mini_shield_generator_1" {
 		o.SetScale(25)
 	}
+
+	if o.Texture == "corporation_base_1" || o.Texture == "corporation_base_1_build" {
+		o.SetScale(100)
+	}
 }
 
 func (o *Object) GetWeaponTarget() *target.Target {

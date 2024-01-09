@@ -2,6 +2,7 @@ package dynamic_map_object
 
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"strconv"
 )
@@ -70,4 +71,24 @@ func (o *Object) SetGeoData() {
 	//	o.CacheGeoData = append(o.CacheGeoData, game_math.GetIntBytes(int(geoPoint.Y))...)
 	//	o.CacheGeoData = append(o.CacheGeoData, game_math.GetIntBytes(int(geoPoint.Radius))...)
 	//}
+}
+
+func (o *Object) GetBaseData() []*coordinate.Coordinate {
+	baseData := make([]*coordinate.Coordinate, len(o.TypeBaseData))
+
+	for i, d := range o.TypeBaseData {
+		// получаем позицию гео точки на карте
+		x := int(float64(d.GetX())*(float64(o.GetScale())/100)) + o.GetPhysicalModel().GetX()
+		y := int(float64(d.GetY())*(float64(o.GetScale())/100)) + o.GetPhysicalModel().GetY()
+
+		// поворачиваем геодату на угол обьекта
+		newX, newY := game_math.RotatePoint(float64(x), float64(y), float64(o.GetPhysicalModel().GetX()), float64(o.GetPhysicalModel().GetY()), o.GetPhysicalModel().GetRotate())
+
+		newAngle := d.Rotate + o.GetRotate()
+		game_math.PrepareAngle(&newAngle)
+
+		baseData[i] = &coordinate.Coordinate{X: int(newX), Y: int(newY), Rotate: newAngle}
+	}
+
+	return baseData
 }

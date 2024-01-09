@@ -7,8 +7,8 @@ import (
 
 type Coordinate struct {
 	ID     int `json:"id,omitempty"`
-	X      int `json:"x,omitempty"`
-	Y      int `json:"y,omitempty"`
+	X      int `json:"x"`
+	Y      int `json:"y"`
 	Radius int `json:"radius,omitempty"`
 
 	Rotate float64 `json:"rotate,omitempty"`

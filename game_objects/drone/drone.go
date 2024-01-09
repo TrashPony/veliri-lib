@@ -23,6 +23,7 @@ type Drone struct {
 	Sprite           string                           `json:"sprite"`
 	EquipSlot        *detail.BodyEquipSlot            `json:"equip_slot"` // сылка на эквип который запустил дрона
 	OwnerPlayerID    int                              `json:"owner_player_id"`
+	CorporationID    int                              `json:"corporation_id"`
 	OwnerType        string                           `json:"owner_type"`
 	OwnerID          int                              `json:"owner_id"`
 	MaxHP            int                              `json:"max_hp"`
@@ -54,6 +55,14 @@ type Drone struct {
 	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
+}
+
+func (d *Drone) GetCorporationID() int {
+	return d.CorporationID
+}
+
+func (d *Drone) SetCorporationID(id int) {
+	d.CorporationID = id
 }
 
 func (d *Drone) AddEffect(newEffect *effect.Effect) bool {

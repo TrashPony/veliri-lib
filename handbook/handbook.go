@@ -284,6 +284,7 @@ var StructureDescription = map[string]map[string]DescriptionItem{
 		"radar":                {ID: 0, Name: "Radar", Description: "<p> An engineering structure, which dramatically increases the detection area of ​​any signatures and is able to warn in advance about the approach of unfriendly targets. </p> <p> Like other structures, it functions by supplying energy. </p>"},
 		"storage":              {ID: 0, Name: "Warehouse", Description: "<p> An engineering structure serving with one single purpose - the storage of the cargo of its owner. The complex opening mechanism and dense walls make the \"warehouse\" an inaccessible target for pirates. </p> <p> Meanwhile, like other objects, the \"warehouse\" is vulnerable to the effect of \"destruction\". </p>"},
 		"beacon":               {ID: 0, Name: "Faction beacon", Description: "<p> An engineering structure for military purposes, which is located on neutral, or enemy territory, which contributes to the beginning of its expansion. As a rule, in the course of conflicts, the \"lighthouse\" is the primary target of the attack, because it is the \"lighthouse\" that is the very first outpost where the attacking forces pull their reinforcements. </p>"},
+		"corporation_base_1":   {Name: "База", Description: "<p>Передовая база в пустошах. Предоставляет членам кластера и союзникам ремонт дозаправку и склад.</p>"},
 	},
 	_const.RU: {
 		"laser_turret":         {Name: "Большая лазерная турель", Description: "<p>Стационарно-автоматизированная оборонительная позиция, ведущая огонь по целям вражеского характера посредством испускания высокоэнергетического луча.</p>"},
@@ -302,6 +303,7 @@ var StructureDescription = map[string]map[string]DescriptionItem{
 		"antenna_z-x":          {Name: "Антенна Z-X:5", Description: "<p>Уникальное и прекрасно сохранившееся после наступления местного конца света конструкция, что внешним видом своего покрытия, сильно напоминает соты насекомых</p>"},
 		"explores_antenna":     {Name: "Антенна \"Велири\"", Description: "<p>Часть станции отслеживания Explores \"Велири\", служит как сверх дальний радар.</p>"},
 		"explores_observatory": {Name: "Обсерватория \"Велири\"", Description: "<p>Часть станции отслеживания Explores \"Велири\", может служить как дозорная башня.</p>"},
+		"corporation_base_1":   {Name: "База", Description: "<p>Передовая база в пустошах. Предоставляет членам кластера и союзникам ремонт дозаправку и склад.</p>"},
 	},
 }
 

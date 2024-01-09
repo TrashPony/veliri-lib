@@ -114,6 +114,10 @@ const (
 	OfficeStorage         = 10000000
 	OfficeRentalTime      = time.Hour * 24 * 30
 	OfficeRentalBasePrice = 250000
+
+	HandlerRadius     = 60
+	HandlerDropRadius = 75
+	HandlerSoftRadius = 120
 )
 
 var ItemBinTypes = map[string]int{

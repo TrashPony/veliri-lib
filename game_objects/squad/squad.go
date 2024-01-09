@@ -427,3 +427,10 @@ func (s *Squad) RangeWeaponSkins() map[int]*skin.Skin {
 
 	return weaponSkins
 }
+
+func (s *Squad) GetCorporationID() int {
+	if s.GetMS() != nil {
+		return s.GetMS().GetCorporationID()
+	}
+	return 0
+}

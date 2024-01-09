@@ -11,6 +11,7 @@ type DynObject struct {
 	Energy           int
 	OwnerPlayerID    int
 	OwnerType        string
+	CorporationID    int
 	OwnerID          int
 	OwnerBaseID      int
 	MaxScale         int

@@ -6,6 +6,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
+	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
@@ -22,7 +23,6 @@ import (
 )
 
 type Object struct {
-	// TODO Сделать обьект Mover и встраивать его во все обьекты которые могут двигатся
 	// везде где есть приставка Type это оригиналдьные данные типа, все остальное сформированые
 	ID                  int    `json:"id"`
 	TypeID              int    `json:"type_id"`
@@ -53,8 +53,9 @@ type Object struct {
 	YShadowOffset     int `json:"y_shadow_offset"`
 	ShadowIntensity   int `json:"shadow_intensity"`
 
-	TypeGeoData []*obstacle_point.ObstaclePoint `json:"-"`
-	HeightType  float64                         `json:"-"`
+	TypeGeoData  []*obstacle_point.ObstaclePoint `json:"-"`
+	TypeBaseData []*coordinate.Coordinate        `json:"type_base_data"`
+	HeightType   float64                         `json:"-"`
 
 	Fraction   string `json:"fraction"`
 	RangeView  int    `json:"range_view"`
@@ -74,6 +75,7 @@ type Object struct {
 	AmmoCell      bool `json:"ammo_cell"`
 	weaponTarget  *target.Target
 	OwnerPlayerID int    `json:"owner_player_id"`
+	CorporationID int    `json:"corporation_id"`
 	OwnerType     string `json:"owner_type"`
 	OwnerID       int    `json:"owner_id"` // ид игрока владельца
 
@@ -643,4 +645,12 @@ func (o *Object) BuildMXLock() {
 
 func (o *Object) BuildMXUnlock() {
 	o.mx.Unlock()
+}
+
+func (o *Object) GetCorporationID() int {
+	return o.CorporationID
+}
+
+func (o *Object) SetCorporationID(id int) {
+	o.CorporationID = id
 }
