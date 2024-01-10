@@ -27,6 +27,7 @@ type DynObject struct {
 	Attributes       []byte
 	EquipID          int
 	BoxID            int
+	Immortal         bool
 }
 
 type ReservoirOption struct {
