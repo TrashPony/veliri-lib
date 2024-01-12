@@ -320,6 +320,7 @@ func (d *Drone) GetJSON(mapTime int64) []byte {
 	command = append(command, byte(_const.MapBinItems[d.OwnerType]))
 	command = append(command, game_math.BoolToByte(d.fractionWarrior))
 	command = append(command, _const.FractionByte[d.Fraction])
+	command = append(command, game_math.GetIntBytes(d.CorporationID)...)
 	command = append(command, byte(len(d.Sprite)))
 	command = append(command, []byte(d.Sprite)...)
 

@@ -87,7 +87,7 @@ func (o *Object) GetBaseData() []*coordinate.Coordinate {
 		newAngle := d.Rotate + o.GetRotate()
 		game_math.PrepareAngle(&newAngle)
 
-		baseData[i] = &coordinate.Coordinate{X: int(newX), Y: int(newY), Rotate: newAngle}
+		baseData[i] = &coordinate.Coordinate{X: int(newX), Y: int(newY), RespRotate: int(newAngle), Handler: d.Handler}
 	}
 
 	return baseData

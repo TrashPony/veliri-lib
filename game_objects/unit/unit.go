@@ -538,6 +538,8 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Invisibility()))
 	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Interactive))
 
+	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.CorporationID)...)
+
 	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.GetBody().Texture))))
 	unit.CacheJson = append(unit.CacheJson, []byte(unit.GetBody().Texture)...)
 

@@ -58,4 +58,7 @@ func (o *Object) SetMapID(id int) {
 
 func (o *Object) SetComplete(complete float64) {
 	o.Complete = complete
+	if o.Complete > 100 {
+		o.Complete = 100
+	}
 }

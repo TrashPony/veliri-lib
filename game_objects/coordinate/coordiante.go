@@ -6,10 +6,11 @@ import (
 )
 
 type Coordinate struct {
-	ID     int `json:"id,omitempty"`
-	X      int `json:"x"`
-	Y      int `json:"y"`
-	Radius int `json:"radius,omitempty"`
+	ID     int    `json:"id,omitempty"`
+	X      int    `json:"x"`
+	Y      int    `json:"y"`
+	Radius int    `json:"radius,omitempty"`
+	UUID   string `json:"UUID,omitempty"`
 
 	Rotate float64 `json:"rotate,omitempty"`
 	State  int     `json:"state,omitempty"`
@@ -33,10 +34,15 @@ type Coordinate struct {
 	ToMapID   int           `json:"to_map_id,omitempty"`
 	Find      bool          `json:"-"`
 	attr      map[string]interface{}
-	Quest     bool
-	access    map[int]bool
+	Access    bool
+	access    map[string]bool
 	key       string
 	mx        sync.Mutex
+}
+
+type AccessPoint struct {
+	Type int
+	ID   int
 }
 
 func (coor *Coordinate) GetY() int {
@@ -55,27 +61,38 @@ func (coor *Coordinate) Key() string { //создает уникальный к�
 	return coor.key
 }
 
-func (coor *Coordinate) AddAccess(id int) {
+func (coor *Coordinate) AddAccessByKey(key string) {
 	coor.mx.Lock()
 	defer coor.mx.Unlock()
 
 	if coor.access == nil {
-		coor.access = make(map[int]bool)
+		coor.access = map[string]bool{}
 	}
 
-	coor.access[id] = true
+	coor.access[key] = true
 }
 
-func (coor *Coordinate) RemoveAccess(id int) {
+func (coor *Coordinate) AddAccess(typeAccess string, id int) {
+	coor.mx.Lock()
+	defer coor.mx.Unlock()
+
+	if coor.access == nil {
+		coor.access = map[string]bool{}
+	}
+
+	coor.access[typeAccess+strconv.Itoa(id)] = true
+}
+
+func (coor *Coordinate) RemoveAccess(typeAccess string, id int) {
 	coor.mx.Lock()
 	defer coor.mx.Unlock()
 
 	if coor.access != nil {
-		delete(coor.access, id)
+		delete(coor.access, typeAccess+strconv.Itoa(id))
 	}
 }
 
-func (coor *Coordinate) GetAccess(id int) bool {
+func (coor *Coordinate) GetAccess(typeAccess string, id int) bool {
 	coor.mx.Lock()
 	defer coor.mx.Unlock()
 
@@ -83,7 +100,7 @@ func (coor *Coordinate) GetAccess(id int) bool {
 		return false
 	}
 
-	return coor.access[id]
+	return coor.access[typeAccess+strconv.Itoa(id)]
 }
 
 func (coor *Coordinate) AddAttr(attr map[string]interface{}) {
