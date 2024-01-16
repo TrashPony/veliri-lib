@@ -27,6 +27,7 @@ type Blueprint struct {
 	Batteries       int    `json:"batteries"`
 	ArmorItems      int    `json:"armor_items"`
 	InMap           bool   `json:"in_map"`
+	BuildObjectID   int    `json:"build_object_id"`
 	DontRecycle     bool   `json:"dont_recycle"`
 	Size            int    `json:"size"`
 }

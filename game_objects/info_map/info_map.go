@@ -17,6 +17,7 @@ type InfoMap struct {
 	FreeLand            bool                     `json:"free_land"`
 	HandlersCoordinates []*coordinate.Coordinate `json:"handlers_coordinates"`
 	CorporationID       int                      `json:"corporation_id"`
+	Transit             bool                     `json:"transit"`
 }
 
 func (mp *InfoMap) GetEntryTySector(sectorID int) *coordinate.Coordinate {
