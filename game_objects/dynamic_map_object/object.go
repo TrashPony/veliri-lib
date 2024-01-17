@@ -66,6 +66,7 @@ type Object struct {
 	/* постройка */
 	Build      bool              `json:"build"` // если билд true, то обьект считает завершенным если Complete == 100, иначе он не работает
 	Immortal   bool              `json:"immortal"`
+	AutoBuild  bool              `json:"auto_build"`
 	Complete   float64           `json:"complete"`    // процент завершенности
 	StartItems []*inventory.Slot `json:"start_items"` // необхоидимые ресурсы для производства на старте
 	NeedItems  []*inventory.Slot `json:"need_items"`  // необходимо ресурсов для завершения,
@@ -501,7 +502,7 @@ func (o *Object) GetJSON(mapTime int64) []byte {
 	command = append(command, game_math.BoolToByte(o.Static))
 	command = append(command, game_math.BoolToByte(o.fractionWarrior))
 	command = append(command, _const.FractionByte[o.Fraction])
-	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell || o.Interactive)) // interactive
+	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell || o.Interactive || (o.Build && o.Complete < 100))) // interactive
 	command = append(command, game_math.GetIntBytes(o.CorporationID)...)
 
 	command = append(command, byte(len(o.Type)))
