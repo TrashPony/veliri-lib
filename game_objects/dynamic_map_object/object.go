@@ -104,6 +104,7 @@ type Object struct {
 	OwnerBaseID int  `json:"-"`
 	Run         bool `json:"-"`
 	Work        bool `json:"work"`
+	Disable     bool `json:"-"`
 	Static      bool `json:"-"`
 	LifeTime    int  `json:"-"`
 

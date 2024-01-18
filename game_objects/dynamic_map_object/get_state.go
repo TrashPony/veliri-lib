@@ -157,7 +157,10 @@ func (o *Object) GetStartScale() {
 		o.SetScale(25)
 	}
 
-	if o.Texture == "corporation_base_1" || o.Texture == "corporation_base_1_build" {
+	if o.Texture == "corporation_base_1" || o.Texture == "corporation_base_1_build" ||
+		o.Texture == "corporation_office_1" || o.Texture == "corporation_office_1_build" ||
+		o.Texture == "corporation_processing_1" || o.Texture == "corporation_processing_1_build" ||
+		o.Texture == "corporation_prefabricated_1" || o.Texture == "corporation_prefabricated_1_build" {
 		o.SetScale(100)
 	}
 }
