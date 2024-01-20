@@ -115,6 +115,8 @@ const (
 	OfficeRentalTime      = time.Hour * 24 * 30
 	OfficeRentalBasePrice = 250000
 
+	BaseThoriumFillUp = 10000
+
 	HandlerRadius     = 60
 	HandlerDropRadius = 75
 	HandlerSoftRadius = 120

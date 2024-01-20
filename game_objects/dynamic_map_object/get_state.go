@@ -218,7 +218,7 @@ func (o *Object) GetRangeView() int {
 func (o *Object) GetRadarRange() int {
 	radarRange := 0
 
-	if o == nil {
+	if o == nil || !o.Work {
 		return radarRange
 	}
 
