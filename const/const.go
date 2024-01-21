@@ -110,7 +110,7 @@ const (
 	AfterburnerSlotNumber = -1
 	MaxPoints             = 300 * 3 // (300 сек * 3 базы) по 1 очку в секунду == 5 минут
 
-	BaseMarketTax         = 0.05
+	BaseMarketTax         = 0.1
 	OfficeStorage         = 10000000
 	OfficeRentalTime      = time.Hour * 24 * 30
 	OfficeRentalBasePrice = 250000
