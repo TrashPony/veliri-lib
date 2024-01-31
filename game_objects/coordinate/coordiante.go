@@ -29,15 +29,16 @@ type Coordinate struct {
 	HandlerOpen bool `json:"handler_open,omitempty"`
 
 	/* соотвественно место куда попадает игрок после ивента */
-	Positions []*Coordinate `json:"positions,omitempty"`
-	ToBaseID  int           `json:"to_base_id,omitempty"`
-	ToMapID   int           `json:"to_map_id,omitempty"`
-	Find      bool          `json:"-"`
-	attr      map[string]interface{}
-	Access    bool
-	access    map[string]bool
-	key       string
-	mx        sync.Mutex
+	Positions    []*Coordinate `json:"positions,omitempty"`
+	ToBaseID     int           `json:"to_base_id,omitempty"`
+	ToMapID      int           `json:"to_map_id,omitempty"`
+	Find         bool          `json:"-"`
+	attr         map[string]interface{}
+	Access       bool
+	AccessInvers bool // если true, то запрещает всем из мапы access
+	access       map[string]bool
+	key          string
+	mx           sync.Mutex
 }
 
 type AccessPoint struct {
@@ -100,7 +101,12 @@ func (coor *Coordinate) GetAccess(typeAccess string, id int) bool {
 		return false
 	}
 
-	return coor.access[typeAccess+strconv.Itoa(id)]
+	ok := coor.access[typeAccess+strconv.Itoa(id)]
+	if coor.AccessInvers {
+		return !ok
+	}
+
+	return ok
 }
 
 func (coor *Coordinate) AddAttr(attr map[string]interface{}) {

@@ -120,6 +120,13 @@ const (
 	HandlerRadius     = 60
 	HandlerDropRadius = 75
 	HandlerSoftRadius = 120
+
+	CorporationPolicyAll          = "all"           // все
+	CorporationPolicyOnlyUnions   = "only-unions"   // союзники
+	CorporationPolicyOnlyRivals   = "only-rivals"   // враги
+	CorporationPolicyOnlyOwner    = "only-owner"    // только кластер
+	CorporationPolicyExceptUnions = "except-unions" // все кроме союзников
+	CorporationPolicyExceptRivals = "except-rivals" // все кроме врагов
 )
 
 var ItemBinTypes = map[string]int{
