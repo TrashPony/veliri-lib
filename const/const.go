@@ -127,6 +127,19 @@ const (
 	CorporationPolicyOnlyOwner    = "only-owner"    // только кластер
 	CorporationPolicyExceptUnions = "except-unions" // все кроме союзников
 	CorporationPolicyExceptRivals = "except-rivals" // все кроме врагов
+
+	CorporationTurretPolicyAll                   = "all"                  // Атакуют всех
+	CorporationTurretPolicyExceptOwner           = "except-owner"         // Атакуют всех кроме кластера
+	CorporationTurretPolicyExceptUnions          = "except-unions"        // Атакуют всех кроме кластера и союзников
+	CorporationTurretPolicyExceptRivals          = "except-rivals"        // Атакуют всех кроме кластера и соперников
+	CorporationTurretPolicyExceptRivalsAndUnions = "except-rivals-unions" // Атакуют всех кроме кластера, соперников и союзников (то есть нейтралов и врагов)
+	CorporationTurretPolicyOnlyHostile           = "only-hostile"         // Атакуют только врагов (пк, апд, враги на войне) и агрессивных (те кто атакуют корпоративную собсвенность в секторе)
+	CorporationTurretPolicyDisable               = "disable"              // Не работают
+
+	CorporationRepairPolicyOnlyOwner     = "only-owner"     // Кластер
+	CorporationRepairPolicyUnions        = "unions"         // Кластер и союзников
+	CorporationRepairPolicyRivals        = "rivals"         // Кластер и соперников
+	CorporationRepairPolicyExceptHostile = "except-hostile" // Всех кроме врагов
 )
 
 var ItemBinTypes = map[string]int{
