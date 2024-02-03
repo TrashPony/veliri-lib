@@ -140,6 +140,8 @@ const (
 	CorporationRepairPolicyUnions        = "unions"         // Кластер и союзников
 	CorporationRepairPolicyRivals        = "rivals"         // Кластер и соперников
 	CorporationRepairPolicyExceptHostile = "except-hostile" // Всех кроме врагов
+	CorporationRepairPolicyDisable       = "disable"        // Не работают
+
 )
 
 var ItemBinTypes = map[string]int{

@@ -300,6 +300,7 @@ func (o *Object) AddDynamicObject(object *Object, mapID int, view, radar bool, m
 		Y:             object.GetY(),
 		OwnerID:       object.GetOwnerID(),
 		OwnerPlayerID: object.OwnerPlayerID,
+		CorporationID: object.CorporationID,
 		Object:        object,
 		ObjectJSON:    object.GetJSON(mapTime),
 		Work:          object.GetWork(),

@@ -274,6 +274,7 @@ func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, v
 		Y:             object.GetY(),
 		OwnerID:       object.GetOwnerID(),
 		OwnerPlayerID: object.OwnerPlayerID,
+		CorporationID: object.CorporationID,
 		Object:        object,
 		ObjectJSON:    object.GetJSON(mapTime),
 		Work:          object.GetWork(),

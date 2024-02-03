@@ -110,6 +110,7 @@ type VisibleObject struct {
 	X             int         `json:"-"`
 	Y             int         `json:"-"`
 	OwnerPlayerID int         `json:"-"`
+	CorporationID int         `json:"-"`
 	OwnerID       int         `json:"-"`
 	Object        interface{} `json:"-"`
 	ObjectJSON    []byte      `json:"-"`
