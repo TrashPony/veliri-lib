@@ -61,4 +61,8 @@ func (o *Object) SetComplete(complete float64) {
 	if o.Complete > 100 {
 		o.Complete = 100
 	}
+
+	if o.Complete < 0 {
+		o.Complete = 0
+	}
 }

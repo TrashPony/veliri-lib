@@ -64,12 +64,13 @@ type Object struct {
 	YAttach    int    `json:"y_attach"`
 
 	/* постройка */
-	Build      bool              `json:"build"` // если билд true, то обьект считает завершенным если Complete == 100, иначе он не работает
-	Immortal   bool              `json:"immortal"`
-	AutoBuild  bool              `json:"auto_build"`
-	Complete   float64           `json:"complete"`    // процент завершенности
-	StartItems []*inventory.Slot `json:"start_items"` // необхоидимые ресурсы для производства на старте
-	NeedItems  []*inventory.Slot `json:"need_items"`  // необходимо ресурсов для завершения,
+	Build           bool              `json:"build"` // если билд true, то обьект считает завершенным если Complete == 100, иначе он не работает
+	Immortal        bool              `json:"immortal"`
+	AutoBuild       bool              `json:"auto_build"`
+	AutoDismantling bool              `json:"auto_dismantling"`
+	Complete        float64           `json:"complete"`    // процент завершенности
+	StartItems      []*inventory.Slot `json:"start_items"` // необхоидимые ресурсы для производства на старте
+	NeedItems       []*inventory.Slot `json:"need_items"`  // необходимо ресурсов для завершения,
 
 	/* турели и оружие*/
 	WeaponID      int  `json:"weapon_id"`
