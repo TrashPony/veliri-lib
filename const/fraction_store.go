@@ -69,6 +69,8 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 39, ItemID: 10000011, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
 	// body +
 	{ID: 38, ItemID: 10000009, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+
+	{ID: 1000, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 }
 
 var ExploresAssortment = []AssortmentPoint{
@@ -135,6 +137,8 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 75, ItemID: 10000016, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
 	// body +
 	{ID: 76, ItemID: 10000014, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+
+	{ID: 1001, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 }
 
 var ReversesAssortment = []AssortmentPoint{
@@ -203,4 +207,6 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 77, ItemID: 10000042, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
 	// body +
 	{ID: 78, ItemID: 10000019, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+
+	{ID: 1002, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 }

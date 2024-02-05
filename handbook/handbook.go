@@ -787,6 +787,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"blue_fragile_capsule":          {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
 		"red_fragile_capsule":           {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
 		"ground_drone_3":                {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
+		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -827,6 +828,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"ground_drone_3":                {Name: "Древний боевой дрон", Description: "<p></p>"},                                                                          // TODO
 		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"},                                                                     // TODO
 		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвестного происхождение, постоянно излучает сильный сигнал.</p>"}, // TODO
+		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
 	},
 }
 
