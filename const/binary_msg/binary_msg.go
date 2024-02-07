@@ -1004,3 +1004,19 @@ func DiableObject(id int, disable bool) []byte {
 
 	return command
 }
+
+func SiegeBinaryMsg(active bool, baseHP, baseShield int, hostiles map[int]int, endTime int64) []byte {
+	command := []byte{90}
+
+	command = append(command, game_math.BoolToByte(active))
+	command = append(command, game_math.GetInt64Bytes(endTime)...)
+	command = append(command, game_math.GetIntBytes(baseHP)...)
+	command = append(command, game_math.GetIntBytes(baseShield)...)
+
+	for corporationID, count := range hostiles {
+		command = append(command, game_math.GetIntBytes(corporationID)...)
+		command = append(command, game_math.GetIntBytes(count)...)
+	}
+
+	return command
+}
