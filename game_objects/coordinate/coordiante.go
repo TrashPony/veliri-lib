@@ -27,6 +27,7 @@ type Coordinate struct {
 
 	/* говорит работает хендлер или нет, например занята ячейка перехода и тп не работает*/
 	HandlerOpen bool `json:"handler_open,omitempty"`
+	Hack        bool `json:"-"`
 
 	/* соотвественно место куда попадает игрок после ивента */
 	Positions    []*Coordinate `json:"positions,omitempty"`
