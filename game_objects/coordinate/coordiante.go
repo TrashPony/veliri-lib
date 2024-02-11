@@ -94,7 +94,7 @@ func (coor *Coordinate) RemoveAccess(typeAccess string, id int) {
 	}
 }
 
-func (coor *Coordinate) GetAccess(typeAccess string, id int) bool {
+func (coor *Coordinate) GetAccess(corporationKey, playerKey string) bool {
 	coor.mx.Lock()
 	defer coor.mx.Unlock()
 
@@ -102,12 +102,21 @@ func (coor *Coordinate) GetAccess(typeAccess string, id int) bool {
 		return false
 	}
 
-	ok := coor.access[typeAccess+strconv.Itoa(id)]
+	corporationAccess, _ := coor.access[corporationKey]
 	if coor.AccessInvers {
-		return !ok
+		corporationAccess = !corporationAccess
 	}
 
-	return ok
+	playerAccess, ok := coor.access[playerKey]
+	if !ok {
+		return corporationAccess
+	}
+
+	if coor.AccessInvers {
+		playerAccess = !playerAccess
+	}
+
+	return playerAccess
 }
 
 func (coor *Coordinate) AddAttr(attr map[string]interface{}) {

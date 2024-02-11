@@ -113,7 +113,11 @@ const (
 	BaseMarketTax         = 0.1
 	OfficeStorage         = 10000000
 	OfficeRentalTime      = time.Hour * 24 * 30
-	OfficeRentalBasePrice = 250000
+	OfficeRentalBasePrice = 2500000
+
+	WarPrice  = 1000000
+	WarCycle  = 24 * 7 * time.Hour
+	WarBorder = 24 * time.Hour
 
 	BaseThoriumFillUp = 10000
 
@@ -121,12 +125,13 @@ const (
 	HandlerDropRadius = 75
 	HandlerSoftRadius = 120
 
-	CorporationPolicyAll          = "all"           // все
-	CorporationPolicyOnlyUnions   = "only-unions"   // союзники
-	CorporationPolicyOnlyRivals   = "only-rivals"   // враги
-	CorporationPolicyOnlyOwner    = "only-owner"    // только кластер
-	CorporationPolicyExceptUnions = "except-unions" // все кроме союзников
-	CorporationPolicyExceptRivals = "except-rivals" // все кроме врагов
+	CorporationPolicyAll            = "all"             // все
+	CorporationPolicyOnlyUnions     = "only-unions"     // союзники
+	CorporationPolicyOnlyRivals     = "only-rivals"     // соперники
+	CorporationPolicyOnlyOwner      = "only-owner"      // только кластер
+	CorporationPolicyExceptUnions   = "except-unions"   // все кроме союзников
+	CorporationPolicyExceptRivals   = "except-rivals"   // все кроме соперников
+	CorporationPolicyExceptHostiles = "except-hostiles" // все кроме врагов
 
 	CorporationTurretPolicyAll                   = "all"                  // Атакуют всех
 	CorporationTurretPolicyExceptOwner           = "except-owner"         // Атакуют всех кроме кластера
