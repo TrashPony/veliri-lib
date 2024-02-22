@@ -60,6 +60,7 @@ type Bullet struct {
 	CreateJsonTime int64  `json:"-"`
 
 	ForceExplosion      bool           `json:"-"`
+	AutoActivate        bool           `json:"-"`
 	DetonationDistance  int            `json:"-"`
 	DetonationTimeOut   int            `json:"detonation_time_out"`
 	Attributes          map[string]int `json:"-"`

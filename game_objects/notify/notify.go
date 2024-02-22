@@ -42,6 +42,8 @@ type Notify struct {
 	Answers           []map[string]Answer `json:"answers,omitempty"`
 	MapID             int                 `json:"map_id,omitempty"`
 	BaseID            int                 `json:"base_id,omitempty"`
+	Chat              bool                `json:"chat,omitempty"`
+	ChatID            int                 `json:"chat_id,omitempty"`
 }
 
 type Answer struct {

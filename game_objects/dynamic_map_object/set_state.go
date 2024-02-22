@@ -49,6 +49,10 @@ func (o *Object) SetGrowTime(time int) {
 }
 
 func (o *Object) SetHP(hp int) {
+	if o.Immortal {
+		return
+	}
+
 	o.HP = hp
 }
 

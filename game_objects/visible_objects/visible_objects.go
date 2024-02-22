@@ -119,6 +119,8 @@ type VisibleObject struct {
 
 	UpdateMsg *UpdateObjMap `json:"-"`
 
+	Pool string `json:"-"`
+
 	mx sync.RWMutex
 }
 

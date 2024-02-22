@@ -278,6 +278,7 @@ func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, v
 		Object:        object,
 		ObjectJSON:    object.GetJSON(mapTime),
 		Work:          object.GetWork(),
+		Pool:          "memory",
 	}
 
 	vObj.SetView(view)

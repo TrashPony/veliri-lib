@@ -33,6 +33,7 @@ const (
 	APD      = "APD"
 	FAUNA    = "Fauna"
 	ALL      = "ALL"
+	FarGod   = "FarGod"
 
 	QuickBattle = "quick_battle"
 	OpenWorld   = "open_world"
@@ -199,6 +200,7 @@ var FractionByte = map[string]byte{
 	Reverses:         3,
 	APD:              4,
 	FAUNA:            5,
+	FarGod:           6,
 }
 
 var PointType = map[string]byte{

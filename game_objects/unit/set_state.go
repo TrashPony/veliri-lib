@@ -45,7 +45,9 @@ func (unit *Unit) SetDamage(damage, k, t, e int) int {
 		}
 	}
 
-	unit.SetHP(unit.GetHP() - damage)
+	if !unit.Immortal {
+		unit.SetHP(unit.GetHP() - damage)
+	}
 
 	return damage
 }
