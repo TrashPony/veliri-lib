@@ -69,8 +69,9 @@ type Unit struct {
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 
-	viewRange  int
-	radarRange int
+	lockedControl bool
+	viewRange     int
+	radarRange    int
 
 	fractionWarrior bool
 }
@@ -366,6 +367,14 @@ func (unit *Unit) GetPhysicalModel() *physical_model.PhysicalModel {
 	}
 
 	return unit.physicalModel
+}
+
+func (unit *Unit) LockedControl() bool {
+	return unit.lockedControl
+}
+
+func (unit *Unit) SetLockedControl(l bool) {
+	unit.lockedControl = l
 }
 
 func (unit *Unit) UpdatePhysicalModel() {

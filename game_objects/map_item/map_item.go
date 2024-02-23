@@ -65,6 +65,10 @@ func (i *MapItem) GetPhysicalModel() *physical_model.PhysicalModel {
 	return i.physicalModel
 }
 
+func (i *MapItem) LockedControl() bool {
+	return false
+}
+
 func (i *MapItem) initPhysicalModel() {
 	i.physicalModel = &physical_model.PhysicalModel{
 		MoveDrag:    0.60,

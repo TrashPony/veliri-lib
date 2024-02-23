@@ -196,6 +196,10 @@ func (d *Drone) GetPhysicalModel() *physical_model.PhysicalModel {
 	return d.physicalModel
 }
 
+func (d *Drone) LockedControl() bool {
+	return false
+}
+
 func (d *Drone) SetPhysicalModel(p *physical_model.PhysicalModel) {
 	d.physicalModel = p
 }
