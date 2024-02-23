@@ -1020,3 +1020,11 @@ func SiegeBinaryMsg(active bool, baseHP, baseShield int, hostiles map[int]int, e
 
 	return command
 }
+
+func DangerAnomaly(power int) []byte {
+	command := []byte{91}
+
+	command = append(command, game_math.GetIntBytes(power)...)
+
+	return command
+}
