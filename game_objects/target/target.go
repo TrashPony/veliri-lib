@@ -28,6 +28,7 @@ type Target struct {
 	Ignore       bool    `json:"ignore"`
 	Update       int64   `json:"-"`
 	MouseTap     bool    `json:"-"`
+	Points       int     `json:"-"`
 }
 
 func (t *Target) GetX() int {

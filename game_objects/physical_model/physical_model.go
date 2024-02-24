@@ -4,6 +4,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"math"
+	"sync"
 )
 
 // структура которая подскадывается в обьекты которые должны двигатся
@@ -48,6 +49,7 @@ type PhysicalModel struct {
 	TransportUnitID int                             `json:"-"`
 	Static          bool                            `json:"static"`
 	MoveDestroyer   bool                            `json:"-"`
+	mx              sync.Mutex
 	polygon         *game_math.Polygon
 	nextPolygon     *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
 }
@@ -246,10 +248,16 @@ func (m *PhysicalModel) SetVelocity(x float64, y float64) {
 }
 
 func (m *PhysicalModel) GetPosFunc() func() {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	return m.PosFunc
 }
 
 func (m *PhysicalModel) SetPosFunc(fun func()) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	m.PosFunc = fun
 }
 
