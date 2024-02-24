@@ -69,11 +69,20 @@ type Unit struct {
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 
+	ghost         bool
 	lockedControl bool
 	viewRange     int
 	radarRange    int
 
 	fractionWarrior bool
+}
+
+func (unit *Unit) Ghost() bool {
+	return unit.ghost
+}
+
+func (unit *Unit) SetGhost(g bool) {
+	unit.ghost = g
 }
 
 func (unit *Unit) GetEffects() *effects_store.EffectsStore {
@@ -548,6 +557,7 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Interactive))
 
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.CorporationID)...)
+	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.ghost))
 
 	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.GetBody().Texture))))
 	unit.CacheJson = append(unit.CacheJson, []byte(unit.GetBody().Texture)...)
@@ -606,6 +616,7 @@ func (unit *Unit) GetUpdateData(mapTime int64) []byte {
 	command = append(command, game_math.GetIntBytes(unit.HP)...)
 	command = append(command, game_math.GetIntBytes(unit.GetRangeView())...)
 	command = append(command, game_math.GetIntBytes(unit.GetRadarRange())...)
+	command = append(command, game_math.BoolToByte(unit.ghost))
 
 	return command
 }

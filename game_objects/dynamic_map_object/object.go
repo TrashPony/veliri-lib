@@ -225,6 +225,10 @@ func (o *Object) LockedControl() bool {
 	return false
 }
 
+func (o *Object) Ghost() bool {
+	return false
+}
+
 func (o *Object) initPhysicalModel() {
 
 	weight := float64(o.Weight)
