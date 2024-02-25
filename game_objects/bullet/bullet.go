@@ -67,8 +67,17 @@ type Bullet struct {
 	ObjectID            int            `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
 	DetonationForceView bool           `json:"-"` // все видят взрыв, независимо от тумана войны
 
+	ghost      bool
 	stopTimeMS int
 	mx         sync.RWMutex
+}
+
+func (b *Bullet) Ghost() bool {
+	return b.ghost
+}
+
+func (b *Bullet) SetGhost(g bool) {
+	b.ghost = g
 }
 
 func (b *Bullet) StopRun(stopTimeMS int) {

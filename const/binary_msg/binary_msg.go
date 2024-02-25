@@ -145,7 +145,7 @@ func CreateRotateGunBinaryMsg(id, ms, rotate, slot int) []byte {
 	return command
 }
 
-func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int) []byte {
+func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool) []byte {
 	// [1[eventID] 4[typeID], 4[x], 4[y], 4[z], 4[rotate], 4[mpID]]
 	command := []byte{9}
 
@@ -155,6 +155,7 @@ func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int) []
 	command = append(command, game_math.GetIntBytes(z)...)
 	command = append(command, game_math.GetIntBytes(rotate)...)
 	command = append(command, byte(accumulationPercent))
+	command = append(command, game_math.BoolToByte(force))
 
 	return command
 }
