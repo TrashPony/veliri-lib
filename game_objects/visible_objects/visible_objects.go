@@ -109,6 +109,7 @@ type VisibleObject struct {
 	MapID         int         `json:"mid"`
 	X             int         `json:"-"`
 	Y             int         `json:"-"`
+	Rotate        int         `json:"-"`
 	OwnerPlayerID int         `json:"-"`
 	CorporationID int         `json:"-"`
 	OwnerID       int         `json:"-"`

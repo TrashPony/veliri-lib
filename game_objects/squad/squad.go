@@ -272,6 +272,7 @@ func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, v
 		MapID:         mapID,
 		X:             object.GetX(),
 		Y:             object.GetY(),
+		Rotate:        int(object.GetRotate()),
 		OwnerID:       object.GetOwnerID(),
 		OwnerPlayerID: object.OwnerPlayerID,
 		CorporationID: object.CorporationID,
