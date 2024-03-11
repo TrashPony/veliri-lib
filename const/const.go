@@ -59,10 +59,13 @@ const (
 
 	AdminUserRole = "admin"
 
-	PVP              = "pvp"
-	PK               = "pk"
+	PVP    = "pvp"
+	PK     = "pk"
+	Strike = "strike"
+
 	TimePvpViolators = 30
-	TimePkViolators  = 300
+	TimePkViolators  = 900
+	TimeTakeStrike   = 180
 
 	ItemSizeRadius = 5
 

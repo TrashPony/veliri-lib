@@ -942,11 +942,12 @@ func KillBinaryMsg(deadName, deadFraction, killerName, killerFraction string, am
 	return command
 }
 
-func CreatePlayerVioBin(vType string, time int) []byte {
+func CreatePlayerVioBin(vType string, time int, strikes int) []byte {
 	command := []byte{85}
 
 	command = append(command, game_math.GetIntBytes(time)...)
 	command = append(command, byte(getVioTypeInt(vType, time)))
+	command = append(command, byte(strikes))
 
 	return command
 }
