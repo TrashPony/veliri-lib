@@ -69,11 +69,11 @@ type Unit struct {
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 
-	ghost         bool
-	lockedControl bool
-	viewRange     int
-	radarRange    int
-
+	ghost           bool
+	lockedControl   bool
+	viewRange       int
+	radarRange      int
+	police          bool
 	fractionWarrior bool
 }
 
@@ -83,6 +83,10 @@ func (unit *Unit) Ghost() bool {
 
 func (unit *Unit) SetGhost(g bool) {
 	unit.ghost = g
+}
+
+func (unit *Unit) SetPolice(p bool) {
+	unit.police = p
 }
 
 func (unit *Unit) GetEffects() *effects_store.EffectsStore {
@@ -558,6 +562,7 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 
 	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.CorporationID)...)
 	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.ghost))
+	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.police))
 
 	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.GetBody().Texture))))
 	unit.CacheJson = append(unit.CacheJson, []byte(unit.GetBody().Texture)...)

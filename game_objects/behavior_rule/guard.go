@@ -27,45 +27,59 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 	var BehaviorGuardOutRules = BehaviorRules{
 		Rules: []*BehaviorRule{
 			{
-				Action: "find_fraction_hostile",
+				Action: "police_logic", // ищем нарушителей в нашей зоне видимости
 				PassRule: &BehaviorRule{
-					Action: "find_hostile_in_range_view",
+					Action: "find_fraction_hostile",
 					PassRule: &BehaviorRule{
-						Action: "warrior_check_battle_solution",
+						Action: "find_hostile_in_range_view",
 						PassRule: &BehaviorRule{
-							Action: "send_npc_request",
-							Meta:   &Meta{Type: "attack"},
+							Action: "warrior_check_battle_solution",
 							PassRule: &BehaviorRule{
-								Action: "follow_attack_target",
-							},
-						},
-						StopRule: &BehaviorRule{
-							Action: "send_npc_request",
-							Meta:   &Meta{Type: "attack"},
-							PassRule: &BehaviorRule{
-								Action:   "send_npc_request",
-								Meta:     &Meta{Type: "defend"},
-								PassRule: getBackRules(),
-							},
-						},
-					},
-					StopRule: &BehaviorRule{
-						Action:   "check_back_to_base",
-						PassRule: getBackRules(),
-						StopRule: &BehaviorRule{
-							Action: "check_hp",
-							Meta: &Meta{
-								Parameter: "HP",
-								Count:     90,
-								Percent:   true,
-							},
-							PassRule: &BehaviorRule{
-								Action: "check_distress_signals",
-								StopRule: &BehaviorRule{
-									Action: "scouting",
+								Action: "send_npc_request",
+								Meta:   &Meta{Type: "attack"},
+								PassRule: &BehaviorRule{
+									Action: "follow_attack_target",
 								},
 							},
-							StopRule: getBackRules(),
+							StopRule: &BehaviorRule{
+								Action: "send_npc_request",
+								Meta:   &Meta{Type: "attack"},
+								PassRule: &BehaviorRule{
+									Action:   "send_npc_request",
+									Meta:     &Meta{Type: "defend"},
+									PassRule: getBackRules(),
+								},
+							},
+						},
+						StopRule: &BehaviorRule{
+							Action: "back_to_parent_sector", // ищем дорогу домой
+							PassRule: &BehaviorRule{
+								Action: "to_sector_target",
+								Meta:   &Meta{Type: "Fraction"},
+								PassRule: &BehaviorRule{
+									Action: "to_base",
+								},
+								StopRule: getBackRules(),
+							},
+							StopRule: &BehaviorRule{
+								Action:   "check_back_to_base",
+								PassRule: getBackRules(),
+								StopRule: &BehaviorRule{
+									Action: "check_hp",
+									Meta: &Meta{
+										Parameter: "HP",
+										Count:     90,
+										Percent:   true,
+									},
+									PassRule: &BehaviorRule{
+										Action: "check_distress_signals",
+										StopRule: &BehaviorRule{
+											Action: "scouting",
+										},
+									},
+									StopRule: getBackRules(),
+								},
+							},
 						},
 					},
 				},
