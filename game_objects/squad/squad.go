@@ -165,6 +165,10 @@ func (s *Squad) IgnoreSmoke() bool {
 	return s.matherShip.GetEffectByUUID("smoke_blind") != nil
 }
 
+func (s *Squad) GetRole() string {
+	return s.GetMS().Role
+}
+
 func (s *Squad) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_objects.VisibleObject {
 	s.checkVisibleObjectStore()
 	return s.visibleObjects.GetVisibleObjectByTypeAndID(typeObj, id)

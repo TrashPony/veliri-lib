@@ -75,6 +75,7 @@ type Unit struct {
 	radarRange      int
 	police          bool
 	fractionWarrior bool
+	Role            string `json:"-"`
 }
 
 func (unit *Unit) Ghost() bool {
@@ -87,6 +88,10 @@ func (unit *Unit) SetGhost(g bool) {
 
 func (unit *Unit) SetPolice(p bool) {
 	unit.police = p
+}
+
+func (unit *Unit) GetPolice() bool {
+	return unit.police
 }
 
 func (unit *Unit) GetEffects() *effects_store.EffectsStore {
