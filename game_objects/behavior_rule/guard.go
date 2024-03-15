@@ -47,7 +47,7 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 								PassRule: &BehaviorRule{
 									Action:   "send_npc_request",
 									Meta:     &Meta{Type: "defend"},
-									PassRule: getBackRules(),
+									PassRule: getBackRules3(),
 								},
 							},
 						},
@@ -59,11 +59,11 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 								PassRule: &BehaviorRule{
 									Action: "to_base",
 								},
-								StopRule: getBackRules(),
+								StopRule: getBackRules3(),
 							},
 							StopRule: &BehaviorRule{
 								Action:   "check_back_to_base",
-								PassRule: getBackRules(),
+								PassRule: getBackRules3(),
 								StopRule: &BehaviorRule{
 									Action: "check_hp",
 									Meta: &Meta{
@@ -77,7 +77,7 @@ func GetGuardRules() (*BehaviorRules, *BehaviorRules) {
 											Action: "scouting",
 										},
 									},
-									StopRule: getBackRules(),
+									StopRule: getBackRules3(),
 								},
 							},
 						},
