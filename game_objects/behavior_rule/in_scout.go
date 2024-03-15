@@ -160,52 +160,69 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 						},
 					},
 					StopRule: &BehaviorRule{
-						Action:   "check_back_to_base",
-						PassRule: getBackRules2(),
+						Action: "is_free_land",
+						PassRule: &BehaviorRule{
+							Action: "find_not_pk_nearest_sector", // если мы в пустошах, то ищем ближайший безопасный сектор где мы не pk
+							PassRule: &BehaviorRule{
+								Action: "to_sector_target",
+								PassRule: &BehaviorRule{
+									Action: "to_base",
+								},
+								Meta:     &Meta{Type: "Fraction"},
+								StopRule: getBackRules2(),
+							},
+							StopRule: &BehaviorRule{
+								Action: "scouting",
+							},
+						},
 						StopRule: &BehaviorRule{
-							Action:   "check_cargo_full", // проверка трюма, если он заполнен на 50% то ливаем на базу
-							Meta:     &Meta{Count: 80},
+							Action:   "check_back_to_base",
 							PassRule: getBackRules2(),
 							StopRule: &BehaviorRule{
-								Action: "find_unit_wreckage",
-								PassRule: &BehaviorRule{
-									Action: "pick_up_unit_wreckage",
-								},
+								Action:   "check_cargo_full", // проверка трюма, если он заполнен на 50% то ливаем на базу
+								Meta:     &Meta{Count: 80},
+								PassRule: getBackRules2(),
 								StopRule: &BehaviorRule{
-									Action: "find_drop_items", // смотри брошеные вещи которые можно поднять, если такие есть берем любой и кладем в мету
+									Action: "find_unit_wreckage",
 									PassRule: &BehaviorRule{
-										Action: "get_drop_item", // идем к упавшему предмету и пытаемся его взять, ид предмета указать в мете
+										Action: "pick_up_unit_wreckage",
 									},
 									StopRule: &BehaviorRule{
-										Action: "check_hp",
-										Meta: &Meta{
-											Parameter: "HP",
-											Count:     90,
-											Percent:   true,
-										},
+										Action: "find_drop_items", // смотри брошеные вещи которые можно поднять, если такие есть берем любой и кладем в мету
 										PassRule: &BehaviorRule{
-											Action: "send_npc_request", // запрос о грабеже, какомунить рандомному мирняке
-											Meta:   &Meta{Type: "demand"},
+											Action: "get_drop_item", // идем к упавшему предмету и пытаемся его взять, ид предмета указать в мете
+										},
+										StopRule: &BehaviorRule{
+											Action: "check_hp",
+											Meta: &Meta{
+												Parameter: "HP",
+												Count:     90,
+												Percent:   true,
+											},
 											PassRule: &BehaviorRule{
-												// проверяем рентабельность сектора, если нет то выбираем любоей и следуем туда
-												Action: "check_profitability_sector",
+												Action: "send_npc_request", // запрос о грабеже, какомунить рандомному мирняке
+												Meta:   &Meta{Type: "demand"},
 												PassRule: &BehaviorRule{
-													Action: "fixed_to_current_sector",
+													// проверяем рентабельность сектора, если нет то выбираем любоей и следуем туда
+													Action: "check_profitability_sector",
 													PassRule: &BehaviorRule{
-														Action: "scouting",
+														Action: "fixed_to_current_sector",
+														PassRule: &BehaviorRule{
+															Action: "scouting",
+														},
 													},
-												},
-												StopRule: &BehaviorRule{
-													Action: "to_sector_target",
-													Meta:   &Meta{Type: "Fraction"},
-													PassRule: &BehaviorRule{
-														Action: "to_base",
+													StopRule: &BehaviorRule{
+														Action: "to_sector_target",
+														Meta:   &Meta{Type: "Fraction"},
+														PassRule: &BehaviorRule{
+															Action: "to_base",
+														},
+														StopRule: getBackRules2(),
 													},
-													StopRule: getBackRules2(),
 												},
 											},
+											StopRule: getBackRules2(),
 										},
-										StopRule: getBackRules2(),
 									},
 								},
 							},

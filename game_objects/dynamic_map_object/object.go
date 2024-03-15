@@ -399,6 +399,14 @@ func (o *Object) AddHostile(typeHostile string, id int, hatePoint int) {
 	o.specialHostiles.AddPoints(typeHostile, id, hatePoint)
 }
 
+func (o *Object) SetHostilePoints(typeHostile string, id, hatePoint int) {
+	if o.specialHostiles == nil {
+		o.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	o.specialHostiles.SetPoints(typeHostile, id, hatePoint)
+}
+
 func (o *Object) CheckHostile(typeHostile string, id int, ownerID int) (bool, int) {
 
 	if o == nil {
