@@ -40,7 +40,11 @@ func (s *SpecialHostile) AddPoints(hatePoint int, mod string) {
 
 	if mod == "" || mod == "battle" {
 		// кратковременная память живет всего 30 секунд
-		s.Points += hatePoint
+		if mod == "" {
+			s.Points += hatePoint
+		} else {
+			s.Points += hatePoint / 2
+		}
 
 		if s.Points > max {
 			s.Points = max
