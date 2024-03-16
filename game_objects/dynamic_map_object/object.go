@@ -391,12 +391,12 @@ func (o *Object) CheckRightRotate() bool {
 	return false
 }
 
-func (o *Object) AddHostile(typeHostile string, id int, hatePoint int) {
+func (o *Object) AddHostile(typeHostile string, id int, hatePoint int, mod string) {
 	if o.specialHostiles == nil {
 		o.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
 
-	o.specialHostiles.AddPoints(typeHostile, id, hatePoint)
+	o.specialHostiles.AddPoints(typeHostile, id, hatePoint, mod)
 }
 
 func (o *Object) SetHostilePoints(typeHostile string, id, hatePoint int) {

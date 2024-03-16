@@ -65,12 +65,12 @@ func (s *Squad) SetPainThreshold(pain float64) {
 	s.painThreshold = pain
 }
 
-func (s *Squad) AddHostile(typeHostile string, id, hatePoint int) {
+func (s *Squad) AddHostile(typeHostile string, id, hatePoint int, mod string) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
 
-	s.specialHostiles.AddPoints(typeHostile, id, hatePoint)
+	s.specialHostiles.AddPoints(typeHostile, id, hatePoint, mod)
 }
 
 func (s *Squad) RangeHostiles() <-chan *special_hostiles.SpecialHostile {

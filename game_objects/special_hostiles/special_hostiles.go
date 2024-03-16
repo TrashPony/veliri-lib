@@ -6,8 +6,8 @@ import (
 	"sync"
 )
 
-// отношение бота к другим ботам и игрокм
-// 0   - нейтральное отношение, но сохраняется фракционная вражба во фри и батл секторах
+// SpecialHostiles отношение бота к другим ботам и игрокм
+// 0 - нейтральное отношение, но сохраняется фракционная вражба во фри и батл секторах
 // < 0 - дружаня, не атакует по причине фракционной вражды во фри, но атакуте в батл секторах, чаще помогает при запросах
 // > 0 - враг, атакует его даже если тот в той же фракции, активно принимает участие в запросах против цели и не помогует цели
 type SpecialHostiles struct {
@@ -75,23 +75,17 @@ func (s *SpecialHostiles) SetPoints(typeHostile string, id, hatePoint int) {
 	s.getHostile(typeHostile, id).SetPoints(hatePoint)
 }
 
-func (s *SpecialHostiles) AddPoints(typeHostile string, id, hatePoint int) {
+func (s *SpecialHostiles) AddPoints(typeHostile string, id, hatePoint int, mod string) {
 	if s == nil || (typeHostile == "" && id == 0) {
 		return
 	}
 
-	s.getHostile(typeHostile, id).AddPoints(hatePoint)
+	s.getHostile(typeHostile, id).AddPoints(hatePoint, mod)
 }
 
 func (s *SpecialHostiles) CheckHostile(typeHostile string, id int) (bool, int) {
 	hostile := s.getHostile(typeHostile, id)
 	hatePoints := hostile.GetPoints()
-
-	if hatePoints == 0 {
-		s.mx.Lock()
-		delete(s.specialHostiles, hostile.UUID)
-		s.mx.Unlock()
-	}
 
 	return hatePoints > 100, hatePoints
 }
