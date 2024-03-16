@@ -38,7 +38,7 @@ func (s *SpecialHostile) AddPoints(hatePoint int, mod string) {
 		s.Moderate = make(map[string]*PointsModerate)
 	}
 
-	if mod == "" {
+	if mod == "" || mod == "battle" {
 		// кратковременная память живет всего 30 секунд
 		s.Points += hatePoint
 
