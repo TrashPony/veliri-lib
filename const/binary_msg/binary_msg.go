@@ -1030,3 +1030,25 @@ func DangerAnomaly(power int) []byte {
 
 	return command
 }
+
+func TargetInfo(unitID, ownerID, currentTargetID, x, y, ralation, corpID, fear int, typeTarget, fraction string) []byte {
+	command := []byte{92}
+
+	_, ok := _const.MapBinItems[typeTarget]
+	if !ok {
+		fmt.Println("unknown type object: ", typeTarget)
+	}
+
+	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, game_math.GetIntBytes(ownerID)...)
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(corpID)...)
+	command = append(command, byte(_const.MapBinItems[typeTarget]))
+	command = append(command, game_math.GetIntBytes(currentTargetID)...)
+	command = append(command, _const.FractionByte[fraction])
+	command = append(command, byte(ralation))
+	command = append(command, byte(fear))
+
+	return command
+}

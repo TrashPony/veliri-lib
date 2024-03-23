@@ -194,6 +194,8 @@ var MapBinItems = map[string]int{
 	"mark":            11,
 	"rope_element":    12,
 	"base":            13,
+	"map":             14,
+	"":                15,
 }
 
 var FractionByte = map[string]byte{
