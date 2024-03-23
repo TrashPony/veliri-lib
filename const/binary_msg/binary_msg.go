@@ -1047,7 +1047,7 @@ func TargetInfo(unitID, ownerID, currentTargetID, x, y, ralation, corpID, fear i
 	command = append(command, byte(_const.MapBinItems[typeTarget]))
 	command = append(command, game_math.GetIntBytes(currentTargetID)...)
 	command = append(command, _const.FractionByte[fraction])
-	command = append(command, byte(ralation))
+	command = append(command, game_math.GetIntBytes(ralation)...)
 	command = append(command, byte(fear))
 
 	return command
