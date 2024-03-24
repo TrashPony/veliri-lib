@@ -17,8 +17,8 @@ type SpecialHostile struct {
 	UUID       string                     `json:"uuid"`
 	ID         int                        `json:"id"`
 	Type       string                     `json:"type"`
-	Points     int                        `json:"points"`         // коротковременная память
-	Moderate   map[string]*PointsModerate `json:"pointsModerate"` // долговременная память
+	Points     int                        `json:"points"`          // коротковременная память
+	Moderate   map[string]*PointsModerate `json:"points_moderate"` // долговременная память
 	LastUpdate int64                      `json:"last_update"`
 	mx         sync.RWMutex
 }

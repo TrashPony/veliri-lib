@@ -1038,12 +1038,12 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 
 var ProductsDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
-		"industrial_materials":      {ID: 0, Name: "Industrial materials", Description: "Industrial Materials - Recycled and ready-to-use compiled raw materials for general use."},
-		"general_purpose_equipment": {ID: 0, Name: "General purpose equipment", Description: "General purpose equipment - spare parts, components, motors, mounting amplifiers, electronic connectors and other commodities necessary for machine production."},
-		"energy_storage":            {ID: 0, Name: "Energy storage", Description: "Energy storage - installations for the conservation and transmission of electricity to networks, as well as large infrastructure facilities."},
-		"weapon_parts":              {ID: 0, Name: "Weapon parts", Description: "Weapon parts are disassembled modules that can later be used in weapons production or in barter transactions."},
-		"technological_maps":        {ID: 0, Name: "Technological maps", Description: "Technological maps are digital schemes that are used in the development of experimental samples of technologies or data storage."},
-		"subatomic_composites":      {ID: 0, Name: "Subatomic composites", Description: "Subatomic composites are an indispensable, expensive and critical component in the production of energy-storage “subatomic cells”."},
+		"industrial_materials":      {Name: "Industrial materials", Description: "Industrial Materials - Recycled and ready-to-use compiled raw materials for general use."},
+		"general_purpose_equipment": {Name: "General purpose equipment", Description: "General purpose equipment - spare parts, components, motors, mounting amplifiers, electronic connectors and other commodities necessary for machine production."},
+		"energy_storage":            {Name: "Energy storage", Description: "Energy storage - installations for the conservation and transmission of electricity to networks, as well as large infrastructure facilities."},
+		"weapon_parts":              {Name: "Weapon parts", Description: "Weapon parts are disassembled modules that can later be used in weapons production or in barter transactions."},
+		"technological_maps":        {Name: "Technological maps", Description: "Technological maps are digital schemes that are used in the development of experimental samples of technologies or data storage."},
+		"subatomic_composites":      {Name: "Subatomic composites", Description: "Subatomic composites are an indispensable, expensive and critical component in the production of energy-storage “subatomic cells”."},
 		"civilian_weapon":           {Name: "Civilian weapon", Description: "Patterns of an easy-to-emergent manifestation, often an integral part of uprisings and the activity of pirate clusters."},
 		"neutrino_processors":       {Name: "Neutrino processors", Description: "Experimental overclocking modules of an evaluative-analytical nature, often without the use of safety locks, leading to the melting of the synaptic nucleus."},
 		"fox_crystals":              {Name: "Fox crystals", Description: "An officially uncommissioned fuel analog of the Synthet power plant. The consequences are not fully understood."},
