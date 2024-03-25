@@ -4,7 +4,7 @@ type DialogRequest struct {
 	UUID         string              `json:"uuid"`
 	Type         string              `json:"type"`
 	Event        string              `json:"event"`
-	Text         map[string]string   `json:"text"`
+	Texts        []map[string]string `json:"texts"`
 	From         int                 `json:"from"` // unit id
 	To           int                 `json:"to"`   // unit id
 	Target       int                 `json:"target"`

@@ -1527,6 +1527,59 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Сообществу Reverses стали известны следующие детали войны: силы двух сторон <span class=\\\"importantly\\\">%FRACTION_1%</span> и <span class=\\\"importantly\\\">%FRACTION_2%</span> прямо сейчас начали боевые действия за овладение сектором <span class=\\\"importantly\\\">%MAP_NAME_1%</span>. Как и прежде, сообщество Reverses предупреждает, что гражданские синтеты, должны избегать секторов, в которых ведутся боевые действия между фракциями.",
 		_const.EN: "english translate",
 	},
+	// leave_alone_request
+	"leave_alone_request_1": {
+		_const.RU: "Оставь %TARGET_NAME%? в покое иначе тебе придется иметь дело со мной!",
+		_const.EN: "english translate",
+	},
+	"leave_alone_complete_1_1": {
+		_const.RU: "Так и быть пусть живет.",
+		_const.EN: "english translate",
+	},
+	"leave_alone_complete_1_2": {
+		_const.RU: "Ну раз ты так просишь...",
+		_const.EN: "english translate",
+	},
+	"leave_alone_complete_2_1": {
+		_const.RU: "А я и не его трогаю",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_1_1": {
+		_const.RU: "<span class=\"importantly\">Трансляция белого шума.</span>",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_1_2": {
+		_const.RU: "<span class=\"importantly\">Помехи. Невозможно установить связь.</span>",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_2_1": {
+		_const.RU: "Ты мне не угроза %FROM_USER_NAME%!",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_3_1": {
+		_const.RU: "Ты мне нравишся %FROM_USER_NAME% и слушай я тебя не стану!",
+		_const.EN: "english translate",
+	},
+	"fauna_1_1": {
+		_const.RU: "<span class=\"importantly\">*чпок*</span>, *щелк*?",
+		_const.EN: "english translate",
+	},
+	"fauna_1_2": {
+		_const.RU: "*клац* <span class=\"importantly\">*клац*</span>",
+		_const.EN: "english translate",
+	},
+	"fauna_1_3": {
+		_const.RU: "*щелк* <span class=\"importantly\">*клац*</span> *щелк*",
+		_const.EN: "english translate",
+	},
+	"fauna_1_4": {
+		_const.RU: "<span class=\"importantly\">*ВЖУУУУУУУУУУУУХ*</span>?",
+		_const.EN: "english translate",
+	},
+	"fauna_1_5": {
+		_const.RU: "<span class=\"importantly\">*ШЦ*</span>",
+		_const.EN: "english translate",
+	},
 }
 
 func GetDialogTypes(typeDialog string) map[string]string {

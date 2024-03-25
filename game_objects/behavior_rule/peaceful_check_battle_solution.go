@@ -20,28 +20,29 @@ func peacefulCheckBattleSolution(backRules *BehaviorRule) *BehaviorRule {
 					Percent:   true,
 				},
 				PassRule: &BehaviorRule{
-					Action: "send_npc_request",
-					Meta:   &Meta{Type: "attack"},
-					PassRule: &BehaviorRule{
-						Action:   "send_npc_request",
-						Meta:     &Meta{Type: "defend"},
-						PassRule: backRules,
-					},
+					Action:   "send_npc_request",
+					Meta:     &Meta{Type: "attack"},
+					PassRule: backRules,
 				},
 				StopRule: &BehaviorRule{
-					Action: "send_npc_request",
-					Meta:   &Meta{Type: "attack"},
-					PassRule: &BehaviorRule{
-						Action:   "send_npc_request",
-						Meta:     &Meta{Type: "defend"},
-						PassRule: backRules,
-					},
+					Action:   "send_npc_request",
+					Meta:     &Meta{Type: "defend"},
+					PassRule: backRules,
 				},
 			},
 			StopRule: &BehaviorRule{
-				Action: "send_npc_request",
-				Meta:   &Meta{Type: "attack"},
+				Action: "check_hp",
+				Meta: &Meta{
+					Parameter: "HP",
+					Count:     50,
+					Percent:   true,
+				},
 				PassRule: &BehaviorRule{
+					Action:   "send_npc_request",
+					Meta:     &Meta{Type: "attack"},
+					PassRule: backRules,
+				},
+				StopRule: &BehaviorRule{
 					Action:   "send_npc_request",
 					Meta:     &Meta{Type: "defend"},
 					PassRule: backRules,
