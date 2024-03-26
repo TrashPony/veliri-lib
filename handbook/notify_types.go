@@ -49,7 +49,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Ха! Ищи дурака! А вдруг ты просто желаешь меня ограбить? Или... ещё чего другого? Так я на это и повёлся.",
 		_const.EN: "english translate",
 	},
-	"help_busy_3": {
+	"help_busy_3_": {
 		_const.RU: "Э-э, что-то ты выглядишь слишком подозрительным! Ну уж нет.",
 		_const.EN: "english translate",
 	},
@@ -105,7 +105,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "<span class=\"importantly\">333./444-55,16?</span>",
 		_const.EN: "english translate",
 	},
-	"help_busy_8": {
+	"help_busy_8_": {
 		_const.RU: "Ещё чего! Я не стану себя подвергать угрозе.",
 		_const.EN: "english translate",
 	},
@@ -151,6 +151,10 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"help_busy_10_4": {
 		_const.RU: "Здесь неподалёку идёт трансляция сигнала бедствия. Я следую туда по спасательной миссии.",
+		_const.EN: "english translate",
+	},
+	"help_busy_11_4": {
+		_const.RU: "Ты должно быть шутишь?",
 		_const.EN: "english translate",
 	},
 	"help_complete_1": {
@@ -316,7 +320,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.EN: "english translate",
 	},
 	"make_friends_do_pay_5": {
-		_const.RU: "Это фирменный грабёж! Я на такое согласиться ну никак не могу.",
+		_const.RU: "Ясно, что с тобой шутки плохи. Перечисляю %CREDITS_COUNT%. cr.",
 		_const.EN: "english translate",
 	},
 	"make_friends_success_pay_1": {
@@ -339,24 +343,36 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Молодец. Хвалю. Ты всё понял и сделал действительно верный выбор. Эти %CREDITS_COUNT% cr. я потрачу с умом. Могу даже отчёт как-нибудь прислать.",
 		_const.EN: "english translate",
 	},
-	"make_friends_fail_pay_1": {
+	"make_friends_fail_pay_1_1": {
 		_const.RU: "Нет. Мои деньги останутся только при мне!",
 		_const.EN: "english translate",
 	},
-	"make_friends_fail_pay_2": {
+	"make_friends_fail_pay_1_2": {
 		_const.RU: "Да нисколько ты не получишь!",
 		_const.EN: "english translate",
 	},
-	"make_friends_fail_pay_3": {
+	"make_friends_fail_pay_1_3": {
 		_const.RU: "Я что, такие суммы тебе скомбинировать должен? Мой ответ - не будет тебе такого частья!",
 		_const.EN: "english translate",
 	},
-	"make_friends_fail_pay_4": {
+	"make_friends_fail_pay_1_4": {
 		_const.RU: "А до меня кто-то на такое соглашался? Вот и я пожалуй откажусь тебе платить.",
 		_const.EN: "english translate",
 	},
-	"make_friends_fail_pay_5": {
-		_const.RU: "Ясно, что с тобой шутки плохи. Перечисляю %CREDITS_COUNT%. cr.",
+	"make_friends_fail_pay_1_5": {
+		_const.RU: "Это фирменный грабёж! Я на такое согласиться ну никак не могу.",
+		_const.EN: "english translate",
+	},
+	"make_friends_fail_pay_2_1": {
+		_const.RU: "Я тебе что из воздуха должен достать средства? Сам-то подумай!",
+		_const.EN: "english translate",
+	},
+	"make_friends_fail_pay_2_2": {
+		_const.RU: "Очень жаль, но у меня ничего не осталось. Тебе должно быть грустно, а?",
+		_const.EN: "english translate",
+	},
+	"make_friends_fail_pay_2_3": {
+		_const.RU: "А да? Как жалко, что я тебе больше заплатить не могу. Так ведь хотелось.",
 		_const.EN: "english translate",
 	},
 	"make_friends_failed_pay_1": {
@@ -380,6 +396,16 @@ var dialogTypes = map[string]map[string]string{
 		_const.EN: "english translate",
 	},
 
+	"make_friends_failed_no_pay_1": {
+		_const.RU: "Значит, ты выбрал смерть.",
+		_const.EN: "english translate",
+	},
+
+	// PAY MANY
+	"pay_many_failed_pay_1_1": {
+		_const.RU: "Маловато будет!",
+		_const.EN: "english translate",
+	},
 	// DROP_CARGO
 	"drop_cargo_request_1": {
 		_const.RU: "Оп-па, пришло время %TO_USER_NAME% немного расстаться с тяжким бременем. Бросай свой груз и сам уцелеешь!",
@@ -481,6 +507,14 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Это нечестно! Всему должна быть своя мера.",
 		_const.EN: "english translate",
 	},
+	"drop_cargo_no_6_1": {
+		_const.RU: "Сейчас я тебя граблю, ты давай в следующий раз.",
+		_const.EN: "english translate",
+	},
+	"drop_cargo_no_7_1": {
+		_const.RU: "Ты не в том положение что бы что то требовать!",
+		_const.EN: "english translate",
+	},
 	"drop_cargo_complete_1": {
 		_const.RU: "Ладно-ладно, уговорил! Только не трогай меня.",
 		_const.EN: "english translate",
@@ -502,6 +536,32 @@ var dialogTypes = map[string]map[string]string{
 		_const.EN: "english translate",
 	},
 	"drop_cargo_complete_6": {
+		_const.RU: "Ваши претензии распознаны и ради сохранения целостности собственного корпуса - будут удовлетворены. Шлюзы открыты, груз оставлен.",
+		_const.EN: "english translate",
+	},
+
+	"drop_cargo_answer_complete_1_1": {
+		_const.RU: "Как неожиданно и приятно!",
+		_const.EN: "english translate",
+	},
+	"drop_cargo_answer_complete_1_2": {
+		_const.RU: "А вот это совсем другой разговор.",
+		_const.EN: "english translate",
+	},
+	"drop_cargo_answer_complete_1_3": {
+		_const.RU: "Вот так бы и сразу. А то ещё думают по нескольку световых лет.",
+		_const.EN: "english translate",
+	},
+	"drop_cargo_answer_complete_1_4": {
+		_const.RU: "Хорошо, что всё кончилось именно так. И главное - никаких смертей.",
+		_const.EN: "english translate",
+	},
+
+	"drop_cargo_answer_failed_1_1": {
+		_const.RU: "Уверен что если ты захочешь то что нибудь найдешь!",
+		_const.EN: "english translate",
+	},
+	"drop_cargo_answer_failed_2_1": {
 		_const.RU: "Ваши претензии распознаны и ради сохранения целостности собственного корпуса - будут удовлетворены. Шлюзы открыты, груз оставлен.",
 		_const.EN: "english translate",
 	},
@@ -633,6 +693,14 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"robbery_no_7_3": {
 		_const.RU: "Подобное в свой адрес я слышу впервые. Должно быть вы неисправны?",
+		_const.EN: "english translate",
+	},
+	"robbery_no_8_1": {
+		_const.RU: "Сейчас я тебя граблю, ты давай в следующий раз.",
+		_const.EN: "english translate",
+	},
+	"robbery_no_9_1": {
+		_const.RU: "Ты не в том положение что бы что то требовать!",
 		_const.EN: "english translate",
 	},
 	"robbery_complete_1": {
@@ -875,7 +943,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "О-о-о, пойди проверься, ты же неисправен!",
 		_const.EN: "english translate",
 	},
-	"attack_target_no_8": {
+	"attack_target_no_8_": {
 		_const.RU: "Это невозможно. Я уже нахожусь в союзе с %TARGET_NAME%. Имей это ввиду, если затеешь нечто.",
 		_const.EN: "english translate",
 	},
@@ -909,6 +977,10 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"attack_target_no_11_2": {
 		_const.RU: "Я на задании.",
+		_const.EN: "english translate",
+	},
+	"attack_target_no_12_1": {
+		_const.RU: "Сначала я разберусь с тобой!",
 		_const.EN: "english translate",
 	},
 	"attack_target_complete_1": {
@@ -1558,6 +1630,14 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"leave_alone_no_3_1": {
 		_const.RU: "Ты мне нравишся %FROM_USER_NAME% и слушай я тебя не стану!",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_4_1": {
+		_const.RU: "Мне не нужна твоя добыча. Мне нужен ты!",
+		_const.EN: "english translate",
+	},
+	"leave_alone_no_5_1": {
+		_const.RU: "Не мешай мне выполнять мою работу.",
 		_const.EN: "english translate",
 	},
 	"fauna_1_1": {

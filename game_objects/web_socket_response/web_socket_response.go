@@ -25,6 +25,7 @@ type Response struct {
 	CheckView         bool        `json:"-"`
 	RadarIsView       bool        `json:"-"`
 	NodeName          string      `json:"-"`
+	ExcludePlayerID   int         `json:"-"`
 }
 
 type ResponsesStore struct {
