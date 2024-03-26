@@ -13,7 +13,7 @@ type DialogRequest struct {
 	ToUser       int                 `json:"to_user"`
 	ToUserName   string              `json:"to_user_name"`
 	TargetUser   int                 `json:"target_user"`
-	Success      bool                `json:"success"`
+	Success      int                 `json:"success"`
 	Time         int64               `json:"time,omitempty"` // unix utc
 	NeedAnswer   bool                `json:"need_answer"`
 	NeedCredit   int                 `json:"need_credit"`

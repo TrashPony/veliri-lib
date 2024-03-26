@@ -157,6 +157,10 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Ты должно быть шутишь?",
 		_const.EN: "english translate",
 	},
+	"help_busy_12_1": {
+		_const.RU: "Сейчас я участвую в бою. Обратитесь позже!",
+		_const.EN: "english translate",
+	},
 	"help_complete_1": {
 		_const.RU: "Хм. Ладно, но я внимательно за тобой слежу. Впереди, кстати, будешь ты!",
 		_const.EN: "english translate",
@@ -981,6 +985,10 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"attack_target_no_12_1": {
 		_const.RU: "Сначала я разберусь с тобой!",
+		_const.EN: "english translate",
+	},
+	"attack_target_no_13_1": {
+		_const.RU: "Я занят другой целью!",
 		_const.EN: "english translate",
 	},
 	"attack_target_complete_1": {
