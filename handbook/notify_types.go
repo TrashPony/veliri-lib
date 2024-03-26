@@ -991,6 +991,10 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Я занят другой целью!",
 		_const.EN: "english translate",
 	},
+	"attack_target_no_14_1": {
+		_const.RU: "Я уже его преследую, присоединяйся!",
+		_const.EN: "english translate",
+	},
 	"attack_target_complete_1": {
 		_const.RU: "А что, я согласен! Была ни была!",
 		_const.EN: "english translate",
