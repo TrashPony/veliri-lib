@@ -519,6 +519,10 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Ты не в том положение что бы что то требовать!",
 		_const.EN: "english translate",
 	},
+	"drop_cargo_no_8_1": {
+		_const.RU: "Похоже ты сейчас не дееспособен, как ты собрался меня пугать?",
+		_const.EN: "english translate",
+	},
 	"drop_cargo_complete_1": {
 		_const.RU: "Ладно-ладно, уговорил! Только не трогай меня.",
 		_const.EN: "english translate",
@@ -705,6 +709,10 @@ var dialogTypes = map[string]map[string]string{
 	},
 	"robbery_no_9_1": {
 		_const.RU: "Ты не в том положение что бы что то требовать!",
+		_const.EN: "english translate",
+	},
+	"robbery_no_10_1": {
+		_const.RU: "Сначала выйди из стазиса, а потом уже требуй что либо.",
 		_const.EN: "english translate",
 	},
 	"robbery_complete_1": {

@@ -4,6 +4,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"math"
 	"sync"
@@ -59,13 +60,17 @@ type Bullet struct {
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`
 
-	ForceExplosion      bool           `json:"-"`
-	AutoActivate        bool           `json:"-"`
-	DetonationDistance  int            `json:"-"`
-	DetonationTimeOut   int            `json:"detonation_time_out"`
-	Attributes          map[string]int `json:"-"`
-	ObjectID            int            `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
-	DetonationForceView bool           `json:"-"` // все видят взрыв, независимо от тумана войны
+	ForceExplosion      bool            `json:"-"`
+	AutoActivate        bool            `json:"-"`
+	DetonationDistance  int             `json:"-"`
+	DetonationTimeOut   int             `json:"detonation_time_out"`
+	Attributes          map[string]int  `json:"-"`
+	ObjectID            int             `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
+	DetonationForceView bool            `json:"-"` // все видят взрыв, независимо от тумана войны
+	MapItem             *inventory.Slot `json:"-"`
+
+	BodyRotateValue int // что бы на фронте пуля имела положение тела не по направлению а по значению
+	BodyRotate      bool
 
 	ghost      bool
 	stopTimeMS int
@@ -167,7 +172,12 @@ func (b *Bullet) GetJSON(mapTime int64) []byte {
 	command = append(command, game_math.GetIntBytes(b.GetX())...)
 	command = append(command, game_math.GetIntBytes(b.GetY())...)
 	command = append(command, game_math.GetIntBytes(int(b.GetZ()))...)
-	command = append(command, game_math.GetIntBytes(int(b.GetRotate()))...)
+
+	if b.BodyRotate {
+		command = append(command, game_math.GetIntBytes(b.BodyRotateValue)...)
+	} else {
+		command = append(command, game_math.GetIntBytes(int(b.GetRotate()))...)
+	}
 
 	b.CacheJson = command
 	b.CreateJsonTime = mapTime
