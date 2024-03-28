@@ -15,6 +15,7 @@ type MapItem struct {
 	MapID          int    `json:"map_id"`
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`
+	LifeTime       int64  `json:"-"`
 	inv            *inventory.Inventory
 	physicalModel  *physical_model.PhysicalModel
 }
