@@ -2,6 +2,7 @@ package reservoir
 
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"strconv"
 	"sync"
@@ -31,8 +32,9 @@ type Reservoir struct {
 	// все пользователи которые добывают эту руду отображаются тут [user_id] progress_points
 	// progress_points - % завершения циклы добычи
 	miningUsers    map[int]float64
-	CacheJson      []byte `json:"-"`
-	CreateJsonTime int64  `json:"-"`
+	CacheJson      []byte       `json:"-"`
+	CreateJsonTime int64        `json:"-"`
+	ToPath         move_path.To `json:"-"`
 
 	mx sync.RWMutex
 }

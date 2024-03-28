@@ -10,6 +10,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
+	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/special_hostiles"
@@ -136,6 +137,7 @@ type Object struct {
 	NoAutoDestroy           bool `json:"-"`
 	gunner                  *gunner.Gunner
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
+	ToPath                  move_path.To                 `json:"-"`
 	mx                      sync.RWMutex
 }
 

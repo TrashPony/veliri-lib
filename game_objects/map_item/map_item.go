@@ -5,17 +5,19 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
+	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 )
 
 type MapItem struct {
-	ID             int    `json:"id"`
-	ItemID         int    `json:"item_id"`
-	ItemType       string `json:"item_type"`
-	MapID          int    `json:"map_id"`
-	CacheJson      []byte `json:"-"`
-	CreateJsonTime int64  `json:"-"`
-	LifeTime       int64  `json:"-"`
+	ID             int          `json:"id"`
+	ItemID         int          `json:"item_id"`
+	ItemType       string       `json:"item_type"`
+	MapID          int          `json:"map_id"`
+	CacheJson      []byte       `json:"-"`
+	CreateJsonTime int64        `json:"-"`
+	LifeTime       int64        `json:"-"`
+	ToPath         move_path.To `json:"-"`
 	inv            *inventory.Inventory
 	physicalModel  *physical_model.PhysicalModel
 }
