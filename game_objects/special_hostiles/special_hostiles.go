@@ -34,6 +34,11 @@ func (s *SpecialHostiles) RangeHostiles() <-chan *SpecialHostile {
 	return ch
 }
 
+func (s *SpecialHostiles) UnsafeRangeHostiles() (map[string]*SpecialHostile, *sync.RWMutex) {
+	s.mx.RLock()
+	return s.specialHostiles, &s.mx
+}
+
 func (s *SpecialHostiles) getHostile(typeHostile string, id int) *SpecialHostile {
 
 	if typeHostile == "meteorite" {

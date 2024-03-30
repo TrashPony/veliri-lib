@@ -2,7 +2,6 @@ package target
 
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
-	"github.com/getlantern/deepcopy"
 	"time"
 )
 
@@ -72,13 +71,8 @@ func (t *Target) SetUpdate() {
 }
 
 func (t *Target) GetCopy() *Target {
-	copyTarget := &Target{}
-	err := deepcopy.Copy(copyTarget, t)
-	if err != nil {
-		return nil
-	}
-
-	return copyTarget
+	copyTarget := *t
+	return &copyTarget
 }
 
 // todo костыль

@@ -81,6 +81,14 @@ func (s *Squad) RangeHostiles() <-chan *special_hostiles.SpecialHostile {
 	return s.specialHostiles.RangeHostiles()
 }
 
+func (s *Squad) UnsafeRangeHostiles() (map[string]*special_hostiles.SpecialHostile, *sync.RWMutex) {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	return s.specialHostiles.UnsafeRangeHostiles()
+}
+
 func (s *Squad) AddIgnoreHostile(typeHostile string, id int) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
