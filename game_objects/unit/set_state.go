@@ -5,35 +5,35 @@ import (
 	"sync/atomic"
 )
 
-func (unit *Unit) SetPower(power int) {
-	unit.Power = power
+func (u *Unit) SetPower(power int) {
+	u.Power = power
 }
 
-func (unit *Unit) SetDamage(damage, k, t, e int) int {
+func (u *Unit) SetDamage(damage, k, t, e int) int {
 
 	kDamage := float64(damage) * (float64(k) / 100.0)
 	tDamage := float64(damage) * (float64(t) / 100.0)
 	eDamage := float64(damage) * (float64(e) / 100.0)
 
 	// влияние типа атаки на урон, за счет защиты корпуса
-	kDamage -= kDamage * float64(unit.GetProtection("kinetics")) / 100
+	kDamage -= kDamage * float64(u.GetProtection("kinetics")) / 100
 	if kDamage < 0 {
 		kDamage = 0
 	}
 
-	tDamage -= tDamage * float64(unit.GetProtection("thermo")) / 100
+	tDamage -= tDamage * float64(u.GetProtection("thermo")) / 100
 	if tDamage < 0 {
 		tDamage = 0
 	}
 
-	eDamage -= eDamage * float64(unit.GetProtection("explosion")) / 100
+	eDamage -= eDamage * float64(u.GetProtection("explosion")) / 100
 	if eDamage < 0 {
 		eDamage = 0
 	}
 
 	damage = int(kDamage + tDamage + eDamage)
-	if damage > unit.GetHP() {
-		damage = unit.GetHP()
+	if damage > u.GetHP() {
+		damage = u.GetHP()
 	}
 
 	if damage <= 0 {
@@ -45,56 +45,56 @@ func (unit *Unit) SetDamage(damage, k, t, e int) int {
 		}
 	}
 
-	if !unit.Immortal {
-		unit.SetHP(unit.GetHP() - damage)
+	if !u.Immortal {
+		u.SetHP(u.GetHP() - damage)
 	}
 
 	return damage
 }
 
-func (unit *Unit) SetGunRotate(angle float64, slotNumber int) {
-	weaponSlot := unit.GetWeaponSlot(slotNumber)
+func (u *Unit) SetGunRotate(angle float64, slotNumber int) {
+	weaponSlot := u.GetWeaponSlot(slotNumber)
 	if weaponSlot != nil {
 		weaponSlot.SetGunRotate(angle)
 	}
 }
 
-func (unit *Unit) SetStateSenderPos(bool) {
+func (u *Unit) SetStateSenderPos(bool) {
 }
 
-func (unit *Unit) SetFollowExit(exit bool) {
-	unit.followExit = exit
+func (u *Unit) SetFollowExit(exit bool) {
+	u.followExit = exit
 }
 
-func (unit *Unit) SetEvacuation(evacuation bool) {
-	unit.evacuation = evacuation
-	if unit.evacuation {
-		unit.GetPhysicalModel().BlockControl = true
+func (u *Unit) SetEvacuation(evacuation bool) {
+	u.evacuation = evacuation
+	if u.evacuation {
+		u.GetPhysicalModel().BlockControl = true
 	} else {
-		unit.GetPhysicalModel().BlockControl = false
+		u.GetPhysicalModel().BlockControl = false
 	}
 }
 
-func (unit *Unit) SetForceEvacuation(evacuation bool) {
-	unit.forceEvacuation = evacuation
+func (u *Unit) SetForceEvacuation(evacuation bool) {
+	u.forceEvacuation = evacuation
 }
 
-func (unit *Unit) SetHP(hp int) {
-	unit.HP = hp
+func (u *Unit) SetHP(hp int) {
+	u.HP = hp
 }
 
-func (unit *Unit) SetMapID(id int) {
-	atomic.StoreInt32(&unit.MapID, int32(id))
+func (u *Unit) SetMapID(id int) {
+	atomic.StoreInt32(&u.MapID, int32(id))
 }
 
-func (unit *Unit) SetInSky(inSky bool) {
-	unit.inSky = inSky
+func (u *Unit) SetInSky(inSky bool) {
+	u.inSky = inSky
 }
 
-func (unit *Unit) SetOwnerID(id int) {
-	unit.OwnerID = id
+func (u *Unit) SetOwnerID(id int) {
+	u.OwnerID = id
 }
 
-func (unit *Unit) SetID(id int) {
-	unit.ID = id
+func (u *Unit) SetID(id int) {
+	u.ID = id
 }

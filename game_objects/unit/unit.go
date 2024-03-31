@@ -75,43 +75,52 @@ type Unit struct {
 	radarRange      int
 	police          bool
 	fractionWarrior bool
+	lights          bool
 	Role            string `json:"-"`
 }
 
-func (unit *Unit) Ghost() bool {
-	return unit.ghost
+func (u *Unit) SetLights(lights bool) {
+	u.lights = lights
 }
 
-func (unit *Unit) SetGhost(g bool) {
-	unit.ghost = g
+func (u *Unit) Lights() bool {
+	return u.lights
 }
 
-func (unit *Unit) SetPolice(p bool) {
-	unit.police = p
+func (u *Unit) Ghost() bool {
+	return u.ghost
 }
 
-func (unit *Unit) GetPolice() bool {
-	return unit.police
+func (u *Unit) SetGhost(g bool) {
+	u.ghost = g
 }
 
-func (unit *Unit) GetEffects() *effects_store.EffectsStore {
-	if unit.effects == nil {
-		unit.effects = &effects_store.EffectsStore{}
+func (u *Unit) SetPolice(p bool) {
+	u.police = p
+}
+
+func (u *Unit) GetPolice() bool {
+	return u.police
+}
+
+func (u *Unit) GetEffects() *effects_store.EffectsStore {
+	if u.effects == nil {
+		u.effects = &effects_store.EffectsStore{}
 	}
 
-	return unit.effects
+	return u.effects
 }
 
-func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
-	add := unit.GetEffects().AddEffect(newEffect)
+func (u *Unit) AddEffect(newEffect *effect.Effect) bool {
+	add := u.GetEffects().AddEffect(newEffect)
 	if add {
-		unit.UpdatePhysicalModel()
-		unit.UpdateWeaponsState()
+		u.UpdatePhysicalModel()
+		u.UpdateWeaponsState()
 
 		if newEffect.Parameter == "max_hp" && !newEffect.Percentages {
-			unit.HP += newEffect.Quantity
-			if unit.GetMaxHP() < unit.HP {
-				unit.HP = unit.GetMaxHP()
+			u.HP += newEffect.Quantity
+			if u.GetMaxHP() < u.HP {
+				u.HP = u.GetMaxHP()
 			}
 		}
 	}
@@ -119,16 +128,16 @@ func (unit *Unit) AddEffect(newEffect *effect.Effect) bool {
 	return add
 }
 
-func (unit *Unit) RemoveEffect(uuid string) bool {
-	remove, ef := unit.GetEffects().RemoveEffect(uuid)
+func (u *Unit) RemoveEffect(uuid string) bool {
+	remove, ef := u.GetEffects().RemoveEffect(uuid)
 	if remove {
-		unit.UpdatePhysicalModel()
-		unit.UpdateWeaponsState()
+		u.UpdatePhysicalModel()
+		u.UpdateWeaponsState()
 
 		if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
-			unit.HP -= ef.Quantity
-			if unit.HP < 1 {
-				unit.HP = 1
+			u.HP -= ef.Quantity
+			if u.HP < 1 {
+				u.HP = 1
 			}
 		}
 	}
@@ -145,17 +154,17 @@ func (u *Unit) Invisibility() bool {
 	return ok && quantity <= 0
 }
 
-func (unit *Unit) RemoveBySlot(slotType, slotNumber int) bool {
-	remove, remEffects := unit.GetEffects().RemoveBySlot(slotType, slotNumber)
+func (u *Unit) RemoveBySlot(slotType, slotNumber int) bool {
+	remove, remEffects := u.GetEffects().RemoveBySlot(slotType, slotNumber)
 	if remove {
-		unit.UpdatePhysicalModel()
-		unit.UpdateWeaponsState()
+		u.UpdatePhysicalModel()
+		u.UpdateWeaponsState()
 
 		for _, ef := range remEffects {
 			if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
-				unit.HP -= ef.Quantity
-				if unit.HP < 1 {
-					unit.HP = 1
+				u.HP -= ef.Quantity
+				if u.HP < 1 {
+					u.HP = 1
 				}
 			}
 		}
@@ -164,65 +173,65 @@ func (unit *Unit) RemoveBySlot(slotType, slotNumber int) bool {
 	return remove
 }
 
-func (unit *Unit) GetEffectByUUID(uuid string) *effect.Effect {
-	return unit.GetEffects().GetEffectByUUID(uuid)
+func (u *Unit) GetEffectByUUID(uuid string) *effect.Effect {
+	return u.GetEffects().GetEffectByUUID(uuid)
 }
 
-func (unit *Unit) GetGunner() *gunner.Gunner {
-	if unit.gunner == nil {
-		unit.initGunner()
+func (u *Unit) GetGunner() *gunner.Gunner {
+	if u.gunner == nil {
+		u.initGunner()
 	}
 
-	return unit.gunner
+	return u.gunner
 }
 
-func (unit *Unit) initGunner() {
-	unit.gunner = &gunner.Gunner{
-		GunUser:          unit,
+func (u *Unit) initGunner() {
+	u.gunner = &gunner.Gunner{
+		GunUser:          u,
 		WeaponSlotsState: make([]*gunner.WeaponSlotState, 0),
 	}
 
-	unit.UpdateWeaponsState()
+	u.UpdateWeaponsState()
 }
 
-func (unit *Unit) UpdateViewState() {
-	unit.viewRange = unit.getRangeView()
-	unit.radarRange = unit.getRadarRange()
+func (u *Unit) UpdateViewState() {
+	u.viewRange = u.getRangeView()
+	u.radarRange = u.getRadarRange()
 }
 
-func (unit *Unit) UpdateWeaponsState() {
-	if unit.gunner == nil {
-		unit.initGunner()
+func (u *Unit) UpdateWeaponsState() {
+	if u.gunner == nil {
+		u.initGunner()
 	}
 
-	unit.viewRange = unit.getRangeView()
-	unit.radarRange = unit.getRadarRange()
+	u.viewRange = u.getRangeView()
+	u.radarRange = u.getRadarRange()
 
-	unit.gunner.WeaponSlotsState = make([]*gunner.WeaponSlotState, 0)
-	for _, wSlot := range unit.RangeWeaponSlots() {
+	u.gunner.WeaponSlotsState = make([]*gunner.WeaponSlotState, 0)
+	for _, wSlot := range u.RangeWeaponSlots() {
 
 		slotState := &gunner.WeaponSlotState{
 			Number: wSlot.Number,
 		}
 
 		if wSlot.Weapon != nil {
-			slotState.Accuracy = unit.getGunAccuracy(wSlot.Number)
-			slotState.RotateSpeed = unit.getGunRotateSpeed(wSlot.Number)
-			slotState.ReloadTime = unit.getWeaponReloadTime(wSlot.Number)
-			slotState.ReloadAmmoTime = unit.getWeaponAmmoReloadTime(wSlot.Number)
+			slotState.Accuracy = u.getGunAccuracy(wSlot.Number)
+			slotState.RotateSpeed = u.getGunRotateSpeed(wSlot.Number)
+			slotState.ReloadTime = u.getWeaponReloadTime(wSlot.Number)
+			slotState.ReloadAmmoTime = u.getWeaponAmmoReloadTime(wSlot.Number)
 		}
 
 		if wSlot.Ammo != nil {
-			slotState.MaxDamage = unit.getMaxDamage(wSlot.Number)
-			slotState.MinDamage = unit.getMinDamage(wSlot.Number)
+			slotState.MaxDamage = u.getMaxDamage(wSlot.Number)
+			slotState.MinDamage = u.getMinDamage(wSlot.Number)
 		}
 
-		unit.gunner.WeaponSlotsState = append(unit.gunner.WeaponSlotsState, slotState)
+		u.gunner.WeaponSlotsState = append(u.gunner.WeaponSlotsState, slotState)
 	}
 }
 
-func (unit *Unit) GetMovePathTime() int64 {
-	mp := unit.movePath
+func (u *Unit) GetMovePathTime() int64 {
+	mp := u.movePath
 	if mp == nil || !mp.GetNeedCalc() {
 		return time.Now().UnixNano() + int64(time.Hour)
 	}
@@ -230,8 +239,8 @@ func (unit *Unit) GetMovePathTime() int64 {
 	return mp.GetMovePathTime()
 }
 
-func (unit *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
-	mp := unit.movePath
+func (u *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
+	mp := u.movePath
 	if mp == nil {
 		return false, "", 0, nil, nil, 0, false, 0
 	}
@@ -239,8 +248,8 @@ func (unit *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]
 	return mp.GetMovePathState()
 }
 
-func (unit *Unit) NextMovePoint() {
-	mp := unit.movePath
+func (u *Unit) NextMovePoint() {
+	mp := u.movePath
 	if mp == nil {
 		return
 	}
@@ -248,19 +257,19 @@ func (unit *Unit) NextMovePoint() {
 	mp.NextMovePoint()
 }
 
-func (unit *Unit) SetFindMovePath() {
-	mp := unit.movePath
+func (u *Unit) SetFindMovePath() {
+	mp := u.movePath
 	if mp != nil {
 		mp.SetFindMovePath()
 	}
 }
 
-func (unit *Unit) RemoveMovePath() {
-	unit.movePath = nil
+func (u *Unit) RemoveMovePath() {
+	u.movePath = nil
 }
 
-func (unit *Unit) SetMovePath(path *[]*coordinate.Coordinate) {
-	mp := unit.movePath
+func (u *Unit) SetMovePath(path *[]*coordinate.Coordinate) {
+	mp := u.movePath
 	if mp == nil {
 		return
 	}
@@ -268,16 +277,16 @@ func (unit *Unit) SetMovePath(path *[]*coordinate.Coordinate) {
 	mp.SetMovePath(path)
 }
 
-func (unit *Unit) SetMovePathTarget(t *target.Target) {
+func (u *Unit) SetMovePathTarget(t *target.Target) {
 	mp := &move_path.MovePath{}
-	mp.SetMovePathTarget(t, unit.GetOwnerPlayerID(), unit.ID)
-	unit.movePath = mp
+	mp.SetMovePathTarget(t, u.GetOwnerPlayerID(), u.ID)
+	u.movePath = mp
 }
 
-func (unit *Unit) SetMovePathAngle(angle float64) {
+func (u *Unit) SetMovePathAngle(angle float64) {
 	mp := &move_path.MovePath{}
-	mp.SetMovePathAngle(angle, unit.GetOwnerPlayerID(), unit.ID)
-	unit.movePath = mp
+	mp.SetMovePathAngle(angle, u.GetOwnerPlayerID(), u.ID)
+	u.movePath = mp
 }
 
 type Damage struct {
@@ -378,100 +387,100 @@ func (u *Unit) GetAllDamage() map[int]int {
 	return r
 }
 
-func (unit *Unit) GetPhysicalModel() *physical_model.PhysicalModel {
+func (u *Unit) GetPhysicalModel() *physical_model.PhysicalModel {
 
-	if unit.physicalModel == nil {
-		unit.initPhysicalModel() // инициируем по умолчания, и ток в методе UpdatePhysicalModel уже докидываем скилы и тд
+	if u.physicalModel == nil {
+		u.initPhysicalModel() // инициируем по умолчания, и ток в методе UpdatePhysicalModel уже докидываем скилы и тд
 	}
 
-	return unit.physicalModel
+	return u.physicalModel
 }
 
-func (unit *Unit) LockedControl() bool {
-	return unit.lockedControl
+func (u *Unit) LockedControl() bool {
+	return u.lockedControl
 }
 
-func (unit *Unit) SetLockedControl(l bool) {
-	unit.lockedControl = l
+func (u *Unit) SetLockedControl(l bool) {
+	u.lockedControl = l
 }
 
-func (unit *Unit) UpdatePhysicalModel() {
+func (u *Unit) UpdatePhysicalModel() {
 
-	if unit.physicalModel == nil {
-		unit.initPhysicalModel() // инициируем по умолчания, и ток в методе UpdatePhysicalModel уже докидываем скилы и тд
+	if u.physicalModel == nil {
+		u.initPhysicalModel() // инициируем по умолчания, и ток в методе UpdatePhysicalModel уже докидываем скилы и тд
 	}
 
-	unit.physicalModel.ID = unit.ID
-	unit.physicalModel.Speed = unit.GetMoveMaxPower() / _const.ServerTickSecPart
-	unit.physicalModel.ReverseSpeed = unit.GetMaxReverse() / _const.ServerTickSecPart
-	unit.physicalModel.PowerFactor = unit.GetPowerFactor() / _const.ServerTickSecPart
-	unit.physicalModel.ReverseFactor = unit.GetReverseFactor() / _const.ServerTickSecPart
-	unit.physicalModel.TurnSpeed = unit.GetTurnSpeed() / _const.ServerTickSecPart
-	unit.physicalModel.Weight = unit.GetWeight()
+	u.physicalModel.ID = u.ID
+	u.physicalModel.Speed = u.GetMoveMaxPower() / _const.ServerTickSecPart
+	u.physicalModel.ReverseSpeed = u.GetMaxReverse() / _const.ServerTickSecPart
+	u.physicalModel.PowerFactor = u.GetPowerFactor() / _const.ServerTickSecPart
+	u.physicalModel.ReverseFactor = u.GetReverseFactor() / _const.ServerTickSecPart
+	u.physicalModel.TurnSpeed = u.GetTurnSpeed() / _const.ServerTickSecPart
+	u.physicalModel.Weight = u.GetWeight()
 }
 
-func (unit *Unit) initPhysicalModel() {
-	unit.physicalModel = &physical_model.PhysicalModel{
-		Speed:         unit.GetMoveMaxPower() / _const.ServerTickSecPart,
-		ReverseSpeed:  unit.GetMaxReverse() / _const.ServerTickSecPart,
-		PowerFactor:   unit.GetPowerFactor() / _const.ServerTickSecPart,
-		ReverseFactor: unit.GetReverseFactor() / _const.ServerTickSecPart,
-		TurnSpeed:     unit.GetTurnSpeed() / _const.ServerTickSecPart,
-		MoveDrag:      unit.GetBody().MoveDrag,
-		AngularDrag:   unit.GetBody().AngularDrag,
-		Weight:        float64(unit.GetBody().CapacitySize),
+func (u *Unit) initPhysicalModel() {
+	u.physicalModel = &physical_model.PhysicalModel{
+		Speed:         u.GetMoveMaxPower() / _const.ServerTickSecPart,
+		ReverseSpeed:  u.GetMaxReverse() / _const.ServerTickSecPart,
+		PowerFactor:   u.GetPowerFactor() / _const.ServerTickSecPart,
+		ReverseFactor: u.GetReverseFactor() / _const.ServerTickSecPart,
+		TurnSpeed:     u.GetTurnSpeed() / _const.ServerTickSecPart,
+		MoveDrag:      u.GetBody().MoveDrag,
+		AngularDrag:   u.GetBody().AngularDrag,
+		Weight:        float64(u.GetBody().CapacitySize),
 		Type:          "unit",
-		ID:            unit.GetID(),
-		ChassisType:   unit.body.ChassisType,
-		MoveDestroyer: unit.body.Fraction == _const.FAUNA,
+		ID:            u.GetID(),
+		ChassisType:   u.body.ChassisType,
+		MoveDestroyer: u.body.Fraction == _const.FAUNA,
 	}
 
 	// применяем настройки размера к обьектам колизий
-	sizeOffset := float64(unit.GetBody().Scale) / 100
-	unit.physicalModel.Height = float64(unit.GetBody().Height) * sizeOffset
-	unit.physicalModel.Length = float64(unit.GetBody().Length) * sizeOffset
-	unit.physicalModel.Width = float64(unit.GetBody().Width) * sizeOffset
-	unit.physicalModel.Radius = int(float64(unit.GetBody().Radius) * sizeOffset)
+	sizeOffset := float64(u.GetBody().Scale) / 100
+	u.physicalModel.Height = float64(u.GetBody().Height) * sizeOffset
+	u.physicalModel.Length = float64(u.GetBody().Length) * sizeOffset
+	u.physicalModel.Width = float64(u.GetBody().Width) * sizeOffset
+	u.physicalModel.Radius = int(float64(u.GetBody().Radius) * sizeOffset)
 }
 
-func (unit *Unit) GetCopyPhysicalModel() *physical_model.PhysicalModel {
-	origPH := unit.GetPhysicalModel()
+func (u *Unit) GetCopyPhysicalModel() *physical_model.PhysicalModel {
+	origPH := u.GetPhysicalModel()
 	pm := *origPH
 	return &pm
 }
 
-func (unit *Unit) LockDamage() {
-	unit.damageMX.Lock()
+func (u *Unit) LockDamage() {
+	u.damageMX.Lock()
 }
 
-func (unit *Unit) UnlockDamage() {
-	unit.damageMX.Unlock()
+func (u *Unit) UnlockDamage() {
+	u.damageMX.Unlock()
 }
 
-func (unit *Unit) SetAllGunRotate(addRotate float64) {
-	for _, weaponSlot := range unit.getBody().Weapons {
+func (u *Unit) SetAllGunRotate(addRotate float64) {
+	for _, weaponSlot := range u.getBody().Weapons {
 		if weaponSlot != nil {
 			weaponSlot.SetGunRotate(weaponSlot.GetGunRotate() + addRotate)
 		}
 	}
 }
 
-func (unit *Unit) GetTransportUnit() *Unit {
+func (u *Unit) GetTransportUnit() *Unit {
 	return nil
 }
 
-func (unit *Unit) GetNeedZ() float64 {
+func (u *Unit) GetNeedZ() float64 {
 	return 0
 }
 
-func (unit *Unit) GetZ() float64 {
+func (u *Unit) GetZ() float64 {
 	return 0
 }
 
-func (unit *Unit) SetZ(float64) {
+func (u *Unit) SetZ(float64) {
 }
 
-func (unit *Unit) IsFly() bool {
+func (u *Unit) IsFly() bool {
 	return false
 }
 
@@ -533,51 +542,52 @@ type Slot struct {
 	NumberSlot int   `json:"number_slot"`
 }
 
-func (unit *Unit) GetJSON(mapTime int64) []byte {
+func (u *Unit) GetJSON(mapTime int64) []byte {
 
-	if unit.CreateJsonTime == mapTime && len(unit.CacheJson) > 0 {
-		return unit.CacheJson
+	if u.CreateJsonTime == mapTime && len(u.CacheJson) > 0 {
+		return u.CacheJson
 	}
 
-	if unit.CacheJson == nil {
-		unit.CacheJson = []byte{}
+	if u.CacheJson == nil {
+		u.CacheJson = []byte{}
 	}
 
-	unit.CacheJson = unit.CacheJson[:0]
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetID())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.OwnerID)...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.HP)...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetBody().ID)...)
+	u.CacheJson = u.CacheJson[:0]
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetID())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.OwnerID)...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.HP)...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetBody().ID)...)
 
 	// position data
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetX())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetY())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(int(unit.GetRotate()))...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetX())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetY())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(int(u.GetRotate()))...)
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetMaxHP())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetRangeView())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetRadarRange())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxHP())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRangeView())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRadarRange())...)
 
-	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.fractionWarrior))
-	unit.CacheJson = append(unit.CacheJson, _const.FractionByte[unit.OwnerFraction])
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.fractionWarrior))
+	u.CacheJson = append(u.CacheJson, _const.FractionByte[u.OwnerFraction])
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.GetMaxPower())...)
-	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Invisibility()))
-	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.Interactive))
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxPower())...)
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.Invisibility()))
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.Interactive))
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(unit.CorporationID)...)
-	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.ghost))
-	unit.CacheJson = append(unit.CacheJson, game_math.BoolToByte(unit.police))
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.CorporationID)...)
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.ghost))
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.police))
+	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.lights))
 
-	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.GetBody().Texture))))
-	unit.CacheJson = append(unit.CacheJson, []byte(unit.GetBody().Texture)...)
+	u.CacheJson = append(u.CacheJson, byte(len([]byte(u.GetBody().Texture))))
+	u.CacheJson = append(u.CacheJson, []byte(u.GetBody().Texture)...)
 
-	unit.CacheJson = append(unit.CacheJson, byte(len([]byte(unit.Owner))))
-	unit.CacheJson = append(unit.CacheJson, []byte(unit.Owner)...)
+	u.CacheJson = append(u.CacheJson, byte(len([]byte(u.Owner))))
+	u.CacheJson = append(u.CacheJson, []byte(u.Owner)...)
 
 	// weapon data
 	weaponData := []byte{}
-	for _, unitWeaponSlot := range unit.RangeWeaponSlots() {
+	for _, unitWeaponSlot := range u.RangeWeaponSlots() {
 
 		weaponData = append(weaponData, byte(unitWeaponSlot.Number))
 		weaponData = append(weaponData, game_math.GetIntBytes(unitWeaponSlot.GetRealXAttach())...)
@@ -594,12 +604,12 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 		}
 	}
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(len(weaponData))...)
-	unit.CacheJson = append(unit.CacheJson, weaponData...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(weaponData))...)
+	u.CacheJson = append(u.CacheJson, weaponData...)
 
 	// equip data
 	equipData := []byte{}
-	for _, equipSlot := range unit.GetBody().GetAllEquips() {
+	for _, equipSlot := range u.GetBody().GetAllEquips() {
 		if equipSlot.Equip != nil && (equipSlot.Equip.XAttach != 0 || equipSlot.Equip.YAttach != 0) {
 
 			equipData = append(equipData, byte(equipSlot.Number))
@@ -614,53 +624,54 @@ func (unit *Unit) GetJSON(mapTime int64) []byte {
 		}
 	}
 
-	unit.CacheJson = append(unit.CacheJson, game_math.GetIntBytes(len(equipData))...)
-	unit.CacheJson = append(unit.CacheJson, equipData...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(equipData))...)
+	u.CacheJson = append(u.CacheJson, equipData...)
 
-	return unit.CacheJson
+	return u.CacheJson
 }
 
-func (unit *Unit) GetUpdateData(mapTime int64) []byte {
+func (u *Unit) GetUpdateData(mapTime int64) []byte {
 
 	command := []byte{}
-	command = append(command, game_math.GetIntBytes(unit.HP)...)
-	command = append(command, game_math.GetIntBytes(unit.GetRangeView())...)
-	command = append(command, game_math.GetIntBytes(unit.GetRadarRange())...)
-	command = append(command, game_math.BoolToByte(unit.ghost))
+	command = append(command, game_math.GetIntBytes(u.HP)...)
+	command = append(command, game_math.GetIntBytes(u.GetRangeView())...)
+	command = append(command, game_math.GetIntBytes(u.GetRadarRange())...)
+	command = append(command, game_math.BoolToByte(u.ghost))
+	command = append(command, game_math.BoolToByte(u.lights))
 
 	return command
 }
 
-func (unit *Unit) GetShortInfo() *ShortUnitInfo {
-	if unit == nil || unit.getBody() == nil {
+func (u *Unit) GetShortInfo() *ShortUnitInfo {
+	if u == nil || u.getBody() == nil {
 		return nil
 	}
 
 	var hostile ShortUnitInfo
 
-	hostile.X = unit.GetPhysicalModel().GetX()
-	hostile.Y = unit.GetPhysicalModel().GetY()
+	hostile.X = u.GetPhysicalModel().GetX()
+	hostile.Y = u.GetPhysicalModel().GetY()
 
-	hostile.GunRotate = unit.GetGunner().GetGunRotate(1)
-	hostile.Rotate = unit.GetRotate()
-	hostile.MapID = unit.GetMapID()
-	hostile.Evacuation = unit.GetEvacuation()
-	hostile.ForceEvacuation = unit.GetForceEvacuation()
-	hostile.InSky = unit.InSky()
-	hostile.OwnerFraction = unit.OwnerFraction
+	hostile.GunRotate = u.GetGunner().GetGunRotate(1)
+	hostile.Rotate = u.GetRotate()
+	hostile.MapID = u.GetMapID()
+	hostile.Evacuation = u.GetEvacuation()
+	hostile.ForceEvacuation = u.GetForceEvacuation()
+	hostile.InSky = u.InSky()
+	hostile.OwnerFraction = u.OwnerFraction
 
 	hostile.Body = detail.Body{
-		Name:       unit.getBody().Name,
-		MaxHP:      unit.getBody().MaxHP,
-		RangeView:  unit.getBody().RangeView,
-		RangeRadar: unit.getBody().RangeRadar,
-		Scale:      unit.getBody().Scale,
-		Length:     int(unit.GetPhysicalModel().GetLength()),
-		Width:      int(unit.GetPhysicalModel().GetWidth()),
+		Name:       u.getBody().Name,
+		MaxHP:      u.getBody().MaxHP,
+		RangeView:  u.getBody().RangeView,
+		RangeRadar: u.getBody().RangeRadar,
+		Scale:      u.getBody().Scale,
+		Length:     int(u.GetPhysicalModel().GetLength()),
+		Width:      int(u.GetPhysicalModel().GetWidth()),
 	}
 
 	hostile.WeaponSlots = make(map[int]detail.BodyWeaponSlot)
-	for number, wSlot := range unit.RangeWeaponSlots() {
+	for number, wSlot := range u.RangeWeaponSlots() {
 		if wSlot != nil {
 			hostile.WeaponSlots[number] = detail.BodyWeaponSlot{
 				Number:        wSlot.Number,
@@ -679,12 +690,12 @@ func (unit *Unit) GetShortInfo() *ShortUnitInfo {
 		}
 	}
 
-	hostile.OwnerID = unit.GetOwnerID()
-	hostile.Owner = unit.Owner
-	hostile.ID = unit.GetID()
-	hostile.BodyTexture = unit.BodyTexture
+	hostile.OwnerID = u.GetOwnerID()
+	hostile.Owner = u.Owner
+	hostile.ID = u.GetID()
+	hostile.BodyTexture = u.BodyTexture
 
-	hostile.HP = unit.GetHP()
+	hostile.HP = u.GetHP()
 
 	hostile.EquipSlots = make([]detail.BodyEquipSlot, 0)
 
@@ -706,37 +717,37 @@ func (unit *Unit) GetShortInfo() *ShortUnitInfo {
 		}
 	}
 
-	copyEquips(unit.getBody().EquippingI)
-	copyEquips(unit.getBody().EquippingII)
-	copyEquips(unit.getBody().EquippingIII)
-	copyEquips(unit.getBody().EquippingIV)
-	copyEquips(unit.getBody().EquippingV)
+	copyEquips(u.getBody().EquippingI)
+	copyEquips(u.getBody().EquippingII)
+	copyEquips(u.getBody().EquippingIII)
+	copyEquips(u.getBody().EquippingIV)
+	copyEquips(u.getBody().EquippingV)
 
 	return &hostile
 }
 
-func (unit *Unit) DelEquip() {
+func (u *Unit) DelEquip() {
 
 }
 
-func (unit *Unit) DelAmmo() {
+func (u *Unit) DelAmmo() {
 
 }
 
-func (unit *Unit) SetEquip() {
+func (u *Unit) SetEquip() {
 
 }
 
-func (unit *Unit) SetAmmo() {
+func (u *Unit) SetAmmo() {
 
 }
 
-func (unit *Unit) GetOwnerUser() string {
-	return unit.Owner
+func (u *Unit) GetOwnerUser() string {
+	return u.Owner
 }
 
-func (unit *Unit) GetAmmoCount() int { // по диз доку оружие в юните может быть только одно
-	for _, weaponSlot := range unit.getBody().Weapons {
+func (u *Unit) GetAmmoCount() int { // по диз доку оружие в юните может быть только одно
+	for _, weaponSlot := range u.getBody().Weapons {
 		if weaponSlot.Weapon != nil {
 			return weaponSlot.GetAmmoQuantity()
 		}
@@ -745,58 +756,58 @@ func (unit *Unit) GetAmmoCount() int { // по диз доку оружие в �
 	return 0
 }
 
-func (unit *Unit) SetAnchorsEquip() {
+func (u *Unit) SetAnchorsEquip() {
 	// метод расчитывает правильные положения якорец и точек прикрепления для спрайтов снаряжения на корпусе
-	if unit == nil {
+	if u == nil {
 		return
 	}
 
 	// распологаем оружие
-	unit.GetWeaponSlot(1).SetAnchor()
+	u.GetWeaponSlot(1).SetAnchor()
 
 	// распологаем снарягу (не вся снаряга может быть на корпусе но это разруливается не тут)
-	for _, slot := range unit.getBody().GetAllEquips() {
+	for _, slot := range u.getBody().GetAllEquips() {
 		slot.SetAnchor()
 	}
 }
 
-func (unit *Unit) GetWeaponSlot(slotNumber int) *detail.BodyWeaponSlot { // по диз доку оружие в юните может быть только одно
+func (u *Unit) GetWeaponSlot(slotNumber int) *detail.BodyWeaponSlot { // по диз доку оружие в юните может быть только одно
 
-	if unit == nil || unit.getBody() == nil {
+	if u == nil || u.getBody() == nil {
 		return nil
 	}
 
 	// TODO пока только 1 оружие это +- применимо, а так нет
-	for _, weaponSlot := range unit.getBody().Weapons {
+	for _, weaponSlot := range u.getBody().Weapons {
 		return weaponSlot
 	}
 
 	return nil
 }
 
-func (unit *Unit) GetEquipPosInMap(typeEquip, numberSlot int) (int, int) {
+func (u *Unit) GetEquipPosInMap(typeEquip, numberSlot int) (int, int) {
 
-	equipSlot := unit.GetBodyEquipSlot(typeEquip, numberSlot)
+	equipSlot := u.GetBodyEquipSlot(typeEquip, numberSlot)
 	if equipSlot == nil || equipSlot.Equip == nil {
 		return 0, 0
 	}
 
 	return game_math.GetWeaponPosInMap(
-		unit.GetX(), unit.GetY(), unit.getBody().Scale,
+		u.GetX(), u.GetY(), u.getBody().Scale,
 		float64(equipSlot.XAttach),
 		float64(equipSlot.YAttach),
-		unit.GetRotate())
+		u.GetRotate())
 }
 
-func (unit *Unit) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positions {
+func (u *Unit) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positions {
 
-	equipSlot := unit.GetBodyEquipSlot(typeEquip, numberSlot)
+	equipSlot := u.GetBodyEquipSlot(typeEquip, numberSlot)
 	if equipSlot == nil || equipSlot.Equip == nil {
 		return nil
 	}
 
 	return game_math.GetWeaponFirePositions(
-		unit.GetX(), unit.GetY(), unit.GetBodyScale(), unit.GetRotate(), equipSlot.Rotate,
+		u.GetX(), u.GetY(), u.GetBodyScale(), u.GetRotate(), equipSlot.Rotate,
 		equipSlot.Equip.XAttach, equipSlot.Equip.YAttach,
 		equipSlot.Equip.FirePositions,
 		float64(equipSlot.XAttach),
@@ -804,80 +815,80 @@ func (unit *Unit) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positi
 	)
 }
 
-func (unit *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
+func (u *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 
-	if unit == nil || unit.getBody() == nil {
+	if u == nil || u.getBody() == nil {
 		return false, false
 	}
 
-	if unit.GetRangeView()+radius >= int(game_math.GetBetweenDist(unit.GetX(), unit.GetY(), x, y)) {
+	if u.GetRangeView()+radius >= int(game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y)) {
 		return true, true
 	}
 
-	if unit.GetRadarRange()+radius >= int(game_math.GetBetweenDist(unit.GetX(), unit.GetY(), x, y)) {
+	if u.GetRadarRange()+radius >= int(game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y)) {
 		return false, true
 	}
 
 	return false, false
 }
 
-func (unit *Unit) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
+func (u *Unit) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	// мы никогда не пишут в карту слотов оружия поэтому этот метод безопасен (по крайне мере пока)
-	return unit.getBody().Weapons
+	return u.getBody().Weapons
 }
 
-func (unit *Unit) GetScale() int {
-	return unit.getBody().Scale
+func (u *Unit) GetScale() int {
+	return u.getBody().Scale
 }
 
-func (unit *Unit) GetBurstOfShots() *burst_of_shots.BurstOfShots {
-	if unit.BurstOfShots == nil {
-		unit.BurstOfShots = &burst_of_shots.BurstOfShots{}
+func (u *Unit) GetBurstOfShots() *burst_of_shots.BurstOfShots {
+	if u.BurstOfShots == nil {
+		u.BurstOfShots = &burst_of_shots.BurstOfShots{}
 	}
 
-	return unit.BurstOfShots
+	return u.BurstOfShots
 }
 
-func (unit *Unit) SetVisibleObjectStore(v *visible_objects.VisibleObjectsStore) {
-	unit.visibleObjects = v
+func (u *Unit) SetVisibleObjectStore(v *visible_objects.VisibleObjectsStore) {
+	u.visibleObjects = v
 }
 
-func (unit *Unit) GetVisibleObjectStore() *visible_objects.VisibleObjectsStore {
-	return unit.visibleObjects
+func (u *Unit) GetVisibleObjectStore() *visible_objects.VisibleObjectsStore {
+	return u.visibleObjects
 }
 
-func (unit *Unit) visibleObjectStore() *visible_objects.VisibleObjectsStore {
-	if unit.visibleObjects == nil {
-		unit.visibleObjects = &visible_objects.VisibleObjectsStore{}
+func (u *Unit) visibleObjectStore() *visible_objects.VisibleObjectsStore {
+	if u.visibleObjects == nil {
+		u.visibleObjects = &visible_objects.VisibleObjectsStore{}
 	}
 
-	return unit.visibleObjects
+	return u.visibleObjects
 }
 
-func (unit *Unit) GetVisibleObjects() <-chan *visible_objects.VisibleObject {
-	return unit.visibleObjectStore().GetVisibleObjects()
+func (u *Unit) GetVisibleObjects() <-chan *visible_objects.VisibleObject {
+	return u.visibleObjectStore().GetVisibleObjects()
 }
 
-func (unit *Unit) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
-	return unit.visibleObjectStore().UnsafeRangeMapDynamicObjects()
+func (u *Unit) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+	return u.visibleObjectStore().UnsafeRangeMapDynamicObjects()
 }
 
-func (unit *Unit) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_objects.VisibleObject {
-	return unit.visibleObjectStore().GetVisibleObjectByTypeAndID(typeObj, id)
+func (u *Unit) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_objects.VisibleObject {
+	return u.visibleObjectStore().GetVisibleObjectByTypeAndID(typeObj, id)
 }
 
-func (unit *Unit) SetFractionWarrior(ok bool) {
-	unit.fractionWarrior = ok
+func (u *Unit) SetFractionWarrior(ok bool) {
+	u.fractionWarrior = ok
 }
 
-func (unit *Unit) FractionWarrior() bool {
-	return unit.fractionWarrior
+func (u *Unit) FractionWarrior() bool {
+	return u.fractionWarrior
 }
 
-func (unit *Unit) GetCorporationID() int {
-	return unit.CorporationID
+func (u *Unit) GetCorporationID() int {
+	return u.CorporationID
 }
 
-func (unit *Unit) SetCorporationID(id int) {
-	unit.CorporationID = id
+func (u *Unit) SetCorporationID(id int) {
+	u.CorporationID = id
 }

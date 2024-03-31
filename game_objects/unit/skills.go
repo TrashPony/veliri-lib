@@ -5,8 +5,8 @@ import "strings"
 var Size = map[int]string{1: "small", 2: "medium", 3: "big"}
 var WType = map[string]string{"laser": "laser", "missile": "rocket", "firearms": "ballistic"}
 
-func (unit *Unit) GetAmmoSkillName() string {
-	weaponSlot := unit.GetWeaponSlot(1)
+func (u *Unit) GetAmmoSkillName() string {
+	weaponSlot := u.GetWeaponSlot(1)
 	if weaponSlot == nil || weaponSlot.Ammo == nil {
 		return ""
 	}
@@ -14,8 +14,8 @@ func (unit *Unit) GetAmmoSkillName() string {
 	return Size[weaponSlot.Ammo.StandardSize] + "_" + WType[weaponSlot.Ammo.Type] + "_ammo"
 }
 
-func (unit *Unit) GetRealoadWeaponSkillName() string {
-	weaponSlot := unit.GetWeaponSlot(1)
+func (u *Unit) GetRealoadWeaponSkillName() string {
+	weaponSlot := u.GetWeaponSlot(1)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return ""
 	}
@@ -23,8 +23,8 @@ func (unit *Unit) GetRealoadWeaponSkillName() string {
 	return "" + Size[weaponSlot.Weapon.StandardSize] + "_" + WType[weaponSlot.Weapon.Type] + "_weapon"
 }
 
-func (unit *Unit) GetRotateWeaponSkillName() string {
-	weaponSlot := unit.GetWeaponSlot(1)
+func (u *Unit) GetRotateWeaponSkillName() string {
+	weaponSlot := u.GetWeaponSlot(1)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return ""
 	}
@@ -32,8 +32,8 @@ func (unit *Unit) GetRotateWeaponSkillName() string {
 	return "rotate_" + Size[weaponSlot.Weapon.StandardSize] + "_" + WType[weaponSlot.Weapon.Type] + "_weapon"
 }
 
-func (unit *Unit) GetAccuracyWeaponSkillName() string {
-	weaponSlot := unit.GetWeaponSlot(1)
+func (u *Unit) GetAccuracyWeaponSkillName() string {
+	weaponSlot := u.GetWeaponSlot(1)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return ""
 	}
@@ -41,8 +41,8 @@ func (unit *Unit) GetAccuracyWeaponSkillName() string {
 	return "accuracy_" + Size[weaponSlot.Weapon.StandardSize] + "_" + WType[weaponSlot.Weapon.Type] + "_weapon"
 }
 
-func (unit *Unit) GetRateWeaponSkillName() string {
-	weaponSlot := unit.GetWeaponSlot(1)
+func (u *Unit) GetRateWeaponSkillName() string {
+	weaponSlot := u.GetWeaponSlot(1)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return ""
 	}
@@ -50,32 +50,32 @@ func (unit *Unit) GetRateWeaponSkillName() string {
 	return "rate_" + Size[weaponSlot.Weapon.StandardSize] + "_" + WType[weaponSlot.Weapon.Type] + "_weapon"
 }
 
-func (unit *Unit) GetMoveBodySkillName() string {
-	return "move_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetMoveBodySkillName() string {
+	return "move_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetArmorBodySkillName() string {
-	return "armor_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetArmorBodySkillName() string {
+	return "armor_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetViewBodySkillName() string {
-	return "view_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetViewBodySkillName() string {
+	return "view_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetPowerCapBodySkillName() string {
-	return "powercap_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetPowerCapBodySkillName() string {
+	return "powercap_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetRadarBodySkillName() string {
-	return "radar_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetRadarBodySkillName() string {
+	return "radar_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetChargingBodySkillName() string {
-	return "charging_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetChargingBodySkillName() string {
+	return "charging_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
-func (unit *Unit) GetSpeedBodySkillName() string {
-	return "speed_" + Size[unit.getBody().StandardSize] + "_" + strings.ToLower(unit.getBody().Fraction) + "_body"
+func (u *Unit) GetSpeedBodySkillName() string {
+	return "speed_" + Size[u.getBody().StandardSize] + "_" + strings.ToLower(u.getBody().Fraction) + "_body"
 }
 
 type parameterVolume struct {

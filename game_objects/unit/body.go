@@ -5,135 +5,135 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 )
 
-func (unit *Unit) SetBody(body *detail.Body) {
-	unit.body = body
+func (u *Unit) SetBody(body *detail.Body) {
+	u.body = body
 }
 
-func (unit *Unit) getBody() *detail.Body {
-	return unit.body
+func (u *Unit) getBody() *detail.Body {
+	return u.body
 }
 
-func (unit *Unit) GetBody() *detail.Body {
-	return unit.body
+func (u *Unit) GetBody() *detail.Body {
+	return u.body
 }
 
-func (unit *Unit) GetBodyItem() *detail.Body {
+func (u *Unit) GetBodyItem() *detail.Body {
 	//TODO использовать надо как можно реже
-	return unit.body
+	return u.body
 }
 
-func (unit *Unit) GetUseEnergy() int {
-	return unit.getBody().GetUseEnergy()
+func (u *Unit) GetUseEnergy() int {
+	return u.getBody().GetUseEnergy()
 }
 
-func (unit *Unit) GetUseCapacitySize() int {
-	return unit.getBody().GetUseCapacitySize()
+func (u *Unit) GetUseCapacitySize() int {
+	return u.getBody().GetUseCapacitySize()
 }
 
-func (unit *Unit) GetBodyID() int {
-	return unit.getBody().ID
+func (u *Unit) GetBodyID() int {
+	return u.getBody().ID
 }
 
-func (unit *Unit) GetBodyScale() int {
-	return unit.getBody().Scale
+func (u *Unit) GetBodyScale() int {
+	return u.getBody().Scale
 }
 
-func (unit *Unit) GetBodyStandardSize() int {
-	return unit.getBody().StandardSize
+func (u *Unit) GetBodyStandardSize() int {
+	return u.getBody().StandardSize
 }
 
-func (unit *Unit) GetBodyWeaponSlotKeys() []int {
+func (u *Unit) GetBodyWeaponSlotKeys() []int {
 	keys := make([]int, 0)
 
-	for key := range unit.getBody().Weapons {
+	for key := range u.getBody().Weapons {
 		keys = append(keys, key)
 	}
 
 	return keys
 }
 
-func (unit *Unit) GetBodyWeaponSlot(numberSlot int) *detail.BodyWeaponSlot {
-	return unit.getBody().Weapons[numberSlot]
+func (u *Unit) GetBodyWeaponSlot(numberSlot int) *detail.BodyWeaponSlot {
+	return u.getBody().Weapons[numberSlot]
 }
 
-func (unit *Unit) GetBodyEquipSlot(typeSlot, numberSlot int) *detail.BodyEquipSlot {
-	return unit.getBody().GetEquipSlot(typeSlot, numberSlot)
+func (u *Unit) GetBodyEquipSlot(typeSlot, numberSlot int) *detail.BodyEquipSlot {
+	return u.getBody().GetEquipSlot(typeSlot, numberSlot)
 }
 
-func (unit *Unit) GetBodyThoriumSlotKeys() []int {
+func (u *Unit) GetBodyThoriumSlotKeys() []int {
 	keys := make([]int, 0)
 
-	for key := range unit.getBody().ThoriumSlots {
+	for key := range u.getBody().ThoriumSlots {
 		keys = append(keys, key)
 	}
 
 	return keys
 }
 
-func (unit *Unit) GetMaxRecoveryReactorPower() int {
+func (u *Unit) GetMaxRecoveryReactorPower() int {
 	maxRecover := 0
-	for _, slot := range unit.getBody().ThoriumSlots {
-		maxRecover += slot.ProcessingThorium * unit.GetRecoveryPower()
+	for _, slot := range u.getBody().ThoriumSlots {
+		maxRecover += slot.ProcessingThorium * u.GetRecoveryPower()
 	}
 
 	return maxRecover
 }
 
-func (unit *Unit) GetBodyThoriumSlot(numberSlot int) *detail.ThoriumSlot {
-	return unit.getBody().GetThoriumSlot(numberSlot)
+func (u *Unit) GetBodyThoriumSlot(numberSlot int) *detail.ThoriumSlot {
+	return u.getBody().GetThoriumSlot(numberSlot)
 }
 
-func (unit *Unit) GetBodyLength() int {
-	return unit.getBody().Length
+func (u *Unit) GetBodyLength() int {
+	return u.getBody().Length
 }
 
-func (unit *Unit) GetBodyHeight() int {
-	return unit.getBody().Height
+func (u *Unit) GetBodyHeight() int {
+	return u.getBody().Height
 }
 
-func (unit *Unit) GetBodyWidth() int {
-	return unit.getBody().Width
+func (u *Unit) GetBodyWidth() int {
+	return u.getBody().Width
 }
 
-func (unit *Unit) GetAllBodyEquips() []*detail.BodyEquipSlot {
-	return unit.getBody().GetAllEquipSlots()
+func (u *Unit) GetAllBodyEquips() []*detail.BodyEquipSlot {
+	return u.getBody().GetAllEquipSlots()
 }
 
-func (unit *Unit) GetBodyApplicableEquips(applicable string) []*detail.BodyEquipSlot {
-	return unit.getBody().GetApplicableEquips(applicable)
+func (u *Unit) GetBodyApplicableEquips(applicable string) []*detail.BodyEquipSlot {
+	return u.getBody().GetApplicableEquips(applicable)
 }
 
-func (unit *Unit) GetBodyJSON() string {
-	return unit.getBody().GetJSON()
+func (u *Unit) GetBodyJSON() string {
+	return u.getBody().GetJSON()
 }
 
-func (unit *Unit) SetBodySpeed(speed float64) {
+func (u *Unit) SetBodySpeed(speed float64) {
 	// метод только для ботов
-	unit.getBody().Speed = speed
-	unit.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
+	u.getBody().Speed = speed
+	u.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
 }
 
-func (unit *Unit) SetSpeed(speed float64) {
-	unit.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
+func (u *Unit) SetSpeed(speed float64) {
+	u.GetPhysicalModel().Speed = speed / _const.ServerTickSecPart
 }
 
-func (unit *Unit) SetTurnSpeed(speed float64) {
-	unit.GetPhysicalModel().TurnSpeed = speed / _const.ServerTickSecPart
+func (u *Unit) SetTurnSpeed(speed float64) {
+	u.GetPhysicalModel().TurnSpeed = speed / _const.ServerTickSecPart
 }
 
-func (unit *Unit) SetBodyMaxHP(maxHP int) {
-	unit.getBody().MaxHP = maxHP
+func (u *Unit) SetBodyMaxHP(maxHP int) {
+	u.getBody().MaxHP = maxHP
 }
 
-func (unit *Unit) GetJSONBodyEquipSlots() []string {
-	return unit.getBody().GetJSONBodyEquipSlots()
+func (u *Unit) GetJSONBodyEquipSlots() []string {
+	return u.getBody().GetJSONBodyEquipSlots()
 }
 
-func (unit *Unit) GetJSONBodyWeaponSlots() []string {
-	return unit.getBody().GetJSONWeaponSlots()
+func (u *Unit) GetJSONBodyWeaponSlots() []string {
+	return u.getBody().GetJSONWeaponSlots()
 }
 
-func (unit *Unit) GetJSONBodyThoriumSlots() []string {
-	return unit.getBody().GetJSONThoriumSlots()
+func (u *Unit) GetJSONBodyThoriumSlots() []string {
+	return u.getBody().GetJSONThoriumSlots()
 
 }

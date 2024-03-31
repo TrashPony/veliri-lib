@@ -61,56 +61,56 @@ type StateMS struct {
 	ThermoDamage      int     `json:"thermo_damage"`
 }
 
-func (unit *Unit) GetState() *StateMS {
+func (u *Unit) GetState() *StateMS {
 
 	var weapon *detail.Weapon
-	if unit.GetWeaponSlot(1) != nil {
-		weapon = unit.GetWeaponSlot(1).Weapon
+	if u.GetWeaponSlot(1) != nil {
+		weapon = u.GetWeaponSlot(1).Weapon
 	}
 
 	state := StateMS{
-		UseEnergy:             unit.getBody().GetUseEnergy(),
-		MaxEnergy:             unit.GetMaxEnergy(),
-		MaxHP:                 unit.GetMaxHP(),
-		ProtectionToKinetics:  unit.GetProtection("kinetics"),
-		ProtectionToThermo:    unit.GetProtection("thermo"),
-		ProtectionToExplosion: unit.GetProtection("explosion"),
-		Speed:                 unit.GetMoveMaxPower(),
-		ReverseSpeed:          unit.GetMaxReverse(),
-		PowerFactor:           unit.GetPowerFactor(),
-		ReverseFactor:         unit.GetReverseFactor(),
-		TurnSpeed:             unit.GetTurnSpeed(),
-		RangeView:             unit.GetRangeView(),
-		RangeRadar:            unit.GetRadarRange(),
-		WeaponInstall: unit.GetWeaponSlot(1) != nil &&
+		UseEnergy:             u.getBody().GetUseEnergy(),
+		MaxEnergy:             u.GetMaxEnergy(),
+		MaxHP:                 u.GetMaxHP(),
+		ProtectionToKinetics:  u.GetProtection("kinetics"),
+		ProtectionToThermo:    u.GetProtection("thermo"),
+		ProtectionToExplosion: u.GetProtection("explosion"),
+		Speed:                 u.GetMoveMaxPower(),
+		ReverseSpeed:          u.GetMaxReverse(),
+		PowerFactor:           u.GetPowerFactor(),
+		ReverseFactor:         u.GetReverseFactor(),
+		TurnSpeed:             u.GetTurnSpeed(),
+		RangeView:             u.GetRangeView(),
+		RangeRadar:            u.GetRadarRange(),
+		WeaponInstall: u.GetWeaponSlot(1) != nil &&
 			weapon != nil &&
-			unit.GetWeaponSlot(1).GetAmmo() != nil &&
-			unit.GetWeaponSlot(1).GetAmmoQuantity() > 0,
-		EfficiencyReactor:  unit.EfficiencyReactor(),
-		CurrentSpeed:       unit.GetPhysicalModel().GetCurrentSpeed(),
-		CapacitySize:       unit.GetCapSize(),
-		MaxPower:           unit.GetMaxPower(),
-		RecoveryPower:      unit.GetRecoveryPower(),
-		RecoveryPowerCycle: unit.body.RecoveryPowerCycle,
-		BodyType:           unit.body.ChassisType,
-		BodySize:           unit.body.StandardSize,
+			u.GetWeaponSlot(1).GetAmmo() != nil &&
+			u.GetWeaponSlot(1).GetAmmoQuantity() > 0,
+		EfficiencyReactor:  u.EfficiencyReactor(),
+		CurrentSpeed:       u.GetPhysicalModel().GetCurrentSpeed(),
+		CapacitySize:       u.GetCapSize(),
+		MaxPower:           u.GetMaxPower(),
+		RecoveryPower:      u.GetRecoveryPower(),
+		RecoveryPowerCycle: u.body.RecoveryPowerCycle,
+		BodyType:           u.body.ChassisType,
+		BodySize:           u.body.StandardSize,
 	}
 
 	if state.WeaponInstall {
 		state.WeaponType = weapon.Type
 		state.WeaponSize = weapon.StandardSize
-		state.WeaponMaxDamage = unit.GetGunner().GetMaxDamage(unit.GetWeaponSlot(1).Number)
-		state.WeaponMinDamage = unit.GetGunner().GetMinDamage(unit.GetWeaponSlot(1).Number)
-		state.CountFireBullet = unit.GetGunner().GetCountFireBullet(unit.GetWeaponSlot(1).Number)
-		state.WeaponMinRange, _ = unit.GetGunner().GetWeaponMinRange(0.0, unit.GetWeaponSlot(1).Number)
-		state.WeaponMaxRange, _ = unit.GetGunner().GetWeaponMaxRange(0.0, unit.GetWeaponSlot(1).Number, false)
-		state.WeaponAccuracy = unit.GetGunner().GetWeaponAccuracy(unit.GetWeaponSlot(1).Number)
-		state.GunRotateSpeed = unit.GetGunner().GetGunRotateSpeed(unit.GetWeaponSlot(1).Number)
-		state.BulletSpeed = unit.GetGunner().GetBulletSpeed(unit.GetWeaponSlot(1).Number)
-		state.ReloadTime = unit.GetGunner().GetWeaponReloadTime(unit.GetWeaponSlot(1).Number)
-		state.ReloadAmmoTime = unit.GetGunner().GetWeaponReloadAmmoTime(unit.GetWeaponSlot(1).Number)
+		state.WeaponMaxDamage = u.GetGunner().GetMaxDamage(u.GetWeaponSlot(1).Number)
+		state.WeaponMinDamage = u.GetGunner().GetMinDamage(u.GetWeaponSlot(1).Number)
+		state.CountFireBullet = u.GetGunner().GetCountFireBullet(u.GetWeaponSlot(1).Number)
+		state.WeaponMinRange, _ = u.GetGunner().GetWeaponMinRange(0.0, u.GetWeaponSlot(1).Number)
+		state.WeaponMaxRange, _ = u.GetGunner().GetWeaponMaxRange(0.0, u.GetWeaponSlot(1).Number, false)
+		state.WeaponAccuracy = u.GetGunner().GetWeaponAccuracy(u.GetWeaponSlot(1).Number)
+		state.GunRotateSpeed = u.GetGunner().GetGunRotateSpeed(u.GetWeaponSlot(1).Number)
+		state.BulletSpeed = u.GetGunner().GetBulletSpeed(u.GetWeaponSlot(1).Number)
+		state.ReloadTime = u.GetGunner().GetWeaponReloadTime(u.GetWeaponSlot(1).Number)
+		state.ReloadAmmoTime = u.GetGunner().GetWeaponReloadAmmoTime(u.GetWeaponSlot(1).Number)
 
-		k, t, e := unit.GetGunner().GetDamageType(unit.GetWeaponSlot(1).Number)
+		k, t, e := u.GetGunner().GetDamageType(u.GetWeaponSlot(1).Number)
 		state.KineticsDamage = k
 		state.ThermoDamage = t
 		state.ExplosionDamage = e
@@ -120,31 +120,31 @@ func (unit *Unit) GetState() *StateMS {
 }
 
 // GetAllState метод возвращает полное состоиня машинки, влияние навыков, влияние снаряжения штрафы
-func (unit *Unit) GetAllState() (all *StateMS, effects []*effect.Effect) {
+func (u *Unit) GetAllState() (all *StateMS, effects []*effect.Effect) {
 
-	all = unit.GetState()
-	effects = unit.GetEffects().GetAllEffects()
+	all = u.GetState()
+	effects = u.GetEffects().GetAllEffects()
 
 	return all, effects
 }
 
-func (unit *Unit) GetProtection(typeVulnerabilities string) int {
+func (u *Unit) GetProtection(typeVulnerabilities string) int {
 
 	var startValue float64
 
 	if typeVulnerabilities == "thermo" {
-		startValue = float64(unit.body.ProtectionToThermo)
+		startValue = float64(u.body.ProtectionToThermo)
 	}
 
 	if typeVulnerabilities == "kinetics" {
-		startValue = float64(unit.body.ProtectionToKinetics)
+		startValue = float64(u.body.ProtectionToKinetics)
 	}
 
 	if typeVulnerabilities == "explosion" {
-		startValue = float64(unit.body.ProtectionToExplosion)
+		startValue = float64(u.body.ProtectionToExplosion)
 	}
 
-	for _, e := range unit.GetEffects().GetAllEffects() {
+	for _, e := range u.GetEffects().GetAllEffects() {
 		if e.Parameter == "protect_"+typeVulnerabilities {
 			free := 100 - startValue
 			startValue += free * (float64(e.Quantity) / 100)
@@ -154,105 +154,105 @@ func (unit *Unit) GetProtection(typeVulnerabilities string) int {
 	return int(startValue)
 }
 
-func (unit *Unit) GetOwnerID() int {
-	return unit.OwnerID
+func (u *Unit) GetOwnerID() int {
+	return u.OwnerID
 }
 
-func (unit *Unit) GetOwnerPlayerID() int {
-	return unit.OwnerID
+func (u *Unit) GetOwnerPlayerID() int {
+	return u.OwnerID
 }
 
-func (unit *Unit) GetPower() int {
-	return unit.Power
+func (u *Unit) GetPower() int {
+	return u.Power
 }
 
-func (unit *Unit) GetID() int {
-	return unit.ID
+func (u *Unit) GetID() int {
+	return u.ID
 }
 
-func (unit *Unit) GetType() string {
+func (u *Unit) GetType() string {
 	return "unit"
 }
 
-func (unit *Unit) GetRotate() float64 {
-	return unit.GetPhysicalModel().Rotate
+func (u *Unit) GetRotate() float64 {
+	return u.GetPhysicalModel().Rotate
 }
 
-func (unit *Unit) GetMapHeight() float64 {
+func (u *Unit) GetMapHeight() float64 {
 	return _const.UnitHeight
 }
 
-func (unit *Unit) GetStateSenderPos() bool {
+func (u *Unit) GetStateSenderPos() bool {
 	return false
 }
 
-func (unit *Unit) GetWidth() float64 {
-	return float64(unit.body.Width) * 2
+func (u *Unit) GetWidth() float64 {
+	return float64(u.body.Width) * 2
 }
 
-func (unit *Unit) GetLength() float64 {
-	return float64(unit.body.Length) * 2
+func (u *Unit) GetLength() float64 {
+	return float64(u.body.Length) * 2
 }
 
-func (unit *Unit) GetHeight() float64 {
-	return float64(unit.body.Height) * 2
+func (u *Unit) GetHeight() float64 {
+	return float64(u.body.Height) * 2
 }
 
-func (unit *Unit) GetGeoData() []*obstacle_point.ObstaclePoint {
+func (u *Unit) GetGeoData() []*obstacle_point.ObstaclePoint {
 	return nil
 }
 
-func (unit *Unit) GetWeight() float64 {
-	return unit.body.Weight
+func (u *Unit) GetWeight() float64 {
+	return u.body.Weight
 }
 
-func (unit *Unit) GetMoveMaxPower() float64 {
-	return unit.GetEffects().GetAllBodyBonus(unit.body.Speed, "speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
+func (u *Unit) GetMoveMaxPower() float64 {
+	return u.GetEffects().GetAllBodyBonus(u.body.Speed, "speed", u.getBody().ChassisType, u.getBody().StandardSize)
 }
 
-func (unit *Unit) GetMaxReverse() float64 {
-	return unit.GetEffects().GetAllBodyBonus(unit.body.ReverseSpeed, "reverse_speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
+func (u *Unit) GetMaxReverse() float64 {
+	return u.GetEffects().GetAllBodyBonus(u.body.ReverseSpeed, "reverse_speed", u.getBody().ChassisType, u.getBody().StandardSize)
 }
 
-func (unit *Unit) GetPowerFactor() float64 {
-	return unit.GetEffects().GetAllBodyBonus(unit.body.PowerFactor, "power_factor", unit.getBody().ChassisType, unit.getBody().StandardSize)
+func (u *Unit) GetPowerFactor() float64 {
+	return u.GetEffects().GetAllBodyBonus(u.body.PowerFactor, "power_factor", u.getBody().ChassisType, u.getBody().StandardSize)
 }
 
-func (unit *Unit) GetReverseFactor() float64 {
-	return unit.GetEffects().GetAllBodyBonus(unit.body.ReverseFactor, "reverse_factor", unit.getBody().ChassisType, unit.getBody().StandardSize)
+func (u *Unit) GetReverseFactor() float64 {
+	return u.GetEffects().GetAllBodyBonus(u.body.ReverseFactor, "reverse_factor", u.getBody().ChassisType, u.getBody().StandardSize)
 }
 
-func (unit *Unit) GetTurnSpeed() float64 {
-	return unit.GetEffects().GetAllBodyBonus(unit.body.TurnSpeed, "turn_speed", unit.getBody().ChassisType, unit.getBody().StandardSize)
+func (u *Unit) GetTurnSpeed() float64 {
+	return u.GetEffects().GetAllBodyBonus(u.body.TurnSpeed, "turn_speed", u.getBody().ChassisType, u.getBody().StandardSize)
 }
 
-func (unit *Unit) GetCapSize() int {
-	if unit == nil {
+func (u *Unit) GetCapSize() int {
+	if u == nil {
 		return 0
 	}
 
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.CapacitySize), "cap_size", unit.getBody().ChassisType, unit.getBody().StandardSize))
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.CapacitySize), "cap_size", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetAdditionalCapSize(key string) int {
-	if unit == nil {
+func (u *Unit) GetAdditionalCapSize(key string) int {
+	if u == nil {
 		return 0
 	}
 
-	inv := unit.body.AdditionalInventory[key]
-	return int(unit.GetEffects().GetAllBodyBonus(float64(inv.GetCapSize()), key+"_cap_size", unit.getBody().ChassisType, unit.getBody().StandardSize))
+	inv := u.body.AdditionalInventory[key]
+	return int(u.GetEffects().GetAllBodyBonus(float64(inv.GetCapSize()), key+"_cap_size", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
-	freeSize := unit.GetCapSize() - unit.Inventory.GetSize()
+func (u *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
+	freeSize := u.GetCapSize() - u.Inventory.GetSize()
 
-	for key, inv := range unit.AdditionalInventory {
-		filter := unit.body.AdditionalInventory[key].Filter
+	for key, inv := range u.AdditionalInventory {
+		filter := u.body.AdditionalInventory[key].Filter
 		for fType, ids := range filter {
 			if fType == itemType {
 				for _, id := range ids {
 					if id == itemID {
-						freeSize += unit.GetAdditionalCapSize(key) - inv.GetSize()
+						freeSize += u.GetAdditionalCapSize(key) - inv.GetSize()
 					}
 				}
 			}
@@ -262,86 +262,86 @@ func (unit *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
 	return freeSize
 }
 
-func (unit *Unit) GetRangeView() int {
-	return unit.viewRange
+func (u *Unit) GetRangeView() int {
+	return u.viewRange
 }
 
-func (unit *Unit) getRangeView() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.RangeView), "view", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) getRangeView() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeView), "view", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetRadarRange() int {
-	return unit.radarRange
+func (u *Unit) GetRadarRange() int {
+	return u.radarRange
 }
 
-func (unit *Unit) getRadarRange() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.RangeRadar), "radar", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) getRadarRange() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeRadar), "radar", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetMaxHP() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxHP), "max_hp", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) GetMaxHP() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxHP), "max_hp", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetMaxPower() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxPower), "max_power", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) GetMaxPower() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxPower), "max_power", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
-func (unit *Unit) GetMaxEnergy() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.body.MaxEnergy), "max_energy", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) GetMaxEnergy() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxEnergy), "max_energy", u.getBody().ChassisType, u.getBody().StandardSize))
 }
 
 // weapon
-func (unit *Unit) getGunAccuracy(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getGunAccuracy(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) getMaxDamage(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getMaxDamage(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) getMinDamage(weaponSlotNumber int) int {
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) getMinDamage(weaponSlotNumber int) int {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(unit.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }
 
-func (unit *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
-	unit.RemoveEffect("weapon_damage_modifier")
-	weaponSlot := unit.GetWeaponSlot(weaponSlotNumber)
+func (u *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
+	u.RemoveEffect("weapon_damage_modifier")
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
 	if weaponSlot != nil && weaponSlot.Weapon != nil && weaponSlot.Weapon.DamageModifier != 1 {
 		damageModifier := 100 - (weaponSlot.Weapon.DamageModifier * 100)
 		subtract := damageModifier > 0
@@ -349,7 +349,7 @@ func (unit *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
 			damageModifier *= -1
 		}
 
-		unit.AddEffect(&effect.Effect{
+		u.AddEffect(&effect.Effect{
 			UUID:        "weapon_damage_modifier",
 			Parameter:   "damage",
 			Quantity:    int(damageModifier),
@@ -359,16 +359,16 @@ func (unit *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
 	}
 }
 
-func (unit *Unit) AppendPassiveEquipModifier() {
+func (u *Unit) AppendPassiveEquipModifier() {
 
-	for _, slot := range unit.body.GetAllEquipSlots() {
-		unit.RemoveBySlot(slot.Type, slot.Number)
+	for _, slot := range u.body.GetAllEquipSlots() {
+		u.RemoveBySlot(slot.Type, slot.Number)
 	}
 
-	for _, slot := range unit.body.GetAllEquips() {
+	for _, slot := range u.body.GetAllEquips() {
 		if slot.Equip != nil && !slot.Equip.Active && len(slot.Equip.Effects) > 0 {
 			for _, e := range slot.Equip.Effects {
-				unit.AddEffect(&effect.Effect{
+				u.AddEffect(&effect.Effect{
 					UUID:         "equip_passive_" + strconv.Itoa(slot.Type) + ":" + strconv.Itoa(slot.Number) + e.Name,
 					Parameter:    e.Parameter,
 					Quantity:     e.Quantity,
@@ -386,36 +386,36 @@ func (unit *Unit) AppendPassiveEquipModifier() {
 	}
 }
 
-func (unit *Unit) GetEvacuation() bool {
-	return unit.evacuation
+func (u *Unit) GetEvacuation() bool {
+	return u.evacuation
 }
 
-func (unit *Unit) GetForceEvacuation() bool {
-	return unit.forceEvacuation
+func (u *Unit) GetForceEvacuation() bool {
+	return u.forceEvacuation
 }
 
-func (unit *Unit) GetHP() int {
-	return unit.HP
+func (u *Unit) GetHP() int {
+	return u.HP
 }
 
-func (unit *Unit) GetX() int {
-	return unit.GetPhysicalModel().GetX()
+func (u *Unit) GetX() int {
+	return u.GetPhysicalModel().GetX()
 }
 
-func (unit *Unit) GetY() int {
-	return unit.GetPhysicalModel().GetY()
+func (u *Unit) GetY() int {
+	return u.GetPhysicalModel().GetY()
 }
 
-func (unit *Unit) GetMapID() int {
-	return int(atomic.LoadInt32(&unit.MapID))
+func (u *Unit) GetMapID() int {
+	return int(atomic.LoadInt32(&u.MapID))
 }
 
-func (unit *Unit) InSky() bool {
-	return unit.inSky
+func (u *Unit) InSky() bool {
+	return u.inSky
 }
 
-func (unit *Unit) GetFullJSON() string {
-	jsonUnit, err := json.Marshal(unit)
+func (u *Unit) GetFullJSON() string {
+	jsonUnit, err := json.Marshal(u)
 	if err != nil {
 		println("unit to json: ", err.Error())
 	}
@@ -423,8 +423,8 @@ func (unit *Unit) GetFullJSON() string {
 	return string(jsonUnit)
 }
 
-func (unit *Unit) GetFollowTarget() *target.Target {
-	mp := unit.movePath
+func (u *Unit) GetFollowTarget() *target.Target {
+	mp := u.movePath
 	if mp != nil {
 		return mp.GetFollowTarget()
 	}
@@ -432,6 +432,6 @@ func (unit *Unit) GetFollowTarget() *target.Target {
 	return nil
 }
 
-func (unit *Unit) GetRecoveryPower() int {
-	return int(unit.GetEffects().GetAllBodyBonus(float64(unit.getBody().RecoveryPower), "charging_speed", unit.getBody().ChassisType, unit.getBody().StandardSize))
+func (u *Unit) GetRecoveryPower() int {
+	return int(u.GetEffects().GetAllBodyBonus(float64(u.getBody().RecoveryPower), "charging_speed", u.getBody().ChassisType, u.getBody().StandardSize))
 }
