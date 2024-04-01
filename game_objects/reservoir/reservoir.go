@@ -22,6 +22,7 @@ type Reservoir struct {
 	Rotate     float64 `json:"rotate"`
 	MaxCount   int     `json:"max_count"`
 	MinCount   int     `json:"min_count"`
+	Damage     int     `json:"-"`
 
 	Scale   int                             `json:"scale"`
 	Shadow  bool                            `json:"shadow"`
