@@ -214,3 +214,13 @@ func (m *Reservoir) MiningLock() {
 func (m *Reservoir) MiningUnlock() {
 	m.mx.Unlock()
 }
+
+func (m *Reservoir) GetRadius() int {
+	for _, o := range m.GeoData {
+		if o.Resource {
+			return int(o.Radius)
+		}
+	}
+
+	return 0
+}
