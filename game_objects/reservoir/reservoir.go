@@ -109,64 +109,38 @@ func (m *Reservoir) GetGeoData() []*obstacle_point.ObstaclePoint {
 }
 
 func (m *Reservoir) GetX() int {
-	m.mx.RLock()
-	defer m.mx.RUnlock()
-
 	return m.X
 }
 
 func (m *Reservoir) SetX(x int) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
 	m.X = x
 }
 
 func (m *Reservoir) GetY() int {
-	m.mx.RLock()
-	defer m.mx.RUnlock()
-
 	return m.Y
 }
 
 func (m *Reservoir) SetY(y int) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
 	m.Y = y
 }
 
 func (m *Reservoir) GetRotate() float64 {
-	m.mx.RLock()
-	defer m.mx.RUnlock()
-
 	return m.Rotate
 }
 
 func (m *Reservoir) SetRotate(rotate float64) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
 	m.Rotate = rotate
 }
 
 func (m *Reservoir) GetCount() int {
-	m.mx.RLock()
-	defer m.mx.RUnlock()
-
 	return m.Count
 }
 
 func (m *Reservoir) SetCount(count int) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
 	m.Count = count
 }
 
 func (m *Reservoir) GetJSON(mapTime int64) []byte {
-	m.mx.RLock()
-	defer m.mx.RUnlock()
 
 	if m.CreateJsonTime == mapTime && len(m.CacheJson) > 0 {
 		return m.CacheJson

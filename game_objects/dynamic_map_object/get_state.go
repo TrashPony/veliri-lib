@@ -157,12 +157,21 @@ func (o *Object) GetStartScale() {
 		o.SetScale(25)
 	}
 
-	if o.Texture == "corporation_base_1" || o.Texture == "corporation_base_1_build" || o.Texture == "corporation_base_1_destroy" ||
-		o.Texture == "corporation_office_1" || o.Texture == "corporation_office_1_build" ||
-		o.Texture == "corporation_processing_1" || o.Texture == "corporation_processing_1_build" ||
-		o.Texture == "corporation_prefabricated_1" || o.Texture == "corporation_prefabricated_1_build" ||
-		o.Texture == "corporation_market_1" || o.Texture == "corporation_market_1_build" {
+	if o.Texture == "corporation_base_1" || o.Texture == "corporation_base_1_build" || o.Texture == "corporation_base_1_destroy" {
 		o.SetScale(100)
+	}
+
+	if o.Texture == "corporation_office_1" || o.Texture == "corporation_office_1_build" ||
+		o.Texture == "corporation_prefabricated_1" || o.Texture == "corporation_prefabricated_1_build" {
+		o.SetScale(75)
+	}
+
+	if o.Texture == "corporation_market_1" || o.Texture == "corporation_market_1_build" {
+		o.SetScale(80)
+	}
+
+	if o.Texture == "corporation_processing_1" || o.Texture == "corporation_processing_1_build" {
+		o.SetScale(75)
 	}
 }
 
