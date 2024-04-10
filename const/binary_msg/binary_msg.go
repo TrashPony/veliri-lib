@@ -1052,3 +1052,12 @@ func TargetInfo(unitID, ownerID, currentTargetID, x, y, ralation, corpID, fear i
 
 	return command
 }
+
+func GameTime(h, m int) []byte {
+	command := []byte{93}
+
+	command = append(command, byte(h))
+	command = append(command, byte(m))
+
+	return command
+}
