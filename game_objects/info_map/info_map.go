@@ -18,6 +18,12 @@ type InfoMap struct {
 	HandlersCoordinates []*coordinate.Coordinate `json:"handlers_coordinates"`
 	CorporationID       int                      `json:"corporation_id"`
 	Transit             bool                     `json:"transit"`
+	GameTime            gameTime                 `json:"-"`
+}
+
+type gameTime struct {
+	Hours   int
+	Minutes int
 }
 
 func (mp *InfoMap) GetEntryTySector(sectorID int) *coordinate.Coordinate {
