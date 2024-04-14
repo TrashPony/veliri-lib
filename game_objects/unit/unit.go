@@ -77,6 +77,44 @@ type Unit struct {
 	fractionWarrior bool
 	lights          bool
 	Role            string `json:"-"`
+
+	Decals []Decal
+}
+
+type Decal struct {
+	X       int
+	Y       int
+	DecalID int
+	Angle   int
+}
+
+func (u *Unit) CheckDecalSlot(x, y int) bool {
+	for _, d := range u.Decals {
+		if d.X == x && d.Y == y {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (u *Unit) AddDecal(x, y, id, angle int) *Decal {
+	if u.CheckDecalSlot(x, y) {
+		return nil
+	}
+
+	if angle < 0 {
+		angle += 360
+	}
+
+	decal := Decal{
+		X:       x,
+		Y:       y,
+		DecalID: id,
+		Angle:   angle / 2,
+	}
+	u.Decals = append(u.Decals, decal)
+	return &decal
 }
 
 func (u *Unit) SetLights(lights bool) {
@@ -584,6 +622,18 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 
 	u.CacheJson = append(u.CacheJson, byte(len([]byte(u.Owner))))
 	u.CacheJson = append(u.CacheJson, []byte(u.Owner)...)
+
+	// decal data
+	decalData := []byte{}
+	for _, d := range u.Decals {
+		decalData = append(decalData, byte(d.X))
+		decalData = append(decalData, byte(d.Y))
+		decalData = append(decalData, byte(d.DecalID))
+		decalData = append(decalData, byte(d.Angle))
+	}
+
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(decalData))...)
+	u.CacheJson = append(u.CacheJson, decalData...)
 
 	// weapon data
 	weaponData := []byte{}

@@ -393,6 +393,7 @@ func (body *Body) SetWheelsPositions() {
 			YAnchor:     yAnchor,
 			RealXAttach: realXAttach,
 			RealYAttach: realYAttach,
+			Size:        pos.Radius,
 		}
 
 		ancState, ok := body.WheelAnchors[key]
@@ -401,6 +402,7 @@ func (body *Body) SetWheelsPositions() {
 			newAnc.Scale = ancState.Scale
 			newAnc.Rotate = ancState.Rotate
 			newAnc.Height = ancState.Height
+			newAnc.Size = ancState.Size
 		}
 
 		body.WheelAnchors[key] = newAnc

@@ -1061,3 +1061,15 @@ func GameTime(h, m int) []byte {
 
 	return command
 }
+
+func AddDecal(unitID, x, y, id, angle int) []byte {
+	command := []byte{94}
+
+	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, byte(x))
+	command = append(command, byte(y))
+	command = append(command, byte(id))
+	command = append(command, byte(angle))
+
+	return command
+}

@@ -9,4 +9,5 @@ type Anchor struct {
 	RealXAttach int     `json:"real_x_attach"`
 	RealYAttach int     `json:"real_y_attach"`
 	Height      int     `json:"height"`
+	Size        int     `json:"size"`
 }

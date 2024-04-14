@@ -144,4 +144,7 @@ func GobRegister() {
 	gob.Register(product.Product{})
 	gob.Register(inventory.ItemInfo{})
 	gob.Register(inventory.Slot{})
+
+	gob.Register([]unit.Decal{})
+	gob.Register(unit.Decal{})
 }
