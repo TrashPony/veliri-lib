@@ -49,6 +49,7 @@ func (u *Unit) SetDamage(damage, k, t, e int) int {
 		u.SetHP(u.GetHP() - damage)
 	}
 
+	u.UnrepairableDamage += damage
 	return damage
 }
 

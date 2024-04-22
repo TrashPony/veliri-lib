@@ -435,3 +435,14 @@ func (u *Unit) GetFollowTarget() *target.Target {
 func (u *Unit) GetRecoveryPower() int {
 	return int(u.GetEffects().GetAllBodyBonus(float64(u.getBody().RecoveryPower), "charging_speed", u.getBody().ChassisType, u.getBody().StandardSize))
 }
+
+func (u *Unit) GetUnrepairableDamage() int {
+	maxUD := 2 * (u.GetMaxHP() / 3)
+	ud := int(25 * (float64(u.UnrepairableDamage) / 100))
+
+	if maxUD < ud {
+		return maxUD
+	}
+
+	return ud
+}

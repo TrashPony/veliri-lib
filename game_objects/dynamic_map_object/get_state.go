@@ -318,3 +318,7 @@ func (o *Object) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	// мы никогда не пишут в карту слотов оружия поэтому этот метод безопасен (по крайне мере пока)
 	return o.Weapons
 }
+
+func (o *Object) GetUnrepairableDamage() int {
+	return 0
+}

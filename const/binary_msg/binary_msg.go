@@ -1073,3 +1073,11 @@ func AddDecal(unitID, x, y, id, angle int) []byte {
 
 	return command
 }
+
+func SetUnrepairableDamage(unrepairableDamage int) []byte {
+	command := []byte{95}
+
+	command = append(command, byte(unrepairableDamage))
+
+	return command
+}

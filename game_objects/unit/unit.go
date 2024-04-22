@@ -69,14 +69,15 @@ type Unit struct {
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 
-	ghost           bool
-	lockedControl   bool
-	viewRange       int
-	radarRange      int
-	police          bool
-	fractionWarrior bool
-	lights          bool
-	Role            string `json:"-"`
+	ghost              bool
+	lockedControl      bool
+	viewRange          int
+	radarRange         int
+	police             bool
+	fractionWarrior    bool
+	lights             bool
+	Role               string `json:"-"`
+	UnrepairableDamage int    `json:"-"`
 
 	Decals []Decal
 }
