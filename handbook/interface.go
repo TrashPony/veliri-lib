@@ -2283,8 +2283,95 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: "Character `s name",
 		},
 	},
-	"GeoScan":           {},
-	"Global":            {},
+	"GeoScan": {
+		"window_name": {
+			_const.RU: `Сканер`,
+			_const.EN: `Scanner`,
+		},
+	},
+	"Global": {
+		"text_1": {
+			_const.RU: `Помощь`,
+			_const.EN: `Help`,
+		},
+		"text_2": {
+			_const.RU: `Доберитесь до указанной на <span style="color: yellow">мини-карте</span> зоне.`,
+			_const.EN: `Get to the area indicated on the <span style="color: yellow">minimap</span>.`,
+		},
+		"text_3": {
+			_const.RU: `Примечание:`,
+			_const.EN: `Note:`,
+		},
+		"text_4": {
+			_const.RU: `движение.`,
+			_const.EN: `movement.`,
+		},
+		"text_5": {
+			_const.RU: `ускорение.`,
+			_const.EN: `acceleration.`,
+		},
+		"text_6": {
+			_const.RU: `тормоз.`,
+			_const.EN: `brake.`,
+		},
+		"text_7": {
+			_const.RU: `Мышь`,
+			_const.EN: `Mouse`,
+		},
+		"text_8": {
+			_const.RU: `направление движения.`,
+			_const.EN: `direction of movement.`,
+		},
+		"text_9": {
+			_const.RU: `Уничтожьте бочки и баки на пути.`,
+			_const.EN: `Destroy the barrels and tanks on the way.`,
+		},
+		"text_10": {
+			_const.RU: `Примечание:`,
+			_const.EN: `Note:`,
+		},
+		"text_11": {
+			_const.RU: `Что бы активировать оружие его надо выбрать на панели в <span
+            style="color: yellow">центре с низу
+            экрана</span> или нажать на указанной на ячейке клавишу (<span style="color: yellow">2</span> или '<span
+            style="color: yellow">E</span>').`,
+			_const.EN: `To activate the weapon, you need to select it on the panel in the <span style="color: yellow">center
+			at the bottom of the screen</span> or press the key indicated in the cell (<span style="color: yellow">2</span>
+			or '<span style="color: yellow">E</span>').`,
+		},
+		"text_12": {
+			_const.RU: `прицеливание.`,
+			_const.EN: `aiming.`,
+		},
+		"text_13": {
+			_const.RU: `ЛКМ`,
+			_const.EN: `LMB`,
+		},
+		"text_14": {
+			_const.RU: `атака.`,
+			_const.EN: `attack.`,
+		},
+		"text_15": {
+			_const.RU: `Красный круг`,
+			_const.EN: `Red circle`,
+		},
+		"text_16": {
+			_const.RU: `зона поражения.`,
+			_const.EN: `affected area.`,
+		},
+		"text_17": {
+			_const.RU: `перезарядка.`,
+			_const.EN: `reloading.`,
+		},
+		"text_18": {
+			_const.RU: `Неизвестная угроза!`,
+			_const.EN: `Unknown threat!`,
+		},
+		"text_19": {
+			_const.RU: `Вы являетесь врагом в этом секторе!`,
+			_const.EN: `You are the enemy in this sector!`,
+		},
+	},
 	"GlobalMap":         {},
 	"GroupMenu":         {},
 	"Hangar":            {},
