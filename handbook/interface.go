@@ -2400,7 +2400,16 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Close`,
 		},
 	},
-	"GroupMenu":         {},
+	"GroupMenu": {
+		"window_name": {
+			_const.RU: `Отряд`,
+			_const.EN: `Squad`,
+		},
+		"text_1": {
+			_const.RU: `Вы не состоите в отряде...`,
+			_const.EN: `You are not a member of the squad...`,
+		},
+	},
 	"Hangar":            {},
 	"Help":              {},
 	"HelpControl":       {},
