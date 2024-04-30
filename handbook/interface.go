@@ -2916,7 +2916,14 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		// WarehouseTab
 	},
 	"Loader": {
-		// TODO
+		"window_name": {
+			_const.RU: `Загрузка...`,
+			_const.EN: `Loading...`,
+		},
+		"text_1": {
+			_const.RU: `Происходит что то неведомое... ¯\_(ツ)_/¯`,
+			_const.EN: `Something mysterious is happening... ¯\_(ツ)_/¯`,
+		},
 	},
 	"Lobby":             {},
 	"Mail":              {},
