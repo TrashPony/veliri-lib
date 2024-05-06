@@ -3916,7 +3916,24 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Buy`,
 		},
 	},
-	"ObjectDialog":      {},
+	"ObjectDialog": {
+		"window_name": {
+			_const.RU: `Объект: `,
+			_const.EN: `An object: `,
+		},
+		"owner": {
+			_const.RU: `Владелец:`,
+			_const.EN: `Owner: `,
+		},
+		"hp": {
+			_const.RU: `HP:`,
+			_const.EN: `HP: `,
+		},
+		"energy": {
+			_const.RU: `Energy:`,
+			_const.EN: `Energy: `,
+		},
+	},
 	"PrefabricatedMenu": {},
 	"Preloader":         {},
 	"ProcessorRoot":     {},
