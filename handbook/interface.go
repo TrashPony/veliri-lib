@@ -4185,13 +4185,91 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Refueling vehicles`,
 		},
 	},
-	"ServerState":    {},
-	"Settings":       {},
-	"StatusBar":      {},
-	"TechnologyMenu": {},
-	"Training":       {},
-	"Transfer":       {},
-	"UserStat":       {},
-	"Window":         {},
-	"Workbench":      {},
+	"ServerState": {},
+	"Settings": {
+		"window_name": {
+			_const.RU: `Настройки`,
+			_const.EN: `Settings`,
+		},
+		"sound": {
+			_const.RU: `Звук`,
+			_const.EN: `Sound`,
+		},
+		"music_volume": {
+			_const.RU: `Громкость музыки:`,
+			_const.EN: `Music volume:`,
+		},
+		"sfx_Volume": {
+			_const.RU: `Громкость эффектов:`,
+			_const.EN: `Effects volume:`,
+		},
+		"graphics": {
+			_const.RU: `Графика`,
+			_const.EN: `Graphics`,
+		},
+		"traces": {
+			_const.RU: `Следы от гусениц:`,
+			_const.EN: `Traces from transport:`,
+		},
+	},
+	"StatusBar": {},
+	"TechnologyMenu": {
+		"window_name": {
+			_const.RU: `Дерево технологий`,
+			_const.EN: `Wood technologies`,
+		},
+		"tab_1": {
+			_const.RU: `Корпуса`,
+			_const.EN: `Bodies`,
+		},
+		"blu": {
+			_const.RU: `Легкие универсалы`,
+			_const.EN: `Lightweight universal`,
+		},
+		"bmm": {
+			_const.RU: `Средние шахтеры`,
+			_const.EN: `Medium miners`,
+		},
+		"bhm": {
+			_const.RU: `Тяжелые шахтеры`,
+			_const.EN: `Heavy miners`,
+		},
+		"blf": {
+			_const.RU: `Легкие бойцы`,
+			_const.EN: `Light fighters`,
+		},
+		"bmf": {
+			_const.RU: `Средние бойцы`,
+			_const.EN: `Medium fighters`,
+		},
+		"bhf": {
+			_const.RU: `Тяжелые бойцы`,
+			_const.EN: `Heavy fighters`,
+		},
+		"bmt": {
+			_const.RU: `Средние грузовики`,
+			_const.EN: `Medium trucks`,
+		},
+		"bht": {
+			_const.RU: `Тяжелые грузовики`,
+			_const.EN: `Heavy trucks`,
+		},
+		"bl": {
+			_const.RU: `Легкие`,
+			_const.EN: `Light`,
+		},
+		"bm": {
+			_const.RU: `Средние`,
+			_const.EN: `Medium`,
+		},
+		"bh": {
+			_const.RU: `Тяжелые`,
+			_const.EN: `Heavy`,
+		},
+	},
+	"Training":  {},
+	"Transfer":  {},
+	"UserStat":  {},
+	"Window":    {},
+	"Workbench": {},
 }
