@@ -1342,48 +1342,48 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_1": {
 			_const.RU: `Занимаемый объем`,
-			_const.EN: ``,
+			_const.EN: `Occupied volume`,
 		},
 		"ch_2": {
 			_const.RU: `Вместимость`,
-			_const.EN: ``,
+			_const.EN: `Capacity`,
 		},
 		"ch_3": {
 			_const.RU: `Прочность`,
-			_const.EN: ``,
+			_const.EN: `Strength`,
 		},
 		"ch_4": {
 			_const.RU: `Занимаемый объем в трюме`,
-			_const.EN: ``,
+			_const.EN: `Occupied volume in the hold`,
 		},
 		"ch_5": {
 			_const.RU: `Защищен паролем`,
-			_const.EN: ``,
+			_const.EN: `Password protected`,
 		},
 		"ch_6": {
 			_const.RU: `Находится под землей`,
-			_const.EN: ``,
+			_const.EN: `Located underground`,
 		},
 
 		"ch_7": {
 			_const.RU: `Размер корпуса`,
-			_const.EN: ``,
+			_const.EN: `Body size`,
 		},
 		"ch_8": {
 			_const.RU: `Вместимость трюма`,
-			_const.EN: ``,
+			_const.EN: `Hold capacity`,
 		},
 		"ch_9": {
 			_const.RU: `Дополнительные отсеки:`,
-			_const.EN: ``,
+			_const.EN: `Additional compartments:`,
 		},
 		"ch_10": {
 			_const.RU: `Вместимость`,
-			_const.EN: ``,
+			_const.EN: `Capacity`,
 		},
 		"ch_11": {
 			_const.RU: `Допустимые предметы`,
-			_const.EN: ``,
+			_const.EN: `Acceptable Items`,
 		},
 		"ch_12": {
 			_const.RU: `Ходовая`,
@@ -1391,11 +1391,11 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_13": {
 			_const.RU: `Макс. скорость`,
-			_const.EN: ``,
+			_const.EN: `Max speed`,
 		},
 		"ch_14": {
 			_const.RU: `Скорость поворота`,
-			_const.EN: ``,
+			_const.EN: `Turning speed`,
 		},
 		"ch_15": {
 			_const.RU: `Навигация`,
@@ -1403,11 +1403,11 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_16": {
 			_const.RU: `Дальность обзора`,
-			_const.EN: ``,
+			_const.EN: `View range`,
 		},
 		"ch_17": {
 			_const.RU: `Дальность радара`,
-			_const.EN: ``,
+			_const.EN: `Radar range`,
 		},
 		"ch_18": {
 			_const.RU: `Накопитель энергии`,
@@ -1415,7 +1415,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_19": {
 			_const.RU: `Вместимость накопителя энергии`,
-			_const.EN: ``,
+			_const.EN: `Energy storage capacity`,
 		},
 		"ch_20": {
 			_const.RU: `Скорость зарядки`,
@@ -1423,19 +1423,19 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_21": {
 			_const.RU: `Выживаемость:`,
-			_const.EN: ``,
+			_const.EN: `Survival:`,
 		},
 		"ch_22": {
 			_const.RU: `Структура`,
-			_const.EN: ``,
+			_const.EN: `Structure`,
 		},
 		"ch_23": {
 			_const.RU: `Защита:`,
-			_const.EN: ``,
+			_const.EN: `Protection:`,
 		},
 		"ch_24": {
 			_const.RU: `Броня и уязвимые места`,
-			_const.EN: ``,
+			_const.EN: `Armor and vulnerabilities`,
 		},
 		"ch_25": {
 			_const.RU: `Размер боеприпаса`,
@@ -1467,7 +1467,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_32": {
 			_const.RU: `Особенность:`,
-			_const.EN: ``,
+			_const.EN: `Feature:`,
 		},
 		"ch_33": {
 			_const.RU: `Ручной захват цели`,
@@ -1483,151 +1483,151 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_36": {
 			_const.RU: `Макс. прочность`,
-			_const.EN: ``,
+			_const.EN: `Max strength`,
 		},
 		"ch_37": {
 			_const.RU: `Радиус щита`,
-			_const.EN: ``,
+			_const.EN: `Shield radius`,
 		},
 		"ch_38": {
 			_const.RU: `Восстановление прочности`,
-			_const.EN: ``,
+			_const.EN: `Restoring Strength`,
 		},
 		"ch_39": {
 			_const.RU: `Потребляемая энергия`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption`,
 		},
 		"ch_40": {
 			_const.RU: `Потребляемая энергия в простое`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption when idle`,
 		},
 		"ch_41": {
 			_const.RU: `Время восстановления после урона`,
-			_const.EN: ``,
+			_const.EN: `Recovery time after damage`,
 		},
 		"ch_42": {
 			_const.RU: `Радиус мемех`,
-			_const.EN: ``,
+			_const.EN: `Interference radius`,
 		},
 		"ch_43": {
 			_const.RU: `Потребляемая энергия`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption`,
 		},
 		"ch_44": {
 			_const.RU: `Радиус защиты`,
-			_const.EN: ``,
+			_const.EN: `Protection radius`,
 		},
 		"ch_45": {
 			_const.RU: `Потребляемая энергия за сбитие`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per shoot down`,
 		},
 		"ch_46": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_47": {
 			_const.RU: `Дальность ремонта`,
-			_const.EN: ``,
+			_const.EN: `Repair range`,
 		},
 		"ch_48": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_49": {
 			_const.RU: `Потребляемая энергия`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption`,
 		},
 		"ch_50": {
 			_const.RU: `Кол-во восстанавливаемой прочности`,
-			_const.EN: ``,
+			_const.EN: `Amount of restored strength`,
 		},
 		"ch_51": {
 			_const.RU: `Объем добываемой руды`,
-			_const.EN: ``,
+			_const.EN: `Volume of ore mined`,
 		},
 		"ch_52": {
 			_const.RU: `Разработка руды`,
-			_const.EN: ``,
+			_const.EN: `Ore development`,
 		},
 		"ch_53": {
 			_const.RU: `Дальность добычи`,
-			_const.EN: ``,
+			_const.EN: `Mining range`,
 		},
 		"ch_54": {
 			_const.RU: `Потребление энергии`,
-			_const.EN: ``,
+			_const.EN: `Power consumption`,
 		},
 		"ch_55": {
 			_const.RU: `Наполнение бочки`,
-			_const.EN: ``,
+			_const.EN: `Filling the barrel`,
 		},
 		"ch_56": {
 			_const.RU: `Дальность шланга`,
-			_const.EN: ``,
+			_const.EN: `Hose range`,
 		},
 		"ch_57": {
 			_const.RU: `Скорость перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge speed`,
 		},
 		"ch_58": {
 			_const.RU: `Потребление энергии за такт`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per cycle`,
 		},
 		"ch_59": {
 			_const.RU: `Дальность управления`,
-			_const.EN: ``,
+			_const.EN: `Control range`,
 		},
 		"ch_60": {
 			_const.RU: `Радиус раскопок`,
-			_const.EN: ``,
+			_const.EN: `Excavation radius`,
 		},
 		"ch_61": {
 			_const.RU: `Перезарядка дрона`,
-			_const.EN: ``,
+			_const.EN: `Recharging the drone`,
 		},
 		"ch_62": {
 			_const.RU: `Энергия для активации дрона`,
-			_const.EN: ``,
+			_const.EN: `Energy to activate the drone`,
 		},
 		"ch_63": {
 			_const.RU: `Дальность`,
-			_const.EN: ``,
+			_const.EN: `Range`,
 		},
 		"ch_64": {
 			_const.RU: `Скорость перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge speed`,
 		},
 		"ch_65": {
 			_const.RU: `Потребление энергии`,
-			_const.EN: ``,
+			_const.EN: `Power consumption`,
 		},
 		"ch_66": {
 			_const.RU: `Влияние на прочность`,
-			_const.EN: ``,
+			_const.EN: `Impact on strength`,
 		},
 		"ch_67": {
 			_const.RU: `Дальность передачи энергии`,
-			_const.EN: ``,
+			_const.EN: `Energy transmission range`,
 		},
 		"ch_68": {
 			_const.RU: `Передаваемая энергия за такт`,
-			_const.EN: ``,
+			_const.EN: `Transmitted energy per cycle`,
 		},
 		"ch_69": {
 			_const.RU: `Скорость перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge speed`,
 		},
 		"ch_70": {
 			_const.RU: `Чувствительность датчика`,
-			_const.EN: ``,
+			_const.EN: `Sensor sensitivity`,
 		},
 		"ch_71": {
 			_const.RU: `Потребление энергии за сканирование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per scan`,
 		},
 		"ch_72": {
 			_const.RU: `Перезарядка`,
-			_const.EN: ``,
+			_const.EN: `Reload`,
 		},
 		"ch_73": {
 			_const.RU: `Урон`,
@@ -1663,269 +1663,267 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_81": {
 			_const.RU: `Дальность обзора`,
-			_const.EN: ``,
+			_const.EN: `View range`,
 		},
 		"ch_82": {
 			_const.RU: `Структура`,
-			_const.EN: ``,
+			_const.EN: `Structure`,
 		},
 		"ch_83": {
 			_const.RU: `Время жизни`,
-			_const.EN: ``,
+			_const.EN: `Lifetime`,
 		},
 		"ch_84": {
 			_const.RU: `Дальность полета капсулы с турелью`,
-			_const.EN: ``,
+			_const.EN: `Flight range of a capsule with a turret`,
 		},
 		"ch_85": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_86": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_87": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_88": {
 			_const.RU: `Радиус закрытия обзора одного заряда`,
-			_const.EN: ``,
+			_const.EN: `Radius of closing the view of one charge`,
 		},
 		"ch_89": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_90": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_91": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_92": {
 			_const.RU: `Радиус закрытия обзора одного заряда`,
-			_const.EN: ``,
+			_const.EN: `Radius of closing the view of one charge`,
 		},
 		"ch_93": {
 			_const.RU: `Дальность полета капсул`,
-			_const.EN: ``,
+			_const.EN: `Capsule flight range`,
 		},
 		"ch_94": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_95": {
 			_const.RU: `Кол-во капсул в одном заряде`,
-			_const.EN: ``,
+			_const.EN: `Number of capsules in one charge`,
 		},
 		"ch_96": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_97": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_98": {
 			_const.RU: `Дальность обзора`,
-			_const.EN: ``,
+			_const.EN: `View range`,
 		},
 		"ch_99": {
 			_const.RU: `Время жизни`,
-			_const.EN: ``,
+			_const.EN: `Lifetime`,
 		},
 		"ch_100": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_101": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_102": {
 			_const.RU: `Дальность обзора`,
-			_const.EN: ``,
+			_const.EN: `View range`,
 		},
 		"ch_103": {
 			_const.RU: `Время жизни`,
-			_const.EN: ``,
+			_const.EN: `Lifetime`,
 		},
 		"ch_104": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_105": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
-
 		"ch_106": {
 			_const.RU: `Дальность захвата целей`,
-			_const.EN: ``,
+			_const.EN: `Target acquisition range`,
 		},
 		"ch_107": {
 			_const.RU: `Структура`,
-			_const.EN: ``,
+			_const.EN: `Structure`,
 		},
 		"ch_108": {
 			_const.RU: `Время жизни ловушки`,
-			_const.EN: ``,
+			_const.EN: `Trap lifetime`,
 		},
 		"ch_109": {
 			_const.RU: `Время жизни ловушки после активации`,
-			_const.EN: ``,
+			_const.EN: `Trap lifetime after activation`,
 		},
 		"ch_110": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_111": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_112": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_113": {
 			_const.RU: `Дальность полета`,
-			_const.EN: ``,
+			_const.EN: `Range of flight`,
 		},
 		"ch_114": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_115": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_116": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_117": {
 			_const.RU: `Дальность полета`,
-			_const.EN: ``,
+			_const.EN: `Range of flight`,
 		},
 		"ch_118": {
 			_const.RU: `Сила притяжения`,
-			_const.EN: ``,
+			_const.EN: `Force of gravity`,
 		},
 		"ch_119": {
 			_const.RU: `Радиус`,
-			_const.EN: ``,
+			_const.EN: `Radius`,
 		},
 		"ch_120": {
 			_const.RU: `Время жизни`,
-			_const.EN: ``,
+			_const.EN: `Lifetime`,
 		},
 		"ch_121": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_122": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_123": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_124": {
 			_const.RU: `Сила прыжка`,
-			_const.EN: ``,
+			_const.EN: `Jump Power`,
 		},
 		"ch_125": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_126": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
-
 		"ch_127": {
 			_const.RU: `Время активации`,
-			_const.EN: ``,
+			_const.EN: `Activation time`,
 		},
 		"ch_128": {
 			_const.RU: `Потребляемая энергия`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption`,
 		},
 		"ch_129": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_130": {
 			_const.RU: `Структура`,
-			_const.EN: ``,
+			_const.EN: `Structure`,
 		},
 		"ch_131": {
 			_const.RU: `Дальность полета капсулы со стеной`,
-			_const.EN: ``,
+			_const.EN: `Flight range of a capsule with a wall`,
 		},
 		"ch_132": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_133": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_134": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_135": {
 			_const.RU: `Макс. прочность`,
-			_const.EN: ``,
+			_const.EN: `Max strength`,
 		},
 		"ch_136": {
 			_const.RU: `Радиус щита`,
-			_const.EN: ``,
+			_const.EN: `Shield radius`,
 		},
 		"ch_137": {
 			_const.RU: `Время жизни`,
-			_const.EN: ``,
+			_const.EN: `Lifetime`,
 		},
 		"ch_138": {
 			_const.RU: `Восстановление прочности`,
-			_const.EN: ``,
+			_const.EN: `Restoring Strength`,
 		},
 		"ch_139": {
 			_const.RU: `Время восстановления после урона`,
-			_const.EN: ``,
+			_const.EN: `Recovery time after damage`,
 		},
 		"ch_140": {
 			_const.RU: `Структура`,
-			_const.EN: ``,
+			_const.EN: `Structure`,
 		},
 		"ch_141": {
 			_const.RU: `Дальность полета капсулы`,
-			_const.EN: ``,
+			_const.EN: `Capsule flight range`,
 		},
 		"ch_142": {
 			_const.RU: `Кол-во зарядов`,
-			_const.EN: ``,
+			_const.EN: `Number of charges`,
 		},
 		"ch_143": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_144": {
 			_const.RU: `Время перезарядки`,
-			_const.EN: ``,
+			_const.EN: `Recharge time`,
 		},
 		"ch_145": {
 			_const.RU: `Радиус`,
-			_const.EN: ``,
+			_const.EN: `Radius`,
 		},
 		"ch_146": {
 			_const.RU: `Потребляемая энергия за использование`,
-			_const.EN: ``,
+			_const.EN: `Energy consumption per use`,
 		},
 		"ch_147": {
 			_const.RU: `Потребляя мощность`,
@@ -1933,7 +1931,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		"ch_148": {
 			_const.RU: `Занимаемый объем`,
-			_const.EN: ``,
+			_const.EN: `Occupied volume`,
 		},
 		"ch_149": {
 			_const.RU: `Размер оружия`,
