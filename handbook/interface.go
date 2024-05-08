@@ -354,6 +354,10 @@ var GameInterface = map[string]map[string]map[string]string{
 						<p>The latest representative of a new evolutionary direction. The <span class="importantly">Reverses</span> are characterized by such phenomena as the right of the masses, individuality and choice. It is for this reason that most representatives of this AI trend are independent platforms that tirelessly work on terraforming technology.</p>
 						<p>Returning the world of <span class="importantly">Veliri-5</span> to its former appearance and further sowing life wherever possible. In every way turning a blind eye to the actions and confrontations of other AIs. However, not standing aside when danger threatens them.</p>`,
 		},
+		"button_1": {
+			_const.RU: `Выбрать`,
+			_const.EN: `Choose`,
+		},
 	},
 	"Corporation": {
 		// Corporation
