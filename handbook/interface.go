@@ -2373,6 +2373,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Вы являетесь врагом в этом секторе!`,
 			_const.EN: `You are the enemy in this sector!`,
 		},
+		"text_20": {
+			_const.RU: `включить фары.`,
+			_const.EN: `turn off the headlights.`,
+		},
 	},
 	"GlobalMap": {
 		// GlobalMap
