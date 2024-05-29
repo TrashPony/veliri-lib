@@ -22,8 +22,8 @@ type GunUser interface {
 	GetX() int
 	GetY() int
 	GetScale() int
-	GetWeaponTarget() *target.Target
-	SetWeaponTarget(target *target.Target)
+	GetWeaponTarget(slot int) *target.Target
+	SetWeaponTarget(slot int, target *target.Target)
 	GetBurstOfShots() *burst_of_shots.BurstOfShots
 	UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex)
 	GetPhysicalModel() *physical_model.PhysicalModel
@@ -119,16 +119,16 @@ func (g *Gunner) GetWeaponFirePos(slotNumber int) []*game_math.Positions {
 	)
 }
 
-func (g *Gunner) GetWeaponTarget() *target.Target {
+func (g *Gunner) GetWeaponTarget(slot int) *target.Target {
 	if g == nil {
 		return nil
 	}
 
-	return g.GunUser.GetWeaponTarget()
+	return g.GunUser.GetWeaponTarget(slot)
 }
 
-func (g *Gunner) SetWeaponTarget(target *target.Target) {
-	g.GunUser.SetWeaponTarget(target)
+func (g *Gunner) SetWeaponTarget(slot int, target *target.Target) {
+	g.GunUser.SetWeaponTarget(slot, target)
 }
 
 func (g *Gunner) GetDamage(slotNumber int) int {

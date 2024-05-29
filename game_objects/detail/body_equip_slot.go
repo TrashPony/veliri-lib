@@ -37,6 +37,9 @@ type BodyEquipSlot struct {
 
 	TypeSlot int `json:"-"`
 	Slot     int `json:"-"`
+
+	Direction int `json:"direction"`
+	PassAngle int `json:"pass_angle"`
 }
 
 func (s *BodyEquipSlot) GetReload() bool {

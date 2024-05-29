@@ -8,7 +8,7 @@ func (o *Object) SetPower(power int) {
 	o.CurrentEnergy = power
 }
 
-func (o *Object) SetWeaponTarget(target *target.Target) {
+func (o *Object) SetWeaponTarget(_ int, target *target.Target) {
 	o.weaponTarget = target
 }
 

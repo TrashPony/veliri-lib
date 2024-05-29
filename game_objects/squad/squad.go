@@ -6,7 +6,6 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/dynamic_map_object"
 	"github.com/TrashPony/veliri-lib/game_objects/skin"
 	"github.com/TrashPony/veliri-lib/game_objects/special_hostiles"
-	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"github.com/TrashPony/veliri-lib/generate_ids"
@@ -368,20 +367,6 @@ func (s *Squad) GetType() string {
 		return s.GetMS().GetType()
 	}
 	return ""
-}
-
-func (s *Squad) GetWeaponTarget() *target.Target {
-	if s.GetMS() != nil {
-		return s.GetMS().GetWeaponTarget()
-	}
-
-	return nil
-}
-
-func (s *Squad) SetWeaponTarget(target *target.Target) {
-	if s.GetMS() != nil {
-		s.GetMS().SetWeaponTarget(target)
-	}
 }
 
 func (s *Squad) GetSoftTransition() int {

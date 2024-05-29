@@ -128,7 +128,7 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 		game_math.Sin(radRotate2)*(obj.GetPowerLeft()-obj.GetPowerRight()),
 	)
 
-	wt := g.GetWeaponTarget()
+	wt := g.GetWeaponTarget(0)
 	if wt != nil {
 		needAngle := game_math.GetBetweenAngle(float64(wt.GetX()), float64(wt.GetY()), float64(obj.GetX()), float64(obj.GetY()))
 		diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), needAngle)

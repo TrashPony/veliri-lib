@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
+	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"time"
 )
 
@@ -35,6 +36,10 @@ type BodyWeaponSlot struct {
 	AccumulationTimeOut int     `json:"-"`
 	StartReloadTime     int64   `json:"-"`
 	EndReloadTime       int64   `json:"-"`
+	TargetMsg           []byte  `json:"-"`
+	Direction           int     `json:"direction"`
+	PassAngle           int     `json:"pass_angle"`
+	weaponTarget        *target.Target
 }
 
 func (s *BodyWeaponSlot) StartReload(reloadTime int, ammoReload bool) {
@@ -178,4 +183,12 @@ func (w *Weapon) GetWeaponMaxRange(ammo *ammo.Ammo, lvlMap, mapHeight float64, r
 	)
 
 	return int(maxRange), angle
+}
+
+func (s *BodyWeaponSlot) GetWeaponTarget() *target.Target {
+	return s.weaponTarget
+}
+
+func (s *BodyWeaponSlot) SetWeaponTarget(target *target.Target) {
+	s.weaponTarget = target
 }

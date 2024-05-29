@@ -175,13 +175,13 @@ func (o *Object) GetStartScale() {
 	}
 }
 
-func (o *Object) GetWeaponTarget() *target.Target {
+func (o *Object) GetWeaponTarget(_ int) *target.Target {
 	return o.weaponTarget
 }
 
 func (o *Object) GetDistWeaponToTarget() int {
 
-	weaponTarget := o.GetWeaponTarget()
+	weaponTarget := o.GetWeaponTarget(0)
 	if weaponTarget == nil || o == nil {
 		return 9999
 	}

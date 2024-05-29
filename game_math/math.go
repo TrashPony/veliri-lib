@@ -76,8 +76,8 @@ func VectorToAngleBySpeed(x1, y1, speed, angle float64) (int, int) {
 
 func GetRangeRand(min, max int, r *rand.Rand) int {
 
-	if max == 0 {
-		return 0
+	if max-min+1 <= 0 {
+		return min
 	}
 
 	if r == nil {

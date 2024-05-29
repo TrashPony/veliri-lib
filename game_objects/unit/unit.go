@@ -814,7 +814,9 @@ func (u *Unit) SetAnchorsEquip() {
 	}
 
 	// распологаем оружие
-	u.GetWeaponSlot(1).SetAnchor()
+	for _, ws := range u.RangeWeaponSlots() {
+		ws.SetAnchor()
+	}
 
 	// распологаем снарягу (не вся снаряга может быть на корпусе но это разруливается не тут)
 	for _, slot := range u.getBody().GetAllEquips() {
@@ -828,12 +830,7 @@ func (u *Unit) GetWeaponSlot(slotNumber int) *detail.BodyWeaponSlot { // по д
 		return nil
 	}
 
-	// TODO пока только 1 оружие это +- применимо, а так нет
-	for _, weaponSlot := range u.getBody().Weapons {
-		return weaponSlot
-	}
-
-	return nil
+	return u.getBody().Weapons[slotNumber]
 }
 
 func (u *Unit) GetEquipPosInMap(typeEquip, numberSlot int) (int, int) {

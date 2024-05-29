@@ -41,6 +41,7 @@ type Weapon struct {
 	AccumulationFullTimeOut int     `json:"accumulation_full_time_out"` // время в мс когда произойдет перегрев или автовыстрел
 	PushingPower            int     `json:"pushing_power"`
 	Variants                []int   `json:"variants"`
+	PassAngle               int     `json:"pass_angle"`
 }
 
 func (w *Weapon) GetName() string {

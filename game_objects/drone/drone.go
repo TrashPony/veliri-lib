@@ -235,7 +235,7 @@ func (d *Drone) GetID() int {
 func (d *Drone) SetAllGunRotate(addRotate float64) {
 }
 
-func (d *Drone) GetWeaponTarget() *target.Target {
+func (d *Drone) GetWeaponTarget(_ int) *target.Target {
 	if d == nil {
 		return nil
 	}
@@ -245,7 +245,7 @@ func (d *Drone) GetWeaponTarget() *target.Target {
 	return d.weaponTarget
 }
 
-func (d *Drone) SetWeaponTarget(target *target.Target) {
+func (d *Drone) SetWeaponTarget(_ int, target *target.Target) {
 	d.targetMX.Lock()
 	defer d.targetMX.Unlock()
 
