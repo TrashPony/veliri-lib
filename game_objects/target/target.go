@@ -28,6 +28,7 @@ type Target struct {
 	Update       int64   `json:"-"`
 	MouseTap     bool    `json:"-"`
 	Points       int     `json:"-"`
+	PassAngle    int     `json:"-"`
 }
 
 func (t *Target) GetX() int {

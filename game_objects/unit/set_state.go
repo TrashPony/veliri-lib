@@ -45,8 +45,9 @@ func (u *Unit) SetDamage(damage, k, t, e int) int {
 		}
 	}
 
-	if !u.Immortal {
-		u.SetHP(u.GetHP() - damage)
+	u.SetHP(u.GetHP() - damage)
+	if u.Immortal && u.GetHP() <= 0 {
+		u.SetHP(1)
 	}
 
 	u.UnrepairableDamage += damage
