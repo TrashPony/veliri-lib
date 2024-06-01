@@ -67,7 +67,11 @@ func (d *Drone) SetCorporationID(id int) {
 
 func (d *Drone) AddEffect(newEffect *effect.Effect) bool {
 	add := d.GetEffects().AddEffect(newEffect)
-	d.UpdatePhysicalModel()
+	if add {
+		d.UpdatePhysicalModel()
+		d.UpdateWeaponsState()
+	}
+
 	return add
 }
 
@@ -172,15 +176,15 @@ func (d *Drone) UpdateWeaponsState() {
 		}
 
 		if wSlot.Weapon != nil {
-			slotState.Accuracy = wSlot.Weapon.Accuracy
-			slotState.RotateSpeed = wSlot.Weapon.RotateSpeed
-			slotState.ReloadTime = wSlot.Weapon.ReloadTime
-			slotState.ReloadAmmoTime = wSlot.Weapon.ReloadAmmoTime
+			slotState.Accuracy = d.getGunAccuracy(wSlot.Number)
+			slotState.RotateSpeed = d.getGunRotateSpeed(wSlot.Number)
+			slotState.ReloadTime = d.getWeaponReloadTime(wSlot.Number)
+			slotState.ReloadAmmoTime = d.getWeaponAmmoReloadTime(wSlot.Number)
 		}
 
 		if wSlot.Ammo != nil {
-			slotState.MaxDamage = int(float64(wSlot.Ammo.MaxDamage) * wSlot.Weapon.DamageModifier)
-			slotState.MinDamage = int(float64(wSlot.Ammo.MinDamage) * wSlot.Weapon.DamageModifier)
+			slotState.MaxDamage = d.getMaxDamage(wSlot.Number)
+			slotState.MinDamage = d.getMinDamage(wSlot.Number)
 		}
 
 		d.gunner.WeaponSlotsState = append(d.gunner.WeaponSlotsState, slotState)
@@ -437,4 +441,52 @@ func (d *Drone) SetEngagePositions() {
 
 		d.EngageAnchors[key] = newAnc
 	}
+}
+
+func (d *Drone) getGunAccuracy(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) getGunRotateSpeed(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) getWeaponReloadTime(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) getMaxDamage(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) getMinDamage(weaponSlotNumber int) int {
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
 }

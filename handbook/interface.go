@@ -2150,6 +2150,14 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Фракционный магазин`,
 			_const.EN: `Faction Store`,
 		},
+		"to_storage": {
+			_const.RU: `Предметы отправлены на <span class="importantly">склад</span>`,
+			_const.EN: `Items sent to <span class="importantly">warehouse</span>`,
+		},
+		"error_1": {
+			_const.RU: `Не удалось`,
+			_const.EN: `Failed`,
+		},
 		"text_1": {
 			_const.RU: `Фракционный магазин`,
 			_const.EN: `Faction Store`,
