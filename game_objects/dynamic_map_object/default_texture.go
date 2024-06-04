@@ -8,13 +8,13 @@ import (
 func (o *Object) DefaultTexture() {
 	body, weapon := _const.GetTextureKostil(o.Texture, o.Type)
 	if body {
-		o.Texture += "_" + strings.ToLower(_const.ALL)
+		o.Texture += "_" + strings.ToLower(_const.Empty)
 	}
 
 	if weapon {
 		for _, wSlot := range o.RangeWeaponSlots() {
 			if wSlot.Weapon != nil {
-				wSlot.Weapon.Name += "_" + strings.ToLower(_const.ALL)
+				wSlot.Weapon.Name += "_" + strings.ToLower(_const.Empty)
 			}
 		}
 	}

@@ -32,6 +32,7 @@ type Drone struct {
 	RangeView        int                              `json:"range_view"`
 	Scale            int                              `json:"scale"`
 	Fraction         string                           `json:"fraction"`
+	FractionByte     byte                             `json:"-"`
 	EngagePosNoScale map[string]coordinate.Coordinate `json:"wheels_pos_no_scale"`
 	EngageAnchors    map[string]anchor.Anchor         `json:"wheel_anchors"`
 

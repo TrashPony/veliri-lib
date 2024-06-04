@@ -492,17 +492,17 @@ var TradeEvents = map[string][]TradeEvent{
 		},
 		// ALL
 		{
-			Fraction:    _const.ALL,
+			Fraction:    _const.Empty,
 			ProductName: "all",
 			Type:        "excess",
 			Text:        "Из-за массового перепроизводства на базе %BaseName%, на рынке наблюдается снижение покупной цены на многие товары. Не теряйте время зря и успейте взять то, что вам сейчас необходимо!",
 		}, {
-			Fraction:    _const.ALL,
+			Fraction:    _const.Empty,
 			ProductName: "all",
 			Type:        "lack",
 			Text:        "Из-за спада производственных мощностей на базе %BaseName%, на рынке наблюдается повышение покупной цены на многие товары. Это может стать удачным подспорьем в реализации тех или иных дефицитных товаров. Имейте это ввиду!",
 		}, {
-			Fraction:    _const.ALL,
+			Fraction:    _const.Empty,
 			ProductName: "all",
 			Type:        "cancel",
 			Text:        "",

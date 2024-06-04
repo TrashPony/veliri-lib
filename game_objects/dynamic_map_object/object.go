@@ -58,11 +58,12 @@ type Object struct {
 	TypeBaseData []*coordinate.Coordinate        `json:"type_base_data"`
 	HeightType   float64                         `json:"-"`
 
-	Fraction   string `json:"fraction"`
-	RangeView  int    `json:"range_view"`
-	RangeRadar int    `json:"range_radar"`
-	XAttach    int    `json:"x_attach"`
-	YAttach    int    `json:"y_attach"`
+	Fraction     string `json:"fraction"`
+	FractionByte byte   `json:"-"`
+	RangeView    int    `json:"range_view"`
+	RangeRadar   int    `json:"range_radar"`
+	XAttach      int    `json:"x_attach"`
+	YAttach      int    `json:"y_attach"`
 
 	/* постройка */
 	Build           bool              `json:"build"` // если билд true, то обьект считает завершенным если Complete == 100, иначе он не работает

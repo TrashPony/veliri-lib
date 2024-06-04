@@ -78,6 +78,7 @@ type Unit struct {
 	lights             bool
 	Role               string `json:"-"`
 	UnrepairableDamage int    `json:"-"`
+	FractionByte       byte   `json:"-"`
 
 	Decals []Decal
 }
