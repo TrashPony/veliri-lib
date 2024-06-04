@@ -202,11 +202,13 @@ func (o *Object) GetType() string {
 }
 
 func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {
-	if o.GetRangeView()+radius >= int(game_math.GetBetweenDist(o.GetPhysicalModel().X, o.GetPhysicalModel().Y, x, y)) {
+
+	dist := int(game_math.GetBetweenDist(o.GetPhysicalModel().X, o.GetPhysicalModel().Y, x, y))
+	if o.GetRangeView()+radius >= dist {
 		return true, true
 	}
 
-	if o.GetRadarRange()+radius >= int(game_math.GetBetweenDist(o.GetPhysicalModel().X, o.GetPhysicalModel().Y, x, y)) {
+	if o.GetRadarRange()+radius >= dist {
 		return false, true
 	}
 

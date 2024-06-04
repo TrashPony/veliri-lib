@@ -870,11 +870,12 @@ func (u *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 		return false, false
 	}
 
-	if u.GetRangeView()+radius >= int(game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y)) {
+	dist := int(game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y))
+	if u.GetRangeView()+radius >= dist {
 		return true, true
 	}
 
-	if u.GetRadarRange()+radius >= int(game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y)) {
+	if u.GetRadarRange()+radius >= dist {
 		return false, true
 	}
 
