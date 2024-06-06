@@ -405,6 +405,10 @@ var GameInterface = map[string]map[string]map[string]string{
 			_const.RU: `Создать`,
 			_const.EN: `Create`,
 		},
+		"tab_11": {
+			_const.RU: `Аудит`,
+			_const.EN: `Audit`,
+		},
 		"text_1": {
 			_const.RU: `Вы не состоите в кластере.`,
 			_const.EN: `You are not in a cluster.`,
@@ -1010,8 +1014,8 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		},
 		// Search
 		"text_61": {
-			_const.RU: `Поиск кластера`,
-			_const.EN: `Search for a cluster`,
+			_const.RU: `Фильтры:`,
+			_const.EN: `Filters:`,
 		},
 		"placeholder_3": {
 			_const.RU: `Название кластера`,
@@ -1044,6 +1048,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"button_37": {
 			_const.RU: `Отмена`,
 			_const.EN: `Cancel`,
+		},
+		"button_50": {
+			_const.RU: `Поиск`,
+			_const.EN: `Search`,
 		},
 		// Wars
 		"text_63": {
