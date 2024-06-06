@@ -915,7 +915,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Tax collection deposit:`,
 		},
 		"option_28": {
-			_const.RU: `Склад лидера`,
+			_const.RU: `Счет лидера`,
 			_const.EN: `Leader deposit`,
 		},
 		"text_43": {
@@ -1052,6 +1052,18 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"button_50": {
 			_const.RU: `Поиск`,
 			_const.EN: `Search`,
+		},
+		"option_32": {
+			_const.RU: `Все`,
+			_const.EN: `All`,
+		},
+		"option_33": {
+			_const.RU: `Открыт`,
+			_const.EN: `Open`,
+		},
+		"option_34": {
+			_const.RU: `Закрыт`,
+			_const.EN: `Close`,
 		},
 		// Wars
 		"text_63": {
@@ -4035,6 +4047,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Close`,
 		},
 		"button_2": {
+			_const.RU: `Переработать`,
+			_const.EN: `Recycle`,
+		},
+		"text_3": {
 			_const.RU: `Переработать`,
 			_const.EN: `Recycle`,
 		},
