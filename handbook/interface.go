@@ -1012,6 +1012,18 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Добавить`,
 			_const.EN: `Add`,
 		},
+		"build": {
+			_const.RU: `Строительство`,
+			_const.EN: `Building`,
+		},
+		"dismantling": {
+			_const.RU: `Демонтаж строений`,
+			_const.EN: `Dismantling of buildings`,
+		},
+		"change_local_policy": {
+			_const.RU: `Изменение локальной политики`,
+			_const.EN: `Change local policy`,
+		},
 		// Search
 		"text_61": {
 			_const.RU: `Фильтры:`,
@@ -1274,6 +1286,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Объявить войну`,
 			_const.EN: `To declare a war`,
 		},
+		// Audit
 	},
 	"Department": {
 		"window_name_1": {
