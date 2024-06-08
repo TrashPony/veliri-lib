@@ -589,8 +589,8 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Operation`,
 		},
 		"deposit_history_h3": {
-			_const.RU: `Операция`,
-			_const.EN: `Cause`,
+			_const.RU: `Комментарий`,
+			_const.EN: `Comment`,
 		},
 		"button_12": {
 			_const.RU: `Закрыть`,
@@ -1287,6 +1287,14 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `To declare a war`,
 		},
 		// Audit
+		"corporation": {
+			_const.RU: `Кластер`,
+			_const.EN: `Cluster`,
+		},
+		"tax": {
+			_const.RU: `Налог`,
+			_const.EN: `Tax`,
+		},
 	},
 	"Department": {
 		"window_name_1": {
