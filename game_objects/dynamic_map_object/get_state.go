@@ -62,7 +62,9 @@ func (o *Object) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positio
 	return game_math.GetWeaponFirePositions(
 		o.GetX(), o.GetY(), o.GetScale(), o.GetPhysicalModel().GetRotate(), equipSlot.Rotate,
 		equipSlot.Equip.XAttach, equipSlot.Equip.YAttach,
-		equipSlot.Equip.FirePositions, 128, 128,
+		equipSlot.Equip.FirePositions,
+		float64(equipSlot.XAttach),
+		float64(equipSlot.YAttach),
 	)
 }
 
