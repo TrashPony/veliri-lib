@@ -1084,10 +1084,11 @@ func SetUnrepairableDamage(unrepairableDamage int) []byte {
 	return command
 }
 
-func ShieldAnimate(id, x, y int) []byte {
+func ShieldAnimate(id, r, x, y int) []byte {
 	command := []byte{96}
 
 	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, byte(r))
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 
