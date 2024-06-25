@@ -3763,6 +3763,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Аномалии`,
 			_const.EN: `Anomalies`,
 		},
+		"n_tab_6": {
+			_const.RU: `Кластеры`,
+			_const.EN: `Clusters`,
+		},
 		"search_t_1": {
 			_const.RU: `Персона`,
 			_const.EN: `Persona`,

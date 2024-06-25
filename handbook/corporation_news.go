@@ -81,12 +81,5 @@ func GetCorporationNews(typeEvent string) map[string]string {
 		}
 	}
 
-	t := textVariants[rand.Intn(len(textVariants))]
-	newText := make(map[string]string)
-
-	for l, text := range t {
-		newText[l] = text
-	}
-
-	return newText
+	return textVariants[rand.Intn(len(textVariants))]
 }
