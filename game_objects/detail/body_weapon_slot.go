@@ -39,6 +39,8 @@ type BodyWeaponSlot struct {
 	TargetMsg           []byte  `json:"-"`
 	Direction           int     `json:"direction"`
 	PassAngle           int     `json:"pass_angle"`
+	Spread              int     `json:"-"`
+	SpreadUp            bool    `json:"-"`
 	weaponTarget        *target.Target
 }
 
@@ -191,4 +193,43 @@ func (s *BodyWeaponSlot) GetWeaponTarget() *target.Target {
 
 func (s *BodyWeaponSlot) SetWeaponTarget(target *target.Target) {
 	s.weaponTarget = target
+}
+
+func (s *BodyWeaponSlot) AddSpread(add float64) {
+	if s.Weapon == nil || int(add) == 0 {
+		return
+	}
+
+	s.SpreadUp = true
+	s.Spread += int(add * s.Weapon.KAddSpread)
+	if s.Spread > s.Weapon.MaxSpread {
+		s.Spread = s.Weapon.MaxSpread
+	}
+}
+
+func (s *BodyWeaponSlot) AddFireSpread() {
+	if s.Weapon == nil {
+		return
+	}
+
+	s.Spread += s.Weapon.KFireSpread
+	if s.Spread > s.Weapon.MaxSpread {
+		s.Spread = s.Weapon.MaxSpread
+	}
+}
+
+func (s *BodyWeaponSlot) AttenuationSpread() {
+	if s.Weapon == nil {
+		return
+	}
+
+	if s.SpreadUp {
+		s.SpreadUp = false
+		return
+	}
+
+	s.Spread -= s.Spread / s.Weapon.KAttenuationSpread
+	if s.Spread < 0 {
+		s.Spread = 0
+	}
 }

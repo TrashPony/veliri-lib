@@ -42,6 +42,12 @@ type Weapon struct {
 	PushingPower            int     `json:"pushing_power"`
 	Variants                []int   `json:"variants"`
 	PassAngle               int     `json:"pass_angle"`
+
+	// параметры разброса и сведения орудия
+	MaxSpread          int     `json:"max_spread"`
+	KAddSpread         float64 `json:"k_add_spread"`
+	KAttenuationSpread int     `json:"k_attenuation_spread"`
+	KFireSpread        int     `json:"k_fire_spread"`
 }
 
 func (w *Weapon) GetName() string {

@@ -194,29 +194,24 @@ func RemoveCloudBinaryMsg(id int) []byte {
 }
 
 func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable, accumulationPercent int, reload, chase, hide bool, targetType string, targetID, fireX, fireY int) []byte {
-	// [1[eventID], 4[id], 4[typeID], 4[x], 4[y], 4[mpID], 4[alpha], 4[rotate]]
 
-	command := make([]byte, 30)
-
-	if radius > math.MaxUint8 {
-		radius = math.MaxUint8
-	}
+	command := make([]byte, 33)
 
 	command[0] = 13
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(x))
 	game_math.ReuseByteSlice(&command, 5, game_math.GetIntBytes(y))
-	command[9] = byte(radius)
-	command[10] = byte(ammoCount)
-	command[11] = byte(ammoAvailable)
-	command[12] = byte(accumulationPercent)
-	command[13] = game_math.BoolToByte(reload)
-	command[14] = game_math.BoolToByte(chase)
-	command[15] = byte(_const.MapBinItems[targetType])
-	game_math.ReuseByteSlice(&command, 16, game_math.GetIntBytes(targetID))
-	game_math.ReuseByteSlice(&command, 20, game_math.GetIntBytes(fireX))
-	game_math.ReuseByteSlice(&command, 24, game_math.GetIntBytes(fireY))
-	command[28] = byte(weaponSlot)
-	command[29] = game_math.BoolToByte(hide)
+	game_math.ReuseByteSlice(&command, 9, game_math.GetIntBytes(radius))
+	command[13] = byte(ammoCount)
+	command[14] = byte(ammoAvailable)
+	command[15] = byte(accumulationPercent)
+	command[16] = game_math.BoolToByte(reload)
+	command[17] = game_math.BoolToByte(chase)
+	command[18] = byte(_const.MapBinItems[targetType])
+	game_math.ReuseByteSlice(&command, 19, game_math.GetIntBytes(targetID))
+	game_math.ReuseByteSlice(&command, 23, game_math.GetIntBytes(fireX))
+	game_math.ReuseByteSlice(&command, 27, game_math.GetIntBytes(fireY))
+	command[31] = byte(weaponSlot)
+	command[32] = game_math.BoolToByte(hide)
 
 	return command
 }
