@@ -219,7 +219,7 @@ func (s *BodyWeaponSlot) AddFireSpread() {
 }
 
 func (s *BodyWeaponSlot) AttenuationSpread() {
-	if s.Weapon == nil {
+	if s.Weapon == nil || s.Weapon.KAttenuationSpread == 0 {
 		return
 	}
 
