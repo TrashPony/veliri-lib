@@ -519,5 +519,10 @@ func GetTradeEvent(fraction, productName, typeEvent, lang string) string {
 		}
 	}
 
+	if len(texts) == 0 {
+		println("no text trade event:", fraction, productName, typeEvent, lang)
+		return ""
+	}
+
 	return texts[rand.Intn(len(texts))].Text
 }
