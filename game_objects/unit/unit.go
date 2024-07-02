@@ -101,7 +101,7 @@ func (u *Unit) CheckDecalSlot(x, y int) bool {
 }
 
 func (u *Unit) AddDecal(x, y, id, angle int) *Decal {
-	if u.CheckDecalSlot(x, y) {
+	if u == nil || u.CheckDecalSlot(x, y) {
 		return nil
 	}
 
