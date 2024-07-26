@@ -185,6 +185,8 @@ var SourceItemBin = map[string]int{
 	"aInv:resource":        7,
 	"scannerAInv:resource": 8,
 	"office_stock":         9,
+	"hangar":               10,
+	"hangar_aInv_resource": 11,
 }
 
 var MapBinItems = map[string]int{
