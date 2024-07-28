@@ -17,7 +17,7 @@ func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
 	}
 
 	if newEffect.Parameter == "reload" || newEffect.Parameter == "reload_ammo" || newEffect.Parameter == "accuracy" {
-		newEffect.Subtract = !newEffect.Subtract
+		newEffect.Subtract = !newEffect.Subtract // TODO так нельзя делать
 	}
 
 	e.mx.Lock()

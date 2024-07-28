@@ -19,6 +19,7 @@ type EquipSell struct {
 	StartReload  int64 `json:"sr"`
 	EndReload    int64 `json:"er"`
 	AmmoQuantity int   `json:"aq"`
+	AmmoReload   bool  `json:"ar"`
 	On           bool  `json:"on"`
 	Mode         int   `json:"mode"`
 }
@@ -65,7 +66,7 @@ func (s *Squad) GetBinEquipPanel() []byte {
 	}
 	sort.Ints(keys)
 
-	sizeBytes := 29
+	sizeBytes := 30
 	binEquip := make([]byte, 1+(len(keys)*sizeBytes))
 	binEquip[0] = byte(len(s.equipPanel))
 
@@ -75,14 +76,15 @@ func (s *Squad) GetBinEquipPanel() []byte {
 			continue
 		}
 
-		binEquip[((i+1)*sizeBytes)-28] = byte(_const.SourceItemBin[slot.Source])
-		binEquip[((i+1)*sizeBytes)-27] = byte(slot.TypeSlot)
-		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-26, game_math.GetIntBytes(slot.Slot))
-		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-22, game_math.GetInt64Bytes(slot.StartReload))
-		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-14, game_math.GetInt64Bytes(slot.EndReload))
-		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-6, game_math.GetIntBytes(slot.AmmoQuantity))
-		binEquip[((i+1)*sizeBytes)-2] = game_math.BoolToByte(slot.On)
-		binEquip[((i+1)*sizeBytes)-1] = byte(0) // TODO Mode
+		binEquip[((i+1)*sizeBytes)-29] = byte(_const.SourceItemBin[slot.Source])
+		binEquip[((i+1)*sizeBytes)-28] = byte(slot.TypeSlot)
+		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-27, game_math.GetIntBytes(slot.Slot))
+		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-23, game_math.GetInt64Bytes(slot.StartReload))
+		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-15, game_math.GetInt64Bytes(slot.EndReload))
+		game_math.ReuseByteSlice(&binEquip, ((i+1)*sizeBytes)-7, game_math.GetIntBytes(slot.AmmoQuantity))
+		binEquip[((i+1)*sizeBytes)-3] = game_math.BoolToByte(slot.On)
+		binEquip[((i+1)*sizeBytes)-2] = byte(0) // TODO Mode
+		binEquip[((i+1)*sizeBytes)-1] = game_math.BoolToByte(slot.AmmoReload)
 		binEquip[((i + 1) * sizeBytes)] = byte(slotKey)
 	}
 
@@ -112,6 +114,7 @@ func (s *Squad) fillStateEquip() {
 					slot.StartReload = weaponSlot.StartReloadTime
 					slot.EndReload = weaponSlot.EndReloadTime
 					slot.AmmoQuantity = weaponSlot.GetAmmoQuantity()
+					slot.AmmoReload = weaponSlot.AmmoReload
 				} else {
 					//slot.Source = ""
 					//slot.TypeSlot = 0
