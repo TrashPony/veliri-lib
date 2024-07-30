@@ -317,3 +317,32 @@ func (inv *Inventory) log(event string, data map[string]interface{}) {
 
 	inv.logger(inv.parentType, inv.parentID, event, data)
 }
+
+// ItemToSlot костыль метод используется только для конфигурации, использование в других участах может привести к потери итемов
+func (inv *Inventory) ItemToSlot(itemID int, itemType string, toSLot int) {
+	inv.mx.Lock()
+	defer inv.mx.Unlock()
+
+	slotNumber := -1
+	for n, slot := range inv.slots {
+		if slot.ItemID == itemID && slot.Type == itemType && toSLot > n {
+			slotNumber = n
+		}
+	}
+
+	if slotNumber == -1 || slotNumber == toSLot {
+		return
+	}
+
+	buffer := inv.slots[toSLot]
+
+	inv.slots[toSLot] = inv.slots[slotNumber]
+	inv.slots[toSLot].Number = toSLot
+
+	if buffer != nil {
+		inv.slots[slotNumber] = buffer
+		inv.slots[slotNumber].Number = slotNumber
+	} else {
+		delete(inv.slots, slotNumber)
+	}
+}
