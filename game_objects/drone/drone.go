@@ -58,6 +58,10 @@ type Drone struct {
 	mx              sync.RWMutex
 }
 
+func (d *Drone) GetOwnerPlayerID() int {
+	return d.OwnerPlayerID
+}
+
 func (d *Drone) GetCorporationID() int {
 	return d.CorporationID
 }
@@ -490,4 +494,8 @@ func (d *Drone) getMinDamage(weaponSlotNumber int) int {
 		return 0
 	}
 	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+}
+
+func (d *Drone) OwnerFraction() string {
+	return d.Fraction
 }

@@ -27,12 +27,27 @@ type GunUser interface {
 	GetBurstOfShots() *burst_of_shots.BurstOfShots
 	UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex)
 	GetPhysicalModel() *physical_model.PhysicalModel
+	GetOwnerPlayerID() int
+	FractionWarrior() bool
+	OwnerFraction() string
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) OwnerFraction() string {
+	return g.GunUser.OwnerFraction()
+}
+
+func (g *Gunner) FractionWarrior() bool {
+	return g.GunUser.FractionWarrior()
+}
+
+func (g *Gunner) GetOwnerPlayerID() int {
+	return g.GunUser.GetOwnerPlayerID()
 }
 
 type WeaponSlotState struct {

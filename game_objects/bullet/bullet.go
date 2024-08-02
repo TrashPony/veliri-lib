@@ -12,33 +12,36 @@ import (
 )
 
 type Bullet struct {
-	ID          int            `json:"id"`
-	Weapon      *detail.Weapon `json:"-"`
-	Ammo        *ammo.Ammo     `json:"ammo"`
-	EquipID     int            `json:"-"`
-	Rotate      float64        `json:"rotate"`
-	Artillery   bool           `json:"artillery"`
-	X           int            `json:"x"`
-	Y           int            `json:"y"`
-	Z           float64        `json:"z"` // определяет "высоту" пули (сильнее отдалять тени)
-	Speed       int            `json:"speed"`
-	Target      *target.Target `json:"target"`
-	ChaseTarget *target.Target `json:"-"`
-	OwnerID     int            `json:"owner_id"`   // какой игрок стрелял
-	OwnerType   string         `json:"owner_type"` // unit, structure
-	MaxRange    int            `json:"max_range"`
-	FirePos     int            `json:"-"`
-	MapID       int            `json:"map_id"`
-	HP          int            `json:"destroy"`
-	LaunchX     int            `json:"-"`
-	LaunchY     int            `json:"-"`
-	StartX      int            `json:"-"`
-	StartY      int            `json:"-"`
-	StartZ      float64        `json:"-"`
-	StartRadian float64        `json:"start_radian"`
-	Damage      int            `json:"-"`
-	EquipDamage int            `json:"-"`
-	IgnoreOwner bool           `json:"ignore_owner"`
+	ID                   int            `json:"id"`
+	Weapon               *detail.Weapon `json:"-"`
+	Ammo                 *ammo.Ammo     `json:"ammo"`
+	EquipID              int            `json:"-"`
+	Rotate               float64        `json:"rotate"`
+	Artillery            bool           `json:"artillery"`
+	X                    int            `json:"x"`
+	Y                    int            `json:"y"`
+	Z                    float64        `json:"z"` // определяет "высоту" пули (сильнее отдалять тени)
+	Speed                int            `json:"speed"`
+	Target               *target.Target `json:"target"`
+	ChaseTarget          *target.Target `json:"-"`
+	OwnerID              int            `json:"owner_id"`   // какой игрок стрелял
+	OwnerType            string         `json:"owner_type"` // unit, structure
+	OwnerPlayerID        int            `json:"owner_player_id"`
+	OwnerFractionWarrior bool           `json:"-"`
+	Fraction             string         `json:"-"`
+	MaxRange             int            `json:"max_range"`
+	FirePos              int            `json:"-"`
+	MapID                int            `json:"map_id"`
+	HP                   int            `json:"destroy"`
+	LaunchX              int            `json:"-"`
+	LaunchY              int            `json:"-"`
+	StartX               int            `json:"-"`
+	StartY               int            `json:"-"`
+	StartZ               float64        `json:"-"`
+	StartRadian          float64        `json:"start_radian"`
+	Damage               int            `json:"-"`
+	EquipDamage          int            `json:"-"`
+	IgnoreOwner          bool           `json:"ignore_owner"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
@@ -187,4 +190,16 @@ func (b *Bullet) GetJSON(mapTime int64) []byte {
 
 func (b *Bullet) GetUpdateData(mapTime int64) []byte {
 	return []byte{}
+}
+
+func (b *Bullet) GetOwnerPlayerID() int {
+	return b.OwnerPlayerID
+}
+
+func (b *Bullet) FractionWarrior() bool {
+	return b.OwnerFractionWarrior
+}
+
+func (b *Bullet) OwnerFraction() string {
+	return b.Fraction
 }

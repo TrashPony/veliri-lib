@@ -683,3 +683,7 @@ func (o *Object) GetCorporationID() int {
 func (o *Object) SetCorporationID(id int) {
 	o.CorporationID = id
 }
+
+func (o *Object) OwnerFraction() string {
+	return o.Fraction
+}

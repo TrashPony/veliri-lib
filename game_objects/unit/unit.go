@@ -23,7 +23,7 @@ type Unit struct {
 	Owner         string `json:"owner"`
 	OwnerID       int    `json:"owner_id"`
 	CorporationID int    `json:"Corporation_id"`
-	OwnerFraction string `json:"of"`
+	Fraction      string `json:"fraction"`
 	Ready         bool
 	body          *detail.Body
 
@@ -91,6 +91,9 @@ type Decal struct {
 }
 
 func (u *Unit) CheckDecalSlot(x, y int) bool {
+	u.mx.RLock()
+	defer u.mx.RUnlock()
+
 	for _, d := range u.Decals {
 		if d.X == x && d.Y == y {
 			return true
@@ -101,6 +104,9 @@ func (u *Unit) CheckDecalSlot(x, y int) bool {
 }
 
 func (u *Unit) AddDecal(x, y, id, angle int) *Decal {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
 	if u == nil || u.CheckDecalSlot(x, y) {
 		return nil
 	}
@@ -592,6 +598,9 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 		u.CacheJson = []byte{}
 	}
 
+	u.mx.RLock()
+	defer u.mx.RUnlock()
+
 	u.CacheJson = u.CacheJson[:0]
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetID())...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.OwnerID)...)
@@ -608,7 +617,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRadarRange())...)
 
 	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.fractionWarrior))
-	u.CacheJson = append(u.CacheJson, _const.FractionByte[u.OwnerFraction])
+	u.CacheJson = append(u.CacheJson, _const.FractionByte[u.Fraction])
 
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxPower())...)
 	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.Invisibility()))
@@ -710,7 +719,7 @@ func (u *Unit) GetShortInfo() *ShortUnitInfo {
 	hostile.Evacuation = u.GetEvacuation()
 	hostile.ForceEvacuation = u.GetForceEvacuation()
 	hostile.InSky = u.InSky()
-	hostile.OwnerFraction = u.OwnerFraction
+	hostile.OwnerFraction = u.Fraction
 
 	hostile.Body = detail.Body{
 		Name:       u.getBody().Name,
@@ -941,4 +950,8 @@ func (u *Unit) GetCorporationID() int {
 
 func (u *Unit) SetCorporationID(id int) {
 	u.CorporationID = id
+}
+
+func (u *Unit) OwnerFraction() string {
+	return u.Fraction
 }

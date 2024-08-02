@@ -394,7 +394,7 @@ func (s *Squad) FractionWarrior() bool {
 }
 
 func (s *Squad) GetFraction() string {
-	return s.GetMS().OwnerFraction
+	return s.GetMS().OwnerFraction()
 }
 
 func (s *Squad) SetWeaponSkin(slotNumber int, sk *skin.Skin) {
