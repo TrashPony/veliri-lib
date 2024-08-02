@@ -128,7 +128,7 @@ func (s *Squad) fillStateEquip() {
 					slot.StartReload = equipSlot.StartReloadTime
 					slot.EndReload = equipSlot.EndReloadTime
 					slot.AmmoQuantity = equipSlot.CurrentAmmoCount
-					slot.On = equipSlot.On
+					slot.On = equipSlot.On || equipSlot.Drone
 					slot.Mode = 0 // TODO equipSlot.Mode
 				} else {
 					//slot.Source = ""
