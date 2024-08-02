@@ -59,8 +59,30 @@ func (s *BodyEquipSlot) SetReload(reload bool) {
 func (s *BodyEquipSlot) StartReload() {
 	s.SetReload(true)
 	s.SetCurrentReload(s.Equip.Reload)
-	s.StartReloadTime = time.Now().UnixNano() / int64(time.Millisecond)
-	s.EndReloadTime = s.StartReloadTime + int64(s.Equip.Reload)
+
+	startReloadTime := time.Now().UnixNano() / int64(time.Millisecond)
+
+	if s.EndReloadTime < startReloadTime+int64(s.Equip.Reload) {
+		s.StartReloadTime = startReloadTime
+		s.EndReloadTime = s.StartReloadTime + int64(s.Equip.Reload)
+	}
+}
+
+func (s *BodyEquipSlot) StartReloadWithMultiplier(k int) {
+	if k <= 0 {
+		return
+	}
+
+	reload := s.Equip.Reload * k
+	s.SetReload(true)
+	s.SetCurrentReload(reload)
+
+	startReloadTime := time.Now().UnixNano() / int64(time.Millisecond)
+
+	if s.EndReloadTime < startReloadTime+int64(reload) {
+		s.StartReloadTime = startReloadTime
+		s.EndReloadTime = s.StartReloadTime + int64(reload)
+	}
 }
 
 func (s *BodyEquipSlot) SetAnchor() {
