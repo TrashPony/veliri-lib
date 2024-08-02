@@ -104,12 +104,12 @@ func (u *Unit) CheckDecalSlot(x, y int) bool {
 }
 
 func (u *Unit) AddDecal(x, y, id, angle int) *Decal {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
 	if u == nil || u.CheckDecalSlot(x, y) {
 		return nil
 	}
+
+	u.mx.Lock()
+	defer u.mx.Unlock()
 
 	if angle < 0 {
 		angle += 360
