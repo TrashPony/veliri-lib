@@ -14,6 +14,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	uuid "github.com/satori/go.uuid"
+	"math"
 	"sync"
 )
 
@@ -402,7 +403,7 @@ func (d *Drone) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_obj
 }
 
 func (d *Drone) GetRangeView() int {
-	return int(d.GetEffects().GetAllBonus(float64(d.RangeView), "view"))
+	return int(math.Ceil(d.GetEffects().GetAllBonus(float64(d.RangeView), "view")))
 }
 
 func (d *Drone) CheckViewCoordinate(x, y, radius int) (bool, bool) {
@@ -453,7 +454,7 @@ func (d *Drone) getGunAccuracy(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) getGunRotateSpeed(weaponSlotNumber int) int {
@@ -461,7 +462,7 @@ func (d *Drone) getGunRotateSpeed(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) getWeaponReloadTime(weaponSlotNumber int) int {
@@ -469,7 +470,7 @@ func (d *Drone) getWeaponReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
@@ -477,7 +478,7 @@ func (d *Drone) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) getMaxDamage(weaponSlotNumber int) int {
@@ -485,7 +486,7 @@ func (d *Drone) getMaxDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) getMinDamage(weaponSlotNumber int) int {
@@ -493,7 +494,7 @@ func (d *Drone) getMinDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(d.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (d *Drone) OwnerFraction() string {

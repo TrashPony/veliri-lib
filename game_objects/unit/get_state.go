@@ -7,6 +7,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
+	"math"
 	"strconv"
 	"sync/atomic"
 )
@@ -231,7 +232,7 @@ func (u *Unit) GetCapSize() int {
 		return 0
 	}
 
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.CapacitySize), "cap_size", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.CapacitySize), "cap_size", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetAdditionalCapSize(key string) int {
@@ -240,7 +241,7 @@ func (u *Unit) GetAdditionalCapSize(key string) int {
 	}
 
 	inv := u.body.AdditionalInventory[key]
-	return int(u.GetEffects().GetAllBodyBonus(float64(inv.GetCapSize()), key+"_cap_size", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(inv.GetCapSize()), key+"_cap_size", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetFullFreeCapSize(itemType string, itemID int) int {
@@ -267,7 +268,7 @@ func (u *Unit) GetRangeView() int {
 }
 
 func (u *Unit) getRangeView() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeView), "view", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeView), "view", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetRadarRange() int {
@@ -275,19 +276,19 @@ func (u *Unit) GetRadarRange() int {
 }
 
 func (u *Unit) getRadarRange() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeRadar), "radar", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.RangeRadar), "radar", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetMaxHP() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxHP), "max_hp", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxHP), "max_hp", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetMaxPower() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxPower), "max_power", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxPower), "max_power", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetMaxEnergy() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxEnergy), "max_energy", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxEnergy), "max_energy", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 // weapon
@@ -296,7 +297,7 @@ func (u *Unit) getGunAccuracy(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
@@ -304,7 +305,7 @@ func (u *Unit) getGunRotateSpeed(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
@@ -312,7 +313,7 @@ func (u *Unit) getWeaponReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
@@ -320,7 +321,7 @@ func (u *Unit) getWeaponAmmoReloadTime(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) getMaxDamage(weaponSlotNumber int) int {
@@ -328,7 +329,7 @@ func (u *Unit) getMaxDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) getMinDamage(weaponSlotNumber int) int {
@@ -336,7 +337,7 @@ func (u *Unit) getMinDamage(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
 		return 0
 	}
-	return int(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }
 
 func (u *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
@@ -433,7 +434,7 @@ func (u *Unit) GetFollowTarget() *target.Target {
 }
 
 func (u *Unit) GetRecoveryPower() int {
-	return int(u.GetEffects().GetAllBodyBonus(float64(u.getBody().RecoveryPower), "charging_speed", u.getBody().ChassisType, u.getBody().StandardSize))
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.getBody().RecoveryPower), "charging_speed", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetUnrepairableDamage() int {
