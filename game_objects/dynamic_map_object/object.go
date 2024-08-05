@@ -421,7 +421,7 @@ func (o *Object) CheckHostile(typeHostile string, id int, ownerID int) (bool, in
 	}
 
 	// хозяина ненадо бить)
-	if typeHostile == "unit" && ownerID == o.OwnerID {
+	if typeHostile == "unit" && ownerID > 0 && ownerID == o.OwnerID {
 		return false, 0
 	}
 
@@ -686,4 +686,12 @@ func (o *Object) SetCorporationID(id int) {
 
 func (o *Object) OwnerFraction() string {
 	return o.Fraction
+}
+
+func (o *Object) RangeHostiles() <-chan *special_hostiles.SpecialHostile {
+	if o.specialHostiles == nil {
+		o.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	return o.specialHostiles.RangeHostiles()
 }
