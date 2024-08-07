@@ -3437,8 +3437,8 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Sector`,
 		},
 		"head_table_1": {
-			_const.RU: `Предложения`,
-			_const.EN: `Offers`,
+			_const.RU: `Продавцы`,
+			_const.EN: `Sellers`,
 		},
 		"head_col_table_1": {
 			_const.RU: `Расстояние`,
@@ -3465,8 +3465,8 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Place`,
 		},
 		"head_table_2": {
-			_const.RU: `Запросы`,
-			_const.EN: `Requests`,
+			_const.RU: `Покупатели`,
+			_const.EN: `Buyers`,
 		},
 		"head_col_table_7": {
 			_const.RU: `Расстояние`,
