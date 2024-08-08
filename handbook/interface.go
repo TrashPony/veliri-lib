@@ -3552,6 +3552,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Покупка`,
 			_const.EN: `Buy`,
 		},
+		"text_14": {
+			_const.RU: `примерная цена: <span class="importantly">%credits_count%</span> cr.`,
+			_const.EN: `approximate price: <span class="importantly">%credits_count%</span> cr.`,
+		},
 		// NewBuy
 		"text_5": {
 			_const.RU: `Кол-во:`,
