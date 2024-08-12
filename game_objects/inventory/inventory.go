@@ -20,6 +20,7 @@ type PlaceMayItems struct {
 	ID           int    `json:"id"`
 	Slot         int    `json:"slot"`
 	CountMayPut  int    `json:"count_may_put"`
+	CountCurrent int    `json:"count_current"`
 	SlotQuantity int    `json:"slot_quantity"`
 	Count        int    `json:"count"`
 	Error        string `json:"error"`
