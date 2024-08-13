@@ -2529,8 +2529,8 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Move transport?`,
 		},
 		"text_13": {
-			_const.RU: `Перенести транспорт и все его содержимое на склад?`,
-			_const.EN: `Move the vehicle and all its contents to a warehouse?`,
+			_const.RU: `<p>Перенести транспорт и все его содержимое на склад?</p><p><span class="importantly">Внимание!</span> Модификаторы установленные на транспорт будут уничтожены.</p>`,
+			_const.EN: `<p>Move the transport and all its contents to the warehouse?</p><p><span class="importantly">Attention!</span> Modifiers installed on vehicles will be destroyed.</p>`,
 		},
 		"button_3": {
 			_const.RU: `Отмена`,
@@ -3294,6 +3294,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"size_t3": {
 			_const.RU: `Большие`,
 			_const.EN: `Large`,
+		},
+		"equip_t3": {
+			_const.RU: `Модификаторы`,
+			_const.EN: `Modifiers`,
 		},
 		"body_t1": {
 			_const.RU: `Легкие`,

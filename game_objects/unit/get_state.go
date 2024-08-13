@@ -148,8 +148,17 @@ func (u *Unit) GetProtection(typeVulnerabilities string) int {
 	for _, e := range u.GetEffects().GetAllEffects() {
 		if e.Parameter == "protect_"+typeVulnerabilities {
 			free := 100 - startValue
-			startValue += free * (float64(e.Quantity) / 100)
+
+			if !e.Subtract {
+				startValue += free * (float64(e.Quantity) / 100)
+			} else {
+				startValue -= free * (float64(e.Quantity) / 100)
+			}
 		}
+	}
+
+	if int(startValue) < 0 {
+		return 0
 	}
 
 	return int(startValue)
