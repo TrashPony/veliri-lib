@@ -1455,11 +1455,11 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Radar range`,
 		},
 		"ch_18": {
-			_const.RU: `Накопитель энергии`,
+			_const.RU: `Накопитель`,
 			_const.EN: `Battery`,
 		},
 		"ch_19": {
-			_const.RU: `Вместимость накопителя энергии`,
+			_const.RU: `Вместимость накопителя`,
 			_const.EN: `Energy storage capacity`,
 		},
 		"ch_20": {
@@ -2655,7 +2655,7 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `Range radar`,
 		},
 		"ch_17": {
-			_const.RU: `Накопитель энергии`,
+			_const.RU: `Накопитель`,
 			_const.EN: `Battery`,
 		},
 		"ch_18": {
