@@ -118,11 +118,11 @@ var GameInterface = map[string]map[string]map[string]string{
 		// BuildTip
 		"tip_help": {
 			_const.RU: `<div><span class="importantly">A</span> / <span class="importantly">D</span> - поворот.</div>
-						<div><span class="importantly">ПКМ</span> - установить.</div>
-						<div><span class="importantly">ЛКМ</span> - отмена.</div>`,
+						<div><span class="importantly">ЛКМ</span> - установить.</div>
+						<div><span class="importantly">ПКМ</span> - отмена.</div>`,
 			_const.EN: `<div><span class="importantly">A</span> / <span class="importantly">D</span> - turn.</div>
-						<div><span class="importantly">RMB</span> - install.</div>
-						<div><span class="importantly">LMB</span> - cancel.</div>`,
+						<div><span class="importantly">LMB</span> - install.</div>
+						<div><span class="importantly">RMB</span> - cancel.</div>`,
 		},
 		"tip_fail": {
 			_const.RU: `Не удалось`,

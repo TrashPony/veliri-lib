@@ -141,6 +141,26 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 102, MaxCount: 2, PercentChance: 5, SectorFraction: Reverses},
 			{BpID: 61, MaxCount: 2, PercentChance: 5, SectorFraction: Reverses},
 
+			// rigs
+			{BpID: 168, MaxCount: 2, PercentChance: 5},
+			{BpID: 171, MaxCount: 2, PercentChance: 5},
+			{BpID: 175, MaxCount: 2, PercentChance: 5},
+			{BpID: 176, MaxCount: 2, PercentChance: 5},
+			{BpID: 180, MaxCount: 2, PercentChance: 5},
+			{BpID: 184, MaxCount: 2, PercentChance: 5},
+			{BpID: 167, MaxCount: 2, PercentChance: 5},
+			{BpID: 169, MaxCount: 2, PercentChance: 5},
+			{BpID: 172, MaxCount: 2, PercentChance: 5},
+			{BpID: 174, MaxCount: 2, PercentChance: 5},
+			{BpID: 177, MaxCount: 2, PercentChance: 5},
+			{BpID: 179, MaxCount: 2, PercentChance: 5},
+			{BpID: 165, MaxCount: 2, PercentChance: 5},
+			{BpID: 166, MaxCount: 2, PercentChance: 5},
+			{BpID: 170, MaxCount: 2, PercentChance: 5},
+			{BpID: 173, MaxCount: 2, PercentChance: 5},
+			{BpID: 178, MaxCount: 2, PercentChance: 5},
+			{BpID: 181, MaxCount: 2, PercentChance: 5},
+
 			// EQUIP lvl 2 +
 			{BpID: 69, MaxCount: 2, PercentChance: 15, SectorFraction: Replicas},
 			{BpID: 71, MaxCount: 2, PercentChance: 15, SectorFraction: Explores},
