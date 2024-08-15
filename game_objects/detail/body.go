@@ -141,6 +141,8 @@ type Bonus struct {
 	Bonus               *effect.Effect `json:"bonus"`
 	OverrideDescription string         `json:"od"`
 	Requirements        map[int]int    `json:"requirements"` // [skill_name] level
+	SyncLvl             int            `json:"sync_lvl"`
+	Slot                int            `json:"slot"`
 }
 
 func (body *Body) GetAllEquips() []*BodyEquipSlot {

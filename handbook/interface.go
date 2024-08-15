@@ -2715,6 +2715,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Время с уток`,
 			_const.EN: `Times of Day`,
 		},
+		"tittle_8": {
+			_const.RU: `Синхронизация`,
+			_const.EN: `Synchronization`,
+		},
 		// ViewMS
 	},
 	"Help": {

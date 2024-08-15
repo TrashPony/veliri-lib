@@ -720,8 +720,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ballistic_damage_20p":           {Description: "<span class=\"importantly\">Урон баллистических орудий</span> увеличен на <span class=\"importantly\">20%</span>"},
 		"ballistic_gun_speed_rotate_25p": {Description: "<span class=\"importantly\">Скорость поворота баллистических орудий</span> увеличена на <span class=\"importantly\">25%</span>"},
 
-		"laser_small_damage_15":      {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">15%</span>"},
-		"laser_small_damage_10":      {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
+		"laser_small_damage_20p": {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">20%</span>"},
+		"laser_small_damage_15":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">15%</span>"},
+		"laser_small_damage_10":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
+		"laser_small_damage_5p":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">5%</span>"},
+
 		"laser_medium_damage_10":     {Description: "<span class=\"importantly\">Урон средних лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
 		"laser_big_damage_10":        {Description: "<span class=\"importantly\">Урон больших лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
 		"laser_gun_speed_rotate_5":   {Description: "<span class=\"importantly\">Скорость поворота лазерных орудий</span> увеличена на <span class=\"importantly\">5%</span>"},
@@ -747,10 +750,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_power_capacity_size_25": {Description: "Максимальный <span class=\"importantly\">объем аккумулятора</span> увеличен на <span class=\"importantly\">25%</span>"},
 		"body_power_capacity_size_10": {Description: "Максимальный <span class=\"importantly\">объем аккумулятора</span> увеличен на <span class=\"importantly\">10%</span>"},
 
-		"body_power_charging_25p":         {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">25%</span>"},
-		"body_power_charging_15":          {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">15%</span>"},
-		"body_power_charging_10":          {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">10%</span>"},
-		"reduced_body_power_charging_20p": {Description: "Уменьшает скорость подзарядки аккумулятора на <span class=\"importantly\">20%</span>"},
+		"body_power_charging_25p": {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">25%</span>"},
+		"body_power_charging_20p": {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">20%</span>"},
+		"body_power_charging_15":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">15%</span>"},
+		"body_power_charging_10":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">10%</span>"},
+		"body_power_charging_5p":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">5%</span>"},
 
 		"invisibility_saving_energy_25":  {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">25%</span>"},
 		"body_resource_capacity_size_25": {Description: "На <span class=\"importantly\">25%</span> увеличивается вместимость отсека для руды"},
@@ -767,10 +771,15 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_max_move_speed_15": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">15%</span>"},
 		"bonus_max_move_speed_10": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">10%</span>"},
 		"bonus_max_move_speed_5":  {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">5%</span>"},
-		"bonus_protect_15":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
-		"bonus_protect_10":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
-		"bonus_protect_5":         {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
-		"empty":                   {Description: ""},
+
+		"bonus_protect_15": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
+		"bonus_protect_10": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
+		"bonus_protect_5":  {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
+
+		"sync_bonus_small_laser_damage": {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
+		"sync_bonus_power_charging":     {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
+
+		"empty": {Description: ""},
 	},
 	_const.RU: {
 		"protect_thermo_5":    {Description: "Увеличение защиты от <span class=\"importantly\">термического</span> урона на <span class=\"importantly\">5%</span>"},
@@ -872,8 +881,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ballistic_damage_20p":           {Description: "<span class=\"importantly\">Урон баллистических орудий</span> увеличен на <span class=\"importantly\">20%</span>"},
 		"ballistic_gun_speed_rotate_25p": {Description: "<span class=\"importantly\">Скорость поворота баллистических орудий</span> увеличена на <span class=\"importantly\">25%</span>"},
 
-		"laser_small_damage_15":      {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">15%</span>"},
-		"laser_small_damage_10":      {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
+		"laser_small_damage_20p": {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">20%</span>"},
+		"laser_small_damage_15":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">15%</span>"},
+		"laser_small_damage_10":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
+		"laser_small_damage_5p":  {Description: "<span class=\"importantly\">Урон малых лазерных орудий</span> увеличен на <span class=\"importantly\">5%</span>"},
+
 		"laser_medium_damage_10":     {Description: "<span class=\"importantly\">Урон средних лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
 		"laser_big_damage_10":        {Description: "<span class=\"importantly\">Урон больших лазерных орудий</span> увеличен на <span class=\"importantly\">10%</span>"},
 		"laser_gun_speed_rotate_5":   {Description: "<span class=\"importantly\">Скорость поворота лазерных орудий</span> увеличена на <span class=\"importantly\">5%</span>"},
@@ -896,9 +908,12 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 
 		"jammer_saving_energy_25": {Description: "Уменьшает потребление энергии <span class=\"importantly\">подавителей связи</span> на <span class=\"importantly\">25%</span>"},
 
-		"body_power_charging_25p":         {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">25%</span>"},
-		"body_power_charging_15":          {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">15%</span>"},
-		"body_power_charging_10":          {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">10%</span>"},
+		"body_power_charging_25p": {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">25%</span>"},
+		"body_power_charging_20p": {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">20%</span>"},
+		"body_power_charging_15":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">15%</span>"},
+		"body_power_charging_10":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">10%</span>"},
+		"body_power_charging_5p":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">5%</span>"},
+
 		"reduced_body_power_charging_20p": {Description: "Уменьшает скорость подзарядки аккумулятора на <span class=\"importantly\">20%</span>"},
 
 		"invisibility_saving_energy_25":  {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">25%</span>"},
@@ -919,7 +934,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_protect_15":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
 		"bonus_protect_10":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
 		"bonus_protect_5":         {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
-		"empty":                   {Description: ""},
+
+		"sync_bonus_small_laser_damage": {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
+		"sync_bonus_power_charging":     {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
+
+		"empty": {Description: ""},
 	},
 }
 
