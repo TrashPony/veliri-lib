@@ -12,6 +12,10 @@ func (p *Product) GetName() string {
 	return p.Name
 }
 
+func (p *Product) GetSize() int {
+	return p.Size
+}
+
 func (p *Product) GetItemType() string {
 	return ""
 }

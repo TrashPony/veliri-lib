@@ -612,7 +612,7 @@ func CreateInventoryBin(sourceType string, sourceID int, inventory *inventory.In
 		command = append(command, game_math.GetIntBytes(slot.ItemID)...)
 		command = append(command, game_math.GetIntBytes(slot.HP)...)
 		command = append(command, game_math.GetIntBytes(slot.MaxHP)...)
-		command = append(command, game_math.GetIntBytes(slot.Size)...)
+		command = append(command, game_math.GetIntBytes(slot.GetSize())...)
 		command = append(command, game_math.GetIntBytes(slot.Number)...)
 		command = append(command, game_math.GetIntBytes(slot.AccessUserID)...)
 		command = append(command, game_math.BoolToByte(slot.Infinite))

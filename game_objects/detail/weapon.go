@@ -54,6 +54,10 @@ func (w *Weapon) GetName() string {
 	return w.Name
 }
 
+func (w *Weapon) GetSize() int {
+	return w.Size
+}
+
 func (w *Weapon) GetItemType() string {
 	return ""
 }

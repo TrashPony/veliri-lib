@@ -86,7 +86,7 @@ func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCa
 	} else {
 		if !noPlace {
 			ok := toInventory.AddItem(s.GetItem(), s.Type, s.ItemID, countPlace,
-				s.HP, s.GetOneSize(), s.MaxHP, false, accessUserID, 0)
+				s.HP, s.MaxHP, false, accessUserID, 0)
 
 			if !ok {
 				return startQuantity, countPut, errors.New("no free slots"), s.Type, s.ItemID
@@ -147,7 +147,7 @@ func (inv *Inventory) AddItemFromSlot(slot *Slot, userID, accessUserID int) bool
 	}
 
 	return inv.AddItem(slot.GetItem(), slot.Type, slot.ItemID, slot.GetQuantity(),
-		slot.HP, slot.GetSize()/slot.GetQuantity(), slot.MaxHP, false, userID, accessUserID)
+		slot.HP, slot.MaxHP, false, userID, accessUserID)
 }
 
 func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID, quantity int) bool {
@@ -157,10 +157,10 @@ func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID
 	}
 
 	return inv.AddItem(slot.GetItem(), slot.Type, slot.ItemID, quantity,
-		slot.HP, slot.GetSize()/slot.GetQuantity(), slot.MaxHP, false, userID, accessUserID)
+		slot.HP, slot.MaxHP, false, userID, accessUserID)
 }
 
-func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, itemSize int, maxHP int, newSlot bool, userID, accessUserID int) bool {
+func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, maxHP int, newSlot bool, userID, accessUserID int) bool {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 
@@ -175,7 +175,6 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 				if s.ItemID == itemID && s.Type == itemType && s.HP == hp && s.GetItem() != nil {
 
 					s.SetQuantity(s.GetQuantity() + quantity)
-					s.SetSize(s.GetSize() + (itemSize * quantity))
 					s.PlaceUserID = userID
 
 					inv.log("AddItem", map[string]interface{}{"up_slot": true, "item_type": s.Type, "item_id": s.ItemID, "quantity": quantity})
@@ -196,7 +195,6 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			Quantity:     quantity,
 			HP:           hp,
 			MaxHP:        maxHP,
-			Size:         itemSize * quantity,
 			PlaceUserID:  userID,
 			Number:       newNumberSlot,
 			AccessUserID: accessUserID,
@@ -298,7 +296,7 @@ func (inv *Inventory) AddSlot(slot int, inventorySlot *Slot) {
 	inv.slots[slot] = inventorySlot
 }
 
-func (inv *Inventory) InitSlot(slot int, item *ItemInfo, size, maxHP int) {
+func (inv *Inventory) InitSlot(slot int, item *ItemInfo, maxHP int) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 	s, ok := inv.slots[slot]
@@ -307,7 +305,6 @@ func (inv *Inventory) InitSlot(slot int, item *ItemInfo, size, maxHP int) {
 	}
 
 	s.setItem(item)
-	s.SetSize(size)
 	s.MaxHP = maxHP
 }
 

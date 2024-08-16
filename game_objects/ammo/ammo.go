@@ -39,6 +39,10 @@ func (a *Ammo) GetName() string {
 	return a.Name
 }
 
+func (a *Ammo) GetSize() int {
+	return a.Size
+}
+
 func (a *Ammo) GetItemType() string {
 	return ""
 }

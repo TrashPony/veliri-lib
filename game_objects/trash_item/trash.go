@@ -11,6 +11,10 @@ func (t *TrashItem) GetName() string {
 	return t.Name
 }
 
+func (t *TrashItem) GetSize() int {
+	return t.Size
+}
+
 func (t *TrashItem) GetItemType() string {
 	return ""
 }

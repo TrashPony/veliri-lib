@@ -49,6 +49,10 @@ func (e *Equip) GetName() string {
 	return e.Name
 }
 
+func (e *Equip) GetSize() int {
+	return e.Size
+}
+
 func (e *Equip) GetItemType() string {
 	return ""
 }

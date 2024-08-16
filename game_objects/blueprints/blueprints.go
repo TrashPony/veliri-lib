@@ -36,6 +36,10 @@ func (b *Blueprint) GetName() string {
 	return b.Name
 }
 
+func (b *Blueprint) GetSize() int {
+	return b.Size
+}
+
 func (b *Blueprint) GetItemType() string {
 	return b.ItemType
 }

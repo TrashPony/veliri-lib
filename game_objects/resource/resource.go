@@ -19,6 +19,10 @@ func (r *Resource) GetName() string {
 	return r.Name
 }
 
+func (r *Resource) GetSize() int {
+	return r.Size
+}
+
 func (r *Resource) GetItemType() string {
 	return ""
 }
@@ -111,6 +115,10 @@ func (r *RecycledResource) GetName() string {
 	return r.Name
 }
 
+func (r *RecycledResource) GetSize() int {
+	return r.Size
+}
+
 func (r *RecycledResource) GetItemType() string {
 	return ""
 }
@@ -145,6 +153,10 @@ type CraftDetail struct {
 
 func (c *CraftDetail) GetName() string {
 	return c.Name
+}
+
+func (c *CraftDetail) GetSize() int {
+	return c.Size
 }
 
 func (c *CraftDetail) GetItemType() string {

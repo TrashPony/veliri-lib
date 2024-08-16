@@ -8,6 +8,7 @@ import (
 
 type ItemInfo struct {
 	Name string `json:"name"`
+	Size int    `json:"size"`
 	// для блюпринтов
 	ItemType string `json:"item_type,omitempty"`
 	ItemName string `json:"item_name,omitempty"`
@@ -26,6 +27,7 @@ type ItemInformer interface {
 	GetIcon() string
 	GetStandardSize() int
 	GetTypeSlot() int
+	GetSize() int
 }
 
 func (i *ItemInfo) GetName() string {
@@ -56,6 +58,10 @@ func (i *ItemInfo) GetTypeSlot() int {
 	return i.TypeSlot
 }
 
+func (i *ItemInfo) GetSize() int {
+	return i.Size
+}
+
 func GetInfoByItem(informer ItemInformer) *ItemInfo {
 	infoItem := &ItemInfo{
 		Name:         informer.GetName(),
@@ -65,6 +71,7 @@ func GetInfoByItem(informer ItemInformer) *ItemInfo {
 		Icon:         informer.GetIcon(),
 		StandardSize: informer.GetStandardSize(),
 		TypeSlot:     informer.GetTypeSlot(),
+		Size:         informer.GetSize(),
 	}
 
 	if infoItem.Name == "" {
@@ -81,7 +88,6 @@ type Slot struct {
 	ItemID       int       `json:"item_id"`
 	HP           int       `json:"hp"`
 	MaxHP        int       `json:"max_hp"`
-	Size         int       `json:"size"`
 	Number       int       `json:"number"`
 	AccessUserID int       `json:"access_user_id"`
 	Infinite     bool      `json:"infinite"` // если слот бесконечный то его нельзя разделить или перенести в трюм
@@ -112,14 +118,15 @@ func (slot *Slot) GetSize() int {
 	slot.mx.RLock()
 	defer slot.mx.RUnlock()
 
-	return slot.Size
+	return slot.Item.GetSize() * slot.Quantity
 }
 
 func (slot *Slot) GetOneSize() int {
 	if slot.GetQuantity() == 0 {
 		return 0
 	}
-	return slot.GetSize() / slot.GetQuantity()
+
+	return slot.Item.GetSize()
 }
 
 func (slot *Slot) GetItem() *ItemInfo {
@@ -180,18 +187,6 @@ func (slot *Slot) setItem(item *ItemInfo) {
 }
 
 // TODO сделать этот метод приватным и вызывать его через инвнвентарь
-func (slot *Slot) SetSize(size int) {
-	slot.mx.Lock()
-	defer slot.mx.Unlock()
-
-	if slot.Infinite {
-		size = 0
-	}
-
-	slot.Size = size
-}
-
-// TODO сделать этот метод приватным и вызывать его через инвнвентарь
 func (slot *Slot) SetQuantity(quantity int) {
 	slot.mx.Lock()
 	defer slot.mx.Unlock()
@@ -205,11 +200,8 @@ func (slot *Slot) SetQuantity(quantity int) {
 
 func (slot *Slot) addItemBySlot(quantity, userID int) {
 	// определяем вес 1 вещи
-	sizeOneItem := slot.GetSize() / slot.GetQuantity()
 	slot.SetQuantity(slot.GetQuantity() + quantity)
 	slot.PlaceUserID = userID
-	// находим новый вес для всей стопки
-	slot.SetSize(sizeOneItem * slot.GetQuantity())
 }
 
 // RemoveItemBySlot когда slot.Item = nil он удалиться из бд при обновление данных
@@ -219,15 +211,10 @@ func (slot *Slot) removeItemBySlot(quantityRemove int) (CountRemove int) {
 		slot.setItem(nil)
 		countRemove := slot.GetQuantity()
 		slot.SetQuantity(0)
-		slot.SetSize(0)
 		return countRemove
 	}
 
 	if quantityRemove < slot.GetQuantity() {
-		// определяем вес 1 вещи
-		itemSize := slot.GetSize() / slot.GetQuantity()
-		// отнимает вес по количеству предметов
-		slot.SetSize(slot.GetSize() - (itemSize * quantityRemove))
 		// отнимаем количество итемов
 		slot.SetQuantity(slot.GetQuantity() - quantityRemove)
 		return quantityRemove
@@ -235,7 +222,6 @@ func (slot *Slot) removeItemBySlot(quantityRemove int) (CountRemove int) {
 		slot.setItem(nil)
 		countRemove := slot.GetQuantity()
 		slot.SetQuantity(0)
-		slot.SetSize(0)
 		return countRemove
 	}
 }

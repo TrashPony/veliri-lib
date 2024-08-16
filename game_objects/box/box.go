@@ -20,6 +20,10 @@ func (b *Box) GetName() string {
 	return b.Name
 }
 
+func (b *Box) GetSize() int {
+	return b.FoldSize
+}
+
 func (b *Box) GetItemType() string {
 	return ""
 }

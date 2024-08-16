@@ -31,6 +31,7 @@ type Body struct {
 	RangeView  int `json:"range_view"`
 	RangeRadar int `json:"range_radar"`
 
+	FoldSize     int `json:"fold_size"`
 	CapacitySize int `json:"capacity_size"` /* вместимость корпуса к кубо-метрах */
 	StandardSize int `json:"standard_size"` /* small - 1, medium - 2, big - 3, размер корпуса (если корпус мс то неучитывается)*/
 
@@ -110,6 +111,10 @@ func (body *Body) GetDamageZoneByAngle(angle int) *DamageZone {
 
 func (body *Body) GetName() string {
 	return body.Name
+}
+
+func (body *Body) GetSize() int {
+	return body.FoldSize
 }
 
 func (body *Body) GetItemType() string {
