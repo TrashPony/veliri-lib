@@ -14,6 +14,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
+	"math"
 	"sync"
 	"time"
 )
@@ -158,16 +159,14 @@ func (u *Unit) GetEffects() *effects_store.EffectsStore {
 }
 
 func (u *Unit) AddEffect(newEffect *effect.Effect) bool {
+	oldHP := u.GetPercentHP()
 	add := u.GetEffects().AddEffect(newEffect)
 	if add {
 		u.UpdatePhysicalModel()
 		u.UpdateWeaponsState()
 
-		if newEffect.Parameter == "max_hp" && !newEffect.Percentages {
-			u.HP += newEffect.Quantity
-			if u.GetMaxHP() < u.HP {
-				u.HP = u.GetMaxHP()
-			}
+		if newEffect != nil && newEffect.Parameter == "max_hp" {
+			u.AppendMaxHPEffect(oldHP) // TODO костыль и работает с погрешностью
 		}
 	}
 
@@ -175,20 +174,45 @@ func (u *Unit) AddEffect(newEffect *effect.Effect) bool {
 }
 
 func (u *Unit) RemoveEffect(uuid string) bool {
+	oldHP := u.GetPercentHP()
+
 	remove, ef := u.GetEffects().RemoveEffect(uuid)
 	if remove {
 		u.UpdatePhysicalModel()
 		u.UpdateWeaponsState()
 
-		if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
-			u.HP -= ef.Quantity
-			if u.HP < 1 {
-				u.HP = 1
+		if ef != nil && ef.Parameter == "max_hp" {
+			u.AppendMaxHPEffect(oldHP) // TODO костыль и работает с погрешностью
+		}
+	}
+
+	return remove
+}
+
+func (u *Unit) RemoveBySlot(slotType, slotNumber int) bool {
+	oldHP := u.GetPercentHP()
+
+	remove, eff := u.GetEffects().RemoveBySlot(slotType, slotNumber)
+	if remove {
+		u.UpdatePhysicalModel()
+		u.UpdateWeaponsState()
+
+		for _, ef := range eff {
+			if ef != nil && ef.Parameter == "max_hp" {
+				u.AppendMaxHPEffect(oldHP) // TODO костыль и работает с погрешностью
 			}
 		}
 	}
 
 	return remove
+}
+
+func (u *Unit) AppendMaxHPEffect(percentHP int) {
+	u.SetHP(int(math.Round(float64(u.GetMaxHP()) * (float64(percentHP) / 100))))
+}
+
+func (u *Unit) GetPercentHP() int {
+	return int(math.Round((float64(u.GetHP()) / float64(u.GetMaxHP()) * 100)))
 }
 
 func (u *Unit) GetMinQuantityByParameter(parameter string) (bool, int) {
@@ -198,25 +222,6 @@ func (u *Unit) GetMinQuantityByParameter(parameter string) (bool, int) {
 func (u *Unit) Invisibility() bool {
 	ok, quantity := u.GetMinQuantityByParameter("invisibility")
 	return ok && quantity <= 0
-}
-
-func (u *Unit) RemoveBySlot(slotType, slotNumber int) bool {
-	remove, remEffects := u.GetEffects().RemoveBySlot(slotType, slotNumber)
-	if remove {
-		u.UpdatePhysicalModel()
-		u.UpdateWeaponsState()
-
-		for _, ef := range remEffects {
-			if ef != nil && ef.Parameter == "max_hp" && !ef.Percentages {
-				u.HP -= ef.Quantity
-				if u.HP < 1 {
-					u.HP = 1
-				}
-			}
-		}
-	}
-
-	return remove
 }
 
 func (u *Unit) GetEffectByUUID(uuid string) *effect.Effect {
