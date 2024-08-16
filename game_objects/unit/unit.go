@@ -208,15 +208,17 @@ func (u *Unit) RemoveBySlot(slotType, slotNumber int) bool {
 	return remove
 }
 
+// AppendMaxHPEffect 1000 == 100%
 func (u *Unit) AppendMaxHPEffect(percentHP int) {
-	u.SetHP(int(math.Round(float64(u.GetMaxHP()) * (float64(percentHP) / 100))))
+	u.SetHP(int(math.Round(float64(u.GetMaxHP()) * (float64(percentHP/10) / 100))))
 }
 
+// GetPercentHP 1000 == 100%
 func (u *Unit) GetPercentHP() int {
-	percent := int(math.Round((float64(u.GetHP()) / float64(u.GetMaxHP()) * 100)))
-	if percent > 100 {
+	percent := int(10 * (math.Round((float64(u.GetHP()) / float64(u.GetMaxHP()) * 100))))
+	if percent > 1000 {
 		fmt.Println("percent hp max > 100%, ", u.GetHP(), u.GetMaxHP())
-		return 100
+		return 1000
 	}
 	return percent
 }
