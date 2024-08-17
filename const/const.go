@@ -158,6 +158,8 @@ const (
 	CorporationRepairPolicyExceptHostile = "except-hostile" // Всех кроме врагов
 	CorporationRepairPolicyDisable       = "disable"        // Не работают
 
+	DebufForSlotI  = 15
+	DebufForSlotII = 25
 )
 
 var ItemBinTypes = map[string]int{

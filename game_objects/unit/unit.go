@@ -773,29 +773,21 @@ func (u *Unit) GetShortInfo() *ShortUnitInfo {
 
 	hostile.EquipSlots = make([]detail.BodyEquipSlot, 0)
 
-	copyEquips := func(realEquips map[int]*detail.BodyEquipSlot) {
-		for _, equipSlot := range realEquips {
-
-			if equipSlot.GetXAnchor() > 0 || equipSlot.GetYAnchor() > 0 {
-				hostile.EquipSlots = append(hostile.EquipSlots, detail.BodyEquipSlot{
-					Type:         equipSlot.Type,
-					Number:       equipSlot.Number,
-					Equip:        equipSlot.Equip,
-					StandardSize: equipSlot.StandardSize,
-					RealXAttach:  equipSlot.GetRealXAttach(),
-					RealYAttach:  equipSlot.GetRealYAttach(),
-					XAnchor:      equipSlot.GetXAnchor(),
-					YAnchor:      equipSlot.GetYAnchor(),
-				})
-			}
+	for _, equipSlot := range u.GetAllBodyEquips() {
+		if equipSlot.GetXAnchor() > 0 || equipSlot.GetYAnchor() > 0 {
+			hostile.EquipSlots = append(hostile.EquipSlots, detail.BodyEquipSlot{
+				Type:         equipSlot.Type,
+				Number:       equipSlot.Number,
+				Equip:        equipSlot.Equip,
+				StandardSize: equipSlot.StandardSize,
+				RealXAttach:  equipSlot.GetRealXAttach(),
+				RealYAttach:  equipSlot.GetRealYAttach(),
+				XAnchor:      equipSlot.GetXAnchor(),
+				YAnchor:      equipSlot.GetYAnchor(),
+				Additional:   equipSlot.Additional,
+			})
 		}
 	}
-
-	copyEquips(u.getBody().EquippingI)
-	copyEquips(u.getBody().EquippingII)
-	copyEquips(u.getBody().EquippingIII)
-	copyEquips(u.getBody().EquippingIV)
-	copyEquips(u.getBody().EquippingV)
 
 	return &hostile
 }

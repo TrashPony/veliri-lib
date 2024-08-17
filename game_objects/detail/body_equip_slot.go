@@ -30,6 +30,7 @@ type BodyEquipSlot struct {
 	Drone            bool           `json:"-"` // поле существует только что бы рисовать на фронте
 	LockSlot         int            `json:"lock_slot"`
 	Rotate           float64        `json:"rotate"`
+	Additional       bool           `json:"additional"`
 
 	Mining          bool `json:"mining"` //todo переименовать в "наружний"
 	CatchBulletUUID string

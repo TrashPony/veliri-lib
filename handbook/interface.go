@@ -2532,6 +2532,22 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `<p>Перенести транспорт и все его содержимое на склад?</p><p><span class="importantly">Внимание!</span> Модификаторы установленные на транспорт будут уничтожены.</p>`,
 			_const.EN: `<p>Move the transport and all its contents to the warehouse?</p><p><span class="importantly">Attention!</span> Modifiers installed on vehicles will be destroyed.</p>`,
 		},
+		"text_19": {
+			_const.RU: `Добавление монтажного слота`,
+			_const.EN: `Adding a Mounting Slot`,
+		},
+		"text_20": {
+			_const.RU: `<p>Вы хотите установить дополнительную монтажную площадку <span class="importantly">%type%</span> уровня.</p><p>Это обойдется в <span class="importantly">%credits_count%</span> cr., а так же <span class="importantly">снизит прочность корпуса</span> на <span class="importantly">%debuf%%</span>.</p><p>Добавить?</p>`,
+			_const.EN: `<p>You want to install an additional <span class="importantly">%type%</span> level mounting pad.</p><p>This will cost <span class="importantly">%credits_count%</span> cr., and will also <span class="importantly">reduce the strength of the hull</span> by <span class="importantly">%debuf%%</span>.</p><p>Add?</p>`,
+		},
+		"text_21": {
+			_const.RU: `Нельзя устанавливать 2 одинаковых модификатора`,
+			_const.EN: `You cannot install 2 identical modifiers`,
+		},
+		"text_22": {
+			_const.RU: `Не удалось!`,
+			_const.EN: `Failed!`,
+		},
 		"button_3": {
 			_const.RU: `Отмена`,
 			_const.EN: `Cancel`,
@@ -2539,6 +2555,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"button_4": {
 			_const.RU: `Перенести`,
 			_const.EN: `Transfer`,
+		},
+		"button_7": {
+			_const.RU: `Добавить`,
+			_const.EN: `Add`,
 		},
 		"text_14": {
 			_const.RU: `Изменить имя`,
@@ -2718,6 +2738,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"tittle_8": {
 			_const.RU: `Синхронизация`,
 			_const.EN: `Synchronization`,
+		},
+		"tittle_9": {
+			_const.RU: `Дополнительный слот`,
+			_const.EN: `Additional slot`,
 		},
 		// ViewMS
 	},

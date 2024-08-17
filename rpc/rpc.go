@@ -137,6 +137,7 @@ func GobRegister() {
 	gob.Register(resource.CraftDetail{})
 	gob.Register(ammo.Ammo{})
 	gob.Register(equip.Equip{})
+	gob.Register([]*detail.BodyEquipSlot{})
 	gob.Register(detail.Body{})
 	gob.Register(box.Box{})
 	gob.Register(blueprints.Blueprint{})

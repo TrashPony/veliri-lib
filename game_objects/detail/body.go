@@ -36,11 +36,11 @@ type Body struct {
 	StandardSize int `json:"standard_size"` /* small - 1, medium - 2, big - 3, размер корпуса (если корпус мс то неучитывается)*/
 
 	// TODO передалать это на 1 мапу
-	EquippingI   map[int]*BodyEquipSlot `json:"-"`
-	EquippingII  map[int]*BodyEquipSlot `json:"-"`
-	EquippingIII map[int]*BodyEquipSlot `json:"-"`
-	EquippingIV  map[int]*BodyEquipSlot `json:"-"`
-	EquippingV   map[int]*BodyEquipSlot `json:"-"`
+	equippingI   map[int]*BodyEquipSlot
+	equippingII  map[int]*BodyEquipSlot
+	equippingIII map[int]*BodyEquipSlot
+	equippingIV  map[int]*BodyEquipSlot
+	equippingV   map[int]*BodyEquipSlot
 
 	ThoriumSlots map[int]*ThoriumSlot `json:"-"` /* слоты в которых хранится топливо */
 
@@ -163,17 +163,17 @@ func (body *Body) GetAllEquips() []*BodyEquipSlot {
 		}
 	}
 
-	addEquips(body.EquippingI, 1) // TODO передалать это на 1 мапу
-	addEquips(body.EquippingII, 2)
-	addEquips(body.EquippingIII, 3)
-	addEquips(body.EquippingIV, 4)
-	addEquips(body.EquippingV, 5)
+	addEquips(body.equippingI, 1) // TODO передалать это на 1 мапу
+	addEquips(body.equippingII, 2)
+	addEquips(body.equippingIII, 3)
+	addEquips(body.equippingIV, 4)
+	addEquips(body.equippingV, 5)
 
 	return equips
 }
 
 func (body *Body) GetAllEquipSlots() []*BodyEquipSlot {
-	equips := make([]*BodyEquipSlot, 0, len(body.EquippingI)+len(body.EquippingII)+len(body.EquippingIII)+len(body.EquippingIV)+len(body.EquippingV))
+	equips := make([]*BodyEquipSlot, 0, len(body.equippingI)+len(body.equippingII)+len(body.equippingIII)+len(body.equippingIV)+len(body.equippingV))
 	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
 		for slot, s := range equip {
 			s.TypeSlot = typeSlot
@@ -182,11 +182,33 @@ func (body *Body) GetAllEquipSlots() []*BodyEquipSlot {
 		}
 	}
 
-	addEquips(body.EquippingI, 1) // TODO передалать это на 1 мапу
-	addEquips(body.EquippingII, 2)
-	addEquips(body.EquippingIII, 3)
-	addEquips(body.EquippingIV, 4)
-	addEquips(body.EquippingV, 5)
+	addEquips(body.equippingI, 1) // TODO передалать это на 1 мапу
+	addEquips(body.equippingII, 2)
+	addEquips(body.equippingIII, 3)
+	addEquips(body.equippingIV, 4)
+	addEquips(body.equippingV, 5)
+
+	return equips
+}
+
+func (body *Body) GetAllAdditionalEquipSlots() []*BodyEquipSlot {
+	equips := make([]*BodyEquipSlot, 0)
+
+	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
+		for slot, s := range equip {
+			if s.Additional {
+				s.TypeSlot = typeSlot
+				s.Slot = slot
+				equips = append(equips, s)
+			}
+		}
+	}
+
+	addEquips(body.equippingI, 1)
+	addEquips(body.equippingII, 2)
+	addEquips(body.equippingIII, 3)
+	addEquips(body.equippingIV, 4)
+	addEquips(body.equippingV, 5)
 
 	return equips
 }
@@ -205,33 +227,59 @@ func (body *Body) GetApplicableEquips(applicable string) []*BodyEquipSlot {
 		}
 	}
 
-	findEquip(body.EquippingI, 1) // TODO передалать это на 1 мапу
-	findEquip(body.EquippingII, 2)
-	findEquip(body.EquippingIII, 3)
-	findEquip(body.EquippingIV, 4)
-	findEquip(body.EquippingV, 5)
+	findEquip(body.equippingI, 1) // TODO передалать это на 1 мапу
+	findEquip(body.equippingII, 2)
+	findEquip(body.equippingIII, 3)
+	findEquip(body.equippingIV, 4)
+	findEquip(body.equippingV, 5)
 
 	return equips
 }
 
 func (body *Body) GetEquipSlot(typeSlot, numberSlot int) *BodyEquipSlot {
 	if typeSlot == 1 { // TODO передалать это на 1 мапу
-		return body.EquippingI[numberSlot]
+		return body.equippingI[numberSlot]
 	}
 	if typeSlot == 2 {
-		return body.EquippingII[numberSlot]
+		return body.equippingII[numberSlot]
 	}
 	if typeSlot == 3 {
-		return body.EquippingIII[numberSlot]
+		return body.equippingIII[numberSlot]
 	}
 	if typeSlot == 4 {
-		return body.EquippingIV[numberSlot]
+		return body.equippingIV[numberSlot]
 	}
 	if typeSlot == 5 {
-		return body.EquippingV[numberSlot]
+		return body.equippingV[numberSlot]
 	}
 
 	return nil
+}
+
+func (body *Body) InitEquipSlots() {
+	body.equippingI = make(map[int]*BodyEquipSlot)
+	body.equippingII = make(map[int]*BodyEquipSlot)
+	body.equippingIII = make(map[int]*BodyEquipSlot)
+	body.equippingIV = make(map[int]*BodyEquipSlot)
+	body.equippingV = make(map[int]*BodyEquipSlot)
+}
+
+func (body *Body) AddEquipSlot(slot *BodyEquipSlot) {
+	if slot.Type == 1 {
+		body.equippingI[slot.Number] = slot
+	}
+	if slot.Type == 2 {
+		body.equippingII[slot.Number] = slot
+	}
+	if slot.Type == 3 {
+		body.equippingIII[slot.Number] = slot
+	}
+	if slot.Type == 4 {
+		body.equippingIV[slot.Number] = slot
+	}
+	if slot.Type == 5 {
+		body.equippingV[slot.Number] = slot
+	}
 }
 
 func (body *Body) GetRandomEquip() *BodyEquipSlot {
@@ -256,19 +304,19 @@ func (body *Body) GetRandomEquip() *BodyEquipSlot {
 	}
 
 	if typeSlot == 1 { // TODO передалать это на 1 мапу
-		return randEquip(body.EquippingI)
+		return randEquip(body.equippingI)
 	}
 	if typeSlot == 2 {
-		return randEquip(body.EquippingII)
+		return randEquip(body.equippingII)
 	}
 	if typeSlot == 3 {
-		return randEquip(body.EquippingIII)
+		return randEquip(body.equippingIII)
 	}
 	if typeSlot == 4 {
-		return randEquip(body.EquippingIV)
+		return randEquip(body.equippingIV)
 	}
 	if typeSlot == 5 {
-		return randEquip(body.EquippingV)
+		return randEquip(body.equippingV)
 	}
 
 	return body.GetRandomEquip()
@@ -287,11 +335,11 @@ func (body *Body) GetUseEnergy() int {
 		return power
 	}
 
-	allPower = allPower + counter(body.EquippingI) // TODO передалать это на 1 мапу
-	allPower = allPower + counter(body.EquippingII)
-	allPower = allPower + counter(body.EquippingIII)
-	allPower = allPower + counter(body.EquippingIV)
-	allPower = allPower + counter(body.EquippingV)
+	allPower = allPower + counter(body.equippingI) // TODO передалать это на 1 мапу
+	allPower = allPower + counter(body.equippingII)
+	allPower = allPower + counter(body.equippingIII)
+	allPower = allPower + counter(body.equippingIV)
+	allPower = allPower + counter(body.equippingV)
 
 	for _, slot := range body.Weapons {
 		if slot.Weapon != nil {
@@ -315,11 +363,11 @@ func (body *Body) GetUseCapacitySize() int {
 		return size
 	}
 
-	allSize = allSize + counter(body.EquippingI) // TODO передалать это на 1 мапу
-	allSize = allSize + counter(body.EquippingII)
-	allSize = allSize + counter(body.EquippingIII)
-	allSize = allSize + counter(body.EquippingIV)
-	allSize = allSize + counter(body.EquippingV)
+	allSize = allSize + counter(body.equippingI) // TODO передалать это на 1 мапу
+	allSize = allSize + counter(body.equippingII)
+	allSize = allSize + counter(body.equippingIII)
+	allSize = allSize + counter(body.equippingIV)
+	allSize = allSize + counter(body.equippingV)
 
 	for _, slot := range body.Weapons {
 		if slot.Weapon != nil {
