@@ -30,12 +30,17 @@ type GunUser interface {
 	GetOwnerPlayerID() int
 	FractionWarrior() bool
 	OwnerFraction() string
+	GetCorporationID() int
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) GetCorporationID() int {
+	return g.GunUser.GetCorporationID()
 }
 
 func (g *Gunner) OwnerFraction() string {

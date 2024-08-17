@@ -22,8 +22,9 @@ type Shield struct {
 	ID   int    `json:"id"`
 
 	// описание обьекта к которому закреплен щит, нужно для отрисовки на фронте
-	OwnerID   int    `json:"owner_id"`
-	OwnerType string `json:"owner_type"`
+	OwnerID       int    `json:"owner_id"`
+	OwnerType     string `json:"owner_type"`
+	CorporationID int    `json:"corporation_id"`
 
 	MaxHP            int `json:"max_hp"`         // максимальное хп
 	CurrentHP        int `json:"current_hp"`     // текущее хп
