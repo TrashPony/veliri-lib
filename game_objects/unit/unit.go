@@ -220,6 +220,11 @@ func (u *Unit) GetPercentHP() int {
 		fmt.Println("percent hp max > 100%, ", u.GetHP(), u.GetMaxHP())
 		return 1000
 	}
+
+	if percent <= 0 {
+		fmt.Println("percent hp max <= 0%, ", u.GetHP(), u.GetMaxHP())
+	}
+
 	return percent
 }
 

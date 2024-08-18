@@ -13,7 +13,7 @@ func GetReachAngle(xPlace, yPlace, xTarget, yTarget int, targetLvl, startLvlBull
 	v := speed
 	y := targetLvl - startLvlBullet
 	if g == 0 {
-		g = getGravityByWeaponType(weaponType)
+		g = GetGravityByWeaponType(weaponType)
 	}
 
 	// делаем из 3х мерной модели двумерную, за счет оси Х у нас будет дистанция от обьекта до цели Y - высота пули
@@ -39,7 +39,7 @@ func GetMaxDistBallisticWeapon(speed, targetLvl, startLvlBullet, radian float64,
 
 	y := startLvlBullet - targetLvl
 	if g == 0 {
-		g = getGravityByWeaponType(weaponType)
+		g = GetGravityByWeaponType(weaponType)
 	}
 	g2 := 2 * g
 
@@ -76,7 +76,7 @@ func GetMaxHeightBulletBallisticWeapon(speed, startRadian, startY float64, weapo
 
 	// startY => bullet.StartZ
 	if g == 0 {
-		g = getGravityByWeaponType(weaponType)
+		g = GetGravityByWeaponType(weaponType)
 	}
 
 	v2 := fastPow(speed)
@@ -106,14 +106,14 @@ func GetZBulletByXPath(startZ, startRadian, speed float64, startX, startY, curre
 func GetZBulletByX(startZ, startRadian, x, speed float64, weaponType string, gravity float64) float64 {
 
 	if gravity == 0 {
-		gravity = getGravityByWeaponType(weaponType)
+		gravity = GetGravityByWeaponType(weaponType)
 	}
 
 	offsetZ := math.Tan(startRadian)*x - (gravity/(2*(fastPow(speed))*(Cos(startRadian)*Cos(startRadian))))*fastPow(x)
 	return startZ + offsetZ
 }
 
-func getGravityByWeaponType(weaponType string) float64 {
+func GetGravityByWeaponType(weaponType string) float64 {
 	g := _const.Gravity
 
 	if weaponType == "missile" {

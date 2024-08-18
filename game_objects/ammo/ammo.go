@@ -33,6 +33,7 @@ type Ammo struct {
 	KineticsDamage         int         `json:"kinetics_damage"`
 	ExplosionDamage        int         `json:"explosion_damage"`
 	ThermoDamage           int         `json:"thermo_damage"`
+	DistSpread             int         `json:"dist_spread"` // 1-100, 100 - нет рассеивания, 1 - рассеивание х100
 }
 
 func (a *Ammo) GetName() string {
