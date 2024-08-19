@@ -112,6 +112,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 75, MaxCount: 10, PercentChance: 20},
 			{BpID: 21, MaxCount: 10, PercentChance: 20},
 			{BpID: 26, MaxCount: 10, PercentChance: 20},
+			{BpID: 194, MaxCount: 10, PercentChance: 20},
 			{BpID: 185, MaxCount: 3, PercentChance: 20},
 			{BpID: 186, MaxCount: 3, PercentChance: 20},
 			{BpID: 187, MaxCount: 3, PercentChance: 10},
@@ -130,6 +131,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			// WEAPON LVL 2 +
 			{BpID: 79, MaxCount: 2, PercentChance: 10, SectorFraction: Replicas},
 			{BpID: 81, MaxCount: 2, PercentChance: 10, SectorFraction: Explores},
+			{BpID: 196, MaxCount: 2, PercentChance: 10, SectorFraction: Explores},
 			{BpID: 86, MaxCount: 2, PercentChance: 10, SectorFraction: Reverses},
 			{BpID: 87, MaxCount: 2, PercentChance: 10, SectorFraction: Reverses},
 			{BpID: 96, MaxCount: 2, PercentChance: 10},
@@ -195,6 +197,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 24, MaxCount: 10, PercentChance: 20},
 			{BpID: 22, MaxCount: 10, PercentChance: 20},
 			{BpID: 76, MaxCount: 10, PercentChance: 20},
+			{BpID: 192, MaxCount: 3, PercentChance: 20},
 			{BpID: 187, MaxCount: 3, PercentChance: 20},
 			{BpID: 188, MaxCount: 3, PercentChance: 20},
 			{BpID: 189, MaxCount: 3, PercentChance: 10},
@@ -206,6 +209,8 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 88, MaxCount: 2, PercentChance: 15},
 			{BpID: 92, MaxCount: 2, PercentChance: 15},
 			{BpID: 94, MaxCount: 2, PercentChance: 15},
+			{BpID: 92, MaxCount: 2, PercentChance: 15},
+			{BpID: 195, MaxCount: 2, PercentChance: 15},
 
 			// BODY lvl 3 +
 			{BpID: 52, MaxCount: 1, PercentChance: 5},

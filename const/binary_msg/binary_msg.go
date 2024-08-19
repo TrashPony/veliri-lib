@@ -299,7 +299,7 @@ func ObjectDeadBinaryMsg(id, x, y int, typeObject string) []byte {
 	return command
 }
 
-func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID int) []byte {
+func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent int) []byte {
 	command := []byte{20}
 
 	command = append(command, byte(typeID))
@@ -308,6 +308,7 @@ func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID int) []byte {
 	command = append(command, game_math.GetIntBytes(toX)...)
 	command = append(command, game_math.GetIntBytes(toY)...)
 	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, byte(AccumulationPercent))
 
 	return command
 }

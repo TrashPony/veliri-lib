@@ -72,8 +72,9 @@ type Bullet struct {
 	DetonationForceView bool            `json:"-"` // все видят взрыв, независимо от тумана войны
 	MapItem             *inventory.Slot `json:"-"`
 
-	BodyRotateValue int // что бы на фронте пуля имела положение тела не по направлению а по значению
-	BodyRotate      bool
+	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
+	BodyRotate          bool
+	AccumulationPercent int `json:"accumulation_percent"`
 
 	ghost      bool
 	stopTimeMS int

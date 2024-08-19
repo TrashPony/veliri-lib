@@ -36,12 +36,15 @@ type Weapon struct {
 	AllowAmmo          []int                    `json:"allow_ammo"`
 
 	// оружие накопительного типа (зажатая мышка коит энергию, отпускание выпускает снаряд)
-	AccumulationFirePower   bool    `json:"accumulation_fire_power"`
-	AccumulationFull        float64 `json:"accumulation_full"`
-	AccumulationFullTimeOut int     `json:"accumulation_full_time_out"` // время в мс когда произойдет перегрев или автовыстрел
-	PushingPower            int     `json:"pushing_power"`
-	Variants                []int   `json:"variants"`
-	PassAngle               int     `json:"pass_angle"`
+	AccumulationType             string  `json:"accumulation_type"`
+	AccumulationFirePower        bool    `json:"accumulation_fire_power"`
+	AccumulationFull             float64 `json:"accumulation_full"`
+	AccumulationFullTimeOut      int     `json:"accumulation_full_time_out"` // время в мс когда произойдет перегрев или автовыстрел
+	AccumulationAttenuationPower int     `json:"accumulation_attenuation_power"`
+
+	PushingPower int   `json:"pushing_power"`
+	Variants     []int `json:"variants"`
+	PassAngle    int   `json:"pass_angle"`
 
 	// параметры разброса и сведения орудия
 	MaxSpread          int     `json:"max_spread"`

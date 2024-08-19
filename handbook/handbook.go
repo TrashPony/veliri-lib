@@ -110,6 +110,8 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_2":         {Name: "far_god_2", Description: ""},
 		"far_god_3":         {Name: "far_god_3", Description: ""},
 		"far_god_4":         {Name: "far_god_4", Description: ""},
+		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p></p>"},
+		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"replic_weapon_1":   {Name: "Фуриоса", Description: "<p>Желаете по достоинству оценить мощь Replic? Фуриоса – даст вам такую последнюю возможность. Эта мортира наносит настолько сокрушительный урон, что не оставит от ваших соперников и следа. Идеальное решение для тех, кто предпочитает поражать цели на большом расстоянии по навесной траектории, пожертвовав взамен точностью и скоростью поворота орудия.</p>"},
@@ -120,6 +122,8 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"explores_weapon_2": {Name: "Филаз", Description: "<p>Дешёвый, неприхотливый и массовый – самое лучшее, что можно сказать о линейке лучепускателей – «Филаз».  Отдушиной в данном нишевом товаре от Explores можно считать высокую точность попадания режущего луча по цели.</p>"},
 		"explores_weapon_3": {Name: "EzE-T", Description: "<p>Хотите пулемёт, но не желаете закупать тонны амуниции - «EzE-T» специализированная разработка Explores касательно развития потенциала боевых лазеров. Данный частотный испускатель, если и не попадёт в цель, то как минимум деморализует любого, кто попытается выступить против вас.</p>"},
 		"explores_weapon_4": {Name: "О-Кеот", Description: "<p>О-Кеот – ещё одно развитие наряду с «EzE-T» возможностей лазерного вооружения. На сей раз, оружейные конструкторы Explores пошли по иному направлению и сумели разработать массовый делитель лучей, работающий по принципу дробовика и буквально расплавляющий цель в зоне поражения.</p>"},
+		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
+		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
 		"reverses_weapon_1": {Name: "Судья", Description: "<p>Аннигилируйте пространство. Не дайте шанса врагу уйти.  Сокрушите огромным залпом из восьми последовательных ракет и вынесите окончательный приговор. Судья – передовое ракетное вооружение Reverses. </p>"},
 		"reverses_weapon_2": {Name: "Разряд", Description: "<p>Стандартизированное под войсковые нужды Reverses орудие – способное путём выпуска двух стремительных ракет, поражать цели. Средний темп стрельбы и маленький объём заряжаемых зарядов, компенсируется быстротой поворота орудия.</p>"},
 		"reverses_weapon_3": {Name: "Разряд-Марк 2", Description: "<p>Разряд-Марк 2 -  продолжение идей, заложенных предыдущей версией «Разряд». Это более усовершенствованное орудие, что собрало в себе плюсы предшественника. Любителям стоять в сторонке и наблюдать за взрывоопасным шоу – это изделие понравится вдвойне.</p>"},
@@ -157,6 +161,8 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"small_lens":                    {Name: "Small focusing cartridge", Description: "<p> Standardized cartridge for charging small and medium-sized laser beam impact tools. </p>"},
 		"small_lens_beam":               {Name: "Малый лучевой картридж", Description: "<p></p>"},
 		"small_missile_bullet":          {Name: "Маля ракета", Description: "<p></p>"},
+		"big_lens_1":                    {Name: "big_lens_1", Description: "<p></p>"},
+		"medium_lens_beam":              {Name: "medium_lens_beam", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"piu-piu":                       {Name: "Б-а среднекалиберной снаряд", Description: "<p>Стандартизированный тип среднекалиберных снарядов для кинетических и баллистических орудий, обеспечивающих ощутимый урон, но, как правило, не всегда отличающихся кучностью и высокой скорострельностью.</p>"},
@@ -176,6 +182,8 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"aim_big_missile_bullet":        {Name: "Воздаятель - Самонаводящиеся большая ракета", Description: "<p>Воздаятель – продолжение идей, начатых в «Цикада» и линейке семейства неуправляемых ракет «Система». Эта самонаводящаяся ракета, что может быть использована только в крупногабаритных ракетных огневых системах, истинный ужас для врагов, что были ею захвачены.</p>"},
 		"small_lens_beam":               {Name: "Малый лучевой картридж", Description: "<p></p>"}, // TODO
 		"small_missile_bullet":          {Name: "Малая ракета", Description: "<p></p>"},           // TODO
+		"big_lens_1":                    {Name: "big_lens_1", Description: "<p></p>"},
+		"medium_lens_beam":              {Name: "medium_lens_beam", Description: "<p></p>"},
 	},
 }
 
