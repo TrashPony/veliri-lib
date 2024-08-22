@@ -16,6 +16,6 @@ func TestDamage(t *testing.T) {
 	})
 
 	u.SetHP(1000)
-	passDamage := u.SetDamage(1000, 33, 33, 33)
+	_, _, passDamage := u.SetDamage(1000, 33, 33, 33)
 	fmt.Println(passDamage)
 }

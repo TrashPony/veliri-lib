@@ -18,10 +18,14 @@ type StateMS struct {
 	CapacitySize int `json:"capacity_size"`
 
 	// живучесть
-	MaxHP                 int `json:"max_hp"`
-	ProtectionToKinetics  int `json:"protection_to_kinetics"`
-	ProtectionToThermo    int `json:"protection_to_thermo"`
-	ProtectionToExplosion int `json:"protection_to_explosion"`
+	MaxHP                       int `json:"max_hp"`
+	ProtectionToKinetics        int `json:"protection_to_kinetics"`
+	ProtectionToThermo          int `json:"protection_to_thermo"`
+	ProtectionToExplosion       int `json:"protection_to_explosion"`
+	MaxShieldHP                 int `json:"max_shield_hp"`
+	ShieldProtectionToKinetics  int `json:"shield_protection_to_kinetics"`
+	ShieldProtectionToThermo    int `json:"shield_protection_to_thermo"`
+	ShieldProtectionToExplosion int `json:"shield_protection_to_explosion"`
 
 	// движение
 	Speed         float64 `json:"speed"`          // -- макс скорость вперед
@@ -70,19 +74,23 @@ func (u *Unit) GetState() *StateMS {
 	}
 
 	state := StateMS{
-		UseEnergy:             u.getBody().GetUseEnergy(),
-		MaxEnergy:             u.GetMaxEnergy(),
-		MaxHP:                 u.GetMaxHP(),
-		ProtectionToKinetics:  u.GetProtection("kinetics"),
-		ProtectionToThermo:    u.GetProtection("thermo"),
-		ProtectionToExplosion: u.GetProtection("explosion"),
-		Speed:                 u.GetMoveMaxPower(),
-		ReverseSpeed:          u.GetMaxReverse(),
-		PowerFactor:           u.GetPowerFactor(),
-		ReverseFactor:         u.GetReverseFactor(),
-		TurnSpeed:             u.GetTurnSpeed(),
-		RangeView:             u.GetRangeView(),
-		RangeRadar:            u.GetRadarRange(),
+		UseEnergy:                   u.getBody().GetUseEnergy(),
+		MaxEnergy:                   u.GetMaxEnergy(),
+		MaxHP:                       u.GetMaxHP(),
+		ProtectionToKinetics:        u.GetProtection("kinetics"),
+		ProtectionToThermo:          u.GetProtection("thermo"),
+		ProtectionToExplosion:       u.GetProtection("explosion"),
+		MaxShieldHP:                 u.GetMaxShieldHP(),
+		ShieldProtectionToKinetics:  u.GetProtection("shield_kinetics"),
+		ShieldProtectionToThermo:    u.GetProtection("shield_thermo"),
+		ShieldProtectionToExplosion: u.GetProtection("shield_explosion"),
+		Speed:                       u.GetMoveMaxPower(),
+		ReverseSpeed:                u.GetMaxReverse(),
+		PowerFactor:                 u.GetPowerFactor(),
+		ReverseFactor:               u.GetReverseFactor(),
+		TurnSpeed:                   u.GetTurnSpeed(),
+		RangeView:                   u.GetRangeView(),
+		RangeRadar:                  u.GetRadarRange(),
 		WeaponInstall: u.GetWeaponSlot(1) != nil &&
 			weapon != nil &&
 			u.GetWeaponSlot(1).GetAmmo() != nil &&
@@ -143,6 +151,18 @@ func (u *Unit) GetProtection(typeVulnerabilities string) int {
 
 	if typeVulnerabilities == "explosion" {
 		startValue = float64(u.body.ProtectionToExplosion)
+	}
+
+	if typeVulnerabilities == "shield_thermo" {
+		startValue = float64(u.body.ShieldProtectionToThermo)
+	}
+
+	if typeVulnerabilities == "shield_kinetics" {
+		startValue = float64(u.body.ShieldProtectionToKinetics)
+	}
+
+	if typeVulnerabilities == "shield_explosion" {
+		startValue = float64(u.body.ShieldProtectionToExplosion)
 	}
 
 	for _, e := range u.GetEffects().GetAllEffects() {
@@ -290,6 +310,10 @@ func (u *Unit) getRadarRange() int {
 
 func (u *Unit) GetMaxHP() int {
 	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxHP), "max_hp", u.getBody().ChassisType, u.getBody().StandardSize)))
+}
+
+func (u *Unit) GetMaxShieldHP() int {
+	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.body.MaxShieldHP), "max_shield_hp", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
 func (u *Unit) GetMaxPower() int {
@@ -455,4 +479,17 @@ func (u *Unit) GetUnrepairableDamage() int {
 	}
 
 	return ud
+}
+
+func (u *Unit) AddUrepairableDamage(d int) {
+	percentUD := 90 - ((float64(u.GetUnrepairableDamage()) / float64(u.GetMaxHP())) * 100)
+	if percentUD <= 0 {
+		return
+	}
+
+	add := int(float64(d) * percentUD / 100)
+	if add < 0 {
+		add = 1
+	}
+	u.UnrepairableDamage += add
 }

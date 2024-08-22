@@ -690,6 +690,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"antigravity_max_power_factor_5":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
 		"antigravity_max_reverse_factor_5": {Description: ""},
 
+		"antigravity_max_move_speed_10p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">10%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"antigravity_max_reverse_speed_10p":  {Description: ""},
+		"antigravity_max_power_factor_10p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">10%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"antigravity_max_reverse_factor_10p": {Description: ""},
+
 		"antigravity_max_move_speed_20p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
 		"antigravity_max_reverse_speed_20p":  {Description: ""},
 		"antigravity_max_power_factor_20p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
@@ -710,12 +715,18 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"caterpillars_max_power_factor_5":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_factor_5": {Description: ""},
 
+		"caterpillars_max_move_speed_15p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
+		"caterpillars_max_reverse_speed_15p":  {Description: ""},
+		"caterpillars_max_power_factor_15p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
+		"caterpillars_max_reverse_factor_15p": {Description: ""},
+
 		"caterpillars_max_move_speed_20p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_speed_20p":  {Description: ""},
 		"caterpillars_max_power_factor_20p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_factor_20p": {Description: ""},
 
 		"antigravity_turn_speed_5":  {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"wheels_turn_speed_15p":     {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">колесами</span>."},
 		"wheels_turn_speed_5":       {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">колесами</span>."},
 		"caterpillars_turn_speed_5": {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 
@@ -925,6 +936,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"antigravity_max_power_factor_5":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
 		"antigravity_max_reverse_factor_5": {Description: ""},
 
+		"antigravity_max_move_speed_10p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">10%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"antigravity_max_reverse_speed_10p":  {Description: ""},
+		"antigravity_max_power_factor_10p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">10%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"antigravity_max_reverse_factor_10p": {Description: ""},
+
 		"antigravity_max_move_speed_20p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
 		"antigravity_max_reverse_speed_20p":  {Description: ""},
 		"antigravity_max_power_factor_20p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
@@ -945,12 +961,19 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"caterpillars_max_power_factor_5":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_factor_5": {Description: ""},
 
+		"caterpillars_max_move_speed_15p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
+		"caterpillars_max_reverse_speed_15p":  {Description: ""},
+		"caterpillars_max_power_factor_15p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
+		"caterpillars_max_reverse_factor_15p": {Description: ""},
+
 		"caterpillars_max_move_speed_20p":     {Description: "Максимальная <span class=\"importantly\">скорость</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_speed_20p":  {Description: ""},
 		"caterpillars_max_power_factor_20p":   {Description: "<span class=\"importantly\">Скорость разгон</span> увеличена на <span class=\"importantly\">20%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 		"caterpillars_max_reverse_factor_20p": {Description: ""},
 
-		"antigravity_turn_speed_5":  {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+		"antigravity_turn_speed_5": {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">антигравитацией</span>."},
+
+		"wheels_turn_speed_15p":     {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">15%</span>. Действует на корпуса с <span class=\"importantly\">колесами</span>."},
 		"wheels_turn_speed_5":       {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">колесами</span>."},
 		"caterpillars_turn_speed_5": {Description: "<span class=\"importantly\">Скорость поворота</span> увеличена на <span class=\"importantly\">5%</span>. Действует на корпуса с <span class=\"importantly\">гусеницами</span>."},
 

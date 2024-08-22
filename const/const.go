@@ -160,6 +160,9 @@ const (
 
 	DebufForSlotI  = 15
 	DebufForSlotII = 25
+
+	UnitShieldRestoreTime = 5000 // 5 сек
+	UnitShieldRestoreHP   = 1    // 5 сек
 )
 
 var ItemBinTypes = map[string]int{

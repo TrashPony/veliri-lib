@@ -29,11 +29,13 @@ type Unit struct {
 	Ready         bool
 	body          *detail.Body
 
-	HP          int    `json:"hp"`
-	Power       int    `json:"power"`
-	Destroy     bool   `json:"destroy"`
-	BodyTexture string `json:"body_texture"`
-	MapID       int32  `json:"map_id"`
+	HP            int    `json:"hp"`
+	ShieldHP      int    `json:"shield_hp"`
+	ShieldTimeOut int    `json:"shield_time_out"`
+	Power         int    `json:"power"`
+	Destroy       bool   `json:"destroy"`
+	BodyTexture   string `json:"body_texture"`
+	MapID         int32  `json:"map_id"`
 
 	evacuation      bool
 	forceEvacuation bool
@@ -623,6 +625,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetID())...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.OwnerID)...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.HP)...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.ShieldHP)...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetBody().ID)...)
 
 	// position data
@@ -631,6 +634,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(int(u.GetRotate()))...)
 
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxHP())...)
+	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxShieldHP())...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRangeView())...)
 	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRadarRange())...)
 
@@ -717,6 +721,7 @@ func (u *Unit) GetUpdateData(mapTime int64) []byte {
 	command = append(command, game_math.GetIntBytes(u.GetRadarRange())...)
 	command = append(command, game_math.BoolToByte(u.ghost))
 	command = append(command, game_math.BoolToByte(u.lights))
+	command = append(command, game_math.GetIntBytes(u.ShieldHP)...)
 
 	return command
 }

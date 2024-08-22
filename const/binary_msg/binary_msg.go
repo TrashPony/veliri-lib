@@ -216,11 +216,12 @@ func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable,
 	return command
 }
 
-func StatusSquadBinaryMsg(hp, energy int, autopilot bool, slots map[int]*detail.ThoriumSlot) []byte {
+func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, slots map[int]*detail.ThoriumSlot) []byte {
 	// [1[eventID], 4[hp], 4[energy], 1[autopilot]], 4[count_slot_install], 21 * slot_count[slots data]
 	command := []byte{14}
 
 	command = append(command, game_math.GetIntBytes(hp)...)
+	command = append(command, game_math.GetIntBytes(shieldHP)...)
 	command = append(command, game_math.GetIntBytes(energy)...)
 	command = append(command, game_math.BoolToByte(autopilot))
 
@@ -261,13 +262,17 @@ func RotateEquipBinaryMsg(id, rotate, ms, typeSlot, slot int) []byte {
 	return command
 }
 
-func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealerID, ownerID, damageK int) []byte {
+func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealerID, ownerID, damageK int, unitShield, destroyShield bool, area int) []byte {
 	// [1[eventID], 4[x], 4[y], 4[d], 4[m], 1[t]]
 	command := []byte{17}
 
 	_, ok := _const.MapBinItems[typeObject]
 	if !ok {
 		fmt.Println("unknown type object: ", typeObject)
+	}
+
+	if area > math.MaxInt8 {
+		area = math.MaxInt8
 	}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -278,6 +283,9 @@ func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealer
 	command = append(command, game_math.GetIntBytes(dealerID)...)
 	command = append(command, game_math.GetIntBytes(ownerID)...)
 	command = append(command, byte(damageK))
+	command = append(command, game_math.BoolToByte(unitShield))
+	command = append(command, game_math.BoolToByte(destroyShield))
+	command = append(command, byte(area))
 
 	return command
 }
@@ -1088,5 +1096,11 @@ func ShieldAnimate(id, r, x, y int) []byte {
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 
+	return command
+}
+
+func BodyShieldOn(id int) []byte {
+	command := []byte{97}
+	command = append(command, game_math.GetIntBytes(id)...)
 	return command
 }

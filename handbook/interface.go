@@ -1482,6 +1482,18 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Броня и уязвимые места`,
 			_const.EN: `Armor and vulnerabilities`,
 		},
+		"ch_164": {
+			_const.RU: `Щит`,
+			_const.EN: `Shield`,
+		},
+		"ch_165": {
+			_const.RU: `Защита щита`,
+			_const.EN: `Shield protection`,
+		},
+		"ch_166": {
+			_const.RU: `Отсутствует`,
+			_const.EN: `Missing`,
+		},
 		"ch_25": {
 			_const.RU: `Размер боеприпаса`,
 			_const.EN: `Ammunition size`,
@@ -2374,19 +2386,19 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.EN: `direction of movement.`,
 		},
 		"text_9": {
-			_const.RU: `Уничтожьте бочки и баки на пути.`,
-			_const.EN: `Destroy the barrels and tanks on the way.`,
+			_const.RU: `Уничтожьте бочки и баки на пути <span style="color: grey; font-size: 12px">(рекомендуется активировать щит)</span>.`,
+			_const.EN: `Destroy the barrels and tanks on the way <span style="color: grey; font-size: 12px">(it is recommended to activate the shield)</span>.`,
 		},
 		"text_10": {
 			_const.RU: `Примечание:`,
 			_const.EN: `Note:`,
 		},
 		"text_11": {
-			_const.RU: `Что бы активировать оружие его надо выбрать на панели в <span
+			_const.RU: `Что бы активировать оружие/снаряжение его надо выбрать на панели в <span
             style="color: yellow">центре с низу
             экрана</span> или нажать на указанной на ячейке клавишу (<span style="color: yellow">2</span> или '<span
             style="color: yellow">E</span>').`,
-			_const.EN: `To activate the weapon, you need to select it on the panel in the <span style="color: yellow">center
+			_const.EN: `To activate the weapons/equipment, you need to select it on the panel in the <span style="color: yellow">center
 			at the bottom of the screen</span> or press the key indicated in the cell (<span style="color: yellow">2</span>
 			or '<span style="color: yellow">E</span>').`,
 		},
@@ -2705,6 +2717,18 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"ch_24": {
 			_const.RU: `Скорость поворота`,
 			_const.EN: `Turn speed`,
+		},
+		"ch_25": {
+			_const.RU: `Щит`,
+			_const.EN: `Shield`,
+		},
+		"ch_26": {
+			_const.RU: `Защита щита`,
+			_const.EN: `Shield protection`,
+		},
+		"ch_27": {
+			_const.RU: `Отсутствует`,
+			_const.EN: `Missing`,
 		},
 		// StateTip
 		"tittle_1": {

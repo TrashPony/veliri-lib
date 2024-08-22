@@ -23,10 +23,14 @@ type Body struct {
 	ReverseFactor float64 `json:"reverse_factor"` //-- сила ускорения назад
 	TurnSpeed     float64 `json:"turn_speed"`     //-- скорость поворота в радианах
 
-	MaxHP                 int `json:"max_hp"`
-	ProtectionToKinetics  int `json:"protection_to_kinetics"`
-	ProtectionToThermo    int `json:"protection_to_thermo"`
-	ProtectionToExplosion int `json:"protection_to_explosion"`
+	MaxHP                       int `json:"max_hp"`
+	ProtectionToKinetics        int `json:"protection_to_kinetics"`
+	ProtectionToThermo          int `json:"protection_to_thermo"`
+	ProtectionToExplosion       int `json:"protection_to_explosion"`
+	MaxShieldHP                 int `json:"max_shield_hp"`
+	ShieldProtectionToKinetics  int `json:"shield_protection_to_kinetics"`
+	ShieldProtectionToThermo    int `json:"shield_protection_to_thermo"`
+	ShieldProtectionToExplosion int `json:"shield_protection_to_explosion"`
 
 	RangeView  int `json:"range_view"`
 	RangeRadar int `json:"range_radar"`
