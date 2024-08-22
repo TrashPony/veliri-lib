@@ -29,7 +29,6 @@ type Blueprint struct {
 	InMap           bool   `json:"in_map"`
 	BuildObjectID   int    `json:"build_object_id"`
 	DontRecycle     bool   `json:"dont_recycle"`
-	Size            int    `json:"size"`
 }
 
 func (b *Blueprint) GetName() string {
@@ -37,7 +36,7 @@ func (b *Blueprint) GetName() string {
 }
 
 func (b *Blueprint) GetSize() int {
-	return b.Size
+	return 1
 }
 
 func (b *Blueprint) GetItemType() string {

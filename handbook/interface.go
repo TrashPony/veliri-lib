@@ -2438,6 +2438,14 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `включить фары.`,
 			_const.EN: `turn off the headlights.`,
 		},
+		"text_21": {
+			_const.RU: `Что бы выбрать цель, <span style="color: yellow">наведите мышку</span> на транспорт и нажмите <span style="color: yellow">TAB</span>.`,
+			_const.EN: `To select a target, <span style="color: yellow">move the mouse</span> over the vehicle and press <span style="color: yellow">TAB</span>.`,
+		},
+		"text_22": {
+			_const.RU: `Что бы убрать цель, нажмите <span style="color: yellow">TAB</span> в месте где нет транспорта.`,
+			_const.EN: `To remove a target, press <span style="color: yellow">TAB</span> in a place where there is no vehicle.`,
+		},
 	},
 	"GlobalMap": {
 		// GlobalMap
@@ -4144,6 +4152,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 		"title_1": {
 			_const.RU: `диалог`,
 			_const.EN: `dialog`,
+		},
+		"chanel_unknown": {
+			_const.RU: `Неизвестный`,
+			_const.EN: `Unknown`,
 		},
 	},
 	"SendCredits": {

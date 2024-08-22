@@ -240,6 +240,18 @@ func (body *Body) GetApplicableEquips(applicable string) []*BodyEquipSlot {
 	return equips
 }
 
+func (body *Body) FindEquipByID(id int) []*BodyEquipSlot {
+	equips := make([]*BodyEquipSlot, 0)
+
+	for _, s := range body.GetAllEquipSlots() {
+		if s.Equip != nil && s.Equip.ID == id {
+			equips = append(equips, s)
+		}
+	}
+
+	return equips
+}
+
 func (body *Body) GetEquipSlot(typeSlot, numberSlot int) *BodyEquipSlot {
 	if typeSlot == 1 { // TODO передалать это на 1 мапу
 		return body.equippingI[numberSlot]

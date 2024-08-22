@@ -393,6 +393,8 @@ func (u *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
 	}
 }
 
+const stackDebuf = 15
+
 func (u *Unit) AppendPassiveEquipModifier() {
 
 	for _, slot := range u.body.GetAllEquipSlots() {
@@ -402,10 +404,18 @@ func (u *Unit) AppendPassiveEquipModifier() {
 	for _, slot := range u.body.GetAllEquips() {
 		if slot.Equip != nil && !slot.Equip.Active && len(slot.Equip.Effects) > 0 {
 			for _, e := range slot.Equip.Effects {
+
+				quantity := e.Quantity
+				count := u.body.FindEquipByID(slot.Equip.ID)
+				if len(count) > 1 {
+					debuf := 100 - float64(stackDebuf*(len(count)-1))
+					quantity = int(math.Floor(float64(quantity) * (debuf / 100)))
+				}
+
 				u.AddEffect(&effect.Effect{
 					UUID:         "equip_passive_" + strconv.Itoa(slot.Type) + ":" + strconv.Itoa(slot.Number) + e.Name,
 					Parameter:    e.Parameter,
-					Quantity:     e.Quantity,
+					Quantity:     quantity,
 					Percentages:  e.Percentages,
 					Subtract:     e.Subtract,
 					SlotType:     slot.Type,

@@ -1037,24 +1037,30 @@ func DangerAnomaly(power int) []byte {
 	return command
 }
 
-func TargetInfo(unitID, ownerID, currentTargetID, x, y, ralation, corpID, fear int, typeTarget, fraction string) []byte {
+func TargetInfo(targetID, ownerID, weaponTargetID, x, y, ralation, corpID, fear int, weaponTargetType, fraction, targetType string) []byte {
 	command := []byte{92}
 
-	_, ok := _const.MapBinItems[typeTarget]
+	t, ok := _const.MapBinItems[weaponTargetType]
 	if !ok {
-		fmt.Println("unknown type object: ", typeTarget)
+		fmt.Println("unknown type object: ", weaponTargetType)
 	}
 
-	command = append(command, game_math.GetIntBytes(unitID)...)
+	tt, ok := _const.MapBinItems[targetType]
+	if !ok {
+		fmt.Println("unknown type object: ", weaponTargetType)
+	}
+
+	command = append(command, game_math.GetIntBytes(targetID)...)
 	command = append(command, game_math.GetIntBytes(ownerID)...)
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(corpID)...)
-	command = append(command, byte(_const.MapBinItems[typeTarget]))
-	command = append(command, game_math.GetIntBytes(currentTargetID)...)
+	command = append(command, byte(t))
+	command = append(command, game_math.GetIntBytes(weaponTargetID)...)
 	command = append(command, _const.FractionByte[fraction])
 	command = append(command, game_math.GetIntBytes(ralation)...)
 	command = append(command, byte(fear))
+	command = append(command, byte(tt))
 
 	return command
 }
