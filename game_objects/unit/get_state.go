@@ -8,6 +8,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"math"
+	"sort"
 	"strconv"
 	"sync/atomic"
 )
@@ -393,7 +394,13 @@ func (u *Unit) AppendWeaponDamageModifier(weaponSlotNumber int) {
 	}
 }
 
-const stackDebuf = 15
+var modParament = map[int]int{
+	1: 100,
+	2: 80,
+	3: 50,
+	4: 20,
+	5: 10,
+}
 
 func (u *Unit) AppendPassiveEquipModifier() {
 
@@ -401,16 +408,24 @@ func (u *Unit) AppendPassiveEquipModifier() {
 		u.RemoveBySlot(slot.Type, slot.Number)
 	}
 
-	for _, slot := range u.body.GetAllEquips() {
-		if slot.Equip != nil && !slot.Equip.Active && len(slot.Equip.Effects) > 0 {
+	modBuff := make(map[string]int)
+	slots := u.body.GetAllEquips()
+	sort.SliceStable(slots, func(i, j int) bool {
+		return slots[i].Number < slots[j].Number
+	})
+
+	for _, slot := range slots {
+		if !slot.Equip.Active && len(slot.Equip.Effects) > 0 {
 			for _, e := range slot.Equip.Effects {
 
-				quantity := e.Quantity
-				count := u.body.FindEquipByID(slot.Equip.ID)
-				if len(count) > 1 {
-					debuf := 100 - float64(stackDebuf*(len(count)-1))
-					quantity = int(math.Floor(float64(quantity) * (debuf / 100)))
+				key := strconv.Itoa(slot.Type) + e.Parameter
+				modBuff[key]++
+				percent := modParament[modBuff[key]]
+				if percent == 0 {
+					percent = 10
 				}
+
+				quantity := int(math.Floor(float64(e.Quantity) * (float64(percent) / 100)))
 
 				u.AddEffect(&effect.Effect{
 					UUID:         "equip_passive_" + strconv.Itoa(slot.Type) + ":" + strconv.Itoa(slot.Number) + e.Name,
