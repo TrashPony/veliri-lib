@@ -26,17 +26,17 @@ func (u *Unit) SetDamage(damage, k, t, e int, callback func(playerID, startDamag
 	eDamage := float64(damage) * (float64(e) / 100.0)
 
 	// влияние типа атаки на урон, за счет защиты корпуса
-	kDamage -= kDamage * float64(u.GetProtection(prefix+"shield_kinetics")) / 100
+	kDamage -= kDamage * float64(u.GetProtection(prefix+"kinetics")) / 100
 	if kDamage < 0 {
 		kDamage = 0
 	}
 
-	tDamage -= tDamage * float64(u.GetProtection(prefix+"shield_thermo")) / 100
+	tDamage -= tDamage * float64(u.GetProtection(prefix+"thermo")) / 100
 	if tDamage < 0 {
 		tDamage = 0
 	}
 
-	eDamage -= eDamage * float64(u.GetProtection(prefix+"shield_explosion")) / 100
+	eDamage -= eDamage * float64(u.GetProtection(prefix+"explosion")) / 100
 	if eDamage < 0 {
 		eDamage = 0
 	}
