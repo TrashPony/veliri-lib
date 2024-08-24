@@ -10,12 +10,16 @@ func (u *Unit) SetPower(power int) {
 	u.Power = power
 }
 
-func (u *Unit) SetDamage(damage, k, t, e int) (bool, bool, int) {
+func (u *Unit) SetDamage(damage, k, t, e int, callback func(playerID, startDamage, kDamage, tDamage, eDamage, finalDamage, startSHP, finalSHP, startHP, finalHP, k, t, e int)) (bool, bool, int) {
 
 	var prefix string
 	if u.ShieldHP > 0 {
 		prefix = "shield_"
 	}
+
+	startDamage := damage
+	startSHP := u.ShieldHP
+	startHP := u.GetHP()
 
 	kDamage := float64(damage) * (float64(k) / 100.0)
 	tDamage := float64(damage) * (float64(t) / 100.0)
@@ -60,6 +64,10 @@ func (u *Unit) SetDamage(damage, k, t, e int) (bool, bool, int) {
 			u.ShieldHP = 0
 		}
 
+		if callback != nil { // TODO только для дебага или улучшить
+			callback(u.GetOwnerPlayerID(), startDamage, int(kDamage), int(tDamage), int(eDamage), damage, startSHP, u.ShieldHP, startHP, u.GetHP(), k, t, e)
+		}
+
 		return true, u.ShieldHP == 0, damage
 	}
 
@@ -71,6 +79,10 @@ func (u *Unit) SetDamage(damage, k, t, e int) (bool, bool, int) {
 	u.SetHP(u.GetHP() - damage)
 	if u.Immortal && u.GetHP() <= 0 {
 		u.SetHP(1)
+	}
+
+	if callback != nil { // TODO только для дебага, потом удалить или улучшить
+		callback(u.GetOwnerPlayerID(), startDamage, int(kDamage), int(tDamage), int(eDamage), damage, startSHP, u.ShieldHP, startHP, u.GetHP(), k, t, e)
 	}
 
 	u.AddUrepairableDamage(damage)
