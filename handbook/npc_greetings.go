@@ -414,16 +414,16 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "Patrol, I report: everything is calm here.",
 	},
 	_const.Replicas + "_guard_" + Good + "_6": {
-		_const.RU: "Будут неприятности, %UserName? - дай знать, разберёмся.",
-		_const.EN: "Are you in trouble, %UserName? - Let me know, we'll sort it out.",
+		_const.RU: "Будут неприятности, %UserName%? - дай знать, разберёмся.",
+		_const.EN: "Are you in trouble, %UserName%? - Let me know, we'll sort it out.",
 	},
 	_const.Replicas + "_guard_" + Good + "_7": {
 		_const.RU: "Закон на твоей стороне, %UserName%.",
 		_const.EN: "The law is on your side, %UserName%.",
 	},
 	_const.Replicas + "_guard_" + Good + "_8": {
-		_const.RU: "Ты пример для подражания, %UserName? Так держать!",
-		_const.EN: "Are you a role model, %UserName? Keep it up!",
+		_const.RU: "Ты пример для подражания, %UserName%? Так держать!",
+		_const.EN: "Are you a role model, %UserName%? Keep it up!",
 	},
 
 	_const.Replicas + "_out_scout_" + Good + "_1": {
@@ -1575,8 +1575,8 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "I thought everyone here would respect me, but instead they are trying to take away the only thing dear to me.",
 	},
 	_const.Replicas + "_builder_" + Help + "_5": {
-		_const.RU: "Помоги, %UserName! Это же просто произвол какой-то.",
-		_const.EN: "Help, %UserName! This is just some kind of arbitrariness.",
+		_const.RU: "Помоги, %UserName%! Это же просто произвол какой-то.",
+		_const.EN: "Help, %UserName%! This is just some kind of arbitrariness.",
 	},
 	_const.Replicas + "_builder_" + Help + "_6": {
 		_const.RU: "На меня напали! %UserName%, срочно зови сюда всех!",
