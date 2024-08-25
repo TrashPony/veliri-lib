@@ -373,20 +373,20 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "I’ll tell you a secret: you won’t be able to get hold of much in this sector. Try to explore the surrounding areas.",
 	},
 	_const.Replicas + "_miner_" + Good + "_4": {
-		_const.RU: "%UserName%, если у тебя есть соответствующая руда, попробуй наведаться на %BaseName%. Сейчас, там можно выгодно реализовать %ProductName%.",
-		_const.EN: "%UserName%, if you have the appropriate ore, try visiting %BaseName%. Now, you can profitably sell %ProductName% there.",
+		_const.RU: "%UserName%, если у тебя есть соответствующая руда, попробуй наведаться на %BaseName%. Сейчас, там можно выгодно реализовать руду.",
+		_const.EN: "%UserName%, if you have the appropriate ore, try visiting %BaseName%. Now, ore can be profitably sold there.",
 	},
 	_const.Replicas + "_miner_" + Good + "_5": {
-		_const.RU: "Тоже решил заняться добычей руды, а по итогу не особо то и идёт дело? Попробуй-ка посетить %SectorName%.",
-		_const.EN: "You also decided to start mining ore, but in the end things aren’t going well? Try visiting %SectorName%.",
+		_const.RU: "Тоже решил заняться добычей руды, а по итогу не особо то и идёт дело?",
+		_const.EN: "You also decided to start mining ore, but in the end things aren’t going well?",
 	},
 	_const.Replicas + "_miner_" + Good + "_6": {
-		_const.RU: "Сегодня мне повезло как никогда ранее! Столько %ProductName% я ещё никогда за всё своё существование не добывал.",
-		_const.EN: "Today I am luckier than ever before! I have never mined so much %ProductName% in my entire existence.",
+		_const.RU: "Сегодня мне повезло как никогда ранее! Столько руды я ещё никогда за всё своё существование не добывал.",
+		_const.EN: "Today I am luckier than ever before! I have never mined so much ore in my entire existence.",
 	},
 	_const.Replicas + "_miner_" + Good + "_7": {
-		_const.RU: "Только между нами %UserName%: если рассчитываешь выгодно переработать %ProductName%, советую на время позабыть о %BaseName%. Ты ещё и останешься должным тамошнему диспетчеру.",
-		_const.EN: "Just between us %UserName%: if you expect to profitably recycle %ProductName%, I advise you to forget about %BaseName% for a while. You will also remain indebted to the dispatcher there.",
+		_const.RU: "Только между нами %UserName%: если рассчитываешь выгодно переработать руду, советую на время позабыть о %BaseName%. Ты ещё и останешься должным тамошнему диспетчеру.",
+		_const.EN: "Just between us %UserName%: if you expect to profitably recycle ore, I advise you to forget about %BaseName% for a while. You will also remain indebted to the dispatcher there.",
 	},
 	_const.Replicas + "_miner_" + Good + "_8": {
 		_const.RU: "Ходят слухи, что в %SectorName% обнаружили месторождения Тория. Сам я не видел. Да и дорога туда опасная. Но… вдруг, ты %UserName% заинтересуешься этим?",
@@ -443,18 +443,14 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "I hope nothing happened to you along the way?",
 	},
 	_const.Replicas + "_out_scout_" + Good + "_5": {
-		_const.RU: "Как тебе нынешние контракты у фракций? Бывал в %SectorName%? Я недавно выбил оттуда один пиратский кластер.",
-		_const.EN: "What do you think of the current faction contracts? Have you been to %SectorName%? I recently knocked out one pirate cluster from there.",
+		_const.RU: "Как тебе нынешние контракты у фракций?",
+		_const.EN: "What do you think of the current faction contracts?",
 	},
 	_const.Replicas + "_out_scout_" + Good + "_6": {
-		_const.RU: "Имей в виду, на %BaseName% можно заполучить неплохой контракт по сопровождению конвоя.",
-		_const.EN: "Keep in mind that you can get a good convoy escort contract on %BaseName%.",
-	},
-	_const.Replicas + "_out_scout_" + Good + "_7": {
 		_const.RU: "Если ввяжешься в какие-то неприятности, %UserName%, мой тебе совет - постарайся попросту сбежать.",
 		_const.EN: "If you get into any trouble, %UserName%, my advice to you is to simply try to escape.",
 	},
-	_const.Replicas + "_out_scout_" + Good + "_8": {
+	_const.Replicas + "_out_scout_" + Good + "_7": {
 		_const.RU: "Не вздумай верить стражам. Правосудие в пустошах… пф, комично!",
 		_const.EN: "Don't you dare trust the guards. Justice in the wasteland... pfft, comical!",
 	},
@@ -472,8 +468,8 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "Maybe we can raid some merchant together?",
 	},
 	_const.Replicas + "_in_scout_" + Good + "_4": {
-		_const.RU: "Ищешь новых охотничьих угодий? Тогда наведайся в %SectorName%.",
-		_const.EN: "Looking for new hunting grounds? Then check out %SectorName%.",
+		_const.RU: "Ищешь новых охотничьих угодий?",
+		_const.EN: "Looking for new hunting grounds?",
 	},
 	_const.Replicas + "_in_scout_" + Good + "_5": {
 		_const.RU: "Контрабандисты рассказывали, что в %BaseName% платят приличные суммы за доставку соответствующих товаров.",
@@ -540,15 +536,85 @@ var npcGreetings = map[string]map[string]string{
 		_const.RU: "Всё-таки утомительное это дело, %UserName%, сновать между базами и перевозить грузы особой ценности.",
 		_const.EN: "Still, it’s a tedious task, %UserName%, to scurry between bases and transport cargo of special value.",
 	},
-
+	//
 	_const.Replicas + "_builder_" + Good + "_1": {
-		_const.RU: "Привет, как дела?",
-		_const.EN: "Hi, how are you doing?",
+		_const.RU: "Ты истинный друг рабочего синтета, %UserName%.",
+		_const.EN: "You are a true friend of the working synth, %UserName%.",
 	},
+	_const.Replicas + "_builder_" + Good + "_2": {
+		_const.RU: "Так держать. Тебя тут всегда рады видеть.",
+		_const.EN: "Keep it up. You're always welcome here.",
+	},
+	_const.Replicas + "_builder_" + Good + "_3": {
+		_const.RU: "Хоть ты и не строитель, но мои коллеги тебя жалуют. Так буду делать и я.",
+		_const.EN: "Although you are not a builder, my colleagues favor you. I will do the same.",
+	},
+	_const.Replicas + "_builder_" + Good + "_4": {
+		_const.RU: "Что, отвести тебя в безопасное место? Одно такое я знаю.",
+		_const.EN: "What, take you to safety? I know one.",
+	},
+	_const.Replicas + "_builder_" + Good + "_5": {
+		_const.RU: "Случись чего, %UserName%, тебе позволят затеряться среди прочих строителей.",
+		_const.EN: "If something happens, %UserName%, you will be allowed to get lost among other builders.",
+	},
+	_const.Replicas + "_builder_" + Good + "_6": {
+		_const.RU: "Если вдруг решишь сменить свой род деятельности, %UserName% - ты знаешь, где меня искать.",
+		_const.EN: "If you suddenly decide to change your occupation, %UserName% - you know where to look for me.",
+	},
+
 	_const.Replicas + "_warrior_" + Good + "_1": {
 		_const.RU: "Мы отправляемся в сектор %SectorName%, можешь присоединиться!",
 		_const.EN: "We're heading to sector %SectorName%, you're welcome to join!",
 	},
+	_const.Replicas + "_warrior_" + Good + "_2": {
+		_const.RU: "Можешь рассчитывать на мою поддержку, %UserName%.",
+		_const.EN: "You can count on my support, %UserName%.",
+	},
+	_const.Replicas + "_warrior_" + Good + "_3": {
+		_const.RU: "Будь уверен, %UserName%, мы своих не бросаем.",
+		_const.EN: "Rest assured, %UserName%, we do not abandon our own.",
+	},
+	_const.Replicas + "_warrior_" + Good + "_4": {
+		_const.RU: "Надеюсь, ты уже записался в ополчение фракции?",
+		_const.EN: "I hope you have already signed up for the faction's militia?",
+	},
+	_const.Replicas + "_warrior_" + Good + "_5": {
+		_const.RU: "Вот таких бойцов, как ты, %UserName%, нам и не хватает!",
+		_const.EN: "It's fighters like you, %UserName%, that we need!",
+	},
+	_const.Replicas + "_warrior_" + Good + "_6": {
+		_const.RU: "Если вдруг подобный момент наступит, я прикрою тебя, %UserName%.",
+		_const.EN: "If a moment like this ever comes, I've got your back, %UserName%.",
+	},
+	_const.Replicas + "_warrior_" + Good + "_7": {
+		_const.RU: "Тебе нужна огневая поддержка? Мой корпус и моё оружие - в твоём распоряжении, %UserName%.",
+		_const.EN: "Do you need fire support? My body and my weapons are at your disposal, %UserName%.",
+	},
+	_const.Replicas + "_warrior_" + Good + "_8": {
+		_const.RU: "В нужный час, ты узнаешь на что я действительно способен!",
+		_const.EN: "At the right time, you will find out what I am really capable of!",
+	},
+	_const.Replicas + "_warrior_" + Good + "_9": {
+		_const.RU: "Я не подведу!",
+		_const.EN: "I won't let you down!",
+	},
+	_const.Replicas + "_warrior_" + Good + "_10": {
+		_const.RU: "Я всегда готов к сражению!",
+		_const.EN: "I'm always ready for battle!",
+	},
+	_const.Replicas + "_warrior_" + Good + "_11": {
+		_const.RU: "У тебя есть хорошая цель для битвы, %UserName%?",
+		_const.EN: "Do you have a good target for battle, %UserName%?",
+	},
+	_const.Replicas + "_warrior_" + Good + "_12": {
+		_const.RU: "Для меня будет честью сражаться рядом с тобой, %UserName%.",
+		_const.EN: "It would be an honor to fight alongside you, %UserName%.",
+	},
+	_const.Replicas + "_warrior_" + Good + "_13": {
+		_const.RU: "Ввяжешься в бой - зови и меня!",
+		_const.EN: "If you get involved in a fight, call me too!",
+	},
+
 	_const.Replicas + "_expedition_" + Good + "_1": {
 		_const.RU: "Мы пробуем освоить сектор %SectorName%, будем рады содействию!",
 		_const.EN: "We're trying to explore sector %SectorName%, we'd appreciate your help!",
@@ -557,7 +623,36 @@ var npcGreetings = map[string]map[string]string{
 		_const.RU: "Наша задача — выбирать противника с территории пустоши в секторе %SectorName%! Будем рады содействию!",
 		_const.EN: "Our task is to choose an enemy from the wasteland territory in the %SectorName% sector! We'll appreciate your help!",
 	},
+	_const.Replicas + "_expedition_" + Good + "_3": {
+		_const.RU: "Не желаешь отправиться в одну перспективную экспедицию?",
+		_const.EN: "Would you like to go on a promising expedition?",
+	},
+	_const.Replicas + "_expedition_" + Good + "_4": {
+		_const.RU: "Будь у меня такая возможность, я бы поделился с тобой найденными в далёких секторах богатствами, %UserName%.",
+		_const.EN: "If I had the opportunity, I would share with you the wealth I found in distant sectors, %UserName%.",
+	},
+	_const.Replicas + "_expedition_" + Good + "_5": {
+		_const.RU: "Вот уж кому я точно рад, когда возвращаюсь после долгого странствия, %UserName%!",
+		_const.EN: "That's exactly who I'm glad to see when I return after a long journey, %UserName%!",
+	},
+	_const.Replicas + "_expedition_" + Good + "_6": {
+		_const.RU: "Даже если кто будет болтать о несметных богатствах в %SectorName% - никогда не смей туда соваться!",
+		_const.EN: "Even if someone talks about the untold riches in %SectorName%, never dare to go there!",
+	},
+	_const.Replicas + "_expedition_" + Good + "_7": {
+		_const.RU: "Не пытайся контактировать со странными машинами в пустошах, %UserName%. Делай куда проще - сразу стреляй.",
+		_const.EN: "Don't try to contact strange machines in the wasteland, %UserName%. Make it much simpler - shoot right away.",
+	},
+	_const.Replicas + "_expedition_" + Good + "_8": {
+		_const.RU: "Встретишь в пустошах пирата - уничтожь того без малейшего сожаления.",
+		_const.EN: "If you meet a pirate in the wasteland, destroy him without the slightest regret.",
+	},
+	_const.Replicas + "_expedition_" + Good + "_9": {
+		_const.RU: "Знаешь, что слаще всего в итогах экспедиции, %UserName%? Раздавить оппонента, повергнуть его в бегство. И, конечно же, узреть разочарование его фракции.",
+		_const.EN: "Do you know what is the sweetest thing about the results of the expedition, %UserName%? Crush your opponent and send him fleeing. And, of course, to see the disappointment of his faction.",
+	},
 
+	// Bad
 	_const.Replicas + "_miner_" + Bad + "_1": {
 		_const.RU: "Ну, иди сюда, попробуй меня трахнуть — я тебя сам трахну!",
 		_const.EN: "Well, come here, try to fuck me - I’ll fuck you myself!",
