@@ -910,36 +910,259 @@ var npcGreetings = map[string]map[string]string{
 	},
 
 	_const.Replicas + "_miner_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Ты и только ты во всём виноват, %UserName%!",
+		_const.EN: "It's all your fault, %UserName%!",
 	},
+	_const.Replicas + "_miner_" + Target + "_2": {
+		_const.RU: "Я не хотел этого конфликта, но выбора у меня нет!",
+		_const.EN: "I didn't want this conflict, but I have no choice!",
+	},
+	_const.Replicas + "_miner_" + Target + "_3": {
+		_const.RU: "Слишком поздно для оправданий, %UserName%.",
+		_const.EN: "It's too late for excuses, %UserName%.",
+	},
+	_const.Replicas + "_miner_" + Target + "_4": {
+		_const.RU: "Сейчас я тебе покажу, чему я научился, будучи добытчиком!",
+		_const.EN: "Now I'll show you what I learned as a breadwinner!",
+	},
+	_const.Replicas + "_miner_" + Target + "_5": {
+		_const.RU: "Распилю как медную жилу!",
+		_const.EN: "I'll cut it like a copper vein!",
+	},
+	_const.Replicas + "_miner_" + Target + "_6": {
+		_const.RU: "Пробурю твой корпус насквозь!",
+		_const.EN: "I'll drill right through your body!",
+	},
+	_const.Replicas + "_miner_" + Target + "_7": {
+		_const.RU: "Твой металлолом как раз покроет все мои расходы.",
+		_const.EN: "Your scrap metal will just cover all my expenses.",
+	},
+	_const.Replicas + "_miner_" + Target + "_8": {
+		_const.RU: "Я отбуксирую твой корпус в ближайший перерабатывающий цех!",
+		_const.EN: "I'll tow your body to the nearest processing facility!",
+	},
+	_const.Replicas + "_miner_" + Target + "_9": {
+		_const.RU: "Ага, заодно и протестирую новые горнодобывающие лазеры!",
+		_const.EN: "Yeah, I’ll test the new mining lasers at the same time!",
+	},
+
 	_const.Replicas + "_guard_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Теперь ты моя прерогатива.",
+		_const.EN: "Now you are my prerogative.",
 	},
+	_const.Replicas + "_guard_" + Target + "_2": {
+		_const.RU: "Сдавайся лучше по-хорошему.",
+		_const.EN: "You better give up in an amicable way.",
+	},
+	_const.Replicas + "_guard_" + Target + "_3": {
+		_const.RU: "Сдавайся и не тяни моё время.",
+		_const.EN: "Give up and don't waste my time.",
+	},
+	_const.Replicas + "_guard_" + Target + "_4": {
+		_const.RU: "Как ни пытайся, но тебе не сбежать!",
+		_const.EN: "No matter how you try, you can't escape!",
+	},
+	_const.Replicas + "_guard_" + Target + "_5": {
+		_const.RU: "Я буду преследовать тебя вечность!",
+		_const.EN: "I will haunt you forever!",
+	},
+	_const.Replicas + "_guard_" + Target + "_6": {
+		_const.RU: "Даже если и не сейчас, однажды ты всё-таки попадёшься!",
+		_const.EN: "Even if not now, one day you will still get caught!",
+	},
+	_const.Replicas + "_guard_" + Target + "_7": {
+		_const.RU: "Вот и всё, я тебя нашёл!",
+		_const.EN: "That's it, I found you!",
+	},
+	_const.Replicas + "_guard_" + Target + "_8": {
+		_const.RU: "Будешь сопротивляться - будет только хуже!",
+		_const.EN: "If you resist, it will only get worse!",
+	},
+	_const.Replicas + "_guard_" + Target + "_9": {
+		_const.RU: "Не усугубляй своё положение, %UserName%.",
+		_const.EN: "Don't make your situation worse, %UserName%.",
+	},
+
 	_const.Replicas + "_out_scout_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Всё, ты у меня на прицеле.",
+		_const.EN: "That's it, you're in my sights.",
 	},
-	_const.Replicas + "_in_scout_" + Target + "_1": {
+	_const.Replicas + "_out_scout_" + Target + "_2": {
+		_const.RU: "Уже никуда не денешься.",
+		_const.EN: "There's no escape.",
+	},
+	_const.Replicas + "_out_scout_" + Target + "_3": {
+		_const.RU: "Приготовься к путешествию в ничто.",
+		_const.EN: "Prepare for a journey into nothingness.",
+	},
+	_const.Replicas + "_out_scout_" + Target + "_4": {
+		_const.RU: "Сейчас я с тобой закончу.",
+		_const.EN: "I'll finish with you now.",
+	},
+	_const.Replicas + "_out_scout_" + Target + "_5": {
+		_const.RU: "Это будет быстро. Гарантирую.",
+		_const.EN: "It will be fast. I guarantee it.",
+	},
+	_const.Replicas + "_out_scout_" + Target + "_6": {
+		_const.RU: "Как раз оценишь мои навыки.",
+		_const.EN: "Just appreciate my skills.",
+	},
+	_const.Replicas + "_out_scout_" + Target + "_7": {
+		_const.RU: "Наконец-то я разомнусь!",
+		_const.EN: "Finally I'll get some exercise!",
+	},
+
+	_const.Replicas + "_in_scout_" + Target + "_1": { // TODO
 		_const.RU: "Уже сдаешься? Это не бесплатная услуга!",
 		_const.EN: "Already giving up? This is not a free service!",
 	},
+
 	_const.Replicas + "_transport_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Ох, как бы я хотел всего этого избежать!",
+		_const.EN: "Oh, how I wish I could avoid all this!",
 	},
+	_const.Replicas + "_transport_" + Target + "_2": {
+		_const.RU: "Боевые действия - это не моё!",
+		_const.EN: "Fighting is not my thing!",
+	},
+	_const.Replicas + "_transport_" + Target + "_3": {
+		_const.RU: "Ну... я постараюсь с тобой справиться быстро!",
+		_const.EN: "Well... I'll try to deal with you quickly!",
+	},
+	_const.Replicas + "_transport_" + Target + "_4": {
+		_const.RU: "Сейчас...! Ты узнаешь, на что способен торговец!",
+		_const.EN: "Now...! You will find out what a merchant is capable of!",
+	},
+	_const.Replicas + "_transport_" + Target + "_5": {
+		_const.RU: "Ты разозлил транспортник, теперь тебе несдобровать %UserName%!",
+		_const.EN: "You angered the transport worker, now %UserName% is in trouble for you!",
+	},
+	_const.Replicas + "_transport_" + Target + "_6": {
+		_const.RU: "У меня слишком толстый корпус, победа всё-равно будет моей!",
+		_const.EN: "My body is too thick, victory will still be mine!",
+	},
+	_const.Replicas + "_transport_" + Target + "_7": {
+		_const.RU: "Раздавлю!",
+		_const.EN: "I'll crush you!",
+	},
+	_const.Replicas + "_transport_" + Target + "_8": {
+		_const.RU: "Раскидаю куски твоего корпуса по пустошам!",
+		_const.EN: "I'll scatter pieces of your body across the wasteland!",
+	},
+	_const.Replicas + "_transport_" + Target + "_9": {
+		_const.RU: "Я протащу твой обугленный корпус до ближайшей базы всем на потеху!",
+		_const.EN: "I'll drag your charred body to the nearest base for everyone's amusement!",
+	},
+	_const.Replicas + "_transport_" + Target + "_10": {
+		_const.RU: "Сейчас ты узнаешь, на что я действительно способен.",
+		_const.EN: "Now you will find out what I am really capable of.",
+	},
+	_const.Replicas + "_transport_" + Target + "_11": {
+		_const.RU: "Ты зря недооценил способность торговцев к самозащите.",
+		_const.EN: "You should have underestimated the merchants' ability to defend themselves.",
+	},
+
 	_const.Replicas + "_builder_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Как раз пущу свои инструменты в ход.",
+		_const.EN: "I’m just about to put my tools into action.",
 	},
+	_const.Replicas + "_builder_" + Target + "_2": {
+		_const.RU: "Гордись собой - скоро ты станешь частью нового здания!",
+		_const.EN: "Be proud of yourself - soon you will become part of the new building!",
+	},
+	_const.Replicas + "_builder_" + Target + "_3": {
+		_const.RU: "Раскатаю по пустошам!",
+		_const.EN: "I'll roll across the wasteland!",
+	},
+	_const.Replicas + "_builder_" + Target + "_4": {
+		_const.RU: "Нам как-раз не хватало запчастей для ремонта.",
+		_const.EN: "We were once short of spare parts for repairs.",
+	},
+	_const.Replicas + "_builder_" + Target + "_5": {
+		_const.RU: "Пожалуй, после, я заберу твой корпус себе.",
+		_const.EN: "Perhaps, after that, I’ll take your body for myself.",
+	},
+	_const.Replicas + "_builder_" + Target + "_6": {
+		_const.RU: "Время опробовать моё собственное оружейное приспособление.",
+		_const.EN: "Time to try out my own weapon gadget.",
+	},
+
 	_const.Replicas + "_warrior_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "О-о, да! Будь готов к веселью!",
+		_const.EN: "Oh yeah! Get ready for fun!",
 	},
+	_const.Replicas + "_warrior_" + Target + "_2": {
+		_const.RU: "Огненное шоу начинается!",
+		_const.EN: "The fire show begins!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_3": {
+		_const.RU: "На тебя я боезаряда не пожалею!",
+		_const.EN: "I won’t spare any ammunition for you!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_4": {
+		_const.RU: "Наконец-то бой!",
+		_const.EN: "Finally a fight!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_5": {
+		_const.RU: "Эта схватка будет чудесной!",
+		_const.EN: "This fight will be wonderful!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_6": {
+		_const.RU: "Ну же, сразись со мной!",
+		_const.EN: "Come on, fight me!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_7": {
+		_const.RU: "Останется только самый сильный.",
+		_const.EN: "Only the strongest will remain.",
+	},
+	_const.Replicas + "_warrior_" + Target + "_8": {
+		_const.RU: "Сейчас я тебе покажу, чему меня обучали.",
+		_const.EN: "Now I will show you what I was taught.",
+	},
+	_const.Replicas + "_warrior_" + Target + "_9": {
+		_const.RU: "Какая чудесная цель!",
+		_const.EN: "What a wonderful target!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_10": {
+		_const.RU: "Эта битва будет легендарной!",
+		_const.EN: "This battle will be legendary!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_11": {
+		_const.RU: "Готов тебя преследовать хоть саму вечность!",
+		_const.EN: "I’m ready to haunt you even for eternity!",
+	},
+
 	_const.Replicas + "_expedition_" + Target + "_1": {
-		_const.RU: "Сейчас я уничтожу твой транспорт!",
-		_const.EN: "I'm going to destroy your vehicle!",
+		_const.RU: "Я словно снова в стычке посреди пустошей!",
+		_const.EN: "It's like I'm back in a skirmish in the middle of the wasteland!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_2": {
+		_const.RU: "Ну же, %UserName%, попробуй-ка уклониться от моего выстрела!",
+		_const.EN: "Come on, %UserName%, try to dodge my shot!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_3": {
+		_const.RU: "Я ведь всё-равно в тебя попаду!",
+		_const.EN: "I'll still hit you!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_4": {
+		_const.RU: "Именно ты, %UserName%, станешь главной добычей моей экспедиции!",
+		_const.EN: "It is you, %UserName%, who will become the main prize of my expedition!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_5": {
+		_const.RU: "Любишь сражаться, %UserName%? Вот сейчас и узнаем, на что ты способен!",
+		_const.EN: "Do you like to fight, %UserName%? Now we’ll find out what you’re capable of!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_6": {
+		_const.RU: "Мои навыки превосходят твои абсолютно во всём!",
+		_const.EN: "My skills are superior to yours in absolutely everything!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_7": {
+		_const.RU: "Тебе меня никогда не победить!",
+		_const.EN: "You will never defeat me!",
+	},
+	_const.Replicas + "_expedition_" + Target + "_8": {
+		_const.RU: "Я буря! Я сам терзающий песок, что настигнет тебя!",
+		_const.EN: "I am the storm! I am the tormenting sand that will overtake you!",
 	},
 
 	_const.Replicas + "_miner_" + Fear + "_1": {
