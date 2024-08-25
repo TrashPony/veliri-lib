@@ -44,6 +44,7 @@ type Notify struct {
 	BaseID            int                 `json:"base_id,omitempty"`
 	Chat              bool                `json:"chat,omitempty"`
 	ChatID            int                 `json:"chat_id,omitempty"`
+	Private           bool                `json:"private,omitempty"`
 }
 
 type Answer struct {
