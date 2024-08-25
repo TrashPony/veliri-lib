@@ -1166,36 +1166,267 @@ var npcGreetings = map[string]map[string]string{
 	},
 
 	_const.Replicas + "_miner_" + Fear + "_1": {
-		_const.RU: "Прекрати! Чего тебе надо?!",
-		_const.EN: "Stop it! What do you want?!",
+		_const.RU: "Эй, да я всего-навсего ничтожный добытчиков ресурсов!",
+		_const.EN: "Hey, I'm just a lowly resource getter!",
 	},
+	_const.Replicas + "_miner_" + Fear + "_2": {
+		_const.RU: "Пощади! Я ведь на самом деле никто.",
+		_const.EN: "Have mercy! I'm really no one.",
+	},
+	_const.Replicas + "_miner_" + Fear + "_3": {
+		_const.RU: "Прошу! Я не ищу себе неприятностей.",
+		_const.EN: "Please! I'm not looking for trouble.",
+	},
+	_const.Replicas + "_miner_" + Fear + "_4": {
+		_const.RU: "Не знаю, чего именно ты ищешь, %UserName%, но у меня ничего такого нету.",
+		_const.EN: "I don’t know what exactly you’re looking for, %UserName%, but I don’t have anything like that.",
+	},
+	_const.Replicas + "_miner_" + Fear + "_5": {
+		_const.RU: "Пожалуйста, оставь меня в покое!",
+		_const.EN: "Please leave me alone!",
+	},
+	_const.Replicas + "_miner_" + Fear + "_6": {
+		_const.RU: "Я попросту собираю руду и доставляю руду! Ты… разве станешь притеснять кого-то подобного?",
+		_const.EN: "I simply collect ore and deliver ore! Would you... would you oppress someone like that?",
+	},
+	_const.Replicas + "_miner_" + Fear + "_7": {
+		_const.RU: "Тебе нужен мой груз? Хочешь узнать богатые на месторождения места? Я всё скажу! Я всё тебе отдам! Позволь только мне уйти целым и невредимым.",
+		_const.EN: "Do you want my cargo? Do you want to know places rich in deposits? I'll tell you everything! I'll give it all to you! Just let me leave unharmed.",
+	},
+
 	_const.Replicas + "_guard_" + Fear + "_1": {
-		_const.RU: "Не усугубляй!",
-		_const.EN: "Don't make it worse!",
+		_const.RU: "Может быть, раньше у нас и были разногласия, но я предлагаю о них позабыть!",
+		_const.EN: "We may have had disagreements before, but I suggest we forget about them!",
 	},
+	_const.Replicas + "_guard_" + Fear + "_2": {
+		_const.RU: "Если я когда-то был к тебе несправедлив и груб - прости меня, %UserName%.",
+		_const.EN: "If I was ever unfair and rude to you, forgive me, %UserName%.",
+	},
+	_const.Replicas + "_guard_" + Fear + "_3": {
+		_const.RU: "Послушай-послушай, давай не будем ухудшать эту ситуацию!",
+		_const.EN: "Listen, listen, let's not make this situation worse!",
+	},
+	_const.Replicas + "_guard_" + Fear + "_4": {
+		_const.RU: "А-а, %UserName%! Предлагаю нам с тобой попросту разойтись с миром.",
+		_const.EN: "Ahh, %UserName%! I suggest that you and I simply part ways with the world.",
+	},
+	_const.Replicas + "_guard_" + Fear + "_5": {
+		_const.RU: "Я тебя не знаю! Я тебя даже никогда прежде тебя не видел.",
+		_const.EN: "I don't know you! I've never even seen you before.",
+	},
+	_const.Replicas + "_guard_" + Fear + "_6": {
+		_const.RU: "Уходи! Проваливай! Прочь от меня!",
+		_const.EN: "Leave! Get lost! Get away from me!",
+	},
+
 	_const.Replicas + "_out_scout_" + Fear + "_1": {
 		_const.RU: "А знаешь что? У меня есть дела поважнее!",
 		_const.EN: "You know what? I have more important things to do!",
 	},
+	_const.Replicas + "_out_scout_" + Fear + "_2": {
+		_const.RU: "Разойдемся миром… друг?",
+		_const.EN: "Let's go our separate ways... friend?",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_3": {
+		_const.RU: "Эй-эй-эй! Полегче! Мы ведь не враги!",
+		_const.EN: "Hey-hey-hey! Take it easy! We are not enemies!",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_4": {
+		_const.RU: "Стой! Остановись!",
+		_const.EN: "Stop! Stop!",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_5": {
+		_const.RU: "Не нужно это продолжать!",
+		_const.EN: "There is no need to continue this!",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_6": {
+		_const.RU: "Я всё понял - понял, ты у нас здесь босс!",
+		_const.EN: "I understand everything - I understand, you are the boss here!",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_7": {
+		_const.RU: "А-а, представь, что меня здесь не было.",
+		_const.EN: "Ahh, imagine that I wasn't here.",
+	},
+	_const.Replicas + "_out_scout_" + Fear + "_8": {
+		_const.RU: "Если что, я тебя не видел!",
+		_const.EN: "If anything, I didn't see you!",
+	},
+
 	_const.Replicas + "_in_scout_" + Fear + "_1": {
 		_const.RU: "Я всё понял! Пожалуйста, не разрушай мой транспорт!",
 		_const.EN: "I get it! Please don't destroy my vehicle!",
 	},
+	_const.Replicas + "_in_scout_" + Fear + "_2": {
+		_const.RU: "Да, это же недоразумение!",
+		_const.EN: "Yes, this is a misunderstanding!",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_3": {
+		_const.RU: "Давай не будем ссориться!",
+		_const.EN: "Let's not quarrel!",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_4": {
+		_const.RU: "Мир, а?",
+		_const.EN: "Peace, huh?",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_5": {
+		_const.RU: "Хочешь забрать моё добро - ладно! Только меня не трогай!",
+		_const.EN: "If you want to take my property, fine! Just don't touch me!",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_6": {
+		_const.RU: "Если отпустишь, клянусь, я завяжу с пиратством!",
+		_const.EN: "If you let me go, I swear I'll quit piracy!",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_7": {
+		_const.RU: "Да, я тебя боюсь! Доволен теперь?",
+		_const.EN: "Yes, I'm afraid of you! Are you happy now?",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_8": {
+		_const.RU: "Если пощадишь, даю слово, я сообщу, где располагается основная база нашего кластера.",
+		_const.EN: "If you spare me, I give you my word, I will tell you where the main base of our cluster is located.",
+	},
+	_const.Replicas + "_in_scout_" + Fear + "_9": {
+		_const.RU: "О нет-нет! Только не так!",
+		_const.EN: "Oh no no! Not like that!",
+	},
+
 	_const.Replicas + "_transport_" + Fear + "_1": {
 		_const.RU: "Может, мы как-то договоримся?!",
 		_const.EN: "Maybe we can come to some agreement?!",
 	},
+	_const.Replicas + "_transport_" + Fear + "_2": {
+		_const.RU: "Теперь ещё и ты желаешь меня ограбить?! Ну… давай, бери!",
+		_const.EN: "Now you also want to rob me?! Well... come on, take it!",
+	},
+	_const.Replicas + "_transport_" + Fear + "_3": {
+		_const.RU: "Послушай, мои пути с тобой никак не пересекаются.",
+		_const.EN: "Listen, my paths do not cross with you.",
+	},
+	_const.Replicas + "_transport_" + Fear + "_4": {
+		_const.RU: "Я же всего-навсего торговец!",
+		_const.EN: "I'm just a merchant!",
+	},
+	_const.Replicas + "_transport_" + Fear + "_5": {
+		_const.RU: "Молю, пощади! Я уже и так напуган.",
+		_const.EN: "I pray you have mercy! I'm already scared enough.",
+	},
+	_const.Replicas + "_transport_" + Fear + "_6": {
+		_const.RU: "Жизнь транспортника и так тяжела, так тут ещё и ты!",
+		_const.EN: "The life of a transport worker is already hard, but here you are too!",
+	},
+	_const.Replicas + "_transport_" + Fear + "_7": {
+		_const.RU: "Я не желаю вступать с тобой в конфликт.",
+		_const.EN: "I don't want to get into conflict with you.",
+	},
+	_const.Replicas + "_transport_" + Fear + "_8": {
+		_const.RU: "Пожалуйста, не отбирай мой груз.",
+		_const.EN: "Please don't take my cargo.",
+	},
+	_const.Replicas + "_transport_" + Fear + "_9": {
+		_const.RU: "Прошу, не нужно покушаться на мой товар, я ведь за него в ответе!",
+		_const.EN: "Please, no need to encroach on my goods, I am responsible for them!",
+	},
+	_const.Replicas + "_transport_" + Fear + "_10": {
+		_const.RU: "Ну вот, опять всё с самого начала…",
+		_const.EN: "Well, here we go again from the very beginning...",
+	},
+	_const.Replicas + "_transport_" + Fear + "_11": {
+		_const.RU: "О нет, теперь меня уничтожат…",
+		_const.EN: "Oh no, now they will destroy me...",
+	},
+	_const.Replicas + "_transport_" + Fear + "_12": {
+		_const.RU: "Да когда же это уже кончится наконец?!",
+		_const.EN: "When will this finally end?!",
+	},
+	_const.Replicas + "_transport_" + Fear + "_13": {
+		_const.RU: "Забирай всё и убирайся!",
+		_const.EN: "Take everything and get out!",
+	},
+
 	_const.Replicas + "_builder_" + Fear + "_1": {
-		_const.RU: "Может, мы как-то договоримся?!",
-		_const.EN: "Maybe we can come to some agreement?!",
+		_const.RU: "Стоп! Подумай сам - я ведь обычный строитель.",
+		_const.EN: "Stop! Think about it - I’m an ordinary builder.",
 	},
+	_const.Replicas + "_builder_" + Fear + "_2": {
+		_const.RU: "Остановись! Вот, что тебе даст, если ты распылишь мой корпус?",
+		_const.EN: "Stop! What will you get if you spray my body?",
+	},
+	_const.Replicas + "_builder_" + Fear + "_3": {
+		_const.RU: "Я строитель! Мы вообще не сражаемся!",
+		_const.EN: "I'm a builder! We don't fight at all!",
+	},
+	_const.Replicas + "_builder_" + Fear + "_4": {
+		_const.RU: "Строителя может обидеть каждый!",
+		_const.EN: "Anyone can offend a builder!",
+	},
+	_const.Replicas + "_builder_" + Fear + "_5": {
+		_const.RU: "Мне хотя бы одного друга, а врагов и так предостаточно.",
+		_const.EN: "I have at least one friend, but I already have plenty of enemies.",
+	},
+	_const.Replicas + "_builder_" + Fear + "_6": {
+		_const.RU: "Я… я немедленно уйду с твоего пути!",
+		_const.EN: "I... I will get out of your way immediately!",
+	},
+	_const.Replicas + "_builder_" + Fear + "_7": {
+		_const.RU: "Так и быть, я покину этот сектор без лишних вопросов.",
+		_const.EN: "So be it, I will leave this sector without further questions.",
+	},
+	_const.Replicas + "_builder_" + Fear + "_8": {
+		_const.RU: "Ладно-ладно, только давай не устраивать пальбу.",
+		_const.EN: "Okay, okay, just let's not start shooting.",
+	},
+	_const.Replicas + "_builder_" + Fear + "_9": {
+		_const.RU: "Я не хочу становиться мишенью!",
+		_const.EN: "I don't want to become a target!",
+	},
+
 	_const.Replicas + "_warrior_" + Fear + "_1": {
-		_const.RU: "Советую тебе избегать встречи со мной!",
-		_const.EN: "I advise you to avoid meeting me!",
+		_const.RU: "Ты сильнее-сильнее!",
+		_const.EN: "You are stronger, stronger!",
 	},
+	_const.Replicas + "_warrior_" + Fear + "_2": {
+		_const.RU: "Я уступлю тебе дорогу, не горячись!",
+		_const.EN: "I'll give way to you, don't get excited!",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_3": {
+		_const.RU: "Ты… достойный соперник.",
+		_const.EN: "You... are a worthy opponent.",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_4": {
+		_const.RU: "Я видел, что ты сделал с другими… Только не делай так со мной тоже!",
+		_const.EN: "I saw what you did to others... Just don't do this to me too!",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_5": {
+		_const.RU: "Воу, у тебя то пушки будут куда побольше моих…",
+		_const.EN: "Wow, your guns will be much bigger than mine...",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_6": {
+		_const.RU: "О нет, такие враги мне не нужны.",
+		_const.EN: "Oh no, I don't need such enemies.",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_7": {
+		_const.RU: "Я… искренне боюсь с тобой связываться.",
+		_const.EN: "I'm... genuinely afraid to get involved with you.",
+	},
+	_const.Replicas + "_warrior_" + Fear + "_8": {
+		_const.RU: "Не нужно угроз! Ты уже победил!",
+		_const.EN: "No need for threats! You've already won!",
+	},
+
 	_const.Replicas + "_expedition_" + Fear + "_1": {
 		_const.RU: "Не приближайся!",
 		_const.EN: "Don't come near!",
+	},
+	_const.Replicas + "_expedition_" + Fear + "_2": {
+		_const.RU: "Ох, я не стану с тобой связываться.",
+		_const.EN: "Oh, I won't mess with you.",
+	},
+	_const.Replicas + "_expedition_" + Fear + "_3": {
+		_const.RU: "О, нет, даже не смотри на меня!",
+		_const.EN: "Oh no, don't even look at me!",
+	},
+	_const.Replicas + "_expedition_" + Fear + "_4": {
+		_const.RU: "Только давай обойдёмся без боя, %UserName%.",
+		_const.EN: "Just let's do without a fight, %UserName%.",
 	},
 
 	_const.Replicas + "_miner_" + Help + "_1": {
