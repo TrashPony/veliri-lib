@@ -654,36 +654,259 @@ var npcGreetings = map[string]map[string]string{
 
 	// Bad
 	_const.Replicas + "_miner_" + Bad + "_1": {
-		_const.RU: "Ну, иди сюда, попробуй меня трахнуть — я тебя сам трахну!",
-		_const.EN: "Well, come here, try to fuck me - I’ll fuck you myself!",
+		_const.RU: "Не думаю, что нам есть о чём с тобой говорить, %UserName%.",
+		_const.EN: "I don't think we have anything to talk about with you, %UserName%.",
 	},
+	_const.Replicas + "_miner_" + Bad + "_2": {
+		_const.RU: "Ну что ещё? Ты рассчитывал, у меня к тебе будет какое-то иное отношение?",
+		_const.EN: "Well, what else? Did you expect me to have some other attitude towards you?",
+	},
+	_const.Replicas + "_miner_" + Bad + "_3": {
+		_const.RU: "Поговаривают, будто ты, %UserName%, недоброжелатель добытчиков? Так вот, у меня к тебе аналогичное настроение.",
+		_const.EN: "They say that you, %UserName%, are an ill-wisher of miners? So, I have a similar feeling towards you.",
+	},
+	_const.Replicas + "_miner_" + Bad + "_4": {
+		_const.RU: "Твоя плохая репутация опережает тебя, %UserName%.",
+		_const.EN: "Your bad reputation precedes you, %UserName%.",
+	},
+	_const.Replicas + "_miner_" + Bad + "_5": {
+		_const.RU: "Ну, чего тебе? Что ты меня отвлекаешь попусту?",
+		_const.EN: "Well, what do you want? Why are you wasting my time?",
+	},
+	_const.Replicas + "_miner_" + Bad + "_6": {
+		_const.RU: "В моей работе, время - кредиты. А ты, %UserName%, сейчас отнимаешь у меня и первое и второе разом.",
+		_const.EN: "In my work, time is credits. And you, %UserName%, are now taking away both the first and second from me at once.",
+	},
+	_const.Replicas + "_miner_" + Bad + "_7": {
+		_const.RU: "Имеешь ты отношение к пиратским кластерам или же нет, %UserName%, я, пожалуй, доверюсь слухам.",
+		_const.EN: "Whether you have anything to do with pirate clusters or not, %UserName%, I think I'll trust the rumors.",
+	},
+	_const.Replicas + "_miner_" + Bad + "_8": {
+		_const.RU: "Я пристально слежу за всеми твоими действиями.",
+		_const.EN: "I am closely monitoring all your actions.",
+	},
+
 	_const.Replicas + "_guard_" + Bad + "_1": {
-		_const.RU: "Не усугубляй!",
-		_const.EN: "Don't make it worse!",
+		_const.RU: "О-о, а вот и наш злостный нарушитель!",
+		_const.EN: "Oooh, here comes our worst offender!",
 	},
+	_const.Replicas + "_guard_" + Bad + "_2": {
+		_const.RU: "Ты грубо пренебрегаешь законами фракций, и за это поплатишься!",
+		_const.EN: "You grossly disregard the laws of factions, and you will pay for it!",
+	},
+	_const.Replicas + "_guard_" + Bad + "_3": {
+		_const.RU: "У меня нет снисхождения к преступникам!",
+		_const.EN: "I have no mercy for criminals!",
+	},
+	_const.Replicas + "_guard_" + Bad + "_4": {
+		_const.RU: "Я не стану выслушивать никаких оправданий!",
+		_const.EN: "I won't listen to any excuses!",
+	},
+	_const.Replicas + "_guard_" + Bad + "_5": {
+		_const.RU: "Тебе не уболтать и не подкупить меня, %UserName%.",
+		_const.EN: "You can't talk or bribe me, %UserName%.",
+	},
+	_const.Replicas + "_guard_" + Bad + "_6": {
+		_const.RU: "Лучше сразу сдайся и облегчи жизнь нам всем.",
+		_const.EN: "Better give up right away and make life easier for all of us.",
+	},
+	_const.Replicas + "_guard_" + Bad + "_7": {
+		_const.RU: "Решил явиться ко мне с повинной?",
+		_const.EN: "Have you decided to confess to me?",
+	},
+
 	_const.Replicas + "_out_scout_" + Bad + "_1": {
-		_const.RU: "Лучше уходи, пока можешь!",
-		_const.EN: "Better leave while you can!",
+		_const.RU: "Нам нет повода контактировать.",
+		_const.EN: "There is no reason for us to contact.",
 	},
+	_const.Replicas + "_out_scout_" + Bad + "_2": {
+		_const.RU: "Моя миссия не предполагает подобного.",
+		_const.EN: "My mission does not imply this.",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_3": {
+		_const.RU: "О тебе в контракте ничего сказано не было. Проваливай.",
+		_const.EN: "The contract didn't say anything about you. Get lost.",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_4": {
+		_const.RU: "А нам разве есть о чём с тобой говорить, %UserName%?",
+		_const.EN: "Do we really have anything to talk to you about, %UserName%?",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_5": {
+		_const.RU: "Будь ты сообразительней, %UserName%, ты бы понимал, почему мы не стали друзьями.",
+		_const.EN: "If you were smarter, %UserName%, you would understand why we didn't become friends.",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_6": {
+		_const.RU: "Думаю, вначале тебе стоит озаботиться собственной репутацией, а не лезть с разговорами к синтетам.",
+		_const.EN: "I think that first you should be concerned about your own reputation, and not talk to synths.",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_7": {
+		_const.RU: "Вы только взгляните на это девиантное ничтожество.",
+		_const.EN: "Just look at this deviant nonentity.",
+	},
+	_const.Replicas + "_out_scout_" + Bad + "_8": {
+		_const.RU: "Да как ты вообще смеешь затевать со мной разговор? Убирайся!",
+		_const.EN: "How dare you even start a conversation with me? Get out!",
+	},
+
 	_const.Replicas + "_in_scout_" + Bad + "_1": {
-		_const.RU: "Приветствую. Хочешь внести плату за проезд?",
-		_const.EN: "Greetings. Do you want to pay the fare?",
+		_const.RU: "Пф, с тобой только время тратить.",
+		_const.EN: "Pfft, I'm just wasting my time with you.",
 	},
+	_const.Replicas + "_in_scout_" + Bad + "_2": {
+		_const.RU: "Я не стану вести беседы с врагом вольных кластеров!",
+		_const.EN: "I will not have conversations with the enemy of free clusters!",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_3": {
+		_const.RU: "Говорят, ты ликвидировал немало пиратов %UserName%. Что же, жду не дождусь нашей с тобой встречи.",
+		_const.EN: "They say you've eliminated quite a few %UserName% pirates. Well, I can’t wait to meet you.",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_4": {
+		_const.RU: "Мы с тобой ещё повстречаемся %UserName% и тебе это сильно не понравится.",
+		_const.EN: "You and I will meet again %UserName% and you won't like it very much.",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_5": {
+		_const.RU: "Более гнусного синтета чем ты, не сыскать ни в одном секторе.",
+		_const.EN: "A more vile synth than you cannot be found in any sector.",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_6": {
+		_const.RU: "А знаешь, что за твой корпус назначена награда %UserName%? Я постараюсь её не упустить.",
+		_const.EN: "Do you know that there is a %UserName% reward for your case? I'll try not to miss it.",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_7": {
+		_const.RU: "Какого ты тут делаешь? Какого… тебе понадобился лично я!?",
+		_const.EN: "What are you doing here? Why... did you need me personally!?",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_8": {
+		_const.RU: "Чтобы фракции тебя преследовали вечность!",
+		_const.EN: "So that factions will haunt you forever!",
+	},
+	_const.Replicas + "_in_scout_" + Bad + "_9": {
+		_const.RU: "Мы ещё поглядим кто кого %UserName%.",
+		_const.EN: "We'll see who wins %UserName%.",
+	},
+
 	_const.Replicas + "_transport_" + Bad + "_1": {
-		_const.RU: "Если ты помешаешь мне торговать, то я за себя не ручаюсь!",
-		_const.EN: "If you interfere with my trade, I won't be responsible for my actions!",
+		_const.RU: "Думаю, что не могу тебе доверять.",
+		_const.EN: "I think I can't trust you.",
 	},
+	_const.Replicas + "_transport_" + Bad + "_2": {
+		_const.RU: "Нет! Даже не вздумай ко мне приближаться.",
+		_const.EN: "No! Don't even think about coming close to me.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_3": {
+		_const.RU: "Я не стану вести с тобой разговор!",
+		_const.EN: "I won't have a conversation with you!",
+	},
+	_const.Replicas + "_transport_" + Bad + "_4": {
+		_const.RU: "Между нами не может быть никакого доверия.",
+		_const.EN: "There can be no trust between us.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_5": {
+		_const.RU: "Ещё одно действие, и я сообщу о попытке разбоя местным стражам!",
+		_const.EN: "One more action and I will report the robbery attempt to the local guards!",
+	},
+	_const.Replicas + "_transport_" + Bad + "_6": {
+		_const.RU: "Ты мне отвратителен, %UserName%.",
+		_const.EN: "I hate you, %UserName%.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_7": {
+		_const.RU: "Буду откровенен: таких, как ты, %UserName%, я презираю.",
+		_const.EN: "I'll be honest: I despise people like you, %UserName%.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_8": {
+		_const.RU: "Я позабочусь, чтобы ни один торговец не продал тебе свой товар.",
+		_const.EN: "I will make sure that no merchant sells his goods to you.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_9": {
+		_const.RU: "Даже и не мечтай: транспортники будут тебя обходить десятым сектором, лишь бы не встречаться.",
+		_const.EN: "Don’t even dream: transport workers will bypass you in the tenth sector, just to avoid meeting you.",
+	},
+	_const.Replicas + "_transport_" + Bad + "_10": {
+		_const.RU: "От меня, %UserName%, ты ничего полезного не узнаешь.",
+		_const.EN: "You won't learn anything useful from me, %UserName%.",
+	},
+
 	_const.Replicas + "_builder_" + Bad + "_1": {
-		_const.RU: "Отвали, ты мне не интересен",
-		_const.EN: "Get lost, you're not interesting to me",
+		_const.RU: "Моему презрению к тебе нет пределов.",
+		_const.EN: "My contempt for you knows no bounds.",
 	},
+	_const.Replicas + "_builder_" + Bad + "_2": {
+		_const.RU: "Ещё раз пожелаешь со мной заговорить - использую твой корпус как элемент стройматериалов.",
+		_const.EN: "If you want to talk to me again, I’ll use your body as an element of building materials.",
+	},
+	_const.Replicas + "_builder_" + Bad + "_3": {
+		_const.RU: "Слушай, %UserName%, ты мне не друг!",
+		_const.EN: "Listen, %UserName%, you are not my friend!",
+	},
+	_const.Replicas + "_builder_" + Bad + "_4": {
+		_const.RU: "Прислушайся к моему совету, %UserName% - уходи отсюда, пока тебе это позволяют.",
+		_const.EN: "Take my advice, %UserName% - get out of here while you're allowed to.",
+	},
+	_const.Replicas + "_builder_" + Bad + "_5": {
+		_const.RU: "Нечего тут сновать и что-то вынюхивать, %UserName%.",
+		_const.EN: "There's no point in running around and sniffing around, %UserName%.",
+	},
+	_const.Replicas + "_builder_" + Bad + "_6": {
+		_const.RU: "Думаю, тебе не стоит здесь появляться вновь.",
+		_const.EN: "I don't think you should come here again.",
+	},
+
 	_const.Replicas + "_warrior_" + Bad + "_1": {
-		_const.RU: "Советую тебе избегать встречи со мной!",
-		_const.EN: "I advise you to avoid meeting me!",
+		_const.RU: "Я бы с превеликим удовольствием выпустил бы по тебе весь свой боекомплект!",
+		_const.EN: "I would with great pleasure give you all my ammunition!",
 	},
+	_const.Replicas + "_warrior_" + Bad + "_2": {
+		_const.RU: "Ох, не свезёт же тебе, %UserName%, когда мы встретимся при совсем иных обстоятельствах.",
+		_const.EN: "Oh, you won't be lucky, %UserName%, when we meet under completely different circumstances.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_3": {
+		_const.RU: "Тебя, %UserName%, даже врагом прозвать будет стыдно.",
+		_const.EN: "It would be a shame to even call you, %UserName%, an enemy.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_4": {
+		_const.RU: "Впервые, я побрезгую потратить на тебя боеприпасы.",
+		_const.EN: "For the first time, I will disdain to waste ammunition on you.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_5": {
+		_const.RU: "Будь моя воля, я бы распилил твой корпус.",
+		_const.EN: "If it were up to me, I would saw your body apart.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_6": {
+		_const.RU: "Увидел тебя и как-то сразу настроение испортилось.",
+		_const.EN: "I saw you and somehow my mood immediately deteriorated.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_7": {
+		_const.RU: "Будь ты в моём отряде, я бы отказался выполнять задачу.",
+		_const.EN: "If you were in my squad, I would refuse to complete the task.",
+	},
+	_const.Replicas + "_warrior_" + Bad + "_8": {
+		_const.RU: "Когда ты будешь нуждаться в поддержке, никто тебе её не окажет, %UserName%.",
+		_const.EN: "When you need support, no one will give it to you, %UserName%.",
+	},
+
 	_const.Replicas + "_expedition_" + Bad + "_1": {
-		_const.RU: "Не приближайся!",
-		_const.EN: "Don't come near!",
+		_const.RU: "Окажись мы в пустошах, %UserName%, я бы тебя там сразу бросил.",
+		_const.EN: "If we were in the wasteland, %UserName%, I would immediately leave you there.",
+	},
+	_const.Replicas + "_expedition_" + Bad + "_2": {
+		_const.RU: "В экспедиции может записаться любой, %UserName%, но даже тебя бы туда приглашать не стали.",
+		_const.EN: "Anyone can sign up for the expedition, %UserName%, but even you wouldn’t be invited there.",
+	},
+	_const.Replicas + "_expedition_" + Bad + "_3": {
+		_const.RU: "Ты, %UserName%, худший из всех синтетов, кого я когда-либо встречал.",
+		_const.EN: "You, %UserName%, are the worst synth I have ever met.",
+	},
+	_const.Replicas + "_expedition_" + Bad + "_4": {
+		_const.RU: "Может, тебе стоит дать координаты сектора, где тебя будет ожидать лишь неминуемое поражение?",
+		_const.EN: "Maybe you should give the coordinates of the sector where only inevitable defeat awaits you?",
+	},
+	_const.Replicas + "_expedition_" + Bad + "_5": {
+		_const.RU: "Не зря ведь говорят, что даже в рамках синетов, ты, %UserName%, - тот ещё мерзавец.",
+		_const.EN: "It’s not for nothing that they say that even within the framework of the Sinets, you, %UserName%, are still a scoundrel.",
+	},
+	_const.Replicas + "_expedition_" + Bad + "_6": {
+		_const.RU: "Интересно, это твой корпус дефективный или ты весь такой?",
+		_const.EN: "I wonder if it’s your body that’s defective or if you’re just like that?",
 	},
 
 	_const.Replicas + "_miner_" + Target + "_1": {
@@ -916,6 +1139,11 @@ var npcGreetings = map[string]map[string]string{
 func GetNpcGreetings(fraction, role, relation, number string) map[string]string {
 	textVariants := make([]map[string]string, 0)
 	rand.Seed(time.Now().UnixNano())
+
+	// раньше предполагалось что фракции могут иметь уникальные фразы, но это стало слишком объемно
+	if fraction == _const.Explores || fraction == _const.Reverses {
+		fraction = _const.Replicas
+	}
 
 	findKey := fraction + "_" + role + "_" + relation + number
 
