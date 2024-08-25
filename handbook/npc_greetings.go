@@ -1430,40 +1430,212 @@ var npcGreetings = map[string]map[string]string{
 	},
 
 	_const.Replicas + "_miner_" + Help + "_1": {
-		_const.RU: "Помогите, хулиганы зрения лишают!",
-		_const.EN: "Help, hooligans are depriving me of my sight!",
+		_const.RU: "Послушай! Мне срочно нужна чужая помощь!",
+		_const.EN: "Listen! I urgently need someone else's help!",
 	},
-	_const.Replicas + "_guard_" + Help + "_1": {
-		_const.RU: "Не усугубляй!",
-		_const.EN: "Don't make it worse!",
+	_const.Replicas + "_miner_" + Help + "_2": {
+		_const.RU: "Меня преследуют! Помоги!",
+		_const.EN: "I'm being followed! Help!",
 	},
-	_const.Replicas + "_out_scout_" + Help + "_1": {
-		_const.RU: "Помогите, хулиганы зрения лишают!",
-		_const.EN: "Help, hooligans are depriving me of my sight!",
+	_const.Replicas + "_miner_" + Help + "_3": {
+		_const.RU: "У меня хотят отобрать всё, что было нажито непосильным трудом! Я не готов начинать всё с самого начала.",
+		_const.EN: "They want to take away everything that was acquired through back-breaking labor! I'm not ready to start all over again.",
 	},
-	_const.Replicas + "_in_scout_" + Help + "_1": {
-		_const.RU: "Помогите, хулиганы зрения лишают!",
-		_const.EN: "Help, hooligans are depriving me of my sight!",
+	_const.Replicas + "_miner_" + Help + "_4": {
+		_const.RU: "Только не так! %UserName%, может быть, хотя бы ты сумеешь мне помочь?",
+		_const.EN: "Not like that! %UserName%, maybe you can at least help me?",
 	},
-	_const.Replicas + "_transport_" + Help + "_1": {
-		_const.RU: "Помогите, хулиганы зрения лишают!",
-		_const.EN: "Help, hooligans are depriving me of my sight!",
+	_const.Replicas + "_miner_" + Help + "_5": {
+		_const.RU: "Хоть кто-нибудь, защитите меня!",
+		_const.EN: "At least someone protect me!",
 	},
-	_const.Replicas + "_builder_" + Help + "_1": {
-		_const.RU: "Помогите, хулиганы зрения лишают!",
-		_const.EN: "Help, hooligans are depriving me of my sight!",
+	_const.Replicas + "_miner_" + Help + "_6": {
+		_const.RU: "Стыдно просить, но мне потребуется любая возможная защита.",
+		_const.EN: "I'm embarrassed to ask, but I will need all the protection I can get.",
 	},
-	_const.Replicas + "_warrior_" + Help + "_1": {
-		_const.RU: "Советую тебе избегать встречи со мной!",
-		_const.EN: "I advise you to avoid meeting me!",
-	},
-	_const.Replicas + "_expedition_" + Help + "_1": {
-		_const.RU: "Не приближайся!",
-		_const.EN: "Don't come near!",
+	_const.Replicas + "_miner_" + Help + "_7": {
+		_const.RU: "Да, я не в силах постоять за себя! Только ты, %UserName%, и подобные тебе, могут мне оказать помощь.",
+		_const.EN: "Yes, I can't stand up for myself! Only you, %UserName%, and others like you, can help me.",
 	},
 
-	// TODO _const.Explores:
-	// TODO _const.Reverses:
+	_const.Replicas + "_guard_" + Help + "_1": {
+		_const.RU: "Мне потребуется твоя поддержка, %UserName%!",
+		_const.EN: "I will need your support, %UserName%!",
+	},
+	_const.Replicas + "_guard_" + Help + "_2": {
+		_const.RU: "Срочно окажи мне помощь, %UserName%!",
+		_const.EN: "Help me urgently, %UserName%!",
+	},
+	_const.Replicas + "_guard_" + Help + "_3": {
+		_const.RU: "Во имя интереса фракции, %UserName%, помоги мне сейчас же!",
+		_const.EN: "For the sake of the faction's interests, %UserName%, help me now!",
+	},
+	_const.Replicas + "_guard_" + Help + "_4": {
+		_const.RU: "Я призываю тебя, %UserName%, оказать поддержку действующему стражу фракции.",
+		_const.EN: "I urge you, %UserName%, to support the current faction guardian.",
+	},
+	_const.Replicas + "_guard_" + Help + "_5": {
+		_const.RU: "%UserName%, окажи мне поддержку в решении внезапно возникшего положения дел.",
+		_const.EN: "%UserName%, provide me with support in resolving this sudden situation.",
+	},
+	_const.Replicas + "_guard_" + Help + "_6": {
+		_const.RU: "Я в затруднительном положении - помоги мне!",
+		_const.EN: "I'm in a difficult situation - help me!",
+	},
+	_const.Replicas + "_guard_" + Help + "_7": {
+		_const.RU: "Страж нуждается в поддержке. Сейчас же!",
+		_const.EN: "The Guardian needs support. Now!",
+	},
+
+	_const.Replicas + "_out_scout_" + Help + "_1": {
+		_const.RU: "Поможешь кое в чём, %UserName%?",
+		_const.EN: "Can you help me with something, %UserName%?",
+	},
+	_const.Replicas + "_out_scout_" + Help + "_2": {
+		_const.RU: "Ты как раз сгодишься, чтобы подсобить мне, %UserName%.",
+		_const.EN: "You're just the person to help me out, %UserName%.",
+	},
+	_const.Replicas + "_out_scout_" + Help + "_3": {
+		_const.RU: "Окажешь мне помощь, %UserName% - за мной должок.",
+		_const.EN: "If you help me, %UserName% will owe me a favor.",
+	},
+	_const.Replicas + "_out_scout_" + Help + "_4": {
+		_const.RU: "Вся надежда только на тебя, %UserName%.",
+		_const.EN: "All hope is only for you, %UserName%.",
+	},
+	_const.Replicas + "_out_scout_" + Help + "_5": {
+		_const.RU: "Да помоги же ты наконец!",
+		_const.EN: "Yes, help me at last!",
+	},
+
+	_const.Replicas + "_in_scout_" + Help + "_1": {
+		_const.RU: "Да, помоги ты мне уже наконец-то!",
+		_const.EN: "Yes, help me at last!",
+	},
+	_const.Replicas + "_in_scout_" + Help + "_2": {
+		_const.RU: "Срочно, сюда!",
+		_const.EN: "Urgently, here!",
+	},
+	_const.Replicas + "_in_scout_" + Help + "_3": {
+		_const.RU: "Мне немедленно нужна твоя поддержка %UserName%!",
+		_const.EN: "I need your support immediately %UserName%!",
+	},
+	_const.Replicas + "_in_scout_" + Help + "_4": {
+		_const.RU: "Да не стой ты, болван, а помоги мне!",
+		_const.EN: "Don't just stand there, you idiot, but help me!",
+	},
+	_const.Replicas + "_in_scout_" + Help + "_5": {
+		_const.RU: "У меня тут проблема образовалась, без тебя никак, %UserName%.",
+		_const.EN: "I have a problem here, I couldn’t do it without you, %UserName%.",
+	},
+	_const.Replicas + "_in_scout_" + Help + "_6": {
+		_const.RU: "Видишь ли, %UserName%, я в крайне сложной ситуации… И мне нужна чужая помощь!",
+		_const.EN: "You see, %UserName%, I'm in an extremely difficult situation... And I need someone else's help!",
+	},
+
+	_const.Replicas + "_transport_" + Help + "_1": {
+		_const.RU: "Спаси меня, %UserName%!",
+		_const.EN: "Save me, %UserName%!",
+	},
+	_const.Replicas + "_transport_" + Help + "_2": {
+		_const.RU: "Да, они же целенаправленно за мной охотятся!",
+		_const.EN: "Yes, they are deliberately hunting me!",
+	},
+	_const.Replicas + "_transport_" + Help + "_3": {
+		_const.RU: "Им нужны мои товары! Понимаешь, %UserName%? Мои!",
+		_const.EN: "They need my goods! Do you understand, %UserName%? My!",
+	},
+	_const.Replicas + "_transport_" + Help + "_4": {
+		_const.RU: "Синтет в беде, помоги скорее!",
+		_const.EN: "Synthet is in trouble, help quickly!",
+	},
+	_const.Replicas + "_transport_" + Help + "_5": {
+		_const.RU: "Быстрее, у меня осталось не так много времени!",
+		_const.EN: "Hurry up, I don't have much time left!",
+	},
+	_const.Replicas + "_transport_" + Help + "_6": {
+		_const.RU: "%UserName%, ещё немного, и мне придёт конец.",
+		_const.EN: "%UserName%, just a little more and I'll be finished.",
+	},
+
+	_const.Replicas + "_builder_" + Help + "_1": {
+		_const.RU: "На строителя напали!",
+		_const.EN: "The builder was attacked!",
+	},
+	_const.Replicas + "_builder_" + Help + "_2": {
+		_const.RU: "%UserName%, пожалуйста, у меня ведь даже нормальных орудийных систем нету!",
+		_const.EN: "%UserName%, please, I don’t even have normal weapon systems!",
+	},
+	_const.Replicas + "_builder_" + Help + "_3": {
+		_const.RU: "Я возвожу строения, и вот, меня уже притесняют!",
+		_const.EN: "I am building buildings, and now I am already being oppressed!",
+	},
+	_const.Replicas + "_builder_" + Help + "_4": {
+		_const.RU: "Я думал, меня здесь все буду уважать, а заместо этого пытаются отнять единственное дорогое.",
+		_const.EN: "I thought everyone here would respect me, but instead they are trying to take away the only thing dear to me.",
+	},
+	_const.Replicas + "_builder_" + Help + "_5": {
+		_const.RU: "Помоги, %UserName! Это же просто произвол какой-то.",
+		_const.EN: "Help, %UserName! This is just some kind of arbitrariness.",
+	},
+	_const.Replicas + "_builder_" + Help + "_6": {
+		_const.RU: "На меня напали! %UserName%, срочно зови сюда всех!",
+		_const.EN: "I was attacked! %UserName%, urgently call everyone here!",
+	},
+
+	_const.Replicas + "_warrior_" + Help + "_1": {
+		_const.RU: "%UserName%, мне нужно подкрепление!",
+		_const.EN: "%UserName%, I need reinforcements!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_2": {
+		_const.RU: "Сейчас же! Помощь, сюда!",
+		_const.EN: "Now! Help here!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_3": {
+		_const.RU: "Огневая поддержка, ну же!",
+		_const.EN: "Fire support, come on!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_4": {
+		_const.RU: "Тебя прислали мне помочь? Тогда, за дело!",
+		_const.EN: "Were you sent to help me? Then, let's get to work!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_5": {
+		_const.RU: "%UserName%, сейчас же открой огонь - туда!",
+		_const.EN: "%UserName%, open fire now - there!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_6": {
+		_const.RU: "Мне тут одному не справиться, %UserName%!",
+		_const.EN: "I can't handle this alone, %UserName%!",
+	},
+	_const.Replicas + "_warrior_" + Help + "_7": {
+		_const.RU: "Боеприпасы практически на исходе! Вся надежда только на тебя, %UserName%.",
+		_const.EN: "Ammunition is almost running out! All hope is only for you, %UserName%.",
+	},
+	_const.Replicas + "_warrior_" + Help + "_8": {
+		_const.RU: "Прикрой меня, пока я сменю позицию!",
+		_const.EN: "Cover me while I change position!",
+	},
+
+	_const.Replicas + "_expedition_" + Help + "_1": {
+		_const.RU: "Член экспедиции под атакой!",
+		_const.EN: "Expedition member under attack!",
+	},
+	_const.Replicas + "_expedition_" + Help + "_2": {
+		_const.RU: "Член экспедиции нуждается в срочной помощи!",
+		_const.EN: "An expedition member needs urgent help!",
+	},
+	_const.Replicas + "_expedition_" + Help + "_3": {
+		_const.RU: "Только ты, %UserName%, можешь спасти всю экспедицию!",
+		_const.EN: "Only you, %UserName%, can save the entire expedition!",
+	},
+	_const.Replicas + "_expedition_" + Help + "_4": {
+		_const.RU: "Да! Я обращаюсь именно к тебе, %UserName% - срочно помоги мне разобраться с этой проблемой!",
+		_const.EN: "Yes! I am turning to you, %UserName% - urgently help me deal with this problem!",
+	},
+	_const.Replicas + "_expedition_" + Help + "_5": {
+		_const.RU: "Нет времени объяснять - экспедиции требуется поддержка, %UserName%!",
+		_const.EN: "There is no time to explain - the expedition needs support, %UserName%!",
+	},
 
 	// APD
 	_const.APD + "___1": {
