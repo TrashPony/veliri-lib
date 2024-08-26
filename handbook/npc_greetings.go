@@ -1016,6 +1016,18 @@ var npcGreetings = map[string]map[string]string{
 		_const.RU: "Уже сдаешься? Это не бесплатная услуга!",
 		_const.EN: "Already giving up? This is not a free service!",
 	},
+	_const.Replicas + "_in_scout_" + Target + "_2": { // TODO
+		_const.RU: "Как ни пытайся, но тебе не сбежать!",
+		_const.EN: "Already giving up? This is not a free service!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_3": { // TODO
+		_const.RU: "Я буду преследовать тебя вечность!",
+		_const.EN: "Already giving up? This is not a free service!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_4": { // TODO
+		_const.RU: "Приготовься к путешествию в ничто.",
+		_const.EN: "Already giving up? This is not a free service!",
+	},
 
 	_const.Replicas + "_transport_" + Target + "_1": {
 		_const.RU: "Ох, как бы я хотел всего этого избежать!",
