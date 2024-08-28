@@ -657,7 +657,7 @@ func CreateMiningTargetsBin(ids map[int]bool) []byte {
 	return command
 }
 
-func CreateMiningBin(unitID, x, y, toX, toY int) []byte {
+func CreateMiningBin(unitID, x, y, toX, toY int, crack bool) []byte {
 
 	command := []byte{60}
 
@@ -666,6 +666,7 @@ func CreateMiningBin(unitID, x, y, toX, toY int) []byte {
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(toX)...)
 	command = append(command, game_math.GetIntBytes(toY)...)
+	command = append(command, game_math.BoolToByte(crack))
 
 	return command
 }
@@ -1108,5 +1109,18 @@ func ShieldAnimate(id, r, x, y int) []byte {
 func BodyShieldOn(id int) []byte {
 	command := []byte{97}
 	command = append(command, game_math.GetIntBytes(id)...)
+	return command
+}
+
+func PumpMiniGame(performance byte, current, border, need int, reload, destroy bool) []byte {
+	command := []byte{98}
+
+	command = append(command, performance)
+	command = append(command, game_math.GetIntBytes(current)...)
+	command = append(command, byte(border))
+	command = append(command, game_math.GetIntBytes(need)...)
+	command = append(command, game_math.BoolToByte(reload))
+	command = append(command, game_math.BoolToByte(destroy))
+
 	return command
 }

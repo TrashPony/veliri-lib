@@ -36,8 +36,14 @@ type Reservoir struct {
 	CacheJson      []byte       `json:"-"`
 	CreateJsonTime int64        `json:"-"`
 	ToPath         move_path.To `json:"-"`
+	Crack          *Crack       `json:"-"`
 
 	mx sync.RWMutex
+}
+
+type Crack struct {
+	X int
+	Y int
 }
 
 func (m *Reservoir) AddMiningUser(userID int, count float64) {
@@ -151,6 +157,7 @@ func (m *Reservoir) GetJSON(mapTime int64) []byte {
 	}
 	m.CacheJson = m.CacheJson[:0]
 
+	crack := m.Crack
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(m.ID)...)
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(m.GetX())...)
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(m.GetY())...)
@@ -161,6 +168,15 @@ func (m *Reservoir) GetJSON(mapTime int64) []byte {
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(int(m.Height))...)
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(m.Count)...)
 	m.CacheJson = append(m.CacheJson, game_math.GetIntBytes(m.Complexity)...)
+	m.CacheJson = append(m.CacheJson, game_math.BoolToByte(crack != nil))
+
+	if crack != nil {
+		m.CacheJson = append(m.CacheJson, byte(crack.X))
+		m.CacheJson = append(m.CacheJson, byte(crack.Y))
+	} else {
+		m.CacheJson = append(m.CacheJson, byte(0))
+		m.CacheJson = append(m.CacheJson, byte(0))
+	}
 
 	m.CacheJson = append(m.CacheJson, byte(len([]byte(m.Texture))))
 	m.CacheJson = append(m.CacheJson, []byte(m.Texture)...)
@@ -176,7 +192,16 @@ func (m *Reservoir) GetJSON(mapTime int64) []byte {
 func (m *Reservoir) GetUpdateData(mapTime int64) []byte {
 	command := []byte{}
 
-	game_math.ReuseByteSlice(&command, 0, game_math.GetIntBytes(m.GetCount()))
+	crack := m.Crack
+	command = append(command, game_math.GetIntBytes(m.GetCount())...)
+	command = append(command, game_math.BoolToByte(crack != nil))
+	if crack != nil {
+		command = append(command, byte(crack.X+128))
+		command = append(command, byte(crack.Y+128))
+	} else {
+		command = append(command, byte(0))
+		command = append(command, byte(0))
+	}
 
 	return command
 }
