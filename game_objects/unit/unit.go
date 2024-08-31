@@ -51,16 +51,16 @@ type Unit struct {
 
 	followExit bool
 
-	State *StateMS `json:"-"`
+	State           *StateMS  `json:"-"`
+	CacheCreateData CacheData `json:"-"`
+	CacheUpdateData CacheData `json:"-"`
 
-	CacheJson      []byte     `json:"-"`
-	CreateJsonTime int64      `json:"-"`
-	damageMX       sync.Mutex // специальный мьютекс для получения урона, todo возможно не нужен
-	mx             sync.RWMutex
-	AutoPilot      bool     `json:"auto_pilot"`
-	damage         []Damage `json:"-"`
-	Immortal       bool     `json:"-"`
-	Interactive    bool     `json:"-"`
+	damageMX    sync.Mutex // специальный мьютекс для получения урона, todo возможно не нужен
+	mx          sync.RWMutex
+	AutoPilot   bool     `json:"auto_pilot"`
+	damage      []Damage `json:"-"`
+	Immortal    bool     `json:"-"`
+	Interactive bool     `json:"-"`
 
 	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
 	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
@@ -85,6 +85,11 @@ type Unit struct {
 	FractionByte       byte   `json:"-"`
 
 	Decals []Decal
+}
+
+type CacheData struct {
+	Data []byte `json:"-"`
+	Time int64  `json:"-"`
 }
 
 type Decal struct {
@@ -610,51 +615,51 @@ type Slot struct {
 
 func (u *Unit) GetJSON(mapTime int64) []byte {
 
-	if u.CreateJsonTime == mapTime && len(u.CacheJson) > 0 {
-		return u.CacheJson
+	if u.CacheCreateData.Time == mapTime && len(u.CacheCreateData.Data) > 0 {
+		return u.CacheCreateData.Data
 	}
 
-	if u.CacheJson == nil {
-		u.CacheJson = []byte{}
+	if u.CacheCreateData.Data == nil {
+		u.CacheCreateData.Data = []byte{}
 	}
 
 	u.mx.RLock()
 	defer u.mx.RUnlock()
 
-	u.CacheJson = u.CacheJson[:0]
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetID())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.OwnerID)...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.HP)...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.ShieldHP)...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetBody().ID)...)
+	u.CacheCreateData.Data = u.CacheCreateData.Data[:0]
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetID())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.OwnerID)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.HP)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.ShieldHP)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetBody().ID)...)
 
 	// position data
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetX())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetY())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(int(u.GetRotate()))...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetX())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetY())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(int(u.GetRotate()))...)
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxHP())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxShieldHP())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRangeView())...)
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetRadarRange())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetMaxHP())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetMaxShieldHP())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetRangeView())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetRadarRange())...)
 
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.fractionWarrior))
-	u.CacheJson = append(u.CacheJson, _const.FractionByte[u.Fraction])
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.fractionWarrior))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, _const.FractionByte[u.Fraction])
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.GetMaxPower())...)
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.Invisibility()))
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.Interactive))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.GetMaxPower())...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.Invisibility()))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.Interactive))
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(u.CorporationID)...)
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.ghost))
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.police))
-	u.CacheJson = append(u.CacheJson, game_math.BoolToByte(u.lights))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.CorporationID)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ghost))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.police))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.lights))
 
-	u.CacheJson = append(u.CacheJson, byte(len([]byte(u.GetBody().Texture))))
-	u.CacheJson = append(u.CacheJson, []byte(u.GetBody().Texture)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.GetBody().Texture))))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, []byte(u.GetBody().Texture)...)
 
-	u.CacheJson = append(u.CacheJson, byte(len([]byte(u.Owner))))
-	u.CacheJson = append(u.CacheJson, []byte(u.Owner)...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.Owner))))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, []byte(u.Owner)...)
 
 	// decal data
 	decalData := []byte{}
@@ -665,8 +670,8 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 		decalData = append(decalData, byte(d.Angle))
 	}
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(decalData))...)
-	u.CacheJson = append(u.CacheJson, decalData...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(len(decalData))...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, decalData...)
 
 	// weapon data
 	weaponData := []byte{}
@@ -687,8 +692,8 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 		}
 	}
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(weaponData))...)
-	u.CacheJson = append(u.CacheJson, weaponData...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(len(weaponData))...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, weaponData...)
 
 	// equip data
 	equipData := []byte{}
@@ -707,23 +712,36 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 		}
 	}
 
-	u.CacheJson = append(u.CacheJson, game_math.GetIntBytes(len(equipData))...)
-	u.CacheJson = append(u.CacheJson, equipData...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(len(equipData))...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, equipData...)
 
-	return u.CacheJson
+	u.CacheCreateData.Time = mapTime
+
+	return u.CacheCreateData.Data
 }
 
 func (u *Unit) GetUpdateData(mapTime int64) []byte {
 
-	command := []byte{}
-	command = append(command, game_math.GetIntBytes(u.HP)...)
-	command = append(command, game_math.GetIntBytes(u.GetRangeView())...)
-	command = append(command, game_math.GetIntBytes(u.GetRadarRange())...)
-	command = append(command, game_math.BoolToByte(u.ghost))
-	command = append(command, game_math.BoolToByte(u.lights))
-	command = append(command, game_math.GetIntBytes(u.ShieldHP)...)
+	if u.CacheUpdateData.Time == mapTime && len(u.CacheUpdateData.Data) > 0 {
+		return u.CacheUpdateData.Data
+	}
 
-	return command
+	if u.CacheUpdateData.Data == nil {
+		u.CacheUpdateData.Data = []byte{}
+	}
+
+	u.CacheUpdateData.Data = u.CacheUpdateData.Data[:0]
+
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.HP)...)
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.GetRangeView())...)
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.GetRadarRange())...)
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.ghost))
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.lights))
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.ShieldHP)...)
+
+	u.CacheUpdateData.Time = mapTime
+
+	return u.CacheUpdateData.Data
 }
 
 func (u *Unit) GetShortInfo() *ShortUnitInfo {

@@ -41,8 +41,8 @@ type Drone struct {
 	weaponTarget *target.Target
 	targetMX     sync.Mutex
 
-	CacheJson      []byte `json:"-"`
-	CreateJsonTime int64  `json:"-"`
+	CacheCreateData CacheData `json:"-"`
+	CacheUpdateData CacheData `json:"-"`
 
 	physicalModel *physical_model.PhysicalModel
 
@@ -57,6 +57,11 @@ type Drone struct {
 	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
+}
+
+type CacheData struct {
+	Data []byte `json:"-"`
+	Time int64  `json:"-"`
 }
 
 func (d *Drone) GetOwnerPlayerID() int {
@@ -301,8 +306,8 @@ func (d *Drone) GetZ() float64 {
 
 func (d *Drone) GetJSON(mapTime int64) []byte {
 
-	if d.CreateJsonTime == mapTime && len(d.CacheJson) > 0 {
-		return d.CacheJson
+	if d.CacheCreateData.Time == mapTime && len(d.CacheCreateData.Data) > 0 {
+		return d.CacheCreateData.Data
 	}
 
 	lifePercent := 0
@@ -319,40 +324,56 @@ func (d *Drone) GetJSON(mapTime int64) []byte {
 		}
 	}
 
-	command := []byte{}
+	if d.CacheCreateData.Data == nil {
+		d.CacheCreateData.Data = []byte{}
+	}
 
-	command = append(command, game_math.GetIntBytes(d.ID)...)
-	command = append(command, game_math.GetIntBytes(d.GetX())...)
-	command = append(command, game_math.GetIntBytes(d.GetY())...)
-	command = append(command, game_math.GetIntBytes(int(d.GetZ()))...)
-	command = append(command, game_math.GetIntBytes(int(d.GetRotate()))...)
-	command = append(command, game_math.GetIntBytes(d.MaxHP)...)
-	command = append(command, game_math.GetIntBytes(d.HP)...)
-	command = append(command, game_math.GetIntBytes(d.RangeView)...)
-	command = append(command, byte(d.Scale))
-	command = append(command, game_math.GetIntBytes(d.OwnerPlayerID)...)
-	command = append(command, byte(lifePercent)) // todo update
-	command = append(command, byte(equipType))
-	command = append(command, byte(equipSlot))
-	command = append(command, game_math.GetIntBytes(d.OwnerID)...)
-	command = append(command, byte(_const.MapBinItems[d.OwnerType]))
-	command = append(command, game_math.BoolToByte(d.fractionWarrior))
-	command = append(command, _const.FractionByte[d.Fraction])
-	command = append(command, game_math.GetIntBytes(d.CorporationID)...)
-	command = append(command, byte(len(d.Sprite)))
-	command = append(command, []byte(d.Sprite)...)
+	d.CacheCreateData.Data = d.CacheCreateData.Data[:0]
 
-	d.CacheJson = command
-	d.CreateJsonTime = mapTime
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.ID)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.GetX())...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.GetY())...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(int(d.GetZ()))...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(int(d.GetRotate()))...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.MaxHP)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.HP)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.RangeView)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(d.Scale))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.OwnerPlayerID)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(lifePercent)) // todo update
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(equipType))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(equipSlot))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.OwnerID)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(_const.MapBinItems[d.OwnerType]))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.BoolToByte(d.fractionWarrior))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, _const.FractionByte[d.Fraction])
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, game_math.GetIntBytes(d.CorporationID)...)
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, byte(len(d.Sprite)))
+	d.CacheCreateData.Data = append(d.CacheCreateData.Data, []byte(d.Sprite)...)
 
-	return d.CacheJson
+	d.CacheCreateData.Time = mapTime
+
+	return d.CacheCreateData.Data
 }
 
 func (d *Drone) GetUpdateData(mapTime int64) []byte {
-	command := []byte{}
-	command = append(command, game_math.GetIntBytes(d.HP)...)
-	command = append(command, byte(d.GetPercentLife()))
-	return command
+
+	if d.CacheUpdateData.Time == mapTime && len(d.CacheUpdateData.Data) > 0 {
+		return d.CacheUpdateData.Data
+	}
+
+	if d.CacheUpdateData.Data == nil {
+		d.CacheUpdateData.Data = []byte{}
+	}
+
+	d.CacheUpdateData.Data = d.CacheUpdateData.Data[:0]
+
+	d.CacheUpdateData.Data = append(d.CacheUpdateData.Data, game_math.GetIntBytes(d.HP)...)
+	d.CacheUpdateData.Data = append(d.CacheUpdateData.Data, byte(d.GetPercentLife()))
+
+	d.CacheUpdateData.Time = mapTime
+
+	return d.CacheUpdateData.Data
 }
 
 func (d *Drone) GetPercentLife() int {

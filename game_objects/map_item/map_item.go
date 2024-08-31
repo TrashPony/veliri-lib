@@ -10,16 +10,21 @@ import (
 )
 
 type MapItem struct {
-	ID             int          `json:"id"`
-	ItemID         int          `json:"item_id"`
-	ItemType       string       `json:"item_type"`
-	MapID          int          `json:"map_id"`
-	CacheJson      []byte       `json:"-"`
-	CreateJsonTime int64        `json:"-"`
-	LifeTime       int64        `json:"-"`
-	ToPath         move_path.To `json:"-"`
-	inv            *inventory.Inventory
-	physicalModel  *physical_model.PhysicalModel
+	ID              int          `json:"id"`
+	ItemID          int          `json:"item_id"`
+	ItemType        string       `json:"item_type"`
+	MapID           int          `json:"map_id"`
+	CacheCreateData CacheData    `json:"-"`
+	CacheUpdateData CacheData    `json:"-"`
+	LifeTime        int64        `json:"-"`
+	ToPath          move_path.To `json:"-"`
+	inv             *inventory.Inventory
+	physicalModel   *physical_model.PhysicalModel
+}
+
+type CacheData struct {
+	Data []byte `json:"-"`
+	Time int64  `json:"-"`
 }
 
 func (i *MapItem) GetGunner() *gunner.Gunner {
@@ -94,8 +99,8 @@ func (i *MapItem) SetAllGunRotate(float64) {
 
 func (i *MapItem) GetJSON(mapTime int64) []byte {
 
-	if i.CreateJsonTime == mapTime && len(i.CacheJson) > 0 {
-		return i.CacheJson
+	if i.CacheCreateData.Time == mapTime && len(i.CacheCreateData.Data) > 0 {
+		return i.CacheCreateData.Data
 	}
 
 	if i.inv == nil {
@@ -107,28 +112,30 @@ func (i *MapItem) GetJSON(mapTime int64) []byte {
 		return []byte{}
 	}
 
-	if i.CacheJson == nil {
-		i.CacheJson = []byte{}
+	if i.CacheCreateData.Data == nil {
+		i.CacheCreateData.Data = []byte{}
 	}
-	i.CacheJson = i.CacheJson[:0]
+	i.CacheCreateData.Data = i.CacheCreateData.Data[:0]
 
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.ID)...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.GetX())...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.GetY())...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(int(i.GetPhysicalModel().GetRotate()))...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(i.MapID)...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(s.Quantity)...)
-	i.CacheJson = append(i.CacheJson, game_math.GetIntBytes(s.ItemID)...)
-	i.CacheJson = append(i.CacheJson, byte(_const.ItemBinTypes[s.Type]))
-	i.CacheJson = append(i.CacheJson, byte(i.GetPhysicalModel().GetRadius()))
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(i.ID)...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(i.GetX())...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(i.GetY())...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(int(i.GetPhysicalModel().GetRotate()))...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(i.MapID)...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(s.Quantity)...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, game_math.GetIntBytes(s.ItemID)...)
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, byte(_const.ItemBinTypes[s.Type]))
+	i.CacheCreateData.Data = append(i.CacheCreateData.Data, byte(i.GetPhysicalModel().GetRadius()))
 
-	i.CreateJsonTime = mapTime
+	i.CacheCreateData.Time = mapTime
 
-	return i.CacheJson
+	return i.CacheCreateData.Data
 }
 
 func (i *MapItem) GetUpdateData(mapTime int64) []byte {
-	command := make([]byte, 4)
+	if i.CacheUpdateData.Time == mapTime && len(i.CacheUpdateData.Data) > 0 {
+		return i.CacheUpdateData.Data
+	}
 
 	if i.inv == nil {
 		return []byte{}
@@ -139,6 +146,15 @@ func (i *MapItem) GetUpdateData(mapTime int64) []byte {
 		return []byte{}
 	}
 
-	game_math.ReuseByteSlice(&command, 0, game_math.GetIntBytes(s.GetQuantity()))
-	return command
+	if i.CacheUpdateData.Data == nil {
+		i.CacheUpdateData.Data = []byte{}
+	}
+
+	i.CacheUpdateData.Data = i.CacheUpdateData.Data[:0]
+
+	i.CacheUpdateData.Data = append(i.CacheUpdateData.Data, game_math.GetIntBytes(s.GetQuantity())...)
+
+	i.CacheUpdateData.Time = mapTime
+
+	return i.CacheUpdateData.Data
 }
