@@ -42,6 +42,7 @@ type Bullet struct {
 	Damage               int            `json:"-"`
 	EquipDamage          int            `json:"-"`
 	IgnoreOwner          bool           `json:"ignore_owner"`
+	NoDamageNoMessage    bool           `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
@@ -75,10 +76,10 @@ type Bullet struct {
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool
 	AccumulationPercent int `json:"accumulation_percent"`
-
-	ghost      bool
-	stopTimeMS int
-	mx         sync.RWMutex
+	CallBack            func(b *Bullet, damageObjects interface{})
+	ghost               bool
+	stopTimeMS          int
+	mx                  sync.RWMutex
 }
 
 func (b *Bullet) Ghost() bool {

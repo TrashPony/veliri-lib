@@ -108,7 +108,7 @@ type RecycledResource struct {
 	Name          string `json:"name"`
 	Specification string `json:"specification"`
 	Size          int    `json:"size"`
-	DefaultPrice  int    `json:"default_price"`
+	DefaultPrice  int64  `json:"default_price"`
 }
 
 func (r *RecycledResource) GetName() string {

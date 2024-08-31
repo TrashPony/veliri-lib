@@ -1,6 +1,7 @@
 package dynamic_map_object
 
 import (
+	"encoding/json"
 	"fmt"
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
@@ -19,6 +20,7 @@ import (
 	"github.com/TrashPony/veliri-lib/generate_ids"
 	"math"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -131,7 +133,7 @@ type Object struct {
 	DestroyTimer     int    `json:"-"`
 	CacheGeoData     []byte `json:"-"`
 
-	Attributes              map[string]int `json:"-"`
+	attributes              map[string]int
 	countUpdateWeaponTarget int
 	fractionWarrior         bool
 	physicalModel           *physical_model.PhysicalModel
@@ -694,4 +696,74 @@ func (o *Object) RangeHostiles() <-chan *special_hostiles.SpecialHostile {
 	}
 
 	return o.specialHostiles.RangeHostiles()
+}
+
+// TODO hardCode
+func (o *Object) GetTurretAmmoID() int {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+
+	if strings.Contains(o.Texture, "laser_turret") {
+		return 6
+	}
+	if strings.Contains(o.Texture, "tank_turret") {
+		return 2
+	}
+	if strings.Contains(o.Texture, "replic_gauss_gun") {
+		return 16
+	}
+	if strings.Contains(o.Texture, "artillery_turret") {
+		return 39
+	}
+
+	if o.attributes != nil && o.attributes["ammo_id"] > 0 {
+		return o.attributes["ammo_id"]
+	}
+
+	return 0
+}
+
+func (o *Object) UnmarshalAttributes(data []byte) {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+	_ = json.Unmarshal(data, &o.attributes)
+}
+
+func (o *Object) SetAttributes(attributes map[string]int) {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+	o.attributes = attributes
+}
+
+func (o *Object) GetAttributes() map[string]int {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+
+	attr := make(map[string]int)
+	for k, v := range o.attributes {
+		attr[k] = v
+	}
+	return attr
+}
+
+func (o *Object) GetAttribute(key string) int {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+
+	if o.attributes == nil {
+		o.attributes = make(map[string]int)
+	}
+
+	return o.attributes[key]
+}
+
+func (o *Object) SetAttribute(key string, v int) {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+
+	if o.attributes == nil {
+		o.attributes = make(map[string]int)
+	}
+
+	o.attributes[key] = v
 }

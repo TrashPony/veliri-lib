@@ -5,7 +5,7 @@ type AssortmentPoint struct {
 	ItemID   int    `json:"item_id"`
 	ItemType string `json:"item_type"`
 	Points   int    `json:"points"`
-	Credits  int    `json:"credits"`
+	Credits  int64  `json:"credits"`
 	Count    int    `json:"count"`
 	MinRank  int    `json:"min_rank"`
 	Priority int    `json:"priority"`

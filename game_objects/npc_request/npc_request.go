@@ -16,7 +16,7 @@ type DialogRequest struct {
 	Success      int                 `json:"success"`
 	Time         int64               `json:"time,omitempty"` // unix utc
 	NeedAnswer   bool                `json:"need_answer"`
-	NeedCredit   int                 `json:"need_credit"`
+	NeedCredit   int64               `json:"need_credit"`
 	Answers      []map[string]Answer `json:"answers"`
 }
 

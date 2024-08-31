@@ -6,7 +6,7 @@ type Skin struct {
 	ItemType string `json:"item_type"`
 	ItemID   int    `json:"item_id"`
 	Default  bool   `json:"default"`
-	Price    int    `json:"price"`
+	Price    int64  `json:"price"`
 	Access   bool   `json:"access"`
 	Path     string `json:"path"`
 }

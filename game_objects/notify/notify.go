@@ -18,7 +18,7 @@ type Notify struct {
 	TimeOut           int                 `json:"time_out,omitempty"`
 	Destroy           bool                `json:"destroy,omitempty"`
 	Count             int                 `json:"count,omitempty"`
-	Price             int                 `json:"price,omitempty"`
+	Price             int64               `json:"price,omitempty"`
 	UpdateInventory   bool                `json:"update_inventory,omitempty"`
 	UpdateChat        bool                `json:"update_chat,omitempty"`
 	UpdateMission     bool                `json:"update_mission,omitempty"`
@@ -45,6 +45,7 @@ type Notify struct {
 	Chat              bool                `json:"chat,omitempty"`
 	ChatID            int                 `json:"chat_id,omitempty"`
 	Private           bool                `json:"private,omitempty"`
+	Credits           int64               `json:"credits,omitempty"`
 }
 
 type Answer struct {

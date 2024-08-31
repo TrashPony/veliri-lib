@@ -1124,3 +1124,15 @@ func PumpMiniGame(performance byte, current, border, need int, reload, destroy b
 
 	return command
 }
+
+func CreateCombineTargetsBin(ids map[int]bool) []byte {
+
+	command := []byte{101}
+
+	for id, allow := range ids {
+		command = append(command, game_math.GetIntBytes(id)...)
+		command = append(command, game_math.BoolToByte(allow))
+	}
+
+	return command
+}
