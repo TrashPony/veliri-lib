@@ -11,6 +11,12 @@ func GetBetweenDist(fromX, fromY, toX, toY int) float64 {
 	return math.Sqrt(dx*dx + dy*dy)
 }
 
+func GetBetweenDistInt(fromX, fromY, toX, toY int) int {
+	var dx = toX - fromX
+	var dy = toY - fromY
+	return int(math.Sqrt(float64(dx*dx + dy*dy)))
+}
+
 func GetBetweenDistFloat(fromX, fromY, toX, toY float64) float64 {
 	var dx = toX - fromX
 	var dy = toY - fromY

@@ -118,3 +118,7 @@ func (b *Blueprint) GetBatteries() int {
 func (b *Blueprint) GetArmorItems() int {
 	return b.ArmorItems
 }
+
+func (b *Blueprint) GetRecyclingAlgorithm() string {
+	return ""
+}

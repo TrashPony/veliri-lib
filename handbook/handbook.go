@@ -1242,6 +1242,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"thorium_ore":  {Name: "Thorium ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"titanium_ore": {Name: "Titanium ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"oil":          {Name: "Oil", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
+		"organic":      {Name: "Органика", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"copper_ore":   {Name: "Медная руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
@@ -1250,6 +1251,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"thorium_ore":  {Name: "Ториевая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"titanium_ore": {Name: "Титановая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"oil":          {Name: "Нефть", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
+		"organic":      {Name: "Органика", Description: "<p></p>"},
 	},
 }
 

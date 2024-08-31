@@ -13,6 +13,8 @@ type Resource struct {
 	Titanium        int `json:"titanium"`
 	Silicon         int `json:"silicon"`
 	Plastic         int `json:"plastic"`
+
+	RecyclingAlgorithm string `json:"recycling_algorithm"`
 }
 
 func (r *Resource) GetName() string {
@@ -101,6 +103,10 @@ func (r *Resource) GetBatteries() int {
 
 func (r *Resource) GetArmorItems() int {
 	return 0
+}
+
+func (r *Resource) GetRecyclingAlgorithm() string {
+	return r.RecyclingAlgorithm
 }
 
 type RecycledResource struct {
