@@ -2191,6 +2191,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Компоненты после переработки`,
 			_const.EN: `Components after processing`,
 		},
+		"text_24": {
+			_const.RU: `Переработав <span style="color: yellow">%count%</span> ед. выйдет:`,
+			_const.EN: `Having processed <span style="color: yellow">%count%</span> units. will come out:`,
+		},
 		// Requirements
 		"text_23": {
 			_const.RU: `Навыки`,

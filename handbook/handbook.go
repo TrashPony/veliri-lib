@@ -1263,6 +1263,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"plastic":          {Name: "Plastic", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"silicon":          {Name: "Silicon", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"titanium":         {Name: "Titanium", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
+		"carbon":           {Name: "Carbon", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 	},
 	_const.RU: {
 		"enriched_thorium": {Name: "Обогащенный торий", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
@@ -1271,6 +1272,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"plastic":          {Name: "Пластик", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"silicon":          {Name: "Кремний", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"titanium":         {Name: "Титан", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
+		"carbon":           {Name: "Углерод", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 	},
 }
 

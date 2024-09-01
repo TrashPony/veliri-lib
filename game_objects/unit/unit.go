@@ -1,7 +1,6 @@
 package unit
 
 import (
-	"fmt"
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
@@ -224,13 +223,13 @@ func (u *Unit) AppendMaxHPEffect(percentHP int) {
 func (u *Unit) GetPercentHP() int {
 	percent := int(10 * (math.Round((float64(u.GetHP()) / float64(u.GetMaxHP()) * 100))))
 	if percent > 1000 {
-		fmt.Println("percent hp max > 100%, ", u.GetHP(), u.GetMaxHP())
+		//fmt.Println("percent hp max > 100%, ", u.GetHP(), u.GetMaxHP())
 		return 1000
 	}
 
-	if percent <= 0 {
-		fmt.Println("percent hp max <= 0%, ", u.GetHP(), u.GetMaxHP())
-	}
+	//if percent <= 0 {
+	//	fmt.Println("percent hp max <= 0%, ", u.GetHP(), u.GetMaxHP())
+	//}
 
 	return percent
 }

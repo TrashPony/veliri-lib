@@ -18,6 +18,7 @@ type Blueprint struct {
 	Titanium        int    `json:"titanium"`
 	Silicon         int    `json:"silicon"`
 	Plastic         int    `json:"plastic"`
+	Carbon          int    `json:"carbon"`
 	Steel           int    `json:"steel"`
 	Wire            int    `json:"wire"`
 	Electronics     int    `json:"electronics"`
@@ -63,6 +64,10 @@ func (b *Blueprint) GetTypeSlot() int {
 	return 0
 }
 
+func (b *Blueprint) GetNeedCount() int {
+	return 0
+}
+
 func (b *Blueprint) GetEnrichedThorium() int {
 	return b.EnrichedThorium
 }
@@ -85,6 +90,10 @@ func (b *Blueprint) GetSilicon() int {
 
 func (b *Blueprint) GetPlastic() int {
 	return b.Plastic
+}
+
+func (b *Blueprint) GetCarbon() int {
+	return b.Carbon
 }
 
 func (b *Blueprint) GetSteel() int {

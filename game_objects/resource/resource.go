@@ -5,6 +5,7 @@ type Resource struct {
 	Name          string `json:"name"`
 	Specification string `json:"specification"`
 	Size          int    `json:"size"`
+	Count         int    `json:"count"`
 
 	// описывает что выходит из этих ресурсов при переработке
 	EnrichedThorium int `json:"enriched_thorium"`
@@ -13,6 +14,7 @@ type Resource struct {
 	Titanium        int `json:"titanium"`
 	Silicon         int `json:"silicon"`
 	Plastic         int `json:"plastic"`
+	Carbon          int `json:"carbon"`
 
 	RecyclingAlgorithm string `json:"recycling_algorithm"`
 }
@@ -49,6 +51,10 @@ func (r *Resource) GetTypeSlot() int {
 	return 0
 }
 
+func (r *Resource) GetNeedCount() int {
+	return r.Count
+}
+
 func (r *Resource) GetEnrichedThorium() int {
 	return r.EnrichedThorium
 }
@@ -71,6 +77,10 @@ func (r *Resource) GetSilicon() int {
 
 func (r *Resource) GetPlastic() int {
 	return r.Plastic
+}
+
+func (r *Resource) GetCarbon() int {
+	return r.Carbon
 }
 
 func (r *Resource) GetSteel() int {
