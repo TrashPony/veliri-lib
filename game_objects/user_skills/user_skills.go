@@ -133,17 +133,24 @@ func (u *UserSkills) FindSkill(id int) *skill.Skill {
 //	return false, lvlUp, nil
 //}
 
-func (u *UserSkills) GetProcessingSkillFactor() int {
+func (u *UserSkills) GetProcessingSkillFactor(resourceName string) int {
 	if u == nil {
 		return _const.BaseRecyclerLost
 	}
 
-	curSkill := u.GetSkill("processing")
-	if curSkill != nil {
-		return int(_const.BaseRecyclerLost - float64(curSkill.GetLevel())*curSkill.PercentFactor)
-	} else {
-		return _const.BaseRecyclerLost
+	percent := 0.0
+
+	commonSkill := u.GetSkill("processing")
+	if commonSkill != nil {
+		percent += float64(commonSkill.GetLevel()) * commonSkill.PercentFactor
 	}
+
+	itemSkill := u.GetSkill("processing_" + resourceName)
+	if itemSkill != nil {
+		percent += float64(itemSkill.GetLevel()) * itemSkill.PercentFactor
+	}
+
+	return int(_const.BaseRecyclerLost - percent)
 }
 
 func (u *UserSkills) GetMaterialsProductionSkillFactor() int {

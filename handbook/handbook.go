@@ -393,7 +393,15 @@ var StructureDescription = map[string]map[string]DescriptionItem{
 
 var SkillDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
-		"processing":         {Name: "Переработка полезных ископаемых", Description: "<p>Уменьшает потери при переработке.</p>"},
+		"processing":              {Name: "Переработка полезных ископаемых", Description: "<p>Уменьшает потери при переработке.</p>"},
+		"processing_copper_ore":   {Name: "Переработка меди", Description: "<p>Уменьшает потери при переработке меди.</p>"},
+		"processing_iron_ore":     {Name: "Переработка железа", Description: "<p>Уменьшает потери при переработке железа.</p>"},
+		"processing_silicon_ore":  {Name: "Переработка кремния", Description: "<p>Уменьшает потери при переработке кремния.</p>"},
+		"processing_thorium_ore":  {Name: "Переработка тория", Description: "<p>Уменьшает потери при переработке тория.</p>"},
+		"processing_titanium_ore": {Name: "Переработка титана", Description: "<p>Уменьшает потери при переработке титана.</p>"},
+		"processing_oil":          {Name: "Переработка нефти", Description: "<p>Уменьшает потери при переработке нефти.</p>"},
+		"processing_organic":      {Name: "Переработка органики", Description: "<p>Уменьшает потери при переработке органики.</p>"},
+
 		"production_time":    {Name: "Организация производства", Description: "<p>Уменьшает время необходимое для создания предметов.</p>"},
 		"production_economy": {Name: "Экономия материалов", Description: "<p>Уменьшает кол-во материалов необходимых для производства.</p>"},
 		"ore_extract":        {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи.</p>"},
@@ -519,7 +527,15 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"xeno_transport":                {Name: "Управление Ксенокорпусов", Description: "<p>Базовый навык владения Ксенокорпусами.</p>"},
 	},
 	_const.RU: {
-		"processing":         {Name: "Переработка полезных ископаемых", Description: "<p>Уменьшает потери при переработке.</p>"},
+		"processing":              {Name: "Переработка полезных ископаемых", Description: "<p>Уменьшает потери при переработке.</p>"},
+		"processing_copper_ore":   {Name: "Переработка меди", Description: "<p>Уменьшает потери при переработке меди.</p>"},
+		"processing_iron_ore":     {Name: "Переработка железа", Description: "<p>Уменьшает потери при переработке железа.</p>"},
+		"processing_silicon_ore":  {Name: "Переработка кремния", Description: "<p>Уменьшает потери при переработке кремния.</p>"},
+		"processing_thorium_ore":  {Name: "Переработка тория", Description: "<p>Уменьшает потери при переработке тория.</p>"},
+		"processing_titanium_ore": {Name: "Переработка титана", Description: "<p>Уменьшает потери при переработке титана.</p>"},
+		"processing_oil":          {Name: "Переработка нефти", Description: "<p>Уменьшает потери при переработке нефти.</p>"},
+		"processing_organic":      {Name: "Переработка органики", Description: "<p>Уменьшает потери при переработке органики.</p>"},
+
 		"production_time":    {Name: "Организация производства", Description: "<p>Уменьшает время необходимое для создания предметов.</p>"},
 		"production_economy": {Name: "Экономия материалов", Description: "<p>Уменьшает кол-во материалов необходимых для производства.</p>"},
 		"ore_extract":        {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи.</p>"},
