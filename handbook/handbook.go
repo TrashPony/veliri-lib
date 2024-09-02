@@ -20,6 +20,7 @@ var BodyDescription = map[string]map[string]DescriptionItem{
 		"reverses_scout":        {Name: "A spear", Description: "<p> Private Intelligence Corps Reverses. \"Spear\" - does not have any outstanding solutions in its design, but, nevertheless, competes on an equal footing with other representatives of similar designs. And the rocket launchers used by the Lance Corps can be an unpleasant surprise for your enemies. </p>"},
 		"apd_medium":            {Name: "BD", Description: "<p> BD is the most readily available and commonly seen type of AOP combat drone. Able to carry out many different commands, from shock assault to fire support. </p>"},
 		"replic_builder_body":   {Name: "Type-707", Description: "<p> An engineering corps, produced in a mass series and used exclusively by Replic in engineering and sapper operations for mining the terrain. With rare exceptions, the \"Type-707\", being under the cover of other types of troops, can cope well with the assigned sabotage missions. The previous series of this corps went into oblivion due to the impossibility of adapting to the constantly changing conditions of Replic's methods of warfare and were known under the abbreviation - \"Saigon\". </p>"},
+		"replic_oil_body":       {Name: "Govnovoz", Description: "<p></p>"},
 		"reverses_miner":        {Name: "Aegis", Description: "<p> Another representative of Reverses corpuses is \"Aegis\" a universal corpus for performing multitasking of any Synthet. But whether it's combat, transportation, mining or exploration, Aegis is the best choice possible. </p>"},
 		"replic_transport":      {Name: "CrossLout", Description: "<p> The best transporter of all produced models and series in Replic. \"CrossLout\" not only allows you to survive under intense fire, but also boasts a spacious hold that will save your goods from unwanted encounters. Well, the speed developed by this light transporter can even compete with other Replic cases. </p>"},
 		"MasherShip_2":          {Name: "Achilles", Description: "<p> Achilles is a mobile platform whose task is to attack, intercept, and “swoop down.” </p> <p> Achilles is a great option for strategic geniuses and hone planning tactics skills. Combining not only high speed and low energy consumption of a mobile platform, but also onboard armament, as well as the presence of troops. </p> <p> Achilles is a good choice for novice commanders, giving great freedom of action and imagination regarding their own use. </ P >"},
@@ -51,6 +52,7 @@ var BodyDescription = map[string]map[string]DescriptionItem{
 		"MasherShip_2":          {Name: "Ахилл", Description: "<p>Ахилл - мобильная платформа, чья задача - нападение, перехваты, и тактика “наскоков”.</p> <p> Ахилл, это прекрасный вариант для стратегических гениев и оттачивания навыков тактики планирования. Совмещая не только высокую скорость и низкую энергозатратность мобильной платформы, но и бортовое вооружение, а также наличие войск.</p><p>Ахилл - хороший выбор для начинающих командиров, дающий большую свободу действий и фантазии, касательно собственного применения.</p>"},
 		"MasherShip_3":          {Name: "Андеррол - 6", Description: "<p>\"Андеррол - 6\" - мобильная платформа широкого спектра применения.</p><p> Андеррол - 6, это экспериментальная модель, которая сумеет сослужить добрую службу, если окажется в правильных руках, и будет выполнять правильно поставленные задачи.</p><p> Для этого, у мобильной платформы имеется и собственное вооружение, и войска, и особенные функции, которые недоступны другим видам “передвижных баз”.</p><p> В частности, это касается - вместительного трюма, и наличия добывающего руду оборудования. Из минусов, выступая достаточно низкой скоростью передвижения и высокой энергозатратностью самой мобильной платформы.</p> <p>Андеррол - 6, интересная машина, которая способна удовлетворить нужды каждого.</p>"},
 		"replic_builder_body":   {Name: "Тип-707", Description: "<p>На этот раз удачная попытка Replics создать корпус, предназначенный не только ради ведения военных действий, но и для определённых «около-гражданских» целей. В данном случае, намеренно отказавшись от навесного вооружения, но не пожелав жертвовать броне покрытием, фракция Replics создала тяжёлый грузовик-добытчик. Зачастую, подобные изделия Replics можно встретить в «спорных» или даже «боевых» секторах, где те не обращая внимание на окружающие опасности, занимаются добычей минералов.</p><p>Крепкая броня и вместительный трюм, оказались достаточными поводами, чтобы \"Тип-707\" стал достаточно узнаваемым на рынке корпусов и пользовался немалым спросом.</p>"},
+		"replic_oil_body":       {Name: "Govnovoz", Description: "<p></p>"},
 		"replic_miner":          {Name: "А-Тека", Description: "<p>Массовый в выпуске и универсальный для простых задач, а также нужд армии Replic - корпус. \"А-Тека\" - уже пятая итерация подобных корпусов, где дешевизна производства, наконец-то сумела удовлетворить потребности широкого спектра требований: от боевых задач, до разведки и разработки ископаемых.</p>"},
 		"replic_scout":          {Name: "Страдиот", Description: "<p>Стандартный корпус \"разведчика\" армии Replic, который применяется ради осмотра территории и выявления слабых мест в позициях противника. \"Страдиот\" - не истинный воин, но данный корпус, умело скроет вас от ненужных визоров и быстро переправит из вражеской территории в безопасное место.</p>"},
 		"replic_transport":      {Name: "КроссЛаут", Description: "<p>Лучший транспортировщик из всех произведённых моделей и серией в Replic. \"КроссЛаут\" не только позволяет выживать под интенсивным огнём, но и способен похвастаться вместительным трюмом, который убережёт ваш товар от нежелательных встреч. Ну а развиваемая данным лёгким транспортировщиком скорость, может потягаться даже с прочими корпусами от Replic.</p>"},
@@ -205,7 +207,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"geo_scanner":                    {Name: "Georadar", Description: "<p> A planetary analysis device that allows you to investigate the surface for the presence of inhomogeneities, voids and manifestations of an anomalous nature. </p>"},
 		"distance_generator":             {Name: "Power transmission module", Description: "<p> A module specializing in the narrowly targeted transfer of surplus or reserved portion of energy from its own corps to any target at a short distance. </p>"},
 		"explores_miner_extracted":       {Name: "Mining Beam \"Explores\"", Description: "<p> The standardized rock mining and extraction device on the planet Veliri-6. The device is adapted to the aggressive properties of the environment and is resistant to radiation. </p>"},
-		"reverses_builder":               {Name: "Harvester", Description: "<p>Standardized device for assembling organic matter.</p>"},
+		"reverses_builder":               {Name: "Engineering module \"Reverses\"", Description: "<p> Standardized device for assembling and disassembling objects, as well as detailed extraction of useful parts from wreckage. </p>"},
+		"reverses_combine":               {Name: "Harvester", Description: "<p>Standardized device for assembling organic matter.</p>"},
 		"energy_shield":                  {Name: "Force field M-shields", Description: "<p> Power emitters of a small spectrum of energy protection, counteracting any phenomenon that tries to overcome the barrier. Significantly reduce damage, but do not guarantee 100% protection. </p>"},
 		"mine_bomb_1":                    {Name: "Мины", Description: "Мина"},
 		"mini_turret_1":                  {Name: "Переносная турель 1", Description: "Переносная пулеметная турель"},
@@ -280,7 +283,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"explores_miner_extracted":       {Name: "Добывающий луч \"Explores\"", Description: "<p>Стандартизированное устройство по разработке и извлечению горных пород на планете Veliri-6. Устройство адаптировано под агрессивные свойства окружающей среды и устойчиво к радиации.</p>"},
 		"explores_builder":               {Name: "Инженерный модуль \"Explores\"", Description: "<p>Стандартизированное устройство по сборке и разборке объектов, а также детальнейшей добыче полезных частей из обломков.</p>"},
 		"reverses_miner_extracted":       {Name: "Рудный пульсатор \"Reverses\"", Description: "<p>Стандартизированное устройство по разработке и извлечению горных пород на планете Veliri-6. Устройство адаптировано под агрессивные свойства окружающей среды и устойчиво к радиации.</p>"},
-		"reverses_builder":               {Name: "Комбайн", Description: "<p>Стандартизированное устройство по сборке органики.</p>"},
+		"reverses_builder":               {Name: "Инженерный модуль \"Reverses\"", Description: "<p>Стандартизированное устройство по сборке и разборке объектов, а также детальнейшей добыче полезных частей из обломков.</p>"},
+		"reverses_combine":               {Name: "Комбайн", Description: "<p>Стандартизированное устройство по сборке органики.</p>"},
 		"gravity_gun":                    {Name: "Устройство МЭП-0", Description: "<p>Манипулятор гравитационного воздействия, применяемый для притягивания направленным лучом абсолютно любых захваченных объектов к позиции работы устройства и, мощным импульсом – их отправки в иное направление.</p>"},
 		"gravity_square":                 {Name: "Резонатор гравитационного возмущения", Description: "<p>Устройство накопительного действия, создающего волны гравитационной природы и затягивающего в центр собственного притяжения всякую вещь, включая боевые снаряды.</p>"},
 		"mini_turret_1":                  {Name: "Переносная турель 1", Description: "Переносная пулеметная турель"},
@@ -404,8 +408,12 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 
 		"production_time":    {Name: "Организация производства", Description: "<p>Уменьшает время необходимое для создания предметов.</p>"},
 		"production_economy": {Name: "Экономия материалов", Description: "<p>Уменьшает кол-во материалов необходимых для производства.</p>"},
-		"ore_extract":        {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи.</p>"},
-		"speed_ore_extract":  {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи.</p>"},
+
+		"ore_extract":               {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
+		"speed_ore_extract":         {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
+		"speed_oil_extract":         {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
+		"speed_combine_extract":     {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
+		"speed_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
@@ -536,10 +544,11 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"processing_oil":          {Name: "Переработка нефти", Description: "<p>Уменьшает потери при переработке нефти.</p>"},
 		"processing_organic":      {Name: "Переработка органики", Description: "<p>Уменьшает потери при переработке органики.</p>"},
 
-		"production_time":    {Name: "Организация производства", Description: "<p>Уменьшает время необходимое для создания предметов.</p>"},
-		"production_economy": {Name: "Экономия материалов", Description: "<p>Уменьшает кол-во материалов необходимых для производства.</p>"},
-		"ore_extract":        {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи.</p>"},
-		"speed_ore_extract":  {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи.</p>"},
+		"ore_extract":               {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
+		"speed_ore_extract":         {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
+		"speed_oil_extract":         {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
+		"speed_combine_extract":     {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
+		"speed_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
@@ -871,6 +880,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_organic_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для органики"},
 		"body_organic_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики"},
 
+		"body_oil_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти"},
+
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
 		"reduced_body_max_energy_15p": {Description: "На <span class=\"importantly\">15%</span> уменьшает мощность реактора в корпусе."},
@@ -887,10 +901,26 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_protect_10": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
 		"bonus_protect_5":  {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
 
+		"speed_oil_extract_25p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">25%</span>"},
+		"speed_oil_extract_50p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">50%</span>"},
+		"speed_oil_extract_75p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">75%</span>"},
+		"speed_oil_extract_100p": {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">100%</span>"},
+
+		"speed_ore_extract_10p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">10%</span>"},
+		"speed_ore_extract_20p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">20%</span>"},
+		"speed_ore_extract_30p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">30%</span>"},
+		"speed_ore_extract_40p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">40%</span>"},
+
+		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
+		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
+		"speed_combine_extract_30p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">30%</span>"},
+		"speed_combine_extract_40p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">40%</span>"},
+
 		"sync_bonus_small_laser_damage":    {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
 		"sync_bonus_power_charging":        {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
 		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
+		"sync_bonus_oil_capacity":          {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара."},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий."},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона."},
@@ -905,6 +935,9 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_medium_laser_damage":   {Description: "на <span class=\"importantly\">5%</span> повышается урон средних лазерных орудий."},
 		"sync_bonus_ballistic_medium_rate": {Description: "на <span class=\"importantly\">5%</span> скорострельность средних баллистических орудий."},
 		"sync_bonus_medium_missile_reload": {Description: "на <span class=\"importantly\">5%</span> увеличена скорость перезарядки средних пусковых установок."},
+		"sync_bonus_speed_oil_extract":     {Description: "на <span class=\"importantly\">25%</span> увеличена скорость добычи насосов."},
+		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
+		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
 
 		"empty": {Description: ""},
 	},
@@ -1126,6 +1159,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_organic_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для органики"},
 		"body_organic_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики"},
 
+		"body_oil_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для нефти"},
+		"body_oil_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти"},
+
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
 		"reduced_body_max_energy_15p": {Description: "На <span class=\"importantly\">15%</span> уменьшает мощность реактора в корпусе."},
@@ -1141,10 +1179,26 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_protect_10":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
 		"bonus_protect_5":         {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
 
+		"speed_oil_extract_25p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">25%</span>"},
+		"speed_oil_extract_50p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">50%</span>"},
+		"speed_oil_extract_75p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">75%</span>"},
+		"speed_oil_extract_100p": {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">100%</span>"},
+
+		"speed_ore_extract_10p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">10%</span>"},
+		"speed_ore_extract_20p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">20%</span>"},
+		"speed_ore_extract_30p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">30%</span>"},
+		"speed_ore_extract_40p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">40%</span>"},
+
+		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
+		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
+		"speed_combine_extract_30p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">30%</span>"},
+		"speed_combine_extract_40p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">40%</span>"},
+
 		"sync_bonus_small_laser_damage":    {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
 		"sync_bonus_power_charging":        {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
 		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
+		"sync_bonus_oil_capacity":          {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара"},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий"},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона"},
@@ -1160,6 +1214,9 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_ballistic_medium_rate": {Description: "на <span class=\"importantly\">5%</span> скорострельность средних баллистических орудий."},
 		"sync_bonus_medium_missile_damage": {Description: "на <span class=\"importantly\">5%</span> повышается урон средних пусковых установок."},
 		"sync_bonus_medium_missile_reload": {Description: "на <span class=\"importantly\">5%</span> увеличена скорость перезарядки средних пусковых установок."},
+		"sync_bonus_speed_oil_extract":     {Description: "на <span class=\"importantly\">25%</span> увеличена скорость добычи насосов."},
+		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
+		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
 
 		"empty": {Description: ""},
 	},

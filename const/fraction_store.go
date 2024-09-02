@@ -69,6 +69,7 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 44, ItemID: 51, ItemType: "blueprints", Count: 1, Points: 600000, MinRank: 5, Priority: 1},
 	{ID: 45, ItemID: 48, ItemType: "blueprints", Count: 1, Points: 1150000, MinRank: 10, Priority: 3},
 	{ID: 46, ItemID: 121, ItemType: "blueprints", Count: 1, Points: 1450000, MinRank: 10, Priority: 3},
+	{ID: 2030, ItemID: 197, ItemType: "blueprints", Count: 1, Points: 1450000, MinRank: 10, Priority: 3},
 
 	// rigs bp
 	{ID: 2000, ItemID: 165, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
@@ -185,6 +186,7 @@ var ReversesAssortment = []AssortmentPoint{
 	// rang 1
 	{ID: 140, ItemID: 105, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 1},
 	{ID: 141, ItemID: 129, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 2},
+	{ID: 2031, ItemID: 198, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 2},
 	// rang 3
 	{ID: 142, ItemID: 13, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 3, Priority: 1},
 	{ID: 143, ItemID: 65, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 3, Priority: 1},

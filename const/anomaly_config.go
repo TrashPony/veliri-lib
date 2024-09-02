@@ -102,6 +102,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 156, MaxCount: 2, PercentChance: 15},
 			{BpID: 157, MaxCount: 2, PercentChance: 15},
 			{BpID: 160, MaxCount: 2, PercentChance: 15},
+			{BpID: 198, MaxCount: 2, PercentChance: 15},
 		},
 		MaxCountBP: 5, // сколько в коробе может быть разных БП
 	},
@@ -222,6 +223,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 62, MaxCount: 1, PercentChance: 5},
 			{BpID: 58, MaxCount: 1, PercentChance: 5},
 			{BpID: 126, MaxCount: 1, PercentChance: 5},
+			{BpID: 197, MaxCount: 1, PercentChance: 5},
 		},
 		MaxCountBP: 2, // сколько в коробе может быть разных БП
 	},

@@ -495,6 +495,10 @@ func (u *Unit) GetRecoveryPower() int {
 	return int(math.Ceil(u.GetEffects().GetAllBodyBonus(float64(u.getBody().RecoveryPower), "charging_speed", u.getBody().ChassisType, u.getBody().StandardSize)))
 }
 
+func (u *Unit) GetEffectByParameter(startValue float64, parameterName string) float64 {
+	return u.GetEffects().GetAllBonus(startValue, parameterName)
+}
+
 func (u *Unit) GetUnrepairableDamage() int {
 	maxUD := 2 * (u.GetMaxHP() / 3)
 	ud := int(25 * (float64(u.UnrepairableDamage) / 100))
