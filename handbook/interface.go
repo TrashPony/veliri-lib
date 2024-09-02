@@ -2983,6 +2983,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Руда`,
 			_const.EN: `Ore`,
 		},
+		"text_20": {
+			_const.RU: `Органика`,
+			_const.EN: `Organic`,
+		},
 		"storage": {
 			_const.RU: `Склад`,
 			_const.EN: `Storage`,

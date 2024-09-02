@@ -192,6 +192,8 @@ var SourceItemBin = map[string]int{
 	"office_stock":         9,
 	"hangar":               10,
 	"hangar_aInv_resource": 11,
+	"aInv:organic":         12,
+	"hangar_aInv_organic":  13,
 }
 
 var MapBinItems = map[string]int{
@@ -230,3 +232,5 @@ var PointType = map[string]byte{
 	"destroy_structure": 5,
 	"capture_sector":    6,
 }
+
+var AdditionalInventoryKeys = []string{"resource", "organic"}

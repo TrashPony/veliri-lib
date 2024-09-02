@@ -842,12 +842,18 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_power_charging_10":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">10%</span>"},
 		"body_power_charging_5p":  {Description: "Ускоряет подзарядку аккумулятора на <span class=\"importantly\">5%</span>"},
 
-		"invisibility_saving_energy_25":   {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">25%</span>"},
+		"invisibility_saving_energy_25": {Description: "Уменьшает потребление энергии <span class=\"importantly\">модулей невидимости</span> на <span class=\"importantly\">25%</span>"},
+
 		"body_resource_capacity_size_25":  {Description: "На <span class=\"importantly\">25%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_40":  {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды"},
+
+		"body_organic_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики"},
 
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
@@ -868,6 +874,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_small_laser_damage":    {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
 		"sync_bonus_power_charging":        {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
+		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара."},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий."},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона."},
@@ -1098,6 +1105,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_resource_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для руды"},
 		"body_resource_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды"},
 
+		"body_organic_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для органики"},
+		"body_organic_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики"},
+
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
 		"reduced_body_max_energy_15p": {Description: "На <span class=\"importantly\">15%</span> уменьшает мощность реактора в корпусе."},
@@ -1116,6 +1128,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_small_laser_damage":    {Description: "на <span class=\"importantly\">5%</span> повышается урон малых лазерных орудий."},
 		"sync_bonus_power_charging":        {Description: "на <span class=\"importantly\">5%</span> ускоряет подзарядку аккумулятора."},
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
+		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара"},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий"},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона"},
