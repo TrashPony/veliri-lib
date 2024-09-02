@@ -409,11 +409,11 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"production_time":    {Name: "Организация производства", Description: "<p>Уменьшает время необходимое для создания предметов.</p>"},
 		"production_economy": {Name: "Экономия материалов", Description: "<p>Уменьшает кол-во материалов необходимых для производства.</p>"},
 
-		"ore_extract":               {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
-		"speed_ore_extract":         {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
-		"speed_oil_extract":         {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
-		"speed_combine_extract":     {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
-		"speed_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
+		"ore_extract":                {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
+		"speed_ore_extract":          {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
+		"speed_oil_extract":          {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
+		"speed_combine_extract":      {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
+		"chance_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
@@ -544,11 +544,11 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"processing_oil":          {Name: "Переработка нефти", Description: "<p>Уменьшает потери при переработке нефти.</p>"},
 		"processing_organic":      {Name: "Переработка органики", Description: "<p>Уменьшает потери при переработке органики.</p>"},
 
-		"ore_extract":               {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
-		"speed_ore_extract":         {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
-		"speed_oil_extract":         {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
-		"speed_combine_extract":     {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
-		"speed_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
+		"ore_extract":                {Name: "Эксплуатация буровых лазеров", Description: "<p>Повышает объем добычи буровых лазеров.</p>"},
+		"speed_ore_extract":          {Name: "Скорость буровых лазеров", Description: "<p>Повышает скорость добычи буровых лазеров.</p>"},
+		"speed_oil_extract":          {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
+		"speed_combine_extract":      {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
+		"chance_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
