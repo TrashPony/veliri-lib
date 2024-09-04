@@ -1012,21 +1012,53 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN: "Finally I'll get some exercise!",
 	},
 
-	_const.Replicas + "_in_scout_" + Target + "_1": { // TODO
+	_const.Replicas + "_in_scout_" + Target + "_1": {
 		_const.RU: "Уже сдаешься? Это не бесплатная услуга!",
 		_const.EN: "Already giving up? This is not a free service!",
 	},
-	_const.Replicas + "_in_scout_" + Target + "_2": { // TODO
+	_const.Replicas + "_in_scout_" + Target + "_2": {
 		_const.RU: "Как ни пытайся, но тебе не сбежать!",
 		_const.EN: "Already giving up? This is not a free service!",
 	},
-	_const.Replicas + "_in_scout_" + Target + "_3": { // TODO
+	_const.Replicas + "_in_scout_" + Target + "_3": {
 		_const.RU: "Я буду преследовать тебя вечность!",
 		_const.EN: "Already giving up? This is not a free service!",
 	},
-	_const.Replicas + "_in_scout_" + Target + "_4": { // TODO
-		_const.RU: "Приготовься к путешествию в ничто.",
-		_const.EN: "Already giving up? This is not a free service!",
+	_const.Replicas + "_in_scout_" + Target + "_4": {
+		_const.RU: "О-о, сегодня у меня хорошая добыча!",
+		_const.EN: "Oooh, I got a good catch today!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_5": {
+		_const.RU: "Ты уж извини, но твоё добро мне будет нужнее.",
+		_const.EN: "I'm sorry, but I will need your kindness more.",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_6": {
+		_const.RU: "У тебя ни единого шанса против меня!",
+		_const.EN: "You don't stand a chance against me!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_7": {
+		_const.RU: "Сегодня явно не твой день, ведь повстречался именно я!",
+		_const.EN: "Today is clearly not your day, because I was the one you met!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_8": {
+		_const.RU: "После этого дельца обо мне точно заговорят во всех кластерах!",
+		_const.EN: "After this businessman, I will definitely be talked about in all clusters!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_9": {
+		_const.RU: "Тебе не спрятаться!",
+		_const.EN: "You can't hide!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_10": {
+		_const.RU: "Бежать больше некуда!",
+		_const.EN: "There is nowhere else to run!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_11": {
+		_const.RU: "Вот ты и попался!",
+		_const.EN: "Here you are!",
+	},
+	_const.Replicas + "_in_scout_" + Target + "_12": {
+		_const.RU: "Даю слово — ты не будешь мучиться.",
+		_const.EN: "I give you my word - you will not suffer.",
 	},
 
 	_const.Replicas + "_transport_" + Target + "_1": {
@@ -1142,6 +1174,22 @@ var npcGreetings = map[string]map[string]string{
 	_const.Replicas + "_warrior_" + Target + "_11": {
 		_const.RU: "Готов тебя преследовать хоть саму вечность!",
 		_const.EN: "I’m ready to haunt you even for eternity!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_12": {
+		_const.RU: "Тебе не спрятаться!",
+		_const.EN: "You can't hide!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_13": {
+		_const.RU: "Бежать больше некуда!",
+		_const.EN: "There is nowhere else to run!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_14": {
+		_const.RU: "Вот ты и попался!",
+		_const.EN: "Here you are!",
+	},
+	_const.Replicas + "_warrior_" + Target + "_15": {
+		_const.RU: "Даю слово — ты не будешь мучиться.",
+		_const.EN: "I give you my word - you will not suffer.",
 	},
 
 	_const.Replicas + "_expedition_" + Target + "_1": {

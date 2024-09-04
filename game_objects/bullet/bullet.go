@@ -72,6 +72,8 @@ type Bullet struct {
 	ObjectID            int             `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
 	DetonationForceView bool            `json:"-"` // все видят взрыв, независимо от тумана войны
 	MapItem             *inventory.Slot `json:"-"`
+	EquipType           int             `json:"-"`
+	EquipNumber         int             `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool
