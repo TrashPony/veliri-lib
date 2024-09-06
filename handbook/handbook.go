@@ -897,6 +897,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_max_move_speed_10": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">10%</span>"},
 		"bonus_max_move_speed_5":  {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">5%</span>"},
 
+		"bonus_protect_20": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">20%</span>"},
 		"bonus_protect_15": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
 		"bonus_protect_10": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
 		"bonus_protect_5":  {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
@@ -910,6 +911,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"speed_ore_extract_20p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">20%</span>"},
 		"speed_ore_extract_30p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">30%</span>"},
 		"speed_ore_extract_40p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">40%</span>"},
+
+		"ore_saving_energy_15p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">15%</span>"},
+		"ore_saving_energy_30p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">30%</span>"},
+		"ore_saving_energy_45p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">45%</span>"},
+		"ore_saving_energy_60p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">60%</span>"},
 
 		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
 		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
@@ -938,6 +944,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_oil_extract":     {Description: "на <span class=\"importantly\">25%</span> увеличена скорость добычи насосов."},
 		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
 		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
+		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 
 		"empty": {Description: ""},
 	},
@@ -1175,9 +1182,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"bonus_max_move_speed_15": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">15%</span>"},
 		"bonus_max_move_speed_10": {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">10%</span>"},
 		"bonus_max_move_speed_5":  {Description: "Максимальная <span class=\"importantly\">скорость</span> и <span class=\"importantly\">разгон</span> увеличены на <span class=\"importantly\">5%</span>"},
-		"bonus_protect_15":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
-		"bonus_protect_10":        {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
-		"bonus_protect_5":         {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
+
+		"bonus_protect_20": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">20%</span>"},
+		"bonus_protect_15": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">15%</span>"},
+		"bonus_protect_10": {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">10%</span>"},
+		"bonus_protect_5":  {Description: "Увеличение защиты от <span class=\"importantly\">всех типов</span> урона на <span class=\"importantly\">5%</span>"},
 
 		"speed_oil_extract_25p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">25%</span>"},
 		"speed_oil_extract_50p":  {Description: "Повышает скорость добычи насосов на <span class=\"importantly\">50%</span>"},
@@ -1188,6 +1197,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"speed_ore_extract_20p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">20%</span>"},
 		"speed_ore_extract_30p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">30%</span>"},
 		"speed_ore_extract_40p": {Description: "Повышает скорость добычи буровых лазеров на <span class=\"importantly\">40%</span>"},
+
+		"ore_saving_energy_15p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">15%</span>"},
+		"ore_saving_energy_30p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">30%</span>"},
+		"ore_saving_energy_45p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">45%</span>"},
+		"ore_saving_energy_60p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">60%</span>"},
 
 		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
 		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
@@ -1217,6 +1231,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_oil_extract":     {Description: "на <span class=\"importantly\">25%</span> увеличена скорость добычи насосов."},
 		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
 		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
+		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 
 		"empty": {Description: ""},
 	},
@@ -1367,21 +1382,23 @@ var DetailDescription = map[string]map[string]DescriptionItem{
 		"electronics":    {Name: "Electronics", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"steel":          {Name: "Steel", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"wire":           {Name: "Wire", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
-		"wires":          {Name: "Wires", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
+		"wires":          {Name: "Cable", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"gear":           {Name: "Gear", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"titanium_plate": {Name: "Titanium plate", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"batteries":      {Name: "Batteries", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 		"armor_items":    {Name: "Armor items", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
+		"carbon_plate":   {Name: "Carbon fiber", Description: "<p>An expensive component used especially in the fine production of high-tech equipment or structures of various types and purposes.</p>"},
 	},
 	_const.RU: {
 		"electronics":    {Name: "Электроника", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"steel":          {Name: "Сталь", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"wire":           {Name: "Проволока", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
-		"wires":          {Name: "Провода", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
+		"wires":          {Name: "Кабель", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"gear":           {Name: "Шестерня", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"titanium_plate": {Name: "Титановая пластина", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"batteries":      {Name: "Батареи", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 		"armor_items":    {Name: "Элементы брони", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
+		"carbon_plate":   {Name: "Углеродное волокно", Description: "<p>Дорогостоящий компонент, который применяется сугубо в тонком производстве высокотехнологичного снаряжения или сооружений разного типа и назначения.</p>"},
 	},
 }
 
