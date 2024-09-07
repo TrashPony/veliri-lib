@@ -115,6 +115,10 @@ func (r *Resource) GetArmorItems() int {
 	return 0
 }
 
+func (r *Resource) GetCarbonPlate() int {
+	return 0
+}
+
 func (r *Resource) GetRecyclingAlgorithm() string {
 	return r.RecyclingAlgorithm
 }

@@ -27,6 +27,7 @@ type Blueprint struct {
 	TitaniumPlate   int    `json:"titanium_plate"`
 	Batteries       int    `json:"batteries"`
 	ArmorItems      int    `json:"armor_items"`
+	CarbonPlate     int    `json:"carbon_plate"`
 	InMap           bool   `json:"in_map"`
 	BuildObjectID   int    `json:"build_object_id"`
 	DontRecycle     bool   `json:"dont_recycle"`
@@ -126,6 +127,10 @@ func (b *Blueprint) GetBatteries() int {
 
 func (b *Blueprint) GetArmorItems() int {
 	return b.ArmorItems
+}
+
+func (b *Blueprint) GetCarbonPlate() int {
+	return b.CarbonPlate
 }
 
 func (b *Blueprint) GetRecyclingAlgorithm() string {
