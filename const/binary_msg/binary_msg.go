@@ -1138,3 +1138,15 @@ func CreateCombineTargetsBin(ids map[int]bool) []byte {
 
 	return command
 }
+
+func CreateBinaryPollenMove(id, x, y, z, r int) []byte {
+	command := []byte{102}
+
+	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(z)...)
+	command = append(command, game_math.GetIntBytes(r)...)
+
+	return command
+}

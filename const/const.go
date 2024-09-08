@@ -214,6 +214,7 @@ var MapBinItems = map[string]int{
 	"base":            13,
 	"map":             14,
 	"":                15,
+	"pollen_cloud":    16,
 }
 
 var FractionByte = map[string]byte{
@@ -235,4 +236,9 @@ var PointType = map[string]byte{
 	"capture_sector":    6,
 }
 
-var AdditionalInventoryKeys = []string{"resource", "organic", "oil"}
+var AdditionalInventoryKeys = []string{
+	"resource",
+	"organic",
+	"oil",
+	"spice",
+}
