@@ -17,6 +17,16 @@ func IntFromBytes(b []byte) int32 {
 	return x
 }
 
+func IntFromBytesFromJS(b []byte) int {
+	var value int
+	value |= int(b[0])
+	value |= int(b[1]) << 8
+	value |= int(b[2]) << 16
+	value |= int(b[3]) << 24
+
+	return value
+}
+
 func GetIntBytes(x int) []byte {
 
 	b := []byte{
