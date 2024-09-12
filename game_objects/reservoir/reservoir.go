@@ -23,6 +23,7 @@ type Reservoir struct {
 	MaxCount   int     `json:"max_count"`
 	MinCount   int     `json:"min_count"`
 	Damage     int     `json:"-"`
+	LifeTime   int     `json:"-"`
 
 	Scale   int                             `json:"scale"`
 	Shadow  bool                            `json:"shadow"`

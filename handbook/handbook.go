@@ -227,6 +227,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"energy_shield_mini_structure_1": {Name: "Дистанционное силовое поле", Description: "Выбрасывает капсулу с ядром щита, щит работает до тех пор пока в нем есть энергия"},
 		"pump_extracted":                 {Name: "Насос", Description: "Позволяет добывать жидкие ресурсы, включая нефть."},
 		"inventory_scanner_1":            {Name: "Сканер", Description: "<p>Позволяет сканировать трюмы других транспортов.</p> <p>Использование в безопасных секторах - нарушает закон.</p>"},
+		"dust_collector":                 {Name: "Сборщик пыли", Description: "<p></p>"},
+
 		// пассивное
 		"radar_booster_1":                {Name: "radar_booster_1", Description: ""},
 		"view_booster_1":                 {Name: "view_booster_1", Description: ""},
@@ -304,6 +306,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"pump_extracted":                 {Name: "Насос", Description: "Позволяет добывать жидкие ресурсы, включая нефть."},
 		"inventory_scanner_1":            {Name: "Сканер", Description: "Позволяет сканировать трюмы других транспортов."},
 		"mine_bomb_1":                    {Name: "Миноукладчик", Description: "<p>Это устройство, которое позволяет транспортному средству устанавливать мину позади себя.</p><p>Мина срабатывает, если вражеский транспорт попадает в зону поражения мины и взрывается, нанося большой урон и отбрасывая цель.</p>"},
+		"dust_collector":                 {Name: "Сборщик пыли", Description: "<p></p>"},
+
 		// пассивное
 		"radar_booster_1":                {Name: "Репитер сенсоров", Description: "<p>Станция набора усилителей, обеспечивающих увеличенную дальность действия уже установленной радарной системы.</p><p>Радар позволяет обнаруживать и идентифицировать объекты в мире, такие как ресурсы, структуры, транспорты и дроны/ракеты.</p>"},
 		"view_booster_1":                 {Name: "Собирающая линза", Description: "<p>Прототип наблюдательного оборудования, обеспечивающее гарантированное увеличение дальности и качества обзора.</p>"},
@@ -1346,6 +1350,11 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"titanium_ore": {Name: "Titanium ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"oil":          {Name: "Oil", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"organic":      {Name: "Органика", Description: "<p></p>"},
+		"spices":       {Name: "Пыль", Description: "<p></p>"},
+		"disputes_1":   {Name: "Споры 1", Description: "<p></p>"},
+		"disputes_2":   {Name: "Споры 2", Description: "<p></p>"},
+		"resin":        {Name: "Смола", Description: "<p></p>"},
+		"flower":       {Name: "Цветок", Description: "<p></p>"},
 	},
 	_const.RU: {
 		"copper_ore":   {Name: "Медная руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
@@ -1355,6 +1364,11 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"titanium_ore": {Name: "Титановая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"oil":          {Name: "Нефть", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
 		"organic":      {Name: "Органика", Description: "<p></p>"},
+		"spices":       {Name: "Пыль", Description: "<p></p>"},
+		"disputes_1":   {Name: "Споры 1", Description: "<p></p>"},
+		"disputes_2":   {Name: "Споры 2", Description: "<p></p>"},
+		"resin":        {Name: "Смола", Description: "<p></p>"},
+		"flower":       {Name: "Цветок", Description: "<p></p>"},
 	},
 }
 

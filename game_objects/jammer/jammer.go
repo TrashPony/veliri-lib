@@ -24,6 +24,7 @@ type Jammer struct {
 
 	off      bool
 	Work     bool
+	NoMsg    bool
 	forceOff bool
 	user     jammerUser
 
