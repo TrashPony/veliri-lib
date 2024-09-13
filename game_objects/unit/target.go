@@ -1,6 +1,8 @@
 package unit
 
-import "github.com/TrashPony/veliri-lib/game_objects/target"
+import (
+	"github.com/TrashPony/veliri-lib/game_objects/target"
+)
 
 func (u *Unit) GetWeaponTarget(slot int) *target.Target {
 	u.mx.RLock()

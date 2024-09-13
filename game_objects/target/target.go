@@ -27,6 +27,8 @@ type Target struct {
 	Ignore       bool    `json:"ignore"`
 	Update       int64   `json:"-"`
 	MouseTap     bool    `json:"-"`
+	StartTap     bool    `json:"-"`
+	LastTap      bool    `json:"-"`
 	Points       int     `json:"-"`
 	PassAngle    int     `json:"-"`
 }
