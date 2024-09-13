@@ -418,6 +418,7 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"speed_oil_extract":          {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
 		"speed_combine_extract":      {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
 		"chance_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
+		"saving_energy_dust_extract": {Name: "Эксплуатация сборщика пыли", Description: "<p>Уменьшает затраты энергии сборщика пыли.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
@@ -553,6 +554,7 @@ var SkillDescription = map[string]map[string]DescriptionItem{
 		"speed_oil_extract":          {Name: "Эксплуатация насосной установки", Description: "<p>Повышает скорость добычи насосов.</p>"},
 		"speed_combine_extract":      {Name: "Эксплуатация комбайна", Description: "<p>Повышает эффективность добычи комбайна.</p>"},
 		"chance_dismantling_extract": {Name: "Эксплуатация инженерного модуля", Description: "<p>Повышает шанс извлечь детали из обломков.</p>"},
+		"saving_energy_dust_extract": {Name: "Эксплуатация сборщика пыли", Description: "<p>Уменьшает затраты энергии сборщика пыли.</p>"},
 
 		// боеприпасы
 		"small_ballistic_ammo":  {Name: "Малые баллистические боеприпасы", Description: "<p>Увеличивает урон малых баллистических боеприпасов. </p>"},
