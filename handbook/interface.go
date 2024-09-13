@@ -2991,6 +2991,10 @@ class='importantly'>%credits_count% cr</span> from the main deposit?`,
 			_const.RU: `Нефть`,
 			_const.EN: `Oil`,
 		},
+		"text_22": {
+			_const.RU: `Гранулы`,
+			_const.EN: `Granules`,
+		},
 		"storage": {
 			_const.RU: `Склад`,
 			_const.EN: `Storage`,

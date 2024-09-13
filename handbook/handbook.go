@@ -890,6 +890,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_oil_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для нефти"},
 		"body_oil_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти"},
 
+		"body_dust_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для гранул"},
+
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
 		"reduced_body_max_energy_15p": {Description: "На <span class=\"importantly\">15%</span> уменьшает мощность реактора в корпусе."},
@@ -922,6 +927,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ore_saving_energy_45p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">45%</span>"},
 		"ore_saving_energy_60p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">60%</span>"},
 
+		"dust_saving_energy_15p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">15%</span>"},
+		"dust_saving_energy_30p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">30%</span>"},
+		"dust_saving_energy_45p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">45%</span>"},
+		"dust_saving_energy_60p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">60%</span>"},
+
 		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
 		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
 		"speed_combine_extract_30p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">30%</span>"},
@@ -932,6 +942,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
 		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
 		"sync_bonus_oil_capacity":          {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти."},
+		"sync_bonus_dust_capacity":         {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для гранул."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара."},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий."},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона."},
@@ -950,6 +961,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
 		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
+		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
 
 		"empty": {Description: ""},
 	},
@@ -1177,6 +1189,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"body_oil_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для нефти"},
 		"body_oil_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти"},
 
+		"body_dust_capacity_size_40p": {Description: "На <span class=\"importantly\">40%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_30p": {Description: "На <span class=\"importantly\">30%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_20p": {Description: "На <span class=\"importantly\">20%</span> увеличивается вместимость отсека для гранул"},
+		"body_dust_capacity_size_10p": {Description: "На <span class=\"importantly\">10%</span> увеличивается вместимость отсека для гранул"},
+
 		"body_max_energy_10":          {Description: "На <span class=\"importantly\">10%</span> увеличивается мощность реактора в корпусе."},
 		"body_max_energy_25p":         {Description: "На <span class=\"importantly\">25%</span> увеличивается мощность реактора в корпусе."},
 		"reduced_body_max_energy_15p": {Description: "На <span class=\"importantly\">15%</span> уменьшает мощность реактора в корпусе."},
@@ -1209,6 +1226,11 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ore_saving_energy_45p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">45%</span>"},
 		"ore_saving_energy_60p": {Description: "Уменьшает потребляемую энергию буровых лазеров на <span class=\"importantly\">60%</span>"},
 
+		"dust_saving_energy_15p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">15%</span>"},
+		"dust_saving_energy_30p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">30%</span>"},
+		"dust_saving_energy_45p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">45%</span>"},
+		"dust_saving_energy_60p": {Description: "Уменьшает потребляемую энергию собирателя пыли на <span class=\"importantly\">60%</span>"},
+
 		"speed_combine_extract_10p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">10%</span>"},
 		"speed_combine_extract_20p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">20%</span>"},
 		"speed_combine_extract_30p": {Description: "Повышает эффективность добычи комбайна на <span class=\"importantly\">30%</span>"},
@@ -1219,6 +1241,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_resource_capacity":     {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для руды."},
 		"sync_bonus_organic_capacity":      {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для органики."},
 		"sync_bonus_oil_capacity":          {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для нефти."},
+		"sync_bonus_dust_capacity":         {Description: "на <span class=\"importantly\">10%</span> увеличивается вместимость отсека для гранул."},
 		"sync_bonus_radar":                 {Description: "на <span class=\"importantly\">5%</span> увеличение радиуса радара"},
 		"sync_bonus_ballistic_small_rate":  {Description: "на <span class=\"importantly\">5%</span> скорострельность малых баллистических орудий"},
 		"sync_bonus_max_move_speed":        {Description: "на <span class=\"importantly\">5%</span> увеличение максимальной скорость и скорости разгона"},
@@ -1238,6 +1261,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_ore_extract":     {Description: "на <span class=\"importantly\">10%</span> увеличена скорость добычи буровых лазеров."},
 		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
+		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
 
 		"empty": {Description: ""},
 	},

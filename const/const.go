@@ -196,6 +196,8 @@ var SourceItemBin = map[string]int{
 	"hangar_aInv_organic":  13,
 	"aInv:oil":             14,
 	"hangar_aInv_oil":      15,
+	"aInv:dust":            16,
+	"hangar_aInv_dust":     17,
 }
 
 var MapBinItems = map[string]int{
@@ -240,5 +242,5 @@ var AdditionalInventoryKeys = []string{
 	"resource",
 	"organic",
 	"oil",
-	"spice",
+	"dust",
 }
