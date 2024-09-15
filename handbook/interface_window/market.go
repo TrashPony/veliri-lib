@@ -61,6 +61,10 @@ var Market = map[string]map[string]string{
 		_const.RU: `Товары`,
 		_const.EN: `Products`,
 	},
+	"cat_10": {
+		_const.RU: `Топливо`,
+		_const.EN: `Fuel`,
+	},
 	"size_t1": {
 		_const.RU: `Малые`,
 		_const.EN: `Small`,

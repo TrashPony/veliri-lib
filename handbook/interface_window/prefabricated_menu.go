@@ -11,6 +11,10 @@ var PrefabricatedMenu = map[string]map[string]string{
 		_const.RU: `Модуль сервиса уничтожен или отключен.`,
 		_const.EN: `The service module has been destroyed or disabled.`,
 	},
+	"error_2": {
+		_const.RU: `Не хватило предметов.`,
+		_const.EN: `Not enough items.`,
+	},
 	"not_allow": {
 		_const.RU: `Мы не доверяем вам и поэтому этот сервис не доступен.`,
 		_const.EN: `We do not trust you and therefore this service is not available.`,
@@ -34,5 +38,9 @@ var PrefabricatedMenu = map[string]map[string]string{
 	"need_resources": {
 		_const.RU: `Необходимо ресурсов`,
 		_const.EN: `Resources needed`,
+	},
+	"result": {
+		_const.RU: `Результат`,
+		_const.EN: `Result`,
 	},
 }

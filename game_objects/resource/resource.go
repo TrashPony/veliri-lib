@@ -6,6 +6,7 @@ type Resource struct {
 	Specification string `json:"specification"`
 	Size          int    `json:"size"`
 	Count         int    `json:"count"`
+	DefaultPrice  int64  `json:"default_price"`
 
 	// описывает что выходит из этих ресурсов при переработке
 	EnrichedThorium int `json:"enriched_thorium"`
@@ -81,6 +82,34 @@ func (r *Resource) GetPlastic() int {
 
 func (r *Resource) GetCarbon() int {
 	return r.Carbon
+}
+
+func (r *Resource) GetOrganic() int {
+	return 0
+}
+
+func (r *Resource) GetSpices() int {
+	return 0
+}
+
+func (r *Resource) GetDisputes1() int {
+	return 0
+}
+
+func (r *Resource) GetDisputes2() int {
+	return 0
+}
+
+func (r *Resource) GetResin() int {
+	return 0
+}
+
+func (r *Resource) GetFlower() int {
+	return 0
+}
+
+func (r *Resource) GetOil() int {
+	return 0
 }
 
 func (r *Resource) GetSteel() int {

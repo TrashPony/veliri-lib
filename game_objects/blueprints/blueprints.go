@@ -19,6 +19,13 @@ type Blueprint struct {
 	Silicon         int    `json:"silicon"`
 	Plastic         int    `json:"plastic"`
 	Carbon          int    `json:"carbon"`
+	Organic         int    `json:"organic"`
+	Oil             int    `json:"oil"`
+	Spices          int    `json:"spices"`
+	Disputes1       int    `json:"disputes_1"`
+	Disputes2       int    `json:"disputes_2"`
+	Resin           int    `json:"resin"`
+	Flower          int    `json:"Flower"`
 	Steel           int    `json:"steel"`
 	Wire            int    `json:"wire"`
 	Electronics     int    `json:"electronics"`
@@ -95,6 +102,34 @@ func (b *Blueprint) GetPlastic() int {
 
 func (b *Blueprint) GetCarbon() int {
 	return b.Carbon
+}
+
+func (b *Blueprint) GetOrganic() int {
+	return b.Organic
+}
+
+func (b *Blueprint) GetSpices() int {
+	return b.Spices
+}
+
+func (b *Blueprint) GetDisputes1() int {
+	return b.Disputes1
+}
+
+func (b *Blueprint) GetDisputes2() int {
+	return b.Disputes2
+}
+
+func (b *Blueprint) GetResin() int {
+	return b.Resin
+}
+
+func (b *Blueprint) GetFlower() int {
+	return b.Flower
+}
+
+func (b *Blueprint) GetOil() int {
+	return b.Oil
 }
 
 func (b *Blueprint) GetSteel() int {

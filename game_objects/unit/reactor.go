@@ -1,9 +1,9 @@
 package unit
 
 import (
-	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
+	"strconv"
 )
 
 func (u *Unit) WorkReactorPower(removeCount int) {
@@ -22,9 +22,9 @@ func (u *Unit) WorkReactorPower(removeCount int) {
 		for _, slot := range u.getBody().ThoriumSlots {
 			if slot.GetCount() > 0 {
 				slot.WorkedOut++
-				if slot.WorkedOut >= _const.PowerInWork {
+				if slot.WorkedOut >= slot.Fuel.EnergyCap {
 					slot.WorkedOut = 0
-					slot.SetCount(slot.GetCount() - 1)
+					slot.SetCount(slot.GetCount()-1, slot.Fuel)
 				}
 			}
 		}
@@ -64,6 +64,24 @@ var reactorChangeParameters = []string{"radar", "view", "turn_speed", "reverse_f
 func (u *Unit) AppendFuelModifier() {
 	for _, parameter := range reactorChangeParameters {
 		u.RemoveEffect("fuel_" + parameter)
+		for _, slot := range u.getBody().ThoriumSlots {
+			u.RemoveEffect("fuel_" + parameter + strconv.Itoa(slot.Number)) // TODO производительность?
+		}
+	}
+
+	for _, slot := range u.getBody().ThoriumSlots {
+		if slot.GetCount() > 0 {
+			// с каждой ячейки добавляем баф, то есть если ячейки 3 то можно сделать баф х3 или 3 разных
+			for _, ef := range slot.Fuel.Bonuses {
+				u.AddEffect(&effect.Effect{
+					UUID:        "fuel_" + ef.Parameter + strconv.Itoa(slot.Number), // TODO производительность?
+					Parameter:   ef.Parameter,
+					Quantity:    ef.Quantity,
+					Percentages: ef.Percentages,
+					Subtract:    ef.Subtract,
+				})
+			}
+		}
 	}
 
 	percentFuel := u.EfficiencyReactor() * 100

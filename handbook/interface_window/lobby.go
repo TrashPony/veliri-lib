@@ -65,6 +65,10 @@ var Lobby = map[string]map[string]string{
 		_const.RU: `не установлен`,
 		_const.EN: `not installed`,
 	},
+	"text_13": {
+		_const.RU: `Не хватает места в трюме`,
+		_const.EN: `Not enough space in the hold`,
+	},
 	// Lobby
 	"text_4": {
 		_const.RU: `Сектор атакован!`,

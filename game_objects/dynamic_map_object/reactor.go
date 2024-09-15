@@ -1,9 +1,12 @@
 package dynamic_map_object
 
-import _const "github.com/TrashPony/veliri-lib/const"
+import (
+	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_objects/fuel"
+)
 
-func (o *Object) SetThorium(count int) {
-	o.EnergyCell.SetCount(o.EnergyCell.GetCount() + count)
+func (o *Object) SetThorium(count int, f fuel.Fuel) {
+	o.EnergyCell.SetCount(o.EnergyCell.GetCount()+count, f)
 }
 
 func (o *Object) ReactorWork() {
@@ -17,7 +20,7 @@ func (o *Object) ReactorWork() {
 		// если ячейка отработала свой ресурс то удаляем ее
 		if o.EnergyCell.WorkedOut >= 100 {
 			o.EnergyCell.WorkedOut = 0
-			o.EnergyCell.SetCount(o.EnergyCell.GetCount() - 1)
+			o.EnergyCell.SetCount(o.EnergyCell.GetCount()-1, o.EnergyCell.Fuel)
 		}
 	}
 }

@@ -19,7 +19,7 @@ const (
 	ServerTickSecPart = float64(int(1000 / ServerTick))
 	AiTick            = 1000 // если меняешь посмотри что везде правильно сработает таймаут
 
-	PowerInWork = 1000 // 1 заряд равен 100 энергии
+	PowerInWork = 300 // 1 заряд равен 100 энергии
 
 	// очки опыта
 	// Оружия
@@ -178,6 +178,7 @@ var ItemBinTypes = map[string]int{
 	"blueprints": 9,
 	"trash":      10,
 	"product":    11,
+	"fuel":       12,
 }
 
 var SourceItemBin = map[string]int{

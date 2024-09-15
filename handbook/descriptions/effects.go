@@ -290,6 +290,10 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
 
+		"effect_nuclear_fuel":   {Description: "На <span class=\"importantly\">1%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_synthetic_fuel": {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_jet_fuel":       {Description: "На <span class=\"importantly\">3%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+
 		"empty": {Description: ""},
 	},
 	_const.RU: {
@@ -589,6 +593,10 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_combine_extract": {Description: "на <span class=\"importantly\">10%</span> увеличена эффективность добычи комбайна."},
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
+
+		"effect_nuclear_fuel":   {Description: "На <span class=\"importantly\">1%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_synthetic_fuel": {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_jet_fuel":       {Description: "На <span class=\"importantly\">3%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
 
 		"empty": {Description: ""},
 	},

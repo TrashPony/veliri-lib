@@ -56,6 +56,7 @@ var AllDescription = map[string]map[string]map[string]descriptions.DescriptionIt
 	"product":    descriptions.ProductsDescription,
 	"rank":       descriptions.RankDescription,
 	"effects":    descriptions.EffectsDescription,
+	"fuel":       descriptions.FuelDescription,
 }
 
 func GetInfo(t, l, n string) descriptions.DescriptionItem {
