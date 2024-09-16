@@ -22,13 +22,14 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"replic_weapon_3":   {Name: "Condor", Description: "<p> If you are looking for something in between - Condor - the recommendation from Replic. This gun has managed to establish itself as reliable, powerful enough and comfortable enough to firmly take a place in the Replic army. </p>"},
 		"reverses_weapon_2": {Name: "Discharge", Description: "<p> Standardized for military needs, Reverses cannon - capable of hitting targets by firing two swift missiles. The average rate of fire and the small volume of charged charges are compensated for by the quick turn of the gun. </p>"},
 		"reverses_weapon_3": {Name: "Rank-Mark 2", Description: "<p> Discharge-Mark 2 is a continuation of the ideas laid down by the previous version of Discharge. This is a more advanced weapon that combines the advantages of its predecessor. Those who like to stand aside and watch an explosive show will love this product twice. </p>"},
-		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"},
-		"far_god_1":         {Name: "far_god_1", Description: ""},
-		"far_god_2":         {Name: "far_god_2", Description: ""},
-		"far_god_3":         {Name: "far_god_3", Description: ""},
-		"far_god_4":         {Name: "far_god_4", Description: ""},
-		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p></p>"},
-		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p></p>"},
+		"far_god_1":         {Name: "LBL-X", Description: "<p>Officially, previously, never mentioned anywhere, an energy weapon that is a particle projector cannon by its characteristics. Apparently, LBL-X was created under artisanal conditions by some extremely talented synth gunsmith.</p>"},
+		"far_god_2":         {Name: "Leffy", Description: "<p>Volley fire rocket launcher presented by an easily manipulable slipway with many connected barrels. It is believed that Leffy is not the most successful design solution of Reversec. It is known that a batch of this weapon was destroyed, but Terreus still managed to steal one of its samples.</p>"},
+		"far_god_3":         {Name: "Ultra-10", Description: "<p>An anti-aircraft machine gun that was adapted for firing at ground targets and created by Replics. Subsequently, the 'Ultra' model was artisanal upgraded by Iair. After several unsuccessful iterations, they received the most effective variation.</p>"},
+		"far_god_4":         {Name: "Impulse", Description: "<p>A creation of Replics, which is a ballistic weapon of impressive destructive power, but it did not enter mass production due to its size and overwhelming force of reverse inertia.</p>"},
+
+		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"}, // TODO
+		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
+		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
 	},
 	_const.RU: {
 		"replic_weapon_1":   {Name: "Фуриоса", Description: "<p>Желаете по достоинству оценить мощь Replic? Фуриоса – даст вам такую последнюю возможность. Эта мортира наносит настолько сокрушительный урон, что не оставит от ваших соперников и следа. Идеальное решение для тех, кто предпочитает поражать цели на большом расстоянии по навесной траектории, пожертвовав взамен точностью и скоростью поворота орудия.</p>"},
@@ -39,8 +40,6 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"explores_weapon_2": {Name: "Филаз", Description: "<p>Дешёвый, неприхотливый и массовый – самое лучшее, что можно сказать о линейке лучепускателей – «Филаз».  Отдушиной в данном нишевом товаре от Explores можно считать высокую точность попадания режущего луча по цели.</p>"},
 		"explores_weapon_3": {Name: "EzE-T", Description: "<p>Хотите пулемёт, но не желаете закупать тонны амуниции - «EzE-T» специализированная разработка Explores касательно развития потенциала боевых лазеров. Данный частотный испускатель, если и не попадёт в цель, то как минимум деморализует любого, кто попытается выступить против вас.</p>"},
 		"explores_weapon_4": {Name: "О-Кеот", Description: "<p>О-Кеот – ещё одно развитие наряду с «EzE-T» возможностей лазерного вооружения. На сей раз, оружейные конструкторы Explores пошли по иному направлению и сумели разработать массовый делитель лучей, работающий по принципу дробовика и буквально расплавляющий цель в зоне поражения.</p>"},
-		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
-		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
 		"reverses_weapon_1": {Name: "Судья", Description: "<p>Аннигилируйте пространство. Не дайте шанса врагу уйти.  Сокрушите огромным залпом из восьми последовательных ракет и вынесите окончательный приговор. Судья – передовое ракетное вооружение Reverses. </p>"},
 		"reverses_weapon_2": {Name: "Разряд", Description: "<p>Стандартизированное под войсковые нужды Reverses орудие – способное путём выпуска двух стремительных ракет, поражать цели. Средний темп стрельбы и маленький объём заряжаемых зарядов, компенсируется быстротой поворота орудия.</p>"},
 		"reverses_weapon_3": {Name: "Разряд-Марк 2", Description: "<p>Разряд-Марк 2 -  продолжение идей, заложенных предыдущей версией «Разряд». Это более усовершенствованное орудие, что собрало в себе плюсы предшественника. Любителям стоять в сторонке и наблюдать за взрывоопасным шоу – это изделие понравится вдвойне.</p>"},
@@ -51,10 +50,13 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"small_laser":       {Name: "УКВ", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  Но из-за недостаточной материальной базы, а также задействования схем предыдущей эпохи, изделие не может похвастаться чем-то выдающимся, хотя и не стоит на ступени ниже по сравнению с аналогами «Синтетов» касательно лазерно-лучевого вооружения.</p>"},
 		"small_missile":     {Name: "Центурион", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Центурион» - представлен ракетной системой, собранной из образцов некогда существовавших на планете ракетно-залповых систем и, пытающийся вместить в себе лучшие их стороны.  В частности, возможно ведения огня как «самонаводящимися», так и «неуправляемыми» ракетами.</p>"},
 		"tank_gun":          {Name: "Ингибитор", Description: "<p>Самостоятельная разработка машинного разума \"APD\" с целью создания новых оружейных систем.  «Ингибитор» - самая обыденная и достаточная эффективная в своих рамках пушка. Она способна поражать различные цели, не слишком дорога в производстве и конкурентоспособна с аналогами «Синтетов».</p>"},
+		"far_god_1":         {Name: "LBL-X", Description: "<p>Официально, ранее, нигде не упоминаемое энергетическое оружие, что по своим характеристикам является - пушкой-проектором частиц. Судя по всему, LBL-X был создан при кустарных условиях неким крайне талантливым синтетом-оружейником.</p>"},
+		"far_god_2":         {Name: "Леффи", Description: "<p>Ракетное вооружение залпового огня, представленное легко манипулируемым стапелем со множеством соединённых стволов. Принято считать, что Леффи - не самое удачное конструкторское решение Reversec. Известно, что партия данного оружия была подвергнута уничтожению, однако Терреусу, всё-таки удалось выкрасть один из его образцов.</p>"},
+		"far_god_3":         {Name: "Ультра-10", Description: "<p>Зенитный пулемёт, что был адаптирован для ведения огня по наземным целям и созданный Replics. Впоследствии, модель “Ультра” была кустарно модернизирована Иаиром. Спустя несколько неудачных итераций, получив максимально эффективную вариацию.</p>"},
+		"far_god_4":         {Name: "Импульс", Description: "<p>Творение Replics, представляющее из себя баллистическое орудие внушительной поражающей силы, которое не вошло в массовое производство из-за своих габаритов и непреодолимой силы обратной инерции.</p>"},
+
 		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"}, // TODO
-		"far_god_1":         {Name: "far_god_1", Description: ""},
-		"far_god_2":         {Name: "far_god_2", Description: ""},
-		"far_god_3":         {Name: "far_god_3", Description: ""},
-		"far_god_4":         {Name: "far_god_4", Description: ""},
+		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
+		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
 	},
 }

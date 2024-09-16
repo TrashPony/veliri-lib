@@ -20,7 +20,7 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"big_missile_bullet":            {Name: "System.O-5 - Large rocket", Description: "<p> Massive and military-standardized missile of great destructive power. Cannot be used in missile weapons with an average overall weight or less. </p>"},
 		"small_lens":                    {Name: "Small focusing cartridge", Description: "<p> Standardized cartridge for charging small and medium-sized laser beam impact tools. </p>"},
 		"small_lens_beam":               {Name: "Малый лучевой картридж", Description: "<p></p>"},
-		"small_missile_bullet":          {Name: "Маля ракета", Description: "<p></p>"},
+		"small_missile_bullet":          {Name: "Малая ракета", Description: "<p></p>"},
 		"big_lens_1":                    {Name: "big_lens_1", Description: "<p></p>"},
 		"medium_lens_beam":              {Name: "medium_lens_beam", Description: "<p></p>"},
 	},
@@ -34,15 +34,15 @@ var AmmoDescription = map[string]map[string]DescriptionItem{
 		"small_lens":                    {Name: "Малый фокусирующий картридж", Description: "<p>Стандартизированный картридж для зарядки в малые и средние орудия лазерно-лучевого воздействия.</p>"},
 		"medium_lens":                   {Name: "Средний фокусирующий картридж", Description: "<p>Стандартизированный картридж для зарядки в средние и крупные орудия лазерно-лучевого воздействия.</p>"},
 		"piu-piu_2":                     {Name: "Б-а мелкокалиберный снаряд", Description: "<p>Стандартизированный тип мелкокалиберных снарядов для кинетических и баллистических орудий, не обеспечивающих высокий урон, но, как правило, способствующие высокой кучности и скорострельности.</p>"},
-		"piu-piu_3":                     {Name: "Бронебойный мелкокалиберный снаряд", Description: "<p>Обладает высоким уроном и высокой скорость полета пули, однако малой дальностью</p>"}, // TODO
-		"piu-piu_4":                     {Name: "Разрывной мелкокалиберный снаряд", Description: "<p>Обладает высоким уроном, уроном по площади, высоким разбросом и малой дальностью</p>"},  // TODO
-		"piu-piu_5":                     {Name: "Бронебойный среднекалиберной снаряд", Description: "<p>Высокая скорость полета и урон, нет урона по площади</p>"},                           // TODO
-		"piu-piu_6":                     {Name: "Кумулятивный среднекалиберной снаряд", Description: "<p>Огромный урон, малая дальность и высокий разброс.</p>"},                             // TODO
+		"piu-piu_3":                     {Name: "Бронебойный мелкокалиберный снаряд", Description: "<p>Обладает высоким уроном и высокой скорость полета пули, однако малой дальностью</p>"},
+		"piu-piu_4":                     {Name: "Разрывной мелкокалиберный снаряд", Description: "<p>Обладает высоким уроном, уроном по площади, высоким разбросом и малой дальностью</p>"},
+		"piu-piu_5":                     {Name: "Бронебойный среднекалиберной снаряд", Description: "<p>Высокая скорость полета и урон, нет урона по площади</p>"},
+		"piu-piu_6":                     {Name: "Кумулятивный среднекалиберной снаряд", Description: "<p>Огромный урон, малая дальность и высокий разброс.</p>"},
 		"aim_medium_missile_bullet":     {Name: "Цикада - Самонаводящиеся средняя ракета", Description: "<p>Цикада – развитие линейки неуправляемых ракет семейства «Система» с целью создания самонаводящихся на цель снарядов. Обеспечивает усреднённый урон по любым захваченным целям.</p>"},
 		"aim_big_missile_bullet":        {Name: "Воздаятель - Самонаводящиеся большая ракета", Description: "<p>Воздаятель – продолжение идей, начатых в «Цикада» и линейке семейства неуправляемых ракет «Система». Эта самонаводящаяся ракета, что может быть использована только в крупногабаритных ракетных огневых системах, истинный ужас для врагов, что были ею захвачены.</p>"},
-		"small_lens_beam":               {Name: "Малый лучевой картридж", Description: "<p></p>"}, // TODO
-		"small_missile_bullet":          {Name: "Малая ракета", Description: "<p></p>"},           // TODO
-		"big_lens_1":                    {Name: "big_lens_1", Description: "<p></p>"},
+		"small_lens_beam":               {Name: "Малый лучевой картридж", Description: "<p></p>"},
+		"small_missile_bullet":          {Name: "Малая ракета", Description: "<p></p>"},
+		"big_lens_1":                    {Name: "Большой фокусирующий картридж", Description: "<p></p>"},
 		"medium_lens_beam":              {Name: "medium_lens_beam", Description: "<p></p>"},
 	},
 }

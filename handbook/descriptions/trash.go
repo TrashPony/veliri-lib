@@ -11,7 +11,6 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"deactivated_reactor":           {Name: "Deactivated reactor", Description: "<p> A deactivated reactor is a sample of a reactor standardized in the \"Sintet\" environment, capable of generating enough energy to power entire bases with it. </p>"},
 		"ammunition_Gonchkins":          {Name: "Ammunition \"Gonchkins\"", Description: "<p> Gonchkins ammunition is a type of projectile designed specifically for the Honchkins ballistic weapon. In the affected area, it has incredible destructive power. </p>"},
 		"security_bots":                 {Name: "Security bots", Description: "<p> Security bots are bots of a purely military type that are used in patrolling the area, conducting military and peacekeeping operations. Due to the simplicity of the design idea, their AI is often prone to deviant behavior. </p>"},
-		"Replic_label":                  {Name: "Replic Faction Label", Description: "<p> </p>"},
 		"political_message":             {Name: "Political message", Description: "<p> Political message - demands, claims, needs and ultimatums. Typically, these are the temporary data holders. </p>"},
 		"data_block":                    {Name: "Data block", Description: "<p> Data block - ordinary \"civilian\" storage devices that are used to store and transmit data in various directions. The manufacturer does not ensure the security of information. </p>"},
 		"scientific_materials":          {Name: "Scientific materials", Description: "<p> Research papers - documented findings, final reports, and research papers on a variety of topics. </p>"},
@@ -37,12 +36,14 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"subatomic_reactor":             {Name: "Subatomic reactor", Description: "<p> A subatomic reactor is a fragile and incredibly dangerous in its own destruction engineering facility, capable of powering entire bases of \"Synthets\". </p>"},
 		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>A mysterious artifact, fraught with great power. </p>"},
 		"weapon_nutrients":              {Name: "Weapon nutrients", Description: "<p>Consumables are used in industrial types of tools</p>"},
-		"egg":                           {Name: "Egg", Description: "<p>Яиичко11</p>"},
 		"orbital_drop_beacons":          {Name: "Orbital drop beacons", Description: "<p>Used to signal orbital systems</p>"},
-		"blue_fragile_capsule":          {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
-		"red_fragile_capsule":           {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
-		"ground_drone_3":                {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
-		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
+
+		"egg":                  {Name: "Egg", Description: "<p>Яиичко11</p>"},
+		"blue_fragile_capsule": {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
+		"red_fragile_capsule":  {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
+		"ground_drone_3":       {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
+		"Replic_label":         {Name: "Replic Faction Label", Description: "<p> </p>"},
+		"teleport_hack":        {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -77,12 +78,13 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>Загадочный артефакт, таящий в себе великую силу.</p>"},
 		"weapon_nutrients":              {Name: "Питательные элементы орудий", Description: "<p>Расходные элементы использующиеся в энергетических видах орудий</p>"},
 		"orbital_drop_beacons":          {Name: "Маяки орбитального сброса", Description: "<p>Используются для подачи сигнала орбитальным системам</p>"},
-		"egg":                           {Name: "Яйцо", Description: "<p>Яиичко11</p>"},                                                                                 // TODO
-		"blue_fragile_capsule":          {Name: "Голубая капсула", Description: "<p></p>"},                                                                              // TODO
-		"red_fragile_capsule":           {Name: "Красная капсула", Description: "<p></p>"},                                                                              // TODO
-		"ground_drone_3":                {Name: "Древний боевой дрон", Description: "<p></p>"},                                                                          // TODO
-		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"},                                                                     // TODO
 		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвестного происхождение, постоянно излучает сильный сигнал.</p>"}, // TODO
-		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
+
+		"egg":                  {Name: "Яйцо", Description: "<p>Яиичко11</p>"},             // TODO
+		"blue_fragile_capsule": {Name: "Голубая капсула", Description: "<p></p>"},          // TODO
+		"red_fragile_capsule":  {Name: "Красная капсула", Description: "<p></p>"},          // TODO
+		"ground_drone_3":       {Name: "Древний боевой дрон", Description: "<p></p>"},      // TODO
+		"Replic_label":         {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"}, // TODO
+		"teleport_hack":        {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
 	},
 }
