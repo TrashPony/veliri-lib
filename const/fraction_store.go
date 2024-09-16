@@ -106,6 +106,7 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 94, ItemID: 104, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 1},
 	{ID: 95, ItemID: 64, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 	{ID: 102, ItemID: 129, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 2},
+	{ID: 2032, ItemID: 207, ItemType: "blueprints", Count: 1, Points: 100000, MinRank: 1, Priority: 1},
 
 	// rang 3
 	{ID: 96, ItemID: 13, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 3, Priority: 1},
