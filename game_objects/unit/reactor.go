@@ -40,6 +40,7 @@ func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot) {
 		if s != nil {
 			slot.Count = s.Count
 			slot.WorkedOut = s.WorkedOut
+			slot.Fuel = s.Fuel
 		}
 	}
 }
