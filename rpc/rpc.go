@@ -3,6 +3,7 @@ package rpc
 import (
 	"bytes"
 	"encoding/gob"
+	"encoding/json"
 	"fmt"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/anomaly"
@@ -41,6 +42,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/violator"
 	"github.com/valyala/gorpc"
 	"log"
+	"runtime/debug"
 )
 
 type RPC struct {
@@ -53,7 +55,12 @@ func CheckMsg(request interface{}) {
 	defer func() {
 		err := recover()
 		if err != nil {
+			debug.PrintStack()
 			fmt.Println("CheckMsg: ", request, err)
+			data, e := json.Marshal(request)
+			if e != nil {
+				fmt.Println("json_data: ", data)
+			}
 		}
 	}()
 
