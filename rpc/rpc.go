@@ -50,12 +50,10 @@ type RPC struct {
 }
 
 func CheckMsg(request interface{}) {
-	return
-
 	defer func() {
 		err := recover()
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("CheckMsg: ", request, err)
 		}
 	}()
 
