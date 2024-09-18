@@ -91,7 +91,7 @@ func GobRegister() {
 
 	gob.Register(map[int]*info_map.InfoMap{})
 	gob.Register(map[int]map[int]lvl_map.LvlMap{})
-	gob.Register(dynamic_map_object.Object{})
+
 	gob.Register(reservoir.Reservoir{})
 	gob.Register(notify.Notify{})
 	gob.Register([]*spawn.Spawn{})
@@ -153,4 +153,6 @@ func GobRegister() {
 
 	gob.Register([]unit.Decal{})
 	gob.Register(unit.Decal{})
+
+	gob.Register(dynamic_map_object.MinObject{})
 }
