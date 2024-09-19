@@ -108,7 +108,7 @@ func (s *Squad) fillStateEquip() {
 		}
 
 		if slot.Source == "Constructor" {
-			if slot.TypeSlot == 0 {
+			if slot.TypeSlot == 4 {
 				weaponSlot := s.GetMS().GetWeaponSlot(slot.Slot)
 				if weaponSlot != nil && weaponSlot.Weapon != nil {
 					slot.StartReload = weaponSlot.StartReloadTime
@@ -136,10 +136,6 @@ func (s *Squad) fillStateEquip() {
 					//slot.Slot = 0
 				}
 			}
-		}
-
-		if slot.Source == "squadInventory" {
-
 		}
 	}
 }
@@ -173,11 +169,16 @@ func (s *Squad) SwitchEquipPanelCell(src, dst int) {
 }
 
 func (s *Squad) SetEquipPanelFromJSON(jsonData []byte) {
+	s.mx.Lock()
+	defer func() {
+		s.mx.Unlock()
+		s.fillStateEquip()
+	}()
+
 	s.equipPanel = make(map[int]*EquipSell)
 	_ = json.Unmarshal(jsonData, &s.equipPanel)
 	s.equipPanel[0] = &EquipSell{TypeSlot: -1, Source: "empty"}
 	s.equipPanelRerender = true
-	s.fillStateEquip()
 }
 
 func (s *Squad) GetJSONEquipPanel() []byte {

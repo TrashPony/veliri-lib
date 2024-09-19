@@ -70,15 +70,6 @@ func (u *Unit) GetBodyThoriumSlotKeys() []int {
 	return keys
 }
 
-func (u *Unit) GetMaxRecoveryReactorPower() int {
-	maxRecover := 0
-	for _, slot := range u.getBody().ThoriumSlots {
-		maxRecover += slot.ProcessingThorium * u.GetRecoveryPower()
-	}
-
-	return maxRecover
-}
-
 func (u *Unit) GetBodyThoriumSlot(numberSlot int) *detail.ThoriumSlot {
 	return u.getBody().GetThoriumSlot(numberSlot)
 }

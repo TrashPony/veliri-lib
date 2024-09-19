@@ -167,18 +167,18 @@ const (
 
 var ItemBinTypes = map[string]int{
 	"":           0,
-	"weapon":     1,
-	"ammo":       2,
-	"equip":      3,
-	"body":       4,
-	"resource":   5,
-	"recycle":    6,
-	"detail":     7,
-	"boxes":      8,
-	"blueprints": 9,
-	"trash":      10,
-	"product":    11,
-	"fuel":       12,
+	"weapon":     11,
+	"ammo":       12,
+	"equip":      13,
+	"body":       14,
+	"resource":   15,
+	"recycle":    16,
+	"detail":     17,
+	"boxes":      18,
+	"blueprints": 19,
+	"trash":      20,
+	"product":    21,
+	"fuel":       22,
 }
 
 var SourceItemBin = map[string]int{
@@ -199,6 +199,8 @@ var SourceItemBin = map[string]int{
 	"hangar_aInv_oil":      15,
 	"aInv:dust":            16,
 	"hangar_aInv_dust":     17,
+	"aInv:fuel":            18,
+	"hangar_aInv_fuel":     19,
 }
 
 var MapBinItems = map[string]int{
@@ -244,4 +246,5 @@ var AdditionalInventoryKeys = []string{
 	"organic",
 	"oil",
 	"dust",
+	"fuel",
 }

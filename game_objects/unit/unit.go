@@ -79,9 +79,10 @@ type Unit struct {
 	police             bool
 	fractionWarrior    bool
 	lights             bool
-	Role               string `json:"-"`
-	UnrepairableDamage int    `json:"-"`
-	FractionByte       byte   `json:"-"`
+	Role               string  `json:"-"`
+	UnrepairableDamage int     `json:"-"`
+	FractionByte       byte    `json:"-"`
+	ReactorEfficiency  float64 `json:"-"`
 
 	Decals []Decal
 }

@@ -192,6 +192,10 @@ var Inventory = map[string]map[string]string{
 		_const.RU: `Гранулы`,
 		_const.EN: `Granules`,
 	},
+	"text_23": {
+		_const.RU: `Топливо`,
+		_const.EN: `Fuel`,
+	},
 	"storage": {
 		_const.RU: `Склад`,
 		_const.EN: `Storage`,

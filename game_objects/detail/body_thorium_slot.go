@@ -6,23 +6,18 @@ import (
 )
 
 type ThoriumSlot struct {
-	ID                int64     `json:"id"`
-	Number            int       `json:"number_slot"`
-	Count             int       `json:"count"`
-	MaxCount          int       `json:"max_count"`
-	WorkedOut         int       `json:"worked_out"`
-	Inversion         bool      `json:"inversion"`
-	ProcessingThorium int       `json:"processing_thorium"`
-	Fuel              fuel.Fuel `json:"fuel"`
+	ID          int64     `json:"id"`
+	Number      int       `json:"number_slot"`
+	Worked      int       `json:"worked_out"`
+	CurrentFuel fuel.Fuel `json:"fuel"`
+	NextFuel    fuel.Fuel `json:"next_fuel"`
+	Reload      bool      `json:"-"`
+	SendRequest bool      `json:"-"`
 }
 
-func (t *ThoriumSlot) GetCount() int {
-	return t.Count
-}
-
-func (t *ThoriumSlot) SetCount(count int, fuel fuel.Fuel) {
-	t.Count = count
-	t.Fuel = fuel
+func (t *ThoriumSlot) SetFuel(fuel fuel.Fuel) {
+	t.CurrentFuel = fuel
+	t.Worked = fuel.EnergyCap
 }
 
 func (t *ThoriumSlot) GetJSON() string {

@@ -166,7 +166,7 @@ func (inv *Inventory) GetSlotByTypeAndIDItem(itemID int, itemType string) []*Slo
 	slots := make([]*Slot, 0)
 
 	for _, slot := range inv.slots {
-		if slot != nil && slot.Type == itemType && slot.ItemID == itemID {
+		if slot != nil && slot.Quantity > 0 && slot.Type == itemType && slot.ItemID == itemID {
 			slots = append(slots, slot)
 		}
 	}

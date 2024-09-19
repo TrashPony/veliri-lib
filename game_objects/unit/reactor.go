@@ -6,49 +6,92 @@ import (
 	"strconv"
 )
 
-func (u *Unit) WorkReactorPower(removeCount int) {
+func (u *Unit) WorkReactorPower(removeCount int, reloadCallBack func(u *Unit, slot *detail.ThoriumSlot)) {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
 	// если эффективность реактор изменилась то применяем изменения
-	startEfficiency := u.EfficiencyReactor()
 	defer func() {
-		if startEfficiency != u.EfficiencyReactor() {
+		eff := u.EfficiencyReactor()
+		if u.ReactorEfficiency != eff {
+			u.ReactorEfficiency = eff
 			u.AppendFuelModifier()
 		}
 	}()
 
+	if removeCount == 0 {
+		for _, slot := range u.getBody().ThoriumSlots {
+			if slot.Worked == 0 {
+				u.getNextFuel(slot, reloadCallBack)
+			}
+		}
+	}
+
 	for i := 0; i < removeCount; i++ {
 		for _, slot := range u.getBody().ThoriumSlots {
-			if slot.GetCount() > 0 {
-				slot.WorkedOut++
-				if slot.WorkedOut >= slot.Fuel.EnergyCap {
-					slot.WorkedOut = 0
-					slot.SetCount(slot.GetCount()-1, slot.Fuel)
+
+			if slot.Worked == 0 {
+				u.getNextFuel(slot, reloadCallBack)
+			}
+
+			if slot.Worked > 0 {
+				slot.Worked--
+				if slot.Worked <= 0 {
+					slot.Worked = 0
+					slot.Reload = true
+					u.getNextFuel(slot, reloadCallBack)
 				}
 			}
 		}
 	}
 }
 
-func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot) {
+func (u *Unit) getNextFuel(slot *detail.ThoriumSlot, reloadCallBack func(u *Unit, slot *detail.ThoriumSlot)) {
+	if slot.SendRequest {
+		return
+	}
+
+	slot.SendRequest = true
+
+	go func() {
+		defer func() {
+			slot.SendRequest = false
+		}()
+
+		reloadCallBack(u, slot)
+	}()
+}
+
+func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot, rs int) {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
+	update := false
 	for key, slot := range u.getBody().ThoriumSlots {
 		s := slots[key]
 		if s != nil {
-			slot.Count = s.Count
-			slot.WorkedOut = s.WorkedOut
-			slot.Fuel = s.Fuel
+
+			update = update || slot.CurrentFuel.ID != s.CurrentFuel.ID // другое топливо может давать бонусы
+
+			slot.Worked = s.Worked
+			slot.CurrentFuel = s.CurrentFuel
+			slot.NextFuel = s.NextFuel
+
+			if slot.Number == rs {
+				slot.Reload = false
+			}
 		}
+	}
+
+	if update {
+		u.AppendFuelModifier()
 	}
 }
 
 func (u *Unit) EfficiencyReactor() float64 {
 	full := 0.0
 	for _, slot := range u.getBody().ThoriumSlots {
-		if slot.GetCount() > 0 {
+		if slot.Worked > 0 || slot.Reload {
 			full++
 		}
 	}
@@ -66,16 +109,16 @@ func (u *Unit) AppendFuelModifier() {
 	for _, parameter := range reactorChangeParameters {
 		u.RemoveEffect("fuel_" + parameter)
 		for _, slot := range u.getBody().ThoriumSlots {
-			u.RemoveEffect("fuel_" + parameter + strconv.Itoa(slot.Number)) // TODO производительность?
+			u.RemoveEffect("fuelBonus_" + parameter + strconv.Itoa(slot.Number)) // TODO производительность?
 		}
 	}
 
 	for _, slot := range u.getBody().ThoriumSlots {
-		if slot.GetCount() > 0 {
+		if slot.Worked > 0 {
 			// с каждой ячейки добавляем баф, то есть если ячейки 3 то можно сделать баф х3 или 3 разных
-			for _, ef := range slot.Fuel.Bonuses {
+			for _, ef := range slot.CurrentFuel.Bonuses {
 				u.AddEffect(&effect.Effect{
-					UUID:        "fuel_" + ef.Parameter + strconv.Itoa(slot.Number), // TODO производительность?
+					UUID:        "fuelBonus_" + ef.Parameter + strconv.Itoa(slot.Number), // TODO производительность?
 					Parameter:   ef.Parameter,
 					Quantity:    ef.Quantity,
 					Percentages: ef.Percentages,

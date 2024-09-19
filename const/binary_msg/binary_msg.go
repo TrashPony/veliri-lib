@@ -229,11 +229,11 @@ func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, slots map[in
 
 	for _, slot := range slots {
 		command = append(command, game_math.GetIntBytes(slot.Number)...)
-		command = append(command, game_math.GetIntBytes(slot.Count)...)
-		command = append(command, game_math.GetIntBytes(slot.MaxCount)...)
-		command = append(command, byte(0))
-		command = append(command, game_math.GetIntBytes(slot.ProcessingThorium)...)
-		command = append(command, game_math.BoolToByte(slot.Inversion))
+		command = append(command, game_math.GetIntBytes(slot.Worked)...)
+		command = append(command, game_math.GetIntBytes(slot.CurrentFuel.EnergyCap)...)
+		command = append(command, byte(0))                     // TODO
+		command = append(command, game_math.GetIntBytes(0)...) // TODO
+		command = append(command, game_math.BoolToByte(false))
 	}
 
 	return command
