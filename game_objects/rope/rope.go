@@ -263,32 +263,27 @@ func (c *Constraints) setLength(length float64) {
 func (c *Constraints) ApplyConstraint(currentLen float64) {
 
 	radius := c.Length / 2
-	if currentLen > c.Length*25 {
-		radius = currentLen / 4
-	}
-
 	midPoint := c.P1.Position.VecTo(c.P2.Position).Scale(0.5)
 	midPoint = c.P1.Position.Add(midPoint)
 
 	apply := func(p *Point) {
 		if p.Pinned == nil {
 			p.Position = midPoint.Add(midPoint.VecTo(p.Position).Resize(radius))
-		} else {
-			if !p.Pinned.Static {
-				a1 := midPoint.VecTo(p.Position)
-				a2 := a1.Resize(currentLen - c.Length)
+		} else if !p.Pinned.Static {
 
-				k := (float64(p.Pinned.Weight) / 2000) * 0.5
-				if k < 1 {
-					k = 1
-				}
+			a1 := midPoint.VecTo(p.Position)
+			a2 := a1.Resize((currentLen - c.Length) / 5)
 
-				if k > 3 {
-					k = 3
-				}
-
-				p.Pinned.SubVelocity((a2.X/5)/k, (a2.Y/5)/k)
+			k := (float64(p.Pinned.Weight) / 2000) * 0.5
+			if k < 1 {
+				k = 1
 			}
+
+			if k > 3 {
+				k = 3
+			}
+
+			p.Pinned.SubVelocity((a2.X)/k, (a2.Y)/k)
 		}
 	}
 

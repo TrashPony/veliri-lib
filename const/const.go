@@ -201,6 +201,10 @@ var SourceItemBin = map[string]int{
 	"hangar_aInv_dust":     17,
 	"aInv:fuel":            18,
 	"hangar_aInv_fuel":     19,
+	"scannerAInv:organic":  20,
+	"scannerAInv:oil":      21,
+	"scannerAInv:dust":     22,
+	"scannerAInv:fuel":     23,
 }
 
 var MapBinItems = map[string]int{
