@@ -27,9 +27,9 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_3":         {Name: "Ultra-10", Description: "<p>An anti-aircraft machine gun that was adapted for firing at ground targets and created by Replics. Subsequently, the 'Ultra' model was artisanal upgraded by Iair. After several unsuccessful iterations, they received the most effective variation.</p>"},
 		"far_god_4":         {Name: "Impulse", Description: "<p>A creation of Replics, which is a ballistic weapon of impressive destructive power, but it did not enter mass production due to its size and overwhelming force of reverse inertia.</p>"},
 
-		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"}, // TODO
-		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
-		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
+		"reverses_weapon_5": {Name: "Torpedo complex", Description: "<p>A rack with a small launch tube capable of firing unguided small-sized missiles. The standard weapon set of all synthetics who joined Reverses.</p>"},
+		"explores_weapon_5": {Name: "Beam amplifier", Description: "<p>Multi-tonnage Explores beam weapon characterized by its operation based on the principles of local decay of charged particles. In addition to tangible direct damage, it also carries out an area attack.</p>"},
+		"explores_weapon_6": {Name: "Disintegrator", Description: "<p>Specific Explores ray weapon known for its ability to inflict more enhanced damage over a long time of fire. This feature became possible due to the engineering idea of Explores about heating flows.</p>"},
 	},
 	_const.RU: {
 		"replic_weapon_1":   {Name: "Фуриоса", Description: "<p>Желаете по достоинству оценить мощь Replic? Фуриоса – даст вам такую последнюю возможность. Эта мортира наносит настолько сокрушительный урон, что не оставит от ваших соперников и следа. Идеальное решение для тех, кто предпочитает поражать цели на большом расстоянии по навесной траектории, пожертвовав взамен точностью и скоростью поворота орудия.</p>"},
@@ -55,8 +55,8 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_3":         {Name: "Ультра-10", Description: "<p>Зенитный пулемёт, что был адаптирован для ведения огня по наземным целям и созданный Replics. Впоследствии, модель “Ультра” была кустарно модернизирована Иаиром. Спустя несколько неудачных итераций, получив максимально эффективную вариацию.</p>"},
 		"far_god_4":         {Name: "Импульс", Description: "<p>Творение Replics, представляющее из себя баллистическое орудие внушительной поражающей силы, которое не вошло в массовое производство из-за своих габаритов и непреодолимой силы обратной инерции.</p>"},
 
-		"reverses_weapon_5": {Name: "Малая пусковая установка", Description: "<p></p>"}, // TODO
-		"explores_weapon_5": {Name: "explores_weapon_5", Description: "<p>Тяжелый лазер, при перегреве сбрасывает накопленную энергию создавая взрыв по направлению луча.</p>"},
-		"explores_weapon_6": {Name: "explores_weapon_6", Description: "<p>Средний лучевой лазер, при перегреве увеличивает урон</p>"},
+		"reverses_weapon_5": {Name: "Торпедный комплекс", Description: "<p>Стойка с малым пусковым тубусом, способная вести огонь неуправляемыми малогабаритными ракетами. Стандартный оружейный набор всех синтетов вступивших к Reverses.</p>"},
+		"explores_weapon_5": {Name: "Пучковый усилитель", Description: "<p>Многотоннажное лучевое орудие Explores, характеризующееся работой на принципах локального распада заряженных частиц. Помимо ощутимого прямого урона, осуществляет также атаку по площади.</p>"},
+		"explores_weapon_6": {Name: "Дезинтегратор", Description: "<p>Специфическое лучевое орудие Explores известное своей особенностью наносить за продолжительное время огня более усиленный урон. Данная особенность стала возможной за счёт инженерной идеи Explores о нагревательных потоках.</p>"},
 	},
 }

@@ -38,12 +38,12 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"weapon_nutrients":              {Name: "Weapon nutrients", Description: "<p>Consumables are used in industrial types of tools</p>"},
 		"orbital_drop_beacons":          {Name: "Orbital drop beacons", Description: "<p>Used to signal orbital systems</p>"},
 
-		"egg":                  {Name: "Egg", Description: "<p>Яиичко11</p>"},
-		"blue_fragile_capsule": {Name: "blue_fragile_capsule", Description: "<p>blue_fragile_capsule</p>"},
-		"red_fragile_capsule":  {Name: "red_fragile_capsule", Description: "<p>red_fragile_capsule</p>"},
-		"ground_drone_3":       {Name: "ground_drone_3", Description: "<p>ground_drone_3</p>"},
-		"Replic_label":         {Name: "Replic Faction Label", Description: "<p> </p>"},
-		"teleport_hack":        {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
+		"egg":                  {Name: "Egg", Description: "<p>An unusual object of oval shape, clearly not created by synthetics. Given the multiple surrounding structures at the site of the find, the ellipsoid clearly has some connection with them.</p>"},
+		"blue_fragile_capsule": {Name: "Blue pulse capsule", Description: "<p>A spherical technologically complex device with visually tangible electromagnetic waves of a bluish tint. Considering the size and compactness of the capsule, its possible function may lie in the injection of some unknown capacities. But what exactly for?</p>"},
+		"red_fragile_capsule":  {Name: "Red pulse capsule", Description: "<p>A spherical technologically complex device with visible electromagnetic waves of reddish hue. Considering the size and compactness of the capsule, its possible function may be hidden in the build-up of some unknown powers. But what is it for?</p>"},
+		"ground_drone_3":       {Name: "Ancient drone", Description: "<p>An extremely primitive self-guided vehicle by the standards of synthetics. Despite its passable driving performance and rather outdated weapons, the drone's protection cannot withstand synthetics' hacking strategies, which allows for full control over it.</p>"},
+		"Replic_label":         {Name: "Replic faction label", Description: "<p>Engraved symbolic representation of one of the factions on the planet. In this case, the symbol of Replics is depicted — ardent expansionists and militarists among all other synthetics factions.</p>"},
+		"teleport_hack":        {Name: "Teleport hack", Description: "<p>Remote access and authorization override device. Allows you to block access to teleportation gates, and also makes synthetics bases vulnerable to destruction during a factional war.</p>"},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -78,13 +78,13 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"ice_liquor":                    {Name: "Ice-liquor", Description: "<p>Загадочный артефакт, таящий в себе великую силу.</p>"},
 		"weapon_nutrients":              {Name: "Питательные элементы орудий", Description: "<p>Расходные элементы использующиеся в энергетических видах орудий</p>"},
 		"orbital_drop_beacons":          {Name: "Маяки орбитального сброса", Description: "<p>Используются для подачи сигнала орбитальным системам</p>"},
-		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвестного происхождение, постоянно излучает сильный сигнал.</p>"}, // TODO
+		"strange_box":                   {Name: "Странная коробка", Description: "<p>Странный ящик неизвестного происхождение, постоянно излучает сильный сигнал.</p>"},
 
-		"egg":                  {Name: "Яйцо", Description: "<p>Яиичко11</p>"},             // TODO
-		"blue_fragile_capsule": {Name: "Голубая капсула", Description: "<p></p>"},          // TODO
-		"red_fragile_capsule":  {Name: "Красная капсула", Description: "<p></p>"},          // TODO
-		"ground_drone_3":       {Name: "Древний боевой дрон", Description: "<p></p>"},      // TODO
-		"Replic_label":         {Name: "Ярлык фракции \"Replic\"", Description: "<p></p>"}, // TODO
-		"teleport_hack":        {Name: "Взлом телепорта", Description: "<p>Одноразовое устройство которое позволяет переписать настройки доступа в кластерные сектора.</p><p>Помимо взлома перегружает точки выхода и сеть базы точки выхода из телепорта начинают работать как глушилки, а база и все ее сооружения становятся уязвимы к уничтожению.</p>"},
+		"egg":                  {Name: "Яйцо", Description: "<p>Необычный объект овальной формы, однозначно созданный не синтетами. Учитывая множественные окружающие сооружения на месте находки, эллипсоид явно имеет с ними некую связь.</p>"},
+		"blue_fragile_capsule": {Name: "Голубая пульс-капсула", Description: "<p>Шарообразное технологически сложное устройство, с визуально осязаемыми электромагнитными волнами голубоватого оттенка. Учитывая размеры и компактность капсулы, её возможная функция может крыться в нагнетании неких неизвестных мощностей. Но, для чего именно?</p>"},
+		"red_fragile_capsule":  {Name: "Красная пульс-капсула", Description: "<p>Шарообразное технологически сложное устройство, с визуально осязаемыми электромагнитными волнами красноватого оттенка. Учитывая размеры и компактность капсулы, её возможная функция может крыться в нагнетании неких неизвестных мощностей. Но, для чего именно?</p>"},
+		"ground_drone_3":       {Name: "Древний дрон", Description: "<p>Крайне примитивная по технологическим меркам синтетов самоуправляемая техника. Несмотря на сносные ходовые качества и достаточно отсталое вооружение, защита дрона не в силах противостоять стратегиям взлома синтетов, что позволяет получить над ним полный контроль.</p>"},
+		"Replic_label":         {Name: "Ярлык фракции \"Replic\"", Description: "<p>Выгравированное символическое отображение одной из фракций на планете. В данном случае, изображён символ Replics - ярых экспансионистов и милитаристов из всех прочих фракций синтетов.</p>"},
+		"teleport_hack":        {Name: "Взлом телепорта", Description: "<p>Устройство удалённого доступа и переписи авторизации. Позволяет блокировать доступ к телепортационным вратам, а также делает базы синтетов во время фракционной войны - уязвимыми к уничтожению.</p>"},
 	},
 }
