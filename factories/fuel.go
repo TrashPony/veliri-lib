@@ -6,7 +6,7 @@ import (
 	"math/rand"
 )
 
-const size = 100
+const size = 1000
 
 var fuelTypes = map[int]fuel.Fuel{
 	1: {
