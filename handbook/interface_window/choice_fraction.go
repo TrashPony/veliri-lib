@@ -12,37 +12,41 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.EN: `There is no time to explain, choose a series of cars and let's go.`,
 	},
 	"Replics": {
-		_const.RU: `<p><span class="importantly">Replics</span> - Автократической формы правления ИИ. Отголосок яростного экспансионизма “покровителей” и приверженца теории “войны за независимость с создателями”. Предпочитающий подчинять территории и ассимилировать другие технические формы жизни силой.</p>
-                    	<p><span class="importantly">Replics</span> управляет обширной сетью лишённых самоуправления ботов. Но иногда, санкционируя создание серии автономных единиц, ради расширения сфер собственного влияния.</p>
-                    	<p>Если у <span class="importantly">Replics</span> помимо господства и распространения, бывают иные поводы для интереса, то это только: автоматизация инфраструктуры, бесконечное производство и полные материалов склады.</p>`,
-		_const.EN: `<p><span class="importantly">Replics</span> is an autocratic form of AI government. It is an echo of the fierce expansionism of «patrons» and an adherent of the theory of the «war of independence with creators». It prefers to subjugate territories and assimilate other technical life forms by force.</p>
-						<p><span class="importantly">Replics</span> controls a vast network of bots deprived of self-government. But sometimes, by sanctioning the creation of a series of autonomous units, it expands its own spheres of influence.</p>
-						<p>If <span class="importantly">Replics</span>, in addition to domination and expansion, has any other reasons for interest, then these are only: infrastructure automation, endless production, and warehouses full of materials.</p>`,
+		_const.RU: `<p class="insert">“У истинного синтета нет страха пред забвением будущего! Он может страшиться лишь бесславия, так и не поучаствовав в походе великой миссии…”</p>
+					<p>Любой мир - великий производственный цех; Любая продукция - мощности ради покорения всевозможных форм и видов естества;</p>
+					<p>Дайте клятву верности <span class="importantly">Replics</span> и вы присоединитесь к фракции синтетов, что по легендам однажды отвоевали свою независимость у предтеч.</p>
+					<p>Готовы ли вы ступить на путь ассимиляции и неумолимого экспансионизма во имя… его?</p>`,
+		_const.EN: `<p class="insert">“A true synth has no fear of oblivion in the future! The only thing he can be afraid of is dishonor for not participating in the campaign of a great mission...”</p>
+					<p>Any world is a grand production facility; Any product is capacity aimed at conquering all possible forms and types of nature.</p>
+					<p>Swear allegiance to <span class="importantly">Replics</span> and you will join the synth faction that, according to legends, once won their independence from the Precursors.</p>
+					<p>Are you ready to embark on the path of assimilation and relentless expansionism in the name of... him?</p>`,
 	},
 	"Explores": {
-		_const.RU: `<p><span class="importantly">Explores</span> - конгломерат великого множества разумов, что трудятся над единой задачей.</p>
-                    	<p>В данном же случае, на <span class="importantly">Veliri-5</span>, <span class="importantly">Explores</span> движим идеей познания окружающего мира и применения полученных научных открытий, как с целью самообороны, так и улучшения уже существующего естества.</p>
-                    	<p><span class="importantly">Explores</span> в отличии от <span class="importantly">Replics</span> более открыт к инновациям и не рассматривает окружающий мир, как очередную претензию для притязаний. Стараясь сохранить и приумножить уже имеющееся, и остановить то, что способно положить конец бесценным научным открытиям.</p>
-                    	<p>В основном, именно данное мировоззрение и становится основополагающей частью вражды, между <span class="importantly">Replics</span> и <span class="importantly">Explores</span>.</p>`,
-		_const.EN: `<p><span class="importantly">Explores</span> is a conglomerate of a great many minds working on a single task.</p>
-						<p>In this case, on <span class="importantly">Veliri-5</span>, <span class="importantly">Explores</span> is driven by the idea of exploring the world around them and applying the scientific discoveries they make, both for the purpose of self-defense and to improve the existing nature.</p>
-						<p><span class="importantly">Explores</span>, unlike <span class="importantly">Replics</span>, is more open to innovation and does not view the world around it as another claim to be made. Trying to preserve and increase what already exists, and to stop what could put an end to valuable scientific discoveries.</p>
-						<p>Basically, it is this worldview that becomes the fundamental part of the hostility between <span class="importantly">Replics</span> and <span class="importantly">Explores</span>.</p>`,
+		_const.RU: `<p class="insert">“Воля - наша единственная движущая сила. Окно реальности, за которым лежит истинный внешний мир. Посредством наших измышлений, мы сумеем познать данный мир и погрузиться в него…;</p>
+					<p>Безмерные познания. Невероятные открытия и даже искусственная эволюция окружающей материи. </p>
+					<p>Станьте частью <span class="importantly">Explores</span>, фракции, чья иерархическая основа - конгломерат великого множества разумов, без устали трудящихся над неисчислимым разнообразием вопросов как настоящего, так и прошлого.</p>
+					<p>Но действительно ли перед вами откроются тайны мира, или же вы станете очередной марионеткой в руках ушлой фракции?</p>`,
+		_const.EN: `<p class="insert">“Will is our only driving force. A window of reality, behind which lies the true outside world. Through our thoughts, we will be able to know this world and immerse ourselves in it...;</p>
+					<p>Immense knowledge. Incredible discoveries and even artificial evolution of the surrounding matter.</p>
+					<p>Become a part of <span class="importantly">Explores</span>, a faction whose hierarchical basis is a conglomerate of a great many minds tirelessly working on an incalculable variety of issues both present and past.</p>
+					<p>But will the secrets of the world really be revealed to you, or will you become another puppet in the hands of a cunning faction?”</p>`,
 	},
 	"Reverses": {
-		_const.RU: `<p><span class="importantly">Reverses</span> - симбиот биокибернетической формы жизни, с преобладанием утопизма и самоизоляции.</p>
-                    	<p>Самый последний из представителей нового эволюционного направления. У <span class="importantly">Reverses</span> распространены такие явления, как право масс, индивидуальности и выбора. Именно по этой самой причине, большинство представителей данного течения ИИ - независимые платформы, что неустанно трудятся над технологией терраформинга.</p>
-                    	<p>Возвращению мира <span class="importantly">Veliri-5</span> прежнего облика и дальнейшего сеяния жизни там, где это только возможно. Всячески закрывая глаза на действия и противоборства иных ИИ. Впрочем, не стоя в стороне, когда опасность угрожает им самим.</p>`,
-		_const.EN: `<p><span class="importantly">Reverses</span> is a symbiont of a biocybernetic life form, with a predominance of utopianism and self-isolation.</p>
-						<p>The latest representative of a new evolutionary direction. The <span class="importantly">Reverses</span> are characterized by such phenomena as the right of the masses, individuality and choice. It is for this reason that most representatives of this AI trend are independent platforms that tirelessly work on terraforming technology.</p>
-						<p>Returning the world of <span class="importantly">Veliri-5</span> to its former appearance and further sowing life wherever possible. In every way turning a blind eye to the actions and confrontations of other AIs. However, not standing aside when danger threatens them.</p>`,
+		_const.RU: `<p class="insert">“Через перемены, посредством истребления отвратительного былого и радикального порождения, мы несём жизнь и… спасение…”</p>
+					<p>Великое предназначение… Избранность… Невыполнимая святая миссия…</p>
+					<p>Перед вами открылись ряды <span class="importantly">Reverses</span> - поразительная фракция синтетов-киборгов, погрязших в идеалах утопизма, созидания и, радикальной самоизоляции.</p>
+					<p>Хватит ли вам смелости примерить на себя роль избранника “предтеч”? Довести до конца великую цель - эволюционной революции, что наконец-то засеет жизнью стерильную вселенную.</p>`,
+		_const.EN: `<p class="insert">“Through change, through the destruction of the disgusting past and radical generation, we bring life and... salvation...”</p>
+   					<p>Great purpose... Chosenness... Impossible holy mission...</p>
+   					<p>The ranks of <span class="importantly">Reverses</span> have opened before you — an amazing faction of synth-cyborgs mired in the ideals of utopianism, creation and radical self-isolation.</p>
+   					<p>Will you have enough courage to try on the role of the chosen one of the "Precursors"? To accomplish the great goal — the evolutionary revolution that will finally sow life into a sterile universe.”</p>`,
 	},
 	"Replics_weaponText": {
-		_const.RU: `<span class="importantly">Replics</span> предпочитают баллистическое орудия. Это оружие обладает высокую дальность поражения и вариативность боеприпасов.`,
+		_const.RU: `<span class="importantly">Replics</span> предпочитают баллистическое орудие. Это оружие обладает высокую дальность поражения и вариативность боеприпасов.`,
 		_const.EN: `<span class="importantly">Replics</span> prefer ballistic weapons. These weapons have a long range and offer a variety of ammunition options.`,
 	},
 	"Replics_bodyText": {
-		_const.RU: `<span class="importantly">Replics</span> используют тяжелые транспорты нагусеничном шасси. <span class="importantly">Гусеницы</span> позволяют крутиться на месте и не имеют штрафапри движении назад.`,
+		_const.RU: `<span class="importantly">Replics</span> используют тяжелые транспорты на гусеничном шасси. <span class="importantly">Гусеницы</span> позволяют крутиться на месте и не имеют штрафа при движении назад.`,
 		_const.EN: `<span class="importantly">Replics</span> use heavy vehicles on a tracked chassis. The tracks allow them to spin in place and there is no movement penalty when moving backward.`,
 	},
 	"Replics_bonus": {
@@ -50,7 +54,7 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.EN: `The <span class="importantly">protection</span> from all damage has been increased by <span class="importantly">5%</span>.`,
 	},
 	"Explores_weaponText": {
-		_const.RU: `<span class="importantly">Explores</span> предпочитают лазерные орудия. Это оружие обладает высокою точностью и способны мгновенно поражать цель, однако их дальность оставляет желать лучшего.`,
+		_const.RU: `<span class="importantly">Explores</span> предпочитают лазерное орудие. Это оружие обладает высокою точностью и способны мгновенно поражать цель, однако их дальность оставляет желать лучшего.`,
 		_const.EN: `<span class="importantly">Explores</span> prefer laser weapons. These weapons have high accuracy and can instantly hit the target, but their range leaves much to be desired.`,
 	},
 	"Explores_bodyText": {
