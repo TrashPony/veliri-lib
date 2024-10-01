@@ -45,7 +45,7 @@ func (i *MapItem) GetID() int {
 
 func (i *MapItem) SetSlot(slot *inventory.Slot) {
 	inv := &inventory.Inventory{}
-	inv.Init("", 0, nil)
+	inv.Init("", 0, nil, nil)
 	slot.Number = 1
 	inv.AddSlot(slot.Number, slot)
 	i.inv = inv

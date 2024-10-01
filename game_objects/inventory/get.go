@@ -59,7 +59,10 @@ func (inv *Inventory) GetSlotsChan() <-chan *Slot {
 func (inv *Inventory) GetSlot(number, userID int) (*Slot, bool) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
+	return inv.getSlot(number, userID)
+}
 
+func (inv *Inventory) getSlot(number, userID int) (*Slot, bool) {
 	slot, ok := inv.slots[number]
 	if slot != nil && (slot.AccessUserID == 0 || slot.AccessUserID == userID || userID == -1) {
 		return slot, ok

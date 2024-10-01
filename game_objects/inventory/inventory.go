@@ -12,7 +12,16 @@ type Inventory struct {
 	parentType string
 	parentID   int
 	logger     func(parentType string, parentID int, event string, data map[string]interface{})
+	updater    func(slots map[int]*Slot)
 	mx         sync.RWMutex
+}
+
+func (inv *Inventory) GetParentType() string {
+	return inv.parentType
+}
+
+func (inv *Inventory) GetParentID() int {
+	return inv.parentID
 }
 
 type PlaceMayItems struct {
@@ -48,12 +57,17 @@ func (inv *Inventory) CheckAndPlaceItems(toInventory *Inventory, toInventoryCapS
 }
 
 func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCapSize int, inventorySlotNumber, accessUserID, count int, noPlace bool) (int, int, error, string, int) {
-
 	if inv == nil {
 		return 0, 0, errors.New("no inventory"), "", 0
 	}
 
-	s, _ := inv.GetSlot(inventorySlotNumber, accessUserID)
+	inv.mx.Lock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
+
+	s, _ := inv.getSlot(inventorySlotNumber, accessUserID)
 
 	if s == nil {
 		return 0, 0, errors.New("no find slot"), "", 0
@@ -102,13 +116,14 @@ func (inv *Inventory) IsNil() bool {
 	return inv == nil || inv.slots == nil
 }
 
-func (inv *Inventory) Init(parentType string, parentID int, logger func(parentType string, parentID int, event string, data map[string]interface{})) {
+func (inv *Inventory) Init(parentType string, parentID int, logger func(parentType string, parentID int, event string, data map[string]interface{}), updater func(map[int]*Slot)) {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
 	inv.slots = make(map[int]*Slot)
 	inv.parentType = parentType
 	inv.parentID = parentID
 	inv.logger = logger
+	inv.updater = updater
 }
 
 func (inv *Inventory) SetSlots(slots map[int]*Slot) {
@@ -129,7 +144,10 @@ func (inv *Inventory) DeleteEmptySlot(number int) {
 
 func (inv *Inventory) DeleteSlot(number int) {
 	inv.mx.Lock()
-	defer inv.mx.Unlock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
 
 	s, ok := inv.slots[number]
 	if !ok {
@@ -137,6 +155,15 @@ func (inv *Inventory) DeleteSlot(number int) {
 	}
 
 	inv.log("DeleteSlot", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity": s.Quantity})
+	delete(inv.slots, number)
+}
+
+func (inv *Inventory) UnsafeDeleteSlot(number int) {
+	_, ok := inv.slots[number]
+	if !ok {
+		return
+	}
+
 	delete(inv.slots, number)
 }
 
@@ -162,7 +189,10 @@ func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID
 
 func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, maxHP int, newSlot bool, userID, accessUserID int) bool {
 	inv.mx.Lock()
-	defer inv.mx.Unlock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
 
 	if quantity == 0 {
 		return true
@@ -178,7 +208,6 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 					s.PlaceUserID = userID
 
 					inv.log("AddItem", map[string]interface{}{"up_slot": true, "item_type": s.Type, "item_id": s.ItemID, "quantity": quantity})
-
 					return true
 				}
 			}
@@ -200,8 +229,8 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			AccessUserID: accessUserID,
 		}
 
-		inv.log("AddItem", map[string]interface{}{"new_slot": true, "item_type": newItem.Type, "item_id": newItem.ItemID, "quantity": quantity})
 		inv.slots[newNumberSlot] = &newItem
+		inv.log("AddItem", map[string]interface{}{"new_slot": true, "item_type": newItem.Type, "item_id": newItem.ItemID, "quantity": quantity})
 		return true
 	}
 
@@ -213,7 +242,10 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 	if inv.ViewItems(itemID, itemType, quantityRemove) {
 
 		inv.mx.Lock()
-		defer inv.mx.Unlock()
+		defer func() {
+			inv.mx.Unlock()
+			inv.update()
+		}()
 
 		for _, s := range inv.slots {
 			if s.ItemID == itemID && s.Type == itemType {
@@ -237,6 +269,7 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 
 // RemoveItemsByOtherInventory метод удаляем все итемы из inv которые есть в inv2 если они все в наличие
 func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) bool {
+
 	for _, slot := range inv2.slots {
 		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity()) {
 			if !force {
@@ -245,9 +278,15 @@ func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) b
 		}
 	}
 
+	inv.mx.Lock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
+
 	for _, removeSlot := range inv2.slots {
 		quantityRemove := removeSlot.GetQuantity()
-		for s := range inv.GetSlotsChan() {
+		for _, s := range inv.slots {
 			if s.ItemID == removeSlot.ItemID && s.Type == removeSlot.Type {
 				if s.GetQuantity() >= quantityRemove {
 					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(quantityRemove)})
@@ -265,7 +304,13 @@ func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) b
 }
 
 func (inv *Inventory) AddItemBySlot(slot, quantity, userID int) bool {
-	s, ok := inv.GetSlot(slot, userID)
+	inv.mx.Lock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
+
+	s, ok := inv.getSlot(slot, userID)
 	if !ok {
 		return false
 	}
@@ -277,7 +322,13 @@ func (inv *Inventory) AddItemBySlot(slot, quantity, userID int) bool {
 }
 
 func (inv *Inventory) RemoveItemBySlot(slot, quantityRemove, userID int) int {
-	s, ok := inv.GetSlot(slot, userID)
+	inv.mx.Lock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
+
+	s, ok := inv.getSlot(slot, userID)
 	if !ok {
 		return -1
 	}
@@ -314,6 +365,15 @@ func (inv *Inventory) log(event string, data map[string]interface{}) {
 	}
 
 	inv.logger(inv.parentType, inv.parentID, event, data)
+}
+
+func (inv *Inventory) update() {
+	inv.mx.Lock()
+	defer inv.mx.Unlock()
+
+	if inv.updater != nil {
+		inv.updater(inv.slots)
+	}
 }
 
 // ItemToSlot костыль метод используется только для конфигурации, использование в других участах может привести к потери итемов
