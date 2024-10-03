@@ -24,6 +24,11 @@ func (inv *Inventory) GetParentID() int {
 	return inv.parentID
 }
 
+func (inv *Inventory) SetParent(t string, id int) {
+	inv.parentType = t
+	inv.parentID = id
+}
+
 type PlaceMayItems struct {
 	Type         string `json:"type"`
 	ID           int    `json:"id"`
