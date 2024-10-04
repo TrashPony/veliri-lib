@@ -20,6 +20,10 @@ var Gate = map[string]map[string]string{
 		_const.RU: `Играть`,
 		_const.EN: `Play`,
 	},
+	"close": {
+		_const.RU: `Выход`,
+		_const.EN: `Exit`,
+	},
 	"createPlayerLarchName": {
 		_const.RU: `В имени персонажа не может быть больше 16ти символов.`,
 		_const.EN: `A character's name cannot contain more than 16 characters.`,
