@@ -293,4 +293,25 @@ var Hangar = map[string]map[string]string{
 		_const.EN: `Additional slot`,
 	},
 	// ViewMS
+	// Synchronization
+	"text_23": {
+		_const.RU: `Синхронизация с транспортом`,
+		_const.EN: `Synchronization with transport`,
+	},
+	"text_24": {
+		_const.RU: `назад`,
+		_const.EN: `back`,
+	},
+	"text_25": {
+		_const.RU: `Настройки и обновление синхронизации доступно только на базе.`,
+		_const.EN: `Synchronization settings and updates are available only on the base.`,
+	},
+	"text_26": {
+		_const.RU: `Приоритет подсистем`,
+		_const.EN: `Subsystem priority`,
+	},
+	"text_27": {
+		_const.RU: `Особенности`,
+		_const.EN: `Peculiarities`,
+	},
 }

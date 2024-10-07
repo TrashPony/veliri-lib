@@ -8,6 +8,14 @@ var DetailItem = map[string]map[string]string{
 		_const.RU: `Навыки`,
 		_const.EN: `Skills`,
 	},
+	"text_25": {
+		_const.RU: `Профильные особенности`,
+		_const.EN: `Profile features`,
+	},
+	"text_26": {
+		_const.RU: `За каждые <span class="importantly">25%</span> синхронизации с транспортом:`,
+		_const.EN: `For every <span class="importantly">25%</span> synchronization with transport:`,
+	},
 	// CharacteristicTab
 	"small": {
 		_const.RU: `малый`,
