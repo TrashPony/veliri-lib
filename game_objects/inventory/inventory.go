@@ -25,8 +25,13 @@ func (inv *Inventory) GetParentID() int {
 }
 
 func (inv *Inventory) SetParent(t string, id int) {
-	inv.parentType = t
-	inv.parentID = id
+	i := inv
+	if i == nil {
+		return
+	}
+
+	i.parentType = t
+	i.parentID = id
 }
 
 type PlaceMayItems struct {
