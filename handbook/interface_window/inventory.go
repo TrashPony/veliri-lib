@@ -246,4 +246,13 @@ var Inventory = map[string]map[string]string{
 	},
 	// Size
 	// WarehouseTab
+	// ThrowItemsDialog
+	"text_24": {
+		_const.RU: `Уничтожить эти предметы?`,
+		_const.EN: `Destroy these items?`,
+	},
+	"button_29": {
+		_const.RU: `Уничтожить`,
+		_const.EN: `Destroy`,
+	},
 }
