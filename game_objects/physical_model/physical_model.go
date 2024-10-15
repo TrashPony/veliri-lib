@@ -49,6 +49,7 @@ type PhysicalModel struct {
 	TransportUnitID int                             `json:"-"`
 	Static          bool                            `json:"static"`
 	MoveDestroyer   bool                            `json:"-"`
+	MoveCollision   bool                            `json:"-"`
 	mx              sync.Mutex
 	polygon         *game_math.Polygon
 	nextPolygon     *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного

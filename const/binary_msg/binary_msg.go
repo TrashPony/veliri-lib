@@ -228,8 +228,14 @@ func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, slots map[in
 	command = append(command, game_math.GetIntBytes(len(slots))...)
 
 	for _, slot := range slots {
+
+		worked := slot.Worked
+		if worked == 0 && slot.Reload {
+			worked = 1 // что бы на фронте не отображалось "нет энергии" когда запрос в пути
+		}
+
 		command = append(command, game_math.GetIntBytes(slot.Number)...)
-		command = append(command, game_math.GetIntBytes(slot.Worked)...)
+		command = append(command, game_math.GetIntBytes(worked)...)
 		command = append(command, game_math.GetIntBytes(slot.CurrentFuel.EnergyCap)...)
 		command = append(command, byte(0))                     // TODO
 		command = append(command, game_math.GetIntBytes(0)...) // TODO

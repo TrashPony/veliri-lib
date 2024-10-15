@@ -164,16 +164,17 @@ func (inv *Inventory) DeleteSlot(number int) {
 		return
 	}
 
-	inv.log("DeleteSlot", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity": s.Quantity})
+	inv.log("DeleteSlot", map[string]interface{}{"item": s.Item, "item_type": s.Type, "item_id": s.ItemID, "quantity": s.Quantity})
 	delete(inv.slots, number)
 }
 
 func (inv *Inventory) UnsafeDeleteSlot(number int) {
-	_, ok := inv.slots[number]
+	s, ok := inv.slots[number]
 	if !ok {
 		return
 	}
 
+	inv.log("UnsafeDeleteSlot", map[string]interface{}{"item": s.Item, "item_type": s.Type, "item_id": s.ItemID, "quantity": s.Quantity})
 	delete(inv.slots, number)
 }
 
