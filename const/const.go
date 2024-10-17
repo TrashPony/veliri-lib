@@ -3,8 +3,9 @@ package _const
 import "time"
 
 const (
-	CellSize              = 32
-	DiscreteSize          = 4 * CellSize
+	CellSize              = 64
+	PlantCellSize         = 32
+	ObstacleZoneSize      = 2 * CellSize
 	DiscreteFindPathSize  = 8 * CellSize
 	Gravity               = 980.0 / 2
 	UnitHeight            = 35
