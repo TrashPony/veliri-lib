@@ -2,17 +2,16 @@ package obstacle_point
 
 import (
 	"encoding/json"
-	"sync/atomic"
 )
 
 type ObstaclePoint struct {
 	ID         int     `json:"-"`
-	X          int32   `json:"x"`
-	Y          int32   `json:"y"`
-	Radius     int32   `json:"radius"`
+	X          int     `json:"x"`
+	Y          int     `json:"y"`
+	Radius     int     `json:"radius"`
 	Move       bool    `json:"move"`     // если тру то это только для пуль
 	Resource   bool    `json:"resource"` // не влияет на колизии с миром, но влияет на то что низя строить, или куда навести мыш
-	ParentID   int32   `json:"-"`
+	ParentID   int     `json:"-"`
 	ParentType string  `json:"-"`
 	Key        string  `json:"-"`
 	Height     float64 `json:"height"`
@@ -27,19 +26,19 @@ func (o *ObstaclePoint) SetID(id int) {
 }
 
 func (o *ObstaclePoint) GetX() int {
-	return int(o.X)
+	return o.X
 }
 
 func (o *ObstaclePoint) SetX(x int) {
-	atomic.StoreInt32(&o.X, int32(x))
+	o.X = x
 }
 
 func (o *ObstaclePoint) GetY() int {
-	return int(o.Y)
+	return o.Y
 }
 
 func (o *ObstaclePoint) SetY(y int) {
-	atomic.StoreInt32(&o.Y, int32(y))
+	o.Y = y
 }
 
 func (o *ObstaclePoint) GetRadius() int {
@@ -47,7 +46,7 @@ func (o *ObstaclePoint) GetRadius() int {
 }
 
 func (o *ObstaclePoint) SetRadius(radius int) {
-	atomic.StoreInt32(&o.Radius, int32(radius))
+	o.Radius = radius
 }
 
 func (o *ObstaclePoint) GetMove() bool {
@@ -71,7 +70,7 @@ func (o *ObstaclePoint) GetParentID() int {
 }
 
 func (o *ObstaclePoint) SetParentID(parentID int) {
-	atomic.StoreInt32(&o.ParentID, int32(parentID))
+	o.ParentID = parentID
 
 }
 
@@ -101,9 +100,9 @@ func (o *ObstaclePoint) SetHeight(height float64) {
 
 func (o *ObstaclePoint) GetJSON() string {
 	jsonPoint, err := json.Marshal(struct {
-		X        int32   `json:"x"`
-		Y        int32   `json:"y"`
-		Radius   int32   `json:"radius"`
+		X        int     `json:"x"`
+		Y        int     `json:"y"`
+		Radius   int     `json:"radius"`
 		Move     bool    `json:"move"`
 		Resource bool    `json:"resource"`
 		Height   float64 `json:"height"`
