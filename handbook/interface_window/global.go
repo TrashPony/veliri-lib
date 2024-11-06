@@ -96,4 +96,12 @@ var Global = map[string]map[string]string{
 		_const.RU: `Что бы убрать цель, нажмите <span style="color: yellow">TAB</span> в месте где нет транспорта.`,
 		_const.EN: `To remove a target, press <span style="color: yellow">TAB</span> in a place where there is no vehicle.`,
 	},
+	"text_23": {
+		_const.RU: `Колесо мышки`,
+		_const.EN: `Mouse wheel`,
+	},
+	"text_24": {
+		_const.RU: `зум.`,
+		_const.EN: `zoom.`,
+	},
 }
