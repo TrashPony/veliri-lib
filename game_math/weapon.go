@@ -40,6 +40,14 @@ type Positions struct {
 	Y int `json:"y"`
 }
 
+func (p *Positions) GetX() int {
+	return p.X
+}
+
+func (p *Positions) GetY() int {
+	return p.Y
+}
+
 func GetWeaponFirePositions(ownerX, ownerY, ownerScale int, ownerRotate float64, gunRotate float64, weaponXAttach, weaponYAttach int,
 	weaponFirePositions []*coordinate.Coordinate, slotXAttach, slotYAttach float64) []*Positions {
 

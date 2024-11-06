@@ -299,7 +299,7 @@ func (o *Object) checkVisibleObjectStore() {
 	}
 }
 
-func (o *Object) AddDynamicObject(object *Object, mapID int, view, radar bool, mapTime int64) {
+func (o *Object) AddDynamicObject(object *Object, mapID int, view, radar, force bool, mapTime int64) {
 	o.checkMemoryObjectStore()
 	if object.MemoryID == 0 {
 		object.MemoryID = generate_ids.GetMarkID()
@@ -323,10 +323,11 @@ func (o *Object) AddDynamicObject(object *Object, mapID int, view, radar bool, m
 		Object:        object,
 		ObjectJSON:    object.GetJSON(mapTime),
 		Work:          object.GetWork(),
+		ForceView:     force,
 	}
 
-	vObj.SetView(view)
-	vObj.SetRadar(radar)
+	vObj.SetView(view || force)
+	vObj.SetRadar(radar || force)
 
 	o.memoryDynamicObjects.AddDynamicObject(vObj)
 }
@@ -612,6 +613,7 @@ type Flore struct {
 	TexturePriority  int    `json:"texture_priority"`
 	X                int    `json:"x"`
 	Y                int    `json:"y"`
+	Rotate           int    `json:"r"`
 }
 
 func (o *Object) SetVisibleObjectStore(v *visible_objects.VisibleObjectsStore) {

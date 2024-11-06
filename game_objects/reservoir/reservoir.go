@@ -224,3 +224,7 @@ func (m *Reservoir) GetRadius() int {
 
 	return 0
 }
+
+func (m *Reservoir) GetType() string {
+	return "reservoir"
+}

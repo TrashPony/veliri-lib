@@ -310,10 +310,10 @@ func (u *Unit) GetMovePathTime() int64 {
 	return mp.GetMovePathTime()
 }
 
-func (u *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64) {
+func (u *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool) {
 	mp := u.movePath
 	if mp == nil {
-		return false, "", 0, nil, nil, 0, false, 0
+		return false, "", 0, nil, nil, 0, false, 0, true
 	}
 
 	return mp.GetMovePathState()
@@ -337,6 +337,13 @@ func (u *Unit) SetFindMovePath() {
 
 func (u *Unit) RemoveMovePath() {
 	u.movePath = nil
+}
+
+func (u *Unit) Stop() {
+	mp := u.movePath
+	if mp != nil {
+		u.movePath.Stop()
+	}
 }
 
 func (u *Unit) SetMovePath(path *[]*coordinate.Coordinate) {

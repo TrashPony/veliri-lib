@@ -139,6 +139,14 @@ func (d *Drone) AddJob(jobType string, target *target.Target) {
 	})
 }
 
+func (d *Drone) CompleteAllJobJob(jobType string) {
+	for _, j := range d.jobs {
+		if j.job == jobType {
+			j.complete = true
+		}
+	}
+}
+
 func (d *Drone) CompleteJob(uuid string) {
 	for _, j := range d.jobs {
 		if j.uuid == uuid {

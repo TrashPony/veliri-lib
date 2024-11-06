@@ -76,6 +76,11 @@ func (o *Object) GetStartScale() {
 		return
 	}
 
+	if o.Type == "pipes" {
+		o.SetScale(13)
+		return
+	}
+
 	if o.Texture == "explores_observatory" {
 		o.SetScale(100)
 		return
@@ -93,6 +98,18 @@ func (o *Object) GetStartScale() {
 
 	if o.Type == "turret" {
 		o.SetScale(50)
+	}
+
+	if o.Type == "elevator" {
+		o.SetScale(100)
+	}
+
+	if o.Type == "mine_wall" {
+		o.SetScale(120)
+	}
+
+	if o.Type == "fog_cell" {
+		o.SetScale(135)
 	}
 
 	if o.Texture == "shield_generator" {
@@ -123,7 +140,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage" {
+	if o.Texture == "storage" || o.Texture == "storage_2" {
 		o.SetScale(74)
 	}
 

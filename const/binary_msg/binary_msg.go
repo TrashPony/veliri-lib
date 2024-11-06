@@ -1156,3 +1156,92 @@ func CreateBinaryPollenMove(id, x, y, z, r int) []byte {
 
 	return command
 }
+
+type BuildPointer interface {
+	GetX() int
+	GetY() int
+	GetPass() bool
+	GetStructure() bool
+}
+
+func CreateBinaryZonePlace(objData []byte, points []BuildPointer) []byte {
+	command := []byte{103}
+
+	command = append(command, game_math.GetIntBytes(len(objData))...)
+	command = append(command, objData...)
+
+	pointData := make([]byte, 0, len(points)*3)
+	for _, p := range points {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+		pointData = append(pointData, game_math.BoolToByte(p.GetPass()))
+		pointData = append(pointData, game_math.BoolToByte(p.GetStructure()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	return command
+}
+
+type Pointer interface {
+	GetX() int
+	GetY() int
+}
+
+func CreateBinaryDigPlace(points []Pointer) []byte {
+	command := []byte{104}
+
+	pointData := make([]byte, 0, len(points)*2)
+	for _, p := range points {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	return command
+}
+
+type EnergyPointer interface {
+	GetX() int
+	GetY() int
+	GetEnergy() int
+	GetPass() bool
+}
+
+func CreateBinaryPipePlace(points []Pointer, current []Pointer, energy []EnergyPointer) []byte {
+	command := []byte{105}
+
+	pointData := make([]byte, 0, len(points)*2)
+	for _, p := range points {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	pointData = pointData[:0]
+	for _, p := range current {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	pointData = pointData[:0]
+	for _, p := range energy {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+		pointData = append(pointData, game_math.GetIntBytes(p.GetEnergy())...)
+		pointData = append(pointData, game_math.BoolToByte(p.GetPass()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	return command
+}

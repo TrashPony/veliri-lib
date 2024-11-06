@@ -31,6 +31,7 @@ type Target struct {
 	LastTap      bool    `json:"-"`
 	Points       int     `json:"-"`
 	PassAngle    int     `json:"-"`
+	Key          string  `json:"-"`
 }
 
 func (t *Target) GetX() int {

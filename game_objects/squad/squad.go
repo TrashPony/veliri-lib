@@ -266,7 +266,7 @@ func (s *Squad) InitMemoryObjects() {
 	s.memoryDynamicObjects.InitVisibleObjects()
 }
 
-func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, view, radar bool, mapTime int64) {
+func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, view, radar, force bool, mapTime int64) {
 	s.checkMemoryObjectStore()
 	if object.MemoryID == 0 {
 		object.MemoryID = generate_ids.GetMarkID()
@@ -291,10 +291,11 @@ func (s *Squad) AddDynamicObject(object *dynamic_map_object.Object, mapID int, v
 		ObjectJSON:    object.GetJSON(mapTime),
 		Work:          object.GetWork(),
 		Pool:          "memory",
+		ForceView:     force,
 	}
 
-	vObj.SetView(view)
-	vObj.SetRadar(radar)
+	vObj.SetView(view || force)
+	vObj.SetRadar(radar || force)
 
 	s.memoryDynamicObjects.AddDynamicObject(vObj)
 }

@@ -11,6 +11,7 @@ import (
 type BehaviorRules struct {
 	Rules []*BehaviorRule `json:"rules"`
 	Meta  *Meta           `json:"meta"`
+	Index int             `json:"index"`
 }
 
 type BehaviorRule struct {

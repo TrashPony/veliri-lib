@@ -10,7 +10,8 @@ func GetTextureKostil(texture, objectType string) (bool, bool) {
 		if objectType == "turret" || objectType == "shield" || objectType == "generator" ||
 			objectType == "jammer" || objectType == "missile_defense" || objectType == "meteorite_defense" ||
 			objectType == "radar" || objectType == "storage" || objectType == "beacon" ||
-			objectType == "extractor" || objectType == "repair_station" {
+			objectType == "extractor" || objectType == "repair_station" || objectType == "elevator" ||
+			objectType == "mine_wall" {
 
 			return true, true
 		}

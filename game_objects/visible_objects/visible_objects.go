@@ -117,6 +117,7 @@ type VisibleObject struct {
 	ObjectJSON    []byte      `json:"-"`
 	UpdateChecker []byte      `json:"-"`
 	Work          bool        `json:"-"`
+	ForceView     bool        `json:"-"`
 
 	UpdateMsg *UpdateObjMap `json:"-"`
 

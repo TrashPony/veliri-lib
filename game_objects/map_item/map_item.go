@@ -14,6 +14,8 @@ type MapItem struct {
 	ItemID          int          `json:"item_id"`
 	ItemType        string       `json:"item_type"`
 	MapID           int          `json:"map_id"`
+	OwnerType       string       `json:"owner_type"`
+	OwnerID         int          `json:"owner_id"`
 	CacheCreateData CacheData    `json:"-"`
 	CacheUpdateData CacheData    `json:"-"`
 	LifeTime        int64        `json:"-"`
