@@ -156,8 +156,6 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 171, MaxCount: 2, PercentChance: 5},
 			{BpID: 175, MaxCount: 2, PercentChance: 5},
 			{BpID: 176, MaxCount: 2, PercentChance: 5},
-			{BpID: 180, MaxCount: 2, PercentChance: 5},
-			{BpID: 184, MaxCount: 2, PercentChance: 5},
 			{BpID: 167, MaxCount: 2, PercentChance: 5},
 			{BpID: 169, MaxCount: 2, PercentChance: 5},
 			{BpID: 172, MaxCount: 2, PercentChance: 5},
@@ -169,7 +167,11 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 170, MaxCount: 2, PercentChance: 5},
 			{BpID: 173, MaxCount: 2, PercentChance: 5},
 			{BpID: 178, MaxCount: 2, PercentChance: 5},
+			{BpID: 180, MaxCount: 2, PercentChance: 5},
 			{BpID: 181, MaxCount: 2, PercentChance: 5},
+			{BpID: 182, MaxCount: 2, PercentChance: 5},
+			{BpID: 183, MaxCount: 2, PercentChance: 5},
+			{BpID: 184, MaxCount: 2, PercentChance: 5},
 
 			// EQUIP lvl 2 +
 			{BpID: 69, MaxCount: 2, PercentChance: 15, SectorFraction: Replicas},
