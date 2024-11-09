@@ -87,6 +87,8 @@ type Object struct {
 
 	/* энергия и снаряжение */
 	EnergyCell           *detail.ThoriumSlot `json:"energy_cell"`
+	Energy               int                 `json:"energy"`
+	EnergyOn             bool                `json:"energy_on"`
 	CurrentEnergy        int                 `json:"current_energy"`
 	MaxEnergy            int                 `json:"max_energy"`
 	EquipID              int                 `json:"equip_id"`

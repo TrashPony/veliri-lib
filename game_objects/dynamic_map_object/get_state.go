@@ -81,6 +81,16 @@ func (o *Object) GetStartScale() {
 		return
 	}
 
+	if o.Texture == "mine_energy_generator" {
+		o.SetScale(75)
+		return
+	}
+
+	if o.Texture == "mine_geyser_1" {
+		o.SetScale(60)
+		return
+	}
+
 	if o.Texture == "explores_observatory" {
 		o.SetScale(100)
 		return
@@ -140,8 +150,12 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage" || o.Texture == "storage_2" {
+	if o.Texture == "storage" {
 		o.SetScale(74)
+	}
+
+	if o.Texture == "storage_2" {
+		o.SetScale(69)
 	}
 
 	if o.Texture == "beacon" {

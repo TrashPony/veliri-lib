@@ -1211,7 +1211,7 @@ type EnergyPointer interface {
 	GetPass() bool
 }
 
-func CreateBinaryPipePlace(points []Pointer, current []Pointer, energy []EnergyPointer) []byte {
+func CreateBinaryPipePlace(points []Pointer, current []BuildPointer, energy []EnergyPointer, open bool) []byte {
 	command := []byte{105}
 
 	pointData := make([]byte, 0, len(points)*2)
@@ -1227,6 +1227,7 @@ func CreateBinaryPipePlace(points []Pointer, current []Pointer, energy []EnergyP
 	for _, p := range current {
 		pointData = append(pointData, byte(p.GetX()))
 		pointData = append(pointData, byte(p.GetY()))
+		pointData = append(pointData, game_math.BoolToByte(p.GetStructure()))
 	}
 
 	command = append(command, game_math.GetIntBytes(len(pointData))...)
@@ -1242,6 +1243,27 @@ func CreateBinaryPipePlace(points []Pointer, current []Pointer, energy []EnergyP
 
 	command = append(command, game_math.GetIntBytes(len(pointData))...)
 	command = append(command, pointData...)
+
+	command = append(command, game_math.BoolToByte(open))
+
+	return command
+}
+
+func RTSTargetInfo(targetID int, targetType string, ownerID, x, y, ralation, ce int) []byte {
+	command := []byte{106}
+
+	tt, ok := _const.MapBinItems[targetType]
+	if !ok {
+		fmt.Println("unknown type object: ", targetType)
+	}
+
+	command = append(command, game_math.GetIntBytes(targetID)...)
+	command = append(command, byte(tt))
+	command = append(command, game_math.GetIntBytes(ownerID)...)
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(ralation)...)
+	command = append(command, game_math.GetIntBytes(ce)...)
 
 	return command
 }
