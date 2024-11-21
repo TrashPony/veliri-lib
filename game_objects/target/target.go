@@ -2,36 +2,38 @@ package target
 
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"time"
 )
 
 type Target struct {
-	Type         string  `json:"type"` // box, unit, map
-	UUID         string  `json:"uuid"`
-	ID           int     `json:"id"`
-	X            int     `json:"x"`
-	Y            int     `json:"y"`
-	Z            float64 `json:"z"`
-	Follow       bool    `json:"follow"` // преследовать цель используется для цели атак
-	Attack       bool    `json:"attack"`
-	Force        bool    `json:"force"`
-	WeaponTarget bool    `json:"weapon_target"`
-	Radius       int     `json:"radius"`      // радиус на котором держатся от цели
-	OpenBox      bool    `json:"open_box"`    // если true и тип бокс, то он попытается открыть его как достигнет дистации меньше радиус
-	OpenObject   bool    `json:"open_object"` // взаимодействовать с обьектом при достижение Radius
-	MiningOre    bool    `json:"mining_ore"`  // начинать майнить по достижение
-	ToBase       bool    `json:"to_base"`     // информационное поле о том что он идет в базу
-	PlaceObject  bool    `json:"place_object"`
-	Rotate       float64 `json:"rotate"`
-	BaseID       int     `json:"base_id"`
-	Ignore       bool    `json:"ignore"`
-	Update       int64   `json:"-"`
-	MouseTap     bool    `json:"-"`
-	StartTap     bool    `json:"-"`
-	LastTap      bool    `json:"-"`
-	Points       int     `json:"-"`
-	PassAngle    int     `json:"-"`
-	Key          string  `json:"-"`
+	Type         string            `json:"type"` // box, unit, map
+	UUID         string            `json:"uuid"`
+	ID           int               `json:"id"`
+	X            int               `json:"x"`
+	Y            int               `json:"y"`
+	Z            float64           `json:"z"`
+	Follow       bool              `json:"follow"` // преследовать цель используется для цели атак
+	Attack       bool              `json:"attack"`
+	Force        bool              `json:"force"`
+	WeaponTarget bool              `json:"weapon_target"`
+	Radius       int               `json:"radius"`      // радиус на котором держатся от цели
+	OpenBox      bool              `json:"open_box"`    // если true и тип бокс, то он попытается открыть его как достигнет дистации меньше радиус
+	OpenObject   bool              `json:"open_object"` // взаимодействовать с обьектом при достижение Radius
+	MiningOre    bool              `json:"mining_ore"`  // начинать майнить по достижение
+	ToBase       bool              `json:"to_base"`     // информационное поле о том что он идет в базу
+	PlaceObject  bool              `json:"place_object"`
+	Rotate       float64           `json:"rotate"`
+	BaseID       int               `json:"base_id"`
+	Ignore       bool              `json:"ignore"`
+	Update       int64             `json:"-"`
+	MouseTap     bool              `json:"-"`
+	StartTap     bool              `json:"-"`
+	LastTap      bool              `json:"-"`
+	Points       int               `json:"-"`
+	PassAngle    int               `json:"-"`
+	Key          string            `json:"-"`
+	Slots        []*inventory.Slot `json:"-"`
 }
 
 func (t *Target) GetX() int {

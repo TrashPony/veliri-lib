@@ -33,7 +33,9 @@ type Reservoir struct {
 	Complexity int `json:"complexity"`
 	// все пользователи которые добывают эту руду отображаются тут [user_id] progress_points
 	// progress_points - % завершения циклы добычи
-	miningUsers    map[int]float64
+	miningUsers map[int]float64
+	attributes  map[string]int
+
 	CacheJson      []byte       `json:"-"`
 	CreateJsonTime int64        `json:"-"`
 	ToPath         move_path.To `json:"-"`
@@ -227,4 +229,26 @@ func (m *Reservoir) GetRadius() int {
 
 func (m *Reservoir) GetType() string {
 	return "reservoir"
+}
+
+func (m *Reservoir) GetAttribute(key string) int {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	if m.attributes == nil {
+		m.attributes = make(map[string]int)
+	}
+
+	return m.attributes[key]
+}
+
+func (m *Reservoir) SetAttribute(key string, v int) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	if m.attributes == nil {
+		m.attributes = make(map[string]int)
+	}
+
+	m.attributes[key] = v
 }

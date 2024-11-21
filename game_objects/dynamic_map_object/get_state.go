@@ -154,7 +154,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage_2" {
+	if o.Texture == "storage_2" || o.Texture == "mine_recycler" {
 		o.SetScale(69)
 	}
 

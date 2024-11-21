@@ -12,6 +12,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/violator"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_anomaly"
 	"math"
+	"sort"
 )
 
 // [eventID, data]
@@ -227,16 +228,24 @@ func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, slots map[in
 
 	command = append(command, game_math.GetIntBytes(len(slots))...)
 
-	for _, slot := range slots {
+	keys := make([]int, 0, len(slots))
 
-		worked := slot.Worked
-		if worked == 0 && slot.Reload {
+	for k := range slots {
+		keys = append(keys, k)
+	}
+
+	sort.Ints(keys)
+
+	for _, slot := range keys {
+
+		worked := slots[slot].Worked
+		if worked == 0 && slots[slot].Reload {
 			worked = 1 // что бы на фронте не отображалось "нет энергии" когда запрос в пути
 		}
 
-		command = append(command, game_math.GetIntBytes(slot.Number)...)
+		command = append(command, game_math.GetIntBytes(slots[slot].Number)...)
 		command = append(command, game_math.GetIntBytes(worked)...)
-		command = append(command, game_math.GetIntBytes(slot.CurrentFuel.EnergyCap)...)
+		command = append(command, game_math.GetIntBytes(slots[slot].CurrentFuel.EnergyCap)...)
 		command = append(command, byte(0))                     // TODO
 		command = append(command, game_math.GetIntBytes(0)...) // TODO
 		command = append(command, game_math.BoolToByte(false))
@@ -1264,6 +1273,24 @@ func RTSTargetInfo(targetID int, targetType string, ownerID, x, y, ralation, ce 
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(ralation)...)
 	command = append(command, game_math.GetIntBytes(ce)...)
+
+	return command
+}
+
+type RecipePointer interface {
+	GetX() int
+	GetY() int
+	GetRecipe() int
+}
+
+func RecipeStructure(rp []RecipePointer) []byte {
+	command := []byte{107}
+
+	for _, p := range rp {
+		command = append(command, byte(p.GetX()))
+		command = append(command, byte(p.GetY()))
+		command = append(command, byte(p.GetRecipe()))
+	}
 
 	return command
 }
