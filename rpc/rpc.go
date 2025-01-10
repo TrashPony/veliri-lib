@@ -19,6 +19,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/dynamic_map_object"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/equip"
+	"github.com/TrashPony/veliri-lib/game_objects/generate_map_config"
 	"github.com/TrashPony/veliri-lib/game_objects/info_map"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/lvl_map"
@@ -155,6 +156,8 @@ func GobRegister() {
 
 	gob.Register([]unit.Decal{})
 	gob.Register(unit.Decal{})
+
+	gob.Register(generate_map_config.GenerateMapConfig{})
 
 	gob.Register(dynamic_map_object.MinObject{})
 }

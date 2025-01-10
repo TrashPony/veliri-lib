@@ -71,6 +71,11 @@ func (o *Object) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positio
 // у некоторых обьектов например стуктур для строительства статичный размер
 func (o *Object) GetStartScale() {
 
+	if o.Texture == "mine_extractor" {
+		o.SetScale(75)
+		return
+	}
+
 	if o.Texture == "explores_antenna" {
 		o.SetScale(100)
 		return
@@ -154,7 +159,10 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage_2" || o.Texture == "mine_recycler" {
+	if o.Texture == "storage_2" || o.Texture == "mine_recycler" || o.Texture == "armored_factory" || o.Texture == "assembly_shop" ||
+		o.Texture == "battery_factory" || o.Texture == "cable_factory" || o.Texture == "electronics_factory" || o.Texture == "foundry" ||
+		o.Texture == "mechanical_shop" || o.Texture == "mechanical_shop" || o.Texture == "oil_refinery" || o.Texture == "steel_plant" ||
+		o.Texture == "wire_production_workshop" || o.Texture == "сhemical_laboratory" {
 		o.SetScale(69)
 	}
 

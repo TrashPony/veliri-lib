@@ -761,6 +761,14 @@ func (o *Object) GetAttribute(key string) int {
 	return o.attributes[key]
 }
 
+func (o *Object) HasKey(key string) bool {
+	o.mx.Lock()
+	defer o.mx.Unlock()
+
+	_, ok := o.attributes[key]
+	return ok
+}
+
 func (o *Object) SetAttribute(key string, v int) {
 	o.mx.Lock()
 	defer o.mx.Unlock()

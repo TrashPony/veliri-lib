@@ -1258,7 +1258,7 @@ func CreateBinaryPipePlace(points []Pointer, current []BuildPointer, energy []En
 	return command
 }
 
-func RTSTargetInfo(targetID int, targetType string, ownerID, x, y, ralation, ce int) []byte {
+func RTSTargetInfo(targetID int, targetType string, ownerID, x, y, ralation, ce, ct int) []byte {
 	command := []byte{106}
 
 	tt, ok := _const.MapBinItems[targetType]
@@ -1273,6 +1273,7 @@ func RTSTargetInfo(targetID int, targetType string, ownerID, x, y, ralation, ce 
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(ralation)...)
 	command = append(command, game_math.GetIntBytes(ce)...)
+	command = append(command, game_math.GetIntBytes(ct)...)
 
 	return command
 }
@@ -1290,6 +1291,44 @@ func RecipeStructure(rp []RecipePointer) []byte {
 		command = append(command, byte(p.GetX()))
 		command = append(command, byte(p.GetY()))
 		command = append(command, byte(p.GetRecipe()))
+	}
+
+	return command
+}
+
+func ZeroPriority(rp []Pointer) []byte {
+	command := []byte{108}
+
+	pointData := make([]byte, 0, len(rp)*2)
+	for _, p := range rp {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(pointData))...)
+	command = append(command, pointData...)
+
+	return command
+}
+
+type ItemCount struct {
+	ItemType string
+	ItemID   int
+	Quantity int
+}
+
+func CountResource(resourceCounts []ItemCount) []byte {
+	command := []byte{109}
+
+	for _, rc := range resourceCounts {
+		itemTypeByte, exists := _const.ItemBinTypes[rc.ItemType]
+		if !exists {
+			continue
+		}
+
+		command = append(command, byte(itemTypeByte))
+		command = append(command, game_math.GetIntBytes(rc.ItemID)...)
+		command = append(command, game_math.GetIntBytes(rc.Quantity)...)
 	}
 
 	return command

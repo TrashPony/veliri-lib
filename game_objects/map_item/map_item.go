@@ -14,12 +14,13 @@ type MapItem struct {
 	ItemID          int          `json:"item_id"`
 	ItemType        string       `json:"item_type"`
 	MapID           int          `json:"map_id"`
-	OwnerType       string       `json:"owner_type"`
-	OwnerID         int          `json:"owner_id"`
 	CacheCreateData CacheData    `json:"-"`
 	CacheUpdateData CacheData    `json:"-"`
 	LifeTime        int64        `json:"-"`
 	ToPath          move_path.To `json:"-"`
+	ownerType       string
+	ownerID         int
+	ownerInv        int
 	inv             *inventory.Inventory
 	physicalModel   *physical_model.PhysicalModel
 }
@@ -27,6 +28,28 @@ type MapItem struct {
 type CacheData struct {
 	Data []byte `json:"-"`
 	Time int64  `json:"-"`
+}
+
+func (i *MapItem) SetOwner(ownerType string, ownerID, ownerInv int, updater func(string, int, int)) {
+	i.ownerType = ownerType
+	i.ownerID = ownerID
+	i.ownerInv = ownerInv
+
+	if updater != nil {
+		go updater(i.ownerType, i.ownerID, i.ownerInv)
+	}
+}
+
+func (i *MapItem) GetOwnerType() string {
+	return i.ownerType
+}
+
+func (i *MapItem) GetOwnerID() int {
+	return i.ownerID
+}
+
+func (i *MapItem) GetOwnerInv() int {
+	return i.ownerInv
 }
 
 func (i *MapItem) GetGunner() *gunner.Gunner {
@@ -64,6 +87,17 @@ func (i *MapItem) GetSlot() *inventory.Slot {
 
 	s, _ := i.inv.GetSlot(1, -1)
 	return s
+}
+
+func (i *MapItem) GetQuantity() int {
+	return i.GetSlot().GetQuantity()
+}
+
+func (i *MapItem) SetQuantity(q int, updater func(int)) {
+	i.GetSlot().SetQuantity(q)
+	if updater != nil {
+		go updater(q)
+	}
 }
 
 func (i *MapItem) GetPhysicalModel() *physical_model.PhysicalModel {
