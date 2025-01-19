@@ -1,7 +1,7 @@
 package builder_game_state
 
 type BuilderGameState struct {
-	MapID           int64       `json:"map_id"`
+	MineID          int64       `json:"mine_id"`
 	Status          string      `json:"status"`
 	ElevationStatus string      `json:"elevation_status"`
 	UnitStates      []UnitState `json:"unit_states"`

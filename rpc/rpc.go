@@ -160,6 +160,7 @@ func GobRegister() {
 
 	gob.Register(generate_map_config.GenerateMapConfig{})
 	gob.Register(builder_game_state.BuilderGameState{})
+	gob.Register([]builder_game_state.BuilderGameState{})
 	gob.Register(builder_game_state.UnitState{})
 
 	gob.Register(dynamic_map_object.MinObject{})
