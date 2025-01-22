@@ -116,7 +116,7 @@ func (o *Object) GetStartScale() {
 	}
 
 	if o.Type == "elevator" {
-		o.SetScale(100)
+		o.SetScale(75)
 	}
 
 	if o.Type == "mine_wall" {

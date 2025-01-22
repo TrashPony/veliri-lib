@@ -9,6 +9,7 @@ type GenerateMapConfig struct {
 	MapGeysers         int
 	XSize              int
 	YSize              int
+	ElevatorSize       int
 }
 
 func DefaultConfig() GenerateMapConfig {
@@ -21,6 +22,7 @@ func DefaultConfig() GenerateMapConfig {
 		XSize:              4096,
 		YSize:              4096,
 		ResourceQuantityK:  7,
+		ElevatorSize:       6,
 	}
 }
 
@@ -35,6 +37,7 @@ func ConfigByLvl(lvl int) GenerateMapConfig {
 			XSize:              3072,
 			YSize:              3072,
 			ResourceQuantityK:  5,
+			ElevatorSize:       3,
 		}
 	}
 
@@ -52,6 +55,7 @@ func ConfigByLvl(lvl int) GenerateMapConfig {
 			XSize:              6144,
 			YSize:              6144,
 			ResourceQuantityK:  10,
+			ElevatorSize:       9,
 		}
 	}
 
