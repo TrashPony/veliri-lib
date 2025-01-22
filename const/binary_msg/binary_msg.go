@@ -1333,3 +1333,15 @@ func CountResource(resourceCounts []ItemCount) []byte {
 
 	return command
 }
+
+func ElevationStatus(status string) []byte {
+	command := []byte{110}
+
+	if status == "down" {
+		command = append(command, 1)
+	} else {
+		command = append(command, 0)
+	}
+
+	return command
+}
