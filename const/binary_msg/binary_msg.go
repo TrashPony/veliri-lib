@@ -1345,3 +1345,15 @@ func ElevationStatus(status string) []byte {
 
 	return command
 }
+
+func MouseSelectMod(mod string) []byte {
+	command := []byte{111}
+
+	if mod == "Pipes" {
+		command = append(command, 1)
+	} else {
+		command = append(command, 0)
+	}
+
+	return command
+}

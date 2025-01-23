@@ -18,6 +18,7 @@ type MapItem struct {
 	CacheUpdateData CacheData    `json:"-"`
 	LifeTime        int64        `json:"-"`
 	ToPath          move_path.To `json:"-"`
+	LastAction      string       `json:"-"`
 	ownerType       string
 	ownerID         int
 	ownerInv        int

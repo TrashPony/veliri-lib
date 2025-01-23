@@ -9,9 +9,10 @@ import (
 )
 
 type BehaviorRules struct {
-	Rules []*BehaviorRule `json:"rules"`
-	Meta  *Meta           `json:"meta"`
-	Index int             `json:"index"`
+	Rules    []*BehaviorRule `json:"rules"`
+	Meta     *Meta           `json:"meta"`
+	Index    int             `json:"index"`
+	LastRule string          `json:"last_rule"`
 }
 
 type BehaviorRule struct {
