@@ -162,7 +162,7 @@ func (o *Object) GetStartScale() {
 	if o.Texture == "storage_2" || o.Texture == "mine_recycler" || o.Texture == "armored_factory" || o.Texture == "assembly_shop" ||
 		o.Texture == "battery_factory" || o.Texture == "cable_factory" || o.Texture == "electronics_factory" || o.Texture == "foundry" ||
 		o.Texture == "mechanical_shop" || o.Texture == "mechanical_shop" || o.Texture == "oil_refinery" || o.Texture == "steel_plant" ||
-		o.Texture == "wire_production_workshop" || o.Texture == "сhemical_laboratory" {
+		o.Texture == "wire_production_workshop" || o.Texture == "chemical_laboratory" {
 		o.SetScale(69)
 	}
 
