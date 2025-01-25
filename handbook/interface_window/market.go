@@ -65,6 +65,10 @@ var Market = map[string]map[string]string{
 		_const.RU: `Топливо`,
 		_const.EN: `Fuel`,
 	},
+	"cat_11": {
+		_const.RU: `Дроны для шахт`,
+		_const.EN: `Drones for mines`,
+	},
 	"size_t1": {
 		_const.RU: `Малые`,
 		_const.EN: `Small`,
@@ -132,6 +136,10 @@ var Market = map[string]map[string]string{
 	"r_t3": {
 		_const.RU: `Детали`,
 		_const.EN: `Details`,
+	},
+	"r_t4": {
+		_const.RU: `Упакованные`,
+		_const.EN: `Packed`,
 	},
 	"a_t1": {
 		_const.RU: `Лазерные`,

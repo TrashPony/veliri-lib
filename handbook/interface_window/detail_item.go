@@ -742,6 +742,10 @@ var DetailItem = map[string]map[string]string{
 		_const.RU: `Энергоемкость`,
 		_const.EN: `Energy intensity`,
 	},
+	"ch_168": {
+		_const.RU: `Кол-во предметов:`,
+		_const.EN: `Number of items:`,
+	},
 	// DetailItem
 	"text_1": {
 		_const.RU: `примерная цена: <span class="importantly">%credits_count%</span> cr.`,
