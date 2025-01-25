@@ -11,7 +11,9 @@ type Target struct {
 	UUID         string            `json:"uuid"`
 	ID           int               `json:"id"`
 	X            int               `json:"x"`
+	ParrentX     int               `json:"parrent_x"`
 	Y            int               `json:"y"`
+	ParrentY     int               `json:"parrent_y"`
 	Z            float64           `json:"z"`
 	Follow       bool              `json:"follow"` // преследовать цель используется для цели атак
 	Attack       bool              `json:"attack"`

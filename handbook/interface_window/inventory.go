@@ -126,6 +126,10 @@ var Inventory = map[string]map[string]string{
 		_const.RU: `Разделить`,
 		_const.EN: `Divide`,
 	},
+	"button_30": {
+		_const.RU: `Распаковать`,
+		_const.EN: `Unpack`,
+	},
 	// FillUpModal
 	"text_9": {
 		_const.RU: `Сr. за шт.`,

@@ -20,6 +20,7 @@ var CategoriesDescription = map[string]map[string]DescriptionItem{
 		"product":    {Name: "product", Description: ""},
 		"fuel":       {Name: "fuel", Description: ""},
 		"mine_drone": {Name: "mine drone", Description: ""},
+		"package":    {Name: "package", Description: ""},
 	},
 	_const.RU: {
 		"weapon":     {Name: "оружие", Description: ""},
@@ -38,5 +39,6 @@ var CategoriesDescription = map[string]map[string]DescriptionItem{
 		"product":    {Name: "товар", Description: ""},
 		"fuel":       {Name: "топливо", Description: ""},
 		"mine_drone": {Name: "дрон шахтер", Description: ""},
+		"package":    {Name: "упаковка", Description: ""},
 	},
 }

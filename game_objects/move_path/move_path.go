@@ -16,7 +16,7 @@ type MovePath struct {
 	time         int64
 	playerID     int
 	unitID       int
-	stop         bool
+	stop         int
 	stopTimeOut  int64
 }
 
@@ -29,11 +29,16 @@ func (m *MovePath) GetNeedCalc() bool {
 }
 
 func (m *MovePath) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool) {
-	if m.stop && m.stopTimeOut < time.Now().Unix() {
-		m.stop = false
+	stop := m.stop > 0
+	if m.stopTimeOut < time.Now().Unix() {
+		if m.stop >= 2 {
+			m.needFindPath = true
+		}
+
+		stop = false
 	}
 
-	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, m.stop
+	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, stop
 }
 
 func (m *MovePath) NextMovePoint() {
@@ -48,6 +53,8 @@ func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate) {
 	m.needFindPath = false
 	m.path = path
 	m.currentPoint = 0
+	m.stop = 0
+	m.stopTimeOut = 0
 	m.time = time.Now().Unix()
 }
 
@@ -73,6 +80,6 @@ func (m *MovePath) SetMovePathAngle(angle float64, playerID, unitID int) {
 }
 
 func (m *MovePath) Stop() {
-	m.stop = true
+	m.stop++
 	m.stopTimeOut = time.Now().Unix() + 5
 }
