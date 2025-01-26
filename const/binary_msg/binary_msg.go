@@ -1357,3 +1357,14 @@ func MouseSelectMod(mod string) []byte {
 
 	return command
 }
+
+func CreateDropItemBin(x, y, toX, toY int) []byte {
+	command := []byte{112}
+
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(toX)...)
+	command = append(command, game_math.GetIntBytes(toY)...)
+
+	return command
+}

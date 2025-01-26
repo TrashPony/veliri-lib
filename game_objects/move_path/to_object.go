@@ -6,10 +6,11 @@ import (
 )
 
 type To struct {
-	Find   bool  `json:"find"`
-	Path   bool  `json:"path"`
-	Time   int64 `json:"time"`
-	Source game_math.Positions
+	Find    bool  `json:"find"`
+	Path    bool  `json:"path"`
+	Time    int64 `json:"time"`
+	Source  game_math.Positions
+	FindPos game_math.Positions
 }
 
 func (t *To) Check(sourceX, sourceY int) (bool, bool) {
@@ -24,10 +25,12 @@ func (t *To) Check(sourceX, sourceY int) (bool, bool) {
 	return t.Path && t.Find, !t.Find
 }
 
-func (t *To) SetCheck(path bool, sourceX, sourceY int) {
+func (t *To) SetCheck(path bool, sourceX, sourceY int, findX, findY int) {
 	t.Find = true
 	t.Source.X = sourceX
 	t.Source.Y = sourceY
+	t.FindPos.X = findX
+	t.FindPos.Y = findY
 	t.Path = path
 	t.Time = time.Now().Unix()
 }
