@@ -21,7 +21,7 @@ func DefaultConfig() GenerateMapConfig {
 		MapGeysers:         3,
 		XSize:              4096,
 		YSize:              4096,
-		ResourceQuantityK:  7,
+		ResourceQuantityK:  14,
 		ElevatorSize:       6,
 	}
 }
@@ -36,7 +36,7 @@ func ConfigByLvl(lvl int) GenerateMapConfig {
 			MapGeysers:         1,
 			XSize:              3072,
 			YSize:              3072,
-			ResourceQuantityK:  5,
+			ResourceQuantityK:  10,
 			ElevatorSize:       3,
 		}
 	}
@@ -54,7 +54,7 @@ func ConfigByLvl(lvl int) GenerateMapConfig {
 			MapGeysers:         6,
 			XSize:              6144,
 			YSize:              6144,
-			ResourceQuantityK:  10,
+			ResourceQuantityK:  20,
 			ElevatorSize:       9,
 		}
 	}

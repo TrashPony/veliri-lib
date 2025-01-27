@@ -29,6 +29,7 @@ type DynObject struct {
 	BoxID             int
 	Immortal          bool
 	Priority          int
+	BuildPriority     int
 	Filters           []byte
 	Recipe            int
 	NextRecipe        int

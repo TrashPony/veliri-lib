@@ -91,6 +91,11 @@ func (o *Object) GetStartScale() {
 		return
 	}
 
+	if o.Texture == "mine_energy_generator_2" {
+		o.SetScale(25)
+		return
+	}
+
 	if o.Texture == "mine_geyser_1" {
 		o.SetScale(60)
 		return

@@ -168,6 +168,7 @@ type Meta struct {
 	MissionTarget                 int               `json:"mission_target"`
 	IgnoreBaseID                  int               `json:"ignore_base_id"`
 	IgnoreMapID                   int               `json:"ignore_map_id"`
+	Attributes                    map[string]int    `json:"attributes"`
 	robberyIgnore                 map[int]int64
 	mx                            sync.RWMutex
 }
