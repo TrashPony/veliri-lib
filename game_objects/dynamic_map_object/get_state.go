@@ -71,7 +71,7 @@ func (o *Object) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positio
 // у некоторых обьектов например стуктур для строительства статичный размер
 func (o *Object) GetStartScale() {
 
-	if o.Texture == "mine_extractor" {
+	if o.Texture == "mine_extractor_oil" {
 		o.SetScale(75)
 		return
 	}
