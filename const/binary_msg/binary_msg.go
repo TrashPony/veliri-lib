@@ -1218,6 +1218,7 @@ type EnergyPointer interface {
 	GetY() int
 	GetEnergy() int
 	GetPass() bool
+	GetEven() bool
 }
 
 func CreateBinaryPipePlace(points []Pointer, current []BuildPointer, energy []EnergyPointer, open bool) []byte {
@@ -1248,6 +1249,7 @@ func CreateBinaryPipePlace(points []Pointer, current []BuildPointer, energy []En
 		pointData = append(pointData, byte(p.GetY()))
 		pointData = append(pointData, game_math.GetIntBytes(p.GetEnergy())...)
 		pointData = append(pointData, game_math.BoolToByte(p.GetPass()))
+		pointData = append(pointData, game_math.BoolToByte(p.GetEven()))
 	}
 
 	command = append(command, game_math.GetIntBytes(len(pointData))...)
@@ -1282,6 +1284,7 @@ type RecipePointer interface {
 	GetX() int
 	GetY() int
 	GetRecipe() int
+	GetEven() bool
 }
 
 func RecipeStructure(rp []RecipePointer) []byte {
@@ -1291,21 +1294,22 @@ func RecipeStructure(rp []RecipePointer) []byte {
 		command = append(command, byte(p.GetX()))
 		command = append(command, byte(p.GetY()))
 		command = append(command, byte(p.GetRecipe()))
+		command = append(command, game_math.BoolToByte(p.GetEven()))
 	}
 
 	return command
 }
 
-func ZeroPriority(rp []Pointer) []byte {
+func ZeroPriority(rp []RecipePointer) []byte {
 	command := []byte{108}
 
-	pointData := make([]byte, 0, len(rp)*2)
+	pointData := make([]byte, 0, len(rp)*3)
 	for _, p := range rp {
 		pointData = append(pointData, byte(p.GetX()))
 		pointData = append(pointData, byte(p.GetY()))
+		pointData = append(pointData, game_math.BoolToByte(p.GetEven()))
 	}
 
-	command = append(command, game_math.GetIntBytes(len(pointData))...)
 	command = append(command, pointData...)
 
 	return command
@@ -1366,5 +1370,76 @@ func CreateDropItemBin(x, y, toX, toY int) []byte {
 	command = append(command, game_math.GetIntBytes(toX)...)
 	command = append(command, game_math.GetIntBytes(toY)...)
 
+	return command
+}
+
+func CreateUnitPathBin(points []Pointer) []byte {
+	command := []byte{113}
+
+	pointData := make([]byte, 0, len(points)*2)
+	for _, p := range points {
+		pointData = append(pointData, byte(p.GetX()))
+		pointData = append(pointData, byte(p.GetY()))
+	}
+
+	command = append(command, pointData...)
+	return command
+}
+
+type PlacePointer interface {
+	GetX() int
+	GetY() int
+	GetID() int
+	GetType() string
+	GetRotate() int
+}
+
+var matchingIDs = map[int]byte{
+	584: 15,
+	583: 14,
+	582: 13,
+	581: 12,
+	580: 11,
+	579: 10,
+	578: 9,
+	577: 8,
+	576: 7,
+	575: 6,
+	574: 5,
+	573: 4,
+	572: 3,
+	571: 2,
+	570: 1,
+}
+
+var matchingType = map[string]byte{
+	"mine_place": 1,
+	"mine_dirt":  2,
+	"mine_lava":  3,
+}
+
+func CreatePlaceDataBin(points []PlacePointer, size int) []byte {
+	command := []byte{114}
+
+	pointData := make([]byte, 0, len(points)*5)
+	for _, p := range points {
+		byteID, ok := matchingIDs[p.GetID()]
+		if !ok {
+			continue
+		}
+
+		byteType, ok := matchingType[p.GetType()]
+		if !ok {
+			continue
+		}
+
+		pointData = append(pointData, byte(p.GetX()/size))
+		pointData = append(pointData, byte(p.GetY()/size))
+		pointData = append(pointData, byteID)
+		pointData = append(pointData, byteType)
+		pointData = append(pointData, byte(p.GetRotate()/2))
+	}
+
+	command = append(command, pointData...)
 	return command
 }

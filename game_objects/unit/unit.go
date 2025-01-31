@@ -355,6 +355,15 @@ func (u *Unit) SetMovePath(path *[]*coordinate.Coordinate) {
 	mp.SetMovePath(path)
 }
 
+func (u *Unit) GetMovePath() []*coordinate.Coordinate {
+	mp := u.movePath
+	if mp == nil {
+		return nil
+	}
+
+	return mp.GetMovePath()
+}
+
 func (u *Unit) SetMovePathTarget(t *target.Target) {
 	mp := &move_path.MovePath{}
 	mp.SetMovePathTarget(t, u.GetOwnerPlayerID(), u.ID)

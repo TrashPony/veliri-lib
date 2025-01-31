@@ -1,6 +1,8 @@
 package dynamic_map_object
 
 import (
+	"strings"
+
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
@@ -71,7 +73,12 @@ func (o *Object) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positio
 // у некоторых обьектов например стуктур для строительства статичный размер
 func (o *Object) GetStartScale() {
 
-	if o.Texture == "mine_extractor_oil" {
+	if o.Type == "mine_place" || o.Type == "mine_dirt" || o.Type == "mine_lava" {
+		o.SetScale(25)
+		return
+	}
+
+	if strings.Contains(o.Type, "mine_extractor") {
 		o.SetScale(75)
 		return
 	}
@@ -97,7 +104,7 @@ func (o *Object) GetStartScale() {
 	}
 
 	if o.Texture == "mine_geyser_1" {
-		o.SetScale(60)
+		o.SetScale(55)
 		return
 	}
 

@@ -4,6 +4,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
+	"github.com/TrashPony/veliri-lib/game_objects/pointer"
 	"strconv"
 	"sync"
 )
@@ -41,7 +42,16 @@ type Reservoir struct {
 	ToPath         move_path.To `json:"-"`
 	Crack          *Crack       `json:"-"`
 
-	mx sync.RWMutex
+	useCoordinates []pointer.Pointer
+	mx             sync.RWMutex
+}
+
+func (m *Reservoir) SetUseCoordinates(points []pointer.Pointer) {
+	m.useCoordinates = points
+}
+
+func (m *Reservoir) GetUseCoordinates() []pointer.Pointer {
+	return m.useCoordinates
 }
 
 type Crack struct {

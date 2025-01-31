@@ -3,6 +3,7 @@ package physical_model
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
+	"github.com/TrashPony/veliri-lib/game_objects/pointer"
 	"math"
 	"sync"
 )
@@ -50,9 +51,18 @@ type PhysicalModel struct {
 	Static          bool                            `json:"static"`
 	MoveDestroyer   bool                            `json:"-"`
 	MoveCollision   bool                            `json:"-"`
+	useCoordinates  []pointer.Pointer
 	mx              sync.Mutex
 	polygon         *game_math.Polygon
 	nextPolygon     *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+}
+
+func (m *PhysicalModel) SetUseCoordinates(points []pointer.Pointer) {
+	m.useCoordinates = points
+}
+
+func (m *PhysicalModel) GetUseCoordinates() []pointer.Pointer {
+	return m.useCoordinates
 }
 
 func (m *PhysicalModel) GetChassisType() string {
