@@ -91,6 +91,11 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 38, ItemID: 10000009, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1000, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
+
+	// todo временное
+	{ID: 40000, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40001, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40002, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 }
 
 var ExploresAssortment = []AssortmentPoint{
@@ -173,6 +178,11 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 76, ItemID: 10000014, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1001, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
+
+	// todo временное
+	{ID: 40003, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40004, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40005, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 }
 
 var ReversesAssortment = []AssortmentPoint{
@@ -252,4 +262,9 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 78, ItemID: 10000019, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1002, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
+
+	// todo временное
+	{ID: 40006, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40007, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+	{ID: 40008, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 }

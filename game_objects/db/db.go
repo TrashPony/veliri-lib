@@ -55,4 +55,5 @@ type UnitOption struct {
 	OwnerID      int
 	BodyID       int
 	WorkPriority []byte
+	OutID        int64
 }
