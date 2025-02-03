@@ -4,8 +4,8 @@ import _const "github.com/TrashPony/veliri-lib/const"
 
 var ObjectDialog = map[string]map[string]string{
 	"window_name": {
-		_const.RU: `Объект: `,
-		_const.EN: `An object: `,
+		_const.RU: `Содержимое`,
+		_const.EN: `Loot`,
 	},
 	"owner": {
 		_const.RU: `Владелец:`,

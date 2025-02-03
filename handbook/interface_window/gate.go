@@ -41,8 +41,8 @@ var Gate = map[string]map[string]string{
 		_const.EN: `Create`,
 	},
 	"back": {
-		_const.RU: `назад`,
-		_const.EN: `back`,
+		_const.RU: `Назад`,
+		_const.EN: `Back`,
 	},
 	"enter_name": {
 		_const.RU: `Введите имя`,

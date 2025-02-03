@@ -9,8 +9,8 @@ var UserStat = map[string]map[string]string{
 		_const.EN: `No missions`,
 	},
 	"track": {
-		_const.RU: `отслеживать:`,
-		_const.EN: `track:`,
+		_const.RU: `Отслеживать:`,
+		_const.EN: `Track:`,
 	},
 	"log": {
 		_const.RU: `Журнал`,

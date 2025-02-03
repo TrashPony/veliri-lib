@@ -9,8 +9,8 @@ var Missions = map[string]map[string]string{
 		_const.EN: `Active tasks`,
 	},
 	"button_1": {
-		_const.RU: `задания`,
-		_const.EN: `missions`,
+		_const.RU: `К заданиям`,
+		_const.EN: `To missions`,
 	},
 	// Points
 	"text_1": {
