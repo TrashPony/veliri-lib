@@ -417,7 +417,7 @@ func (u *Unit) SetLastDamage(playerID, damage int) *Damage {
 	return &newDamage
 }
 
-func (u *Unit) GetLastDamage() int {
+func (u *Unit) GetLastDamage(sec int64) int {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
@@ -427,7 +427,7 @@ func (u *Unit) GetLastDamage() int {
 
 	last := u.damage[len(u.damage)-1]
 	// если урон наносился больше чем 30 сек назад то он не учитывается
-	if time.Now().Unix()-last.TimeDamage > 30 {
+	if time.Now().Unix()-last.TimeDamage > sec {
 		u.damage = u.damage[:0]
 		return 0
 	}
