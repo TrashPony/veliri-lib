@@ -298,8 +298,8 @@ var UserStat = map[string]map[string]string{
 		_const.EN: `Missions`,
 	},
 	"tab_4": {
-		_const.RU: `Синтет`,
-		_const.EN: `Synthet`,
+		_const.RU: `Личное дело`,
+		_const.EN: `Personal matter`,
 	},
 	"tab_5": {
 		_const.RU: `Сводка`,
