@@ -1376,10 +1376,10 @@ func CreateDropItemBin(x, y, toX, toY int) []byte {
 func CreateUnitPathBin(points []Pointer) []byte {
 	command := []byte{113}
 
-	pointData := make([]byte, 0, len(points)*2)
+	pointData := make([]byte, 0, len(points)*8)
 	for _, p := range points {
-		pointData = append(pointData, byte(p.GetX()))
-		pointData = append(pointData, byte(p.GetY()))
+		pointData = append(pointData, game_math.GetIntBytes(p.GetX())...)
+		pointData = append(pointData, game_math.GetIntBytes(p.GetY())...)
 	}
 
 	command = append(command, pointData...)
