@@ -49,6 +49,9 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"Reverses_2":           {ID: 36, Name: "Koshiro", Description: ""},
 		"disputed_territory_4": {ID: 26, Name: "Finsch", Description: ""},
 		"disputed_territory_6": {ID: 28, Name: "George", Description: ""},
+		"unknown_1":            {ID: 72, Name: "Unknown", Description: ""},
+		"unknown_2":            {ID: 73, Name: "Unknown", Description: ""},
+		"unknown_3":            {ID: 74, Name: "Unknown", Description: ""},
 	},
 	_const.RU: {
 		"sector_1":             {ID: 2, Name: "Зеркот", Description: ""},
@@ -96,5 +99,8 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"free_land_16":         {ID: 56, Name: "91-CORP", Description: ""},
 		"free_land_17":         {ID: 57, Name: "J1MO", Description: ""},
 		"free_land_18":         {ID: 58, Name: "TEY-5", Description: ""},
+		"unknown_1":            {ID: 72, Name: "Неизвестно", Description: ""},
+		"unknown_2":            {ID: 73, Name: "Неизвестно", Description: ""},
+		"unknown_3":            {ID: 74, Name: "Неизвестно", Description: ""},
 	},
 }
