@@ -19,6 +19,7 @@ type MapItem struct {
 	LifeTime        int64        `json:"-"`
 	ToPath          move_path.To `json:"-"`
 	LastAction      string       `json:"-"`
+	Destroy         bool         `json:"-"`
 	ownerType       string
 	ownerID         int
 	ownerInv        int
