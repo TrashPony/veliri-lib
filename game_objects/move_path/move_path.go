@@ -1,6 +1,7 @@
 package move_path
 
 import (
+	"math"
 	"sync"
 	"time"
 
@@ -14,6 +15,7 @@ type MovePath struct {
 	path         *[]*coordinate.Coordinate
 	followTarget *target.Target
 	currentPoint int
+	distToPoint  int
 	needFindPath bool
 	time         int64
 	playerID     int
@@ -30,15 +32,20 @@ func (m *MovePath) GetNeedCalc() bool {
 	return m.needFindPath
 }
 
-func (m *MovePath) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool) {
+func (m *MovePath) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool, int) {
 	m.mx.RLock()
 	defer m.mx.RUnlock()
 
-	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, m.stop
+	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, m.stop, m.distToPoint
 }
 
 func (m *MovePath) NextMovePoint() {
 	m.currentPoint++
+	m.distToPoint = math.MaxInt
+}
+
+func (m *MovePath) SetDistToTaget(d int) {
+	m.distToPoint = d
 }
 
 func (m *MovePath) SetFindMovePath() {
@@ -54,6 +61,7 @@ func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate) {
 	m.currentPoint = 0
 	m.stop = false
 	m.time = time.Now().Unix()
+	m.distToPoint = math.MaxInt
 }
 
 func (m *MovePath) GetMovePath() []*coordinate.Coordinate {

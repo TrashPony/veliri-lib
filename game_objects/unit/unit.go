@@ -310,10 +310,10 @@ func (u *Unit) GetMovePathTime() int64 {
 	return mp.GetMovePathTime()
 }
 
-func (u *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool) {
+func (u *Unit) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool, int) {
 	mp := u.movePath
 	if mp == nil {
-		return false, "", 0, nil, nil, 0, false, 0, true
+		return false, "", 0, nil, nil, 0, false, 0, true, 0
 	}
 
 	return mp.GetMovePathState()
@@ -326,6 +326,15 @@ func (u *Unit) NextMovePoint() {
 	}
 
 	mp.NextMovePoint()
+}
+
+func (u *Unit) SetMoveDistToTaget(d int) {
+	mp := u.movePath
+	if mp == nil {
+		return
+	}
+
+	mp.SetDistToTaget(d)
 }
 
 func (u *Unit) SetFindMovePath() {
