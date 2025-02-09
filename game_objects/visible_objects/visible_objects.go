@@ -100,7 +100,7 @@ type VisibleObject struct {
 	View   bool   `json:"-"`    // в прямой видимости
 	Radar  bool   `json:"-"`    // видим только радаром
 	Type   string `json:"type"` // fly(летающий), ground(наземный), structure(структура), resource(ресурс)
-	update bool
+	update int
 
 	HP            int         `json:"-"`
 	Complete      float64     `json:"-"`
@@ -138,11 +138,11 @@ func (v *VisibleObject) GetUpdateData(mapTime int64) []byte {
 	return v.UpdateChecker
 }
 
-func (v *VisibleObject) GetUpdate() bool {
+func (v *VisibleObject) GetUpdate() int {
 	return v.update
 }
 
-func (v *VisibleObject) SetUpdate(update bool) {
+func (v *VisibleObject) SetUpdate(update int) {
 	v.update = update
 }
 
