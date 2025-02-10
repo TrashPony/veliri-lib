@@ -1443,3 +1443,14 @@ func CreatePlaceDataBin(points []PlacePointer, size int) []byte {
 	command = append(command, pointData...)
 	return command
 }
+
+func CreateWarpBin(x, y, angle int, in bool) []byte {
+	command := []byte{115}
+
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(angle)...)
+	command = append(command, game_math.BoolToByte(in))
+
+	return command
+}

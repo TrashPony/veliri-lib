@@ -36,6 +36,7 @@ type Drone struct {
 	FractionByte     byte                             `json:"-"`
 	EngagePosNoScale map[string]coordinate.Coordinate `json:"wheels_pos_no_scale"`
 	EngageAnchors    map[string]anchor.Anchor         `json:"wheel_anchors"`
+	WarpMode         WarpMode
 
 	followTarget *target.Target
 	weaponTarget *target.Target
@@ -57,6 +58,12 @@ type Drone struct {
 	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
+}
+
+type WarpMode struct {
+	Status          string
+	Path            []*coordinate.Coordinate
+	CurrentPosition int
 }
 
 type CacheData struct {

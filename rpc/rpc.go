@@ -5,6 +5,7 @@ import (
 	"encoding/gob"
 	"encoding/json"
 	"fmt"
+	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/anomaly"
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
@@ -127,6 +128,7 @@ func GobRegister() {
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
 	gob.Register(coordinate.Coordinate{})
+	gob.Register(game_math.Positions{})
 
 	gob.Register(map[int]*skin.Skin{})
 	gob.Register(skin.Skin{})
