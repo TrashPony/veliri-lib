@@ -104,4 +104,16 @@ var Global = map[string]map[string]string{
 		_const.RU: `зум.`,
 		_const.EN: `zoom.`,
 	},
+	"text_25": {
+		_const.RU: `Ваш запрос остался без ответа. Удачи!`,
+		_const.EN: `Your request has gone unanswered. Good luck!`,
+	},
+	"text_26": {
+		_const.RU: `Транспорт на подходе.`,
+		_const.EN: `Transport is on the way.`,
+	},
+	"text_27": {
+		_const.RU: `Транспорт в секторе...`,
+		_const.EN: `Transport is in the sector...`,
+	},
 }

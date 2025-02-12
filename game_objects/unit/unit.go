@@ -38,7 +38,8 @@ type Unit struct {
 
 	evacuation      bool
 	forceEvacuation bool
-	inSky           bool /* отряд по той или иной причине летит Оо */
+	inSky           bool            /* отряд по той или иной причине летит Оо */
+	EvacuationState EvacuationState // юнит летити в трюме транспортника
 
 	movePath *move_path.MovePath // специальный обьект для пути
 
@@ -85,6 +86,17 @@ type Unit struct {
 	ReactorEfficiency  float64 `json:"-"`
 
 	Decals []Decal
+}
+
+type EvacuationState struct {
+	On       bool                   `json:"on"`
+	Type     string                 `json:"type"`
+	TimeOut  int64                  `json:"time_out"`
+	MapID    int                    `json:"map_id"`
+	X        int                    `json:"x"`
+	Y        int                    `json:"y"`
+	Base     *coordinate.Coordinate `json:"base"`
+	Fraction string                 `json:"fraction"`
 }
 
 type CacheData struct {

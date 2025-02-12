@@ -1454,3 +1454,9 @@ func CreateWarpBin(x, y, angle int, in bool) []byte {
 
 	return command
 }
+
+func CreateBinaryEvacuationTimeMsg(t int) []byte {
+	command := []byte{116}
+	command = append(command, game_math.GetIntBytes(t)...)
+	return command
+}

@@ -130,6 +130,8 @@ func GobRegister() {
 	gob.Register(coordinate.Coordinate{})
 	gob.Register(game_math.Positions{})
 
+	gob.Register(unit.EvacuationState{})
+
 	gob.Register(map[int]*skin.Skin{})
 	gob.Register(skin.Skin{})
 
