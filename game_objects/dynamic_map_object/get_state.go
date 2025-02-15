@@ -143,6 +143,10 @@ func (o *Object) GetStartScale() {
 		o.SetScale(50)
 	}
 
+	if o.Texture == "apd_shield_generator" {
+		o.SetScale(40)
+	}
+
 	if o.Texture == "extractor" {
 		o.SetScale(50)
 	}
@@ -163,11 +167,15 @@ func (o *Object) GetStartScale() {
 		o.SetScale(50)
 	}
 
+	if o.Texture == "apd_radar" {
+		o.SetScale(35)
+	}
+
 	if o.Texture == "radar" {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage" {
+	if o.Texture == "storage" || o.Texture == "apd_vault_of_souls" {
 		o.SetScale(74)
 	}
 

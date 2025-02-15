@@ -707,6 +707,16 @@ func (o *Object) GetTurretAmmoID() int {
 	o.mx.Lock()
 	defer o.mx.Unlock()
 
+	if o.attributes != nil && o.attributes["ammo_id"] > 0 {
+		return o.attributes["ammo_id"]
+	}
+
+	for _, w := range o.Weapons {
+		for _, aa := range w.Weapon.AllowAmmo {
+			return aa
+		}
+	}
+
 	if strings.Contains(o.Texture, "laser_turret") {
 		return 6
 	}
@@ -718,10 +728,6 @@ func (o *Object) GetTurretAmmoID() int {
 	}
 	if strings.Contains(o.Texture, "artillery_turret") {
 		return 39
-	}
-
-	if o.attributes != nil && o.attributes["ammo_id"] > 0 {
-		return o.attributes["ammo_id"]
 	}
 
 	return 0

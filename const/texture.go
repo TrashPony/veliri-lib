@@ -1,6 +1,12 @@
 package _const
 
+import "slices"
+
 func GetTextureKostil(texture, objectType string) (bool, bool) {
+	if slices.Contains([]string{"apd_auto_turret", "apd_laser_turret", "apd_radar", "apd_shield_generator", "apd_tank_turret", "apd_vault_of_souls"}, texture) {
+		return false, false
+	}
+
 	// TODO костыль :(
 	if !(texture == "replic_gauss_gun" || texture == "unknown_civilization_jammer" ||
 		texture == "explores_antenna" || texture == "explores_observatory" || texture == "mini_turret_1" ||
