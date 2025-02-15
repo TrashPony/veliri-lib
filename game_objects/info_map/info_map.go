@@ -12,6 +12,7 @@ type InfoMap struct {
 	XGlobal             int                      `json:"x_global"`
 	YGlobal             int                      `json:"y_global"`
 	Fraction            string                   `json:"fraction"`
+	OccupiedFraction    string                   `json:"occupied_fraction"`
 	PossibleBattle      bool                     `json:"possible_battle"`
 	Battle              int                      `json:"battle"`
 	FreeLand            bool                     `json:"free_land"`

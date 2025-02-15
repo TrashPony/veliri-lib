@@ -65,6 +65,20 @@ var drones = &factory{
 				"antigravity_place": {Type: "1", Scale: 1},
 			},
 		},
+		"transport_" + strings.ToLower(_const.APD): {
+			Sprite:   "transport_" + strings.ToLower(_const.APD),
+			Fraction: _const.APD,
+			EngagePosNoScale: map[string]coordinate.Coordinate{
+				"antigravity_place": {X: 64, Y: 64},
+				"1_engage":          {X: 12, Y: 40},
+				"2_engage":          {X: 12, Y: 86},
+			},
+			EngageAnchors: map[string]anchor.Anchor{
+				"antigravity_place": {Type: "1", Scale: 0.5},
+				"1_engage":          {Type: "2", Scale: 1.5},
+				"2_engage":          {Type: "2", Scale: 1.5},
+			},
+		},
 		"drone_scout_1": {
 			EngagePosNoScale: map[string]coordinate.Coordinate{
 				"antigravity_place": {X: 47, Y: 64},
