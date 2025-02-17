@@ -116,7 +116,10 @@ func GobRegister() {
 	gob.Register(npc_request.DialogRequest{})
 	gob.Register(behavior_rule.Meta{})
 	gob.Register(map[int]int{})
+
 	gob.Register([]*build_option.BuildOption{})
+	gob.Register([]build_option.BaseConfig{})
+
 	gob.Register(info_map.InfoMap{})
 	gob.Register(behavior_rule.SubGroup{})
 	gob.Register(map[string]*skill.Skill{})
