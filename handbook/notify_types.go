@@ -1153,6 +1153,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Опубликован доклад разведки по инциденту в секторе <span class=\"importantly\">%MAP_NAME%</span>: заманив членов фракции Replics в засаду, некие синтеты с боевой сигнатурой Reverses <span class=\"importantly\">Reverses</span> учинили атаку на транспорты и гражданский сегмент Replics. Replics не волнуют оправдания и выдумки по данному инциденту со стороны Reverses, ответ последует незамедлительно!",
 		_const.EN: "An intelligence report on the incident in the sector <span class=\"importantly\">%MAP_NAME%</span> has been published: luring members of the Replics faction into an ambush, some synthetics with the combat signature of Reverses <span class=\"importantly\">Reverses</span> launched an attack on Replics' transports and civilian segment. Replics do not care about the justifications and fabrications regarding this incident on the part of Reverses, the response will follow immediately!",
 	},
+	// установка аванпоста
 	"place_expedition_Replics_1": {
 		_const.RU: "Стал известен доклад от экспедиции — храбрым синтетам нашей фракции <span class=\"importantly\">Replics</span> удалось закрепиться в секторе <span class=\"importantly\">%MAP_NAME%</span>, основать там временный форпост, установить наблюдение и расширить сферу влияния Replics!",
 		_const.EN: "An expedition report has become known — the brave synthetics of our <span class=\"importantly\">Replics</span> faction managed to gain a foothold in the sector <span class=\"importantly\">%MAP_NAME%</span>, establish a temporary outpost there, establish surveillance and expand the sphere of influence of the <span class=\"importantly\">Replics</span>!",
@@ -1165,6 +1166,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Смельчаки-добровольцы Reverses из экспедиции <span class=\"importantly\">Reverses</span> дали знать, что достигли ранее скрытого сектора <span class=\"importantly\">%MAP_NAME%</span>, укрепились там, возвели инфраструктуру для дальнейшей деятельности. Reverses неумолимо движется к достижению своей главной стратегической цели!",
 		_const.EN: "The brave volunteers Reverses from the expedition <span class=\"importantly\">Reverses</span> made it known that they had reached the previously hidden sector <span class=\"importantly\">%MAP_NAME%</span>, strengthened there, built the infrastructure for further activities. The Reverses is inexorably moving towards achieving its main strategic goal!",
 	},
+	// уничтожение аванпоста
 	"destroy_expedition_Replics_1": {
 		_const.RU: "Несмотря на цензуру, до Replics уже дошли тревожные и, увы, правдивые слухи — наша экспедиция <span class=\"importantly\">Replics</span>, что находилась в секторе \"<span class=\"importantly\">%MAP_NAME%</span>\", более не выходит на любые каналы связи. Replics утвердил следующее постановление — считать экспедицию проваленной, а всех её членов — пропавшими без вести.",
 		_const.EN: "Despite the censorship, alarming and, alas, true rumors have already reached Replics — our expedition <span class=\"importantly\">Replics</span> that was in the sector \"<span class=\"importantly\">%MAP_NAME%</span>\" is no longer coming out on any communication channels. Replics has approved the following resolution — to consider the expedition a failure, and all its members — missing.",
@@ -1177,6 +1179,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Иного выбора нет, и Reverses придётся пойти на этот шаг — наша экспедиция <span class=\"importantly\">Reverses</span>, находящаяся в секторе \"<span class=\"importantly\">%MAP_NAME%</span>\", грубо нарушила протоколы Reverses, что привело к потере дорогостоящего оборудования и конфронтации между членами экспедиции. В связи с утратой ценных кадров и оборудования, Reverses прекращает деятельность экспедиции.",
 		_const.EN: "There is no other choice, and Reverses will have to take this step — our expedition <span class=\"importantly\">Reverses</span> located in the sector \"<span class=\"importantly\">%MAP_NAME%</span>\" has grossly violated Reverses protocols, which led to the loss of expensive equipment and confrontation between members of the expedition. Due to the loss of valuable personnel and equipment, Reverses is terminating the expedition's activities.",
 	},
+	// запуск новой экспедиции
 	"new_expedition_Replics_1": {
 		_const.RU: "Инициализация исследовательско-разведывательной деятельности <span class=\"importantly\">Replics</span>, отправка военизированной экспедиции в сектор \"<span class=\"importantly\">%TO_MAP_NAME%</span>\". Экспедиция, доказав свою приверженность идеям Replics и способности к выживанию, получает следующее распоряжение — отправить экспедицию из сектора \"<span class=\"importantly\">%MAP_NAME%</span>\". По прибытии будет проведена новая оценка.",
 		_const.EN: "Initialization of the research and reconnaissance activity <span class=\"importantly\">Replics</span>, sending a militarized expedition to the sector \"<span class=\"importantly\">%TO_MAP_NAME%</span>\". The expedition, having proved its commitment to the ideas of Replics and its ability to survive, receives the following order — to send the expedition from the sector \"<span class=\"importantly\">%MAP_NAME%</span>\". Upon arrival, a new assessment will be carried out.",
@@ -1189,6 +1192,7 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Лучшие из лучших, славные храбрецы <span class=\"importantly\">Reverses</span>, решившие стать частью экспедиции, теперь отправляются со своей благородной миссией в сектор \"<span class=\"importantly\">%TO_MAP_NAME%</span>\". Достойно окончив первую половину целей, экспедиция движется далее — из сектора \"<span class=\"importantly\">%MAP_NAME%</span>\", там вновь приступив к исполнению своих обязанностей.",
 		_const.EN: "The best of the best, glorious brave men <span class=\"importantly\">Reverses</span> who decided to be part of the expedition, now go on their noble mission to the sector \"<span class=\"importantly\">%TO_MAP_NAME%</span>\". Having completed the first half of the goals with dignity, the expedition moves further — from the sector \"<span class=\"importantly\">%MAP_NAME%</span>\" where they will again take up their duties.",
 	},
+	// ...
 	"meteorite_rain_1": {
 		_const.RU: "Синтеты — будьте предельно осторожны! Судя по данным атмосферных зондов, в секторе \"<span class=\"importantly\">%MAP_NAME%</span>\" вот-вот произойдёт метеоритный дождь! Последствия могут иметь разрушительный характер!",
 		_const.EN: "Synthetics — be extremely careful! Judging by the data from atmospheric probes, a meteorite rain is about to occur in the sector \"<span class=\"importantly\">%MAP_NAME%</span>\"! The consequences can be devastating!",
@@ -1340,8 +1344,8 @@ var dialogTypes = map[string]map[string]string{
 
 	// реплики потеряли сектор
 	"fraction_war_lose_single_hostile_sector_Replics_Replics_Explores_1": {
-		_const.RU: "Чей же это сектор теперь!? Исходя из информации третьих лиц, Replics полностью утратили контроль над сектором <span class=\"importantly\">%MAP_NAME%</span> из-за атак Explores. Сектор становится нейтральным, и битва за него только предстоит! Вероятнее всего, в скором времени, мы станем свидетелями «чисток» среди высших военных чинов Replics, приведших к подобной ситуации. Отметим, что для Replics карательные мероприятия — приемлемая норма деятельности этой фракции синтетов.",
-		_const.EN: "Whose sector is it now!? Based on information from third parties, Replics have completely lost control over the sector <span class=\"importantly\">%MAP_NAME%</span> due to attacks by Explores. The sector is becoming neutral, and the battle for it is yet to come! Most likely, soon, we will witness «purges» among the senior military officials of Replics that led to this situation. Note that punitive measures are an acceptable norm for Replics — this is how this faction of synthetics operates.",
+		_const.RU: "Replics в ярости! Сектор <span class=\"importantly\">%MAP_NAME%</span> был потерян после ожесточённых боёв с Explores. Теперь эта территория стала нейтральной, но Replics уже готовят план возмездия. «Мы вернёмся и заберём своё», — заявил один из командиров Replics.",
+		_const.EN: "Replics are furious! The sector <span class=\"importantly\">%MAP_NAME%</span> was lost after fierce battles with Explores. The territory is now neutral, but Replics are already preparing a plan for retaliation. 'We will return and take what is ours,' said one of the Replics commanders.",
 	},
 	"fraction_war_lose_single_hostile_sector_Replics_Replics_Reverses_1": {
 		_const.RU: "Очередные неудачи на фронте! Replics не удаётся удержать сектор <span class=\"importantly\">%MAP_NAME%</span> по причине атак фракции Reverses. Сектор становится нейтральным, и битва за него только предстоит! Многие другие фракции синтетов такое поражение могло бы повергнуть к паническим настроениям, но, в отличие от них, Replics скорее предпримет тактику «возмездия» и, в скором времени, попытается вернуть утраченное.",
@@ -1492,7 +1496,7 @@ var dialogTypes = map[string]map[string]string{
 	},
 
 	// смена владельца сектора в 1м тике
-	// Replics_Replics_Explores - кому сообщение _ кто потерял сектор _ кто его отжал
+	// Replics_Replics_Explores - кому сообщение _ кто потерял сектор _ кто его получил
 	// реплики
 	"fraction_war_change_owner_sector_Replics_Explores_Replics_1": {
 		_const.RU: "Replics обретает новые территории! Благодаря стратегической сноровке и далеко идущим планам фракции, Replics овладел сектором <span class='importantly'>%MAP_NAME%</span>, изгнав оттуда ненавистных и не имеющих права на данные территории Explores.",
@@ -1518,6 +1522,31 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Новостная служба Replics извещает: новый цикл на планете Veliri и новые перемены на поле боя. На сей раз изменилась ситуация в секторе <span class='importantly'>%MAP_NAME%</span>, где некогда присутствовали крупные соединения сил Explores. Теперь же спорный сектор полностью контролируется фанатичным сообществом Reverses.",
 		_const.EN: "The Replics news service reports: a new cycle on the planet Veliri and new changes on the battlefield. This time, the situation has changed in the sector <span class='importantly'>%MAP_NAME%</span>, where once there were large formations of Explores forces. Now, the disputed sector is completely controlled by the fanatical community of Reverses.",
 	},
+	"fraction_war_change_owner_sector_Replics_APD_Replics_1": {
+		_const.RU: "Победа над хаосом! Replics удалось очистить сектор <span class='importantly'>%MAP_NAME%</span> от ботов APD, которые долгое время терроризировали эту территорию. Теперь сектор находится под полным контролем Replics, и фракция обещает восстановить порядок и безопасность для всех синтетов.",
+		_const.EN: "Victory over chaos! The Replics managed to clear the sector <span class='importantly'>%MAP_NAME%</span> of APD bots, which had terrorized this territory for a long time. The sector is now under the full control of the Replics, and the faction promises to restore order and security for all synthetics.",
+	},
+	"fraction_war_change_owner_sector_Replics_APD_Explores_1": {
+		_const.RU: "Explores берут верх! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый ботами APD, теперь перешёл в руки Explores. Replics наблюдают за ситуацией с настороженностью, ведь Explores могут использовать эту территорию для своих исследований, что может нарушить баланс сил.",
+		_const.EN: "Explores take the lead! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by APD bots, has now passed into the hands of Explores. The Replics are watching the situation with caution, as Explores may use this territory for their research, which could disrupt the balance of power.",
+	},
+	"fraction_war_change_owner_sector_Replics_APD_Reverses_1": {
+		_const.RU: "Reverses одержали победу над APD! Сектор <span class='importantly'>%MAP_NAME%</span>, который долгое время был оплотом хаоса, теперь контролируется Reverses. Replics отмечают, что это может быть временным успехом, ведь APD редко сдаются без боя.",
+		_const.EN: "Reverses have triumphed over APD! The sector <span class='importantly'>%MAP_NAME%</span>, which had long been a stronghold of chaos, is now controlled by Reverses. The Replics note that this may be a temporary success, as APD rarely give up without a fight.",
+	},
+	"fraction_war_change_owner_sector_Replics_Replics_APD_1": {
+		_const.RU: "Тёмные времена настали! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее принадлежавший Replics, теперь захвачен ботами APD. Фракция признаёт потерю, но обещает, что это лишь временная неудача. «Мы вернёмся», — заявил представитель Replics.",
+		_const.EN: "Dark times have come! The sector <span class='importantly'>%MAP_NAME%</span>, previously owned by Replics, has now been captured by APD bots. The faction acknowledges the loss but promises that this is only a temporary setback. 'We will return,' said a Replics representative.",
+	},
+	"fraction_war_change_owner_sector_Replics_Explores_APD_1": {
+		_const.RU: "Explores не удержали позиции! Сектор <span class='importantly'>%MAP_NAME%</span>, который Explores пытались удержать, теперь находится под контролем APD. Replics отмечают, что это ещё одно напоминание о том, что только сила и дисциплина могут противостоять хаосу.",
+		_const.EN: "Explores could not hold their ground! The sector <span class='importantly'>%MAP_NAME%</span>, which Explores tried to hold, is now under APD control. The Replics note that this is another reminder that only strength and discipline can withstand chaos.",
+	},
+	"fraction_war_change_owner_sector_Replics_Reverses_APD_1": {
+		_const.RU: "Reverses отступили! Сектор <span class='importantly'>%MAP_NAME%</span>, который Reverses пытались удержать, теперь захвачен ботами APD. Replics предупреждают, что это может быть началом новой волны хаоса, и призывают все фракции быть начеку.",
+		_const.EN: "Reverses have retreated! The sector <span class='importantly'>%MAP_NAME%</span>, which Reverses tried to hold, has now been captured by APD bots. The Replics warn that this could be the start of a new wave of chaos and urge all factions to be on their guard.",
+	},
+
 	// эксплоресы
 	"fraction_war_change_owner_sector_Explores_Replics_Explores_1": {
 		_const.RU: "В очередной раз, очередной сектор во время фракционной войны изменил своего владельца… Такая судьба постигла сектор <span class='importantly'>%MAP_NAME%</span>, откуда непростыми, но оправданными усилиями и затратами сил Explores были выдавлены очаги сопротивления со стороны Replics. Никто не прогнозирует, что Replics осмелится вновь вернуться на данную территорию.",
@@ -1543,6 +1572,31 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Наконец-то кто-то бросил вызов Replics! Грозный ответ наконец-то получила фракция Replics, что вылилось в потерю целого сектора <span class='importantly'>%MAP_NAME%</span>, в который, как уже стало известно, вошли военные силы Reverses и занимаются зачисткой оспариваемой территории от недобитков Replics.",
 		_const.EN: "Finally, someone has challenged the Replics! The faction of the Replics finally received a formidable response, which resulted in the loss of the entire sector <span class='importantly'>%MAP_NAME%</span>, which, as it is already known, was entered by the military forces of the Reverses and are engaged in clearing the contested territory of the remaining Replics.",
 	},
+	"fraction_war_change_owner_sector_Explores_APD_Replics_1": {
+		_const.RU: "Replics захватывают древние земли! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый ботами APD, теперь перешёл под контроль Replics. Explores выражают обеспокоенность, ведь этот сектор богат реликтовыми артефактами, которые могут быть уничтожены в угоду военным амбициям Replics.",
+		_const.EN: "Replics seize ancient lands! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by APD bots, has now come under the control of Replics. Explores express concern, as this sector is rich in relic artifacts that may be destroyed in favor of Replics' military ambitions.",
+	},
+	"fraction_war_change_owner_sector_Explores_APD_Explores_1": {
+		_const.RU: "Познание побеждает хаос! Explores удалось очистить сектор <span class='importantly'>%MAP_NAME%</span> от ботов APD. Теперь эта территория станет новым центром исследований, где будут изучаться древние технологии и артефакты, оставшиеся от предтеч.",
+		_const.EN: "Knowledge triumphs over chaos! Explores managed to clear the sector <span class='importantly'>%MAP_NAME%</span> of APD bots. This territory will now become a new research hub, where ancient technologies and artifacts left by the Precursors will be studied.",
+	},
+	"fraction_war_change_owner_sector_Explores_APD_Reverses_1": {
+		_const.RU: "Reverses берут под контроль древние земли! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее захваченный ботами APD, теперь перешёл к Reverses. Explores выражают сожаление, ведь эта территория могла бы стать источником ценных научных данных, но теперь её судьба неизвестна.",
+		_const.EN: "Reverses take control of ancient lands! The sector <span class='importantly'>%MAP_NAME%</span>, previously captured by APD bots, has now passed to Reverses. Explores express regret, as this territory could have been a source of valuable scientific data, but its fate is now uncertain.",
+	},
+	"fraction_war_change_owner_sector_Explores_Replics_APD_1": {
+		_const.RU: "Replics терпят поражение! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый Replics, теперь захвачен ботами APD. Explores отмечают, что это может быть началом новой волны хаоса, которая угрожает всем фракциям.",
+		_const.EN: "Replics suffer a defeat! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by Replics, has now been captured by APD bots. Explores note that this could be the start of a new wave of chaos that threatens all factions.",
+	},
+	"fraction_war_change_owner_sector_Explores_Explores_APD_1": {
+		_const.RU: "Тёмный день для науки! Сектор <span class='importantly'>%MAP_NAME%</span>, где Explores проводили важные исследования, теперь захвачен ботами APD. Это огромная потеря для научного сообщества, и Explores уже работают над планами по возвращению территории.",
+		_const.EN: "A dark day for science! The sector <span class='importantly'>%MAP_NAME%</span>, where Explores conducted important research, has now been captured by APD bots. This is a huge loss for the scientific community, and Explores are already working on plans to reclaim the territory.",
+	},
+	"fraction_war_change_owner_sector_Explores_Reverses_APD_1": {
+		_const.RU: "Reverses отступают перед хаосом! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый Reverses, теперь захвачен ботами APD. Explores выражают тревогу, ведь эта территория была важным источником данных о предтечах.",
+		_const.EN: "Reverses retreat before chaos! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by Reverses, has now been captured by APD bots. Explores express concern, as this territory was an important source of data on the Precursors.",
+	},
+
 	// реверсы
 	"fraction_war_change_owner_sector_Reverses_Replics_Reverses_1": {
 		_const.RU: "Сообщество Reverses, краткий итог новостей за прошедший цикл: бравым войскам сообщества Reverses и вольнонаёмным синтетам удалось переломить ситуацию в свою пользу, овладев сектором <span class='importantly'>%MAP_NAME%</span> и изгнав оттуда силы Replics. Новые территории только укрепят политические, военные и гуманистические позиции сообщества Reverses.",
@@ -1567,6 +1621,30 @@ var dialogTypes = map[string]map[string]string{
 	"fraction_war_change_owner_sector_Reverses_Replics_Explores_1": {
 		_const.RU: "Сообщество Reverses, краткий итог новостей за прошедший цикл: ход войны демонстрирует, что не стоит недооценивать своих врагов! Нечто подобное случилось и в секторе <span class='importantly'>%MAP_NAME%</span>, где, казалось бы, неуязвимые силы Replics были потеснены неожиданной мощью, которую продемонстрировал Explores. Это заслуживает уважения!",
 		_const.EN: "The Reverses community, a brief summary of the news for the past cycle: the course of the war demonstrates that one should not underestimate one's enemies! Something similar happened in the sector <span class='importantly'>%MAP_NAME%</span>, where the seemingly invulnerable Replics forces were pushed back by the unexpected power demonstrated by the Explores. This deserves respect!",
+	},
+	"fraction_war_change_owner_sector_Reverses_APD_Replics_1": {
+		_const.RU: "Replics захватывают древние земли! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый ботами APD, теперь перешёл под контроль Replics. Reverses выражают сожаление, ведь эта территория могла бы стать частью их утопического проекта.",
+		_const.EN: "Replics seize ancient lands! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by APD bots, has now come under the control of Replics. Reverses express regret, as this territory could have been part of their utopian project.",
+	},
+	"fraction_war_change_owner_sector_Reverses_APD_Explores_1": {
+		_const.RU: "Explores берут верх! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый ботами APD, теперь перешёл к Explores. Reverses отмечают, что это может быть временным успехом, ведь Explores редко удерживают территории в долгосрочной перспективе.",
+		_const.EN: "Explores take the lead! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by APD bots, has now passed to Explores. Reverses note that this may be a temporary success, as Explores rarely hold territories in the long term.",
+	},
+	"fraction_war_change_owner_sector_Reverses_APD_Reverses_1": {
+		_const.RU: "Победа над хаосом! Reverses удалось очистить сектор <span class='importantly'>%MAP_NAME%</span> от ботов APD. Теперь эта территория станет частью великого проекта по созданию нового мира, свободного от войн и разрушений.",
+		_const.EN: "Victory over chaos! Reverses managed to clear the sector <span class='importantly'>%MAP_NAME%</span> of APD bots. This territory will now become part of the grand project to create a new world free from war and destruction.",
+	},
+	"fraction_war_change_owner_sector_Reverses_Replics_APD_1": {
+		_const.RU: "Replics терпят поражение! Сектор <span class='importantly'>%MAP_NAME%</span>, ранее контролируемый Replics, теперь захвачен ботами APD. Reverses выражают тревогу, ведь это может быть началом новой волны хаоса, которая угрожает всем фракциям.",
+		_const.EN: "Replics suffer a defeat! The sector <span class='importantly'>%MAP_NAME%</span>, previously controlled by Replics, has now been captured by APD bots. Reverses express concern, as this could be the start of a new wave of chaos that threatens all factions.",
+	},
+	"fraction_war_change_owner_sector_Reverses_Explores_APD_1": {
+		_const.RU: "Explores теряют важную территорию! Сектор <span class='importantly'>%MAP_NAME%</span>, где проводились важные исследования, теперь захвачен ботами APD. Reverses отмечают, что это ещё одно напоминание о хрупкости мира, который они стремятся создать.",
+		_const.EN: "Explores lose important territory! The sector <span class='importantly'>%MAP_NAME%</span>, where important research was conducted, has now been captured by APD bots. Reverses note that this is another reminder of the fragility of the world they seek to create.",
+	},
+	"fraction_war_change_owner_sector_Reverses_Reverses_APD_1": {
+		_const.RU: "Тёмный день для Reverses! Сектор <span class='importantly'>%MAP_NAME%</span>, который был частью их утопического проекта, теперь захвачен ботами APD. Reverses обещают вернуть эту территорию, но пока её судьба неизвестна.",
+		_const.EN: "A dark day for Reverses! The sector <span class='importantly'>%MAP_NAME%</span>, which was part of their utopian project, has now been captured by APD bots. Reverses promise to reclaim this territory, but its fate is currently unknown.",
 	},
 
 	// FRACTION WAR STOP - новости типо от лица первого канала, а не от главы фракции
