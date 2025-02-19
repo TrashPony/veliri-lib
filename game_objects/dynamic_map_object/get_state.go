@@ -11,11 +11,11 @@ import (
 )
 
 func (o *Object) GetX() int {
-	return o.GetPhysicalModel().X
+	return o.GetPhysicalModel().GetX()
 }
 
 func (o *Object) GetY() int {
-	return o.GetPhysicalModel().Y
+	return o.GetPhysicalModel().GetY()
 }
 
 func (o *Object) GetOwnerID() int {
