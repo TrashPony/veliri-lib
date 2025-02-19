@@ -264,12 +264,12 @@ func (o *Object) GetType() string {
 
 func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 
-	dist := int(game_math.GetBetweenDist(o.GetX(), o.GetY(), x, y))
-	if o.GetRangeView()+radius >= dist {
+	dist := game_math.GetBetweenDist(o.GetX(), o.GetY(), x, y)
+	if float64(o.GetRangeView()+radius) >= dist {
 		return true, true
 	}
 
-	if o.GetRadarRange()+radius >= dist {
+	if float64(o.GetRadarRange()+radius) >= dist {
 		return false, true
 	}
 
