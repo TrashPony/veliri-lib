@@ -277,6 +277,10 @@ func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 }
 
 func (o *Object) GetRangeView() int {
+	return o.viewRange
+}
+
+func (o *Object) getRangeView() int {
 	if o == nil {
 		return 0
 	}
@@ -289,19 +293,14 @@ func (o *Object) GetRangeView() int {
 }
 
 func (o *Object) GetRadarRange() int {
+	return o.radarRange
+}
+
+func (o *Object) getRadarRange() int {
 	radarRange := 0
 
 	if o == nil || !o.Work {
 		return radarRange
-	}
-
-	if o.RangeRadar != 0 {
-
-		if o.OwnerBaseID > 0 {
-			return o.RangeView * 5
-		}
-
-		return o.RangeRadar
 	}
 
 	if o.Equips[1] != nil && o.Equips[1].Equip != nil && o.Equips[1].Equip.Applicable == "radar" && o.CurrentEnergy > 0 {

@@ -99,6 +99,9 @@ type Object struct {
 	Weapons map[int]*detail.BodyWeaponSlot `json:"weapons"`
 	Equips  map[int]*detail.BodyEquipSlot  `json:"equips"`
 
+	viewRange  int
+	radarRange int
+
 	/* Экстрактор ресурсов */
 	ReservoirID int `json:"-"`
 	/* Для кусков туш */
@@ -164,6 +167,7 @@ func (o *Object) Reset() {
 	o.visibleObjects = nil
 	o.memoryDynamicObjects = nil
 	o.specialHostiles = nil
+	o.updateViewState()
 	o.mx = sync.RWMutex{}
 }
 
@@ -192,11 +196,17 @@ func (o *Object) initGunner() {
 	o.UpdateWeaponsState()
 }
 
+func (o *Object) updateViewState() {
+	o.viewRange = o.getRangeView()
+	o.radarRange = o.getRadarRange()
+}
+
 func (o *Object) UpdateWeaponsState() {
 	if o.gunner == nil {
 		o.initGunner()
 	}
 
+	o.updateViewState()
 	o.gunner.WeaponSlotsState = make([]*gunner.WeaponSlotState, 0)
 	for _, wSlot := range o.RangeWeaponSlots() {
 
@@ -238,6 +248,7 @@ func (o *Object) Ghost() bool {
 
 func (o *Object) initPhysicalModel() {
 
+	o.updateViewState()
 	weight := float64(o.Weight)
 	if o.Static {
 		weight = float64(math.MaxInt32)
