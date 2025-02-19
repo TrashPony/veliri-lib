@@ -264,7 +264,7 @@ func (o *Object) GetType() string {
 
 func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 
-	dist := int(game_math.GetBetweenDist(o.GetPhysicalModel().X, o.GetPhysicalModel().Y, x, y))
+	dist := int(game_math.GetBetweenDist(o.GetX(), o.GetY(), x, y))
 	if o.GetRangeView()+radius >= dist {
 		return true, true
 	}
@@ -293,6 +293,15 @@ func (o *Object) GetRadarRange() int {
 
 	if o == nil || !o.Work {
 		return radarRange
+	}
+
+	if o.RangeRadar != 0 {
+
+		if o.OwnerBaseID > 0 {
+			return o.RangeView * 5
+		}
+
+		return o.RangeRadar
 	}
 
 	if o.Equips[1] != nil && o.Equips[1].Equip != nil && o.Equips[1].Equip.Applicable == "radar" && o.CurrentEnergy > 0 {
