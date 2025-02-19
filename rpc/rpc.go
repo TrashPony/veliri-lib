@@ -130,6 +130,7 @@ func GobRegister() {
 
 	gob.Register(map[int][]*coordinate.Coordinate{})
 	gob.Register([]*coordinate.Coordinate{})
+	gob.Register([]coordinate.Coordinate{})
 	gob.Register(coordinate.Coordinate{})
 	gob.Register(game_math.Positions{})
 

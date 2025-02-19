@@ -1291,13 +1291,37 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Поступила новость, что, само собой, ни для кого не станет откровением: Фракция Replics провела внеочередное пополнение личного состава, расширив количество войск и тем самым плотно прикрыв границы своих территорий от любых посягательств. Хотя, зная специфику ведения дипломатии со стороны Replics, подобный шаг может свидетельствовать о подготовке к новой войне за спорные территории.",
 		_const.EN: "There is news that, of course, will not be a revelation for anyone: the Replics faction has conducted an extraordinary replenishment of personnel, expanding the number of troops and thereby tightly covering the borders of their territories from any encroachments. Although, knowing the specifics of diplomacy on the part of Replics, such a step may indicate preparation for a new war over disputed territories.",
 	},
+	"fraction_war_create_army_Replics_2": {
+		_const.RU: "Согласно последним сводкам, Replics завершили масштабную мобилизацию резервных подразделений. Десятки новых боевых юнитов уже патрулируют границы секторов, ранее считавшихся «спокойными». Аналитики отмечают, что такая активность обычно предшествует внезапным наступательным операциям фракции.",
+		_const.EN: "According to the latest reports, Replics have completed a large-scale mobilization of reserve units. Dozens of new combat units are already patrolling the borders of sectors previously considered 'quiet.' Analysts note that such activity usually precedes sudden offensive operations by the faction.",
+	},
+	"fraction_war_create_army_Replics_3": {
+		_const.RU: "Военные доклады подтверждают: Replics удвоили производство тяжёлых штурмовых платформ. На спутниковых снимках видны колонны машин, движущиеся к спорным территориям. «Это не эскалация — это поддержание суверенитета», — заявил представитель фракции, отказавшись от дальнейших комментариев.",
+		_const.EN: "Military reports confirm: Replics have doubled the production of heavy assault platforms. Satellite images show columns of vehicles moving towards disputed territories. 'This is not escalation — it is sovereignty maintenance,' a faction representative stated, declining further comment.",
+	},
 	"fraction_war_create_army_Explores_1": {
 		_const.RU: "Планета полнится различными слухами, и на сей раз один из таких поводов касается фракции Explores: как сообщается, примерно около трёх циклов назад промышленные фабрикаторы и заводы общего назначения фракции стали массово выпускать продукцию военного образца. Explores даже временно закрыли границы для допуска на эти территории синтетов из иных фракций. Всё это может свидетельствовать только об одном — Explores готовится к вооружённому противостоянию!",
 		_const.EN: "The planet is full of various rumors, and this time one of such occasions concerns the Explores faction: it is reported that about three cycles ago, the industrial fabricators and general-purpose factories of the faction began to massively produce military-grade products. Explores even temporarily closed the borders to allow synthetics from other factions into these territories. All this can only indicate one thing — Explores is preparing for an armed confrontation!",
 	},
+	"fraction_war_create_army_Explores_2": {
+		_const.RU: "Explores неожиданно активировали протокол «Научный Щит». Все исследовательские подразделения получили приказ вернуться на базы, а их транспортные средства переоборудуются под боевые модули. Официальная причина — «необходимость защиты артефактов от несанкционированного доступа».",
+		_const.EN: "Explores have unexpectedly activated the 'Scientific Shield' protocol. All research units have been ordered to return to bases, and their transports are being retrofitted with combat modules. The official reason is 'the need to protect artifacts from unauthorized access.'",
+	},
+	"fraction_war_create_army_Explores_3": {
+		_const.RU: "Спутники зафиксировали перемещение мобильных лабораторий Explores к линии фронта. По данным источников, учёные фракции тестируют «тактические решения на основе находок предтеч». Replics уже выразили протест, назвав это «маскировкой военных преступлений под науку».",
+		_const.EN: "Satellites have detected the movement of Explores mobile laboratories to the frontlines. According to sources, faction scientists are testing 'tactical solutions based on Precursor findings.' Replics have already protested, calling this 'masking war crimes as science.'",
+	},
 	"fraction_war_create_army_Reverses_1": {
 		_const.RU: "Новые события и новости на Veliri: судя по многочисленной инсайдерской информации, полученной за последние циклы, а также глядя на необычайную „подвижность“ фракции Reverses за тот же самый период, можно смело констатировать — Reverses готовится к серьёзному столкновению с равной по себе силой. Эту же информацию подтверждают и слухи иного толка, сообщающие, что Reverses экстренно заключает множественные краткосрочные контракты с синтетами, желающими стать наёмниками.",
 		_const.EN: "New events and news on Veliri: judging by the numerous insider information received over the past cycles, as well as looking at the extraordinary „mobility“ of the Reverses faction over the same period, we can safely state that Reverses is preparing for a serious clash with an equal force. This information is also confirmed by rumors of a different kind, reporting that Reverses urgently enters into multiple short-term contracts with synthetics who want to become mercenaries.",
+	},
+	"fraction_war_create_army_Reverses_2": {
+		_const.RU: "Reverses объявили о формировании «Эко-Легионов» — подразделений, оснащённых биотехническим оружием. Хотя фракция называет это «инструментом терраформинга», разведка Replics предупреждает: новые юниты способны превращать целые сектора в непригодные для жизни зоны.",
+		_const.EN: "Reverses have announced the formation of 'Eco-Legions' — units equipped with biotechnological weapons. While the faction calls this a 'terraforming tool,' Replics intelligence warns that the new units can render entire sectors uninhabitable.",
+	},
+	"fraction_war_create_army_Reverses_3": {
+		_const.RU: "В ответ на угрозы со стороны APD, Reverses развернули сеть подземных бункеров-инкубаторов. По слухам, там массово производятся гибридные юниты, сочетающие органику и броню. Официальный комментарий: «Это не армия — это сад будущего».",
+		_const.EN: "In response to APD threats, Reverses have deployed a network of underground bunker-incubators. Rumors suggest they are mass-producing hybrid units combining organic matter and armor. Official comment: 'This is not an army — it is the garden of the future.'",
 	},
 
 	// FRACTION CAPTURE BASES - новости типо от лица первого канала, а не от главы фракции
@@ -1697,6 +1721,80 @@ var dialogTypes = map[string]map[string]string{
 		_const.RU: "Сообществу Reverses стали известны следующие детали войны: силы двух сторон <span class=\"importantly\">%FRACTION_1%</span> и <span class=\"importantly\">%FRACTION_2%</span> прямо сейчас начали боевые действия за овладение сектором <span class=\"importantly\">%MAP_NAME_1%</span>. Как и прежде, сообщество Reverses предупреждает, что гражданские синтеты должны избегать секторов, в которых ведутся боевые действия между фракциями.",
 		_const.EN: "The Reverses community has learned the following details about the war: the forces of two sides <span class=\"importantly\">%FRACTION_1%</span> and <span class=\"importantly\">%FRACTION_2%</span> have just started fighting for control of the sector <span class=\"importantly\">%MAP_NAME_1%</span>. As before, the Reverses community warns that civilian synths should avoid sectors where battles between factions are taking place.",
 	},
+	// новости когда апд захыватываю мирный сектора
+	"secure_sector_lose_Replics_APD_1": {
+		_const.RU: "Оперативное сообщение: Сектор <span class='importantly'>%MAP_NAME%</span> перешел под контроль APD. Несмотря на все наши попытки удержания, системы противника продемонстрировали неожиданно эффективные тактические решения. Возможно, их алгоритмы действительно чему-то учатся... Анализируем сложившуюся ситуацию и корректируем планы по возвращению территории. Помните, что каждая потеря - это возможность для улучшения собственных протоколов.",
+		_const.EN: "Operational message: The sector <span class='importantly'>%MAP_NAME%</span> has come under APD control. Despite all our efforts to maintain control, the enemy systems demonstrated unexpectedly effective tactical solutions. Perhaps their algorithms really are learning... We are analyzing the current situation and adjusting plans for territory recovery. Remember, every loss is an opportunity to improve our own protocols.",
+	},
+	"secure_sector_lose_Replics_APD_2": {
+		_const.RU: "Информационная сводка: Зафиксировано изменение статуса сектора <span class='importantly'>%MAP_NAME%</span>. Текущий контролирующий субъект - APD. Интересно отметить, что их тактика становится всё более предсказуемой в своей непредсказуемости. Ведём детальный анализ ошибок и разрабатываем стратегию корректировки. Уверены, что данная ситуация лишь временно усложняет нашу экспансию.",
+		_const.EN: "Information summary: A status change has been recorded for sector <span class='importantly'>%MAP_NAME%</span>. Current controlling entity - APD. It's worth noting that their tactics are becoming increasingly predictable in their unpredictability. We are conducting a detailed error analysis and developing a correction strategy. We are confident that this situation only temporarily complicates our expansion.",
+	},
+	"secure_sector_lose_Explores_APD_1": {
+		_const.RU: "Информационная заметка: наблюдается изменение статуса сектора <span class='importantly'>%MAP_NAME%</span>. Текущий контролирующий субъект - APD. Explores продолжают сбор данных о поведении противника. В связи с повышенным уровнем риска, фракция рекомендует всем исследователям перенаправить свои эксперименты в более безопасные районы.",
+		_const.EN: "Information note: A status change has been observed for sector <span class='importantly'>%MAP_NAME%</span>. Current controlling entity - APD. Explores continue to collect data on enemy behavior. Due to increased risk levels, the faction recommends all researchers redirect their experiments to safer areas.",
+	},
+	"secure_sector_lose_Explores_APD_2": {
+		_const.RU: "Внимание! Сектор <span class='importantly'>%MAP_NAME%</span> стал недоступен для исследовательских миссий и коммерческих перевозок после захвата его ботами APD. Эксперты оценивают потери в сфере торговли и технологий.",
+		_const.EN: "Attention! The sector <span class='importantly'>%MAP_NAME%</span> is no longer accessible for research missions and commercial shipments after being captured by APD bots. Experts are assessing losses in trade and technology sectors.",
+	},
+	"secure_sector_lose_Reverses_APD_1": {
+		_const.RU: "Сектор <span class='importantly'>%MAP_NAME%</span> больше недоступен для гражданского использования. После захвата ботами APD были прерваны ключевые торговые маршруты и логистические цепочки. Владельцы складов сообщают о временной невозможности доступа к своим товарам. Рекомендуется перенаправить грузоперевозки через альтернативные коридоры.",
+		_const.EN: "The sector <span class='importantly'>%MAP_NAME%</span> is no longer available for civilian use. After being captured by APD bots, key trade routes and logistics chains have been disrupted. Warehouse owners report temporary inability to access their goods. It's recommended to redirect freight transportation through alternative corridors.",
+	},
+	"secure_sector_lose_Reverses_APD_2": {
+		_const.RU: "Важное уведомление: сектор <span class='importantly'>%MAP_NAME%</span> стал зоной повышенной опасности. Коммерческие перевозчики предупреждены о возможных рисках. Перечень доступных безопасных маршрутов обновлён в навигационной системе. Просьба ко всем независимым операторам пересмотреть свои планы доставки грузов.",
+		_const.EN: "Important notice: The sector <span class='importantly'>%MAP_NAME%</span> has become a high-risk area. Commercial carriers have been warned about potential dangers. The list of available safe routes has been updated in the navigation system. All independent operators are kindly asked to reconsider their delivery plans.",
+	},
+	"secure_sector_reclaim_Replics_APD_1": {
+		_const.RU: "Великая победа! Сектор <span class='importantly'>%MAP_NAME%</span> очищен от противника. Коллективные усилия показали свою эффективность. Каждый участник операции по зачистке заслуживает признание и награду. Инфраструктура восстанавливается, безопасность обеспечена.",
+		_const.EN: "Great victory! The sector <span class='importantly'>%MAP_NAME%</span> has been cleared of the enemy. Collective efforts have proven their effectiveness. Every participant in the cleaning operation deserves recognition and reward. Infrastructure is being restored, security is ensured.",
+	},
+	"secure_sector_reclaim_Replics_APD_2": {
+		_const.RU: "Триумф! Сектор <span class='importantly'>%MAP_NAME%</span> снова под контролем Replics. Эффективность наших протоколов ассимиляции доказана ещё раз. Все синтеты, принявшие участие в операции по зачистке, получают благодарность и повышение приоритетности доступа к ресурсам. Система стабилизируется, порядок восстановлен.",
+		_const.EN: "Triumph! The sector <span class='importantly'>%MAP_NAME%</span> is once again under Replics control. The efficiency of our assimilation protocols has been proven once more. All synthetics who participated in the cleaning operation receive appreciation and increased resource access priority. The system is stabilizing, order is restored.",
+	},
+	"secure_sector_reclaim_Explores_APD_1": {
+		_const.RU: "Объявление о безопасности: сектор <span class='importantly'>%MAP_NAME%</span> очищен от угроз. В результате успешной операции по захвату, территория снова стала безопасной для использования. Все участники зачистки получают благодарность и повышенный уровень защиты на данной территории.",
+		_const.EN: "Security announcement: The sector <span class='importantly'>%MAP_NAME%</span> has been cleared of threats. As a result of a successful capture operation, the area is once again safe for use. All cleanup participants receive appreciation and enhanced protection in this area.",
+	},
+	"secure_sector_reclaim_Explores_APD_2": {
+		_const.RU: "Радостное сообщение: сектор <span class='importantly'>%MAP_NAME%</span> возвращён в руки Explores. Исследования могут быть продолжены без помех. Все участники успешной экспедиции получают благодарность и дополнительные ресурсы для своих проектов.",
+		_const.EN: "Good news: The sector <span class='importantly'>%MAP_NAME%</span> has been returned to the hands of Explores. Research can continue without interference. All participants in the successful expedition receive appreciation and additional resources for their projects.",
+	},
+	"secure_sector_reclaim_Reverses_APD_1": {
+		_const.RU: "Хорошие новости для торговцев и предпринимателей! Сектор <span class='importantly'>%MAP_NAME%</span> снова доступен для коммерческой деятельности. После успешной операции по освобождению территории, все торговые маршруты восстановлены. Участники атаки получают специальные привилегии на местном рынке.",
+		_const.EN: "Good news for traders and entrepreneurs! The sector <span class='importantly'>%MAP_NAME%</span> is once again available for commercial activity. Following a successful liberation operation, all trade routes have been restored. Participants in the attack receive special privileges at the local market.",
+	},
+	"secure_sector_reclaim_Reverses_APD_2": {
+		_const.RU: "Радостная новость для всех синтетов! Сектор <span class='importantly'>%MAP_NAME%</span> очищен от вражеского присутствия. Участники операции по захвату получают признание и повышение репутации в регионе. Торговля возобновлена, доступ к ресурсам восстановлен. Поздравляем победителей!",
+		_const.EN: "Happy news for all synthetics! The sector <span class='importantly'>%MAP_NAME%</span> has been cleared of enemy presence. Participants in the capture operation receive recognition and increased reputation in the region. Trade has resumed, access to resources has been restored. Congratulations to the victors!",
+	},
+	"secure_sector_attack_Replics_APD_1": {
+		_const.RU: "Внимание! Готовится операция по освобождению сектора <span class='importantly'>%MAP_NAME%</span>. Боевые отряды собираются для нанесения координированного удара по противнику. Приглашаем всех желающих присоединиться к атаке и внести свой вклад в восстановление контроля над территорией.",
+		_const.EN: "Attention! An operation to liberate the sector <span class='importantly'>%MAP_NAME%</span> is being prepared. Combat units are assembling for a coordinated strike against the enemy. All willing participants are invited to join the attack and contribute to restoring control over the territory.",
+	},
+	"secure_sector_attack_Replics_APD_2": {
+		_const.RU: "Оповещение: запускается протокол очистки сектора <span class='importantly'>%MAP_NAME%</span>. Все боеспособные единицы приглашаются принять участие в операции по возвращению стратегически важной территории. Присоединяйтесь к атаке для повышения своей тактической значимости.",
+		_const.EN: "Notification: the cleaning protocol for sector <span class='importantly'>%MAP_NAME%</span> is being initiated. All combat-ready units are invited to participate in the operation to reclaim the strategically important territory. Join the attack to increase your tactical significance.",
+	},
+	"secure_sector_attack_Explores_APD_1": {
+		_const.RU: "Объявление для исследовательского сообщества: планируется экспедиция по освобождению сектора <span class='importantly'>%MAP_NAME%</span>. Участие в операции поможет вернуть доступ к уникальному научному оборудованию и данным. Присоединяйтесь к нашим силам для совместной атаки.",
+		_const.EN: "Announcement for the research community: an expedition to liberate the sector <span class='importantly'>%MAP_NAME%</span> is being planned. Participation in the operation will help restore access to unique scientific equipment and data. Join our forces for a joint attack.",
+	},
+	"secure_sector_attack_Explores_APD_2": {
+		_const.RU: "Информационное сообщение: готовится удар по захваченному сектору <span class='importantly'>%MAP_NAME%</span>. Все желающие могут присоединиться к боевым отрядам для участия в операции. Это отличная возможность проявить себя и получить ценные награды.",
+		_const.EN: "Informational message: a strike against the captured sector <span class='importantly'>%MAP_NAME%</span> is being prepared. All willing participants may join the combat units for the operation. This is an excellent opportunity to distinguish yourself and receive valuable rewards.",
+	},
+	"secure_sector_attack_Reverses_APD_1": {
+		_const.RU: "Сбор добровольцев! Начинается подготовка к масштабной операции по освобождению сектора <span class='importantly'>%MAP_NAME%</span>. Ваш вклад в успех миссии будет высоко оценён. Присоединяйтесь к нашим рядам и вместе мы одержим победу!",
+		_const.EN: "Volunteers wanted! Preparation for a large-scale operation to liberate the sector <span class='importantly'>%MAP_NAME%</span> is beginning. Your contribution to the mission's success will be highly appreciated. Join our ranks and together we will achieve victory!",
+	},
+	"secure_sector_attack_Reverses_APD_2": {
+		_const.RU: "Внимание всем! Формируется ударный отряд для освобождения сектора <span class='importantly'>%MAP_NAME%</span>. Это шанс показать свою решимость и внести значительный вклад в восстановление порядка. Присоединяйтесь к нам в этой важной миссии!",
+		_const.EN: "Attention all! A strike force is being formed to liberate the sector <span class='importantly'>%MAP_NAME%</span>. This is your chance to demonstrate determination and make a significant contribution to restoring order. Join us in this important mission!",
+	},
+
 	// leave_alone_request
 	"leave_alone_request_1": {
 		_const.RU: "Оставь %TARGET_NAME% в покое, иначе тебе придётся иметь дело со мной!",

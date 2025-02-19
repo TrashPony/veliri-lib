@@ -171,4 +171,8 @@ var Lobby = map[string]map[string]string{
 		_const.RU: `Вы можете поднять ранг ополчения.`,
 		_const.EN: `You can raise your militia rank.`,
 	},
+	"text_14": {
+		_const.RU: `База законсервирована!`,
+		_const.EN: `The base is mothballed!`,
+	},
 }
