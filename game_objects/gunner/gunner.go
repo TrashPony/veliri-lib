@@ -25,7 +25,7 @@ type GunUser interface {
 	GetWeaponTarget(slot int) *target.Target
 	SetWeaponTarget(slot int, target *target.Target)
 	GetBurstOfShots() *burst_of_shots.BurstOfShots
-	UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex)
+	UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex)
 	GetPhysicalModel() *physical_model.PhysicalModel
 	GetOwnerPlayerID() int
 	FractionWarrior() bool
@@ -65,7 +65,7 @@ type WeaponSlotState struct {
 	ReloadAmmoTime int
 }
 
-func (g *Gunner) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+func (g *Gunner) UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
 	return g.GunUser.UnsafeRangeVisibleObjects()
 }
 

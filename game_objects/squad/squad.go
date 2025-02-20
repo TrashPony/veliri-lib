@@ -201,7 +201,7 @@ func (s *Squad) RemoveVisibleObject(removeObj *visible_objects.VisibleObject) {
 	s.visibleObjects.RemoveVisibleObject(removeObj)
 }
 
-func (s *Squad) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+func (s *Squad) UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
 	s.checkMemoryObjectStore()
 	return s.visibleObjects.UnsafeRangeMapDynamicObjects()
 }
@@ -320,7 +320,7 @@ func (s *Squad) GetMapDynamicObjects(mapID int) <-chan *visible_objects.VisibleO
 	return s.memoryDynamicObjects.GetMapDynamicObjects(mapID)
 }
 
-func (s *Squad) UnsafeRangeMapDynamicObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+func (s *Squad) UnsafeRangeMapDynamicObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
 	s.checkMemoryObjectStore()
 	return s.memoryDynamicObjects.UnsafeRangeMapDynamicObjects()
 }

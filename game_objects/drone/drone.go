@@ -430,7 +430,7 @@ func (d *Drone) GetVisibleObjects() <-chan *visible_objects.VisibleObject {
 	return d.visibleObjectStore().GetVisibleObjects()
 }
 
-func (d *Drone) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+func (d *Drone) UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
 	return d.visibleObjectStore().UnsafeRangeMapDynamicObjects()
 }
 

@@ -1,11 +1,13 @@
 package visible_objects
 
 import (
+	_const "github.com/TrashPony/veliri-lib/const"
+	"sort"
 	"sync"
 )
 
 type VisibleObjectsStore struct {
-	visibleObjects []*VisibleObject // key id_object+type_object
+	visibleObjects [][]*VisibleObject // [type_object][id_object]
 	mx             sync.RWMutex
 }
 
@@ -14,80 +16,128 @@ func (v *VisibleObjectsStore) InitVisibleObjects() {
 	defer v.mx.Unlock()
 
 	if v.visibleObjects != nil {
-		for _, v := range v.visibleObjects {
-			v.UpdateMsg = nil
-			v.Object = nil
-			v.ObjectJSON = nil
+		for t := range v.visibleObjects {
+			for _, v := range v.visibleObjects[t] {
+				v.UpdateMsg = nil
+				v.Object = nil
+				v.ObjectJSON = nil
+			}
 		}
 	}
 
-	v.visibleObjects = make([]*VisibleObject, 0)
+	v.visibleObjects = make([][]*VisibleObject, len(_const.MapBinItems)+1)
+	for _, t := range _const.MapBinItems {
+		v.visibleObjects[t] = make([]*VisibleObject, 0)
+	}
 }
 
 func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int) *VisibleObject {
+	if v.visibleObjects == nil {
+		v.InitVisibleObjects()
+	}
+
 	v.mx.RLock()
 	defer v.mx.RUnlock()
 
-	if v.visibleObjects == nil {
-		return nil
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[typeObj]
+	if !ok {
+		panic("Недопустимый тип объекта")
 	}
 
-	for _, vObj := range v.visibleObjects {
-		if vObj.TypeObject == typeObj && vObj.IDObject == id {
-			return vObj
-		}
+	objects := v.visibleObjects[typeID]
+	if objects == nil || len(objects) == 0 {
+		return nil // Список пуст
+	}
+
+	// Бинарный поиск по ID
+	index := sort.Search(len(objects), func(i int) bool {
+		return objects[i].IDObject >= id
+	})
+
+	if index < len(objects) && objects[index].IDObject == id {
+		return objects[index]
 	}
 
 	return nil
 }
 
 func (v *VisibleObjectsStore) GetVisibleObjects() <-chan *VisibleObject {
-
 	v.mx.RLock()
-
-	objs := make(chan *VisibleObject, len(v.visibleObjects))
-
+	objs := make(chan *VisibleObject, v.countVisibleObjects())
 	go func() {
 		defer func() {
 			v.mx.RUnlock()
 			close(objs)
 		}()
 
-		for _, obj := range v.visibleObjects {
-			objs <- obj
+		for _, objects := range v.visibleObjects {
+			for _, obj := range objects {
+				objs <- obj
+			}
 		}
 	}()
-
 	return objs
 }
 
+func (v *VisibleObjectsStore) countVisibleObjects() int {
+	total := 0
+	for _, objects := range v.visibleObjects {
+		total += len(objects)
+	}
+	return total
+}
+
 func (v *VisibleObjectsStore) AddVisibleObject(newObj *VisibleObject) {
+	if v.visibleObjects == nil {
+		v.InitVisibleObjects()
+	}
+
 	v.mx.Lock()
 	defer v.mx.Unlock()
 
-	if v.visibleObjects == nil {
-		v.visibleObjects = make([]*VisibleObject, 0)
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[newObj.TypeObject]
+	if !ok {
+		panic("Недопустимый тип объекта")
 	}
 
-	// TODO := newObj.TypeObject+strconv.Itoa(newObj.IDObject)
-	v.visibleObjects = append(v.visibleObjects, newObj)
+	// Добавляем объект в список
+	objects := v.visibleObjects[typeID]
+	objects = append(objects, newObj)
+
+	// Сортируем список по ID
+	sort.Slice(objects, func(i, j int) bool {
+		return objects[i].IDObject < objects[j].IDObject
+	})
+
+	v.visibleObjects[typeID] = objects
 }
 
 func (v *VisibleObjectsStore) RemoveVisibleObject(removeObj *VisibleObject) {
 	v.mx.Lock()
 	defer v.mx.Unlock()
 
-	index := -1
-	for i, o := range v.visibleObjects {
-		if o.ID == removeObj.ID {
-			index = i
-			break
-		}
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[removeObj.TypeObject]
+	if !ok {
+		panic("Недопустимый тип объекта")
 	}
 
-	if index >= 0 {
-		v.visibleObjects[index] = v.visibleObjects[len(v.visibleObjects)-1]
-		v.visibleObjects = v.visibleObjects[:len(v.visibleObjects)-1]
+	objects := v.visibleObjects[typeID]
+	if objects == nil || len(objects) == 0 {
+		return // Список пуст
+	}
+
+	// Находим индекс объекта
+	index := sort.Search(len(objects), func(i int) bool {
+		return objects[i].IDObject >= removeObj.IDObject
+	})
+
+	if index < len(objects) && objects[index].IDObject == removeObj.IDObject {
+		// Удаляем объект
+		objects = append(objects[:index], objects[index+1:]...)
+		v.visibleObjects[typeID] = objects
 	}
 }
 

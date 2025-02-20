@@ -998,7 +998,7 @@ func (u *Unit) GetVisibleObjects() <-chan *visible_objects.VisibleObject {
 	return u.visibleObjectStore().GetVisibleObjects()
 }
 
-func (u *Unit) UnsafeRangeVisibleObjects() ([]*visible_objects.VisibleObject, *sync.RWMutex) {
+func (u *Unit) UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
 	return u.visibleObjectStore().UnsafeRangeMapDynamicObjects()
 }
 
