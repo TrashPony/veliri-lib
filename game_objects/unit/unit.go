@@ -476,7 +476,7 @@ func (u *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
 	return allDamage
 }
 
-func (u *Unit) GetAllDamage() map[int]int {
+func (u *Unit) GetAllDamage(t int64) map[int]int {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
@@ -487,7 +487,7 @@ func (u *Unit) GetAllDamage() map[int]int {
 	}
 
 	for _, d := range u.damage {
-		if time.Now().Unix()-d.TimeDamage < 30 {
+		if time.Now().Unix()-d.TimeDamage < t {
 			r[d.PlayerID] += d.Damage
 		}
 	}

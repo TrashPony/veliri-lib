@@ -1,7 +1,6 @@
 package visible_objects
 
 import (
-	"fmt"
 	"sort"
 	"sync"
 )
@@ -35,7 +34,6 @@ func (v *VisibleObjectsStore) RemoveDynamicObject(id int) {
 	defer v.mx.Unlock()
 
 	objects := v.visibleObjects[idMemoryType]
-
 	if objects == nil || len(objects) == 0 {
 		return
 	}
@@ -57,11 +55,6 @@ func (v *VisibleObjectsStore) GetMapDynamicObjectByID(id int) *VisibleObject {
 		v.InitVisibleObjects()
 	}
 
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Println("Recovered in GetMapDynamicObjectByID", r)
-		}
-	}()
 	v.mx.RLock()
 	defer v.mx.RUnlock()
 
