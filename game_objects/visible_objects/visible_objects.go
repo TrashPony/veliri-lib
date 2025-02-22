@@ -42,7 +42,7 @@ func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int
 	// Получаем числовой идентификатор типа
 	typeID, ok := _const.MapBinItems[typeObj]
 	if !ok {
-		panic("Недопустимый тип объекта")
+		panic("Недопустимый тип объекта 1: " + typeObj)
 	}
 
 	objects := v.visibleObjects[typeID]
@@ -99,7 +99,7 @@ func (v *VisibleObjectsStore) AddVisibleObject(newObj *VisibleObject) {
 	// Получаем числовой идентификатор типа
 	typeID, ok := _const.MapBinItems[newObj.TypeObject]
 	if !ok {
-		panic("Недопустимый тип объекта")
+		panic("Недопустимый тип объекта 2: " + newObj.TypeObject)
 	}
 
 	// Добавляем объект в список
@@ -121,7 +121,7 @@ func (v *VisibleObjectsStore) RemoveVisibleObject(removeObj *VisibleObject) {
 	// Получаем числовой идентификатор типа
 	typeID, ok := _const.MapBinItems[removeObj.TypeObject]
 	if !ok {
-		panic("Недопустимый тип объекта")
+		panic("Недопустимый тип объекта 3: " + removeObj.TypeObject)
 	}
 
 	objects := v.visibleObjects[typeID]
