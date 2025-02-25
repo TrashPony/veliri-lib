@@ -46,6 +46,27 @@ func (u *Unit) WorkReactorPower(removeCount int, reloadCallBack func(u *Unit, sl
 	}
 }
 
+func (u *Unit) ChargeReactorPower(chage int) bool {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	chargeHit := false
+	for _, slot := range u.GetBody().ThoriumSlots {
+
+		if slot.CurrentFuel.ID <= 0 {
+			continue
+		}
+
+		if slot.Worked < slot.CurrentFuel.EnergyCap/2 { // можно зарядить только четверть
+			slot.Worked += chage
+			slot.Reload = false
+			chargeHit = true
+		}
+	}
+
+	return chargeHit
+}
+
 func (u *Unit) getNextFuel(slot *detail.ThoriumSlot, reloadCallBack func(u *Unit, slot *detail.ThoriumSlot)) {
 	if slot.SendRequest {
 		return
@@ -70,6 +91,11 @@ func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot, rs int) {
 	for key, slot := range u.getBody().ThoriumSlots {
 		s := slots[key]
 		if s != nil {
+
+			if slot.Worked > 0 && s.Worked == 0 && slot.CurrentFuel.ID == s.CurrentFuel.ID {
+				update = true
+				break
+			}
 
 			update = update || slot.CurrentFuel.ID != s.CurrentFuel.ID // другое топливо может давать бонусы
 

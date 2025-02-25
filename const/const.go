@@ -227,6 +227,7 @@ var MapBinItems = map[string]int{
 	"map":             14,
 	"":                15,
 	"pollen_cloud":    16,
+	"map_item":        17,
 }
 
 var FractionByte = map[string]byte{

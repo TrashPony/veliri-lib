@@ -21,6 +21,7 @@ type MovePath struct {
 	playerID     int
 	unitID       int
 	stop         bool
+	typePath     int
 	mx           sync.RWMutex
 }
 
@@ -32,11 +33,11 @@ func (m *MovePath) GetNeedCalc() bool {
 	return m.needFindPath
 }
 
-func (m *MovePath) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool, int) {
+func (m *MovePath) GetMovePathState() (bool, string, float64, *target.Target, *[]*coordinate.Coordinate, int, bool, int64, bool, int, int) {
 	m.mx.RLock()
 	defer m.mx.RUnlock()
 
-	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, m.stop, m.distToPoint
+	return true, m.typeFind, m.angle, m.followTarget, m.path, m.currentPoint, m.needFindPath, m.time, m.stop, m.distToPoint, m.typePath
 }
 
 func (m *MovePath) NextMovePoint() {
@@ -52,7 +53,7 @@ func (m *MovePath) SetFindMovePath() {
 	m.needFindPath = true
 }
 
-func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate) {
+func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate, typePath int) {
 	m.mx.Lock()
 	defer m.mx.Unlock()
 
@@ -61,6 +62,7 @@ func (m *MovePath) SetMovePath(path *[]*coordinate.Coordinate) {
 	m.currentPoint = 0
 	m.stop = false
 	m.time = time.Now().Unix()
+	m.typePath = typePath
 	m.distToPoint = math.MaxInt
 }
 

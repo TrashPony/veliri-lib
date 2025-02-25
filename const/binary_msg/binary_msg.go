@@ -277,7 +277,7 @@ func RotateEquipBinaryMsg(id, rotate, ms, typeSlot, slot int) []byte {
 	return command
 }
 
-func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealerID, ownerID, damageK int, unitShield, destroyShield bool, area int) []byte {
+func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealerID, ownerID, damageK int, unitShield, destroyShield bool, area int, tt byte) []byte {
 	// [1[eventID], 4[x], 4[y], 4[d], 4[m], 1[t]]
 	command := []byte{17}
 
@@ -301,6 +301,7 @@ func DamageTextBinaryMsg(x, y, damage int, typeObject, typeDealer string, dealer
 	command = append(command, game_math.BoolToByte(unitShield))
 	command = append(command, game_math.BoolToByte(destroyShield))
 	command = append(command, byte(area))
+	command = append(command, byte(tt))
 
 	return command
 }

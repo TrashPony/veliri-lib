@@ -119,6 +119,14 @@ var UserStat = map[string]map[string]string{
 		_const.RU: `Участие в захвате сектора`,
 		_const.EN: `Participation in the capture of the sector`,
 	},
+	"chane_event_8": {
+		_const.RU: `Конфликт интересов`,
+		_const.EN: `Conflict of interest`,
+	},
+	"chane_event_9": {
+		_const.RU: `"Враг моего врага..."`,
+		_const.EN: `"Enemy of my enemy..."`,
+	},
 	"head_1": {
 		_const.RU: `Отношения с фракциями синтетов`,
 		_const.EN: `Relations with Synthet factions`,

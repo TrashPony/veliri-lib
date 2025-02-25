@@ -28,4 +28,5 @@ type Object struct {
 	Area              int                             `json:"-"`
 	UnitShield        bool                            `json:"-"`
 	DestroyUnitShield bool                            `json:"-"`
+	Type              byte                            `json:"-"`
 }

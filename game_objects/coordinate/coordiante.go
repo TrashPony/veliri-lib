@@ -37,6 +37,7 @@ type Coordinate struct {
 	attr         map[string]interface{}
 	Access       bool
 	AccessInvers bool // если true, то запрещает всем из мапы access
+	Road         bool
 	access       map[string]bool
 	key          string
 	mx           sync.Mutex
