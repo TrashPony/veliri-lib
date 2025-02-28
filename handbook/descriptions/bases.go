@@ -5,7 +5,7 @@ import _const "github.com/TrashPony/veliri-lib/const"
 var BaseDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
 		"mining_installation_3": {ID: 22, Name: "Raitsin", Description: ""},
-		"processing_plant_3":    {ID: 24, Name: "processing_plant_3", Description: ""},
+		"processing_plant_3":    {ID: 24, Name: "Vultaris", Description: ""},
 		"base_17":               {ID: 32, Name: "Fattom", Description: ""},
 		"base_Reverses":         {ID: -3, Name: "base_Reverses", Description: ""},
 		"base_3":                {ID: 3, Name: "Proustav", Description: ""},
@@ -89,7 +89,7 @@ var BaseDescription = map[string]map[string]DescriptionItem{
 		"Станция отслеживания “Велири”": {ID: 21, Name: "Станция отслеживания “Велири”"},
 		"mining_installation_3":  {ID: 22, Name: "Райцин"},
 		"prefabricated_plant_3":  {ID: 23, Name: "Аруал"},
-		"processing_plant_3":     {ID: 24, Name: "processing_plant_3"},
+		"processing_plant_3":     {ID: 24, Name: "Вултарис"},
 		"Генератор “Гифебрации”": {ID: 25, Name: "Генератор “Гифебрации”"},
 		"base_30":                        {ID: 26, Name: "HB-dn"},
 		"base_12":                        {ID: 27, Name: "Армоника"},
