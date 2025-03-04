@@ -60,4 +60,5 @@ var GameInterface = map[string]map[string]map[string]string{
 	"UserStat":          interface_window.UserStat,
 	"Window":            {},
 	"Workbench":         interface_window.Workbench,
+	"Deviant":           interface_window.Deviant,
 }
