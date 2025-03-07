@@ -195,6 +195,10 @@ var UserStat = map[string]map[string]string{
 		_const.RU: `Враг фракции`,
 		_const.EN: `Fraction Enemy`,
 	},
+	"b_11": {
+		_const.RU: `Обзор фракционных воинов`,
+		_const.EN: `Faction warriors view`,
+	},
 	// Skills
 	"only_studied": {
 		_const.RU: `Только изученные:`,

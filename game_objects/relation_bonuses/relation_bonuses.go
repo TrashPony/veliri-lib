@@ -4,6 +4,7 @@ type RelationBonuses struct {
 	FractionDroneView        bool `json:"fraction_drone_view"`
 	AttackFractionWarrior    bool `json:"attack_fraction_warrior"`
 	Evacuation               bool `json:"evacuation"`
+	FractionWarriorView      bool `json:"fraction_warrior_view"`
 	ReducedRecycleTax        int  `json:"reduced_recycle_tax"`
 	ReducedWorkTax           int  `json:"reduced_work_tax"`
 	ReducedDetailWorkTax     int  `json:"reduced_detail_work_tax"`
