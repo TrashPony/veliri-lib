@@ -259,4 +259,20 @@ var Inventory = map[string]map[string]string{
 		_const.RU: `Уничтожить`,
 		_const.EN: `Destroy`,
 	},
+	"text_25": {
+		_const.RU: `Ангар`,
+		_const.EN: `Hangar`,
+	},
+	"text_26": {
+		_const.RU: `Нельзя выбросить/продать <span class="importantly">последний корпус</span>.`,
+		_const.EN: `You cannot drop/sell <span class="importantly">the last hull</span>.`,
+	},
+	"text_27": {
+		_const.RU: `Не поместилось.`,
+		_const.EN: `Didn't fit.`,
+	},
+	"text_28": {
+		_const.RU: `Не известная ошибка.`,
+		_const.EN: `Unknown error.`,
+	},
 }

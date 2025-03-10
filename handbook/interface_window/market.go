@@ -3,6 +3,18 @@ package interface_window
 import _const "github.com/TrashPony/veliri-lib/const"
 
 var Market = map[string]map[string]string{
+	"text_15": {
+		_const.RU: `Выберите категорию`,
+		_const.EN: `Select category`,
+	},
+	"text_16": {
+		_const.RU: `Нельзя выбросить/продать <span class="importantly">последний корпус</span>.`,
+		_const.EN: `You cannot drop/sell <span class="importantly">the last hull</span>.`,
+	},
+	"text_17": {
+		_const.RU: `Предметы отправлены на <span class="importantly">склад</span> базы <span class="importantly">%BASE_NAME%</span>.`,
+		_const.EN: `Items sent to <span class="importantly">warehouse</span> base <span class="importantly">%BASE_NAME%</span>.`,
+	},
 	// Buy
 	"text_1": {
 		_const.RU: `Кол-во:`,
