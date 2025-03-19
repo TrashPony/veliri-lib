@@ -508,6 +508,247 @@ var TradeEvents = map[string][]TradeEvent{
 			Text:        "",
 		},
 	},
+	_const.ZhCN: {
+		// Replicas 分部
+		// 武器部件
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "weapon_parts",
+			Type:        "lack",
+			Text:        "Replicas 公开承认其“无敌”军队缺乏武器部件供应。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "weapon_parts",
+			Type:        "cancel",
+			Text:        "Replicas 终止了“武器部件”的合同并停止进一步采购，对该商品不再感兴趣。",
+		},
+		// 技术图纸
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "technological_maps",
+			Type:        "lack",
+			Text:        "在承认技术竞赛失败后，Replicas 再次允许出售高科技产品，尤其是“技术图纸”。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "technological_maps",
+			Type:        "cancel",
+			Text:        "Replicas 再次拒绝合作，并停止“技术图纸”的所有交易。预计将会出现新一轮由 Replicas 引发的技术灾难。",
+		},
+		// 工业材料
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "industrial_materials",
+			Type:        "lack",
+			Text:        "今天，Replicas 向所有流浪合成体发出购买“工业材料”的提议，将其归类为“扩张计划”。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "industrial_materials",
+			Type:        "cancel",
+			Text:        "正如预期，短暂而热烈的交易结束后，Replicas 的仓库已满，停止了“工业材料”的采购。",
+		},
+		// 亚原子复合物
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "subatomic_composites",
+			Type:        "lack",
+			Text:        "似乎 Replicas 遇到了高精度设备配套危机，重新开放市场进行交易，“亚原子复合物”的价格因此飙升。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "subatomic_composites",
+			Type:        "cancel",
+			Text:        "Replicas 停止了“亚原子复合物”的交易，声称此商品引发了投机和背叛行为。在一系列服务机器人和基地操作员被消灭后，交易被立即终止。",
+		},
+		// 通用设备
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "general_purpose_equipment",
+			Type:        "lack",
+			Text:        "Replicas 希望补充库存中的“通用设备”，并将慷慨支付将商品运送到其领土的商人。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "general_purpose_equipment",
+			Type:        "cancel",
+			Text:        "经过长期互利的贸易后，Replicas 停止接收“通用设备”的供应。",
+		},
+		// 能量存储
+		{
+			Fraction:    _const.Replicas,
+			ProductName: "energy_storage",
+			Type:        "lack",
+			Text:        "由于某些地区能源危机，Replicas 不得不发布购买“能量存储”的公告。拥有该商品的合成体可以在此基地 %BaseName% Replicas 出售以获取丰厚利润。",
+		}, {
+			Fraction:    _const.Replicas,
+			ProductName: "energy_storage",
+			Type:        "cancel",
+			Text:        "显然，Replicas 最终解决了能源危机问题，大幅减少了“能量存储”的采购量，导致价格政策迅速下降。",
+		},
+
+		// Explores 分部
+		// 武器部件
+		{
+			Fraction:    _const.Explores,
+			ProductName: "weapon_parts",
+			Type:        "lack",
+			Text:        "Explores 发出了一个不同寻常的“武器部件”采购提议，解释为强制性措施。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "weapon_parts",
+			Type:        "cancel",
+			Text:        "显然，无论 Explores 是否隐藏了冲突或自卫目标，但最近对“武器部件”的大规模采购已经结束。Explores 感谢所有合成体的帮助，并限制了该商品的销售。预计在 Explores 区域内价格将大幅下跌。",
+		},
+		// 技术图纸
+		{
+			Fraction:    _const.Explores,
+			ProductName: "technological_maps",
+			Type:        "lack",
+			Text:        "“技术图纸”商品的价格再次上涨。Explores 官方宣布了新的科学突破，并需要大量“技术图纸”。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "technological_maps",
+			Type:        "cancel",
+			Text:        "在 Explores 区域内，“技术图纸”的交易似乎已经结束。许多合成体被拒绝出售该商品，价格迅速下跌。",
+		},
+		// 工业材料
+		{
+			Fraction:    _const.Explores,
+			ProductName: "industrial_materials",
+			Type:        "lack",
+			Text:        "看起来，“工业材料”商品的价格在 Explores 区域内再次上涨。Explores 向追随者保证，这是建造新科学基地的必要步骤。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "industrial_materials",
+			Type:        "cancel",
+			Text:        "随着目标的完成，Explores 停止了“工业材料”的大规模采购。Explores 感谢所有合成体的帮助，并限制了该商品的销售。预计在 Explores 区域内价格将大幅下跌。",
+		},
+		// 亚原子复合物
+		{
+			Fraction:    _const.Explores,
+			ProductName: "subatomic_composites",
+			Type:        "lack",
+			Text:        "需求迫使 Explores 公开向所有从事贸易的合成体求助，要求供应“亚原子复合物”。Explores 表示将慷慨回报那些将“亚原子复合物”运送到其区域的合成体。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "subatomic_composites",
+			Type:        "cancel",
+			Text:        "在需求满足后，Explores 限制了“亚原子复合物”的采购。预计在 Explores 区域内价格将大幅下跌。",
+		},
+		// 通用设备
+		{
+			Fraction:    _const.Explores,
+			ProductName: "general_purpose_equipment",
+			Type:        "lack",
+			Text:        "拥有“通用设备”商品的合成体有机会在 Explores 领土内出售以获利。这源于今天 Explores 的交易所报告。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "general_purpose_equipment",
+			Type:        "cancel",
+			Text:        "得知“通用设备”商品的无节制销售后，Explores 临时接管了流通和价格调控，使得进一步出售该商品无利可图。",
+		},
+		// 能量存储
+		{
+			Fraction:    _const.Explores,
+			ProductName: "energy_storage",
+			Type:        "lack",
+			Text:        "第三方消息称，Explores 地区缺乏优质“能量存储”商品。后来，Explores 的代表澄清了这一点，表示需要供应这种昂贵且必要的商品。所有拥有该商品的合成体可以在以下基地 %BaseName% Explores 出售以获利。",
+		}, {
+			Fraction:    _const.Explores,
+			ProductName: "energy_storage",
+			Type:        "cancel",
+			Text:        "看起来，“能量存储”商品的危机终于过去了。该商品的需求下降，使其在 Explores 区域内的进一步销售变得无利可图。",
+		},
+
+		// Reverses 分部
+		// 武器部件
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "weapon_parts",
+			Type:        "lack",
+			Text:        "据非官方消息，Reverses 对购买“武器部件”感兴趣。尽管具体用途不明，但任何合成体现在都可以通过在以下基地 %BaseName% Reverses 提供商品来获利。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "weapon_parts",
+			Type:        "cancel",
+			Text:        "漏洞被发现并关闭，Reverses 切断了所有“武器部件”的供应渠道，市场崩溃。很遗憾，价格再次下跌。",
+		},
+		// 技术图纸
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "technological_maps",
+			Type:        "lack",
+			Text:        "令人意外的是，Reverses 提出了一项关于大规模采购“技术图纸”的提议，并补充说这将服务于其长期计划。拥有该商品的合成体可以在以下基地 %BaseName% Reverses 出售以获利。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "technological_maps",
+			Type:        "cancel",
+			Text:        "看来，Reverses 的科研活动已经结束。“技术图纸”的价格迅速下跌，未来可能还会多次波动。",
+		},
+		// 工业材料
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "industrial_materials",
+			Type:        "lack",
+			Text:        "显然，Reverses 认真开始了新区的扩展，从今天起提高了“工业材料”的价格。如果您希望支持 Reverses 并从中获利，建议所有合成体访问以下基地 %BaseName% Reverses 出售该商品。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "industrial_materials",
+			Type:        "cancel",
+			Text:        "早晚会结束，这次也影响到了 Reverses 对“工业材料”的兴趣。未能及时出售商品的合成体会感到失望，因为价格开始急剧下跌。",
+		},
+		// 亚原子复合物
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "subatomic_composites",
+			Type:        "lack",
+			Text:        "难以置信，Reverses 遇到了“亚原子复合物”的短缺。目前拥有这种昂贵商品的合成体可以在以下基地 %BaseName% Reverses 出售以获利。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "subatomic_composites",
+			Type:        "cancel",
+			Text:        "销售高峰已过，Reverses 或许已获得所需物资或找到了其他制造高科技设备的方法，停止了“亚原子复合物”的采购。预计该商品价格将大幅下降。",
+		},
+		// 通用设备
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "general_purpose_equipment",
+			Type:        "lack",
+			Text:        "“通用设备”的价格上涨，Reverses 突然感受到其短缺。目前拥有该商品的合成体可以在以下基地 %BaseName% Reverses 出售以获利。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "general_purpose_equipment",
+			Type:        "cancel",
+			Text:        "“通用设备”商品在 Reverses 区域内不再需求。很遗憾，Reverses 自己没有解释这一常见商品的价格波动原因。同时，我们祝贺那些通过交易赚取了可观收入的合成体。",
+		},
+		// 能量存储
+		{
+			Fraction:    _const.Reverses,
+			ProductName: "energy_storage",
+			Type:        "lack",
+			Text:        "作为主要生产和贸易商，Reverses 社区面临“能量存储”的短缺。目前拥有该商品的合成体可以在以下基地 %BaseName% Reverses 出售以获利。",
+		}, {
+			Fraction:    _const.Reverses,
+			ProductName: "energy_storage",
+			Type:        "cancel",
+			Text:        "可能是业务改善后，Reverses 不再对采购“能量存储”感兴趣。价格再次趋于平稳，现在出售该商品无法带来超额利润。",
+		},
+
+		// 全部商品
+		{
+			Fraction:    _const.Empty,
+			ProductName: "all",
+			Type:        "excess",
+			Text:        "由于基地 %BaseName% 的大规模生产过剩，市场上许多商品的采购价格下降。不要浪费时间，尽快获取您需要的东西！",
+		}, {
+			Fraction:    _const.Empty,
+			ProductName: "all",
+			Type:        "lack",
+			Text:        "由于基地 %BaseName% 的生产能力下降，市场上许多商品的采购价格上升。这对销售稀缺商品是一个很好的机会，请记住这一点！",
+		}, {
+			Fraction:    _const.Empty,
+			ProductName: "all",
+			Type:        "cancel",
+			Text:        "",
+		},
+	},
 }
 
 func GetTradeEvent(fraction, productName, typeEvent, lang string) string {

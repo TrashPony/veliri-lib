@@ -113,8 +113,9 @@ const (
 	ObjTypeFlore         = 7
 	ObjTypeMeteorite     = 8
 
-	EN = "EN"
-	RU = "RU"
+	EN   = "EN"
+	RU   = "RU"
+	ZhCN = "zhCN"
 
 	SpriteSize  = 128.00
 	SpriteSize2 = SpriteSize / 2

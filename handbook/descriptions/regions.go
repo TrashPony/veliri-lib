@@ -21,4 +21,13 @@ var RegionsDescription = map[string]map[string]DescriptionItem{
 		"wasteland_3":  {Name: "Альбед", Description: ""},
 		"battleground": {Name: "Дильмун", Description: ""},
 	},
+	_const.ZhCN: {
+		"replic":       {Name: "Elysium", Description: ""},
+		"explores":     {Name: "MC-Farsides", Description: ""},
+		"reverse":      {Name: "Utopia", Description: ""},
+		"wasteland_1":  {Name: "Aspid", Description: ""},
+		"wasteland_2":  {Name: "Grail", Description: ""},
+		"wasteland_3":  {Name: "Albed", Description: ""},
+		"battleground": {Name: "Dilmun", Description: ""},
+	},
 }

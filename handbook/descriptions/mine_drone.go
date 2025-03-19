@@ -13,4 +13,9 @@ var MineDrones = map[string]map[string]DescriptionItem{
 		"builder_drone":   {Name: "Дрон строитель", Description: "Способен строить сооружения в шахтах."},
 		"transport_drone": {Name: "Дрон грузовик", Description: "Имеет объемный кузов и способен переносить несколько предметов за раз."},
 	},
+	_const.ZhCN: {
+		"mine_drone":      {Name: "采矿无人机", Description: "能够在矿井中开采矿石。"},
+		"builder_drone":   {Name: "建筑无人机", Description: "能够在矿井中建造建筑物。"},
+		"transport_drone": {Name: "运输无人机", Description: "拥有宽敞的车厢，能够一次性运输多个物品。"},
+	},
 }

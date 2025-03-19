@@ -21,4 +21,13 @@ var Packages = map[string]map[string]DescriptionItem{
 		"package_titanium":         {Name: "Упаковка титана", Description: "Упаковка титана, уменьшает занимаемый объем предметов за счет компактного хранения."},
 		"package_carbon":           {Name: "Упаковка углерода", Description: "Упаковка углерода, уменьшает занимаемый объем предметов за счет компактного хранения."},
 	},
+	_const.ZhCN: {
+		"package_enriched_thorium": {Name: "浓缩钍包装", Description: "浓缩钍包装，通过紧凑存储减少物品占用的空间。"},
+		"package_copper":           {Name: "铜包装", Description: "铜包装，通过紧凑存储减少物品占用的空间。"},
+		"package_iron":             {Name: "铁包装", Description: "铁包装，通过紧凑存储减少物品占用的空间。"},
+		"package_plastic":          {Name: "塑料包装", Description: "塑料包装，通过紧凑存储减少物品占用的空间。"},
+		"package_silicon":          {Name: "硅包装", Description: "硅包装，通过紧凑存储减少物品占用的空间。"},
+		"package_titanium":         {Name: "钛包装", Description: "钛包装，通过紧凑存储减少物品占用的空间。"},
+		"package_carbon":           {Name: "碳包装", Description: "碳包装，通过紧凑存储减少物品占用的空间。"},
+	},
 }

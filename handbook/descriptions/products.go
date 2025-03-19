@@ -25,4 +25,15 @@ var ProductsDescription = map[string]map[string]DescriptionItem{
 		"neutrino_processors":       {Name: "Нейтринные Процессоры", Description: "Экспериментальные разгонные модули оценочно-аналитического толка, зачастую, без использования замков предохранения, приводящие к расплаву синаптического ядра."},
 		"fox_crystals":              {Name: "Фокс Кристаллы", Description: "Официально не введённый в эксплуатацию топливный аналог силовой установки Синтетов. Последствия до конца не изучены."},
 	},
+	_const.ZhCN: {
+		"industrial_materials":      {Name: "工业材料", Description: "工业材料——经过加工并适用于任何需求的通用原材料。"},
+		"general_purpose_equipment": {Name: "通用设备", Description: "通用设备——零件、组件、发动机、安装增强器、电子连接器及其他机械生产所需的商品。"},
+		"energy_storage":            {Name: "能量储存器", Description: "能量储存器——用于保存和传输电能至电网及大型基础设施的装置。"},
+		"weapon_parts":              {Name: "武器部件", Description: "武器部件——拆解的模块，可用于武器生产或易货交易。"},
+		"technological_maps":        {Name: "技术图纸", Description: "技术图纸——用于开发实验性技术样本或存储数据的数字方案。"},
+		"subatomic_composites":      {Name: "亚原子复合材料", Description: "亚原子复合材料——生产能量储存“亚原子单元”不可或缺的昂贵且极其重要的组件。"},
+		"civilian_weapon":           {Name: "民用致命武器", Description: "易于制造的武器样本，通常是起义和海盗集群活动中不可或缺的元素。"},
+		"neutrino_processors":       {Name: "中微子处理器", Description: "实验性加速模块，用于评估和分析，通常不使用安全锁，可能导致突触核心熔化。"},
+		"fox_crystals":              {Name: "福克斯晶体", Description: "尚未正式投入使用的合成体动力装置的燃料替代品。其后果尚未完全研究清楚。"},
+	},
 }
