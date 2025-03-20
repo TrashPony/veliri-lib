@@ -115,7 +115,7 @@ const (
 
 	EN   = "EN"
 	RU   = "RU"
-	ZhCN = "zhCN"
+	ZhCN = "ZH"
 
 	SpriteSize  = 128.00
 	SpriteSize2 = SpriteSize / 2

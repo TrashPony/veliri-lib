@@ -56,7 +56,21 @@ type TranslationResponse struct {
 	Translations []Translation `json:"translations"`
 }
 
-func TranslateText(iamToken, folderID, targetLanguage string, texts []string) (TranslationResponse, error) {
+func TranslateText(oAuthToken, folderID, targetLanguage string, texts []string) (TranslationResponse, error) {
+	token, err := getYandexToken(oAuthToken)
+	if err != nil {
+		return TranslationResponse{}, err
+	}
+
+	data, err := translateText(token, folderID, targetLanguage, texts)
+	if err != nil {
+		return TranslationResponse{}, err
+	}
+
+	return data, nil
+}
+
+func translateText(iamToken, folderID, targetLanguage string, texts []string) (TranslationResponse, error) {
 	url := "https://translate.api.cloud.yandex.net/translate/v2/translate"
 
 	headers := map[string]string{
