@@ -447,6 +447,7 @@ func CreateBinaryPlaneMineMsg(x, y, r int) []byte {
 }
 
 func CreateBinaryFlyEquip(x, y, m int) []byte {
+	// TODO в случае нужды переделать на 117 событие
 	command := []byte{44}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -457,6 +458,7 @@ func CreateBinaryFlyEquip(x, y, m int) []byte {
 }
 
 func CreateBinaryLaunchDrone(x, y, m int) []byte {
+	// TODO в случае нужды переделать на 117 событие
 	command := []byte{45}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -467,6 +469,7 @@ func CreateBinaryLaunchDrone(x, y, m int) []byte {
 }
 
 func CreateBodyCollision(x, y, m int) []byte {
+	// TODO в случае нужды переделать на 117 событие
 	command := []byte{46}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -550,7 +553,7 @@ func CreateBinaryAfterburnerMsg(unitID int, w bool) []byte {
 }
 
 func RopeCatchMsg(x, y int) []byte {
-
+	// TODO в случае нужды переделать на 117 событие
 	command := []byte{29}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -1459,5 +1462,15 @@ func CreateWarpBin(x, y, angle int, in bool) []byte {
 func CreateBinaryEvacuationTimeMsg(t int) []byte {
 	command := []byte{116}
 	command = append(command, game_math.GetIntBytes(t)...)
+	return command
+}
+
+func CreateSoundMsg(x, y, soundID int) []byte {
+	command := []byte{117}
+
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, byte(soundID))
+
 	return command
 }
