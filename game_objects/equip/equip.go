@@ -4,6 +4,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/reservoir"
+	"sync"
 )
 
 type Equip struct {
@@ -42,7 +43,28 @@ type Equip struct {
 	WeaponID     int            `json:"weapon_id"`
 	Attributes   map[string]int `json:"attributes"`
 
+	mx           sync.RWMutex
+	rWAttributes map[string]int
+
 	miningExit chan bool
+}
+
+func (e *Equip) GetRWAttribute(key string) int {
+	e.mx.RLock()
+	defer e.mx.RUnlock()
+	if e.rWAttributes == nil {
+		e.rWAttributes = make(map[string]int)
+	}
+	return e.rWAttributes[key]
+}
+
+func (e *Equip) SetRWAttribute(key string, value int) {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+	if e.rWAttributes == nil {
+		e.rWAttributes = make(map[string]int)
+	}
+	e.rWAttributes[key] = value
 }
 
 func (e *Equip) GetName() string {

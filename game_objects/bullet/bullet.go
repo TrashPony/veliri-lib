@@ -74,6 +74,7 @@ type Bullet struct {
 	MapItem             *inventory.Slot `json:"-"`
 	EquipType           int             `json:"-"`
 	EquipNumber         int             `json:"-"`
+	State               int             `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool

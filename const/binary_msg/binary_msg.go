@@ -323,7 +323,7 @@ func ObjectDeadBinaryMsg(id, x, y int, typeObject string) []byte {
 	return command
 }
 
-func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber int) []byte {
+func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber, state int) []byte {
 	command := []byte{20}
 
 	command = append(command, byte(typeID))
@@ -335,6 +335,7 @@ func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, e
 	command = append(command, byte(AccumulationPercent))
 	command = append(command, byte(equipType))
 	command = append(command, byte(equipNumber))
+	command = append(command, byte(state))
 
 	return command
 }
@@ -562,11 +563,12 @@ func RopeCatchMsg(x, y int) []byte {
 	return command
 }
 
-func ZoneHealRun(x, y int) []byte {
+func ZoneHealRun(x, y, count int) []byte {
 	command := []byte{52}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, byte(count))
 
 	return command
 }
@@ -893,8 +895,9 @@ func CreateInventoryScannerTargetsBin(targets []*target.Target) []byte {
 	return command
 }
 
-func CreateInventoryScannerFailedBin() []byte {
+func CreateInventoryScannerFailedBin(failed bool) []byte {
 	command := []byte{79}
+	command = append(command, game_math.BoolToByte(failed))
 	return command
 }
 
