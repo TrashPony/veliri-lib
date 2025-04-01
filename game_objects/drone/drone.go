@@ -36,7 +36,8 @@ type Drone struct {
 	FractionByte     byte                             `json:"-"`
 	EngagePosNoScale map[string]coordinate.Coordinate `json:"wheels_pos_no_scale"`
 	EngageAnchors    map[string]anchor.Anchor         `json:"wheel_anchors"`
-	WarpMode         WarpMode
+	Independent      bool                             `json:"-"`
+	WarpMode         WarpMode                         `json:"-"`
 
 	followTarget *target.Target
 	weaponTarget *target.Target
@@ -52,7 +53,7 @@ type Drone struct {
 	WorkTime        int                            `json:"-"`
 	Weapons         map[int]*detail.BodyWeaponSlot `json:"-"`
 	effects         *effects_store.EffectsStore
-	jobs            []*job
+	jobs            []*Job
 	visibleObjects  *visible_objects.VisibleObjectsStore
 	gunner          *gunner.Gunner
 	burstOfShots    *burst_of_shots.BurstOfShots
@@ -127,29 +128,29 @@ func (d *Drone) GetType() string {
 	return "drone"
 }
 
-type job struct {
+type Job struct {
 	uuid     string
-	target   *target.Target
-	job      string
-	complete bool
+	Target   *target.Target `json:"target"`
+	Job      string         `json:"job"`
+	Complete bool           `json:"complete"`
 }
 
 func (d *Drone) AddJob(jobType string, target *target.Target) {
 	if d.jobs == nil {
-		d.jobs = make([]*job, 0)
+		d.jobs = make([]*Job, 0)
 	}
 
-	d.jobs = append(d.jobs, &job{
+	d.jobs = append(d.jobs, &Job{
 		uuid:   uuid.NewV1().String(),
-		target: target,
-		job:    jobType,
+		Target: target,
+		Job:    jobType,
 	})
 }
 
 func (d *Drone) CompleteAllJobJob(jobType string) {
 	for _, j := range d.jobs {
-		if j.job == jobType {
-			j.complete = true
+		if j.Job == jobType {
+			j.Complete = true
 		}
 	}
 }
@@ -157,15 +158,15 @@ func (d *Drone) CompleteAllJobJob(jobType string) {
 func (d *Drone) CompleteJob(uuid string) {
 	for _, j := range d.jobs {
 		if j.uuid == uuid {
-			j.complete = true
+			j.Complete = true
 		}
 	}
 }
 
 func (d *Drone) GetJob() (string, string, *target.Target) {
 	for _, j := range d.jobs {
-		if !j.complete {
-			return j.uuid, j.job, j.target
+		if !j.Complete {
+			return j.uuid, j.Job, j.Target
 		}
 	}
 

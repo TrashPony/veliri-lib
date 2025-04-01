@@ -172,4 +172,5 @@ func GobRegister() {
 	gob.Register(builder_game_state.UnitState{})
 
 	gob.Register(dynamic_map_object.MinObject{})
+	gob.Register([]drone.Job{})
 }

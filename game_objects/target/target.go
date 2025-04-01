@@ -37,6 +37,7 @@ type Target struct {
 	PassAngle      int               `json:"-"`
 	Key            string            `json:"-"`
 	Slots          []*inventory.Slot `json:"-"`
+	Time           int64             `json:"time"`
 }
 
 func (t *Target) GetX() int {
