@@ -98,7 +98,7 @@ func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, 
 
 	collisionRotate(collider1, collider2, startXV1, startYV1, startXV2, startYV2, x1, x2, y1, y2, vx1, vy1)
 
-	return 0, 0 //getDamage(startXV1, startYV1, vx1, vy1, startXV2, startYV2, vx2, vy2, m1, m2)
+	return getDamage(startXV1, startYV1, vx1, vy1, startXV2, startYV2, vx2, vy2, m1, m2)
 }
 
 func collisionRotate(collider1, collider2 collider, startXV1, startYV1, startXV2, startYV2, x1, x2, y1, y2, vx1, vy1 float64) {

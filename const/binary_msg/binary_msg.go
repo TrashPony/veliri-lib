@@ -1468,12 +1468,13 @@ func CreateBinaryEvacuationTimeMsg(t int) []byte {
 	return command
 }
 
-func CreateSoundMsg(x, y, soundID int) []byte {
+func CreateSoundMsg(x, y, soundID, k int) []byte {
 	command := []byte{117}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, byte(soundID))
+	command = append(command, byte(k))
 
 	return command
 }
