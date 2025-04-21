@@ -134,7 +134,7 @@ func CreateBulletBinaryExplosion(typeID, x, y, z int) []byte {
 	return command
 }
 
-func CreateRotateGunBinaryMsg(id, ms, rotate, slot int) []byte {
+func CreateRotateGunBinaryMsg(id, ms, rotate, slot int, sound bool) []byte {
 	// [1[eventID], 4[ID], 4[ms], 4[rotate]
 	command := []byte{8}
 
@@ -142,11 +142,12 @@ func CreateRotateGunBinaryMsg(id, ms, rotate, slot int) []byte {
 	command = append(command, byte(ms))
 	command = append(command, game_math.GetIntBytes(rotate)...)
 	command = append(command, byte(slot))
+	command = append(command, game_math.BoolToByte(sound))
 
 	return command
 }
 
-func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool) []byte {
+func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool, unit_id, type_slot, slot int) []byte {
 	// [1[eventID] 4[typeID], 4[x], 4[y], 4[z], 4[rotate], 4[mpID]]
 	command := []byte{9}
 
@@ -157,6 +158,8 @@ func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, fo
 	command = append(command, game_math.GetIntBytes(rotate)...)
 	command = append(command, byte(accumulationPercent))
 	command = append(command, game_math.BoolToByte(force))
+	command = append(command, game_math.GetIntBytes(unit_id)...)
+	command = append(command, byte((type_slot*10)+slot))
 
 	return command
 }
@@ -1468,13 +1471,14 @@ func CreateBinaryEvacuationTimeMsg(t int) []byte {
 	return command
 }
 
-func CreateSoundMsg(x, y, soundID, k int) []byte {
+func CreateSoundMsg(x, y, soundID, k int, force bool) []byte {
 	command := []byte{117}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, byte(soundID))
 	command = append(command, byte(k))
+	command = append(command, game_math.BoolToByte(force))
 
 	return command
 }
