@@ -51,6 +51,7 @@ type PhysicalModel struct {
 	Static          bool                            `json:"static"`
 	MoveDestroyer   bool                            `json:"-"`
 	MoveCollision   bool                            `json:"-"`
+	ForceNitro      bool                            `json:"-"`
 	useCoordinates  []pointer.Pointer
 	mx              sync.Mutex
 	polygon         *game_math.Polygon
@@ -363,4 +364,12 @@ func (m *PhysicalModel) GetMoveDestroyer() bool {
 
 func (m *PhysicalModel) GetWasd() *WASD {
 	return &m.wasd
+}
+
+func (m *PhysicalModel) SetForceNitro(nitro bool) {
+	m.ForceNitro = nitro
+}
+
+func (m *PhysicalModel) GetForceNitro() bool {
+	return m.ForceNitro
 }

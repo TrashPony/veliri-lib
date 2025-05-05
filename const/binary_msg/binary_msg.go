@@ -1482,3 +1482,16 @@ func CreateSoundMsg(x, y, soundID, k int, force bool) []byte {
 
 	return command
 }
+
+func CreateBossStateMsg(pID, bossID int, currentHP, maxHP int, phases, percentShield int) []byte {
+	command := []byte{118}
+
+	command = append(command, game_math.GetIntBytes(pID)...)
+	command = append(command, byte(bossID))
+	command = append(command, game_math.GetIntBytes(currentHP)...)
+	command = append(command, game_math.GetIntBytes(maxHP)...)
+	command = append(command, byte(phases))
+	command = append(command, byte(percentShield))
+
+	return command
+}

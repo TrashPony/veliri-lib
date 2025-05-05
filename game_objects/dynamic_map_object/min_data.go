@@ -37,6 +37,7 @@ type MinObject struct {
 	LifeTime         int                      `json:"life_time"`
 	DestroyLeftTimer bool                     `json:"destroy_left_timer"`
 	DestroyTimer     int                      `json:"destroy_timer"`
+	BossWreckage     bool                     `json:"boss_wreckage"`
 }
 
 func (o *Object) GetMinData() MinObject {
@@ -74,6 +75,7 @@ func (o *Object) GetMinData() MinObject {
 		LifeTime:         o.LifeTime,
 		DestroyLeftTimer: o.DestroyLeftTimer,
 		DestroyTimer:     o.DestroyTimer,
+		BossWreckage:     o.BossWreckage,
 	}
 
 	for _, e := range o.Equips {

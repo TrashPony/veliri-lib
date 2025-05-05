@@ -35,6 +35,7 @@ type Unit struct {
 	Destroy       bool   `json:"destroy"`
 	BodyTexture   string `json:"body_texture"`
 	MapID         int32  `json:"map_id"`
+	BossConfig    BossConfig
 
 	evacuation      bool
 	forceEvacuation bool
@@ -86,6 +87,12 @@ type Unit struct {
 	ReactorEfficiency  float64 `json:"-"`
 
 	Decals []Decal
+}
+
+type BossConfig struct {
+	BossTypeID      int  `json:"boss_type_id"`
+	CurrentPhase    int  `json:"current_phase"`
+	NeedChangePhase bool `json:"need_change_phase"`
 }
 
 type EvacuationState struct {

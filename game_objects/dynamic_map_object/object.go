@@ -146,6 +146,7 @@ type Object struct {
 	gunner                  *gunner.Gunner
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	ToPath                  move_path.To                 `json:"-"`
+	BossWreckage            bool                         `json:"-"`
 	mx                      sync.RWMutex
 }
 
