@@ -181,5 +181,15 @@ var drones = &factory{
 				"4_engage":          {Type: "2", Rotate: -1, Scale: 0.25},
 			},
 		},
+		"scientific_module_1": {
+			EngagePosNoScale: map[string]coordinate.Coordinate{
+				"antigravity_place": {X: 64, Y: 64},
+				"1_engage":          {X: 37, Y: 64},
+			},
+			EngageAnchors: map[string]anchor.Anchor{
+				"antigravity_place": {Type: "1", Scale: 0.15},
+				"1_engage":          {Type: "3", Height: 3, Rotate: 1, Scale: 0.5},
+			},
+		},
 	},
 }

@@ -8,7 +8,7 @@ import (
 
 func WasdMove(obj MoveObject, g *gunner.Gunner) {
 
-	if obj.GetPhysicalModel().Fly && !(obj.GetChassisType() == "fly" || obj.GetChassisType() == "fly-2" || obj.GetChassisType() == "wind") {
+	if obj.GetPhysicalModel().Fly && !(obj.GetChassisType() == "fly" || obj.GetChassisType() == "fly-2" || obj.GetChassisType() == "fly-3" || obj.GetChassisType() == "wind") {
 		return
 	}
 
@@ -16,7 +16,7 @@ func WasdMove(obj MoveObject, g *gunner.Gunner) {
 		wind(obj)
 	}
 
-	if obj.GetChassisType() == "antigravity" {
+	if obj.GetChassisType() == "antigravity" || obj.GetChassisType() == "fly-3" {
 		antigravity(obj, g)
 	}
 

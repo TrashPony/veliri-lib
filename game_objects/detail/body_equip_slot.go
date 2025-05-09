@@ -25,7 +25,7 @@ type BodyEquipSlot struct {
 	Reload           bool           `json:"-"`
 	Mode             string         `json:"-"`
 	CurrentReload    int            `json:"-"`
-	CurrentAmmoCount int            `json:"-"`
+	CurrentAmmoCount int            `json:"current_ammo_count"`
 	On               bool           `json:"on"`
 	Drone            bool           `json:"-"` // поле существует только что бы рисовать на фронте
 	LockSlot         int            `json:"lock_slot"`

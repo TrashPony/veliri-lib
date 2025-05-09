@@ -9,7 +9,7 @@ import (
 
 // ячейки которые отображены на панеле быстрого доступа игрока
 type EquipSell struct {
-	Number int `json:"-"`
+	Number int `json:"number"`
 
 	Source   string `json:"source"`    // squadInventory, Constructor, "empty" - убрать все выделения
 	TypeSlot int    `json:"type_slot"` // 0 - weapon. 1,2,3 - body
@@ -122,7 +122,7 @@ func (s *Squad) fillStateEquip() {
 				}
 			}
 
-			if slot.TypeSlot == 1 || slot.TypeSlot == 2 || slot.TypeSlot == 3 {
+			if slot.TypeSlot == 1 || slot.TypeSlot == 2 || slot.TypeSlot == 3 || slot.TypeSlot == 5 {
 				equipSlot := s.GetMS().GetBodyEquipSlot(slot.TypeSlot, slot.Slot)
 				if equipSlot != nil && equipSlot.Equip != nil {
 					slot.StartReload = equipSlot.StartReloadTime

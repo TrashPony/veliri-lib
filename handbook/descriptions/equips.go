@@ -82,6 +82,7 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"pump_extracted":      {Name: "Fuel intake", Description: "<p>Installation that allows synthetics to extract an oily liquid better known as «oil» at special points on the planet's surface.</p>"},
 		"inventory_scanner_1": {Name: "Reading scanner", Description: "<p>Conditionally illegal in all factions, the device helps to detect the fullness of holds on various vehicles.</p>"},
 		"reverses_combine":    {Name: "Harvester", Description: "<p>Auxiliary module that is a device for harvesting organic material from the surrounding flora of the planet.</p>"},
+		"scientific_module_1": {Name: "Ocular-1", Description: "<p>A cheap but reliable housing for research modules.</p><p>Equipped with reinforced lenses and a manipulator for interacting with the environment.</p>"},
 	},
 	_const.RU: {
 		"repair_kit":                     {Name: "Модуль само-ремонта", Description: "<p>Около миллиона наноботов, вооружённых микроэлементами запчастей и при активации, приступающих к незамедлительным восстановительным работам повреждённого корпуса и систем.</p>"},
@@ -162,6 +163,7 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"pump_extracted":      {Name: "Топливозаборник", Description: "<p>Установка, позволяющая синтетам добывать маслянистую жидкость более известную как “нефть” в особых точках на поверхности планеты.</p>"},
 		"inventory_scanner_1": {Name: "Считывающий сканер", Description: "<p>Условно-нелегальное во всех фракциях приспособление, что способствует распознаванию наполненности трюмов у различных транспортов.</p>"},
 		"reverses_combine":    {Name: "Сборщик", Description: "<p>Вспомогательный модуль, представляющий из себя устройство для заготовления органического материала из окружающей флоры планеты. </p>"},
+		"scientific_module_1": {Name: "Окуляр-1", Description: "<p>Дешёвый, но надёжный корпус для исследовательских модулей.</p><p>Оснащён усиленными линзами и манипулятором для взаимодействия с окружающей средой.</p>"},
 	},
 	_const.ZhCN: {
 		"repair_kit":                        {Name: "自我修复模块", Description: "<p>大约一百万个纳米机器人，配备微型零件，激活后立即开始修复受损的机身和系统。</p>"},
@@ -238,5 +240,6 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"pump_extracted":                    {Name: "燃料提取器", Description: "<p>允许合成体在行星表面的特定点提取被称为“石油”的油性液体。</p>"},
 		"inventory_scanner_1":               {Name: "读取扫描仪", Description: "<p>在所有派系中都被视为半合法的设备，用于识别各种运输工具的货舱容量。</p>"},
 		"reverses_combine":                  {Name: "采集器", Description: "<p>辅助模块，用于从行星周围的植物中采集有机材料。</p>"},
+		"scientific_module_1":               {Name: "目镜-1", Description: "<p>一种廉价但可靠的研究模块外壳。</p><p>配备加固镜头和用于与环境交互的机械臂。"},
 	},
 }
