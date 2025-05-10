@@ -174,4 +174,6 @@ func GobRegister() {
 	gob.Register(dynamic_map_object.MinObject{})
 	gob.Register([]drone.Job{})
 	gob.Register(unit.BossConfig{})
+
+	gob.Register(map[int]bool{})
 }
