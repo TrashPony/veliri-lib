@@ -175,5 +175,6 @@ func GobRegister() {
 	gob.Register([]drone.Job{})
 	gob.Register(unit.BossConfig{})
 
+	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})
 }
