@@ -10,52 +10,63 @@ import (
 
 // структура которая подскадывается в обьекты которые должны двигатся
 type PhysicalModel struct {
-	ChassisType     string                          `json:"-"`
-	RealX           float64                         `json:"real_x"`
-	RealY           float64                         `json:"real_y"`
-	NextX           float64                         `json:"-"`
-	NextY           float64                         `json:"-"`
-	X               int                             `json:"x"`
-	Y               int                             `json:"y"`
-	Z               float64                         `json:"z"`                // высота над землей (для наземных целей всегда 0)
-	Rotate          float64                         `json:"rotate"`           // текущий угол поворота
-	PowerMove       float64                         `json:"power_move"`       // силя которая тянет вперед, текущая
-	Reverse         float64                         `json:"reverse"`          // сила которая тянет назад, текущая
-	PowerLeft       float64                         `json:"power_left"`       // сила движения влево для антиграва
-	PowerRight      float64                         `json:"power_right"`      // сила движения влево для антиграва
-	AngularVelocity float64                         `json:"angular_velocity"` // скорость поворота, текущая
-	XVelocity       float64                         `json:"x_velocity"`       // вектор х
-	YVelocity       float64                         `json:"y_velocity"`       // вектор у
-	NeedZ           float64                         `json:"need_z"`           // высота которую должен набрать транспорт
-	Speed           float64                         `json:"speed"`            // -- макс скорость вперед
-	ReverseSpeed    float64                         `json:"reverse_speed"`    // -- макс скорость назад
-	PowerFactor     float64                         `json:"power_factor"`     // -- сила ускорения вперед
-	ReverseFactor   float64                         `json:"reverse_factor"`   // -- сила ускорения назад
-	TurnSpeed       float64                         `json:"turn_speed"`       // -- скорость поворота в радианах
-	wasd            WASD                            `json:"-"`                // обьект который говорти когда нажата какая клавиша
-	MoveDrag        float64                         `json:"-"`                // сопротивление земли при движение (XVelocity * MoveDrag), (YVelocity * MoveDrag)
-	AngularDrag     float64                         `json:"-"`                // сопротивление земли при повороте (AngularVelocity * AngularDrag)
-	Weight          float64                         `json:"-"`                // вес
-	Height          float64                         `json:"height"`           // высота обьекта
-	Length          float64                         `json:"length"`
-	Width           float64                         `json:"width"`  // ширина обькта
-	Radius          int                             `json:"radius"` // радиус окружности обьекта
-	GeoData         []*obstacle_point.ObstaclePoint `json:"-"`
-	PosFunc         func()                          `json:"-"` // функция для принятия положения в конце сервертика
-	Type            string                          `json:"type"`
-	ID              int                             `json:"id"`
-	SenderPos       bool                            `json:"-"`
-	Fly             bool                            `json:"-"`
-	BlockControl    bool                            `json:"-"`
-	TransportUnitID int                             `json:"-"`
-	Static          bool                            `json:"static"`
-	MoveDestroyer   bool                            `json:"-"`
-	MoveCollision   bool                            `json:"-"`
-	ForceNitro      bool                            `json:"-"`
-	useCoordinates  []pointer.Pointer
-	mx              sync.Mutex
-	polygon         *game_math.Polygon
-	nextPolygon     *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+	ChassisType            string                          `json:"-"`
+	RealX                  float64                         `json:"real_x"`
+	RealY                  float64                         `json:"real_y"`
+	NextX                  float64                         `json:"-"`
+	NextY                  float64                         `json:"-"`
+	X                      int                             `json:"x"`
+	Y                      int                             `json:"y"`
+	Z                      float64                         `json:"z"`                // высота над землей (для наземных целей всегда 0)
+	Rotate                 float64                         `json:"rotate"`           // текущий угол поворота
+	PowerMove              float64                         `json:"power_move"`       // силя которая тянет вперед, текущая
+	Reverse                float64                         `json:"reverse"`          // сила которая тянет назад, текущая
+	PowerLeft              float64                         `json:"power_left"`       // сила движения влево для антиграва
+	PowerRight             float64                         `json:"power_right"`      // сила движения влево для антиграва
+	AngularVelocity        float64                         `json:"angular_velocity"` // скорость поворота, текущая
+	AngularVelocityK       float64                         `json:"angular_velocity_k"`
+	XVelocity              float64                         `json:"x_velocity"`     // вектор х
+	YVelocity              float64                         `json:"y_velocity"`     // вектор у
+	NeedZ                  float64                         `json:"need_z"`         // высота которую должен набрать транспорт
+	Speed                  float64                         `json:"speed"`          // -- макс скорость вперед
+	ReverseSpeed           float64                         `json:"reverse_speed"`  // -- макс скорость назад
+	PowerFactor            float64                         `json:"power_factor"`   // -- сила ускорения вперед
+	ReverseFactor          float64                         `json:"reverse_factor"` // -- сила ускорения назад
+	TurnSpeed              float64                         `json:"turn_speed"`     // -- скорость поворота в радианах
+	wasd                   WASD                            `json:"-"`              // обьект который говорти когда нажата какая клавиша
+	MoveDrag               float64                         `json:"-"`              // сопротивление земли при движение (XVelocity * MoveDrag), (YVelocity * MoveDrag)
+	AngularDrag            float64                         `json:"-"`              // сопротивление земли при повороте (AngularVelocity * AngularDrag)
+	Weight                 float64                         `json:"-"`              // вес
+	Height                 float64                         `json:"height"`         // высота обьекта
+	Length                 float64                         `json:"length"`
+	Width                  float64                         `json:"width"`  // ширина обькта
+	Radius                 int                             `json:"radius"` // радиус окружности обьекта
+	GeoData                []*obstacle_point.ObstaclePoint `json:"-"`
+	PosFunc                func()                          `json:"-"` // функция для принятия положения в конце сервертика
+	Type                   string                          `json:"type"`
+	ID                     int                             `json:"id"`
+	SenderPos              bool                            `json:"-"`
+	Fly                    bool                            `json:"-"`
+	BlockControl           bool                            `json:"-"`
+	TransportUnitID        int                             `json:"-"`
+	Static                 bool                            `json:"static"`
+	MoveDestroyer          bool                            `json:"-"`
+	MoveCollision          bool                            `json:"-"`
+	ForceNitro             bool                            `json:"-"`
+	ClassicControlsAdapter ClassicControlsAdapter          `json:"-"`
+	useCoordinates         []pointer.Pointer
+	mx                     sync.Mutex
+	polygon                *game_math.Polygon
+	nextPolygon            *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+}
+
+type ClassicControlsAdapter struct {
+	GrowthPower  bool
+	GrowthRevers bool
+	LeftRotate   bool
+	RightRotate  bool
+	TargetAngle  float64
+	IsActive     bool
 }
 
 func (m *PhysicalModel) SetUseCoordinates(points []pointer.Pointer) {
@@ -184,18 +195,34 @@ func (m *PhysicalModel) GetRadius() int {
 }
 
 func (m *PhysicalModel) CheckGrowthPower() bool {
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.GrowthPower && !m.BlockControl
+	}
+
 	return m.wasd.GetW() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckGrowthRevers() bool {
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.GrowthRevers && !m.BlockControl
+	}
+
 	return m.wasd.GetS() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckLeftRotate() bool {
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.LeftRotate && !m.BlockControl
+	}
+
 	return m.wasd.GetA() && !m.BlockControl
 }
 
 func (m *PhysicalModel) CheckRightRotate() bool {
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.RightRotate && !m.BlockControl
+	}
+
 	return m.wasd.GetD() && !m.BlockControl
 }
 
@@ -247,7 +274,15 @@ func (m *PhysicalModel) GetReverse() float64 {
 	return m.Reverse
 }
 
+func (m *PhysicalModel) SetAngularVelocityK(ak float64) {
+	m.AngularVelocityK = ak
+}
+
 func (m *PhysicalModel) GetAngularVelocity() float64 {
+	if m.AngularVelocityK > 0 {
+		return m.AngularVelocity * m.AngularVelocityK
+	}
+
 	return m.AngularVelocity
 }
 
@@ -279,6 +314,13 @@ func (m *PhysicalModel) GetWeight() float64 {
 
 func (m *PhysicalModel) SetWASD(w, a, s, d, sp, st, z bool) {
 	m.wasd.Set(w, a, s, d, sp, st, z)
+}
+
+func (m *PhysicalModel) SetClassicAdaterMove(w, a, s, d bool) {
+	m.ClassicControlsAdapter.GrowthPower = w
+	m.ClassicControlsAdapter.GrowthRevers = s
+	m.ClassicControlsAdapter.LeftRotate = a
+	m.ClassicControlsAdapter.RightRotate = d
 }
 
 func (m *PhysicalModel) GetMoveDrag() float64 {

@@ -33,4 +33,39 @@ var Settings = map[string]map[string]string{
 		_const.EN:   `Traces from transport:`,
 		_const.ZhCN: `载具痕迹:`,
 	},
+	"external_scaling": {
+		_const.RU:   `Внешнее масштабирование`,
+		_const.EN:   `External scaling`,
+		_const.ZhCN: `外部缩放`,
+	},
+	"internal_scaling": {
+		_const.RU:   `Внутреннее масштабирование`,
+		_const.EN:   `Internal scaling`,
+		_const.ZhCN: `内部缩放`,
+	},
+	"control": {
+		_const.RU:   `Управление`,
+		_const.EN:   `Control`,
+		_const.ZhCN: `控制`,
+	},
+	"full": {
+		_const.RU:   `Полное`,
+		_const.EN:   `Full`,
+		_const.ZhCN: `完全的`,
+	},
+	"simplified": {
+		_const.RU:   `Упрощенное`,
+		_const.EN:   `Simplified`,
+		_const.ZhCN: `简化版`,
+	},
+	"alert_reload": {
+		_const.RU:   `Рекомендуется перезагрузить игру.`,
+		_const.EN:   `It is recommended to restart the game.`,
+		_const.ZhCN: `建议重新开始游戏。`,
+	},
+	"reload_button": {
+		_const.RU:   `Перезагрузить`,
+		_const.EN:   `Reload`,
+		_const.ZhCN: `重新启动`,
+	},
 }
