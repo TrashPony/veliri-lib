@@ -147,6 +147,7 @@ type Meta struct {
 	TypeID                        int               `json:"type_id"`
 	X                             int               `json:"x"`
 	Y                             int               `json:"y"`
+	Rotate                        int               `json:"rotate"`
 	UUID                          string            `json:"uuid"`
 	Slot                          int               `json:"slot"`
 	Try                           int               `json:"try"`

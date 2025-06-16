@@ -423,3 +423,7 @@ func (m *PhysicalModel) GetTypeControl() int {
 
 	return 0
 }
+
+func (m *PhysicalModel) GetAngleForClassicControl() float64 {
+	return m.ClassicControlsAdapter.TargetAngle
+}

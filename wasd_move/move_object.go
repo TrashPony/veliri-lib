@@ -36,6 +36,7 @@ type MoveObject interface {
 	CheckHandBrake() bool
 	GetTypeControl() int
 	GetWasd() *physical_model.WASD
+	GetAngleForClassicControl() float64
 
 	GetPowerLeft() float64
 	SetPowerLeft(float64)
