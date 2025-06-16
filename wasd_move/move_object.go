@@ -34,6 +34,8 @@ type MoveObject interface {
 	CheckLeftRotate() bool
 	CheckRightRotate() bool
 	CheckHandBrake() bool
+	GetTypeControl() int
+	GetWasd() *physical_model.WASD
 
 	GetPowerLeft() float64
 	SetPowerLeft(float64)
@@ -56,7 +58,7 @@ type MoveObject interface {
 	GetMoveDrag() float64
 	GetAngularDrag() float64
 
-	SetWASD(bool, bool, bool, bool, bool, bool, bool)
+	SetWASD(bool, bool, bool, bool, bool, bool, bool, bool, bool)
 	IsFly() bool
 	GetZ() float64
 	SetZ(float64)

@@ -312,8 +312,8 @@ func (m *PhysicalModel) GetWeight() float64 {
 	return m.Weight
 }
 
-func (m *PhysicalModel) SetWASD(w, a, s, d, sp, st, z bool) {
-	m.wasd.Set(w, a, s, d, sp, st, z)
+func (m *PhysicalModel) SetWASD(w, a, s, d, sp, st, z, q, e bool) {
+	m.wasd.Set(w, a, s, d, sp, st, z, q, e)
 }
 
 func (m *PhysicalModel) SetClassicAdaterMove(w, a, s, d bool) {
@@ -414,4 +414,12 @@ func (m *PhysicalModel) SetForceNitro(nitro bool) {
 
 func (m *PhysicalModel) GetForceNitro() bool {
 	return m.ForceNitro
+}
+
+func (m *PhysicalModel) GetTypeControl() int {
+	if m.ClassicControlsAdapter.IsActive {
+		return 1
+	}
+
+	return 0
 }

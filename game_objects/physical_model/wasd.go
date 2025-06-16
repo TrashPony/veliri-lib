@@ -7,6 +7,8 @@ type WASD struct {
 	a      bool
 	s      bool
 	d      bool
+	q      bool
+	e      bool
 	z      bool
 	sp     bool
 	st     bool
@@ -20,7 +22,7 @@ func (wasd *WASD) SetAllFalse() {
 	wasd.d = false
 }
 
-func (wasd *WASD) Set(w, a, s, d, sp, st, z bool) {
+func (wasd *WASD) Set(w, a, s, d, sp, st, z, q, e bool) {
 
 	wasd.w = w
 	wasd.a = a
@@ -29,6 +31,8 @@ func (wasd *WASD) Set(w, a, s, d, sp, st, z bool) {
 	wasd.sp = sp
 	wasd.st = st
 	wasd.z = z
+	wasd.q = q
+	wasd.e = e
 
 	wasd.update = time.Now().UnixNano()
 }
@@ -47,6 +51,14 @@ func (wasd *WASD) GetS() bool {
 
 func (wasd *WASD) GetD() bool {
 	return wasd.d
+}
+
+func (wasd *WASD) GetQ() bool {
+	return wasd.q
+}
+
+func (wasd *WASD) GetE() bool {
+	return wasd.e
 }
 
 func (wasd *WASD) GetZ() bool {
