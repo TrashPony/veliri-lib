@@ -190,21 +190,16 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 			}
 		}
 	} else {
-		diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), obj.GetAngleForClassicControl())
-		if diffAngle > 2 {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
-		}
+		if obj.GetAngleForClassicControl() >= 0 {
+			diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), obj.GetAngleForClassicControl())
+			if diffAngle > 2 {
+				obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
+			}
 
-		if diffAngle < -2 {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
+			if diffAngle < -2 {
+				obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
+			}
 		}
-		//if obj.GetWasd().GetQ() {
-		//	obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
-		//}
-		//
-		//if obj.GetWasd().GetE() {
-		//	obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
-		//}
 	}
 
 	xV, yV := obj.GetVelocity()
