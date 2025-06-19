@@ -404,6 +404,12 @@ func (u *Unit) SetMovePathAngle(angle float64) {
 	u.movePath = mp
 }
 
+func (u *Unit) SetMovePathRotate(angle float64) {
+	mp := &move_path.MovePath{}
+	mp.SetMovePathRotate(angle, u.GetOwnerPlayerID(), u.ID)
+	u.movePath = mp
+}
+
 type Damage struct {
 	PlayerID   int   `json:"player_id"`
 	TimeDamage int64 `json:"time_damage"`

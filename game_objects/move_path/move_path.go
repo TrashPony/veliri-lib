@@ -109,6 +109,15 @@ func (m *MovePath) SetMovePathAngle(angle float64, playerID, unitID int) {
 	m.followTarget = &target.Target{Ignore: true}
 }
 
+func (m *MovePath) SetMovePathRotate(angle float64, playerID, unitID int) {
+	m.typeFind = "rotate"
+	m.needFindPath = true
+	m.angle = angle
+	m.playerID = playerID
+	m.unitID = unitID
+	m.followTarget = &target.Target{Ignore: true}
+}
+
 func (m *MovePath) Stop() {
 	m.stop = true
 }
