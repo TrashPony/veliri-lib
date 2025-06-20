@@ -61,6 +61,7 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"Explores_4":           {ID: 81, Name: "Novara", Description: ""},
 		"Explores_5":           {ID: 82, Name: "Orion", Description: ""},
 		"Explores_6":           {ID: 83, Name: "Eos", Description: ""},
+		"---":                  {ID: 0, Name: "---", Description: ""},
 	},
 	_const.RU: {
 		"sector_1":             {ID: 2, Name: "Зеркот", Description: ""},
@@ -120,6 +121,7 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"Explores_4":           {ID: 81, Name: "Новара", Description: ""},
 		"Explores_5":           {ID: 82, Name: "Орион", Description: ""},
 		"Explores_6":           {ID: 83, Name: "Эос", Description: ""},
+		"---":                  {ID: 0, Name: "---", Description: ""},
 	},
 	_const.ZhCN: {
 		"disputed_territory_7": {ID: 29, Name: "Poppy", Description: ""},
@@ -179,5 +181,6 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"Explores_4":           {ID: 81, Name: "Novara", Description: ""},
 		"Explores_5":           {ID: 82, Name: "Orion", Description: ""},
 		"Explores_6":           {ID: 83, Name: "Eos", Description: ""},
+		"---":                  {ID: 0, Name: "---", Description: ""},
 	},
 }
