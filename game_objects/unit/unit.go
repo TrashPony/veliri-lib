@@ -788,6 +788,7 @@ func (u *Unit) GetUpdateData(mapTime int64) []byte {
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.ghost))
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.lights))
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.ShieldHP)...)
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, _const.FractionByte[u.Fraction])
 
 	u.CacheUpdateData.Time = mapTime
 

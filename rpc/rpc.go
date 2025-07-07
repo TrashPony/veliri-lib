@@ -19,6 +19,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/drone"
 	"github.com/TrashPony/veliri-lib/game_objects/dynamic_map_object"
+	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/equip"
 	"github.com/TrashPony/veliri-lib/game_objects/generate_map_config"
@@ -174,6 +175,7 @@ func GobRegister() {
 	gob.Register(dynamic_map_object.MinObject{})
 	gob.Register([]drone.Job{})
 	gob.Register(unit.BossConfig{})
+	gob.Register([]effect.Effect{})
 
 	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})
