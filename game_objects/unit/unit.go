@@ -35,14 +35,16 @@ type Unit struct {
 	Destroy       bool   `json:"destroy"`
 	BodyTexture   string `json:"body_texture"`
 	MapID         int32  `json:"map_id"`
-	BossConfig    BossConfig
+
+	BossConfig BossConfig
 
 	evacuation      bool
 	forceEvacuation bool
 	inSky           bool            /* отряд по той или иной причине летит Оо */
 	EvacuationState EvacuationState // юнит летити в трюме транспортника
 
-	movePath *move_path.MovePath // специальный обьект для пути
+	movePath         *move_path.MovePath // специальный обьект для пути
+	DistanceTraveled int                 `json:"-"` // пока только для заданий
 
 	Inventory           *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
 	AdditionalInventory map[string]*inventory.Inventory `json:"-"`

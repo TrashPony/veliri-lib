@@ -1495,3 +1495,13 @@ func CreateBossStateMsg(pID, bossID int, currentHP, maxHP int, phases, percentSh
 
 	return command
 }
+
+func CreateWindStateMsg(a float64, f, t int) []byte {
+	command := []byte{119}
+
+	command = append(command, byte(a/2))
+	command = append(command, byte(f))
+	command = append(command, byte(t))
+
+	return command
+}

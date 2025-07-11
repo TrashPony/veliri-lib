@@ -65,7 +65,7 @@ type MoveObject interface {
 	SetZ(float64)
 	GetNeedZ() float64
 	GetTransportUnitID() int
-	SetPosFunc(func())
+	SetPosFunc(func() int)
 	GetPhysicalModel() *physical_model.PhysicalModel
 	SetNextPos(x, y float64)
 	GetNextPos() (float64, float64)
