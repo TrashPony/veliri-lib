@@ -64,6 +64,7 @@ type Unit struct {
 	damage      []Damage `json:"-"`
 	Immortal    bool     `json:"-"`
 	Interactive bool     `json:"-"`
+	ForceView   bool     `json:"-"`
 
 	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
 	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
@@ -706,6 +707,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ghost))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.police))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.lights))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ForceView))
 
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.GetBody().Texture))))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, []byte(u.GetBody().Texture)...)
