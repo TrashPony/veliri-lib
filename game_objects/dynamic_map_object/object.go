@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/access_manager"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
@@ -56,9 +57,10 @@ type Object struct {
 	YShadowOffset     int `json:"y_shadow_offset"`
 	ShadowIntensity   int `json:"shadow_intensity"`
 
-	TypeGeoData  []*obstacle_point.ObstaclePoint `json:"-"`
-	TypeBaseData []*coordinate.Coordinate        `json:"type_base_data"`
-	HeightType   float64                         `json:"-"`
+	TypeGeoData   []*obstacle_point.ObstaclePoint `json:"-"`
+	TypeBaseData  []*coordinate.Coordinate        `json:"type_base_data"`
+	AccessManager access_manager.AccessManager    `json:"-"`
+	HeightType    float64                         `json:"-"`
 
 	Fraction     string `json:"fraction"`
 	FractionByte byte   `json:"-"`

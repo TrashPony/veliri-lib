@@ -1,6 +1,7 @@
 package coordinate
 
 import (
+	"github.com/TrashPony/veliri-lib/game_objects/access_manager"
 	"strconv"
 	"sync"
 )
@@ -30,17 +31,15 @@ type Coordinate struct {
 	Hack        bool `json:"-"`
 
 	/* соотвественно место куда попадает игрок после ивента */
-	Positions    []*Coordinate `json:"positions,omitempty"`
-	ToBaseID     int           `json:"to_base_id,omitempty"`
-	ToMapID      int           `json:"to_map_id,omitempty"`
-	Find         bool          `json:"-"`
-	attr         map[string]interface{}
-	Access       bool
-	AccessInvers bool // если true, то запрещает всем из мапы access
-	Road         bool
-	access       map[string]bool
-	key          string
-	mx           sync.Mutex
+	Positions     []*Coordinate `json:"positions,omitempty"`
+	ToBaseID      int           `json:"to_base_id,omitempty"`
+	ToMapID       int           `json:"to_map_id,omitempty"`
+	Find          bool          `json:"-"`
+	attr          map[string]interface{}
+	Road          bool
+	AccessManager access_manager.AccessManager
+	key           string
+	mx            sync.Mutex
 }
 
 type AccessPoint struct {
@@ -62,62 +61,6 @@ func (coor *Coordinate) Key() string { //создает уникальный к�
 	}
 
 	return coor.key
-}
-
-func (coor *Coordinate) AddAccessByKey(key string) {
-	coor.mx.Lock()
-	defer coor.mx.Unlock()
-
-	if coor.access == nil {
-		coor.access = map[string]bool{}
-	}
-
-	coor.access[key] = true
-}
-
-func (coor *Coordinate) AddAccess(typeAccess string, id int) {
-	coor.mx.Lock()
-	defer coor.mx.Unlock()
-
-	if coor.access == nil {
-		coor.access = map[string]bool{}
-	}
-
-	coor.access[typeAccess+strconv.Itoa(id)] = true
-}
-
-func (coor *Coordinate) RemoveAccess(typeAccess string, id int) {
-	coor.mx.Lock()
-	defer coor.mx.Unlock()
-
-	if coor.access != nil {
-		delete(coor.access, typeAccess+strconv.Itoa(id))
-	}
-}
-
-func (coor *Coordinate) GetAccess(corporationKey, playerKey string) bool {
-	coor.mx.Lock()
-	defer coor.mx.Unlock()
-
-	if coor.access == nil {
-		return false
-	}
-
-	corporationAccess, _ := coor.access[corporationKey]
-	if coor.AccessInvers {
-		corporationAccess = !corporationAccess
-	}
-
-	playerAccess, ok := coor.access[playerKey]
-	if !ok {
-		return corporationAccess
-	}
-
-	if coor.AccessInvers {
-		playerAccess = !playerAccess
-	}
-
-	return playerAccess
 }
 
 func (coor *Coordinate) AddAttr(attr map[string]interface{}) {
