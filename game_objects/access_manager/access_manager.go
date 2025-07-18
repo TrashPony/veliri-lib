@@ -43,7 +43,17 @@ func (am *AccessManager) RemoveAccess(typeAccess string, id int) {
 	}
 }
 
-func (am *AccessManager) GetAccess(corporationKey, playerKey string) bool {
+func (am *AccessManager) CheckAccess(corporationID, playerID int, fraction string) bool {
+	// Если Access == true, доступ разрешён по умолчанию, если не запрещён явно
+	// Если Access == false, доступ запрещён по умолчанию, если не разрешён явно
+	return (!am.Access || am.GetAccess(
+		"corporation"+strconv.Itoa(corporationID),
+		"player"+strconv.Itoa(playerID),
+		"fraction"+fraction,
+	))
+}
+
+func (am *AccessManager) GetAccess(corporationKey, playerKey, fractionKey string) bool {
 	am.mx.Lock()
 	defer am.mx.Unlock()
 
@@ -51,19 +61,33 @@ func (am *AccessManager) GetAccess(corporationKey, playerKey string) bool {
 		return false
 	}
 
-	corporationAccess, _ := am.access[corporationKey]
-	if am.AccessInvers {
-		corporationAccess = !corporationAccess
+	// 1. Проверяем playerKey (высший приоритет)
+	playerAccess, playerExists := am.access[playerKey]
+	if playerExists {
+		if am.AccessInvers {
+			return !playerAccess // инвертируем, если AccessInvers = true
+		}
+		return playerAccess
 	}
 
-	playerAccess, ok := am.access[playerKey]
-	if !ok {
+	// 2. Проверяем corporationKey (средний приоритет)
+	corporationAccess, corporationExists := am.access[corporationKey]
+	if corporationExists {
+		if am.AccessInvers {
+			return !corporationAccess
+		}
 		return corporationAccess
 	}
 
-	if am.AccessInvers {
-		playerAccess = !playerAccess
+	// 3. Проверяем fractionKey (низший приоритет)
+	fractionAccess, fractionExists := am.access[fractionKey]
+	if fractionExists {
+		if am.AccessInvers {
+			return !fractionAccess
+		}
+		return fractionAccess
 	}
 
-	return playerAccess
+	// Если ни один ключ не найден → возвращаем false (или true, если AccessInvers)
+	return am.AccessInvers
 }
