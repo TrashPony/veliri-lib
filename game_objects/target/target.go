@@ -35,7 +35,7 @@ type Target struct {
 	LastTap        bool              `json:"-"`
 	Points         int               `json:"-"`
 	PassAngle      int               `json:"-"`
-	Key            string            `json:"-"`
+	Key            string            `json:"key"`
 	Slots          []*inventory.Slot `json:"-"`
 	Time           int64             `json:"time"`
 }

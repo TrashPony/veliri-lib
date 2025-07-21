@@ -1506,11 +1506,12 @@ func CreateWindStateMsg(a float64, f, t int) []byte {
 	return command
 }
 
-func CreateCamTargetMsg(x, y int) []byte {
+func CreateCamTargetMsg(x, y, radius int) []byte {
 	command := []byte{120}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(radius)...)
 
 	return command
 }

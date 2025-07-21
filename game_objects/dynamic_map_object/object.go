@@ -149,6 +149,7 @@ type Object struct {
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	ToPath                  move_path.To                 `json:"-"`
 	BossWreckage            bool                         `json:"-"`
+	ForceView               bool                         `json:"-"` // видим обьект даже через туман войны, но не получаем его обзор
 	MissionKey              string                       `json:"-"`
 	mx                      sync.RWMutex
 }
@@ -551,6 +552,7 @@ func (o *Object) GetJSON(mapTime int64) []byte {
 	command = append(command, _const.FractionByte[o.Fraction])
 	command = append(command, game_math.BoolToByte(o.Inventory || o.SpecialCell || o.Interactive || (o.Build && o.Complete < 100))) // interactive
 	command = append(command, game_math.GetIntBytes(o.CorporationID)...)
+	command = append(command, game_math.BoolToByte(o.ForceView))
 
 	command = append(command, byte(len(o.Type)))
 	command = append(command, []byte(o.Type)...)
