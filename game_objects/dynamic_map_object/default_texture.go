@@ -19,3 +19,18 @@ func (o *Object) DefaultTexture() {
 		}
 	}
 }
+
+func (o *Object) FractionTexture() {
+	body, weapon := _const.GetTextureKostil(o.Texture, o.Type)
+	if body {
+		o.Texture += "_" + strings.ToLower(o.Fraction)
+	}
+
+	if weapon {
+		for _, wSlot := range o.RangeWeaponSlots() {
+			if wSlot.Weapon != nil {
+				wSlot.Weapon.Name += "_" + strings.ToLower(o.Fraction)
+			}
+		}
+	}
+}
