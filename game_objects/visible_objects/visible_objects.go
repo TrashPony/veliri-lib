@@ -181,7 +181,15 @@ type UpdateObjMap struct {
 	Update     bool
 	JSON       string
 	ServerTime int64
-	Mx         sync.Mutex
+	mx         sync.Mutex
+}
+
+func (v *VisibleObject) LockUpdateObjMap() {
+	v.UpdateMsg.mx.Lock()
+}
+
+func (v *VisibleObject) UnlockUpdateObjMap() {
+	v.UpdateMsg.mx.Unlock()
 }
 
 func (v *VisibleObject) GetUpdateData(mapTime int64) []byte {

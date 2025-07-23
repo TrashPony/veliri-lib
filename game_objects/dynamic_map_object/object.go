@@ -9,6 +9,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
+	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
@@ -146,6 +147,7 @@ type Object struct {
 	physicalModel           *physical_model.PhysicalModel
 	NoAutoDestroy           bool `json:"-"`
 	gunner                  *gunner.Gunner
+	damageManager           damage_manager.DamageManager
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	ToPath                  move_path.To                 `json:"-"`
 	BossWreckage            bool                         `json:"-"`

@@ -15,6 +15,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/build_option"
 	"github.com/TrashPony/veliri-lib/game_objects/builder_game_state"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
+	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 	"github.com/TrashPony/veliri-lib/game_objects/db"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/drone"
@@ -44,6 +45,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/trash_item"
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
 	"github.com/TrashPony/veliri-lib/game_objects/violator"
+	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"github.com/valyala/gorpc"
 	"log"
 	"runtime/debug"
@@ -101,7 +103,7 @@ func GobRegister() {
 	gob.Register(reservoir.Reservoir{})
 	gob.Register(notify.Notify{})
 	gob.Register([]*spawn.Spawn{})
-	gob.Register([]unit.Damage{})
+	gob.Register([]damage_manager.Damage{})
 	gob.Register(behavior_rule.BehaviorRules{})
 	gob.Register(select_mouse_equip.SelectMouseEquip{})
 	gob.Register(target.Target{})
@@ -176,6 +178,7 @@ func GobRegister() {
 	gob.Register([]drone.Job{})
 	gob.Register(unit.BossConfig{})
 	gob.Register([]effect.Effect{})
+	gob.Register(visible_objects.VisibleObject{})
 
 	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})

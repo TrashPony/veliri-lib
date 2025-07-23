@@ -46,11 +46,7 @@ func (am *AccessManager) RemoveAccess(typeAccess string, id int) {
 func (am *AccessManager) CheckAccess(corporationID, playerID int, fraction string) bool {
 	// Если Access == true, доступ разрешён по умолчанию, если не запрещён явно
 	// Если Access == false, доступ запрещён по умолчанию, если не разрешён явно
-	return (!am.Access || am.GetAccess(
-		"corporation"+strconv.Itoa(corporationID),
-		"player"+strconv.Itoa(playerID),
-		"fraction"+fraction,
-	))
+	return !am.Access || am.GetAccess("corporation"+strconv.Itoa(corporationID), "player"+strconv.Itoa(playerID), "fraction"+fraction)
 }
 
 func (am *AccessManager) GetAccess(corporationKey, playerKey, fractionKey string) bool {

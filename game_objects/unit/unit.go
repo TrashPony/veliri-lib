@@ -5,6 +5,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
+	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
@@ -60,11 +61,10 @@ type Unit struct {
 
 	damageMX    sync.Mutex // специальный мьютекс для получения урона, todo возможно не нужен
 	mx          sync.RWMutex
-	AutoPilot   bool     `json:"auto_pilot"`
-	damage      []Damage `json:"-"`
-	Immortal    bool     `json:"-"`
-	Interactive bool     `json:"-"`
-	ForceView   bool     `json:"-"`
+	AutoPilot   bool `json:"auto_pilot"`
+	Immortal    bool `json:"-"`
+	Interactive bool `json:"-"`
+	ForceView   bool `json:"-"`
 
 	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
 	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
@@ -74,6 +74,7 @@ type Unit struct {
 	effects        *effects_store.EffectsStore
 	visibleObjects *visible_objects.VisibleObjectsStore
 	gunner         *gunner.Gunner
+	damageManager  damage_manager.DamageManager
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 
@@ -411,104 +412,6 @@ func (u *Unit) SetMovePathRotate(angle float64) {
 	mp := &move_path.MovePath{}
 	mp.SetMovePathRotate(angle, u.GetOwnerPlayerID(), u.ID)
 	u.movePath = mp
-}
-
-type Damage struct {
-	PlayerID   int   `json:"player_id"`
-	TimeDamage int64 `json:"time_damage"`
-	Damage     int   `json:"damage"`
-}
-
-func (u *Unit) FillLastDamage(d []Damage) {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-	u.damage = d
-}
-
-func (u *Unit) GetArrayLastDamage() []Damage {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-	d := make([]Damage, len(u.damage))
-
-	for i, v := range u.damage {
-		d[i] = v
-	}
-
-	return d
-}
-
-func (u *Unit) SetLastDamage(playerID, damage int) *Damage {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
-	if playerID == u.OwnerID {
-		return nil
-	}
-
-	newDamage := Damage{
-		PlayerID:   playerID,
-		TimeDamage: time.Now().Unix(),
-		Damage:     damage,
-	}
-	u.damage = append(u.damage, newDamage)
-	return &newDamage
-}
-
-func (u *Unit) GetLastDamage(sec int64) int {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
-	if len(u.damage) == 0 {
-		return 0
-	}
-
-	last := u.damage[len(u.damage)-1]
-	// если урон наносился больше чем 30 сек назад то он не учитывается
-	if time.Now().Unix()-last.TimeDamage > sec {
-		u.damage = u.damage[:0]
-		return 0
-	}
-
-	return last.PlayerID
-}
-
-func (u *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
-	if len(u.damage) == 0 {
-		return 0
-	}
-
-	allDamage := 0
-	for _, d := range u.damage {
-		if d.PlayerID == playerID {
-			if time.Now().Unix()-d.TimeDamage < int64(sec) {
-				allDamage += d.Damage
-			}
-		}
-	}
-
-	return allDamage
-}
-
-func (u *Unit) GetAllDamage(t int64) map[int]int {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
-	r := make(map[int]int)
-
-	if len(u.damage) == 0 {
-		return r
-	}
-
-	for _, d := range u.damage {
-		if time.Now().Unix()-d.TimeDamage < t {
-			r[d.PlayerID] += d.Damage
-		}
-	}
-
-	return r
 }
 
 func (u *Unit) GetPhysicalModel() *physical_model.PhysicalModel {
