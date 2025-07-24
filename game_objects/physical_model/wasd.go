@@ -1,6 +1,8 @@
 package physical_model
 
-import "time"
+import (
+	"github.com/TrashPony/veliri-lib/timecache"
+)
 
 type WASD struct {
 	w      bool
@@ -34,7 +36,7 @@ func (wasd *WASD) Set(w, a, s, d, sp, st, z, q, e bool) {
 	wasd.q = q
 	wasd.e = e
 
-	wasd.update = time.Now().UnixNano()
+	wasd.update = timecache.GetTimer().UnixNano()
 }
 
 func (wasd *WASD) GetW() bool {

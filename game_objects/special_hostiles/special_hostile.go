@@ -2,6 +2,7 @@ package special_hostiles
 
 import (
 	"encoding/json"
+	"github.com/TrashPony/veliri-lib/timecache"
 	"sync"
 	"time"
 )
@@ -81,11 +82,15 @@ func (s *SpecialHostile) AddPoints(hatePoint int, mod string) {
 }
 
 func (s *SpecialHostile) GetPoints() int {
+	now := timecache.GetTimer().UnixNano()
+
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	if time.Now().UnixNano()-s.LastUpdate > int64(time.Second*shortMemoryTime) {
-		s.Points = 0
+	if s.Points != 0 {
+		if now-s.LastUpdate > int64(time.Second*shortMemoryTime) {
+			s.Points = 0
+		}
 	}
 
 	allPoints := s.Points

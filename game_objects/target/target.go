@@ -3,7 +3,7 @@ package target
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
-	"time"
+	"github.com/TrashPony/veliri-lib/timecache"
 )
 
 type Target struct {
@@ -77,7 +77,7 @@ func (t *Target) GetUpdate() int64 {
 }
 
 func (t *Target) SetUpdate() {
-	t.Update = time.Now().UnixNano()
+	t.Update = timecache.GetTimer().UnixNano()
 }
 
 func (t *Target) GetCopy() *Target {
