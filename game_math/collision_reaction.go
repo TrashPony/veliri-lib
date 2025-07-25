@@ -22,170 +22,166 @@ type collider interface {
 	GetAngularVelocity() float64
 	SetAngularVelocity(float64)
 	GetType() string
+	GetRadius() int
 }
 
-func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int) {
-	// https://www-plasmaphysics-org-uk.translate.goog/programs/coll2d_cpp.htm?_x_tr_sl=en&_x_tr_tl=ru&_x_tr_hl=ru&_x_tr_pto=wapp
-	// https://gamedev.stackexchange.com/questions/5906/collision-resolution
-	cX1, cY1 := collider1.GetNextPos()
-	cX2, cY2 := collider2.GetNextPos()
-
-	x1, y1 := collider1.GetRealPos()
-	//x2, y2 := collider2.GetRealPos()
-
-	m1, m2 := weight1, weight2
-
-	startXV1, startYV1 := collider1.GetVelocity()
-	startXV2, startYV2 := collider2.GetVelocity()
-
+// Вынесение сложных расчетов в отдельные функции
+func calculateCollisionResponse(cX1, cY1, cX2, cY2, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) (vx1, vy1, vx2, vy2 float64) {
 	m21 := m2 / m1
 	x21 := cX2 - cX1
 	y21 := cY2 - cY1
 	vx21 := startXV2 - startXV1
 	vy21 := startYV2 - startYV1
 
+	// Центр масс системы
 	vx_cm := (m1*startXV1 + m2*startXV2) / (m1 + m2)
 	vy_cm := (m1*startYV1 + m2*startYV2) / (m1 + m2)
 
-	direct := vx21*x21 + vy21*y21
-
-	if direct >= 0 || (collider1.GetType() == "object" && collider2.GetType() == "object") {
-		if weight2 >= 20000 || (collider1.GetType() == "object" && collider2.GetType() == "object") {
-			damage1, damage2, _, _ := fixAdhesion(collider1, collider2, startXV1, startXV2, startYV1, startYV2, m1, m2, x1, y1, x2, y2)
-			return damage1, damage2
-		}
-
-		return 0, 0
+	// Проверка направления столкновения
+	if vx21*x21+vy21*y21 >= 0 {
+		return startXV1, startYV1, startXV2, startYV2
 	}
 
-	var sign float64
-
-	fy21 := 1.0e-12 * math.Abs(y21)
-	if math.Abs(x21) < fy21 {
-		if x21 < 0 {
-			sign = -1
-		} else {
-			sign = 1
+	// Обработка особого случая (деление на ноль)
+	if math.Abs(x21) < 1e-12 {
+		x21 = 1e-12
+		if cX2 < cX1 {
+			x21 = -x21
 		}
-		x21 = fy21 * sign
 	}
 
 	a := y21 / x21
 	dvx2 := -2 * (vx21 + a*vy21) / ((1 + a*a) * (1 + m21))
-	vx2 := startXV2 + dvx2
-	vy2 := startYV2 + a*dvx2
-	vx1 := startXV1 - m21*dvx2
-	vy1 := startYV1 - a*m21*dvx2
 
+	vx2 = startXV2 + dvx2
+	vy2 = startYV2 + a*dvx2
+	vx1 = startXV1 - m21*dvx2
+	vy1 = startYV1 - a*m21*dvx2
+
+	// Коэффициент упругости
 	R := 1.0
-
 	vx1 = (vx1-vx_cm)*R + vx_cm
 	vy1 = (vy1-vy_cm)*R + vy_cm
 	vx2 = (vx2-vx_cm)*R + vx_cm
 	vy2 = (vy2-vy_cm)*R + vy_cm
 
-	if collider2.GetType() != "map_item" {
-		collider1.SetVelocity(vx1, vy1)
-		collider1.SetNextPos(x1+vx1, y1+vy1)
-		collider1.SetPowerMove(collider1.GetPowerMove() / 1.5)
+	return vx1, vy1, vx2, vy2
+}
+
+func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) float64 {
+	// 1. Рассчитываем относительную скорость столкновения
+	relSpeedX := startXV1 - startXV2
+	relSpeedY := startYV1 - startYV2
+	impactSpeed := math.Sqrt(relSpeedX*relSpeedX + relSpeedY*relSpeedY)
+
+	// 2. Минимальная скорость для воспроизведения звука
+	const minImpactSpeed = 0.3
+	if impactSpeed < minImpactSpeed {
+		return 0 // Слишком слабое столкновение
 	}
 
-	if collider1.GetType() != "map_item" {
-		collider2.SetNextPos(x2+vx2, y2+vy2)
-		collider2.SetVelocity(vx2, vy2)
-		//collider2.SetPowerMove(collider1.GetPowerMove() / 1.5)
+	// 3. Рассчитываем "силу" столкновения
+	massFactor := math.Min((m1+m2)/1000, 1.0)
+	speedFactor := math.Min(impactSpeed/10.0, 1.0)
+	collisionPower := massFactor * speedFactor
+
+	return collisionPower
+}
+
+func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
+	// Получаем позиции и скорости
+	cX1, cY1 := collider1.GetNextPos()
+	cX2, cY2 := collider2.GetNextPos()
+	x1, y1 := collider1.GetRealPos()
+
+	startXV1, startYV1 := collider1.GetVelocity()
+	startXV2, startYV2 := collider2.GetVelocity()
+
+	// Проверка на специальные случаи
+	if direct := (startXV2-startXV1)*(cX2-cX1) + (startYV2-startYV1)*(cY2-cY1); direct >= 0 {
+		if weight2 >= 20000 || (collider1.GetType() == "object" && collider2.GetType() == "object") {
+			d1, d2, _, _ := fixAdhesion(collider1, collider2, startXV1, startXV2, startYV1, startYV2, weight1, weight2, x1, y1, x2, y2)
+			return d1, d2, calculateCollisionSound(collider1, collider2, startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+		}
+		return 0, 0, calculateCollisionSound(collider1, collider2, startXV1, startYV1, startXV2, startYV2, weight1, weight2)
 	}
 
+	// Расчет новых скоростей
+	vx1, vy1, vx2, vy2 := calculateCollisionResponse(cX1, cY1, cX2, cY2,
+		startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+
+	// Применение изменений
+	applyCollisionResults(collider1, collider2, x1, y1, x2, y2, vx1, vy1, vx2, vy2)
+
+	// Расчет вращения
 	collisionRotate(collider1, collider2, startXV1, startYV1, startXV2, startYV2, x1, x2, y1, y2, vx1, vy1)
 
-	return getDamage(startXV1, startYV1, vx1, vy1, startXV2, startYV2, vx2, vy2, m1, m2)
+	d1, d2 := getDamage(startXV1, startYV1, vx1, vy1, startXV2, startYV2, vx2, vy2,
+		weight1, weight2, collider1.GetRotate(), collider2.GetRotate(), collider1, collider2)
+	return d1, d2, calculateCollisionSound(collider1, collider2, startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+}
+
+func applyCollisionResults(c1, c2 collider, x1, y1, x2, y2, vx1, vy1, vx2, vy2 float64) {
+	if c2.GetType() != "map_item" {
+		c1.SetVelocity(vx1, vy1)
+		c1.SetNextPos(x1+vx1, y1+vy1)
+		c1.SetPowerMove(c1.GetPowerMove() / 1.5)
+	}
+
+	if c1.GetType() != "map_item" {
+		c2.SetNextPos(x2+vx2, y2+vy2)
+		c2.SetVelocity(vx2, vy2)
+	}
 }
 
 func collisionRotate(collider1, collider2 collider, startXV1, startYV1, startXV2, startYV2, x1, x2, y1, y2, vx1, vy1 float64) {
-
+	// Пропускаем специальные случаи
 	if collider1.GetType() == "unit" && collider2.GetType() == "object" {
 		return
 	}
 
-	v1 := Vector{X: startXV2, Y: startYV2}
-	v2 := Vector{X: x2 - x1, Y: y2 - y1}
-	v3 := v1.Norm().Sub(v2.Norm())
+	// Рассчитываем векторы
+	impactVector := Vector{X: x2 - x1, Y: y2 - y1}
+	velocityVector := Vector{X: startXV2, Y: startYV2}
+	normalVector := velocityVector.Norm().Sub(impactVector.Norm())
 
-	angle := GetBetweenAngle(x1+v3.X, v3.Y+y1, x1, y1) - GetBetweenAngle(x2, y2, x1, y1)
-	PrepareAngle(&angle)
-
-	v4 := Vector{X: startXV1, Y: startYV1}
-	v5 := Vector{X: vx1, Y: vy1}
-	l := v4.Sub(&v5)
-
-	len1 := 2 - v3.Len()
-	v := (l.Len() / 100) + (v3.Len() / 100)
-	if math.IsNaN(v) || len1 < 0.02 {
+	// Рассчитываем угол воздействия
+	angle := calculateImpactAngle(x1, y1, x2, y2, normalVector)
+	if math.IsNaN(angle) {
 		return
 	}
 
+	// Рассчитываем силу вращения
+	velocityChange := &Vector{X: startXV1 - vx1, Y: startYV1 - vy1}
+	rotationForce := calculateRotationForce(velocityChange, normalVector)
+
+	if rotationForce == 0 {
+		return
+	}
+
+	// Применяем вращение в зависимости от угла
 	if angle > 0 && angle < 180 {
-		collider1.SetAngularVelocity(collider1.GetAngularVelocity() + v)
+		collider1.SetAngularVelocity(collider1.GetAngularVelocity() + rotationForce)
 	} else {
-		collider1.SetAngularVelocity(collider1.GetAngularVelocity() + v*-1)
+		collider1.SetAngularVelocity(collider1.GetAngularVelocity() - rotationForce)
 	}
 }
 
-//func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2 float64) (int, int) {
-//	theta1 := collider1.GetVelocityRotate()
-//	theta2 := collider2.GetVelocityRotate()
-//
-//	cX1, cY1 := collider1.GetNextPos()
-//	cX2, cY2 := collider2.GetNextPos()
-//
-//	phi := math.Atan2(cY2-cY1, cX2-cX1)
-//
-//	v1, v2 := collider1.GetCurrentSpeed(), collider2.GetCurrentSpeed()
-//	m1, m2 := weight1, weight2
-//
-//	minSpeed := 0.5
-//	if v1 < minSpeed && v2 < minSpeed {
-//		v1 = minSpeed
-//		v2 = minSpeed
-//
-//		theta1 = phi
-//		theta2 = phi + DegToRadian(180)
-//	}
-//
-//	startXV1, startYV1 := collider1.GetVelocity()
-//	startXV2, startYV2 := collider2.GetVelocity()
-//
-//	XVelocity1 := (v1*Cos(theta1-phi)*(m1-m2)+2*m2*v2*Cos(theta2-phi))/(m1+m2)*Cos(phi) + v1*Sin(theta1-phi)*Cos(phi+math.Pi/2)
-//	YVelocity1 := (v1*Cos(theta1-phi)*(m1-m2)+2*m2*v2*Cos(theta2-phi))/(m1+m2)*Sin(phi) + v1*Sin(theta1-phi)*Sin(phi+math.Pi/2)
-//	XVelocity2 := (v2*Cos(theta2-phi)*(m2-m1)+2*m1*v1*Cos(theta1-phi))/(m1+m2)*Cos(phi) + v2*Sin(theta2-phi)*Cos(phi+math.Pi/2)
-//	YVelocity2 := (v2*Cos(theta2-phi)*(m2-m1)+2*m1*v1*Cos(theta1-phi))/(m1+m2)*Sin(phi) + v2*Sin(theta2-phi)*Sin(phi+math.Pi/2)
-//
-//	collider1.SetPowerMove(collider1.GetPowerMove() - (pf1 * 3))
-//	collider2.SetPowerMove(collider2.GetPowerMove() - (pf2 * 3))
-//
-//	newX1 := cX1 + XVelocity1
-//	newY1 := cY1 + YVelocity1
-//
-//	newX2 := cX2 + XVelocity2
-//	newY2 := cY2 + YVelocity2
-//
-//	if GetBetweenDistFloat(newX1, newY1, newX2, newY2) < GetBetweenDistFloat(cX1, cY1, cX2, cY2) {
-//		fixAdhesion(collider1, collider2, XVelocity1, XVelocity2, YVelocity1, YVelocity2, m1, m2, cX1, cY1, cX2, cY2)
-//	} else {
-//
-//		collider1.SetVelocity(XVelocity1, YVelocity1)
-//		collider1.SetNextPos(newX1, newY1)
-//
-//		collider2.SetVelocity(XVelocity2, YVelocity2)
-//		collider2.SetNextPos(newX2, newY2)
-//	}
-//
-//	if cX1 == cX2 && cY1 == cY2 {
-//		fixAdhesion(collider1, collider2, XVelocity1, XVelocity2, YVelocity1, YVelocity2, m1, m2, cX1, cY1, cX2, cY2)
-//	}
-//
-//	return getDamage(startXV1, startYV1, XVelocity1, YVelocity1, startXV2, startYV2, XVelocity2, YVelocity2, m1, m2)
-//}
+func calculateImpactAngle(x1, y1, x2, y2 float64, normal *Vector) float64 {
+	angle1 := GetBetweenAngle(x1+normal.X, normal.Y+y1, x1, y1)
+	angle2 := GetBetweenAngle(x2, y2, x1, y1)
+	angle := angle1 - angle2
+	PrepareAngle(&angle)
+	return angle
+}
+
+func calculateRotationForce(velocityChange, normal *Vector) float64 {
+	lenNormal := 2 - normal.Len()
+	if lenNormal < 0.02 {
+		return 0
+	}
+	return velocityChange.Len()/100 + normal.Len()/100
+}
 
 // иногда модели слипают и не могут разлипнуть
 func fixAdhesion(collider1, collider2 collider, XVelocity1, XVelocity2, YVelocity1, YVelocity2, m1, m2, cX1, cY1, cX2, cY2 float64) (int, int, float64, float64) {
@@ -228,28 +224,74 @@ func fixAdhesion(collider1, collider2 collider, XVelocity1, XVelocity2, YVelocit
 	//return getDamage(XVelocity1, YVelocity1, vx1, vy1, XVelocity2, YVelocity2, vx2, vy2, m1, m2)
 }
 
-func getDamage(startXV1, startYV1, XVelocity1, YVelocity1, startXV2, startYV2, XVelocity2, YVelocity2, m1, m2 float64) (int, int) {
-	getD := func(startXV, startYV, XVelocity, YVelocity float64) int {
-		diffX := startXV - XVelocity
-		if XVelocity > startXV {
-			diffX = XVelocity - startXV
-		}
+func getDamage(
+	startXV1, startYV1, XVelocity1, YVelocity1 float64,
+	startXV2, startYV2, XVelocity2, YVelocity2 float64,
+	m1, m2, rotate1Deg, rotate2Deg float64,
+	collider1, collider2 collider,
+) (int, int) {
+	const (
+		damageMultiplier = 0.0002 // Общий множитель урона
+		minDamageEnergy  = 5.0    // Минимальная энергия для урона
+	)
 
-		diffY := startYV - YVelocity
-		if YVelocity > startYV {
-			diffY = YVelocity - startYV
-		}
+	relVx := startXV1 - startXV2
+	relVy := startYV1 - startYV2
 
-		return int(diffX) + int(diffY)
+	nx := startXV2 - startXV1
+	ny := startYV2 - startYV1
+	normLength := math.Sqrt(nx*nx + ny*ny)
+	if normLength == 0 {
+		return 0, 0
+	}
+	nx /= normLength
+	ny /= normLength
+
+	velocityProjection := relVx*nx + relVy*ny
+	if velocityProjection > 0 {
+		return 0, 0
 	}
 
-	if m1 == 9999999 {
-		return getD(startXV2, startYV2, XVelocity2, YVelocity2), getD(startXV2, startYV2, XVelocity2, YVelocity2)
+	// Новый код: определяем тыловой удар
+	isRearAttack := velocityProjection < -10.0 // Порог скорости для "сильного" тылового удара
+	energyBoost := 1.0
+	if isRearAttack {
+		energyBoost = 1.0 + math.Min(math.Abs(velocityProjection)/20.0, 3.0)
 	}
 
-	if m2 == 9999999 {
-		return getD(startXV1, startYV1, XVelocity1, YVelocity1), getD(startXV1, startYV1, XVelocity1, YVelocity1)
+	reducedMass := (m1 * m2) / (m1 + m2)
+	energy := 0.5 * reducedMass * velocityProjection * velocityProjection * energyBoost
+
+	if energy < minDamageEnergy {
+		return 0, 0
 	}
 
-	return getD(startXV1, startYV1, XVelocity1, YVelocity1), getD(startXV2, startYV2, XVelocity2, YVelocity2)
+	baseDamage := energy * damageMultiplier
+
+	damage1 := int(baseDamage * (m2 / (m1 + m2)))
+	damage2 := int(baseDamage * (m1 / (m1 + m2)))
+
+	return damage1, damage2
+}
+
+func GetCollisionPoint(c1, c2 collider) (float64, float64) {
+	x1, y1 := c1.GetNextPos()
+	x2, y2 := c2.GetNextPos()
+	r1 := float64(c1.GetRadius())
+
+	// Вектор от c1 к c2
+	dx := x2 - x1
+	dy := y2 - y1
+
+	// Нормализуем вектор (длина = 1)
+	length := math.Sqrt(dx*dx + dy*dy)
+	if length == 0 {
+		return x1, y1 // На случай совпадения позиций
+	}
+
+	// Точка на границе первого коллайдера
+	collisionX := x1 + (dx/length)*r1
+	collisionY := y1 + (dy/length)*r1
+
+	return collisionX, collisionY
 }

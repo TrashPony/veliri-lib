@@ -103,6 +103,7 @@ const (
 	Meteorite      = "meteorite"
 	MineWeapon     = "mine"
 	BuildBullet    = "builder"
+	MeleeBullet    = "melee"
 
 	ObjTypeStaticGeo     = 1
 	ObjTypeStaticObject  = 2

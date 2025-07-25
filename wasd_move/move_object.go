@@ -72,4 +72,5 @@ type MoveObject interface {
 	GetChassisType() string
 	GetMoveDestroyer() bool
 	GetForceNitro() bool
+	GetRadius() int
 }

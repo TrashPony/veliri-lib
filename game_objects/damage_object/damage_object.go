@@ -14,6 +14,7 @@ type Object struct {
 	KineticsDamage    int                             `json:"kinetics_damage"`
 	ExplosionDamage   int                             `json:"explosion_damage"`
 	ThermoDamage      int                             `json:"thermo_damage"`
+	WeaponType        string                          `json:"weapon_type"`
 	Dead              bool                            `json:"dead"`
 	Obj               interface{}                     `json:"obj"`
 	X                 int                             `json:"x"`

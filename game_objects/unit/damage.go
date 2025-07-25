@@ -6,10 +6,10 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 )
 
-func (u *Unit) SetDamage(damage, k, t, e int, callback func(playerID, startDamage, kDamage, tDamage, eDamage, finalDamage, startSHP, finalSHP, startHP, finalHP, k, t, e int)) (bool, bool, int) {
+func (u *Unit) SetDamage(damage, k, t, e int, ignoreShield bool, callback func(playerID, startDamage, kDamage, tDamage, eDamage, finalDamage, startSHP, finalSHP, startHP, finalHP, k, t, e int)) (bool, bool, int) {
 
 	var prefix string
-	if u.ShieldHP > 0 {
+	if u.ShieldHP > 0 && !ignoreShield {
 		prefix = "shield_"
 	}
 
@@ -50,7 +50,7 @@ func (u *Unit) SetDamage(damage, k, t, e int, callback func(playerID, startDamag
 	}
 
 	// щит
-	if u.ShieldHP > 0 {
+	if u.ShieldHP > 0 && !ignoreShield {
 		if damage > u.ShieldHP {
 			damage = u.ShieldHP
 		}

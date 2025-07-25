@@ -354,6 +354,18 @@ func (m *PhysicalModel) SetPos(realX, realY, angle float64) {
 	m.PosFunc = nil
 }
 
+func (m *PhysicalModel) SetRotate(angle float64) {
+	if angle > 360 {
+		angle -= 360
+	}
+
+	if angle < 0 {
+		angle += 360
+	}
+
+	m.Rotate = angle
+}
+
 func (m *PhysicalModel) GetTransportUnitID() int {
 	return m.TransportUnitID
 }

@@ -26,6 +26,7 @@ type Unit struct {
 	OwnerID       int    `json:"owner_id"`
 	CorporationID int    `json:"Corporation_id"`
 	Fraction      string `json:"fraction"`
+	MissionKey    string `json:"mission_key"`
 	Ready         bool
 	body          *detail.Body
 

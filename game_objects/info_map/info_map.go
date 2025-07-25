@@ -19,6 +19,7 @@ type InfoMap struct {
 	HandlersCoordinates []*coordinate.Coordinate `json:"handlers_coordinates"`
 	CorporationID       int                      `json:"corporation_id"`
 	Transit             bool                     `json:"transit"`
+	IsIndoors           bool                     `json:"is_indoors"`
 	GameTime            gameTime                 `json:"-"`
 }
 
