@@ -105,9 +105,74 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.EN:   `CHOOSE >`,
 		_const.ZhCN: `选择 >`,
 	},
+	"button_2": {
+		_const.RU:   `Выбрать`,
+		_const.EN:   `Choose`,
+		_const.ZhCN: `选择`,
+	},
 	"text_1": {
-		_const.RU:   `Выбери сторону`,
-		_const.EN:   `Choose a side.`,
-		_const.ZhCN: `选择一方。`,
+		_const.RU:   `Выбор стороны`,
+		_const.EN:   `Choosing a side`,
+		_const.ZhCN: `选择一方`,
+	},
+	"head_1": {
+		_const.RU:   `особенности`,
+		_const.EN:   `peculiarities`,
+		_const.ZhCN: `特殊之处`,
+	},
+	"head_2": {
+		_const.RU:   `оружие`,
+		_const.EN:   `weapon`,
+		_const.ZhCN: `武器`,
+	},
+	"head_3": {
+		_const.RU:   `транспорт`,
+		_const.EN:   `transport`,
+		_const.ZhCN: `运输`,
+	},
+	"control_head": {
+		_const.RU:   `Выбор управления`,
+		_const.EN:   `Control selection`,
+		_const.ZhCN: `控制选择`,
+	},
+	"relative_to_screen_head": {
+		_const.RU:   `Относительно экрана`,
+		_const.EN:   `Relative to screen`,
+		_const.ZhCN: `相对于屏幕`,
+	},
+	"relative_to_body_head": {
+		_const.RU:   `Относительно корпуса`,
+		_const.EN:   `Relative to body`,
+		_const.ZhCN: `相对于身体`,
+	},
+	"control_tip": {
+		_const.RU:   `Управление можно сменить в будущем через меню настроек.`,
+		_const.EN:   `The controls can be changed in the future via the settings menu.`,
+		_const.ZhCN: `将来可以通过设置菜单更改控件。`,
+	},
+	"control_recommended": {
+		_const.RU:   `рекомендуется`,
+		_const.EN:   `recommended`,
+		_const.ZhCN: `受到推崇的`,
+	},
+	"relative_to_screen_text_1": {
+		_const.RU:   `Классическое управление, привычное большинству игроков.`,
+		_const.EN:   `Classic controls, familiar to most players.`,
+		_const.ZhCN: `经典控制，大多数玩家都熟悉。`,
+	},
+	"relative_to_screen_text_2": {
+		_const.RU:   `Подходит для тех, кто хочет быстрее погрузиться в игру, не перестраивая рефлексы.`,
+		_const.EN:   `Suitable for those who want to quickly immerse themselves in the game without having to retrain their reflexes.`,
+		_const.ZhCN: `适合那些想要快速沉浸在游戏中而又不必重新训练反应能力的人。`,
+	},
+	"relative_to_body_text_1": {
+		_const.RU:   `Управление осуществляется относительно самого транспорта.`,
+		_const.EN:   `Control is exercised relative to the transport itself.`,
+		_const.ZhCN: `控制是针对运输本身进行的。`,
+	},
+	"relative_to_body_text_2": {
+		_const.RU:   `Не самое интуитивное на старте, но даёт полный контроль над движением, манёврами и боём.`,
+		_const.EN:   `Not the most intuitive at the start, but gives full control over movement, maneuvers and combat.`,
+		_const.ZhCN: `一开始并不是最直观的，但可以完全控制运动、机动和战斗。`,
 	},
 }

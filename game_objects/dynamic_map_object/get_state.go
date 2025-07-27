@@ -390,6 +390,10 @@ func (o *Object) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	return o.Weapons
 }
 
+func (o *Object) RangeMeleeWeaponSlots() map[int]*detail.BodyWeaponSlot {
+	return map[int]*detail.BodyWeaponSlot{}
+}
+
 func (o *Object) GetUnrepairableDamage() int {
 	return 0
 }

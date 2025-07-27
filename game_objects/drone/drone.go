@@ -411,6 +411,10 @@ func (d *Drone) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	return d.Weapons
 }
 
+func (d *Drone) RangeMeleeWeaponSlots() map[int]*detail.BodyWeaponSlot {
+	return map[int]*detail.BodyWeaponSlot{}
+}
+
 func (d *Drone) SetVisibleObjectStore(v *visible_objects.VisibleObjectsStore) {
 	d.visibleObjects = v
 }

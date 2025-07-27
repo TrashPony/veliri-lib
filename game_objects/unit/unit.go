@@ -485,14 +485,6 @@ func (u *Unit) UnlockDamage() {
 	u.damageMX.Unlock()
 }
 
-func (u *Unit) SetAllGunRotate(addRotate float64) {
-	for _, weaponSlot := range u.getBody().Weapons {
-		if weaponSlot != nil {
-			weaponSlot.SetGunRotate(weaponSlot.GetGunRotate() + addRotate)
-		}
-	}
-}
-
 func (u *Unit) GetTransportUnit() *Unit {
 	return nil
 }

@@ -48,7 +48,8 @@ type Body struct {
 
 	ThoriumSlots map[int]*ThoriumSlot `json:"-"` /* слоты в которых хранится топливо */
 
-	Weapons map[int]*BodyWeaponSlot `json:"-"`
+	Weapons      map[int]*BodyWeaponSlot `json:"-"`
+	MeleeWeapons map[int]*BodyWeaponSlot `json:"-"`
 
 	Height int `json:"height"`
 	Length int `json:"length"`
@@ -363,6 +364,12 @@ func (body *Body) GetUseEnergy() int {
 		}
 	}
 
+	for _, slot := range body.MeleeWeapons {
+		if slot.Weapon != nil {
+			allPower = allPower + slot.Weapon.Power
+		}
+	}
+
 	return allPower
 }
 
@@ -386,6 +393,16 @@ func (body *Body) GetUseCapacitySize() int {
 	allSize = allSize + counter(body.equippingV)
 
 	for _, slot := range body.Weapons {
+		if slot.Weapon != nil {
+			allSize = allSize + slot.Weapon.Size
+
+			if slot.GetAmmo() != nil {
+				allSize = allSize + slot.GetAmmo().Size*slot.GetAmmoQuantity()
+			}
+		}
+	}
+
+	for _, slot := range body.MeleeWeapons {
 		if slot.Weapon != nil {
 			allSize = allSize + slot.Weapon.Size
 
@@ -422,6 +439,10 @@ func (body *Body) GetJSONWeaponSlots() []string {
 	weapons := make([]string, 0)
 
 	for _, weaponSlot := range body.Weapons {
+		weapons = append(weapons, weaponSlot.GetJSON())
+	}
+
+	for _, weaponSlot := range body.MeleeWeapons {
 		weapons = append(weapons, weaponSlot.GetJSON())
 	}
 

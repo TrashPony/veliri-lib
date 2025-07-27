@@ -115,6 +115,7 @@ func (s *Squad) fillStateEquip() {
 					slot.EndReload = weaponSlot.EndReloadTime
 					slot.AmmoQuantity = weaponSlot.GetAmmoQuantity()
 					slot.AmmoReload = weaponSlot.AmmoReload
+					slot.On = weaponSlot.On
 				} else {
 					//slot.Source = ""
 					//slot.TypeSlot = 0

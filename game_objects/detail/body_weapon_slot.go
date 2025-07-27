@@ -31,16 +31,17 @@ type BodyWeaponSlot struct {
 	WeaponColor1        string     `json:"weapon_color_1"`
 	WeaponColor2        string     `json:"weapon_color_2"`
 	LockSlot            int        `json:"lock_slot"`
+	AccumulationCurrent float64    `json:"-"` // 0-100, от этого зависит урон
+	AccumulationTimeOut int        `json:"-"`
+	StartReloadTime     int64      `json:"-"`
+	EndReloadTime       int64      `json:"-"`
+	TargetMsg           []byte     `json:"-"`
+	Direction           int        `json:"direction"`
+	PassAngle           int        `json:"pass_angle"`
+	Spread              int        `json:"-"`
+	SpreadUp            bool       `json:"-"`
+	On                  bool       `json:"-"`
 	lastFirePosition    int
-	AccumulationCurrent float64 `json:"-"` // 0-100, от этого зависит урон
-	AccumulationTimeOut int     `json:"-"`
-	StartReloadTime     int64   `json:"-"`
-	EndReloadTime       int64   `json:"-"`
-	TargetMsg           []byte  `json:"-"`
-	Direction           int     `json:"direction"`
-	PassAngle           int     `json:"pass_angle"`
-	Spread              int     `json:"-"`
-	SpreadUp            bool    `json:"-"`
 	weaponTarget        *target.Target
 }
 

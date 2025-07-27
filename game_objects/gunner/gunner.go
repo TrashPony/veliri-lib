@@ -17,6 +17,7 @@ type GunUser interface {
 	GetID() int
 	GetWeaponSlot(slotNumber int) *detail.BodyWeaponSlot
 	RangeWeaponSlots() map[int]*detail.BodyWeaponSlot
+	RangeMeleeWeaponSlots() map[int]*detail.BodyWeaponSlot
 	GetMapHeight() float64
 	GetRotate() float64
 	GetX() int
@@ -87,6 +88,10 @@ func (g *Gunner) GetWeaponSlot(slotNumber int) *detail.BodyWeaponSlot {
 
 func (g *Gunner) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	return g.GunUser.RangeWeaponSlots()
+}
+
+func (g *Gunner) RangeMeleeWeaponSlots() map[int]*detail.BodyWeaponSlot {
+	return g.GunUser.RangeMeleeWeaponSlots()
 }
 
 func (g *Gunner) GetMapHeight() float64 {
