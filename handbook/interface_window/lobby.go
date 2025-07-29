@@ -51,14 +51,14 @@ var Lobby = map[string]map[string]string{
 		_const.ZhCN: `加注燃料`,
 	},
 	"button_4": {
-		_const.RU:   `< Отмена`,
-		_const.EN:   `< Cancel`,
-		_const.ZhCN: `< 取消`,
+		_const.RU:   `Отмена`,
+		_const.EN:   `Cancel`,
+		_const.ZhCN: `取消`,
 	},
 	"button_5": {
-		_const.RU:   `Покинуть базу >`,
-		_const.EN:   `Leave base >`,
-		_const.ZhCN: `离开基地 >`,
+		_const.RU:   `Покинуть базу`,
+		_const.EN:   `Leave base`,
+		_const.ZhCN: `离开基地`,
 	},
 	"body_state_1": {
 		_const.RU:   `готов`,

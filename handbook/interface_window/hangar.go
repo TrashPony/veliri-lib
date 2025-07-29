@@ -71,9 +71,9 @@ var Hangar = map[string]map[string]string{
 	},
 	// Hangar
 	"window_name": {
-		_const.RU:   `Конструктор снаряжения`,
-		_const.EN:   `Equipment designer`,
-		_const.ZhCN: `装备设计器`,
+		_const.RU:   `Ангар`,
+		_const.EN:   `Hangar`,
+		_const.ZhCN: `机库`,
 	},
 	"text_12": {
 		_const.RU:   `Перенести транспорт?`,

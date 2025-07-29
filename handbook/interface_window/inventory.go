@@ -189,9 +189,9 @@ var Inventory = map[string]map[string]string{
 	},
 	// Inventory
 	"window_name": {
-		_const.RU:   `Инвентарь`,
-		_const.EN:   `Inventory`,
-		_const.ZhCN: `库存`,
+		_const.RU:   `Склад / Трюм`,
+		_const.EN:   `Warehouse / Hold`,
+		_const.ZhCN: `仓库 / 货舱`,
 	},
 	"text_12": {
 		_const.RU:   `Склад заблокирован. Продлите аренду офиса или восстановите модуль базы.`,
@@ -339,5 +339,21 @@ var Inventory = map[string]map[string]string{
 		_const.RU:   `Не известная ошибка.`,
 		_const.EN:   `Unknown error.`,
 		_const.ZhCN: `未知错误。`,
+	},
+	// modal names
+	"arm_modal_head": {
+		_const.RU:   `Покупка снарядов`,
+		_const.EN:   `Buying shells`,
+		_const.ZhCN: `买贝壳`,
+	},
+	"repair_modal_head": {
+		_const.RU:   `Ремонт`,
+		_const.EN:   `Repair`,
+		_const.ZhCN: `维修`,
+	},
+	"fill_up_modal_head": {
+		_const.RU:   `Заправка`,
+		_const.EN:   `Refueling`,
+		_const.ZhCN: `加油`,
 	},
 }
