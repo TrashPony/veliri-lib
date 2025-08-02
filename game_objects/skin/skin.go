@@ -9,4 +9,5 @@ type Skin struct {
 	Price    int64  `json:"price"`
 	Access   bool   `json:"access"`
 	Path     string `json:"path"`
+	Fraction string `json:"fraction"`
 }
