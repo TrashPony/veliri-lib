@@ -25,49 +25,6 @@ type collider interface {
 	GetRadius() int
 }
 
-// Вынесение сложных расчетов в отдельные функции
-func calculateCollisionResponse(cX1, cY1, cX2, cY2, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) (vx1, vy1, vx2, vy2 float64) {
-	m21 := m2 / m1
-	x21 := cX2 - cX1
-	y21 := cY2 - cY1
-	vx21 := startXV2 - startXV1
-	vy21 := startYV2 - startYV1
-
-	// Центр масс системы
-	vx_cm := (m1*startXV1 + m2*startXV2) / (m1 + m2)
-	vy_cm := (m1*startYV1 + m2*startYV2) / (m1 + m2)
-
-	// Проверка направления столкновения
-	if vx21*x21+vy21*y21 >= 0 {
-		return startXV1, startYV1, startXV2, startYV2
-	}
-
-	// Обработка особого случая (деление на ноль)
-	if math.Abs(x21) < 1e-12 {
-		x21 = 1e-12
-		if cX2 < cX1 {
-			x21 = -x21
-		}
-	}
-
-	a := y21 / x21
-	dvx2 := -2 * (vx21 + a*vy21) / ((1 + a*a) * (1 + m21))
-
-	vx2 = startXV2 + dvx2
-	vy2 = startYV2 + a*dvx2
-	vx1 = startXV1 - m21*dvx2
-	vy1 = startYV1 - a*m21*dvx2
-
-	// Коэффициент упругости
-	R := 1.0
-	vx1 = (vx1-vx_cm)*R + vx_cm
-	vy1 = (vy1-vy_cm)*R + vy_cm
-	vx2 = (vx2-vx_cm)*R + vx_cm
-	vy2 = (vy2-vy_cm)*R + vy_cm
-
-	return vx1, vy1, vx2, vy2
-}
-
 func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) float64 {
 	// 1. Рассчитываем относительную скорость столкновения
 	relSpeedX := startXV1 - startXV2
@@ -89,26 +46,64 @@ func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, star
 }
 
 func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
-	// Получаем позиции и скорости
+	// https://www-plasmaphysics-org-uk.translate.goog/programs/coll2d_cpp.htm?_x_tr_sl=en&_x_tr_tl=ru&_x_tr_hl=ru&_x_tr_pto=wapp
+	// https://gamedev.stackexchange.com/questions/5906/collision-resolution
 	cX1, cY1 := collider1.GetNextPos()
 	cX2, cY2 := collider2.GetNextPos()
+
 	x1, y1 := collider1.GetRealPos()
+	//x2, y2 := collider2.GetRealPos()
+
+	m1, m2 := weight1, weight2
 
 	startXV1, startYV1 := collider1.GetVelocity()
 	startXV2, startYV2 := collider2.GetVelocity()
 
-	// Проверка на специальные случаи
-	if direct := (startXV2-startXV1)*(cX2-cX1) + (startYV2-startYV1)*(cY2-cY1); direct >= 0 {
+	m21 := m2 / m1
+	x21 := cX2 - cX1
+	y21 := cY2 - cY1
+	vx21 := startXV2 - startXV1
+	vy21 := startYV2 - startYV1
+
+	vx_cm := (m1*startXV1 + m2*startXV2) / (m1 + m2)
+	vy_cm := (m1*startYV1 + m2*startYV2) / (m1 + m2)
+
+	direct := vx21*x21 + vy21*y21
+
+	if direct >= 0 || (collider1.GetType() == "object" && collider2.GetType() == "object") {
 		if weight2 >= 20000 || (collider1.GetType() == "object" && collider2.GetType() == "object") {
-			d1, d2, _, _ := fixAdhesion(collider1, collider2, startXV1, startXV2, startYV1, startYV2, weight1, weight2, x1, y1, x2, y2)
-			return d1, d2, calculateCollisionSound(collider1, collider2, startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+			damage1, damage2, _, _ := fixAdhesion(collider1, collider2, startXV1, startXV2, startYV1, startYV2, m1, m2, x1, y1, x2, y2)
+			return damage1, damage2, 0
 		}
-		return 0, 0, calculateCollisionSound(collider1, collider2, startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+
+		return 0, 0, 0
 	}
 
-	// Расчет новых скоростей
-	vx1, vy1, vx2, vy2 := calculateCollisionResponse(cX1, cY1, cX2, cY2,
-		startXV1, startYV1, startXV2, startYV2, weight1, weight2)
+	var sign float64
+
+	fy21 := 1.0e-12 * math.Abs(y21)
+	if math.Abs(x21) < fy21 {
+		if x21 < 0 {
+			sign = -1
+		} else {
+			sign = 1
+		}
+		x21 = fy21 * sign
+	}
+
+	a := y21 / x21
+	dvx2 := -2 * (vx21 + a*vy21) / ((1 + a*a) * (1 + m21))
+	vx2 := startXV2 + dvx2
+	vy2 := startYV2 + a*dvx2
+	vx1 := startXV1 - m21*dvx2
+	vy1 := startYV1 - a*m21*dvx2
+
+	R := 1.0
+
+	vx1 = (vx1-vx_cm)*R + vx_cm
+	vy1 = (vy1-vy_cm)*R + vy_cm
+	vx2 = (vx2-vx_cm)*R + vx_cm
+	vy2 = (vy2-vy_cm)*R + vy_cm
 
 	// Применение изменений
 	applyCollisionResults(collider1, collider2, x1, y1, x2, y2, vx1, vy1, vx2, vy2)
