@@ -96,8 +96,8 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `<span class="importantly">Reverses</span>使用轮式运输工具。<span class="importantly">轮子</span>没有特殊功能。它们是最简单、最可靠的底盘类型。适合那些喜欢经典操控风格的人。`,
 	},
 	"Reverses_bonus": {
-		_const.RU:   `<span class="importantly">Вместимость трюма</span> увеличена на <span class="importantly">5%</span>.`,
-		_const.EN:   `The <span class="importantly">hold capacity</span> has been increased by <span class="importantly">5%</span>.`,
+		_const.RU:   `<span class="importantly">Вместимость грузового отсека</span> увеличена на <span class="importantly">5%</span>.`,
+		_const.EN:   `<span class="importantly">Cargo hold capacity</span> increased by <span class="importantly">5%</span>.`,
 		_const.ZhCN: `<span class="importantly">货舱容量</span>增加<span class="importantly">5%</span>。`,
 	},
 	"button_1": {

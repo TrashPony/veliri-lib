@@ -163,9 +163,9 @@ var npcGreetings = map[string]map[string]string{
 		_const.ZhCN: "别抱希望了，我的队伍里不会有你的位置。",
 	},
 	_const.Replicas + "_in_scout_" + Neutral + "_7": {
-		_const.RU:   "Хм, может, мне стоит посмотреть, что ты там перевозишь в своём трюме?",
-		_const.EN:   "Hmm, maybe I should see what you're carrying in your hold?",
-		_const.ZhCN: "嗯，也许我该看看你船舱里运的是什么？",
+		_const.RU:   "Хм, может, мне стоит посмотреть, что ты там перевозишь в своём грузовом отсеке?",
+		_const.EN:   "Hmm, maybe I should take a look at what you're hauling in that cargo hold of yours?",
+		_const.ZhCN: "啧，我是不是该检查检查你货舱里运了些什么？",
 	},
 	_const.Replicas + "_in_scout_" + Neutral + "_8": {
 		_const.RU:   "Двигай далее, не задерживайся.",
@@ -249,9 +249,9 @@ var npcGreetings = map[string]map[string]string{
 		_const.ZhCN: "我直接回答：我不卖任何东西！",
 	},
 	_const.Replicas + "_transport_" + Neutral + "_11": {
-		_const.RU:   "Нет, я не поверю, что ты из стражей. И нет, я не позволю тебе досмотреть мой трюм.",
-		_const.EN:   "No, I won't believe that you are one of the guards. And no, I won't let you search my hold.",
-		_const.ZhCN: "不，我才不信你是守卫。而且不，我不会让你搜查我的货舱。",
+		_const.RU:   "Нет, я не поверю, что ты из стражей. И нет, я не позволю тебе досмотреть мой грузовой отсек.",
+		_const.EN:   "No, I don't believe you're from the Guard. And no, you're not inspecting my cargo hold.",
+		_const.ZhCN: "不，我根本不信你是守卫。更别想检查我的货舱。",
 	},
 	_const.Replicas + "_transport_" + Neutral + "_12": {
 		_const.RU:   "Ты друг, или... враг?",
@@ -592,9 +592,9 @@ var npcGreetings = map[string]map[string]string{
 		_const.ZhCN: "哦，我看到了谁！是的，所有海盗集群都在谈论你，<span class=\"importantly\">%UserName%</span>。",
 	},
 	_const.Replicas + "_in_scout_" + Good + "_7": {
-		_const.RU:   "Запомни, %UserName%: сначала пускай вываливают всё из трюма, а затем избавляйся как от лишних свидетелей.",
-		_const.EN:   "Remember, %UserName%: first let them dump everything out of the hold, and then get rid of them as if they were unnecessary witnesses.",
-		_const.ZhCN: "记住，<span class=\"importantly\">%UserName%</span>：先让他们把货舱里的东西都倒出来，然后像处理多余的证人一样解决他们。",
+		_const.RU:   "Запомни, %UserName%: сначала пускай вываливают всё из грузового отсека, а затем избавляйся как от лишних свидетелей.",
+		_const.EN:   "Remember, %UserName%: first make them unload everything from the cargo hold, then dispose of unnecessary witnesses.",
+		_const.ZhCN: "记住，%UserName%：先让他们把货舱清空，再处理掉多余的目击者。",
 	},
 	_const.Replicas + "_in_scout_" + Good + "_8": {
 		_const.RU:   "Если засада удалась, %UserName%, постарайся затем побыстрее сменить свою позицию.",
@@ -648,9 +648,9 @@ var npcGreetings = map[string]map[string]string{
 		_const.ZhCN: "至少从你身上，<span class=\"importantly\">%UserName%</span>，我没有感觉到任何危险。",
 	},
 	_const.Replicas + "_transport_" + Good + "_8": {
-		_const.RU:   "Ты только не удивляйся, но сегодня в моём трюме весьма много ценных вещей.",
-		_const.EN:   "Just don’t be surprised, but today there are a lot of valuable things in my hold.",
-		_const.ZhCN: "别惊讶，但今天我的货舱里有很多贵重物品。",
+		_const.RU:   "Ты только не удивляйся, но сегодня в моём грузовом отсеке весьма много ценных вещей.",
+		_const.EN:   "Don't be too surprised, but my cargo hold happens to be full of valuables today.",
+		_const.ZhCN: "可别吓到——今天我的货舱里全是值钱货。",
 	},
 	_const.Replicas + "_transport_" + Good + "_9": {
 		_const.RU:   "Ты даже и понятия не имеешь, насколько же выгодный контракт по перевозке я сегодня раздобыл!",

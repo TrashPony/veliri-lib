@@ -75,4 +75,75 @@ var MenuBar = map[string]map[string]string{
 		_const.ZhCN: `燃料`,
 	},
 	// Notifys
+	// tips
+	"tip_1": {
+		_const.RU:   `Плеер / Настройки`,
+		_const.EN:   `Player / Settings`,
+		_const.ZhCN: `播放器 / 设置`,
+	},
+	"tip_2": {
+		_const.RU:   `Персонаж`,
+		_const.EN:   `Character`,
+		_const.ZhCN: `角色`,
+	},
+	"tip_3": {
+		_const.RU:   `Помощник`,
+		_const.EN:   `Assistant`,
+		_const.ZhCN: `助手`,
+	},
+	"tip_4": {
+		_const.RU:   `Вызвать эвакуацию`,
+		_const.EN:   `Call evacuation`,
+		_const.ZhCN: `呼叫撤离`,
+	},
+	"tip_5": {
+		_const.RU:   `Справка`,
+		_const.EN:   `Help`,
+		_const.ZhCN: `帮助`,
+	},
+	"tip_6": {
+		_const.RU:   `Полноэкранный режим`,
+		_const.EN:   `Fullscreen mode`,
+		_const.ZhCN: `全屏模式`,
+	},
+	"tip_7": {
+		_const.RU:   `Выход в меню`,
+		_const.EN:   `Return to menu`,
+		_const.ZhCN: `返回主菜单`,
+	},
+	"tip_8": {
+		_const.RU:   `Ангар`,
+		_const.EN:   `Hangar`,
+		_const.ZhCN: `机库`,
+	},
+	"tip_9": {
+		_const.RU:   `Контакты`,
+		_const.EN:   `Contacts`,
+		_const.ZhCN: `联系人`,
+	},
+	"tip_10": {
+		_const.RU:   `Рынок`,
+		_const.EN:   `Market`,
+		_const.ZhCN: `市场`,
+	},
+	"tip_11": {
+		_const.RU:   `Рынок`,
+		_const.EN:   `Market`,
+		_const.ZhCN: `市场`,
+	},
+	"tip_12": {
+		_const.RU:   `Автопилот`,
+		_const.EN:   `Autopilot`,
+		_const.ZhCN: `自动驾驶`,
+	},
+	"tip_13": {
+		_const.RU:   `Кредиты`,
+		_const.EN:   `Credits`,
+		_const.ZhCN: `信用点`,
+	},
+	"tip_14": {
+		_const.RU:   `Грузовой отсек`,
+		_const.EN:   `Cargo hold`,
+		_const.ZhCN: `货舱`,
+	},
 }

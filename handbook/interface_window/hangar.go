@@ -10,8 +10,8 @@ var Hangar = map[string]map[string]string{
 		_const.ZhCN: `电力不足`,
 	},
 	"text_2": {
-		_const.RU:   `Не хватает места в трюме`,
-		_const.EN:   `Not enough space in the hold`,
+		_const.RU:   `Не хватает места в грузовом отсеке`,
+		_const.EN:   `Not enough space in cargo hold`,
 		_const.ZhCN: `货舱空间不足`,
 	},
 	"text_3": {
@@ -389,5 +389,101 @@ var Hangar = map[string]map[string]string{
 		_const.RU:   `Особенности`,
 		_const.EN:   `Peculiarities`,
 		_const.ZhCN: `特性`,
+	},
+	// tips
+	"tip_1": {
+		_const.RU:   `Чем выше синхронизация, тем больше очков навыков доступно для распределения по системам`,
+		_const.EN:   `Higher synchronization means more skill points available for system allocation`,
+		_const.ZhCN: `同步率越高，可分配至各系统的技能点越多`,
+	},
+	"tip_2": {
+		_const.RU:   `Просмотр схемы бронирования и слабых точек вашего транспорта`,
+		_const.EN:   `View armor layout and weak points of your vehicle`,
+		_const.ZhCN: `查看载具装甲布局与弱点分布`,
+	},
+	"tip_3": {
+		_const.RU:   `Установленные модули`,
+		_const.EN:   `Installed modules`,
+		_const.ZhCN: `已安装模块`,
+	},
+	"tip_4": {
+		_const.RU:   `Отправить на склад`,
+		_const.EN:   `Send to storage`,
+		_const.ZhCN: `发送至仓库`,
+	},
+	"tip_5": {
+		_const.RU:   `Изменить название транспорта`,
+		_const.EN:   `Rename vehicle`,
+		_const.ZhCN: `重命名载具`,
+	},
+	"tip_6": {
+		_const.RU:   `Шаблоны сборки`,
+		_const.EN:   `Build templates`,
+		_const.ZhCN: `组装模板`,
+	},
+	"tip_7": {
+		_const.RU:   `Починка`,
+		_const.EN:   `Repairs`,
+		_const.ZhCN: `维修`,
+	},
+	"tip_8": {
+		_const.RU:   `Доступная мощность для снаряжения`,
+		_const.EN:   `Available power for equipment`,
+		_const.ZhCN: `装备可用功率`,
+	},
+	"tip_9": {
+		_const.RU:   `Слот для топлива`,
+		_const.EN:   `Fuel slot`,
+		_const.ZhCN: `燃料槽`,
+	},
+	"tip_10": {
+		_const.RU:   `Слот питания L1`,
+		_const.EN:   `L1 power slot`,
+		_const.ZhCN: `L1级能源槽`,
+	},
+	"tip_11": {
+		_const.RU:   `Установить дополнительный слот L1`,
+		_const.EN:   `Install additional L1 slot`,
+		_const.ZhCN: `安装额外L1级槽位`,
+	},
+	"tip_12": {
+		_const.RU:   `Слот питания L2`,
+		_const.EN:   `L2 power slot`,
+		_const.ZhCN: `L2级能源槽`,
+	},
+	"tip_13": {
+		_const.RU:   `Установить дополнительный слот L2`,
+		_const.EN:   `Install additional L2 slot`,
+		_const.ZhCN: `安装额外L2级槽位`,
+	},
+	"tip_14": {
+		_const.RU:   `Слот питания L3`,
+		_const.EN:   `L3 power slot`,
+		_const.ZhCN: `L3级能源槽`,
+	},
+	"tip_15": {
+		_const.RU:   `Слот модификатора`,
+		_const.EN:   `Modifier slot`,
+		_const.ZhCN: `改装件槽位`,
+	},
+	"tip_16": {
+		_const.RU:   `Порт оперативного дрона`,
+		_const.EN:   `Combat drone port`,
+		_const.ZhCN: `作战无人机端口`,
+	},
+	"tip_17": {
+		_const.RU:   `Установка модуля ограничивает соседний слот`,
+		_const.EN:   `Module installation limits adjacent slot`,
+		_const.ZhCN: `安装模块将限制相邻槽位`,
+	},
+	"tip_18": {
+		_const.RU:   `Слот питания оружия`,
+		_const.EN:   `Weapon power slot`,
+		_const.ZhCN: `武器能源槽`,
+	},
+	"tip_19": {
+		_const.RU:   `снаряды`,
+		_const.EN:   `ammunition`,
+		_const.ZhCN: `弹药`,
 	},
 }

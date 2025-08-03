@@ -106,9 +106,9 @@ var DetailItem = map[string]map[string]string{
 		_const.ZhCN: `强度`,
 	},
 	"ch_4": {
-		_const.RU:   `Занимаемый объем в трюме`,
-		_const.EN:   `Occupied volume in the hold`,
-		_const.ZhCN: `货舱占用体积`,
+		_const.RU:   `Занимаемый объем в грузовом отсеке`,
+		_const.EN:   `Occupied volume in cargo hold`,
+		_const.ZhCN: `货舱占用容量`,
 	},
 	"ch_5": {
 		_const.RU:   `Защищен паролем`,
@@ -126,8 +126,8 @@ var DetailItem = map[string]map[string]string{
 		_const.ZhCN: `机身尺寸`,
 	},
 	"ch_8": {
-		_const.RU:   `Вместимость трюма`,
-		_const.EN:   `Hold capacity`,
+		_const.RU:   `Вместимость грузового отсека`,
+		_const.EN:   `Cargo hold capacity`,
 		_const.ZhCN: `货舱容量`,
 	},
 	"ch_9": {
@@ -984,16 +984,16 @@ var DetailItem = map[string]map[string]string{
 	"broken_tip": {
 		_const.RU: `Предмет сломан из за этого:<br>
           - его нельзя переработать или продать<br>
-          - если выкинуть из трюма он уничтожиться<br>
+          - если выкинуть из грузового отсека он уничтожиться<br>
           - его характеристики могут быть ухудшены<br>`,
-		_const.EN: `The item is broken, which means that:<br>
-          - it cannot be recycled or sold<br>
-          - if you throw it away, it will be destroyed<br>
-          - its characteristics may be reduced<br>`,
-		_const.ZhCN: `物品已损坏，这意味着：<br>
-          - 它不能被回收或出售<br>
-          - 如果从货舱中丢弃，它将被销毁<br>
-          - 其特性可能会降低<br>`,
+		_const.EN: `Item is broken because of this:<br>
+		  - It cannot be recycled or sold<br>
+		  - If ejected from cargo hold, it will be destroyed<br>
+		  - Its characteristics may be degraded<br>`,
+		_const.ZhCN: `物品因此损坏：<br>
+		  - 不可回收或出售<br>
+		  - 从货舱丢弃将被销毁<br>
+		  - 性能参数可能降低<br>`,
 	},
 	"resource_tip_1_1": {
 		_const.RU:   `Этот ресурс можно получить`,

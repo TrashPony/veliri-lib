@@ -619,9 +619,9 @@ var dialogTypes = map[string]map[string]string{
 		_const.ZhCN: "下一步是不是要抵押船体？我真没货了！",
 	},
 	"drop_cargo_no_4_2": {
-		_const.RU:   "Можешь меня просканировать, но всё равно ничего не найдёшь. Трюм пуст.",
-		_const.EN:   "You can scan me, but you still won't find anything. The hold is empty.",
-		_const.ZhCN: "尽管扫描——货舱早就空了！",
+		_const.RU:   "Можешь меня просканировать, но всё равно ничего не найдёшь. Грузовой отсек пуст.",
+		_const.EN:   "You can scan me all you want, but you won't find anything. Cargo's empty.",
+		_const.ZhCN: "随便扫描，反正一无所获。货舱是空的。",
 	},
 	"drop_cargo_no_5_1": {
 		_const.RU:   "Так не пойдёт! Ты этот фокус уже проворачивал!",

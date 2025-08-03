@@ -11,7 +11,7 @@ var Lobby = map[string]map[string]string{
 		_const.ZhCN: `离开基地`,
 	},
 	"error_1": {
-		_const.RU:   `Трюм переполнен`,
+		_const.RU:   `Грузовой отсек переполнен`,
 		_const.EN:   `The hold is full`,
 		_const.ZhCN: `货舱已满`,
 	},
@@ -81,9 +81,9 @@ var Lobby = map[string]map[string]string{
 		_const.ZhCN: `未安装`,
 	},
 	"text_13": {
-		_const.RU:   `Не хватает места в трюме`,
-		_const.EN:   `Not enough space in the hold`,
-		_const.ZhCN: `货舱空间不足`,
+		_const.RU:   `Не хватает места в грузовом отсеке!`,
+		_const.EN:   `Cargo hold full!`,
+		_const.ZhCN: `货舱已满！`,
 	},
 	// Lobby
 	"text_4": {
@@ -127,9 +127,9 @@ var Lobby = map[string]map[string]string{
 		_const.ZhCN: `机库`,
 	},
 	"menu_6": {
-		_const.RU:   `Склад / Трюм`,
-		_const.EN:   `Warehouse / Hold`,
-		_const.ZhCN: `仓库 / 货舱`,
+		_const.RU:   `Склад / Грузовой отсек`,
+		_const.EN:   `Storage / Cargo Hold`,
+		_const.ZhCN: `仓储 / 货舱`,
 	},
 	"menu_7": {
 		_const.RU:   `Рынок`,

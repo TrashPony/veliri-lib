@@ -92,9 +92,9 @@ var Inventory = map[string]map[string]string{
 		_const.ZhCN: `卸下`,
 	},
 	"button_15": {
-		_const.RU:   `В трюм`,
-		_const.EN:   `To hold`,
-		_const.ZhCN: `放入货舱`,
+		_const.RU:   `В грузовой отсек`,
+		_const.EN:   `To cargo hold`,
+		_const.ZhCN: `装入货舱`,
 	},
 	"button_16": {
 		_const.RU:   `На склад`,
@@ -189,9 +189,9 @@ var Inventory = map[string]map[string]string{
 	},
 	// Inventory
 	"window_name": {
-		_const.RU:   `Склад / Трюм`,
-		_const.EN:   `Warehouse / Hold`,
-		_const.ZhCN: `仓库 / 货舱`,
+		_const.RU:   `Склад / Грузовой отсек`,
+		_const.EN:   `Storage / Cargo Hold`,
+		_const.ZhCN: `仓储 / 货舱`,
 	},
 	"text_12": {
 		_const.RU:   `Склад заблокирован. Продлите аренду офиса или восстановите модуль базы.`,
@@ -254,8 +254,8 @@ var Inventory = map[string]map[string]string{
 		_const.ZhCN: `仓库`,
 	},
 	"squadInventory": {
-		_const.RU:   `Трюм`,
-		_const.EN:   `Hold`,
+		_const.RU:   `Грузовой отсек`,
+		_const.EN:   `Cargo Hold`,
 		_const.ZhCN: `货舱`,
 	},
 	"scanner": {
@@ -355,5 +355,21 @@ var Inventory = map[string]map[string]string{
 		_const.RU:   `Заправка`,
 		_const.EN:   `Refueling`,
 		_const.ZhCN: `加油`,
+	},
+	// tips
+	"tip_1": {
+		_const.RU:   `Фильтр: %filter_name%`,
+		_const.EN:   `Filter: %filter_name%`,
+		_const.ZhCN: `筛选器: %filter_name%`,
+	},
+	"tip_2": {
+		_const.RU:   `Перенести все подходящие предметы из грузового отсека`,
+		_const.EN:   `Transfer all matching items from cargo hold`,
+		_const.ZhCN: `从货舱转移所有匹配物品`,
+	},
+	"tip_3": {
+		_const.RU:   `Объединить топливные ячейки`,
+		_const.EN:   `Merge fuel cells`,
+		_const.ZhCN: `合并燃料单元`,
 	},
 }
