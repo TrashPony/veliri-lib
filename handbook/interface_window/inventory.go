@@ -372,4 +372,14 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Merge fuel cells`,
 		_const.ZhCN: `合并燃料单元`,
 	},
+	"tip_4": {
+		_const.RU:   `Развернуть грузовой отсек`,
+		_const.EN:   `Expand cargo hold`,
+		_const.ZhCN: `展开货舱`,
+	},
+	"tip_5": {
+		_const.RU:   `Свернуть грузовой отсек`,
+		_const.EN:   `Collapse cargo hold`,
+		_const.ZhCN: `收起货舱`,
+	},
 }
