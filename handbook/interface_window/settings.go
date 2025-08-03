@@ -28,6 +28,11 @@ var Settings = map[string]map[string]string{
 		_const.EN:   `Graphics`,
 		_const.ZhCN: `图形`,
 	},
+	"interface": {
+		_const.RU:   `Интерфейс`,
+		_const.EN:   `Interface`,
+		_const.ZhCN: `界面`,
+	},
 	"traces": {
 		_const.RU:   `Следы от гусениц:`,
 		_const.EN:   `Traces from transport:`,

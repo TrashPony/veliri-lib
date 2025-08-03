@@ -382,4 +382,14 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Collapse cargo hold`,
 		_const.ZhCN: `收起货舱`,
 	},
+	"tip_6": {
+		_const.RU:   `Грузовые отсеки транспортов, которые сейчас не используются`,
+		_const.EN:   `Cargo holds of currently unused vehicles`,
+		_const.ZhCN: `当前未使用载具的货舱`,
+	},
+	"tip_7": {
+		_const.RU:   `Склады на других базах (только просмотр)`,
+		_const.EN:   `Warehouses at other bases (view only)`,
+		_const.ZhCN: `其他基地仓库(仅查看)`,
+	},
 }
