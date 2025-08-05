@@ -433,6 +433,57 @@ var mailTemplates = map[string]map[string]map[string]string{
 			"body":    `基地 %BASE_NAME% 的办公室因未支付租金已停止运作，仓库内所有财产已被扣押。`,
 		},
 	},
+	"corporation_application_created_1": {
+		_const.RU: {
+			"sender":  "Кластер",
+			"subject": "Заявка подана",
+			"body":    "Ваша заявка на вступление в кластер %CORPORATION_NAME% успешно подана и ожидает рассмотрения.",
+		},
+		_const.EN: {
+			"sender":  "Cluster",
+			"subject": "Application submitted",
+			"body":    "Your application to join %CORPORATION_NAME% has been submitted and is pending review.",
+		},
+		_const.ZhCN: {
+			"sender":  "集群",
+			"subject": "申请已提交",
+			"body":    "您加入 %CORPORATION_NAME% 的申请已成功提交，正在等待审核。",
+		},
+	},
+	"corporation_application_rejected_1": {
+		_const.RU: {
+			"sender":  "Кластер",
+			"subject": "Заявка отклонена",
+			"body":    "Ваша заявка на вступление в кластер %CORPORATION_NAME% была отклонена.",
+		},
+		_const.EN: {
+			"sender":  "Cluster",
+			"subject": "Application rejected",
+			"body":    "Your application to join %CORPORATION_NAME% has been rejected.",
+		},
+		_const.ZhCN: {
+			"sender":  "集群",
+			"subject": "申请被拒绝",
+			"body":    "您加入 %CORPORATION_NAME% 的申请已被拒绝。",
+		},
+	},
+	"corporation_application_accepted_1": {
+		_const.RU: {
+			"sender":  "Кластер",
+			"subject": "Заявка одобрена",
+			"body":    "Поздравляем! Вы приняты в кластер %CORPORATION_NAME%. Доступ к корпоративным ресурсам активирован.",
+		},
+		_const.EN: {
+			"sender":  "Cluster",
+			"subject": "Application approved",
+			"body":    "Congratulations! You have been accepted into %CORPORATION_NAME%. Corporate resource access has been activated.",
+		},
+		_const.ZhCN: {
+			"sender":  "集群",
+			"subject": "申请已通过",
+			"body":    "恭喜！您已被 %CORPORATION_NAME% 集群接受。企业资源访问权限已激活。",
+		},
+	},
 }
 
 func GetMailTemplates(typeEvent string) map[string]map[string]string {

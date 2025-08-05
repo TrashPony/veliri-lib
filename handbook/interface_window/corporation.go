@@ -824,14 +824,14 @@ var Corporation = map[string]map[string]string{
 		_const.ZhCN: `集群名称`,
 	},
 	"text_62": {
-		_const.RU:   `моя заявка:`,
-		_const.EN:   `my request:`,
-		_const.ZhCN: `我的申请：`,
+		_const.RU:   `Моя заявка`,
+		_const.EN:   `My request`,
+		_const.ZhCN: `我的申请`,
 	},
 	"button_33": {
-		_const.RU:   `отозвать`,
-		_const.EN:   `recall`,
-		_const.ZhCN: `撤回`,
+		_const.RU:   `Отменить запрос`,
+		_const.EN:   `Cancel request`,
+		_const.ZhCN: `取消请求`,
 	},
 	"button_34": {
 		_const.RU:   `изменить`,
@@ -839,9 +839,9 @@ var Corporation = map[string]map[string]string{
 		_const.ZhCN: `修改`,
 	},
 	"button_35": {
-		_const.RU:   `Подать заявку`,
+		_const.RU:   `Подать запрос`,
 		_const.EN:   `Send request`,
-		_const.ZhCN: `提交申请`,
+		_const.ZhCN: `发送请求`,
 	},
 	"placeholder_4": {
 		_const.RU:   `Текст заявки`,
