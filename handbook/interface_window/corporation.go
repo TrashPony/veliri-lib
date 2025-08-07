@@ -194,13 +194,13 @@ var Corporation = map[string]map[string]string{
 		_const.ZhCN: `失败`,
 	},
 	"rental_dialog_1": {
-		_const.RU:   `Арендовать офис на <span class='importantly'>30</span> дней за <span class='importantly'>%credits_count% cr</span> c главного счета?`,
-		_const.EN:   `Rent an office for <span class='importantly'>30</span> days for <span class='importantly'>%credits_count% cr</span> from the main deposit?`,
+		_const.RU:   `Арендовать офис на <span class='importantly'>30</span> дней за <span class='importantly'>%credits_count%</span> c главного счета?`,
+		_const.EN:   `Rent an office for <span class='importantly'>30</span> days for <span class='importantly'>%credits_count%</span> from the main deposit?`,
 		_const.ZhCN: `从主账户支付<span class='importantly'>%credits_count% cr</span>租用办公室<span class='importantly'>30</span>天？`,
 	},
 	"rental_dialog_2": {
-		_const.RU:   `Продлить аренду офиса на <span class='importantly'>30</span> дней за <span class='importantly'>%credits_count% cr</span> c главного счета?`,
-		_const.EN:   `Extend office rental for <span class='importantly'>30</span> days for <span class='importantly'>%credits_count% cr</span> from the main deposit?`,
+		_const.RU:   `Продлить аренду офиса на <span class='importantly'>30</span> дней за <span class='importantly'>%credits_count%</span> c главного счета?`,
+		_const.EN:   `Extend office rental for <span class='importantly'>30</span> days for <span class='importantly'>%credits_count%</span> from the main deposit?`,
 		_const.ZhCN: `从主账户支付<span class='importantly'>%credits_count% cr</span>延长办公室租期<span class='importantly'>30</span>天？`,
 	},
 	"button_5": {
@@ -244,9 +244,9 @@ var Corporation = map[string]map[string]string{
 		_const.ZhCN: `转移到基地<span class='importantly'>%base_name%</span>？`,
 	},
 	"transfer_dialog_2": {
-		_const.RU:   `Цена: <span class='importantly'>500.0</span> cr.`,
-		_const.EN:   `Price: <span class='importantly'>500.0</span> cr.`,
-		_const.ZhCN: `价格：<span class='importantly'>500.0</span>信用点`,
+		_const.RU:   `Цена:`,
+		_const.EN:   `Price:`,
+		_const.ZhCN: `价格：`,
 	},
 	"transfer_dialog_3": {
 		_const.RU:   `<span class='importantly'>Внимание!</span> Переносится только сознание, транспорт и все его содержимое останется на этой базе.`,

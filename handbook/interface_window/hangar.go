@@ -91,9 +91,9 @@ var Hangar = map[string]map[string]string{
 		_const.ZhCN: `添加安装槽`,
 	},
 	"text_20": {
-		_const.RU:   `<p>Вы хотите установить дополнительную монтажную площадку <span class="importantly">%type%</span> уровня.</p><p>Это обойдется в <span class="importantly">%credits_count%</span> cr., а так же <span class="importantly">снизит прочность корпуса</span> на <span class="importantly">%debuf%%</span>.</p><p>Добавить?</p>`,
-		_const.EN:   `<p>You want to install an additional <span class="importantly">%type%</span> level mounting pad.</p><p>This will cost <span class="importantly">%credits_count%</span> cr., and will also <span class="importantly">reduce the strength of the hull</span> by <span class="importantly">%debuf%%</span>.</p><p>Add?</p>`,
-		_const.ZhCN: `<p>您想安装一个额外的<span class="importantly">%type%</span>级安装平台。</p><p>这将花费<span class="importantly">%credits_count%</span> cr.，并且还会将<span class="importantly">机身强度</span>降低<span class="importantly">%debuf%%</span>。</p><p>添加吗？</p>`,
+		_const.RU:   `<p>Вы хотите установить дополнительную монтажную площадку <span class="importantly">%type%</span> уровня.</p><p>Это обойдется в <span class="importantly">%credits_count%</span> , а так же <span class="importantly">снизит прочность корпуса</span> на <span class="importantly">%debuf%%</span>.</p><p>Добавить?</p>`,
+		_const.EN:   `<p>You want to install an additional <span class="importantly">%type%</span> level mounting pad.</p><p>This will cost <span class="importantly">%credits_count%</span> , and will also <span class="importantly">reduce the strength of the hull</span> by <span class="importantly">%debuf%%</span>.</p><p>Add?</p>`,
+		_const.ZhCN: `<p>您想安装一个额外的<span class="importantly">%type%</span>级安装平台。</p><p>这将花费<span class="importantly">%credits_count%</span> ，并且还会将<span class="importantly">机身强度</span>降低<span class="importantly">%debuf%%</span>。</p><p>添加吗？</p>`,
 	},
 	"text_21": {
 		_const.RU:   `Нельзя устанавливать 2 одинаковых модификатора`,
