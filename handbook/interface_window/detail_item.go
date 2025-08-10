@@ -995,6 +995,20 @@ var DetailItem = map[string]map[string]string{
 		  - 从货舱丢弃将被销毁<br>
 		  - 性能参数可能降低<br>`,
 	},
+	"book_tip_1_1": {
+		_const.RU: `Чипы можно получить:<br>
+          - в фракционном магазине<br>
+          - исследуя аномалии<br>
+          - купив на рынке`,
+		_const.EN: `Skill chips can be obtained by:<br>
+          - purchasing from the faction store<br>
+          - exploring anomalies<br>
+          - buying from the market`,
+		_const.ZhCN: `技能芯片获取方式：<br>
+          - 在阵营商店购买<br>
+          - 探索异常现象<br>
+          - 在市场上交易`,
+	},
 	"resource_tip_1_1": {
 		_const.RU:   `Этот ресурс можно получить`,
 		_const.EN:   `This resource can be obtained by `,

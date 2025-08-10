@@ -21,6 +21,7 @@ var CategoriesDescription = map[string]map[string]DescriptionItem{
 		"fuel":       {Name: "fuel", Description: ""},
 		"mine_drone": {Name: "mine drone", Description: ""},
 		"package":    {Name: "package", Description: ""},
+		"book":       {Name: "skill chip", Description: ""},
 	},
 	_const.RU: {
 		"weapon":     {Name: "оружие", Description: ""},
@@ -40,6 +41,7 @@ var CategoriesDescription = map[string]map[string]DescriptionItem{
 		"fuel":       {Name: "топливо", Description: ""},
 		"mine_drone": {Name: "дрон шахтер", Description: ""},
 		"package":    {Name: "упаковка", Description: ""},
+		"book":       {Name: "чип навыков", Description: ""},
 	},
 	_const.ZhCN: {
 		"weapon":     {Name: "武器", Description: ""},
@@ -59,5 +61,6 @@ var CategoriesDescription = map[string]map[string]DescriptionItem{
 		"fuel":       {Name: "燃料", Description: ""},
 		"mine_drone": {Name: "采矿无人机", Description: ""},
 		"package":    {Name: "包裹", Description: ""},
+		"book":       {Name: "技能芯片", Description: ""},
 	},
 }

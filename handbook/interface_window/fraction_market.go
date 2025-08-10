@@ -78,6 +78,16 @@ var FractionMarket = map[string]map[string]string{
 		_const.EN:   `and`,
 		_const.ZhCN: `和`,
 	},
+	"text_12": {
+		_const.RU:   `Тип`,
+		_const.EN:   `Type`,
+		_const.ZhCN: `类型`,
+	},
+	"text_13": {
+		_const.RU:   `Название`,
+		_const.EN:   `Name`,
+		_const.ZhCN: `姓名`,
+	},
 	"button_2": {
 		_const.RU:   `Отмена`,
 		_const.EN:   `Cancel`,
@@ -87,5 +97,15 @@ var FractionMarket = map[string]map[string]string{
 		_const.RU:   `Купить`,
 		_const.EN:   `Buy`,
 		_const.ZhCN: `购买`,
+	},
+	"tab_1": {
+		_const.RU:   `Все`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
+	},
+	"tab_999": {
+		_const.RU:   `Остальное`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
 	},
 }

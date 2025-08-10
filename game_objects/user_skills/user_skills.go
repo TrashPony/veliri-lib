@@ -199,6 +199,16 @@ func (u *UserSkills) UpSkill(skill *skill.Skill) (bool, *skill.Skill) {
 	return false, upgradeSkill
 }
 
+func (u *UserSkills) UpBookSkill(skill *skill.Skill) {
+	upgradeSkill := u.GetSkill(skill.Name)
+	if upgradeSkill == nil {
+		u.AddSkill(skill)
+		upgradeSkill = u.GetSkill(skill.Name)
+	}
+
+	upgradeSkill.SetLevel(1)
+}
+
 func (u *UserSkills) AddPoints(points int) {
 	if u == nil {
 		return

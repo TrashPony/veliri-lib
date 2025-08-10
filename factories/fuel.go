@@ -6,42 +6,42 @@ import (
 	"math/rand"
 )
 
-const size = 1000
+const sizeFuel = 1000
 const capK = 2
 
 var fuelTypes = map[int]fuel.Fuel{
 	1: {
 		ID:        1,
 		Name:      "gas_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 25000 * capK, // 25000
 		Bonuses:   []effect.Effect{},
 	},
 	2: {
 		ID:        2,
 		Name:      "solid_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 37500 * capK,
 		Bonuses:   []effect.Effect{},
 	},
 	3: {
 		ID:        3,
 		Name:      "liquid_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 62500 * capK,
 		Bonuses:   []effect.Effect{},
 	},
 	4: {
 		ID:        4,
 		Name:      "nuclear_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 100000 * capK,
 		Bonuses:   []effect.Effect{},
 	},
 	5: {
 		ID:        5,
 		Name:      "synthetic_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 62500 * capK,
 		Bonuses: []effect.Effect{
 			{
@@ -80,7 +80,7 @@ var fuelTypes = map[int]fuel.Fuel{
 	6: {
 		ID:        6,
 		Name:      "jet_fuel",
-		Size:      size,
+		Size:      sizeFuel,
 		EnergyCap: 37500 * capK,
 		Bonuses: []effect.Effect{
 			{
