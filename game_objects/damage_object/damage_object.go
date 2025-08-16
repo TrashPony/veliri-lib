@@ -25,7 +25,7 @@ type Object struct {
 	Explosion         bool                            `json:"explosion"`
 	PointResponses    []*web_socket_response.Response `json:"-"`
 	KillResponses     []*web_socket_response.Response `json:"-"`
-	Decal             *unit.Decal                     `json:"-"`
+	Decal             []*unit.Decal                   `json:"-"`
 	Area              int                             `json:"-"`
 	UnitShield        bool                            `json:"-"`
 	DestroyUnitShield bool                            `json:"-"`
