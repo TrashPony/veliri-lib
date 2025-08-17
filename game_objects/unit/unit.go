@@ -78,6 +78,7 @@ type Unit struct {
 	damageManager  damage_manager.DamageManager
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
+	lights         *LightState
 
 	ghost              bool
 	lockedControl      bool
@@ -85,7 +86,6 @@ type Unit struct {
 	radarRange         int
 	police             bool
 	fractionWarrior    bool
-	lights             bool
 	Role               string  `json:"-"`
 	UnrepairableDamage int     `json:"-"`
 	FractionByte       byte    `json:"-"`
@@ -156,14 +156,6 @@ func (u *Unit) AddDecal(x, y, id, angle int) *Decal {
 	}
 	u.Decals = append(u.Decals, decal)
 	return &decal
-}
-
-func (u *Unit) SetLights(lights bool) {
-	u.lights = lights
-}
-
-func (u *Unit) Lights() bool {
-	return u.lights
 }
 
 func (u *Unit) Ghost() bool {
@@ -602,7 +594,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(u.CorporationID)...)
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ghost))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.police))
-	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.lights))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.LightsWork()))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ForceView))
 
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.GetBody().Texture))))
@@ -686,7 +678,7 @@ func (u *Unit) GetUpdateData(mapTime int64) []byte {
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.GetRangeView())...)
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.GetRadarRange())...)
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.ghost))
-	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.lights))
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.LightsWork()))
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.ShieldHP)...)
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, _const.FractionByte[u.Fraction])
 
