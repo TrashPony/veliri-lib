@@ -80,16 +80,17 @@ type Unit struct {
 	physicalModel  *physical_model.PhysicalModel
 	lights         *LightState
 
-	ghost              bool
-	lockedControl      bool
-	viewRange          int
-	radarRange         int
-	police             bool
-	fractionWarrior    bool
-	Role               string  `json:"-"`
-	UnrepairableDamage int     `json:"-"`
-	FractionByte       byte    `json:"-"`
-	ReactorEfficiency  float64 `json:"-"`
+	ghost                 bool
+	lockedControl         bool
+	viewRange             int
+	radarRange            int
+	police                bool
+	fractionWarrior       bool
+	Role                  string  `json:"-"`
+	OldUnrepairableDamage int     `json:"-"`
+	UnrepairableDamage    int     `json:"-"`
+	FractionByte          byte    `json:"-"`
+	ReactorEfficiency     float64 `json:"-"`
 
 	Decals []Decal
 }

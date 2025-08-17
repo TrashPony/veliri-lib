@@ -510,15 +510,17 @@ func (u *Unit) GetUnrepairableDamage() int {
 	return ud
 }
 
-func (u *Unit) AddUrepairableDamage(d int) {
+func (u *Unit) AddUrepairableDamage(d int) int {
 	percentUD := 90 - ((float64(u.GetUnrepairableDamage()) / float64(u.GetMaxHP())) * 100)
 	if percentUD <= 0 {
-		return
+		return 0
 	}
 
 	add := int(float64(d) * percentUD / 100)
 	if add < 0 {
 		add = 1
 	}
+
 	u.UnrepairableDamage += add
+	return add
 }

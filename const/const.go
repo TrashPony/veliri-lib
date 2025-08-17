@@ -185,6 +185,7 @@ var ItemBinTypes = map[string]int{
 	"mine_drone": 23,
 	"package":    24,
 	"book":       25,
+	"wreckage":   26,
 }
 
 var SourceItemBin = map[string]int{

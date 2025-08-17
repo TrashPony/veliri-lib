@@ -6,7 +6,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 )
 
-func (u *Unit) SetDamage(damage, k, t, e int, ignoreShield bool, callback func(playerID, startDamage, kDamage, tDamage, eDamage, finalDamage, startSHP, finalSHP, startHP, finalHP, k, t, e int)) (bool, bool, int) {
+func (u *Unit) SetDamage(damage, k, t, e int, ignoreShield bool, callback func(playerID, startDamage, kDamage, tDamage, eDamage, finalDamage, startSHP, finalSHP, startHP, finalHP, k, t, e int)) (bool, bool, int, int) {
 
 	var prefix string
 	if u.ShieldHP > 0 && !ignoreShield {
@@ -64,7 +64,7 @@ func (u *Unit) SetDamage(damage, k, t, e int, ignoreShield bool, callback func(p
 			callback(u.GetOwnerPlayerID(), startDamage, int(kDamage), int(tDamage), int(eDamage), damage, startSHP, u.ShieldHP, startHP, u.GetHP(), k, t, e)
 		}
 
-		return true, u.ShieldHP == 0, damage
+		return true, u.ShieldHP == 0, damage, 0
 	}
 
 	// корпус
@@ -81,8 +81,7 @@ func (u *Unit) SetDamage(damage, k, t, e int, ignoreShield bool, callback func(p
 		callback(u.GetOwnerPlayerID(), startDamage, int(kDamage), int(tDamage), int(eDamage), damage, startSHP, u.ShieldHP, startHP, u.GetHP(), k, t, e)
 	}
 
-	u.AddUrepairableDamage(damage)
-	return false, false, damage
+	return false, false, damage, u.AddUrepairableDamage(damage)
 }
 
 func (u *Unit) FillLastDamage(d []damage_manager.Damage) {
