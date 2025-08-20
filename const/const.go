@@ -28,20 +28,22 @@ const (
 	KillUserExperience = 50 // * body_size
 
 	// TODO начать их использовать)
-	Replicas     = "Replics"
-	ReplicasByte = 1
-	Explores     = "Explores"
-	ExploresByte = 2
-	Reverses     = "Reverses"
-	ReversesByte = 3
-	APD          = "APD"
-	APDByte      = 4
-	FAUNA        = "Fauna"
-	FAUNAByte    = 5
-	FarGod       = "FarGod"
-	FarGodByte   = 6
-	Empty        = "Empty"
-	EmptyByte    = 7
+	Replicas             = "Replics"
+	ReplicasByte         = 1
+	Explores             = "Explores"
+	ExploresByte         = 2
+	Reverses             = "Reverses"
+	ReversesByte         = 3
+	APD                  = "APD"
+	APDByte              = 4
+	FAUNA                = "Fauna"
+	FAUNAByte            = 5
+	FarGod               = "FarGod"
+	FarGodByte           = 6
+	Empty                = "Empty"
+	EmptyByte            = 7
+	RustbucketCartel     = "Rustbucket Cartel"
+	RustbucketCartelByte = 8
 
 	QuickBattle = "quick_battle"
 	OpenWorld   = "open_world"
@@ -236,13 +238,14 @@ var MapBinItems = map[string]int{
 }
 
 var FractionByte = map[string]byte{
-	Empty:    EmptyByte,
-	Replicas: ReplicasByte,
-	Explores: ExploresByte,
-	Reverses: ReversesByte,
-	APD:      APDByte,
-	FAUNA:    FAUNAByte,
-	FarGod:   FarGodByte,
+	Empty:            EmptyByte,
+	Replicas:         ReplicasByte,
+	Explores:         ExploresByte,
+	Reverses:         ReversesByte,
+	APD:              APDByte,
+	FAUNA:            FAUNAByte,
+	FarGod:           FarGodByte,
+	RustbucketCartel: RustbucketCartelByte,
 }
 
 var PointType = map[string]byte{

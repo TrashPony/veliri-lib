@@ -404,4 +404,35 @@ var UserStat = map[string]map[string]string{
 		_const.EN:   `Relationship`,
 		_const.ZhCN: `声誉`,
 	},
+	// fraction description
+	"fraction_description_" + _const.Replicas: {
+		_const.RU:   `<span class="importantly">Replics</span> — фракция синтетов, стремящихся к тотальной ассимиляции и экспансионизму во имя великой миссии и независимости от предтеч.`,
+		_const.EN:   `<span class="importantly">Replics</span> — a synth faction driven by total assimilation and relentless expansion in the name of a great mission and independence from the Precursors.`,
+		_const.ZhCN: `<span class="importantly">Replics</span>——一个致力于全面同化与无情扩张的合成人阵营，旨在完成伟大使命并摆脱先驱者的控制。`,
+	},
+	"fraction_description_" + _const.Explores: {
+		_const.RU:   `<span class="importantly">Explores</span> — интеллектуальный конгломерат разумов, посвятивших себя познанию мира, искусственной эволюции и тайнам реальности.`,
+		_const.EN:   `<span class="importantly">Explores</span> — an intellectual conglomerate of minds dedicated to understanding the world, artificial evolution, and the hidden truths of reality.`,
+		_const.ZhCN: `<span class="importantly">Explores</span>——一个由智慧个体组成的阵营，致力于探索世界、人工进化与现实背后的秘密。`,
+	},
+	"fraction_description_" + _const.Reverses: {
+		_const.RU:   `<span class="importantly">Reverses</span> — утопическая фракция киборгов, мечтающих о радикальной трансформации вселенной и возрождении жизни через эволюционную революцию.`,
+		_const.EN:   `<span class="importantly">Reverses</span> — a utopian faction of cyborgs dreaming of radically transforming the universe and reviving life through evolutionary revolution.`,
+		_const.ZhCN: `<span class="importantly">Reverses</span>——一个乌托邦式的赛博格阵营，梦想通过进化革命彻底改变宇宙并重新唤醒生命。`,
+	},
+	"fraction_description_" + _const.APD: {
+		_const.RU:   `<span class="importantly">APD</span> — загадочные машины, появляющиеся из пустоши. Примитивные по конструкции, но опасные. Атакуют всех синтетов без различия. Происхождение и цель неизвестны.`,
+		_const.EN:   `<span class="importantly">APD</span> — mysterious machines emerging from the wastes. Primitive in design, yet dangerous. Attack all synths without distinction. Origin and purpose unknown.`,
+		_const.ZhCN: `<span class="importantly">APD</span>——从荒原中出现的神秘机械。结构原始但十分危险，无差别攻击所有合成人。起源与目的未知。`,
+	},
+	"fraction_description_" + _const.FarGod: {
+		_const.RU:   `<span class="importantly">FarGod</span> — культ синтетов, поклоняющихся древнему "Богу из руин". Существование организации не подтверждено, а её агенты не фигурируют в открытых источниках.`,
+		_const.EN:   `<span class="importantly">FarGod</span> — a cult of synths worshipping the ancient "God of the Ruins". The organization's existence is unconfirmed, and its agents do not appear in any public records.`,
+		_const.ZhCN: `<span class="importantly">FarGod</span>——一个崇拜“废墟之神”的合成人邪教。该组织的存在未经证实，其成员未出现在任何公开记录中。`,
+	},
+	"fraction_description_" + _const.RustbucketCartel: {
+		_const.RU:   `<span class="importantly">Rustbucket Cartel</span> официально не существующая, но вездесущая криминальная гидра. Сборная солянка из девиантов, дезертиров и отбросов всех фракций.`,
+		_const.EN:   `<span class="importantly">Rustbucket Cartel</span> — a non-existent yet omnipresent criminal hydra. A motley crew of deviants, deserters, and outcasts from all factions.`,
+		_const.ZhCN: `<span class="importantly">Rustbucket Cartel</span>——一个名义上不存在却无处不在的犯罪组织。由各阵营的异端者、逃兵和渣滓拼凑而成。`,
+	},
 }
