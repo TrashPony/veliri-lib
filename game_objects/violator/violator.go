@@ -14,6 +14,7 @@ type Violator struct {
 	TakeStrike    int64  `json:"take_strike"`
 	TimeOutStrike int64  `json:"time_out_strike"`
 	Fraction      string `json:"fraction"`
+	UpdateDB      bool   `json:"-"`
 }
 
 func (v *Violator) GetTime() int {
