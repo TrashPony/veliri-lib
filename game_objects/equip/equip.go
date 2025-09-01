@@ -41,7 +41,7 @@ type Equip struct {
 	LifeTime     int            `json:"life_time"`      // время жизни обьекта или дрона
 	ObjectID     int            `json:"object_id"`      // ид обьекта которые вызывает снаряжения (турель/стена)
 	WeaponID     int            `json:"weapon_id"`
-	Attributes   map[string]int `json:"attributes"`
+	Attributes   map[string]int `json:"attributes"` // READ_ONLY
 
 	mx           sync.RWMutex
 	rWAttributes map[string]int
