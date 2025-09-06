@@ -14,6 +14,7 @@ type BodyEquipSlot struct {
 	UUID             string         `json:"uuid"`
 	Number           int            `json:"number_slot"`
 	Equip            *equip.Equip   `json:"equip"`
+	Durability       int            `json:"durability"`
 	Target           *target.Target `json:"-"`
 	StandardSize     int            `json:"standard_size"` /* определяет тип вмещаемого юнита если это ангар */
 	XAttach          int            `json:"x_attach"`

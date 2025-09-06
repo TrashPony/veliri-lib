@@ -110,7 +110,7 @@ func (inv *Inventory) InventoryToInventory(toInventory *Inventory, toInventoryCa
 	} else {
 		if !noPlace {
 			ok := toInventory.AddItem(s.GetItem(), s.Type, s.ItemID, countPlace,
-				s.HP, s.MaxHP, false, accessUserID, 0)
+				s.HP, s.MaxHP, s.Durability, false, accessUserID, 0)
 
 			if !ok {
 				return startQuantity, countPut, errors.New("no free slots"), s.Type, s.ItemID
@@ -185,7 +185,7 @@ func (inv *Inventory) AddItemFromSlot(slot *Slot, userID, accessUserID int) bool
 	}
 
 	return inv.AddItem(slot.GetItem(), slot.Type, slot.ItemID, slot.GetQuantity(),
-		slot.HP, slot.MaxHP, false, userID, accessUserID)
+		slot.HP, slot.MaxHP, slot.Durability, false, userID, accessUserID)
 }
 
 func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID, quantity int) bool {
@@ -195,10 +195,10 @@ func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID
 	}
 
 	return inv.AddItem(slot.GetItem(), slot.Type, slot.ItemID, quantity,
-		slot.HP, slot.MaxHP, false, userID, accessUserID)
+		slot.HP, slot.MaxHP, slot.Durability, false, userID, accessUserID)
 }
 
-func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, maxHP int, newSlot bool, userID, accessUserID int) bool {
+func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, maxHP, durability int, newSlot bool, userID, accessUserID int) bool {
 	inv.mx.Lock()
 	defer func() {
 		inv.mx.Unlock()
@@ -213,7 +213,7 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 	if !newSlot {
 		for _, s := range inv.slots { // ищем стопку с такими же элементами
 			if s.AccessUserID == accessUserID {
-				if s.ItemID == itemID && s.Type == itemType && s.HP == hp && s.GetItem() != nil {
+				if s.ItemID == itemID && s.Type == itemType && s.HP == hp && s.Durability == durability && s.GetItem() != nil {
 
 					s.SetQuantity(s.GetQuantity() + quantity)
 					s.PlaceUserID = userID
@@ -235,6 +235,7 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			Quantity:     quantity,
 			HP:           hp,
 			MaxHP:        maxHP,
+			Durability:   durability,
 			PlaceUserID:  userID,
 			Number:       newNumberSlot,
 			AccessUserID: accessUserID,

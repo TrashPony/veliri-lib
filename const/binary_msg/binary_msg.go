@@ -658,6 +658,7 @@ func CreateInventoryBin(sourceType string, sourceID int, inventory *inventory.In
 		command = append(command, game_math.GetIntBytes(slot.Tax)...)
 		command = append(command, game_math.BoolToByte(slot.Find))
 		command = append(command, game_math.GetIntBytes(slot.FindCount)...)
+		command = append(command, byte(slot.Durability))
 
 		command = append(command, game_math.BoolToByte(slot.Item.InMap))
 		command = append(command, byte(_const.ItemBinTypes[slot.Item.ItemType]))

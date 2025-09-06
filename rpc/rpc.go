@@ -148,6 +148,7 @@ func GobRegister() {
 	gob.Register(map[string]map[int]*inventory.Slot{})
 	gob.Register(map[int]*inventory.Slot{})
 	gob.Register([]*inventory.Slot{})
+	gob.Register([]inventory.Slot{})
 	gob.Register(map[int]*detail.ThoriumSlot{})
 	gob.Register([]*inventory.PlaceMayItems{})
 

@@ -88,6 +88,7 @@ type Slot struct {
 	ItemID       int       `json:"item_id"`
 	HP           int       `json:"hp"`
 	MaxHP        int       `json:"max_hp"`
+	Durability   int       `json:"durability"`
 	Number       int       `json:"number"`
 	AccessUserID int       `json:"access_user_id"`
 	Infinite     bool      `json:"infinite"` // если слот бесконечный то его нельзя разделить или перенести в трюм

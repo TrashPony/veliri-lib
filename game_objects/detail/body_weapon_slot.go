@@ -14,6 +14,7 @@ type BodyWeaponSlot struct {
 	Type                int        `json:"type_slot"` // по диз доку он может быть только 3
 	Number              int        `json:"number_slot"`
 	Weapon              *Weapon    `json:"weapon"`
+	Durability          int        `json:"durability"`
 	WeaponType          string     `json:"weapon_type"`
 	Ammo                *ammo.Ammo `json:"ammo"`
 	AmmoQuantity        int        `json:"ammo_quantity"`

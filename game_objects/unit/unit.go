@@ -27,16 +27,18 @@ type Unit struct {
 	CorporationID int    `json:"Corporation_id"`
 	Fraction      string `json:"fraction"`
 	MissionKey    string `json:"mission_key"`
+	Durability    int    `json:"durability"`
 	Ready         bool
 	body          *detail.Body
 
-	HP            int    `json:"hp"`
-	ShieldHP      int    `json:"shield_hp"`
-	ShieldTimeOut int    `json:"shield_time_out"`
-	Power         int    `json:"power"`
-	Destroy       bool   `json:"destroy"`
-	BodyTexture   string `json:"body_texture"`
-	MapID         int32  `json:"map_id"`
+	HP            int              `json:"hp"`
+	ShieldHP      int              `json:"shield_hp"`
+	ShieldTimeOut int              `json:"shield_time_out"`
+	Power         int              `json:"power"`
+	Destroy       bool             `json:"destroy"`
+	LostEquip     []inventory.Slot `json:"-"`
+	BodyTexture   string           `json:"body_texture"`
+	MapID         int32            `json:"map_id"`
 
 	BossConfig BossConfig
 

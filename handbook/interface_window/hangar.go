@@ -363,6 +363,11 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `Additional slot`,
 		_const.ZhCN: `额外插槽`,
 	},
+	"tittle_10": {
+		_const.RU:   `Износ корпуса`,
+		_const.EN:   `Body wear`,
+		_const.ZhCN: `身体穿着`,
+	},
 	// ViewMS
 	// Synchronization
 	"text_23": {
