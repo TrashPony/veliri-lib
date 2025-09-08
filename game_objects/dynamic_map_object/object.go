@@ -18,6 +18,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/special_hostiles"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
+	"github.com/TrashPony/veliri-lib/game_objects/visible_anomaly"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"github.com/TrashPony/veliri-lib/generate_ids"
 	"math"
@@ -277,6 +278,10 @@ func (o *Object) IgnoreSmoke() bool {
 
 func (o *Object) GetRole() string {
 	return "object"
+}
+
+func (o *Object) AddPing(ping *visible_anomaly.VisibleAnomaly) {
+
 }
 
 func (o *Object) SetAllGunRotate(addRotate float64) {

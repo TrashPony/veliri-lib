@@ -601,13 +601,23 @@ func RopeMovePoint(point *rope.Point) []byte {
 	return command
 }
 
-func CreateBinaryAnomaly(anomalies []visible_anomaly.VisibleAnomaly) []byte {
+func CreateBinaryAnomaly(anomalies []*visible_anomaly.VisibleAnomaly) []byte {
 	command := []byte{55}
 
 	for _, a := range anomalies {
-		command = append(command, game_math.GetIntBytes(a.Rotate)...)
+
+		if a.Rotate%2 == 1 {
+			a.Rotate = (a.Rotate / 2) + 1
+		} else {
+			a.Rotate = a.Rotate / 2
+		}
+
+		command = append(command, byte(a.Rotate))
 		command = append(command, byte(a.TypeAnomaly))
 		command = append(command, byte(a.Signal))
+		command = append(command, byte(a.X+128))
+		command = append(command, byte(a.Y+128))
+		command = append(command, byte(a.ID))
 	}
 
 	return command
@@ -1026,12 +1036,32 @@ func getVioTypeInt(vType string, time int) byte {
 	return vTypeInt
 }
 
-func OpenAnomaly(x, y, t int) []byte {
+var pelengModes = map[string]byte{
+	"units":             1,
+	"build_objects":     2,
+	"ore":               3,
+	"oil":               4,
+	"dust":              5,
+	"organic":           6,
+	"items":             7,
+	"wreckage":          8,
+	"boxes":             9,
+	"inventory_objects": 10,
+}
+
+func PelengatorState(on bool, modes []string) []byte {
 	command := []byte{88}
 
-	command = append(command, game_math.GetIntBytes(x)...)
-	command = append(command, game_math.GetIntBytes(y)...)
-	command = append(command, game_math.GetIntBytes(t)...)
+	command = append(command, game_math.BoolToByte(on))
+
+	for _, m := range modes {
+		b, ok := pelengModes[m]
+		if !ok {
+			fmt.Println("unknown peleng mod: ", m)
+		}
+
+		command = append(command, b)
+	}
 
 	return command
 }

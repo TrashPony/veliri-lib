@@ -7,6 +7,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/skin"
 	"github.com/TrashPony/veliri-lib/game_objects/special_hostiles"
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
+	"github.com/TrashPony/veliri-lib/game_objects/visible_anomaly"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
 	"github.com/TrashPony/veliri-lib/generate_ids"
 	"math"
@@ -174,6 +175,10 @@ func (s *Squad) IgnoreSmoke() bool {
 
 func (s *Squad) GetRole() string {
 	return s.GetMS().Role
+}
+
+func (s *Squad) AddPing(ping *visible_anomaly.VisibleAnomaly) {
+	s.GetMS().AddPing(ping)
 }
 
 func (s *Squad) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_objects.VisibleObject {

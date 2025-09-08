@@ -81,6 +81,7 @@ type Unit struct {
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 	lights         *LightState
+	pelengator     Pelengator
 
 	ghost                 bool
 	lockedControl         bool
