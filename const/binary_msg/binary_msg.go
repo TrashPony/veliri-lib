@@ -618,6 +618,13 @@ func CreateBinaryAnomaly(anomalies []*visible_anomaly.VisibleAnomaly) []byte {
 		yByte1 := a.Y % 256
 		yByte2 := (a.Y - yByte1) / 256
 
+		if a.ID > 65535 {
+			a.ID = a.ID % 65536
+		}
+
+		idByte1 := a.ID % 256
+		idByte2 := (a.ID - idByte1) / 256
+
 		command = append(command, byte(a.Rotate))
 		command = append(command, byte(a.TypeAnomaly))
 		command = append(command, byte(a.Signal))
@@ -625,7 +632,8 @@ func CreateBinaryAnomaly(anomalies []*visible_anomaly.VisibleAnomaly) []byte {
 		command = append(command, byte(xByte2))
 		command = append(command, byte(yByte1))
 		command = append(command, byte(yByte2))
-		command = append(command, byte(a.ID))
+		command = append(command, byte(idByte1))
+		command = append(command, byte(idByte2))
 	}
 
 	return command
