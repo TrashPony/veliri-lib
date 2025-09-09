@@ -612,11 +612,19 @@ func CreateBinaryAnomaly(anomalies []*visible_anomaly.VisibleAnomaly) []byte {
 			a.Rotate = a.Rotate / 2
 		}
 
+		xByte1 := a.X % 256
+		xByte2 := (a.X - xByte1) / 256
+
+		yByte1 := a.Y % 256
+		yByte2 := (a.Y - yByte1) / 256
+
 		command = append(command, byte(a.Rotate))
 		command = append(command, byte(a.TypeAnomaly))
 		command = append(command, byte(a.Signal))
-		command = append(command, byte(a.X+128))
-		command = append(command, byte(a.Y+128))
+		command = append(command, byte(xByte1))
+		command = append(command, byte(xByte2))
+		command = append(command, byte(yByte1))
+		command = append(command, byte(yByte2))
 		command = append(command, byte(a.ID))
 	}
 
