@@ -146,4 +146,9 @@ var MenuBar = map[string]map[string]string{
 		_const.EN:   `Cargo hold`,
 		_const.ZhCN: `货舱`,
 	},
+	"tip_15": {
+		_const.RU:   `Пеленгатор`,
+		_const.EN:   `Direction finder`,
+		_const.ZhCN: `测向仪`,
+	},
 }
