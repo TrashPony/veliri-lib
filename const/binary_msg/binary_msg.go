@@ -1565,3 +1565,21 @@ func CreateCamTargetMsg(x, y, radius int) []byte {
 
 	return command
 }
+
+type VisibleUnit struct {
+	ID       int
+	Type     byte
+	IsWeapon bool
+}
+
+func CreateVisibleUnitsMsg(vUnits []VisibleUnit) []byte {
+	command := []byte{121}
+
+	for _, u := range vUnits {
+		command = append(command, game_math.GetIntBytes(u.ID)...)
+		command = append(command, u.Type)
+		command = append(command, game_math.BoolToByte(u.IsWeapon))
+	}
+
+	return command
+}
