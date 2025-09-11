@@ -51,6 +51,7 @@ type Unit struct {
 	DistanceTraveled int                 `json:"-"` // пока только для заданий
 
 	Inventory           *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
+	InventoryPercent    byte                            `json:"-"`
 	AdditionalInventory map[string]*inventory.Inventory `json:"-"`
 
 	weaponTarget    *target.Target
