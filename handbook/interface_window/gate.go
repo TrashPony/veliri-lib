@@ -64,4 +64,50 @@ var Gate = map[string]map[string]string{
 		_const.EN:   "Character `s name",
 		_const.ZhCN: `角色名称`,
 	},
+	"cancel": {
+		_const.RU:   `Отмена`,
+		_const.EN:   `Cancel`,
+		_const.ZhCN: `取消`,
+	},
+	"language": {
+		_const.RU:   `Язык / Language:`,
+		_const.EN:   `Language:`,
+		_const.ZhCN: `语言 / Language:`,
+	},
+	"language_note": {
+		_const.RU: `<p>Основной язык — русский.</p>
+					<p>Перевод выполнен автоматически с помощью нейросетей.</p>
+					<p>Нашли ошибку? Пишите в Discord!)</p>`,
+		_const.EN:   `<p>The primary language is Russian.</p> <p>Translation is done automatically using AI.</p> <p>Found an error? Message us on Discord!</p>`,
+		_const.ZhCN: `<p>主要语言为俄语。</p> <p>翻译由人工智能自动生成。</p> <p>发现错误？请在Discord上联系我们！</p>`,
+	},
+	"new_character": {
+		_const.RU:   `Новый персонаж`,
+		_const.EN:   `New Character`,
+		_const.ZhCN: `新角色`,
+	},
+	"remove_attention": {
+		_const.RU: `<h3 class="not_card_notify">Внимание!</h3>
+        <p class="not_card_notify_text">Вы хотите удалить персонажа <span class="importantly">%NAME%</span>.</p>
+        <p class="not_card_notify_text">Все предметы и транспорт будут удалены вместе с ним.</p>
+        <p class="not_card_notify_text">Для подтверждения удаления введите имя персонажа и нажмите "<span class="importantly">Удалить</span>".</p>`,
+		_const.EN: `<h3 class="not_card_notify">Warning!</h3>
+        <p class="not_card_notify_text">You are about to delete the character <span class="importantly">%NAME%</span>.</p>
+        <p class="not_card_notify_text">All items and vehicles will be deleted along with it.</p>
+        <p class="not_card_notify_text">To confirm deletion, enter the character's name and click "<span class="importantly">Delete</span>".</p>`,
+		_const.ZhCN: `<h3 class="not_card_notify">注意！</h3>
+        <p class="not_card_notify_text">您即将删除角色 <span class="importantly">%NAME%</span>。</p>
+        <p class="not_card_notify_text">所有物品和载具将一并被删除。</p>
+        <p class="not_card_notify_text">请输入角色名称并点击“<span class="importantly">删除</span>”以确认。</p>`,
+	},
+	"remove_button": {
+		_const.RU:   `Удалить`,
+		_const.EN:   `Delete`,
+		_const.ZhCN: `删除`,
+	},
+	"news": {
+		"RU": "Новости",
+		"EN": "News",
+		"ZH": "新闻",
+	},
 }
