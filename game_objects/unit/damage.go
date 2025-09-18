@@ -111,3 +111,7 @@ func (u *Unit) GetLastDamageByPlayerID(playerID, sec int) int {
 func (u *Unit) GetAllDamage(t int64) map[int]int {
 	return u.damageManager.GetAllDamage(t)
 }
+
+func (u *Unit) GetAllDamageInt(t int64) int {
+	return u.damageManager.GetAllDamageInt(t)
+}

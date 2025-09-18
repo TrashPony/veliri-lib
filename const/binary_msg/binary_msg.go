@@ -1587,3 +1587,11 @@ func CreateVisibleUnitsMsg(vUnits []VisibleUnit) []byte {
 
 	return command
 }
+
+func CreateAudioPlaylist(id int) []byte {
+	command := []byte{122}
+
+	command = append(command, byte(id))
+
+	return command
+}

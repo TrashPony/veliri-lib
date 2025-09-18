@@ -103,3 +103,22 @@ func (dm *DamageManager) GetAllDamage(t int64) map[int]int {
 
 	return r
 }
+
+func (dm *DamageManager) GetAllDamageInt(t int64) int {
+	dm.mx.Lock()
+	defer dm.mx.Unlock()
+
+	damage := 0
+
+	if len(dm.damage) == 0 {
+		return damage
+	}
+
+	for _, d := range dm.damage {
+		if time.Now().Unix()-d.TimeDamage < t {
+			damage += d.Damage
+		}
+	}
+
+	return damage
+}
