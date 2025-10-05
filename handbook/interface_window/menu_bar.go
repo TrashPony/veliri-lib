@@ -77,9 +77,9 @@ var MenuBar = map[string]map[string]string{
 	// Notifys
 	// tips
 	"tip_1": {
-		_const.RU:   `Плеер / Настройки`,
-		_const.EN:   `Player / Settings`,
-		_const.ZhCN: `播放器 / 设置`,
+		_const.RU:   `Плеер`,
+		_const.EN:   `Player`,
+		_const.ZhCN: `播放器`,
 	},
 	"tip_2": {
 		_const.RU:   `Персонаж`,
@@ -127,9 +127,9 @@ var MenuBar = map[string]map[string]string{
 		_const.ZhCN: `市场`,
 	},
 	"tip_11": {
-		_const.RU:   `Рынок`,
-		_const.EN:   `Market`,
-		_const.ZhCN: `市场`,
+		_const.RU:   `Карта`,
+		_const.EN:   `Map`,
+		_const.ZhCN: `地图`,
 	},
 	"tip_12": {
 		_const.RU:   `Автопилот`,
