@@ -18,6 +18,11 @@ var SendCredits = map[string]map[string]string{
 		_const.EN:   `History`,
 		_const.ZhCN: `历史`,
 	},
+	"withdraw": {
+		_const.RU:   `Снять`,
+		_const.EN:   `Withdraw`,
+		_const.ZhCN: `提取`,
+	},
 	"text_1": {
 		_const.RU:   `Откуда:`,
 		_const.EN:   `Src:`,
@@ -202,5 +207,55 @@ var SendCredits = map[string]map[string]string{
 		_const.RU:   `Заправка транспорта`,
 		_const.EN:   `Refueling vehicles`,
 		_const.ZhCN: `载具加油`,
+	},
+	"on_25": {
+		_const.RU:   `Снятие cr`,
+		_const.EN:   `Withdraw cr`,
+		_const.ZhCN: `提款`,
+	},
+	"on_26": {
+		_const.RU:   `Перевод с чипа`,
+		_const.EN:   `Transfer from chip`,
+		_const.ZhCN: `芯片转账`,
+	},
+	"text_6": {
+		_const.RU:   `Снятие кредитов разрешено на базах в секторах:`,
+		_const.EN:   `Credit withdrawal is available at bases in sectors:`,
+		_const.ZhCN: `可在以下基地取款：`,
+	},
+	"text_7": {
+		_const.RU:   `На этой базе снятие кредитов недоступно.`,
+		_const.EN:   `Credit withdrawal is not available at this base.`,
+		_const.ZhCN: `此基地无法取款`,
+	},
+	"text_8": {
+		_const.RU:   `Сумма:`,
+		_const.EN:   `Amount:`,
+		_const.ZhCN: `数量：`,
+	},
+	"text_9": {
+		_const.RU:   `Комиссия (5%):`,
+		_const.EN:   `Commission (5%):`,
+		_const.ZhCN: `手续费(5%)：`,
+	},
+	"button_3": {
+		_const.RU:   `Снять`,
+		_const.EN:   `Withdraw`,
+		_const.ZhCN: `取款`,
+	},
+	"error_1": {
+		_const.RU:   `Недостаточно кредитов`,
+		_const.EN:   `Insufficient credits`,
+		_const.ZhCN: `余额不足`,
+	},
+	"error_2": {
+		_const.RU:   `Не удалось`,
+		_const.EN:   `Failed`,
+		_const.ZhCN: `失败`,
+	},
+	"success": {
+		_const.RU:   `Созданные чипы отправлены на склад`,
+		_const.EN:   `Created chips sent to warehouse`,
+		_const.ZhCN: `芯片已发送到仓库`,
 	},
 }

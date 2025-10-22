@@ -162,9 +162,9 @@ var Lobby = map[string]map[string]string{
 		_const.ZhCN: `工作台`,
 	},
 	"menu_13": {
-		_const.RU:   `Детали`,
-		_const.EN:   `Details`,
-		_const.ZhCN: `详情`,
+		_const.RU:   `Производство`,
+		_const.EN:   `Production`,
+		_const.ZhCN: `生产`,
 	},
 	"menu_14": {
 		_const.RU:   `Связь`,

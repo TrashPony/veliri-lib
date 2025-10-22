@@ -4,9 +4,9 @@ import _const "github.com/TrashPony/veliri-lib/const"
 
 var PrefabricatedMenu = map[string]map[string]string{
 	"window_name": {
-		_const.RU:   `Производство деталей`,
-		_const.EN:   `Parts production`,
-		_const.ZhCN: `零件生产`,
+		_const.RU:   `Производство`,
+		_const.EN:   `Production`,
+		_const.ZhCN: `生产`,
 	},
 	"error_1": {
 		_const.RU:   `Модуль сервиса уничтожен или отключен.`,

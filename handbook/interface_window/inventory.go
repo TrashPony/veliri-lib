@@ -111,6 +111,16 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Cancel`,
 		_const.ZhCN: `取消`,
 	},
+	"button_31": {
+		_const.RU:   `Изучить`,
+		_const.EN:   `Study`,
+		_const.ZhCN: `学习`,
+	},
+	"button_32": {
+		_const.RU:   `Внести на счёт`,
+		_const.EN:   `Deposit to account`,
+		_const.ZhCN: `存款至账户`,
+	},
 	"text_4": {
 		_const.RU:   `Кол-во:`,
 		_const.EN:   `Qty:`,

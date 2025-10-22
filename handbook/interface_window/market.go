@@ -81,9 +81,9 @@ var Market = map[string]map[string]string{
 		_const.ZhCN: `箱子`,
 	},
 	"cat_8": {
-		_const.RU:   `Хлам`,
-		_const.EN:   `Rubbish`,
-		_const.ZhCN: `垃圾`,
+		_const.RU:   `Разное`,
+		_const.EN:   `Miscellaneous`,
+		_const.ZhCN: `杂项`,
 	},
 	"cat_9": {
 		_const.RU:   `Товары`,
@@ -522,5 +522,25 @@ var Market = map[string]map[string]string{
 		_const.RU:   `Назад`,
 		_const.EN:   `Back`,
 		_const.ZhCN: `返回`,
+	},
+	"region_head": {
+		_const.RU:   `Область:`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
+	},
+	"region_option_0": {
+		_const.RU:   `Регион`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
+	},
+	"region_option_1": {
+		_const.RU:   `Сектор`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
+	},
+	"region_option_2": {
+		_const.RU:   `База`,
+		_const.EN:   ``,
+		_const.ZhCN: ``,
 	},
 }

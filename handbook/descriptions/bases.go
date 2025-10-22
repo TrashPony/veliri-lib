@@ -65,6 +65,9 @@ var BaseDescription = map[string]map[string]DescriptionItem{
 		"Explores_mining_installation_5": {ID: 105, Name: "Shahta"},
 		"Explores_6":                     {ID: 106, Name: "Атлас"},
 		"Explores_prefabricated_plant_6": {ID: 107, Name: "Inzhener"},
+		"Rustbucket_1":                   {ID: 117, Name: "Junkhole"},
+		"Rustbucket_2":                   {ID: 118, Name: "GlitchGate"},
+		"Rustbucket_3":                   {ID: 119, Name: "DevNull"},
 	},
 	_const.RU: {
 		"base_Reverses":         {ID: -3, Name: "base_Reverses"},
@@ -128,6 +131,9 @@ var BaseDescription = map[string]map[string]DescriptionItem{
 		"Explores_mining_installation_5": {ID: 105, Name: "Шахта"},
 		"Explores_6":                     {ID: 106, Name: "Атлас"},
 		"Explores_prefabricated_plant_6": {ID: 107, Name: "Инженер"},
+		"Rustbucket_1":                   {ID: 117, Name: "Junkhole"},
+		"Rustbucket_2":                   {ID: 118, Name: "GlitchGate"},
+		"Rustbucket_3":                   {ID: 119, Name: "DevNull"},
 	},
 	_const.ZhCN: {
 		"mining_installation_3": {ID: 22, Name: "Raitsin", Description: ""},
@@ -191,5 +197,8 @@ var BaseDescription = map[string]map[string]DescriptionItem{
 		"Explores_mining_installation_5": {ID: 105, Name: "Shahta"},
 		"Explores_6":                     {ID: 106, Name: "Атлас"},
 		"Explores_prefabricated_plant_6": {ID: 107, Name: "Inzhener"},
+		"Rustbucket_1":                   {ID: 117, Name: "Junkhole"},
+		"Rustbucket_2":                   {ID: 118, Name: "GlitchGate"},
+		"Rustbucket_3":                   {ID: 119, Name: "DevNull"},
 	},
 }
