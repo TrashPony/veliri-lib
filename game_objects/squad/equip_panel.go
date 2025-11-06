@@ -123,6 +123,14 @@ func (s *Squad) fillStateEquip() {
 				}
 			}
 
+			if slot.TypeSlot == 6 {
+				weaponSlot := s.GetMS().GetMeleeWeaponSlot(slot.Slot)
+				if weaponSlot != nil && weaponSlot.Weapon != nil {
+					slot.AmmoReload = false
+					slot.On = weaponSlot.On
+				}
+			}
+
 			if slot.TypeSlot == 1 || slot.TypeSlot == 2 || slot.TypeSlot == 3 || slot.TypeSlot == 5 {
 				equipSlot := s.GetMS().GetBodyEquipSlot(slot.TypeSlot, slot.Slot)
 				if equipSlot != nil && equipSlot.Equip != nil {

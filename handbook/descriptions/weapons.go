@@ -26,6 +26,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_2":         {Name: "Leffy", Description: "<p>Volley fire rocket launcher presented by an easily manipulable slipway with many connected barrels. It is believed that Leffy is not the most successful design solution of Reversec. It is known that a batch of this weapon was destroyed, but Terreus still managed to steal one of its samples.</p>"},
 		"far_god_3":         {Name: "Ultra-10", Description: "<p>An anti-aircraft machine gun that was adapted for firing at ground targets and created by Replics. Subsequently, the 'Ultra' model was artisanal upgraded by Iair. After several unsuccessful iterations, they received the most effective variation.</p>"},
 		"far_god_4":         {Name: "Impulse", Description: "<p>A creation of Replics, which is a ballistic weapon of impressive destructive power, but it did not enter mass production due to its size and overwhelming force of reverse inertia.</p>"},
+		"melee_1":           {Name: "melee_1", Description: "<p></p>"},
 
 		"reverses_weapon_5": {Name: "Torpedo complex", Description: "<p>A rack with a small launch tube capable of firing unguided small-sized missiles. The standard weapon set of all synthetics who joined Reverses.</p>"},
 		"explores_weapon_5": {Name: "Beam amplifier", Description: "<p>Multi-tonnage Explores beam weapon characterized by its operation based on the principles of local decay of charged particles. In addition to tangible direct damage, it also carries out an area attack.</p>"},
@@ -54,6 +55,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_2":         {Name: "Леффи", Description: "<p>Ракетное вооружение залпового огня, представленное легко манипулируемым стапелем со множеством соединённых стволов. Принято считать, что Леффи - не самое удачное конструкторское решение Reverses. Известно, что партия данного оружия была подвергнута уничтожению, однако Терреусу, всё-таки удалось выкрасть один из его образцов.</p>"},
 		"far_god_3":         {Name: "Ультра-10", Description: "<p>Зенитный пулемёт, что был адаптирован для ведения огня по наземным целям и созданный Replics. Впоследствии, модель “Ультра” была кустарно модернизирована Иаиром. Спустя несколько неудачных итераций, получив максимально эффективную вариацию.</p>"},
 		"far_god_4":         {Name: "Импульс", Description: "<p>Творение Replics, представляющее из себя баллистическое орудие внушительной поражающей силы, которое не вошло в массовое производство из-за своих габаритов и непреодолимой силы обратной инерции.</p>"},
+		"melee_1":           {Name: "Копье", Description: "<p></p>"},
 
 		"reverses_weapon_5": {Name: "Торпедный комплекс", Description: "<p>Стойка с малым пусковым тубусом, способная вести огонь неуправляемыми малогабаритными ракетами. Стандартный оружейный набор всех синтетов вступивших к Reverses.</p>"},
 		"explores_weapon_5": {Name: "Пучковый усилитель", Description: "<p>Многотоннажное лучевое орудие Explores, характеризующееся работой на принципах локального распада заряженных частиц. Помимо ощутимого прямого урона, осуществляет также атаку по площади.</p>"},
@@ -82,6 +84,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"far_god_2":         {Name: "莱菲", Description: "<p>多管齐射导弹系统，因设计缺陷被Reverses列入销毁名单。泰瑞乌斯成功窃取唯一存世样本。</p>"},
 		"far_god_3":         {Name: "终极-10", Description: "<p>Replics原产防空机枪经雅伊尔非法改造，最终成为适配地面作战的强化版本。</p>"},
 		"far_god_4":         {Name: "脉冲", Description: "<p>Replics开发的巨型弹道武器，因体积过大和后坐力问题未能量产。</p>"},
+		"melee_1":           {Name: "melee_1", Description: "<p></p>"},
 
 		"reverses_weapon_5": {Name: "鱼雷复合系统", Description: "<p>紧凑型非制导火箭发射架，Reverses新兵标准配置。</p>"},
 		"explores_weapon_5": {Name: "集束增幅器", Description: "<p>Explores重型粒子分解炮，除直接伤害外还可造成范围打击效果。</p>"},

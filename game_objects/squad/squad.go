@@ -40,9 +40,10 @@ type Squad struct {
 	equipPanelRerender     bool
 	countUpdateViewObjects int
 
-	BodySkin    *skin.Skin         `json:"body_skin"`
-	weaponSkins map[int]*skin.Skin `json:"weapon_skins"`
-	Transfer    bool
+	BodySkin         *skin.Skin         `json:"body_skin"`
+	weaponSkins      map[int]*skin.Skin `json:"weapon_skins"`
+	meleeWeaponSkins map[int]*skin.Skin `json:"melee_weapon_skins"`
+	Transfer         bool
 
 	updateDB sync.Mutex
 	tmx      sync.Mutex
@@ -403,7 +404,7 @@ func (s *Squad) GetFraction() string {
 	return s.GetMS().OwnerFraction()
 }
 
-func (s *Squad) SetWeaponSkin(slotNumber int, sk *skin.Skin) {
+func (s *Squad) SetWeaponSkin(slotNumber int, sk *skin.Skin, melee bool) {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
@@ -411,7 +412,15 @@ func (s *Squad) SetWeaponSkin(slotNumber int, sk *skin.Skin) {
 		s.weaponSkins = make(map[int]*skin.Skin)
 	}
 
-	s.weaponSkins[slotNumber] = sk
+	if s.meleeWeaponSkins == nil {
+		s.meleeWeaponSkins = make(map[int]*skin.Skin)
+	}
+
+	if melee {
+		s.meleeWeaponSkins[slotNumber] = sk
+	} else {
+		s.weaponSkins[slotNumber] = sk
+	}
 }
 
 func (s *Squad) GetWeaponSkin(slotNumber int) *skin.Skin {
@@ -428,6 +437,26 @@ func (s *Squad) RangeWeaponSkins() map[int]*skin.Skin {
 	weaponSkins := make(map[int]*skin.Skin)
 
 	for k, v := range s.weaponSkins {
+		weaponSkins[k] = v
+	}
+
+	return weaponSkins
+}
+
+func (s *Squad) GetMeleeWeaponSkin(slotNumber int) *skin.Skin {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	return s.meleeWeaponSkins[slotNumber]
+}
+
+func (s *Squad) RangeMeleeWeaponSkins() map[int]*skin.Skin {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	weaponSkins := make(map[int]*skin.Skin)
+
+	for k, v := range s.meleeWeaponSkins {
 		weaponSkins[k] = v
 	}
 

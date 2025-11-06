@@ -52,6 +52,16 @@ func (u *Unit) GetBodyWeaponSlotKeys() []int {
 	return keys
 }
 
+func (u *Unit) GetBodyMeleeWeaponSlotKeys() []int {
+	keys := make([]int, 0)
+
+	for key := range u.getBody().MeleeWeapons {
+		keys = append(keys, key)
+	}
+
+	return keys
+}
+
 func (u *Unit) GetBodyWeaponSlot(numberSlot int) *detail.BodyWeaponSlot {
 	return u.getBody().Weapons[numberSlot]
 }
@@ -126,5 +136,4 @@ func (u *Unit) GetJSONBodyWeaponSlots() []string {
 
 func (u *Unit) GetJSONBodyThoriumSlots() []string {
 	return u.getBody().GetJSONThoriumSlots()
-
 }

@@ -28,6 +28,7 @@ var weaponDefaultSkin = map[string]string{
 	"small_laser":       "_skin_1",
 	"small_missile":     "_skin_1",
 	"tank_gun":          "_skin_1",
+	"melee_1":           "_skin_1",
 }
 
 func GetFractionWeapon(fraction string) []string {

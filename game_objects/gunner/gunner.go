@@ -337,3 +337,7 @@ func (g *Gunner) getSlotState(number int) *WeaponSlotState {
 func (g *Gunner) GetPhysicalModel() *physical_model.PhysicalModel {
 	return g.GunUser.GetPhysicalModel()
 }
+
+func (g *Gunner) IsValid() bool {
+	return g != nil
+}

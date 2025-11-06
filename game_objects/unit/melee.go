@@ -3,6 +3,7 @@ package unit
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"math"
 )
 
 func (u *Unit) GetMeleeWeaponSlot(slotNumber int) *detail.BodyWeaponSlot { // по диз доку оружие в юните может быть только одно
@@ -30,4 +31,52 @@ func (u *Unit) GetMeleeWeaponFirePos(slotNumber int) []*game_math.Positions {
 		float64(weaponSlot.XAttach),
 		float64(weaponSlot.YAttach),
 	)
+}
+
+func (u *Unit) getMeleeGunAccuracy(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) getMeleeGunRotateSpeed(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.RotateSpeed), "gun_speed_rotate", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) getMeleeWeaponReloadTime(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadTime), "reload", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) getMeleeWeaponAmmoReloadTime(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.ReloadAmmoTime), "reload_ammo", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) getMeleeMaxDamage(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) getMeleeMinDamage(weaponSlotNumber int) int {
+	weaponSlot := u.GetMeleeWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
 }

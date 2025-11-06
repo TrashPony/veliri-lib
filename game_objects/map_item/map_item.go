@@ -58,6 +58,10 @@ func (i *MapItem) GetGunner() *gunner.Gunner {
 	return nil
 }
 
+func (i *MapItem) GetMeleer() *gunner.Meleer {
+	return nil
+}
+
 func (i *MapItem) GetX() int {
 	return i.GetPhysicalModel().GetX()
 }

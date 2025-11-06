@@ -77,12 +77,14 @@ type Unit struct {
 
 	effects        *effects_store.EffectsStore
 	visibleObjects *visible_objects.VisibleObjectsStore
-	gunner         *gunner.Gunner
 	damageManager  damage_manager.DamageManager
 	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
 	physicalModel  *physical_model.PhysicalModel
 	lights         *LightState
 	pelengator     Pelengator
+
+	gunner *gunner.Gunner
+	meller *gunner.Meleer
 
 	ghost                 bool
 	lockedControl         bool
@@ -277,9 +279,22 @@ func (u *Unit) GetGunner() *gunner.Gunner {
 	return u.gunner
 }
 
+func (u *Unit) GetMeleer() *gunner.Meleer {
+	if u.meller == nil {
+		u.initGunner()
+	}
+
+	return u.meller
+}
+
 func (u *Unit) initGunner() {
 	u.gunner = &gunner.Gunner{
 		GunUser:          u,
+		WeaponSlotsState: make([]*gunner.WeaponSlotState, 0),
+	}
+
+	u.meller = &gunner.Meleer{
+		MeleeUser:        u,
 		WeaponSlotsState: make([]*gunner.WeaponSlotState, 0),
 	}
 
@@ -292,7 +307,7 @@ func (u *Unit) UpdateViewState() {
 }
 
 func (u *Unit) UpdateWeaponsState() {
-	if u.gunner == nil {
+	if u.gunner == nil || u.meller == nil {
 		u.initGunner()
 	}
 
@@ -300,6 +315,8 @@ func (u *Unit) UpdateWeaponsState() {
 	u.radarRange = u.getRadarRange()
 
 	u.gunner.WeaponSlotsState = make([]*gunner.WeaponSlotState, 0)
+	u.meller.WeaponSlotsState = make([]*gunner.WeaponSlotState, 0)
+
 	for _, wSlot := range u.RangeWeaponSlots() {
 
 		slotState := &gunner.WeaponSlotState{
@@ -319,6 +336,26 @@ func (u *Unit) UpdateWeaponsState() {
 		}
 
 		u.gunner.WeaponSlotsState = append(u.gunner.WeaponSlotsState, slotState)
+	}
+
+	for _, wSlot := range u.RangeMeleeWeaponSlots() {
+		slotState := &gunner.WeaponSlotState{
+			Number: wSlot.Number,
+		}
+
+		if wSlot.Weapon != nil { // TODO melee
+			slotState.Accuracy = u.getMeleeGunAccuracy(wSlot.Number)
+			slotState.RotateSpeed = u.getMeleeGunRotateSpeed(wSlot.Number)
+			slotState.ReloadTime = u.getMeleeWeaponReloadTime(wSlot.Number)
+			slotState.ReloadAmmoTime = u.getMeleeWeaponAmmoReloadTime(wSlot.Number)
+		}
+
+		if wSlot.Ammo != nil {
+			slotState.MaxDamage = u.getMeleeMaxDamage(wSlot.Number)
+			slotState.MinDamage = u.getMeleeMinDamage(wSlot.Number)
+		}
+
+		u.meller.WeaponSlotsState = append(u.meller.WeaponSlotsState, slotState)
 	}
 }
 
@@ -510,9 +547,10 @@ type ShortUnitInfo struct {
 	Y         int     `json:"y"`
 
 	/*видимый фит*/
-	Body        detail.Body                   `json:"body"`
-	WeaponSlots map[int]detail.BodyWeaponSlot `json:"weapon_slots"`
-	EquipSlots  []detail.BodyEquipSlot        `json:"equip_slots"`
+	Body         detail.Body                   `json:"body"`
+	WeaponSlots  map[int]detail.BodyWeaponSlot `json:"weapon_slots"`
+	MeleeWeapons map[int]detail.BodyWeaponSlot `json:"melee_weapons_slots"`
+	EquipSlots   []detail.BodyEquipSlot        `json:"equip_slots"`
 
 	HP int `json:"hp"`
 
@@ -642,6 +680,27 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(len(weaponData))...)
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, weaponData...)
 
+	meleeWeaponData := []byte{}
+	for _, unitWeaponSlot := range u.RangeMeleeWeaponSlots() {
+
+		meleeWeaponData = append(meleeWeaponData, byte(unitWeaponSlot.Number))
+		meleeWeaponData = append(meleeWeaponData, game_math.GetIntBytes(unitWeaponSlot.GetRealXAttach())...)
+		meleeWeaponData = append(meleeWeaponData, game_math.GetIntBytes(unitWeaponSlot.GetRealYAttach())...)
+		meleeWeaponData = append(meleeWeaponData, byte(unitWeaponSlot.GetXAnchor()*100))
+		meleeWeaponData = append(meleeWeaponData, byte(unitWeaponSlot.GetYAnchor()*100))
+		meleeWeaponData = append(meleeWeaponData, game_math.GetIntBytes(int(unitWeaponSlot.GetGunRotate()))...)
+
+		if unitWeaponSlot.Weapon != nil {
+			meleeWeaponData = append(meleeWeaponData, byte(len([]byte(unitWeaponSlot.WeaponTexture))))
+			meleeWeaponData = append(meleeWeaponData, []byte(unitWeaponSlot.WeaponTexture)...)
+		} else {
+			meleeWeaponData = append(meleeWeaponData, byte(0))
+		}
+	}
+
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.GetIntBytes(len(meleeWeaponData))...)
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, meleeWeaponData...)
+
 	// equip data
 	equipData := []byte{}
 	for _, equipSlot := range u.GetBody().GetAllEquips() {
@@ -740,6 +799,26 @@ func (u *Unit) GetShortInfo() *ShortUnitInfo {
 		}
 	}
 
+	hostile.MeleeWeapons = make(map[int]detail.BodyWeaponSlot)
+	for number, wSlot := range u.RangeMeleeWeaponSlots() {
+		if wSlot != nil {
+			hostile.MeleeWeapons[number] = detail.BodyWeaponSlot{
+				Number:        wSlot.Number,
+				Weapon:        wSlot.Weapon,
+				XAttach:       wSlot.XAttach,
+				YAttach:       wSlot.YAttach,
+				RealXAttach:   wSlot.GetRealXAttach(),
+				RealYAttach:   wSlot.GetRealYAttach(),
+				XAnchor:       wSlot.GetXAnchor(),
+				YAnchor:       wSlot.GetYAnchor(),
+				GunRotate:     wSlot.GetGunRotate(),
+				WeaponColor1:  wSlot.WeaponColor1,
+				WeaponColor2:  wSlot.WeaponColor2,
+				WeaponTexture: wSlot.WeaponTexture,
+			}
+		}
+	}
+
 	hostile.OwnerID = u.GetOwnerID()
 	hostile.Owner = u.Owner
 	hostile.ID = u.GetID()
@@ -806,6 +885,11 @@ func (u *Unit) SetAnchorsEquip() {
 
 	// распологаем оружие
 	for _, ws := range u.RangeWeaponSlots() {
+		ws.SetAnchor()
+	}
+
+	// распологаем оружие
+	for _, ws := range u.RangeMeleeWeaponSlots() {
 		ws.SetAnchor()
 	}
 

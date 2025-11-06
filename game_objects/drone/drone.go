@@ -181,6 +181,10 @@ func (d *Drone) GetGunner() *gunner.Gunner {
 	return d.gunner
 }
 
+func (d *Drone) GetMeleer() *gunner.Meleer {
+	return nil
+}
+
 func (d *Drone) initGunner() {
 	d.gunner = &gunner.Gunner{
 		GunUser:          d,

@@ -195,6 +195,10 @@ func (o *Object) GetGunner() *gunner.Gunner {
 	return o.gunner
 }
 
+func (o *Object) GetMeleer() *gunner.Meleer {
+	return nil
+}
+
 func (o *Object) initGunner() {
 	o.gunner = &gunner.Gunner{
 		GunUser:          o,
