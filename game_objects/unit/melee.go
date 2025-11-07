@@ -90,7 +90,7 @@ func (u *Unit) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
 	meleePositions := make([]*obstacle_point.ObstaclePoint, 0) // TODO кеширование массива что бы каждый раз заного не создавать
 
 	for k, slot := range u.RangeMeleeWeaponSlots() {
-		if slot.On && slot.Weapon != nil && slot.Weapon.Power > 0 {
+		if slot.On && slot.Weapon != nil {
 			for _, firePosition := range u.meller.GetWeaponFirePos(k) {
 				meleePositions = append(meleePositions, &obstacle_point.ObstaclePoint{
 					X:          firePosition.X,
