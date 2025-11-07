@@ -247,6 +247,11 @@ func (o *Object) GetPhysicalModel() *physical_model.PhysicalModel {
 		o.initPhysicalModel()
 	}
 
+	if o.physicalModel.ID == 0 || o.physicalModel.Type == "" {
+		o.physicalModel.Type = "object"
+		o.physicalModel.ID = o.ID
+	}
+
 	return o.physicalModel
 }
 

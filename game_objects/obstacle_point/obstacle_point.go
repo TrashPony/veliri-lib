@@ -15,6 +15,7 @@ type ObstaclePoint struct {
 	ParentType string  `json:"-"`
 	Key        string  `json:"-"`
 	Height     float64 `json:"height"`
+	K          int     `json:"-"`
 }
 
 func (o *ObstaclePoint) GetID() int {
