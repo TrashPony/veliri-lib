@@ -96,8 +96,35 @@ func (g *Meleer) GetWeaponFirePosOne(slotNumber, position int) *game_math.Positi
 	)
 }
 
+func (g *Meleer) GetWeaponFirePos(slotNumber int) []*game_math.Positions {
+
+	weaponSlot := g.MeleeUser.GetMeleeWeaponSlot(slotNumber)
+
+	return game_math.GetWeaponFirePositions(
+		g.MeleeUser.GetX(), g.MeleeUser.GetY(), g.MeleeUser.GetScale(), g.MeleeUser.GetRotate(), weaponSlot.GetGunRotate(),
+		weaponSlot.Weapon.XAttach, weaponSlot.Weapon.YAttach,
+		weaponSlot.Weapon.FirePositions,
+		float64(weaponSlot.XAttach),
+		float64(weaponSlot.YAttach),
+	)
+}
+
 func (g *Meleer) RangeWeaponSlots() map[int]*detail.BodyWeaponSlot {
 	return g.MeleeUser.RangeMeleeWeaponSlots()
+}
+
+func (g *Meleer) GetWeaponPosInMap(slotNumber int) (int, int) {
+
+	weaponSlot := g.MeleeUser.GetMeleeWeaponSlot(slotNumber)
+	if weaponSlot == nil {
+		return 0, 0
+	}
+
+	return game_math.GetWeaponPosInMap(
+		g.MeleeUser.GetX(), g.MeleeUser.GetY(), g.MeleeUser.GetScale(),
+		float64(weaponSlot.XAttach),
+		float64(weaponSlot.YAttach),
+		g.MeleeUser.GetRotate())
 }
 
 func (g *Meleer) getSlotState(number int) *WeaponSlotState {

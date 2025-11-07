@@ -42,6 +42,7 @@ type PhysicalModel struct {
 	Width                  float64                         `json:"width"`  // ширина обькта
 	Radius                 int                             `json:"radius"` // радиус окружности обьекта
 	GeoData                []*obstacle_point.ObstaclePoint `json:"-"`
+	MeleeWeaponData        MeleeWeaponData                 `json:"-"` // если у кого то есть оружие ближнего боя то это тоже часть физической модели
 	PosFunc                func() int                      `json:"-"` // функция для принятия положения в конце сервертика
 	Type                   string                          `json:"type"`
 	ID                     int                             `json:"id"`
@@ -58,6 +59,11 @@ type PhysicalModel struct {
 	mx                     sync.Mutex
 	polygon                *game_math.Polygon
 	nextPolygon            *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+}
+
+type MeleeWeaponData struct {
+	GeoData []*obstacle_point.ObstaclePoint `json:"-"`
+	Time    int64                           `json:"-"` // позиции меняются каждый сервер тик, ну и кешируются при первом вызове
 }
 
 type ClassicControlsAdapter struct {

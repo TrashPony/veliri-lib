@@ -36,8 +36,9 @@ func GetWeaponPosInMap(ownerX, ownerY, ownerScale int, slotXAttach, slotYAttach,
 }
 
 type Positions struct {
-	X int `json:"x"`
-	Y int `json:"y"`
+	X      int `json:"x"`
+	Y      int `json:"y"`
+	Radius int `json:"radius"`
 }
 
 func (p *Positions) GetX() int {
@@ -46,6 +47,10 @@ func (p *Positions) GetX() int {
 
 func (p *Positions) GetY() int {
 	return p.Y
+}
+
+func (p *Positions) GetRadius() int {
+	return p.Radius
 }
 
 func GetWeaponFirePositions(ownerX, ownerY, ownerScale int, ownerRotate float64, gunRotate float64, weaponXAttach, weaponYAttach int,
@@ -69,7 +74,7 @@ func GetWeaponFirePositions(ownerX, ownerY, ownerScale int, ownerRotate float64,
 		newX, newY := RotatePoint(x, y, float64(xWeapon), float64(yWeapon), gunRotate)
 
 		// прибавляем точку обьекта к точке оружия
-		realPos[i] = &Positions{X: int(newX), Y: int(newY)}
+		realPos[i] = &Positions{X: int(newX), Y: int(newY), Radius: int(float64(pos.Radius) * sizeOffset)}
 	}
 
 	return realPos
@@ -95,5 +100,5 @@ func GetWeaponFirePosition(ownerX, ownerY, ownerScale int, ownerRotate float64, 
 	newX, newY := RotatePoint(x, y, float64(xWeapon), float64(yWeapon), gunRotate)
 
 	// прибавляем точку обьекта к точке оружия
-	return &Positions{X: int(newX), Y: int(newY)}
+	return &Positions{X: int(newX), Y: int(newY), Radius: int(float64(pos.Radius) * sizeOffset)}
 }

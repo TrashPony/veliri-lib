@@ -1,6 +1,7 @@
 package game_math
 
 import (
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"math"
 )
 
@@ -45,7 +46,20 @@ func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, star
 	return collisionPower
 }
 
-func CollisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
+func CollisionReactionBallBall(collider1, collider2 collider, meleeData1, meleeData2 []*obstacle_point.ObstaclePoint, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
+	// 1. Сначала проверяем столкновение оружия
+	weaponCollisionPoint1, weaponCollisionPoint2 := findWeaponCollision(meleeData1, meleeData2, collider1, collider2)
+
+	if weaponCollisionPoint1 != nil || weaponCollisionPoint2 != nil {
+		// Обрабатываем как столкновение оружия
+		return weaponCollisionReaction(collider1, collider2, weaponCollisionPoint1, weaponCollisionPoint2, weight1, weight2)
+	}
+
+	// 2. Если оружие не столкнулось, обрабатываем как обычное столкновение тел
+	return collisionReactionBallBall(collider1, collider2, weight1, weight2, pf1, pf2, x2, y2)
+}
+
+func collisionReactionBallBall(collider1, collider2 collider, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
 	// https://www-plasmaphysics-org-uk.translate.goog/programs/coll2d_cpp.htm?_x_tr_sl=en&_x_tr_tl=ru&_x_tr_hl=ru&_x_tr_pto=wapp
 	// https://gamedev.stackexchange.com/questions/5906/collision-resolution
 	cX1, cY1 := collider1.GetNextPos()

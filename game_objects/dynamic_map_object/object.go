@@ -258,6 +258,10 @@ func (o *Object) Ghost() bool {
 	return false
 }
 
+func (o *Object) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
+	return nil
+}
+
 func (o *Object) initPhysicalModel() {
 
 	o.updateViewState()

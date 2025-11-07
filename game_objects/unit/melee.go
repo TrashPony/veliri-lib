@@ -3,6 +3,7 @@ package unit
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"math"
 )
 
@@ -79,4 +80,29 @@ func (u *Unit) getMeleeMinDamage(weaponSlotNumber int) int {
 		return 0
 	}
 	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (u *Unit) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
+	if u.GetPhysicalModel().MeleeWeaponData.Time == u.CurrentMapTime {
+		return u.GetPhysicalModel().MeleeWeaponData.GeoData
+	}
+
+	meleePositions := make([]*obstacle_point.ObstaclePoint, 0) // TODO кеширование массива что бы каждый раз заного не создавать
+
+	for k, slot := range u.RangeMeleeWeaponSlots() {
+		if slot.On && slot.Weapon != nil {
+			for _, firePosition := range u.meller.GetWeaponFirePos(k) {
+				meleePositions = append(meleePositions, &obstacle_point.ObstaclePoint{
+					X:          firePosition.X,
+					Y:          firePosition.Y,
+					Radius:     firePosition.Radius,
+					ParentType: "melee",
+				})
+			}
+		}
+	}
+
+	u.GetPhysicalModel().MeleeWeaponData.Time = u.CurrentMapTime
+	u.GetPhysicalModel().MeleeWeaponData.GeoData = meleePositions
+	return meleePositions
 }

@@ -31,14 +31,15 @@ type Unit struct {
 	Ready         bool
 	body          *detail.Body
 
-	HP            int              `json:"hp"`
-	ShieldHP      int              `json:"shield_hp"`
-	ShieldTimeOut int              `json:"shield_time_out"`
-	Power         int              `json:"power"`
-	Destroy       bool             `json:"destroy"`
-	LostEquip     []inventory.Slot `json:"-"`
-	BodyTexture   string           `json:"body_texture"`
-	MapID         int32            `json:"map_id"`
+	HP             int              `json:"hp"`
+	ShieldHP       int              `json:"shield_hp"`
+	ShieldTimeOut  int              `json:"shield_time_out"`
+	Power          int              `json:"power"`
+	Destroy        bool             `json:"destroy"`
+	LostEquip      []inventory.Slot `json:"-"`
+	BodyTexture    string           `json:"body_texture"`
+	MapID          int32            `json:"map_id"`
+	CurrentMapTime int64            `json:"-"`
 
 	BossConfig BossConfig
 

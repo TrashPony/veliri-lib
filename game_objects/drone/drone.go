@@ -10,6 +10,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
@@ -237,6 +238,10 @@ func (d *Drone) LockedControl() bool {
 
 func (d *Drone) Ghost() bool {
 	return false
+}
+
+func (d *Drone) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
+	return nil
 }
 
 func (d *Drone) SetPhysicalModel(p *physical_model.PhysicalModel) {

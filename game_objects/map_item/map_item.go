@@ -6,6 +6,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 )
 
@@ -121,6 +122,10 @@ func (i *MapItem) LockedControl() bool {
 
 func (i *MapItem) Ghost() bool {
 	return false
+}
+
+func (i *MapItem) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
+	return nil
 }
 
 func (i *MapItem) initPhysicalModel() {

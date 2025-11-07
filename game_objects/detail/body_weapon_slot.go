@@ -42,6 +42,7 @@ type BodyWeaponSlot struct {
 	Spread              int        `json:"-"`
 	SpreadUp            bool       `json:"-"`
 	On                  bool       `json:"-"`
+	IgnorePassAngle     int64      `json:"-"`
 	lastFirePosition    int
 	weaponTarget        *target.Target
 }
