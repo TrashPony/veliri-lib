@@ -7,11 +7,12 @@ import (
 )
 
 type Coordinate struct {
-	ID     int    `json:"id,omitempty"`
-	X      int    `json:"x"`
-	Y      int    `json:"y"`
-	Radius int    `json:"radius,omitempty"`
-	UUID   string `json:"UUID,omitempty"`
+	ID        int    `json:"id,omitempty"`
+	X         int    `json:"x"`
+	Y         int    `json:"y"`
+	Radius    int    `json:"radius,omitempty"`
+	UUID      string `json:"UUID,omitempty"`
+	Collision bool   `json:"collision"`
 
 	Rotate float64 `json:"rotate,omitempty"`
 	State  int     `json:"state,omitempty"`

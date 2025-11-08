@@ -92,6 +92,10 @@ func (u *Unit) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
 	for k, slot := range u.RangeMeleeWeaponSlots() {
 		if slot.On && slot.Weapon != nil {
 			for _, firePosition := range u.meller.GetWeaponFirePos(k) {
+				if !firePosition.Collision {
+					continue
+				}
+
 				meleePositions = append(meleePositions, &obstacle_point.ObstaclePoint{
 					X:          firePosition.X,
 					Y:          firePosition.Y,
