@@ -115,7 +115,7 @@ func applyCollisionRotation(collider1, collider2 collider, dirX, dirY, totalForc
 	rotationMultiplier := 0.033
 	rotationForce := 0.03 + (tangentialDot * totalForce * rotationMultiplier)
 
-	massFactor := math.Max(weight2/weight1, 2.0)
+	massFactor := math.Max(weight2/weight1, 2.0) / 3
 	rotationForce *= massFactor
 
 	maxRotation := 0.5
@@ -228,7 +228,7 @@ func calculateMeleeWeaponDamage(attacker, target collider, weaponPoint *obstacle
 	baseDamage := attackSpeed * 10.0
 
 	// Модификатор массы
-	massFactor := (math.Max((attackWeight / 1000.0), 1.0)) / 2.5
+	massFactor := (math.Max((attackWeight / 1000.0), 1.0)) / 3.0
 
 	// Модификатор усиления урона из weaponPoint.K
 	damageBoost := 1.0 + float64(k)/100.0 // K=100 → +100% урона
