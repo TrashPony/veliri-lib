@@ -59,6 +59,9 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 9, ItemID: 78, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 2, Priority: 1},
 	{ID: 11, ItemID: 79, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	{ID: 47, ItemID: 77, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
+
+	{ID: 50205, ItemID: 222, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 2},
+	{ID: 50206, ItemID: 223, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	// body bp +
 	{ID: 40, ItemID: 119, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 1, Priority: 1},
 	{ID: 41, ItemID: 50, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 1},
@@ -191,6 +194,9 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 2029, ItemID: 196, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	{ID: 2028, ItemID: 195, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
 
+	{ID: 50203, ItemID: 222, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 2},
+	{ID: 50204, ItemID: 223, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
+
 	// body bp +
 	{ID: 80, ItemID: 110, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 1, Priority: 1},
 	{ID: 81, ItemID: 55, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 1},
@@ -318,6 +324,9 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 127, ItemID: 87, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	{ID: 128, ItemID: 88, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
 	{ID: 129, ItemID: 85, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
+
+	{ID: 50201, ItemID: 222, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 2},
+	{ID: 50202, ItemID: 223, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 
 	// body bp +
 	{ID: 117, ItemID: 124, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 1, Priority: 1},

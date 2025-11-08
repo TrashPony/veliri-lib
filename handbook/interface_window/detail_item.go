@@ -50,6 +50,11 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   `laser`,
 		_const.ZhCN: `激光`,
 	},
+	"melee": {
+		_const.RU:   "ближнего боя",
+		_const.EN:   "melee",
+		_const.ZhCN: "近战",
+	},
 	"m3": {
 		_const.RU:   `м^3`,
 		_const.EN:   `m^3`,
@@ -929,6 +934,16 @@ var DetailItem = map[string]map[string]string{
 		_const.RU:   `Кол-во предметов:`,
 		_const.EN:   `Number of items:`,
 		_const.ZhCN: `物品数量：`,
+	},
+	"ch_169": {
+		_const.RU:   "Усиление урона при столкновении",
+		_const.EN:   "Collision damage boost",
+		_const.ZhCN: "碰撞伤害增强",
+	},
+	"ch_170": {
+		_const.RU:   "Периодический урон при контакте",
+		_const.EN:   "Periodic contact damage",
+		_const.ZhCN: "接触周期性伤害",
 	},
 	// DetailItem
 	"text_1": {

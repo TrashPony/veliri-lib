@@ -491,4 +491,9 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `ammunition`,
 		_const.ZhCN: `弹药`,
 	},
+	"tip_20": {
+		_const.RU:   `Слот оружия ближнего боя`,
+		_const.EN:   "Melee weapon slot",
+		_const.ZhCN: "近战武器槽",
+	},
 }

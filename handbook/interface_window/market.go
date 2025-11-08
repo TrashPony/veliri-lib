@@ -220,6 +220,11 @@ var Market = map[string]map[string]string{
 		_const.EN:   `Ballistic`,
 		_const.ZhCN: `弹道`,
 	},
+	"w_t4": {
+		_const.RU:   "Ближнего боя",
+		_const.EN:   "Melee",
+		_const.ZhCN: "近战",
+	},
 	// Market
 	"window_name": {
 		_const.RU:   `Рынок`,

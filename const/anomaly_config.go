@@ -61,6 +61,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 84, MaxCount: 2, PercentChance: 10, SectorFraction: Explores},
 			{BpID: 162, MaxCount: 2, PercentChance: 10, SectorFraction: Reverses},
 			{BpID: 95, MaxCount: 2, PercentChance: 10},
+			{BpID: 223, MaxCount: 2, PercentChance: 10},
 
 			// BODY lvl 1 +
 			{BpID: 119, MaxCount: 2, PercentChance: 5, SectorFraction: Replicas},
@@ -139,6 +140,7 @@ var BlueprintAnomalyOptions = map[int]*bluePrintsAnomalyOption{
 			{BpID: 96, MaxCount: 2, PercentChance: 10},
 			{BpID: 97, MaxCount: 2, PercentChance: 10},
 			{BpID: 93, MaxCount: 2, PercentChance: 10},
+			{BpID: 222, MaxCount: 2, PercentChance: 10},
 
 			// BODY lvl 2 +
 			{BpID: 120, MaxCount: 2, PercentChance: 5, SectorFraction: Replicas},
