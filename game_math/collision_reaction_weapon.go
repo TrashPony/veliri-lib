@@ -13,12 +13,23 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 	c2s := collider2.GetCurrentSpeed()
 	c1s := collider1.GetCurrentSpeed()
 
-	efficiency2 := (relativeDamageSpeed / c2s)
-	efficiency1 := (relativeDamageSpeed / c1s)
+	if c1s < 0.1 {
+		c1s = 0.1
+	}
+	if c2s < 0.1 {
+		c2s = 0.1
+	}
+
+	rawEf2 := relativeDamageSpeed / c2s
+	rawEf1 := relativeDamageSpeed / c1s
+
+	sum := rawEf2 + rawEf1
+	efficiency1 := rawEf1 / sum
+	efficiency2 := rawEf2 / sum
 
 	// Расчет урона
-	damage1 := calculateMeleeWeaponDamageWithEfficiency(collider2, collider1, weaponPoint2, weight2, weight1, efficiency1)
-	damage2 := calculateMeleeWeaponDamageWithEfficiency(collider1, collider2, weaponPoint1, weight1, weight2, efficiency2)
+	damage1 := calculateMeleeWeaponDamageWithEfficiency(collider2, collider1, weaponPoint2, weight2, weight1, efficiency1, relativeDamageSpeed)
+	damage2 := calculateMeleeWeaponDamageWithEfficiency(collider1, collider2, weaponPoint1, weight1, weight2, efficiency2, relativeDamageSpeed)
 
 	// Для физики используем центры масс (универсально для любого типа столкновения)
 	targetX, targetY := collider2.GetRealPos()
@@ -219,13 +230,21 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 	return math.Max(0.1, math.Min(0.9, basePowerLoss))
 }
 
-func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight, efficiency float64) int {
+func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight, efficiency, relativeDamageSpeed float64) int {
 	if efficiency <= 0 || math.IsNaN(efficiency) {
 		efficiency = 0.1
 	}
 
 	if efficiency > 1 {
 		efficiency = 1.0
+	}
+
+	if targetWeight > maxWeight {
+		targetWeight = maxWeight
+	}
+
+	if attackWeight > maxWeight {
+		attackWeight = maxWeight
 	}
 
 	// Базовые параметры
@@ -237,7 +256,7 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	}
 
 	// 1. Скорость атакующего
-	attackSpeed := attacker.GetCurrentSpeed()
+	attackSpeed := relativeDamageSpeed
 	if attackSpeed <= 1 {
 		attackSpeed = 1
 	}
@@ -247,7 +266,7 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 
 	baseMinDamage := (attackWeight / 1000)
 	hardnessFactor := attackWeight / targetWeight
-	speedFactor := (target.GetCurrentSpeed() * 0.1)
+	speedFactor := (relativeDamageSpeed * 0.1)
 
 	minDamage := baseMinDamage * hardnessFactor * speedFactor
 	if baseDamage < minDamage {
@@ -255,7 +274,8 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	}
 
 	// Модификатор массы
-	massFactor := attackWeight / targetWeight
+	massRatio := attackWeight / targetWeight
+	massFactor := math.Pow(math.Max(0.01, massRatio), 0.5)
 
 	// Модификатор усиления урона
 	damageBoost := 1.0 + float64(k)/100.0

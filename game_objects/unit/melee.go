@@ -101,7 +101,7 @@ func (u *Unit) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
 					Y:          firePosition.Y,
 					Radius:     firePosition.Radius,
 					ParentType: "melee",
-					K:          slot.Weapon.Power,
+					K:          int(slot.Weapon.DamageModifier),
 				})
 			}
 		}
