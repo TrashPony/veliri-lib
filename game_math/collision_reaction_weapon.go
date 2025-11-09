@@ -7,9 +7,18 @@ import (
 
 func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weaponPoint2 *obstacle_point.ObstaclePoint, weight1, weight2 float64) (int, int, float64) {
 
-	// Расчет урона для ОБОИХ участников
-	damage1 := calculateMeleeWeaponDamage(collider2, collider1, weaponPoint2, weight2, weight1)
-	damage2 := calculateMeleeWeaponDamage(collider1, collider2, weaponPoint1, weight1, weight2)
+	// Вычисляем относительную скорость
+	relativeDamageSpeed := calculateAttackerEfficiency(collider1, collider2)
+
+	c2s := collider2.GetCurrentSpeed()
+	c1s := collider1.GetCurrentSpeed()
+
+	efficiency2 := (relativeDamageSpeed / c2s)
+	efficiency1 := (relativeDamageSpeed / c1s)
+
+	// Расчет урона
+	damage1 := calculateMeleeWeaponDamageWithEfficiency(collider2, collider1, weaponPoint2, weight2, weight1, efficiency1)
+	damage2 := calculateMeleeWeaponDamageWithEfficiency(collider1, collider2, weaponPoint1, weight1, weight2, efficiency2)
 
 	// Для физики используем центры масс (универсально для любого типа столкновения)
 	targetX, targetY := collider2.GetRealPos()
@@ -210,7 +219,15 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 	return math.Max(0.1, math.Min(0.9, basePowerLoss))
 }
 
-func calculateMeleeWeaponDamage(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight float64) int {
+func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight, efficiency float64) int {
+	if efficiency <= 0 || math.IsNaN(efficiency) {
+		efficiency = 0.1
+	}
+
+	if efficiency > 1 {
+		efficiency = 1.0
+	}
+
 	// Базовые параметры
 	k := 10
 	sharpness := 1.0
@@ -219,53 +236,70 @@ func calculateMeleeWeaponDamage(attacker, target collider, weaponPoint *obstacle
 		k = weaponPoint.K
 	}
 
-	// 1. Векторы скоростей
-	attackVX, attackVY := attacker.GetVelocity()
-	targetVX, targetVY := target.GetVelocity()
-
-	// 2. Вектор от атакующего к цели
-	attackerX, attackerY := attacker.GetRealPos()
-	targetX, targetY := target.GetRealPos()
-	collisionDirX := targetX - attackerX
-	collisionDirY := targetY - attackerY
-
-	// Нормализуем вектор столкновения
-	collisionLength := math.Sqrt(collisionDirX*collisionDirX + collisionDirY*collisionDirY)
-	if collisionLength > 0 {
-		collisionDirX /= collisionLength
-		collisionDirY /= collisionLength
+	// 1. Скорость атакующего
+	attackSpeed := attacker.GetCurrentSpeed()
+	if attackSpeed <= 1 {
+		attackSpeed = 1
 	}
 
-	// 3. Проекции скоростей на направление столкновения
-	attackSpeedProj := attackVX*collisionDirX + attackVY*collisionDirY // Скорость атакующего ВДОЛЬ удара
-	targetSpeedProj := targetVX*collisionDirX + targetVY*collisionDirY // Скорость цели ВДОЛЬ удара
+	// 3. Базовый урон от излишка скорости
+	baseDamage := attackSpeed * attackSpeed
 
-	// 4. Относительная скорость вдоль вектора удара
-	relativeSpeed := attackSpeedProj - targetSpeedProj
+	baseMinDamage := (attackWeight / 1000)
+	hardnessFactor := attackWeight / targetWeight
+	speedFactor := (target.GetCurrentSpeed() * 0.1)
 
-	// Примеры:
-	// - Встречный удар: attackSpeedProj=10, targetSpeedProj=-5 → relativeSpeed=15
-	// - Догоняющий: attackSpeedProj=10, targetSpeedProj=8 → relativeSpeed=2
-	// - Боковой: attackSpeedProj=5, targetSpeedProj=0 → relativeSpeed=5
-	// - Угол 80°: учитывается только составляющая вдоль удара
-
-	minSpeed := 2.0
-	if relativeSpeed < minSpeed {
-		relativeSpeed = minSpeed
+	minDamage := baseMinDamage * hardnessFactor * speedFactor
+	if baseDamage < minDamage {
+		baseDamage = minDamage
 	}
-
-	baseDamage := relativeSpeed * 30.0
 
 	// Модификатор массы
-	massFactor := (math.Max((attackWeight / 1000.0), 1.0)) / 6.0
+	massFactor := attackWeight / targetWeight
 
 	// Модификатор усиления урона
 	damageBoost := 1.0 + float64(k)/100.0
 
 	// Итоговый урон
-	totalDamage := baseDamage * sharpness * massFactor * damageBoost
+	totalDamage := (baseDamage * sharpness * massFactor * damageBoost) * efficiency
 
-	return int(totalDamage * 0.1)
+	return int(totalDamage)
+}
+
+func calculateAttackerEfficiency(attacker, target collider) float64 {
+	// Позиции и скорости
+	attackerX, attackerY := attacker.GetRealPos()
+	targetX, targetY := target.GetRealPos()
+	attackVX, attackVY := attacker.GetVelocity()
+	targetVX, targetVY := target.GetVelocity()
+
+	// Вектор от атакующего к цели
+	collisionDirX := targetX - attackerX
+	collisionDirY := targetY - attackerY
+
+	// Нормализуем направление удара
+	collisionLength := math.Sqrt(collisionDirX*collisionDirX + collisionDirY*collisionDirY)
+	if collisionLength == 0 {
+		// Если объекты в одной точке — используем направление по умолчанию (например, вправо)
+		collisionDirX, collisionDirY = 1.0, 0.0
+	} else {
+		collisionDirX /= collisionLength
+		collisionDirY /= collisionLength
+	}
+
+	// Проекции скоростей на линию атаки
+	attackSpeedProj := attackVX*collisionDirX + attackVY*collisionDirY
+	targetSpeedProj := targetVX*collisionDirX + targetVY*collisionDirY
+
+	// Относительная скорость: насколько быстро атакующий "врезается" в цель
+	relativeSpeed := attackSpeedProj - targetSpeedProj
+
+	// Не даём отрицательной скорости (удаление → меньше урона, но не "отрицательный урон")
+	if relativeSpeed < 0 {
+		relativeSpeed = 0
+	}
+
+	return relativeSpeed
 }
 
 func findWeaponCollision(meleeData1, meleeData2 []*obstacle_point.ObstaclePoint, collider1, collider2 collider) (*obstacle_point.ObstaclePoint, *obstacle_point.ObstaclePoint) {
