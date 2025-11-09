@@ -1092,23 +1092,28 @@ var DetailItem = map[string]map[string]string{
 	},
 	"text_14": {
 		_const.RU:   `Разъемы большой мощности`,
-		_const.EN:   `High Power Connectors`,
+		_const.EN:   `High power connectors`,
 		_const.ZhCN: `高功率连接器`,
 	},
 	"text_15": {
 		_const.RU:   `Разъемы средней мощности`,
-		_const.EN:   `Medium Power Connectors`,
+		_const.EN:   `Medium power connectors`,
 		_const.ZhCN: `中功率连接器`,
 	},
 	"text_16": {
 		_const.RU:   `Разъемы малой мощности`,
-		_const.EN:   `Low Power Connectors`,
+		_const.EN:   `Low power connectors`,
 		_const.ZhCN: `低功率连接器`,
 	},
 	"text_17": {
 		_const.RU:   `Боеприпасы`,
 		_const.EN:   `Ammunition`,
 		_const.ZhCN: `弹药`,
+	},
+	"text_27": {
+		_const.RU:   `Разъемы оружия ближнего боя:`,
+		_const.EN:   `Melee weapon connectors:`,
+		_const.ZhCN: `近战武器插槽：`,
 	},
 	// ProductionTab
 	"text_18": {
