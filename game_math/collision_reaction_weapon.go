@@ -264,9 +264,9 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	// 3. Базовый урон от излишка скорости
 	baseDamage := attackSpeed * attackSpeed
 
-	baseMinDamage := attackWeight / 1000
+	baseMinDamage := math.Log1p(attackWeight/1000) * 2
 	hardnessFactor := attackWeight / targetWeight
-	speedFactor := relativeDamageSpeed * 0.1
+	speedFactor := relativeDamageSpeed * 0.2
 
 	minDamage := baseMinDamage * hardnessFactor * speedFactor
 	if baseDamage < minDamage {
