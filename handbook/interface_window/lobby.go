@@ -217,4 +217,9 @@ var Lobby = map[string]map[string]string{
 		_const.EN:   `The base is mothballed!`,
 		_const.ZhCN: `基地已封存！`,
 	},
+	"exit_expedition": {
+		_const.RU:   `Покинуть объект`,
+		_const.EN:   `Leave the facility`,
+		_const.ZhCN: `离开设施`,
+	},
 }

@@ -1,4 +1,4 @@
-package handbook
+package mail_templates
 
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
