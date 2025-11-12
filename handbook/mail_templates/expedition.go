@@ -334,6 +334,52 @@ var expeditionMailTemplates = map[string]map[string]map[string]string{
 					</div>`,
 		},
 	},
+	"end_expedition_scary_1": {
+		_const.RU: {
+			"body": `
+				<div class="ipci_message">
+					<div class="ipci_icon"></div>
+
+					<p>
+						<span style="color: #a4abaf;'">Входящее сообщение...</span><br> 
+						<span class="importantly">ИПЦИ</span>
+						<span class="ipci_sub_head">(Институт Пост-Цивилизационных Исследований)</span>
+					</p>
+
+					<p>Приветствуем, иследователь!</p>
+					<p>Вам должно быть стыдно за то что сделали! Однако отдел аналитики в восторге а значит компенсация уже в пути.</p>
+				</div>
+			`,
+		},
+		_const.EN: {
+			"body": `<div class="ipci_message">
+						<div class="ipci_icon"></div>
+
+						<p>
+							<span style="color: #a4abaf;'">Incoming message...</span><br> 
+							<span class="importantly">IPCR</span>
+							<span class="ipci_sub_head">(Institute for Post-Civilization Research)</span>
+						</p>
+
+						<p>Greetings, explorer!</p>
+						<p>You should be ashamed of what you did! However, the analytics department is thrilled, which means your compensation is already on its way.</p>
+					</div>`,
+		},
+		_const.ZhCN: {
+			"body": `<div class="ipci_message">
+						<div class="ipci_icon"></div>
+
+						<p>
+							<span style="color: #a4abaf;'">传入消息，来自</span><br> 
+							<span class="importantly">IPCR</span>
+							<span class="ipci_sub_head">(后文明研究所)</span>
+						</p>
+
+						<p>向你致敬，探索者！</p>
+						<p>您理应对自己的行为感到惭愧！但分析部门对此非常满意，所以您的补偿已在路上。</p>
+					</div>`,
+		},
+	},
 }
 
 func GetExpeditionMailTemplates(typeEvent string) map[string]map[string]string {

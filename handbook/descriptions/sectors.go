@@ -5,7 +5,7 @@ import _const "github.com/TrashPony/veliri-lib/const"
 var SectorDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
 		"disputed_territory_7": {ID: 29, Name: "Poppy", Description: ""},
-		"free_land_8":          {ID: 48, Name: "23-SS", Description: ""},
+		"free_land_8":          {ID: 48, Name: "SiS", Description: ""},
 		"free_land_13":         {ID: 53, Name: "Neot", Description: ""},
 		"sector_3":             {ID: 4, Name: "Minga", Description: ""},
 		"sector_9":             {ID: 10, Name: "Archimedes", Description: ""},
@@ -101,7 +101,7 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 		"free_land_5":          {ID: 45, Name: "21/14.0", Description: ""},
 		"free_land_6":          {ID: 46, Name: "LV-426", Description: ""},
 		"free_land_7":          {ID: 47, Name: "G-0", Description: ""},
-		"free_land_8":          {ID: 48, Name: "23-SS", Description: ""},
+		"free_land_8":          {ID: 48, Name: "SiS", Description: ""},
 		"free_land_9":          {ID: 49, Name: "MJkk", Description: ""},
 		"free_land_10":         {ID: 50, Name: "6789-0T", Description: ""},
 		"free_land_11":         {ID: 51, Name: "H-`1000", Description: ""},
@@ -131,7 +131,7 @@ var SectorDescription = map[string]map[string]DescriptionItem{
 	},
 	_const.ZhCN: {
 		"disputed_territory_7": {ID: 29, Name: "Poppy", Description: ""},
-		"free_land_8":          {ID: 48, Name: "23-SS", Description: ""},
+		"free_land_8":          {ID: 48, Name: "SiS", Description: ""},
 		"free_land_13":         {ID: 53, Name: "Neot", Description: ""},
 		"sector_3":             {ID: 4, Name: "Minga", Description: ""},
 		"sector_9":             {ID: 10, Name: "Archimedes", Description: ""},
