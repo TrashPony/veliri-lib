@@ -88,10 +88,10 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 73, ItemID: 1, ItemType: "ammo", Count: 5 * 4, Points: 5000 * 3, MinRank: 3},
 	{ID: 74, ItemID: 2, ItemType: "ammo", Count: 5 * 2, Points: 9000 * 3, MinRank: 6},
 	// equip +
-	// weapon +
-	{ID: 39, ItemID: 10000011, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
-	// body +
-	{ID: 38, ItemID: 10000009, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+	//// weapon +
+	//{ID: 39, ItemID: 10000011, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
+	//// body +
+	//{ID: 38, ItemID: 10000009, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1000, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 	{ID: 40009, ItemID: 221, ItemType: "blueprints", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
@@ -224,9 +224,9 @@ var ExploresAssortment = []AssortmentPoint{
 
 	// equip +
 	// weapon +
-	{ID: 75, ItemID: 10000016, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
-	// body +
-	{ID: 76, ItemID: 10000014, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+	//{ID: 75, ItemID: 10000016, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
+	//// body +
+	//{ID: 76, ItemID: 10000014, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1001, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 	{ID: 40010, ItemID: 221, ItemType: "blueprints", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
@@ -355,10 +355,10 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 139, ItemID: 15, ItemType: "ammo", Count: 5 * 2, Points: 30000 * 3, MinRank: 6},
 
 	// equip +
-	// weapon +
-	{ID: 77, ItemID: 10000042, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
-	// body +
-	{ID: 78, ItemID: 10000019, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
+	//// weapon +
+	//{ID: 77, ItemID: 10000042, ItemType: "weapon", Count: 1, Credits: 10000, MinRank: 1},
+	//// body +
+	//{ID: 78, ItemID: 10000019, ItemType: "body", Count: 1, Credits: 15000, MinRank: 1},
 
 	{ID: 1002, ItemID: 39, ItemType: "trash", Count: 1, Points: 2000000, Credits: 1000000, MinRank: 1},
 	{ID: 40011, ItemID: 221, ItemType: "blueprints", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
