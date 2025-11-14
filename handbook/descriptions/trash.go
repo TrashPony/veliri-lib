@@ -46,6 +46,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"Replic_label":                  {Name: "Replic faction label", Description: "<p>Engraved symbolic representation of one of the factions on the planet. In this case, the symbol of Replics is depicted — ardent expansionists and militarists among all other synthetics factions.</p>"},
 		"teleport_hack":                 {Name: "Teleport hack", Description: "<p>Remote access and authorization override device. Allows you to block access to teleportation gates, and also makes synthetics bases vulnerable to destruction during a factional war.</p>"},
 		"siphil_contract":               {Name: "Forged Replic Communicator", Description: "<p>You were recommended as someone who can solve problems. He is one of them.</p><p>Try to resolve the matter quietly and without unnecessary witnesses.</p><p>Any assistants - also eliminate after completion.</p><p><br>I.</p>"},
+		"repair_supplies":               {Name: "Repair modules", Description: ""},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -90,6 +91,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p>Выгравированное символическое отображение одной из фракций на планете. В данном случае, изображён символ Replics - ярых экспансионистов и милитаристов из всех прочих фракций синтетов.</p>"},
 		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Устройство удалённого доступа и переписи авторизации. Позволяет блокировать доступ к телепортационным вратам, а также делает базы синтетов во время фракционной войны - уязвимыми к уничтожению.</p>"},
 		"siphil_contract":               {Name: "Поддельный коммуникатор Replic", Description: "<p>Тебя посоветовали, как умеющего разрешать проблемы. Он - одна из таких.</p><p>Постарайся решить вопрос тихо и без лишних свидетелей.</p><p>Любых помощников - также распыли по окончании.</p><p><br>И.</p>"},
+		"repair_supplies":               {Name: "Ремотные модули", Description: ""}, // TODO
 	},
 	_const.ZhCN: {
 		"card":                          {Name: "卡片", Description: "<p>看起来像是某种锁的钥匙。</p>"},
@@ -134,5 +136,6 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"Replic_label":                  {Name: "“Replic”派系标签", Description: "<p>雕刻的象征性标志，代表星球上的一个派系。在这里，展示的是Replics的标志——所有合成者派系中最具扩张主义和军事主义的派系。</p>"},
 		"teleport_hack":                 {Name: "传送门破解", Description: "<p>远程访问和授权重写设备。允许封锁传送门的访问权限，并在派系战争期间使合成者基地容易受到破坏。</p>"},
 		"siphil_contract":               {Name: "Replic伪造通讯器", Description: "<p>有人推荐你作为能解决问题的人。他就是其中一个问题。</p><p>尽量安静地解决，不要留下多余目击者。</p><p>所有助手——完成后也一并处理掉。</p><p><br>I.</p>"},
+		"repair_supplies":               {Name: "维修模块", Description: ""},
 	},
 }
