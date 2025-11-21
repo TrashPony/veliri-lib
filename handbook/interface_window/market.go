@@ -530,22 +530,22 @@ var Market = map[string]map[string]string{
 	},
 	"region_head": {
 		_const.RU:   `Область:`,
-		_const.EN:   ``,
-		_const.ZhCN: ``,
+		_const.EN:   `Area:`,
+		_const.ZhCN: `选择区域:`,
 	},
 	"region_option_0": {
 		_const.RU:   `Регион`,
-		_const.EN:   ``,
-		_const.ZhCN: ``,
+		_const.EN:   `Region`,
+		_const.ZhCN: `地区`,
 	},
 	"region_option_1": {
 		_const.RU:   `Сектор`,
-		_const.EN:   ``,
-		_const.ZhCN: ``,
+		_const.EN:   `Sector`,
+		_const.ZhCN: `部门`,
 	},
 	"region_option_2": {
 		_const.RU:   `База`,
-		_const.EN:   ``,
-		_const.ZhCN: ``,
+		_const.EN:   `Base`,
+		_const.ZhCN: `基地`,
 	},
 }

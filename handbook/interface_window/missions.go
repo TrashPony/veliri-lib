@@ -30,4 +30,9 @@ var Missions = map[string]map[string]string{
 		_const.EN:   `lost an item?`,
 		_const.ZhCN: `丢失物品？`,
 	},
+	"no_mission": {
+		_const.RU:   `Нет заданий`,
+		_const.EN:   `No Missions`,
+		_const.ZhCN: `暂无任务`,
+	},
 }
