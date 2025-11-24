@@ -36,6 +36,7 @@ type Unit struct {
 	ShieldTimeOut  int              `json:"shield_time_out"`
 	Power          int              `json:"power"`
 	Destroy        bool             `json:"destroy"`
+	Wreckage       bool             `json:"wreckage"`
 	LostEquip      []inventory.Slot `json:"-"`
 	BodyTexture    string           `json:"body_texture"`
 	MapID          int32            `json:"map_id"`
