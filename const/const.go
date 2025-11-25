@@ -168,6 +168,8 @@ const (
 
 	UnitShieldRestoreTime = 5000 // 5 сек
 	UnitShieldRestoreHP   = 1    // 5 сек
+
+	PelengatorInnerRadius = 128
 )
 
 var ItemBinTypes = map[string]int{

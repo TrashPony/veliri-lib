@@ -635,6 +635,8 @@ func CreateBinaryAnomaly(anomalies []*visible_anomaly.VisibleAnomaly) []byte {
 		command = append(command, byte(yByte2))
 		command = append(command, byte(idByte1))
 		command = append(command, byte(idByte2))
+		command = append(command, game_math.BoolToByte(a.Open))
+
 	}
 
 	return command
