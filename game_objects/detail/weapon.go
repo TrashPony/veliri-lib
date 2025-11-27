@@ -34,6 +34,7 @@ type Weapon struct {
 	Requirements       map[int]int              `json:"requirements"` // [id]lvl
 	DamageModifier     float64                  `json:"damage_modifier"`
 	AllowAmmo          []int                    `json:"allow_ammo"`
+	Tech               int                      `json:"tech"`
 
 	// оружие накопительного типа (зажатая мышка коит энергию, отпускание выпускает снаряд)
 	AccumulationType             string  `json:"accumulation_type"`
@@ -83,4 +84,8 @@ func (w *Weapon) GetStandardSize() int {
 
 func (w *Weapon) GetTypeSlot() int {
 	return 0
+}
+
+func (w *Weapon) GetTech() int {
+	return w.Tech
 }

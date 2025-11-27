@@ -38,6 +38,7 @@ type Body struct {
 	FoldSize     int `json:"fold_size"`
 	CapacitySize int `json:"capacity_size"` /* вместимость корпуса к кубо-метрах */
 	StandardSize int `json:"standard_size"` /* small - 1, medium - 2, big - 3, размер корпуса (если корпус мс то неучитывается)*/
+	Tech         int `json:"tech"`
 
 	// TODO передалать это на 1 мапу
 	equippingI   map[int]*BodyEquipSlot
@@ -144,6 +145,10 @@ func (body *Body) GetStandardSize() int {
 
 func (body *Body) GetTypeSlot() int {
 	return 0
+}
+
+func (body *Body) GetTech() int {
+	return body.Tech
 }
 
 type Bonus struct {

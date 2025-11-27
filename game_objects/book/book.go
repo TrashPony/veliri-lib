@@ -38,3 +38,7 @@ func (b *Book) GetStandardSize() int {
 func (b *Book) GetTypeSlot() int {
 	return b.SkillID
 }
+
+func (b *Book) GetTech() int {
+	return 0
+}

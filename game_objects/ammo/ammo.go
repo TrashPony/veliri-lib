@@ -35,6 +35,7 @@ type Ammo struct {
 	ThermoDamage           int         `json:"thermo_damage"`
 	DistSpread             int         `json:"dist_spread"` // 1-100, 100 - нет рассеивания, 1 - рассеивание х100
 	AdditionalAmmoID       int         `json:"additional_ammo_id"`
+	Tech                   int         `json:"tech"`
 }
 
 func (a *Ammo) GetName() string {
@@ -67,4 +68,8 @@ func (a *Ammo) GetStandardSize() int {
 
 func (a *Ammo) GetTypeSlot() int {
 	return 0
+}
+
+func (a *Ammo) GetTech() int {
+	return a.Tech
 }

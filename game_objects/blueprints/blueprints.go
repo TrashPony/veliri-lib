@@ -38,6 +38,7 @@ type Blueprint struct {
 	InMap           bool   `json:"in_map"`
 	BuildObjectID   int    `json:"build_object_id"`
 	DontRecycle     bool   `json:"dont_recycle"`
+	Tech            int    `json:"tech"`
 }
 
 func (b *Blueprint) GetName() string {
@@ -70,6 +71,10 @@ func (b *Blueprint) GetStandardSize() int {
 
 func (b *Blueprint) GetTypeSlot() int {
 	return 0
+}
+
+func (b *Blueprint) GetTech() int {
+	return b.Tech
 }
 
 func (b *Blueprint) GetNeedCount() int {

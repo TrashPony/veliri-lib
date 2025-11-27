@@ -14,6 +14,7 @@ type Box struct {
 	Width         int     `json:"width"`
 	Length        int     `json:"length"`
 	HP            int     `json:"hp"`
+	Tech          int     `json:"tech"`
 }
 
 func (b *Box) GetName() string {
@@ -46,4 +47,8 @@ func (b *Box) GetStandardSize() int {
 
 func (b *Box) GetTypeSlot() int {
 	return 0
+}
+
+func (b *Box) GetTech() int {
+	return b.Tech
 }

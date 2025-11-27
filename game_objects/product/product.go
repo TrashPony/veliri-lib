@@ -39,3 +39,7 @@ func (p *Product) GetStandardSize() int {
 func (p *Product) GetTypeSlot() int {
 	return 0
 }
+
+func (p *Product) GetTech() int {
+	return 0
+}

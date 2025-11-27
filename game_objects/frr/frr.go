@@ -37,3 +37,7 @@ func (f *FRR) GetStandardSize() int {
 func (f *FRR) GetTypeSlot() int {
 	return 0
 }
+
+func (f *FRR) GetTech() int {
+	return 0
+}

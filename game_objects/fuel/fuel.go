@@ -8,6 +8,7 @@ type Fuel struct {
 	Size      int             `json:"size"`
 	EnergyCap int             `json:"energy_cap"`
 	Bonuses   []effect.Effect `json:"bonuses"`
+	Tech      int             `json:"tech"`
 }
 
 func (f *Fuel) GetName() string {
@@ -40,4 +41,8 @@ func (f *Fuel) GetStandardSize() int {
 
 func (f *Fuel) GetTypeSlot() int {
 	return 0
+}
+
+func (f *Fuel) GetTech() int {
+	return f.Tech
 }

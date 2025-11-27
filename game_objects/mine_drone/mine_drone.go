@@ -5,6 +5,7 @@ type MineDrone struct {
 	Name   string `json:"name"`
 	Size   int    `json:"size"`
 	BodyID int    `json:"body_id"`
+	Tech   int    `json:"tech"`
 }
 
 func (md *MineDrone) GetName() string {
@@ -37,4 +38,8 @@ func (md *MineDrone) GetStandardSize() int {
 
 func (md *MineDrone) GetTypeSlot() int {
 	return 0
+}
+
+func (md *MineDrone) GetTech() int {
+	return md.Tech
 }

@@ -41,3 +41,7 @@ func (p *Package) GetStandardSize() int {
 func (p *Package) GetTypeSlot() int {
 	return 0
 }
+
+func (p *Package) GetTech() int {
+	return 0
+}

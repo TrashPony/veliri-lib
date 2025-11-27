@@ -38,3 +38,7 @@ func (t *TrashItem) GetStandardSize() int {
 func (t *TrashItem) GetTypeSlot() int {
 	return 0
 }
+
+func (t *TrashItem) GetTech() int {
+	return 0
+}

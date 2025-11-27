@@ -152,6 +152,10 @@ func (r *Resource) GetRecyclingAlgorithm() string {
 	return r.RecyclingAlgorithm
 }
 
+func (r *Resource) GetTech() int {
+	return 0
+}
+
 type RecycledResource struct {
 	TypeID        int    `json:"type_id"`
 	Name          string `json:"name"`
@@ -189,6 +193,10 @@ func (r *RecycledResource) GetStandardSize() int {
 }
 
 func (r *RecycledResource) GetTypeSlot() int {
+	return 0
+}
+
+func (r *RecycledResource) GetTech() int {
 	return 0
 }
 
@@ -230,4 +238,8 @@ func (c *CraftDetail) GetStandardSize() int {
 
 func (c *CraftDetail) GetTypeSlot() int {
 	return 0
+}
+
+func (c *CraftDetail) GetTech() int {
+	return c.Tech
 }

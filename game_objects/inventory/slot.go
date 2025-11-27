@@ -17,6 +17,7 @@ type ItemInfo struct {
 	// для магазина
 	StandardSize int `json:"standard_size,omitempty"`
 	TypeSlot     int `json:"type_slot,omitempty"`
+	Tech         int `json:"tech"`
 }
 
 type ItemInformer interface {
@@ -28,6 +29,7 @@ type ItemInformer interface {
 	GetStandardSize() int
 	GetTypeSlot() int
 	GetSize() int
+	GetTech() int
 }
 
 func (i *ItemInfo) GetName() string {
@@ -62,6 +64,10 @@ func (i *ItemInfo) GetSize() int {
 	return i.Size
 }
 
+func (i *ItemInfo) GetTech() int {
+	return i.Tech
+}
+
 func GetInfoByItem(informer ItemInformer) *ItemInfo {
 	infoItem := &ItemInfo{
 		Name:         informer.GetName(),
@@ -72,6 +78,7 @@ func GetInfoByItem(informer ItemInformer) *ItemInfo {
 		StandardSize: informer.GetStandardSize(),
 		TypeSlot:     informer.GetTypeSlot(),
 		Size:         informer.GetSize(),
+		Tech:         informer.GetTech(),
 	}
 
 	if infoItem.Name == "" {

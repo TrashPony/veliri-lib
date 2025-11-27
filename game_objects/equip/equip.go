@@ -36,6 +36,7 @@ type Equip struct {
 	RotateSpeed     int                      `json:"rotate_speed"`
 	PassAngle       int                      `json:"pass_angle"`
 	Variants        []int                    `json:"variants"`
+	Tech            int                      `json:"tech"`
 
 	MaxAmmoCount int            `json:"max_ammo_count"` // 0 - бесконечно
 	LifeTime     int            `json:"life_time"`      // время жизни обьекта или дрона
@@ -108,4 +109,8 @@ func (e *Equip) CreateMining() {
 
 func (e *Equip) GetMining() chan bool {
 	return e.miningExit
+}
+
+func (e *Equip) GetTech() int {
+	return e.Tech
 }

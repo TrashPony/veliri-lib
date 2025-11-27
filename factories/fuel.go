@@ -37,6 +37,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Size:      sizeFuel,
 		EnergyCap: 100000 * capK,
 		Bonuses:   []effect.Effect{},
+		Tech:      1,
 	},
 	5: {
 		ID:        5,
@@ -76,6 +77,7 @@ var fuelTypes = map[int]fuel.Fuel{
 				Percentages: true,
 			},
 		},
+		Tech: 1,
 	},
 	6: {
 		ID:        6,
@@ -115,6 +117,7 @@ var fuelTypes = map[int]fuel.Fuel{
 				Percentages: true,
 			},
 		},
+		Tech: 1,
 	},
 }
 
