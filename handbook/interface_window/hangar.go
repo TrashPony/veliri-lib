@@ -496,4 +496,45 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   "Melee weapon slot",
 		_const.ZhCN: "近战武器槽",
 	},
+	"tip_21": {
+		_const.RU: `<div>
+						<div><b>Синхронизация:</b><br><br></div>
+						<div>► Каждые 5% синхронизации дают 1 очко для усиления подсистем</div>
+						<div>► Каждые 25% открывают или усиливают перк корпуса<br><br></div>
+				
+						<div><b>Очки подсистем:</b></div>
+						<div>► Каждое очко усиливает все свойства корпуса категории на 1%</div>
+						<div>► Максимум 10 очков на одну подсистему<br><br></div>
+				
+						<div><b>Влияние износа корпуса:</b></div>
+						<div>► Чем выше износ корпуса, тем ниже эффективность синхронизации</div>
+						<div>► При максимальном износе очки систем и перки перестают работать</div>
+					</div>`,
+		_const.EN: `<div>
+						<div><b>Synchronization:</b><br><br></div>
+						<div>► Every 5% synchronization gives 1 subsystem point</div>
+						<div>► Every 25% unlocks or enhances a body perk<br><br></div>
+				
+						<div><b>Subsystem Points:</b></div>
+						<div>► Each point enhances all body properties in that category by 1%</div>
+						<div>► Maximum 10 points per subsystem<br><br></div>
+				
+						<div><b>Body Wear Impact:</b></div>
+						<div>► Higher body wear reduces synchronization effectiveness</div>
+						<div>► At maximum wear, system points and perks stop working</div>
+					</div>`,
+		_const.ZhCN: `<div>
+						<div><b>同步系统：</b><br><br></div>
+						<div>► 每5%同步度提供1个子系统点数</div>
+						<div>► 每25%解锁或增强机体技能<br><br></div>
+				
+						<div><b>子系统点数：</b></div>
+						<div>► 每点提升该类别所有属性1%</div>
+						<div>► 每个子系统最多10点<br><br></div>
+				
+						<div><b>机体损耗影响：</b></div>
+						<div>► 机体损耗越高，同步效果越差</div>
+						<div>► 最大损耗时，系统点数和技能失效</div>
+					</div>`,
+	},
 }

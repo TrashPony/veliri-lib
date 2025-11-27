@@ -60,6 +60,7 @@ var AllDescription = map[string]map[string]map[string]descriptions.DescriptionIt
 	"mine_drone": descriptions.MineDrones,
 	"package":    descriptions.Packages,
 	"book":       descriptions.BookDescription,
+	"frr":        descriptions.FRRDescription,
 }
 
 func GetInfo(t, l, n string) descriptions.DescriptionItem {

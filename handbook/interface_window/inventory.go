@@ -433,6 +433,7 @@ var Inventory = map[string]map[string]string{
         <div class="tooltip-header">Состояние корпуса: Износ <b>%durability%%</b><br><br></div>
         <div>► Каждые 5% износа дают <b>-1%</b> к скорости и HP.</div>
         <div>► Каждая смерть увеличивает износ на 3-7%.</div>
+		<div>► Износ уменьшает синхронизацию с транспортом.</div>
 		<div>► Чем выше износ, тем меньше ресурсов при разборе.</div>
         <div>► Чем выше износ, тем дороже ремонт.<br><br></div>
         <div>Предметы с износом нельзя продать на рыноке, но можно передать другому игроку, бросив на землю, или разобрать на ресурсы.</div>
@@ -441,6 +442,7 @@ var Inventory = map[string]map[string]string{
         <div class="tooltip-header">Hull Condition: Wear <b>%durability%%</b><br><br></div>
         <div>► Every 5% wear reduces speed and HP by <b>-1%</b>.</div>
         <div>► Each death increases wear by 3-7%.</div>
+        <div>► Wear reduces synchronization with the vehicle.</div>
         <div>► Higher wear increases repair costs.</div>
 		<div>► Higher wear reduces resources from recycling.<br><br></div>
         <div>Worn items cannot be sold on the market, but can be dropped for other players or recycled for resources.</div>
@@ -449,6 +451,7 @@ var Inventory = map[string]map[string]string{
         <div class="tooltip-header">机体状态: 磨损度 <b>%durability%%</b><br><br></div>
         <div>► 每5%磨损度降低速度和HP <b>-1%</b>。</div>
         <div>► 每次死亡增加3-7%磨损度。</div>
+		<div>► 磨损会降低与车辆的同步性。</div>
         <div>► 磨损度越高，维修费用越贵。</div>
 		<div>► 磨损度越高，分解获得的资源越少。<br><br></div>
         <div>磨损物品无法在市场出售，但可丢弃给其他玩家或分解为资源。</div>

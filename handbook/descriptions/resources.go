@@ -7,7 +7,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"copper_ore":   {Name: "Copper ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"iron_ore":     {Name: "Iron ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"silicon_ore":  {Name: "Silicon ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
-		"thorium_ore":  {Name: "Thorium ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
+		"thorium_ore":  {Name: "Lithium Ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"titanium_ore": {Name: "Titanium ore", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"oil":          {Name: "Oil", Description: "<p>Natural mineral formation containing useful components and suitable for further processing and exploitation. It is obtained by means of special equipment, as well as an engineering structure of the corresponding type.</p>"},
 		"organic":      {Name: "Organic", Description: "<p>Remains of photo/radio-autotrophic organisms extracted from the compactions of local unfriendly flora and used in certain production chains.</p>"},
@@ -21,7 +21,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"copper_ore":   {Name: "Медная руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
 		"iron_ore":     {Name: "Железная руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"silicon_ore":  {Name: "Кремниевая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
-		"thorium_ore":  {Name: "Ториевая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
+		"thorium_ore":  {Name: "Литиева руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"titanium_ore": {Name: "Титановая руда", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа. </p>"},
 		"oil":          {Name: "Нефть", Description: "<p>Природное минеральное образование, содержащее в себе полезные компоненты и пригодное для дальнейшей переработки и, эксплуатации. Добывается посредством специального оборудования, а также инженерного сооружения соответствующего типа.</p>"},
 		"organic":      {Name: "Органика", Description: "<p>Остатки фото/радо-автотрофных организмов, добываемых из уплотнений местной недружелюбной флоры и, нашедшей своё применение в определённых производственных цепочках.</p>"},
@@ -35,7 +35,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 		"copper_ore":   {Name: "铜矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
 		"iron_ore":     {Name: "铁矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
 		"silicon_ore":  {Name: "硅矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
-		"thorium_ore":  {Name: "钍矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
+		"thorium_ore":  {Name: "锂矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
 		"titanium_ore": {Name: "钛矿石", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
 		"oil":          {Name: "石油", Description: "<p>一种天然矿物，含有有用的成分，适合进一步加工和利用。通过特殊设备和相应类型的工程结构进行开采。</p>"},
 		"organic":      {Name: "有机物", Description: "<p>从当地不友好的植物中提取的光合/放射自养生物的残留物，已在某些生产链中找到应用。</p>"},
@@ -49,7 +49,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 
 var RecycleDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
-		"enriched_thorium": {Name: "Enriched thorium", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
+		"enriched_thorium": {Name: "Stabilized Lithium", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"copper":           {Name: "Copper", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"iron":             {Name: "Iron", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"plastic":          {Name: "Plastic", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
@@ -58,7 +58,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"carbon":           {Name: "Carbon", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 	},
 	_const.RU: {
-		"enriched_thorium": {Name: "Обогащенный торий", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
+		"enriched_thorium": {Name: "Стабилизированый литий", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"copper":           {Name: "Медь", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"iron":             {Name: "Железо", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"plastic":          {Name: "Пластик", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
@@ -67,7 +67,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"carbon":           {Name: "Углерод", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 	},
 	_const.ZhCN: {
-		"enriched_thorium": {Name: "浓缩钍", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
+		"enriched_thorium": {Name: "稳定锂", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"copper":           {Name: "铜", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"iron":             {Name: "铁", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"plastic":          {Name: "塑料", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
