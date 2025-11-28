@@ -1,5 +1,7 @@
 package resource
 
+import "github.com/TrashPony/veliri-lib/game_objects/inventory"
+
 type Resource struct {
 	TypeID        int    `json:"type_id"`
 	Name          string `json:"name"`
@@ -18,6 +20,10 @@ type Resource struct {
 	Carbon          int `json:"carbon"`
 
 	RecyclingAlgorithm string `json:"recycling_algorithm"`
+}
+
+func (r *Resource) GetAdvancedItems() []inventory.Slot {
+	return []inventory.Slot{}
 }
 
 func (r *Resource) GetAdvancedElectronics() int {

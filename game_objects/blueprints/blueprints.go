@@ -1,5 +1,7 @@
 package blueprints
 
+import "github.com/TrashPony/veliri-lib/game_objects/inventory"
+
 type Blueprint struct {
 	ID            int    `json:"id"`
 	Name          string `json:"name"`
@@ -36,12 +38,12 @@ type Blueprint struct {
 	Batteries       int `json:"batteries"`
 	ArmorItems      int `json:"armor_items"`
 	CarbonPlate     int `json:"carbon_plate"`
-
 	//T2 details
-	AdvancedElectronics int `json:"advanced_electronics"`
-	ReinforcedFrame     int `json:"reinforced_frame"`
-	ReinforcedDrives    int `json:"reinforced_drives"`
-	CompositeArmor      int `json:"composite_armor"`
+	AdvancedElectronics int              `json:"advanced_electronics"`
+	ReinforcedFrame     int              `json:"reinforced_frame"`
+	ReinforcedDrives    int              `json:"reinforced_drives"`
+	CompositeArmor      int              `json:"composite_armor"`
+	AdvancedItems       []inventory.Slot `json:"advanced_items"`
 
 	// products
 	CivilianWeapon      int `json:"civilian_weapon"`
@@ -55,6 +57,10 @@ type Blueprint struct {
 	BuildObjectID int  `json:"build_object_id"`
 	DontRecycle   bool `json:"dont_recycle"`
 	Tech          int  `json:"tech"`
+}
+
+func (b *Blueprint) GetAdvancedItems() []inventory.Slot {
+	return b.AdvancedItems
 }
 
 func (b *Blueprint) GetAdvancedElectronics() int {
