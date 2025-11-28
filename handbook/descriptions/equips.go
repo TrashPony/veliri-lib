@@ -5,6 +5,8 @@ import _const "github.com/TrashPony/veliri-lib/const"
 var EquipDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
 		"repair_kit":                     {Name: "Self-Repair Module", Description: "<p>About a million nanobots armed with microelements of spare parts and, when activated, begin immediate restoration work on the damaged hull and systems.</p>"},
+		"repair_kit_t2_reload":           {Name: "T2 Self-Repair Module [Accelerated]", Description: "<p>An engineering breakthrough that reduces repair time. Next-generation nanobots operate with unprecedented coordination, which is critical in continuous combat where every second counts.</p>"},
+		"repair_kit_t2_heal":             {Name: "T2 Self-Repair Module [Enhanced]", Description: "<p>A high-power swarm with an increased supply of reagents. Capable of repairing significantly more serious damage in a single work cycle than the standard model.</p>"},
 		"energy_shield":                  {Name: "Force Field M-Shields", Description: "<p>Low-spectrum force emitters provide energy protection against any phenomenon trying to overcome the barrier. Significantly reduce damage, but do not guarantee one hundred percent protection.</p>"},
 		"armored":                        {Name: "Armored Reinforcement Plate", Description: "<p>A standard hull armor booster that increases the overall percentage of damage resistance.</p>"},
 		"digger":                         {Name: "«Phobos» Drone", Description: "<p>Remotely controlled drone used for surveying planetary anomalies and capable of attacking a variety of targets.</p>"},
@@ -86,6 +88,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 	},
 	_const.RU: {
 		"repair_kit":                     {Name: "Модуль само-ремонта", Description: "<p>Около миллиона наноботов, вооружённых микроэлементами запчастей и при активации, приступающих к незамедлительным восстановительным работам повреждённого корпуса и систем.</p>"},
+		"repair_kit_t2_reload":           {Name: "Модуль само-ремонта Т2 [Ускоренный]", Description: "<p>Инженерный прорыв, сокращающий время ремонта. Наноботы нового поколения действуют с беспрецедентной скоординированностью, что критично в условиях непрерывного боя, когда каждая секунда на счету.</p>"},
+		"repair_kit_t2_heal":             {Name: "Модуль само-ремонта Т2 [Усиленный]", Description: "<p>Рой повышенной мощности с увеличенным запасом реагентов. За один цикл работы способен устранить значительно более серьёзные повреждения, чем стандартная модель.</p>"},
 		"energy_shield":                  {Name: "М-щиты силового поля", Description: "<p>Силовые излучатели малого спектра энергетической защиты, противодействующих любому явлению, что пытается преодолеть барьер.  Существенно снижают урон, но не гарантируют стопроцентной защиты.</p>"},
 		"armored":                        {Name: "Армированная броненакладка", Description: "<p>Усилитель стандартной брони корпуса, повышающий общий процент сопротивляемости к урону.</p>"},
 		"digger":                         {Name: "Дрон \"Фобос\"", Description: "<p>Дрон на удалённом управлении, применяемый для работ изыскательного характера с планетарными аномалиями и возможностью атаки самых разных целей.</p>"},
@@ -167,6 +171,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 	},
 	_const.ZhCN: {
 		"repair_kit":                        {Name: "自我修复模块", Description: "<p>大约一百万个纳米机器人，配备微型零件，激活后立即开始修复受损的机身和系统。</p>"},
+		"repair_kit_t2_reload":              {Name: "T2自动修复模块【加速型】", Description: "<p>工程学突破，可缩短修复时间。新一代纳米机器人以前所未有的协调性运作，这在分秒必争的持续战斗中至关重要。</p>"},
+		"repair_kit_t2_heal":                {Name: "T2自动修复模块【强化型】", Description: "<p>高功率蜂群配备加量的修复试剂。单次工作周期内可修复比标准型号严重得多的损伤。</p>"},
 		"energy_shield":                     {Name: "M-力场护盾", Description: "<p>小型能量防护力场发射器，能够抵御任何试图突破屏障的现象。显著减少伤害，但不保证100%的防护。</p>"},
 		"armored":                           {Name: "装甲增强板", Description: "<p>增强机身标准装甲的装置，提高整体抗伤害能力。</p>"},
 		"digger":                            {Name: "无人机“火卫一”", Description: "<p>远程控制的无人机，用于勘探行星异常并能够攻击各种目标。</p>"},

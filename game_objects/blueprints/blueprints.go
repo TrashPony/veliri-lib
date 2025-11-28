@@ -1,44 +1,102 @@
 package blueprints
 
 type Blueprint struct {
-	ID              int    `json:"id"`
-	Name            string `json:"name"`
-	Specification   string `json:"specification"`
-	ItemType        string `json:"item_type"`
-	ItemId          int    `json:"item_id"`
-	ItemName        string `json:"item_name"`
-	Icon            string `json:"icon"`
-	CraftTime       int    `json:"craft_time"`
-	Original        bool   `json:"original"`
-	Copies          int    `json:"copies"`
-	Count           int    `json:"count"`
-	EnrichedThorium int    `json:"enriched_thorium"`
-	Iron            int    `json:"iron"`
-	Copper          int    `json:"copper"`
-	Titanium        int    `json:"titanium"`
-	Silicon         int    `json:"silicon"`
-	Plastic         int    `json:"plastic"`
-	Carbon          int    `json:"carbon"`
-	Organic         int    `json:"organic"`
-	Oil             int    `json:"oil"`
-	Spices          int    `json:"spices"`
-	Disputes1       int    `json:"disputes_1"`
-	Disputes2       int    `json:"disputes_2"`
-	Resin           int    `json:"resin"`
-	Flower          int    `json:"Flower"`
-	Steel           int    `json:"steel"`
-	Wire            int    `json:"wire"`
-	Electronics     int    `json:"electronics"`
-	Wires           int    `json:"wires"`
-	Gear            int    `json:"gear"`
-	TitaniumPlate   int    `json:"titanium_plate"`
-	Batteries       int    `json:"batteries"`
-	ArmorItems      int    `json:"armor_items"`
-	CarbonPlate     int    `json:"carbon_plate"`
-	InMap           bool   `json:"in_map"`
-	BuildObjectID   int    `json:"build_object_id"`
-	DontRecycle     bool   `json:"dont_recycle"`
-	Tech            int    `json:"tech"`
+	ID            int    `json:"id"`
+	Name          string `json:"name"`
+	Specification string `json:"specification"`
+	ItemType      string `json:"item_type"`
+	ItemId        int    `json:"item_id"`
+	ItemName      string `json:"item_name"`
+	Icon          string `json:"icon"`
+	CraftTime     int    `json:"craft_time"`
+	Original      bool   `json:"original"`
+	Copies        int    `json:"copies"`
+	Count         int    `json:"count"`
+
+	EnrichedThorium int `json:"enriched_thorium"`
+	Iron            int `json:"iron"`
+	Copper          int `json:"copper"`
+	Titanium        int `json:"titanium"`
+	Silicon         int `json:"silicon"`
+	Plastic         int `json:"plastic"`
+	Carbon          int `json:"carbon"`
+	Organic         int `json:"organic"`
+	Oil             int `json:"oil"`
+	Spices          int `json:"spices"`
+	Disputes1       int `json:"disputes_1"`
+	Disputes2       int `json:"disputes_2"`
+	Resin           int `json:"resin"`
+	Flower          int `json:"Flower"`
+	Steel           int `json:"steel"`
+	Wire            int `json:"wire"`
+	Electronics     int `json:"electronics"`
+	Wires           int `json:"wires"`
+	Gear            int `json:"gear"`
+	TitaniumPlate   int `json:"titanium_plate"`
+	Batteries       int `json:"batteries"`
+	ArmorItems      int `json:"armor_items"`
+	CarbonPlate     int `json:"carbon_plate"`
+
+	//T2 details
+	AdvancedElectronics int `json:"advanced_electronics"`
+	ReinforcedFrame     int `json:"reinforced_frame"`
+	ReinforcedDrives    int `json:"reinforced_drives"`
+	CompositeArmor      int `json:"composite_armor"`
+
+	// products
+	CivilianWeapon      int `json:"civilian_weapon"`
+	FoxCrystals         int `json:"fox_crystals"`
+	NeutrinoProcessors  int `json:"neutrino_processors"`
+	WeaponParts         int `json:"weapon_parts"`
+	TechnologicalMaps   int `json:"technological_maps"`
+	SubatomicComposites int `json:"subatomic_composites"`
+
+	InMap         bool `json:"in_map"`
+	BuildObjectID int  `json:"build_object_id"`
+	DontRecycle   bool `json:"dont_recycle"`
+	Tech          int  `json:"tech"`
+}
+
+func (b *Blueprint) GetAdvancedElectronics() int {
+	return b.AdvancedElectronics
+}
+
+func (b *Blueprint) GetReinforcedFrame() int {
+	return b.ReinforcedFrame
+}
+
+func (b *Blueprint) GetReinforcedDrives() int {
+	return b.ReinforcedDrives
+}
+
+func (b *Blueprint) GetCompositeArmor() int {
+	return b.CompositeArmor
+}
+
+func (b *Blueprint) GetCivilianWeapon() int {
+	return b.CivilianWeapon
+}
+
+func (b *Blueprint) GetFoxCrystals() int {
+	return b.FoxCrystals
+
+}
+
+func (b *Blueprint) GetNeutrinoProcessors() int {
+	return b.NeutrinoProcessors
+
+}
+
+func (b *Blueprint) GetWeaponParts() int {
+	return b.WeaponParts
+}
+
+func (b *Blueprint) GetTechnologicalMaps() int {
+	return b.TechnologicalMaps
+}
+
+func (b *Blueprint) GetSubatomicComposites() int {
+	return b.SubatomicComposites
 }
 
 func (b *Blueprint) GetName() string {

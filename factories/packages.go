@@ -4,7 +4,10 @@ import (
 	_package "github.com/TrashPony/veliri-lib/game_objects/package"
 )
 
-const countRecycleItems = 20
+const (
+	countRecycleItems = 100
+	sizeK             = 4
+)
 
 var packages = map[int]_package.Package{
 	1: {
@@ -14,7 +17,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "enriched_thorium",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      25 * (countRecycleItems / 2),
+		Size:      25 * (countRecycleItems / sizeK),
 	},
 	2: {
 		ID:        2,
@@ -23,7 +26,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "copper",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      30 * (countRecycleItems / 2),
+		Size:      30 * (countRecycleItems / sizeK),
 	},
 	3: {
 		ID:        3,
@@ -32,7 +35,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "iron",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      35 * (countRecycleItems / 2),
+		Size:      35 * (countRecycleItems / sizeK),
 	},
 	4: {
 		ID:        4,
@@ -41,7 +44,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "plastic",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      50 * (countRecycleItems / 2),
+		Size:      50 * (countRecycleItems / sizeK),
 	},
 	5: {
 		ID:        5,
@@ -50,7 +53,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "silicon",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      40 * (countRecycleItems / 2),
+		Size:      40 * (countRecycleItems / sizeK),
 	},
 	6: {
 		ID:        6,
@@ -59,7 +62,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "titanium",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      50 * (countRecycleItems / 2),
+		Size:      50 * (countRecycleItems / sizeK),
 	},
 	7: {
 		ID:        7,
@@ -68,7 +71,7 @@ var packages = map[int]_package.Package{
 		ItemName:  "carbon",
 		ItemType:  "recycle",
 		ItemCount: countRecycleItems,
-		Size:      25 * (countRecycleItems / 2),
+		Size:      25 * (countRecycleItems / sizeK),
 	},
 }
 

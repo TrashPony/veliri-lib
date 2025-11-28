@@ -20,6 +20,46 @@ type Resource struct {
 	RecyclingAlgorithm string `json:"recycling_algorithm"`
 }
 
+func (r *Resource) GetAdvancedElectronics() int {
+	return 0
+}
+
+func (r *Resource) GetReinforcedFrame() int {
+	return 0
+}
+
+func (r *Resource) GetReinforcedDrives() int {
+	return 0
+}
+
+func (r *Resource) GetCompositeArmor() int {
+	return 0
+}
+
+func (r *Resource) GetCivilianWeapon() int {
+	return 0
+}
+
+func (r *Resource) GetFoxCrystals() int {
+	return 0
+}
+
+func (r *Resource) GetNeutrinoProcessors() int {
+	return 0
+}
+
+func (r *Resource) GetWeaponParts() int {
+	return 0
+}
+
+func (r *Resource) GetTechnologicalMaps() int {
+	return 0
+}
+
+func (r *Resource) GetSubatomicComposites() int {
+	return 0
+}
+
 func (r *Resource) GetName() string {
 	return r.Name
 }
