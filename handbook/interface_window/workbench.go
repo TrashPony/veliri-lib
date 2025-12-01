@@ -14,8 +14,8 @@ var Workbench = map[string]map[string]string{
 		_const.ZhCN: `服务模块已被销毁或禁用。`,
 	},
 	"error_2": {
-		_const.RU:   `Чертеж должен быть на "Складе"`,
-		_const.EN:   `The drawing must be in the "Warehouse"`,
+		_const.RU:   `Чертеж должен быть на <span class="importantly">Складе</span>`,
+		_const.EN:   `The drawing must be in the <span class="importantly">Storage</span>`,
 		_const.ZhCN: `图纸必须在“仓库”中`,
 	},
 	"error_3": {

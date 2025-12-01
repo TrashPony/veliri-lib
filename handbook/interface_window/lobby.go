@@ -181,6 +181,11 @@ var Lobby = map[string]map[string]string{
 		_const.EN:   `News / Search`,
 		_const.ZhCN: `新闻 / 搜索`,
 	},
+	"menu_17": {
+		_const.RU:   `Лаборатория`,
+		_const.EN:   `Laboratory`,
+		_const.ZhCN: `实验室`,
+	},
 	"text_7": {
 		_const.RU:   `Ожидайте освобождение главных ворот`,
 		_const.EN:   `Expect the release of the main gate`,

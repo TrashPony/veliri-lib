@@ -65,4 +65,5 @@ var GameInterface = map[string]map[string]map[string]string{
 	"SellChipsModal":      interface_window.SellChipsModal,
 	"ChangeFractionModal": interface_window.ChangeFractionModal,
 	"ClearRelationModal":  interface_window.ClearRelationModal,
+	"Laboratory":          interface_window.Laboratory,
 }

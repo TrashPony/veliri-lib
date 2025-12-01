@@ -10,10 +10,11 @@ type RelationBonuses struct {
 	ReducedDetailWorkTax     int  `json:"reduced_detail_work_tax"`
 	ReducedMarketTax         int  `json:"reduced_market_tax"`
 	AdditionalMissionCredits int  `json:"additional_mission_credits"`
-
+	LaboratoryChancePercent  int  `json:"laboratory_chance_percent"`
 	// negative
-	LockedUpNPCTrade bool `json:"locked_up_npc_trade"`
-	LockedUpWork     bool `json:"locked_up_work"`
-	LockedUpRecycle  bool `json:"locked_up_recycle"`
-	FractionHostile  bool `json:"fraction_hostile"`
+	LockedUpNPCTrade   bool `json:"locked_up_npc_trade"`
+	LockedUpWork       bool `json:"locked_up_work"`
+	LockedUpRecycle    bool `json:"locked_up_recycle"`
+	LockedUpLaboratory bool `json:"locked_up_laboratory"`
+	FractionHostile    bool `json:"fraction_hostile"`
 }

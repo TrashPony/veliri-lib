@@ -44,6 +44,8 @@ type Blueprint struct {
 	ReinforcedDrives    int              `json:"reinforced_drives"`
 	CompositeArmor      int              `json:"composite_armor"`
 	AdvancedItems       []inventory.Slot `json:"advanced_items"`
+	Variants            []int            `json:"variants"`
+	NeedRff             []map[string]int `json:"need_rff"`
 
 	// products
 	CivilianWeapon      int `json:"civilian_weapon"`

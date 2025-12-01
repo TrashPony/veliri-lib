@@ -247,6 +247,16 @@ var UserStat = map[string]map[string]string{
 		_const.EN:   `Faction warriors view`,
 		_const.ZhCN: `派系战士概览`,
 	},
+	"b_12": {
+		_const.RU:   `Запрет на использование лаборатории`,
+		_const.EN:   `Laboratory use ban`,
+		_const.ZhCN: `实验室使用禁令`,
+	},
+	"b_13": {
+		_const.RU:   `Увеличение шанса исследования в лаборатории`,
+		_const.EN:   `Increased chances of laboratory research`,
+		_const.ZhCN: `实验室研究机会增加`,
+	},
 	// Skills
 	"only_studied": {
 		_const.RU:   `Только изученные:`,
