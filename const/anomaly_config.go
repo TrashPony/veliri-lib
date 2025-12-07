@@ -5,12 +5,6 @@ import (
 	"sort"
 )
 
-const (
-	FreeLandMaxContAnomalies  = 20
-	BattleMapMaxContAnomalies = 15
-	SecureMapMaxContAnomalies = 10
-)
-
 var DetailsAnomalyOptions = map[int]*detailsAnomalyOption{
 	1: {MaxCountDetails: 2, MaxDetails: 15, MaxCountRecycle: 2, MaxRecycle: 250},
 	2: {MaxCountDetails: 3, MaxDetails: 20, MaxCountRecycle: 4, MaxRecycle: 500},
