@@ -37,6 +37,7 @@ type Object struct {
 	Texture             string `json:"texture"`
 	AnimateSpriteSheets string `json:"animate_sprite_sheets"`
 	AnimateLoop         bool   `json:"animate_loop"`
+	Core                bool   `json:"core"`
 	Name                string `json:"name"`
 	Inventory           bool   `json:"inventory"`
 	InventoryCapacity   int    `json:"-"`
