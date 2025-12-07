@@ -1,6 +1,10 @@
 package loot_system
 
-import _const "github.com/TrashPony/veliri-lib/const"
+import (
+	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/TrashPony/veliri-lib/game_math"
+	"math/rand"
+)
 
 type LootLot struct {
 	ItemType  string `json:"item_type"`
@@ -272,4 +276,78 @@ func getTypeSector(id int, fraction string, freeLand, battle, secure bool) secto
 	}
 
 	return sectorSafe
+}
+
+// Вспомогательные функции — чистые, переиспользуемые
+func generateParts(tier, minCount, maxCount int, rng *rand.Rand) []LootDrop {
+	pool := t0Details
+	if tier == 1 {
+		pool = t1Details
+	}
+
+	if len(pool) == 0 {
+		return nil
+	}
+
+	lot := pool[rng.Intn(len(pool))]
+
+	count := game_math.GetRangeRand(minCount, maxCount, rng) * (game_math.GetRangeRand(1, lot.BaseCount+1, rng))
+	return []LootDrop{{LootLot: lot, Count: count}}
+}
+
+func generateGoods(minGrade, maxGrade, minCount, maxCount int, rng *rand.Rand) []LootDrop {
+	grade := minGrade + rng.Intn(maxGrade-minGrade+1)
+	pool, ok := products[grade]
+	if !ok || len(pool) == 0 {
+		// fallback на первый непустой
+		for g := minGrade; g <= maxGrade; g++ {
+			if p, exists := products[g]; exists && len(p) > 0 {
+				pool = p
+				break
+			}
+		}
+	}
+
+	if len(pool) == 0 {
+		return nil
+	}
+
+	lot := pool[rng.Intn(len(pool))]
+
+	count := game_math.GetRangeRand(minCount, maxCount, rng) * (game_math.GetRangeRand(1, lot.BaseCount+1, rng))
+	return []LootDrop{{LootLot: lot, Count: count}}
+}
+
+func generateBlueprint(tier int, fraction string, rng *rand.Rand) []LootDrop {
+	pool := filterByFraction(t0BluePrints, fraction)
+	if tier == 1 {
+		pool = filterByFraction(t1BluePrints, fraction)
+	}
+
+	if len(pool) == 0 {
+		// fallback: любая фракция
+		if tier == 0 {
+			pool = t0BluePrints
+		} else {
+			pool = t1BluePrints
+		}
+	}
+
+	if len(pool) == 0 {
+		return nil
+	}
+
+	lot := pool[rng.Intn(len(pool))]
+	return []LootDrop{{LootLot: lot, Count: game_math.GetRangeRand(1, lot.BaseCount+1, rng)}}
+}
+
+func generateScience(minCount, maxCount int, rng *rand.Rand) []LootDrop {
+	if len(frr) == 0 {
+		return nil
+	}
+
+	lot := frr[rng.Intn(len(frr))]
+
+	count := game_math.GetRangeRand(minCount, maxCount, rng) * (game_math.GetRangeRand(1, lot.BaseCount+1, rng))
+	return []LootDrop{{LootLot: lot, Count: count}}
 }

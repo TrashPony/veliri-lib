@@ -104,6 +104,7 @@ type Slot struct {
 	Tax         int  `json:"tax"`  // поле для налогов
 	Find        bool `json:"find"` // поле для верстака, обозначающие естли такое количество итемов на складе или нет
 	FindCount   int  `json:"find_count"`
+	IsLoot      bool `json:"is_loot"`
 
 	mx sync.RWMutex
 }
