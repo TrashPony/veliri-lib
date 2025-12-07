@@ -48,7 +48,7 @@ func getAnomalyConfig(sectorType sectorType) *anomalyConfig {
 	switch sectorType {
 	case sectorSafe:
 		return &anomalyConfig{
-			MaxPoints: 20,
+			MaxPoints: 30,
 			Drops: []anomalyDrop{
 				{"trap", 20, map[string]interface{}{"type": "bomb"}},
 				{"trap", 0, map[string]interface{}{"type": "respawn"}},
@@ -74,7 +74,7 @@ func getAnomalyConfig(sectorType sectorType) *anomalyConfig {
 		}
 	case sectorFactionDanger:
 		return &anomalyConfig{
-			MaxPoints: 15,
+			MaxPoints: 25,
 			Drops: []anomalyDrop{
 				{"trap", 20, map[string]interface{}{"type": "bomb"}},
 				{"trap", 10, map[string]interface{}{"type": "respawn"}},
@@ -100,7 +100,7 @@ func getAnomalyConfig(sectorType sectorType) *anomalyConfig {
 		}
 	case sectorPirate:
 		return &anomalyConfig{
-			MaxPoints: 10,
+			MaxPoints: 20,
 			Drops: []anomalyDrop{
 				{"trap", 25, map[string]interface{}{"type": "bomb"}},
 				{"trap", 10, map[string]interface{}{"type": "respawn"}},
@@ -126,7 +126,7 @@ func getAnomalyConfig(sectorType sectorType) *anomalyConfig {
 		}
 	case sectorWasteland: // одинаковые по луту
 		return &anomalyConfig{
-			MaxPoints: 5,
+			MaxPoints: 15,
 			Drops: []anomalyDrop{
 				{"trap", 25, map[string]interface{}{"type": "bomb"}},
 				{"trap", 10, map[string]interface{}{"type": "respawn"}},
@@ -152,7 +152,7 @@ func getAnomalyConfig(sectorType sectorType) *anomalyConfig {
 		}
 	case sectorCombat:
 		return &anomalyConfig{
-			MaxPoints: 5,
+			MaxPoints: 15,
 			Drops: []anomalyDrop{
 				{"trap", 25, map[string]interface{}{"type": "bomb"}},
 				{"trap", 10, map[string]interface{}{"type": "respawn"}},
