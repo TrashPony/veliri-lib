@@ -91,27 +91,27 @@ type BotLootConfig struct {
 func getBotLootConfig(botType botType) *BotLootConfig {
 	switch botType {
 	case botTrader:
-		return &BotLootConfig{5, 2, 2, 1}
+		return &BotLootConfig{15, 12, 12, 1}
 	case botMiner:
-		return &BotLootConfig{5, 2, 10, 1}
+		return &BotLootConfig{15, 12, 20, 1}
 	case botPirate:
-		return &BotLootConfig{40, 20, 20, 0}
+		return &BotLootConfig{50, 30, 30, 0}
 	case botPolice:
-		return &BotLootConfig{10, 2, 2, 0}
+		return &BotLootConfig{20, 12, 12, 0}
 	case botWarrior:
-		return &BotLootConfig{30, 10, 10, 0}
+		return &BotLootConfig{40, 20, 20, 0}
 	case botAgent:
-		return &BotLootConfig{50, 20, 10, 1}
+		return &BotLootConfig{60, 30, 20, 1}
 	case botBuilder:
-		return &BotLootConfig{5, 20, 30, 1}
+		return &BotLootConfig{15, 30, 40, 1}
 	case botMobSmall:
-		return &BotLootConfig{2, 2, 10, 0}
+		return &BotLootConfig{12, 12, 20, 0}
 	case botMobMid:
-		return &BotLootConfig{4, 4, 20, 0}
+		return &BotLootConfig{14, 14, 30, 0}
 	case botMobHeavy:
-		return &BotLootConfig{6, 6, 30, 0}
+		return &BotLootConfig{16, 16, 40, 0}
 	case botMobGigant:
-		return &BotLootConfig{12, 12, 10, 1}
+		return &BotLootConfig{22, 22, 20, 1}
 	default:
 		return &BotLootConfig{0, 0, 0, 0}
 	}
