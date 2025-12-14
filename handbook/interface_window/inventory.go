@@ -146,6 +146,26 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `You'll get:`,
 		_const.ZhCN: `你将获得:`,
 	},
+	"text_29": {
+		_const.RU:   "Если на базе есть ордера, подходящие под ваш запрос - сделка завершается мгновенно.",
+		_const.EN:   "If there are matching buy orders at this base - the trade completes instantly.",
+		_const.ZhCN: "若此基地有匹配的收购订单，交易将立即完成。",
+	},
+	"text_30": {
+		_const.RU:   "Да",
+		_const.EN:   "Yes",
+		_const.ZhCN: "是",
+	},
+	"text_31": {
+		_const.RU:   "Нет",
+		_const.EN:   "No",
+		_const.ZhCN: "否",
+	},
+	"text_32": {
+		_const.RU:   "Мгновенно:",
+		_const.EN:   "Instant:",
+		_const.ZhCN: "即时:",
+	},
 	"button_19": {
 		_const.RU:   `Отмена`,
 		_const.EN:   `Cancel`,
@@ -456,5 +476,20 @@ var Inventory = map[string]map[string]string{
 		<div>► 磨损度越高，分解获得的资源越少。<br><br></div>
         <div>磨损物品无法在市场出售，但可丢弃给其他玩家或分解为资源。</div>
     </div>`,
+	},
+	"text_33": {
+		_const.RU:   "Заказ размещен на рынке",
+		_const.EN:   "Order placed on market",
+		_const.ZhCN: "订单已挂单",
+	},
+	"text_34": {
+		_const.RU:   "Не удалось продать",
+		_const.EN:   "Sell failed",
+		_const.ZhCN: "出售失败",
+	},
+	"text_35": {
+		_const.RU:   "Удалось мгновенно продать",
+		_const.EN:   "Instant sale successful",
+		_const.ZhCN: "即时出售成功",
 	},
 }

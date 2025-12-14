@@ -225,6 +225,61 @@ var Market = map[string]map[string]string{
 		_const.EN:   "Melee",
 		_const.ZhCN: "近战",
 	},
+	"e_support": {
+		_const.RU:   "Ремонт и поддержка",
+		_const.EN:   "Repair & Support",
+		_const.ZhCN: "维修与支援",
+	},
+	"e_defense": {
+		_const.RU:   "Защита",
+		_const.EN:   "Defense",
+		_const.ZhCN: "防御",
+	},
+	"e_recon": {
+		_const.RU:   "Разведка и обнаружение",
+		_const.EN:   "Recon & Detection",
+		_const.ZhCN: "侦察与探测",
+	},
+	"e_control": {
+		_const.RU:   "Контроль и подавление",
+		_const.EN:   "Control & Suppression",
+		_const.ZhCN: "控制与压制",
+	},
+	"e_engineering": {
+		_const.RU:   "Добыча и переработка",
+		_const.EN:   "Extraction & Processing",
+		_const.ZhCN: "采矿与加工",
+	},
+	"e_fire_support": {
+		_const.RU:   "Огневая поддержка",
+		_const.EN:   "Fire Support",
+		_const.ZhCN: "火力支援",
+	},
+	"e_mobility": {
+		_const.RU:   "Мобильность",
+		_const.EN:   "Mobility",
+		_const.ZhCN: "机动性",
+	},
+	"e_stealth": {
+		_const.RU:   "Маскировка и уклонение",
+		_const.EN:   "Stealth & Evasion",
+		_const.ZhCN: "隐蔽与规避",
+	},
+	"e_weapons": {
+		_const.RU:   "Усилители вооружения",
+		_const.EN:   "Weapon Amplifiers",
+		_const.ZhCN: "武器增强模块",
+	},
+	"e_core": {
+		_const.RU:   "Системы корпуса",
+		_const.EN:   "Core Systems",
+		_const.ZhCN: "核心系统",
+	},
+	"e_other": {
+		_const.RU:   "Другое",
+		_const.EN:   "Other",
+		_const.ZhCN: "其他",
+	},
 	// Market
 	"window_name": {
 		_const.RU:   `Рынок`,
