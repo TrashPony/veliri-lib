@@ -603,4 +603,9 @@ var Market = map[string]map[string]string{
 		_const.EN:   `Base`,
 		_const.ZhCN: `基地`,
 	},
+	"search_placeholder": {
+		_const.RU:   `Название`,
+		_const.EN:   `Name`,
+		_const.ZhCN: `姓名`,
+	},
 }

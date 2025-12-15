@@ -16,6 +16,10 @@ type Inventory struct {
 	mx         sync.RWMutex
 }
 
+type ItemFilter struct {
+	OnlyPerfect bool // = MinHP=MaxHP && MinDurability=100
+}
+
 func (inv *Inventory) GetParentType() string {
 	return inv.parentType
 }
@@ -249,26 +253,31 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 	return false
 }
 
-func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int) error {
+func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int, filter ItemFilter) error {
+
+	inv.mx.Lock()
+	defer func() {
+		inv.mx.Unlock()
+		inv.update()
+	}()
+
 	// надо убедиться что необходимое количество есть и его можно удалить
-	if inv.ViewItems(itemID, itemType, quantityRemove) {
-
-		inv.mx.Lock()
-		defer func() {
-			inv.mx.Unlock()
-			inv.update()
-		}()
-
+	if inv.viewItems(itemID, itemType, quantityRemove, filter) {
 		for _, s := range inv.slots {
 			if s.ItemID == itemID && s.Type == itemType {
+
+				if filter.OnlyPerfect && (s.Durability < 100 || s.HP < s.MaxHP) {
+					continue
+				}
+
 				if s.GetQuantity() >= quantityRemove {
 					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(quantityRemove)})
 					return nil
 				} else {
 					// если в слоте не чего либо для полного удаления,
 					// то удаляем все из слота, и уменьшаем количество итемов которые еще надо удалить
+					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": s.GetQuantity(), "real_remove": s.removeItemBySlot(s.GetQuantity())})
 					quantityRemove -= s.GetQuantity()
-					inv.log("RemoveItem", map[string]interface{}{"item_type": s.Type, "item_id": s.ItemID, "quantity_remove": quantityRemove, "real_remove": s.removeItemBySlot(s.GetQuantity())})
 				}
 			}
 		}
@@ -283,7 +292,7 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 func (inv *Inventory) RemoveItemsByOtherInventory(inv2 *Inventory, force bool) bool {
 
 	for _, slot := range inv2.slots {
-		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity()) {
+		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity(), ItemFilter{}) {
 			if !force {
 				return false
 			}

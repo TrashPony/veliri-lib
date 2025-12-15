@@ -996,6 +996,11 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   `Production`,
 		_const.ZhCN: `生产`,
 	},
+	"text_28": {
+		_const.RU:   `Цены`,
+		_const.EN:   `Prices`,
+		_const.ZhCN: `价格`,
+	},
 	"broken_tip": {
 		_const.RU: `Предмет сломан из за этого:<br>
           - его нельзя переработать или продать<br>

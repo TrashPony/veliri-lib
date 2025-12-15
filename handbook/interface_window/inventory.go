@@ -492,4 +492,35 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   "Instant sale successful",
 		_const.ZhCN: "即时出售成功",
 	},
+	"dur_item_note": {
+		_const.RU: `
+		<p style="text-align: center">[НАРУЖЕНИЕ ПОЛИТИКИ РЫНКА]</p>
+		<ul>
+			<li>Предмет: <span class="importantly">&quot;%name%&quot;</span></li>
+			<li>Состояние: <span class="importantly">ПОВРЕЖДЁН</span></li>
+			<li>Целостность: <span class="importantly">%hp%/%maxHp%</span></li>
+			<li>Износ: <span class="importantly">%dur%%</span></li>
+		</ul>
+		<p><span class="importantly">Отклонено</span>: Принимаются только исправные предметы.</p>`,
+
+		_const.EN: `
+		<p style="text-align: center">[MARKET POLICY VIOLATION]</p>
+		<ul>
+			<li>Item: <span class="importantly">&quot;%name%&quot;</span></li>
+			<li>Status: <span class="importantly">DAMAGED</span></li>
+			<li>Integrity: <span class="importantly">%hp%/%maxHp%</span></li>
+			<li>Wear: <span class="importantly">%dur%%</span></li>
+		</ul>
+		<p><span class="importantly">Rejected</span>: Only pristine items accepted.</p>`,
+
+		_const.ZhCN: `
+		<p style="text-align: center">[市场政策违规]</p>
+		<ul>
+			<li>物品: <span class="importantly">&quot;%name%&quot;</span></li>
+			<li>状态: <span class="importantly">损坏</span></li>
+			<li>完整性: <span class="importantly">%hp%/%maxHp%</span></li>
+			<li>磨损: <span class="importantly">%dur%%</span></li>
+		</ul>
+		<p><span class="importantly">已拒绝</span>：仅接受完好物品。</p>`,
+	},
 }

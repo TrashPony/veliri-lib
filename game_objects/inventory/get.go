@@ -115,7 +115,7 @@ func (inv *Inventory) ViewItemsBySlots(slots map[int]*Slot) bool {
 // SearchItemsByOtherInventory метод смотрит все предметы inv2 что бы они были в inv на наличие
 func (inv *Inventory) SearchItemsByOtherInventory(inv2 *Inventory) bool {
 	for _, slot := range inv2.slots {
-		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity()) {
+		if !inv.ViewItems(slot.ItemID, slot.Type, slot.GetQuantity(), ItemFilter{}) {
 			return false
 		}
 	}
@@ -123,13 +123,21 @@ func (inv *Inventory) SearchItemsByOtherInventory(inv2 *Inventory) bool {
 }
 
 // ViewQuantityItems метод считает все итемы в инвентаре
-func (inv *Inventory) ViewQuantityItems(itemID int, itemType string) int {
+func (inv *Inventory) ViewQuantityItems(itemID int, itemType string, filter ItemFilter) int {
 	inv.mx.Lock()
 	defer inv.mx.Unlock()
+	return inv.viewQuantityItems(itemID, itemType, filter)
+}
 
+func (inv *Inventory) viewQuantityItems(itemID int, itemType string, filter ItemFilter) int {
 	countRealItems := 0
 	for _, slot := range inv.slots {
 		if slot.ItemID == itemID && slot.Type == itemType {
+
+			if filter.OnlyPerfect && (slot.Durability < 100 || slot.HP < slot.MaxHP) {
+				continue
+			}
+
 			countRealItems += slot.GetQuantity()
 		}
 	}
@@ -138,8 +146,17 @@ func (inv *Inventory) ViewQuantityItems(itemID int, itemType string) int {
 }
 
 // ViewItems метод смотрим естли необходимое количество предметов в инвентаре
-func (inv *Inventory) ViewItems(itemID int, itemType string, quantityFind int) bool {
-	if inv.ViewQuantityItems(itemID, itemType) >= quantityFind {
+func (inv *Inventory) ViewItems(itemID int, itemType string, quantityFind int, filter ItemFilter) bool {
+	if inv.ViewQuantityItems(itemID, itemType, filter) >= quantityFind {
+		return true
+	} else {
+		return false
+	}
+}
+
+// viewItems метод смотрим естли необходимое количество предметов в инвентаре
+func (inv *Inventory) viewItems(itemID int, itemType string, quantityFind int, filter ItemFilter) bool {
+	if inv.viewQuantityItems(itemID, itemType, filter) >= quantityFind {
 		return true
 	} else {
 		return false
