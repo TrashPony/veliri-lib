@@ -76,9 +76,9 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `<span class="importantly">Explores</span>偏爱激光武器。这些武器精度高，能瞬间击中目标，但射程不尽如人意。`,
 	},
 	"Explores_bodyText": {
-		_const.RU:   `<span class="importantly">Explores</span> используют легкие транспорты на антиграве. <span class="importantly">Антиграв</span> дает вам большую свободу и гибкость. Оно позволяет вам управлять направлением корпуса мышкой и двигаться боком без поворота корпуса.`,
-		_const.EN:   `<span class="importantly">Explores</span> use light vehicles with antigravity. The antigravity gives you great freedom and flexibility. It allows you to control the direction of the hull with the mouse and move sideways without turning the hull.`,
-		_const.ZhCN: `<span class="importantly">Explores</span>使用反重力轻型运输工具。<span class="importantly">反重力</span>赋予你极大的自由和灵活性。它允许你用鼠标控制车体方向，并侧向移动而无需转动车体。`,
+		_const.RU:   `<p><span class="importantly">Explores</span> используют легкие транспорты на антиграве. <span class="importantly">Антиграв</span> дает вам большую свободу и гибкость. Оно позволяет вам управлять направлением корпуса мышкой и двигаться боком без поворота корпуса.</p><p><span class="importantly">Внимание!</span> этот стиль управления требует привыкания.</p>`,
+		_const.EN:   `<p><span class="importantly">Explorers</span> use light anti-grav transports. <span class="importantly">Anti-grav</span> grants you great freedom and flexibility. It allows you to control the hull direction with your mouse and move sideways without rotating the hull.</p><p><span class="importantly">Note!</span> This control style requires some getting used to.</p>`,
+		_const.ZhCN: `<p><span class="importantly">勘探者</span>使用轻型反重力载具。<span class="importantly">反重力</span>技术赋予您极高的自由度和灵活性。您可以使用鼠标控制车体朝向，无需转动车体即可进行侧向移动。</p><p><span class="importantly">注意！</span>此操控风格需要时间适应。</p>`,
 	},
 	"Explores_bonus": {
 		_const.RU:   `<span class="importantly">Дальность обзора</span> увеличена на <span class="importantly">5%</span>.`,
