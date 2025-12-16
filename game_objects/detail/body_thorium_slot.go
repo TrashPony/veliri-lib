@@ -11,6 +11,8 @@ type ThoriumSlot struct {
 	Worked      int       `json:"worked_out"`
 	CurrentFuel fuel.Fuel `json:"fuel"`
 	NextFuel    fuel.Fuel `json:"next_fuel"`
+	Durability  int       `json:"durability"`
+	MaxCap      int       `json:"max_cap"`
 	Reload      bool      `json:"-"`
 	SendRequest bool      `json:"-"`
 }
@@ -27,6 +29,17 @@ func (t *ThoriumSlot) GetJSON() string {
 	}
 
 	return string(jsonSlot)
+}
+
+func (t *ThoriumSlot) GetMaxCap() int {
+	// Используем квадратичную функцию для плавной кривой
+	// f(x) = 0.25*(x/100)^2 + 0.75, где x - durability от 0 до 100
+
+	x := float64(t.Durability) / 100.0
+	effectivePercent := 0.25*x*x + 0.75 // От 75% до 100%
+
+	t.MaxCap = int(float64(t.CurrentFuel.EnergyCap) * effectivePercent)
+	return t.MaxCap
 }
 
 func (t *ThoriumSlot) GetCopy() *ThoriumSlot {

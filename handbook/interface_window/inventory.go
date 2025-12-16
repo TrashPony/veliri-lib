@@ -47,7 +47,7 @@ var Inventory = map[string]map[string]string{
 		_const.ZhCN: `激活船体`,
 	},
 	"button_6": {
-		_const.RU:   `Заправить корпус`,
+		_const.RU:   `Установить в корпус`,
 		_const.EN:   `Fill body`,
 		_const.ZhCN: `填充船体`,
 	},
@@ -213,6 +213,11 @@ var Inventory = map[string]map[string]string{
 		_const.ZhCN: `关闭`,
 	},
 	"button_24": {
+		_const.RU:   `Купить`,
+		_const.EN:   `Buy`,
+		_const.ZhCN: `买`,
+	},
+	"button_33": {
 		_const.RU:   `Заправить`,
 		_const.EN:   `Refuel`,
 		_const.ZhCN: `加注燃料`,
@@ -382,6 +387,11 @@ var Inventory = map[string]map[string]string{
 		_const.ZhCN: `维修`,
 	},
 	"fill_up_modal_head": {
+		_const.RU:   `Купить энергоячейки`,
+		_const.EN:   `Buy energy cells`,
+		_const.ZhCN: `购买能源电池`,
+	},
+	"fill_up_modal_head_2": {
 		_const.RU:   `Заправка`,
 		_const.EN:   `Refueling`,
 		_const.ZhCN: `加油`,
@@ -522,5 +532,21 @@ var Inventory = map[string]map[string]string{
 			<li>磨损: <span class="importantly">%dur%%</span></li>
 		</ul>
 		<p><span class="importantly">已拒绝</span>：仅接受完好物品。</p>`,
+	},
+	"dur_fuel_note": {
+		_const.RU: `<p>Каждая заправка увеличивает износ ячейки на <span class='importantly'>3%</span>.</p>
+                    <p>Каждый % износа немного уменьшает максимальный объем ячейки.</p>
+                    <p>При полном износе ячейка будет заменена на базовую или уничтожена.</p>`,
+		_const.EN: `<p>Each refuel increases cell wear by <span class='importantly'>3%</span>.</p>
+					 <p>Each % of wear slightly reduces the cell's maximum capacity.</p>
+					 <p>When fully worn, the cell will be replaced with a basic one or destroyed.</p>`,
+		_const.ZhCN: `<p>每次加油增加电池损耗<span class='importantly'>3%</span>。</p>
+					 <p>每1%损耗略微降低电池最大容量。</p>
+					 <p>完全损耗时，电池将被替换为基础型号或销毁。</p>`,
+	},
+	"text_36": {
+		_const.RU:   `Цена:`,
+		_const.EN:   `Price:`,
+		_const.ZhCN: `价格：`,
 	},
 }

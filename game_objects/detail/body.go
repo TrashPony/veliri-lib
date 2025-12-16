@@ -459,6 +459,7 @@ func (body *Body) GetJSONThoriumSlots() []string {
 	thorium := make([]string, 0)
 
 	for _, thoriumSlot := range body.ThoriumSlots {
+		thoriumSlot.GetMaxCap()
 		thorium = append(thorium, thoriumSlot.GetJSON())
 	}
 
