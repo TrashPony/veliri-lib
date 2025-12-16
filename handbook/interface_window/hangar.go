@@ -368,6 +368,11 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `Body wear`,
 		_const.ZhCN: `身体穿着`,
 	},
+	"tittle_11": {
+		_const.RU:   `Свойство фракции`,
+		_const.EN:   `Fraction property`,
+		_const.ZhCN: `分数性质`,
+	},
 	// ViewMS
 	// Synchronization
 	"text_23": {
