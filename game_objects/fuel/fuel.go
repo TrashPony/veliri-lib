@@ -3,12 +3,15 @@ package fuel
 import "github.com/TrashPony/veliri-lib/game_objects/effect"
 
 type Fuel struct {
-	ID        int             `json:"id"`
-	Name      string          `json:"name"`
-	Size      int             `json:"size"`
-	EnergyCap int             `json:"energy_cap"`
-	Bonuses   []effect.Effect `json:"bonuses"`
-	Tech      int             `json:"tech"`
+	ID               int             `json:"id"`
+	Name             string          `json:"name"`
+	Size             int             `json:"size"`
+	EnergyCap        int             `json:"energy_cap"`
+	Bonuses          []effect.Effect `json:"bonuses"`
+	Tech             int             `json:"tech"`
+	DestroyOnExtract bool            `json:"destroy_on_extract"`
+	NonRefuelable    bool            `json:"non_refuelable"`
+	LostDurability   int             `json:"lostDurability"`
 }
 
 func (f *Fuel) GetName() string {

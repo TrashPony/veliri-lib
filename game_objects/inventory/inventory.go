@@ -2,6 +2,7 @@ package inventory
 
 import (
 	"errors"
+	_const "github.com/TrashPony/veliri-lib/const"
 	"sync"
 )
 
@@ -202,7 +203,7 @@ func (inv *Inventory) AddItemFromSlotByQuantity(slot *Slot, userID, accessUserID
 		slot.HP, slot.MaxHP, slot.Durability, false, userID, accessUserID)
 }
 
-func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp int, maxHP, durability int, newSlot bool, userID, accessUserID int) bool {
+func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quantity, hp, maxHP, durability int, newSlot bool, userID, accessUserID int) bool {
 	inv.mx.Lock()
 	defer func() {
 		inv.mx.Unlock()
@@ -239,7 +240,7 @@ func (inv *Inventory) AddItem(item ItemInformer, itemType string, itemID, quanti
 			Quantity:     quantity,
 			HP:           hp,
 			MaxHP:        maxHP,
-			Durability:   durability,
+			Durability:   int(durability),
 			PlaceUserID:  userID,
 			Number:       newNumberSlot,
 			AccessUserID: accessUserID,
@@ -266,7 +267,7 @@ func (inv *Inventory) RemoveItem(itemID int, itemType string, quantityRemove int
 		for _, s := range inv.slots {
 			if s.ItemID == itemID && s.Type == itemType {
 
-				if filter.OnlyPerfect && (s.Durability < 100 || s.HP < s.MaxHP) {
+				if filter.OnlyPerfect && (s.Durability < _const.StartDurability || s.HP < s.MaxHP) {
 					continue
 				}
 

@@ -12,6 +12,8 @@ const (
 	AmmoRadius            = 3
 	CompleteStructureWork = 50
 
+	StartDurability = 100000
+
 	DistOpenBox       = 90 // дистания на которой юниты могут взаимодействовать с ящиками на карте
 	DistInstallBox    = 75
 	DistInitBuild     = 150 // дистания на которой юниты могут начинать строительство

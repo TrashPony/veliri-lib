@@ -102,6 +102,7 @@ func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot, rs int) {
 			slot.Worked = s.Worked
 			slot.CurrentFuel = s.CurrentFuel
 			slot.NextFuel = s.NextFuel
+			slot.Durability = s.Durability
 
 			if slot.Number == rs {
 				slot.Reload = false

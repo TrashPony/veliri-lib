@@ -2,6 +2,7 @@ package detail
 
 import (
 	"encoding/json"
+	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_objects/fuel"
 )
 
@@ -20,6 +21,7 @@ type ThoriumSlot struct {
 func (t *ThoriumSlot) SetFuel(fuel fuel.Fuel) {
 	t.CurrentFuel = fuel
 	t.Worked = fuel.EnergyCap
+	t.Durability = _const.StartDurability
 }
 
 func (t *ThoriumSlot) GetJSON() string {
@@ -32,10 +34,9 @@ func (t *ThoriumSlot) GetJSON() string {
 }
 
 func (t *ThoriumSlot) GetMaxCap() int {
-	// Используем квадратичную функцию для плавной кривой
-	// f(x) = 0.25*(x/100)^2 + 0.75, где x - durability от 0 до 100
+	x := float64(t.Durability) / _const.StartDurability // 0.0-1.0
 
-	x := float64(t.Durability) / 100.0
+	// Квадратичная кривая
 	effectivePercent := 0.25*x*x + 0.75 // От 75% до 100%
 
 	t.MaxCap = int(float64(t.CurrentFuel.EnergyCap) * effectivePercent)

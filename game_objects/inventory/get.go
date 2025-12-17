@@ -1,6 +1,9 @@
 package inventory
 
-import "github.com/getlantern/deepcopy"
+import (
+	_const "github.com/TrashPony/veliri-lib/const"
+	"github.com/getlantern/deepcopy"
+)
 
 func (inv *Inventory) GetSlots() map[int]*Slot {
 
@@ -134,7 +137,7 @@ func (inv *Inventory) viewQuantityItems(itemID int, itemType string, filter Item
 	for _, slot := range inv.slots {
 		if slot.ItemID == itemID && slot.Type == itemType {
 
-			if filter.OnlyPerfect && (slot.Durability < 100 || slot.HP < slot.MaxHP) {
+			if filter.OnlyPerfect && (slot.Durability < _const.StartDurability || slot.HP < slot.MaxHP) {
 				continue
 			}
 

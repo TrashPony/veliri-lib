@@ -2,12 +2,7 @@ package dynamic_map_object
 
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
-	"github.com/TrashPony/veliri-lib/game_objects/fuel"
 )
-
-func (o *Object) SetThorium(count int, f fuel.Fuel) {
-	o.EnergyCell.SetFuel(f)
-}
 
 func (o *Object) ReactorWork() {
 	// TODO эта механика не работает

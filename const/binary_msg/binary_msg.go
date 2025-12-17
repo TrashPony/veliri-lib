@@ -671,9 +671,11 @@ func CreateInventoryBin(sourceType string, sourceID int, inventory *inventory.In
 		// slots_data [4[quantity], 1[type], 4[item_id], 4[hp], 4[max_hp], 4[size], 4[number], 4[access_user_id], 1[infinite], 4[place_user_id], 4[tax], 1[find], 4[find_count],
 		// 1[in_map], 1[item_type], 1[name_size], ???[name], 1[item_item_name_size], ???[item_item_name], 1[icon_size], ???[icon]]
 
-		if slot.Item == nil {
+		item := slot.Item
+		if item == nil {
 			continue
 		}
+
 		command = append(command, game_math.GetIntBytes(slot.Quantity)...)
 		command = append(command, byte(_const.ItemBinTypes[slot.Type]))
 		command = append(command, game_math.GetIntBytes(slot.ItemID)...)
@@ -687,18 +689,18 @@ func CreateInventoryBin(sourceType string, sourceID int, inventory *inventory.In
 		command = append(command, game_math.GetIntBytes(slot.Tax)...)
 		command = append(command, game_math.BoolToByte(slot.Find))
 		command = append(command, game_math.GetIntBytes(slot.FindCount)...)
-		command = append(command, byte(slot.Durability))
+		command = append(command, game_math.GetIntBytes(slot.Durability)...)
 
-		command = append(command, game_math.BoolToByte(slot.Item.InMap))
-		command = append(command, byte(_const.ItemBinTypes[slot.Item.ItemType]))
-		command = append(command, byte(slot.Item.TypeSlot))
+		command = append(command, game_math.BoolToByte(item.InMap))
+		command = append(command, byte(_const.ItemBinTypes[item.ItemType]))
+		command = append(command, byte(item.TypeSlot))
 
-		command = append(command, byte(len([]byte(slot.Item.Name))))
-		command = append(command, []byte(slot.Item.Name)...)
-		command = append(command, byte(len([]byte(slot.Item.ItemName))))
-		command = append(command, []byte(slot.Item.ItemName)...)
-		command = append(command, byte(len([]byte(slot.Item.Icon))))
-		command = append(command, []byte(slot.Item.Icon)...)
+		command = append(command, byte(len([]byte(item.Name))))
+		command = append(command, []byte(item.Name)...)
+		command = append(command, byte(len([]byte(item.ItemName))))
+		command = append(command, []byte(item.ItemName)...)
+		command = append(command, byte(len([]byte(item.Icon))))
+		command = append(command, []byte(item.Icon)...)
 	}
 
 	return command
