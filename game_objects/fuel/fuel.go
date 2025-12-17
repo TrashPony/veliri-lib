@@ -11,7 +11,7 @@ type Fuel struct {
 	Tech             int             `json:"tech"`
 	DestroyOnExtract bool            `json:"destroy_on_extract"`
 	NonRefuelable    bool            `json:"non_refuelable"`
-	LostDurability   int             `json:"lostDurability"`
+	LostDurability   int             `json:"lost_durability"`
 }
 
 func (f *Fuel) GetName() string {

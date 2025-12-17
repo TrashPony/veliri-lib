@@ -930,6 +930,21 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   `Energy intensity`,
 		_const.ZhCN: `能量强度`,
 	},
+	"ch_171": {
+		_const.RU:   `Влияние на износ аккамулятора:`,
+		_const.EN:   `Effect on battery wear:`,
+		_const.ZhCN: `对电池损耗的影响：`,
+	},
+	"ch_172": {
+		_const.RU:   `Разрушается при замене`,
+		_const.EN:   `Destroyed when replaced`,
+		_const.ZhCN: `更换时被销毁`,
+	},
+	"ch_173": {
+		_const.RU:   `Непополняемый`,
+		_const.EN:   `Non-replenishable`,
+		_const.ZhCN: `不可补充`,
+	},
 	"ch_168": {
 		_const.RU:   `Кол-во предметов:`,
 		_const.EN:   `Number of items:`,

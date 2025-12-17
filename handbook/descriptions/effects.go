@@ -290,9 +290,13 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_ore_saving_energy":           {Description: "Energy consumption of drill lasers is reduced by <span class=\"importantly\">15%</span>."},
 		"sync_dust_saving_energy":          {Description: "Energy consumption of dust collectors is reduced by <span class=\"importantly\">15%</span>."},
 
-		"effect_nuclear_fuel":   {Description: "It increases the <span class=\"importantly\">driving</span> characteristics of the vehicle and <span class=\"importantly\">battery charging speed</span> by <span class=\"importantly\">1%</span>."},
-		"effect_synthetic_fuel": {Description: "It increases the <span class=\"importantly\">driving</span> characteristics of the vehicle and <span class=\"importantly\">battery charging speed</span> by <span class=\"importantly\">2%</span>."},
-		"effect_jet_fuel":       {Description: "It increases the <span class=\"importantly\">driving</span> characteristics of the vehicle and <span class=\"importantly\">battery charging speed</span> by <span class=\"importantly\">3%</span>."},
+		"effect_solid_fuel":        {Description: "Increases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, <span class=\"importantly\">battery recharge speed</span>, and <span class=\"importantly\">drive</span> characteristics of the vehicle by <span class=\"importantly\">2%</span>."},
+		"effect_liquid_fuel":       {Description: "Increases <span class=\"importantly\">view range</span> and <span class=\"importantly\">radar range</span> by <span class=\"importantly\">5%</span>."},
+		"effect_nuclear_fuel":      {Description: "Increases <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">10%</span>."},
+		"effect_synthetic_fuel":    {Description: "Increases <span class=\"importantly\">view range</span> and <span class=\"importantly\">radar range</span> by <span class=\"importantly\">10%</span>."},
+		"effect_jet_fuel":          {Description: "Increases <span class=\"importantly\">drive</span> characteristics of the vehicle by <span class=\"importantly\">5%</span>."},
+		"effect_emergency_fuel_t0": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">10%</span>."},
+		"effect_emergency_fuel_t1": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">7%</span>."},
 
 		"empty": {Description: ""},
 	},
@@ -594,9 +598,13 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
 
-		"effect_nuclear_fuel":   {Description: "На <span class=\"importantly\">1%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
-		"effect_synthetic_fuel": {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
-		"effect_jet_fuel":       {Description: "На <span class=\"importantly\">3%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта и  <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_solid_fuel":        {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span>, <span class=\"importantly\">скорость зарядки аккумулятора</span> и <span class=\"importantly\">ходовые</span> характеристики транспорта."},
+		"effect_liquid_fuel":       {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и <span class=\"importantly\">дальность радара</span>."},
+		"effect_nuclear_fuel":      {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_synthetic_fuel":    {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и  <span class=\"importantly\">дальность радара</span>."},
+		"effect_jet_fuel":          {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта."},
+		"effect_emergency_fuel_t0": {Description: "На <span class=\"importantly\">10%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_emergency_fuel_t1": {Description: "На <span class=\"importantly\">7%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
 
 		"empty": {Description: ""},
 	},
@@ -816,9 +824,15 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_bonus_speed_combine_extract":  {Description: "联合收割机采集效率增加<span class=\"importantly\">10%</span>"},
 		"sync_ore_saving_energy":            {Description: "矿石激光钻能量消耗减少<span class=\"importantly\">15%</span>"},
 		"sync_dust_saving_energy":           {Description: "灰尘收集器能量消耗减少<span class=\"importantly\">15%</span>"},
-		"effect_nuclear_fuel":               {Description: "增加<span class=\"importantly\">1%</span>的<span class=\"importantly\">移动</span>性能和<span class=\"importantly\">电池充电速度</span>"},
-		"effect_synthetic_fuel":             {Description: "增加<span class=\"importantly\">2%</span>的<span class=\"importantly\">移动</span>性能和<span class=\"importantly\">电池充电速度</span>"},
-		"effect_jet_fuel":                   {Description: "增加<span class=\"importantly\">3%</span>的<span class=\"importantly\">移动</span>性能和<span class=\"importantly\">电池充电速度</span>"},
-		"empty":                             {Description: ""},
+
+		"effect_solid_fuel":        {Description: "将载具的<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>、<span class=\"importantly\">电池充能速度</span>和<span class=\"importantly\">行驶</span>特性提升<span class=\"importantly\">2%</span>。"},
+		"effect_liquid_fuel":       {Description: "将<span class=\"importantly\">视野范围</span>和<span class=\"importantly\">雷达范围</span>提升<span class=\"importantly\">5%</span>。"},
+		"effect_nuclear_fuel":      {Description: "将<span class=\"importantly\">电池充能速度</span>提升<span class=\"importantly\">10%</span>。"},
+		"effect_synthetic_fuel":    {Description: "将<span class=\"importantly\">视野范围</span>和<span class=\"importantly\">雷达范围</span>提升<span class=\"importantly\">10%</span>。"},
+		"effect_jet_fuel":          {Description: "将载具的<span class=\"importantly\">行驶</span>特性提升<span class=\"importantly\">5%</span>。"},
+		"effect_emergency_fuel_t0": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">10%</span>。"},
+		"effect_emergency_fuel_t1": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">7%</span>。"},
+
+		"empty": {Description: ""},
 	},
 }
