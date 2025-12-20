@@ -91,7 +91,12 @@ func wheel(obj MoveObject) {
 		} // влево!
 
 		// Сила дрифта: зависит от скорости и резкости
-		baseDrift := obj.GetCurrentSpeed() * 0.2 // 0.03 — настроечный коэффициент
+		as := (pm.GetAngularVelocity() * 10)
+		if as < 0 {
+			as *= -1
+		}
+
+		baseDrift := obj.GetCurrentSpeed() * as
 		if pm.CheckHandBrake() {
 			baseDrift *= 2.0 // ручной тормоз = мощный дрифт
 		}
@@ -102,8 +107,9 @@ func wheel(obj MoveObject) {
 
 	// === 3. Обновляем Drift-вектор (с инерцией!) ===
 	// Новый импульс добавляется, старый — затухает
-	pm.DriftX = pm.DriftX*0.9 + driftAccelX*0.3
-	pm.DriftY = pm.DriftY*0.9 + driftAccelY*0.3
+	cs := obj.GetCurrentSpeed() * 0.01
+	pm.DriftX = pm.DriftX*0.9 + driftAccelX*cs
+	pm.DriftY = pm.DriftY*0.9 + driftAccelY*cs
 
 	// Ограничиваем, чтобы не улетал в космос
 	driftMag := math.Hypot(pm.DriftX, pm.DriftY)
@@ -122,13 +128,22 @@ func wheel(obj MoveObject) {
 		direction = -1
 	}
 
-	move := pm.GetPowerMove() > 0 || pm.GetReverse() > 0
-	if move {
+	if (obj.GetPowerMove() > 0 && direction > 0) || (obj.GetReverse() > 0 && direction < 0) {
+
+		ts := direction * pm.GetTurnSpeed() * (obj.GetPowerMove() / obj.GetMoveMaxPower())
+		if direction < 0 {
+			ts = direction * pm.GetTurnSpeed() * (obj.GetReverse() / obj.GetMaxReverse())
+		}
+
+		if ts < pm.GetTurnSpeed()/5 {
+			ts = pm.GetTurnSpeed() / 5
+		}
+
 		if pm.CheckLeftRotate() {
-			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*pm.GetTurnSpeed())
+			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*ts)
 		}
 		if pm.CheckRightRotate() {
-			pm.SetAngularVelocity(pm.GetAngularVelocity() + direction*pm.GetTurnSpeed())
+			pm.SetAngularVelocity(pm.GetAngularVelocity() + direction*ts)
 		}
 	}
 
