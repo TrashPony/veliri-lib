@@ -6,28 +6,46 @@ import (
 	"math"
 )
 
+const startAntigravitySpeedK = 1.5
+
 func antigravity(obj MoveObject, g *gunner.Gunner) {
 
 	if obj.CheckGrowthPower() {
-		obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
+		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startAntigravitySpeedK {
+			obj.SetPowerMove(obj.GetMoveMaxPower() / startAntigravitySpeedK)
+		} else {
+			obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
+		}
 	} else {
 		obj.SetPowerMove(0)
 	}
 
 	if obj.CheckGrowthRevers() {
-		obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
+		if obj.GetReverse() < obj.GetMaxReverse()/startAntigravitySpeedK {
+			obj.SetReverse(obj.GetMaxReverse() / startAntigravitySpeedK)
+		} else {
+			obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
+		}
 	} else {
 		obj.SetReverse(0)
 	}
 
 	if obj.CheckLeftRotate() {
-		obj.SetPowerLeft(obj.GetPowerLeft() + obj.GetPowerFactor())
+		if obj.GetPowerLeft() < obj.GetMoveMaxPower()/startAntigravitySpeedK {
+			obj.SetPowerLeft(obj.GetMoveMaxPower() / startAntigravitySpeedK)
+		} else {
+			obj.SetPowerLeft(obj.GetPowerLeft() + obj.GetPowerFactor())
+		}
 	} else {
 		obj.SetPowerLeft(0)
 	}
 
 	if obj.CheckRightRotate() {
-		obj.SetPowerRight(obj.GetPowerRight() + obj.GetPowerFactor())
+		if obj.GetPowerRight() < obj.GetMoveMaxPower()/startAntigravitySpeedK {
+			obj.SetPowerRight(obj.GetMoveMaxPower() / startAntigravitySpeedK)
+		} else {
+			obj.SetPowerRight(obj.GetPowerRight() + obj.GetPowerFactor())
+		}
 	} else {
 		obj.SetPowerRight(0)
 	}
