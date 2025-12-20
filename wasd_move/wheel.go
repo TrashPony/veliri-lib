@@ -138,11 +138,16 @@ func wheel(obj MoveObject) {
 		speedK := obj.GetPowerMove() / obj.GetMoveMaxPower()
 		ts := direction * pm.GetTurnSpeed() * speedK
 		if direction < 0 {
-			ts = direction * pm.GetTurnSpeed() * speedK
+			// назад большая чувствительность ts = direction * pm.GetTurnSpeed() * speedK
+			ts = pm.GetTurnSpeed()
 		}
 
 		if ts > pm.GetTurnSpeed() {
 			ts = pm.GetTurnSpeed()
+		}
+
+		if ts < pm.GetTurnSpeed()/5 {
+			ts = pm.GetTurnSpeed() / 5
 		}
 
 		if pm.CheckLeftRotate() {
