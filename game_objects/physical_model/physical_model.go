@@ -55,6 +55,9 @@ type PhysicalModel struct {
 	MoveCollision          bool                            `json:"-"`
 	ForceNitro             bool                            `json:"-"`
 	ClassicControlsAdapter ClassicControlsAdapter          `json:"-"`
+	DriftX                 float64                         `json:"-"` // поперечный импульс (в мировых координатах!)
+	DriftY                 float64                         `json:"-"`
+	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
 	useCoordinates         []pointer.Pointer
 	mx                     sync.Mutex
 	polygon                *game_math.Polygon

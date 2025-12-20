@@ -7,6 +7,8 @@ import (
 
 func wheel(obj MoveObject) {
 
+	pm := obj.GetPhysicalModel()
+
 	if obj.CheckGrowthPower() {
 		if obj.GetPowerMove() < obj.GetMoveMaxPower()/2 {
 			obj.SetPowerMove(obj.GetMoveMaxPower() / 2)
@@ -32,46 +34,105 @@ func wheel(obj MoveObject) {
 
 	// ручной тормаз
 	if obj.CheckHandBrake() {
-
-		if obj.GetPowerMove() > obj.GetReverse() {
-			obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerMove()/8)
+		if obj.CheckGrowthPower() {
+			if obj.GetPowerMove() > obj.GetReverse() {
+				obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerMove()/40)
+			} else {
+				obj.SetReverse(obj.GetReverse() - obj.GetReverse()/40)
+			}
 		} else {
-			obj.SetReverse(obj.GetReverse() - obj.GetReverse()/8)
+			if obj.GetPowerMove() > obj.GetReverse() {
+				obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerMove()/10)
+			} else {
+				obj.SetReverse(obj.GetReverse() - obj.GetReverse()/10)
+			}
 		}
 
-		if obj.GetPowerMove() < obj.GetPowerFactor()*10 {
+		if obj.GetPowerMove() < obj.GetPowerFactor() {
 			obj.SetPowerMove(0)
 		}
 
-		if obj.GetReverse() < obj.GetReverseFactor()*10 {
+		if obj.GetReverse() < obj.GetReverseFactor() {
 			obj.SetReverse(0)
 		}
 	}
 
+	rad := game_math.DegToRadian(pm.GetRotate())
+	forwardAccel := pm.GetPowerMove() - pm.GetReverse()
+
+	// === 1. Ускорение вперёд (вдоль корпуса) → добавляем к ОСНОВНОЙ скорости
+	pm.XVelocity += game_math.Cos(rad) * forwardAccel
+	pm.YVelocity += game_math.Sin(rad) * forwardAccel
+
+	// === 2. Рассчитываем дрифт-импульс ===
+	driftAccelX, driftAccelY := 0.0, 0.0
+
+	// Дрифт активен, если:
+	isDrifting := false
+	if pm.CheckHandBrake() && (pm.CheckLeftRotate() || pm.CheckRightRotate()) {
+		isDrifting = true
+	} else {
+		// Инерционный дрифт: если угловая скорость велика, а продольная скорость мала
+		currentSpeed := math.Hypot(pm.XVelocity, pm.YVelocity)
+		if math.Abs(pm.GetAngularVelocity()) > 0.001 && currentSpeed > 5 {
+			isDrifting = true
+		}
+	}
+
+	if isDrifting {
+		// Направление дрифта: перпендикулярно корпусу!
+		// При повороте влево → зад уходит вправо → дрифт вправо (и наоборот)
+		driftDir := 0.0
+		if pm.CheckLeftRotate() {
+			driftDir = 1
+		} // вправо!
+		if pm.CheckRightRotate() {
+			driftDir = -1
+		} // влево!
+
+		// Сила дрифта: зависит от скорости и резкости
+		baseDrift := obj.GetCurrentSpeed() * 0.2 // 0.03 — настроечный коэффициент
+		if pm.CheckHandBrake() {
+			baseDrift *= 2.0 // ручной тормоз = мощный дрифт
+		}
+
+		driftAccelX = -game_math.Sin(rad) * driftDir * baseDrift
+		driftAccelY = game_math.Cos(rad) * driftDir * baseDrift
+	}
+
+	// === 3. Обновляем Drift-вектор (с инерцией!) ===
+	// Новый импульс добавляется, старый — затухает
+	pm.DriftX = pm.DriftX*0.9 + driftAccelX*0.3
+	pm.DriftY = pm.DriftY*0.9 + driftAccelY*0.3
+
+	// Ограничиваем, чтобы не улетал в космос
+	driftMag := math.Hypot(pm.DriftX, pm.DriftY)
+	if driftMag > 20 { // подбери под масштаб (20 юнит/сек — много)
+		pm.DriftX = pm.DriftX / driftMag * 20
+		pm.DriftY = pm.DriftY / driftMag * 20
+	}
+
+	// === 4. Итоговая скорость = основная + дрифт ===
+	totalX := pm.XVelocity + pm.DriftX
+	totalY := pm.YVelocity + pm.DriftY
+
+	// === 5. Поворот (оставь как есть, но можно добавить grip-ослабление позже) ===
 	direction := 1.0
-	if obj.GetPowerMove() < obj.GetReverse() {
+	if pm.GetPowerMove() < pm.GetReverse() {
 		direction = -1
 	}
 
-	move := obj.GetPowerMove() > 0 || obj.GetReverse() > 0
+	move := pm.GetPowerMove() > 0 || pm.GetReverse() > 0
 	if move {
-		if obj.CheckLeftRotate() {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() - (direction * obj.GetTurnSpeed()))
+		if pm.CheckLeftRotate() {
+			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*pm.GetTurnSpeed())
 		}
-
-		if obj.CheckRightRotate() {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() + (direction * obj.GetTurnSpeed()))
+		if pm.CheckRightRotate() {
+			pm.SetAngularVelocity(pm.GetAngularVelocity() + direction*pm.GetTurnSpeed())
 		}
 	}
 
-	radRotate := game_math.DegToRadian(obj.GetRotate())
-	obj.AddVelocity(
-		game_math.Cos(radRotate)*(obj.GetPowerMove()-obj.GetReverse()),
-		game_math.Sin(radRotate)*(obj.GetPowerMove()-obj.GetReverse()),
-	)
-
-	xV, yV := obj.GetVelocity()
-	xR, yR := obj.GetRealPos()
-
-	obj.SetNextPos(xR+xV, yR+yV)
+	// === 6. Следующая позиция — по ИТОГОВОЙ скорости ===
+	xR, yR := pm.GetRealPos()
+	pm.SetNextPos(xR+totalX, yR+totalY)
 }
