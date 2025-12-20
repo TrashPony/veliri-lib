@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-const startSpeedK = 3
+const startWheelSpeedK = 3
 
 func wheel(obj MoveObject) {
 
@@ -15,8 +15,8 @@ func wheel(obj MoveObject) {
 	massK = math.Max(0.3, math.Min(1.2, massK))
 
 	if obj.CheckGrowthPower() {
-		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startSpeedK {
-			obj.SetPowerMove(obj.GetMoveMaxPower() / startSpeedK)
+		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startWheelSpeedK {
+			obj.SetPowerMove(obj.GetMoveMaxPower() / startWheelSpeedK)
 		} else {
 			obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
 		}
@@ -25,8 +25,8 @@ func wheel(obj MoveObject) {
 	}
 
 	if obj.CheckGrowthRevers() {
-		if obj.GetReverse() < obj.GetMaxReverse()/startSpeedK {
-			obj.SetReverse(obj.GetMaxReverse() / startSpeedK)
+		if obj.GetReverse() < obj.GetMaxReverse()/startWheelSpeedK {
+			obj.SetReverse(obj.GetMaxReverse() / startWheelSpeedK)
 		} else {
 			obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
 		}

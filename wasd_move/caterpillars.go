@@ -5,16 +5,26 @@ import (
 	"math"
 )
 
+const startCaterpillarsSpeedK = 5
+
 func caterpillars(obj MoveObject) {
 
 	if obj.CheckGrowthPower() {
-		obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
+		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startCaterpillarsSpeedK {
+			obj.SetPowerMove(obj.GetMoveMaxPower() / startCaterpillarsSpeedK)
+		} else {
+			obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
+		}
 	} else {
 		obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerFactor())
 	}
 
 	if obj.CheckGrowthRevers() {
-		obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
+		if obj.GetReverse() < obj.GetMaxReverse()/startCaterpillarsSpeedK {
+			obj.SetReverse(obj.GetMaxReverse() / startCaterpillarsSpeedK)
+		} else {
+			obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
+		}
 	} else {
 		obj.SetReverse(obj.GetReverse() - obj.GetReverseFactor())
 	}
