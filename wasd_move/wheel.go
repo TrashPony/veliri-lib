@@ -5,13 +5,18 @@ import (
 	"math"
 )
 
+const startSpeedK = 3
+
 func wheel(obj MoveObject) {
 
 	pm := obj.GetPhysicalModel()
 
+	massK := 8000.0 / pm.GetWeight()
+	massK = math.Max(0.3, math.Min(1.2, massK))
+
 	if obj.CheckGrowthPower() {
-		if obj.GetPowerMove() < obj.GetMoveMaxPower()/2 {
-			obj.SetPowerMove(obj.GetMoveMaxPower() / 2)
+		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startSpeedK {
+			obj.SetPowerMove(obj.GetMoveMaxPower() / startSpeedK)
 		} else {
 			obj.SetPowerMove(obj.GetPowerMove() + obj.GetPowerFactor())
 		}
@@ -20,8 +25,8 @@ func wheel(obj MoveObject) {
 	}
 
 	if obj.CheckGrowthRevers() {
-		if obj.GetReverse() < obj.GetMaxReverse()/2 {
-			obj.SetReverse(obj.GetMaxReverse() / 2)
+		if obj.GetReverse() < obj.GetMaxReverse()/startSpeedK {
+			obj.SetReverse(obj.GetMaxReverse() / startSpeedK)
 		} else {
 			obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
 		}
@@ -91,12 +96,12 @@ func wheel(obj MoveObject) {
 		} // влево!
 
 		// Сила дрифта: зависит от скорости и резкости
-		as := (pm.GetAngularVelocity() * 10)
+		as := (pm.GetAngularVelocity() * 8)
 		if as < 0 {
 			as *= -1
 		}
 
-		baseDrift := obj.GetCurrentSpeed() * as
+		baseDrift := obj.GetCurrentSpeed() * as * massK
 		if pm.CheckHandBrake() {
 			baseDrift *= 2.0 // ручной тормоз = мощный дрифт
 		}
@@ -107,7 +112,7 @@ func wheel(obj MoveObject) {
 
 	// === 3. Обновляем Drift-вектор (с инерцией!) ===
 	// Новый импульс добавляется, старый — затухает
-	cs := obj.GetCurrentSpeed() * 0.01
+	cs := obj.GetCurrentSpeed() * 0.008 * massK
 	pm.DriftX = pm.DriftX*0.9 + driftAccelX*cs
 	pm.DriftY = pm.DriftY*0.9 + driftAccelY*cs
 
@@ -130,13 +135,14 @@ func wheel(obj MoveObject) {
 
 	if (obj.GetPowerMove() > 0 && direction > 0) || (obj.GetReverse() > 0 && direction < 0) {
 
-		ts := direction * pm.GetTurnSpeed() * (obj.GetPowerMove() / obj.GetMoveMaxPower())
+		speedK := obj.GetPowerMove() / obj.GetMoveMaxPower()
+		ts := direction * pm.GetTurnSpeed() * speedK
 		if direction < 0 {
-			ts = direction * pm.GetTurnSpeed() * (obj.GetReverse() / obj.GetMaxReverse())
+			ts = direction * pm.GetTurnSpeed() * speedK
 		}
 
-		if ts < pm.GetTurnSpeed()/5 {
-			ts = pm.GetTurnSpeed() / 5
+		if ts > pm.GetTurnSpeed() {
+			ts = pm.GetTurnSpeed()
 		}
 
 		if pm.CheckLeftRotate() {
