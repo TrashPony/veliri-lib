@@ -141,8 +141,8 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 50034, ItemID: 127, ItemType: "book", Count: 1, Points: 300000, Credits: 2500000, MinRank: 1},
 
 	// fuel
-	{ID: 50134, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
-	{ID: 50135, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
+	{ID: 50134, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50135, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 
 	//// todo временное
 	//{ID: 40000, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
@@ -280,8 +280,8 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 50072, ItemID: 126, ItemType: "book", Count: 1, Points: 300000, Credits: 2500000, MinRank: 1},
 
 	// fuel
-	{ID: 50132, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
-	{ID: 50133, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
+	{ID: 50132, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50133, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 
 	//// todo временное
 	//{ID: 40003, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
@@ -416,8 +416,8 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 50112, ItemID: 128, ItemType: "book", Count: 1, Points: 300000, Credits: 2500000, MinRank: 1},
 
 	// fuel
-	{ID: 50130, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
-	{ID: 50131, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1},
+	{ID: 50130, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50131, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 
 	//// todo временное
 	//{ID: 40006, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
