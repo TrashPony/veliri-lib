@@ -41,11 +41,11 @@ func caterpillars(obj MoveObject) {
 			obj.SetReverse(obj.GetReverse() - obj.GetReverse()/8)
 		}
 
-		if obj.GetPowerMove() < obj.GetPowerFactor()*10 {
+		if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startCaterpillarsSpeedK {
 			obj.SetPowerMove(0)
 		}
 
-		if obj.GetReverse() < obj.GetReverseFactor()*10 {
+		if obj.GetReverse() <= obj.GetMaxReverse()/startCaterpillarsSpeedK {
 			obj.SetReverse(0)
 		}
 	}
