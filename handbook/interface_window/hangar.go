@@ -172,6 +172,11 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `deg/s`,
 		_const.ZhCN: `度/秒`,
 	},
+	"sec": {
+		_const.RU:   `с`,
+		_const.EN:   `s`,
+		_const.ZhCN: `秒`,
+	},
 	"text_17": {
 		_const.RU:   `Транспорты на базе:`,
 		_const.EN:   `Transports at the base:`,
@@ -293,9 +298,9 @@ var Hangar = map[string]map[string]string{
 		_const.ZhCN: `最大速度`,
 	},
 	"ch_23": {
-		_const.RU:   `Ускорение`,
-		_const.EN:   `Acceleration`,
-		_const.ZhCN: `加速`,
+		_const.RU:   `Время разгона`,
+		_const.EN:   `Acceleration time`,
+		_const.ZhCN: `加速时间`,
 	},
 	"ch_24": {
 		_const.RU:   `Скорость поворота`,
