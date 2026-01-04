@@ -53,12 +53,22 @@ func wheel(obj MoveObject) {
 			}
 		}
 
-		if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
-			obj.SetPowerMove(obj.GetMoveMaxPower() / (startWheelSpeedK * 2))
-		}
+		if obj.CheckGrowthPower() || obj.CheckGrowthRevers() {
+			if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
+				obj.SetPowerMove(obj.GetMoveMaxPower() / (startWheelSpeedK * 2))
+			}
 
-		if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
-			obj.SetReverse(obj.GetMaxReverse() / (startWheelSpeedK * 2))
+			if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
+				obj.SetReverse(obj.GetMaxReverse() / (startWheelSpeedK * 2))
+			}
+		} else {
+			if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
+				obj.SetPowerMove(0)
+			}
+
+			if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
+				obj.SetReverse(0)
+			}
 		}
 	}
 
