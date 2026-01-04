@@ -165,10 +165,10 @@ var fuelTypes = map[int]fuel.Fuel{
 		ID:               7,
 		Name:             "emergency_fuel_t0",
 		Size:             sizeFuel / 10,
-		EnergyCap:        1000 * capK,
+		EnergyCap:        2000 * capK,
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
-		LostDurability:   500,
+		LostDurability:   200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_emergency_fuel_t0",
@@ -195,11 +195,11 @@ var fuelTypes = map[int]fuel.Fuel{
 		ID:               8,
 		Name:             "emergency_fuel_t1",
 		Size:             sizeFuel / 10,
-		EnergyCap:        2500 * capK,
+		EnergyCap:        4000 * capK,
 		Tech:             1,
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
-		LostDurability:   500,
+		LostDurability:   200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_emergency_fuel_t1",
