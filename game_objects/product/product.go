@@ -6,6 +6,7 @@ type Product struct {
 	Size         int      `json:"size"`
 	DefaultPrice int      `json:"default_price"`
 	FairTrade    []string `json:"fair_trade"`
+	DiffPercent  float64  `json:"-"`
 }
 
 func (p *Product) GetName() string {

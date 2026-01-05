@@ -13,62 +13,71 @@ const sizeKHigh = 2
 const MaxBaseProducts = 5000.0
 
 var productsTypes = map[int]product.Product{
-	4: {
+	4: { // industrial_materials - сырье, часто торгуется
 		ID:           4,
 		Name:         "industrial_materials",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 150 * priceK,
+		DiffPercent:  10, // Низкий спред - часто торгуется
 	},
-	2: {
+	2: { // general_purpose_equipment - базовый товар
 		ID:           2,
 		Name:         "general_purpose_equipment",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 350 * priceK,
+		DiffPercent:  10, // Средний спред
 	},
-	7: {
+	7: { // civilian_weapon - контрабанда
 		ID:           7,
 		Name:         "civilian_weapon",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 420 * priceK,
+		DiffPercent:  10, // Высокий спред - риск контрабанды
 		FairTrade:    []string{_const.Reverses, _const.Explores},
 	},
-	1: {
+	1: { // energy_storage - базовый, но важный
 		ID:           1,
 		Name:         "energy_storage",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 500 * priceK,
+		DiffPercent:  10, // Чуть ниже среднего
 	},
-	9: {
+	9: { // fox_crystals - контрабанда
 		ID:           9,
 		Name:         "fox_crystals",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 600 * priceK,
+		DiffPercent:  10, // Очень высокий - редкая контрабанда
 		FairTrade:    []string{_const.Explores, _const.Replicas},
 	},
-	3: {
+	3: { // weapon_parts - премиум, военный
 		ID:           3,
 		Name:         "weapon_parts",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 1000 * priceK,
+		DiffPercent:  10, // Максимальный - дефицитный военный товар
 	},
-	8: {
+	8: { // neutrino_processors - контрабанда + высокотех
 		ID:           8,
 		Name:         "neutrino_processors",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 1050 * priceK,
+		DiffPercent:  10, // Высокий спред
 		FairTrade:    []string{_const.Reverses, _const.Replicas},
 	},
-	6: {
+	6: { // technological_maps - премиум, информация
 		ID:           6,
 		Name:         "technological_maps",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 750 * priceK,
+		DiffPercent:  10, // Средне-высокий
 	},
-	5: {
+	5: { // subatomic_composites - самый премиум
 		ID:           5,
 		Name:         "subatomic_composites",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 1250 * priceK,
+		DiffPercent:  10, // Максимальный - самый дорогой товар
 	},
 }
 
