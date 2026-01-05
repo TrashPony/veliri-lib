@@ -297,6 +297,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_jet_fuel":          {Description: "Increases <span class=\"importantly\">drive</span> characteristics of the vehicle by <span class=\"importantly\">5%</span>."},
 		"effect_emergency_fuel_t0": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">10%</span>."},
 		"effect_emergency_fuel_t1": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">7%</span>."},
+		"effect_emergency_fuel_t2": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">5%</span>."},
 
 		"empty": {Description: ""},
 	},
@@ -605,6 +606,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_jet_fuel":          {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта."},
 		"effect_emergency_fuel_t0": {Description: "На <span class=\"importantly\">10%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
 		"effect_emergency_fuel_t1": {Description: "На <span class=\"importantly\">7%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_emergency_fuel_t2": {Description: "На <span class=\"importantly\">5%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
 
 		"empty": {Description: ""},
 	},
@@ -832,6 +834,7 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_jet_fuel":          {Description: "将载具的<span class=\"importantly\">行驶</span>特性提升<span class=\"importantly\">5%</span>。"},
 		"effect_emergency_fuel_t0": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">10%</span>。"},
 		"effect_emergency_fuel_t1": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">7%</span>。"},
+		"effect_emergency_fuel_t2": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">5%</span>。"},
 
 		"empty": {Description: ""},
 	},
