@@ -15,7 +15,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "gas_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      25000 * capK, // 25000
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses:        []effect.Effect{},
 	},
 	2: {
@@ -23,7 +23,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "solid_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      37500 * capK,
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_solid_fuel",
@@ -73,7 +73,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "liquid_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      62500 * capK,
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_liquid_fuel",
@@ -93,7 +93,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "nuclear_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      100000 * capK,
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_nuclear_fuel",
@@ -109,7 +109,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "synthetic_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      62500 * capK,
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_synthetic_fuel",
@@ -130,7 +130,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Name:           "jet_fuel",
 		Size:           sizeFuel,
 		EnergyCap:      37500 * capK,
-		LostDurability: 250,
+		LostDurability: 200,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_jet_fuel",
@@ -168,7 +168,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		EnergyCap:        1000 * capK,
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
-		LostDurability:   25,
+		LostDurability:   20,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_emergency_fuel_t0",
@@ -199,7 +199,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Tech:             1,
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
-		LostDurability:   25,
+		LostDurability:   20,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_emergency_fuel_t1",
@@ -230,7 +230,7 @@ var fuelTypes = map[int]fuel.Fuel{
 		Tech:             1,
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
-		LostDurability:   25,
+		LostDurability:   20,
 		Bonuses: []effect.Effect{
 			{
 				Name:        "effect_emergency_fuel_t2",
