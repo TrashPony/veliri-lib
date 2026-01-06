@@ -18,21 +18,21 @@ var productsTypes = map[int]product.Product{
 		Name:         "industrial_materials",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 150 * priceK,
-		DiffPercent:  20, // Низкий спред - часто торгуется
+		DiffPercent:  14, // Низкий спред - часто торгуется
 	},
 	2: { // general_purpose_equipment - базовый товар
 		ID:           2,
 		Name:         "general_purpose_equipment",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 350 * priceK,
-		DiffPercent:  15, // Средний спред
+		DiffPercent:  12, // Средний спред
 	},
 	7: { // civilian_weapon - контрабанда
 		ID:           7,
 		Name:         "civilian_weapon",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 420 * priceK,
-		DiffPercent:  25, // Высокий спред - риск контрабанды
+		DiffPercent:  14, // Высокий спред - риск контрабанды
 		FairTrade:    []string{_const.Reverses, _const.Explores},
 	},
 	1: { // energy_storage - базовый, но важный
@@ -40,14 +40,14 @@ var productsTypes = map[int]product.Product{
 		Name:         "energy_storage",
 		Size:         500 / sizeKBase,
 		DefaultPrice: 500 * priceK,
-		DiffPercent:  18, // Чуть ниже среднего
+		DiffPercent:  12, // Чуть ниже среднего
 	},
 	9: { // fox_crystals - контрабанда
 		ID:           9,
 		Name:         "fox_crystals",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 600 * priceK,
-		DiffPercent:  25, // Очень высокий - редкая контрабанда
+		DiffPercent:  14, // Очень высокий - редкая контрабанда
 		FairTrade:    []string{_const.Explores, _const.Replicas},
 	},
 	3: { // weapon_parts - премиум, военный
@@ -55,14 +55,14 @@ var productsTypes = map[int]product.Product{
 		Name:         "weapon_parts",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 1000 * priceK,
-		DiffPercent:  22, // Максимальный - дефицитный военный товар
+		DiffPercent:  13, // Максимальный - дефицитный военный товар
 	},
 	8: { // neutrino_processors - контрабанда + высокотех
 		ID:           8,
 		Name:         "neutrino_processors",
 		Size:         500 / sizeKContraband,
 		DefaultPrice: 1050 * priceK,
-		DiffPercent:  25, // Высокий спред
+		DiffPercent:  14, // Высокий спред
 		FairTrade:    []string{_const.Reverses, _const.Replicas},
 	},
 	6: { // technological_maps - премиум, информация
@@ -70,14 +70,14 @@ var productsTypes = map[int]product.Product{
 		Name:         "technological_maps",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 750 * priceK,
-		DiffPercent:  20, // Средне-высокий
+		DiffPercent:  12, // Средне-высокий
 	},
 	5: { // subatomic_composites - самый премиум
 		ID:           5,
 		Name:         "subatomic_composites",
 		Size:         500 / sizeKHigh,
 		DefaultPrice: 1250 * priceK,
-		DiffPercent:  25, // Максимальный - самый дорогой товар
+		DiffPercent:  14, // Максимальный - самый дорогой товар
 	},
 }
 
