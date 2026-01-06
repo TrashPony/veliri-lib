@@ -1,12 +1,13 @@
 package product
 
 type Product struct {
-	ID           int      `json:"id"`
-	Name         string   `json:"name"`
-	Size         int      `json:"size"`
-	DefaultPrice int      `json:"default_price"`
-	FairTrade    []string `json:"fair_trade"`
-	DiffPercent  float64  `json:"-"`
+	ID                int      `json:"id"`
+	Name              string   `json:"name"`
+	Size              int      `json:"size"`
+	DefaultPrice      int      `json:"default_price"`
+	FairTrade         []string `json:"fair_trade"`
+	DiffPercent       float64  `json:"-"`
+	ChangePriceTicSec int      `json:"-"`
 }
 
 func (p *Product) GetName() string {
