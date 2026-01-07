@@ -147,8 +147,13 @@ var MenuBar = map[string]map[string]string{
 		_const.ZhCN: `货舱`,
 	},
 	"tip_15": {
-		_const.RU:   `Пеленгатор`,
-		_const.EN:   `Direction finder`,
-		_const.ZhCN: `测向仪`,
+		_const.RU:   `[<span class="importantly">V</span>] Пеленгатор`,
+		_const.EN:   `[<span class="importantly">V</span>] Direction finder`,
+		_const.ZhCN: `[<span class="importantly">V</span>] 测向仪`,
+	},
+	"tip_16": {
+		_const.RU:   `[<span class="importantly">ALT</span>] Показать ресурсы и предметы`,
+		_const.EN:   `[<span class="importantly">ALT</span>] Show resources and loot`,
+		_const.ZhCN: `[<span class="importantly">ALT</span>] 显示资源与可拾取物`,
 	},
 }

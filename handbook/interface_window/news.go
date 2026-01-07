@@ -65,9 +65,9 @@ var News = map[string]map[string]string{
 		_const.ZhCN: `商品`,
 	},
 	"button_1": {
-		_const.RU:   `Найти (0.3 cr.)`,
-		_const.EN:   `Find (0.3 cr.)`,
-		_const.ZhCN: `查找 (0.3 cr.)`,
+		_const.RU:   `Найти (3.00 cr.)`,
+		_const.EN:   `Find (3.00 cr.)`,
+		_const.ZhCN: `查找 (3.00 cr.)`,
 	},
 	"base_t_1": {
 		_const.RU:   `Перерабатывающий завод`,
