@@ -73,4 +73,19 @@ var Settings = map[string]map[string]string{
 		_const.EN:   `Reload`,
 		_const.ZhCN: `重新启动`,
 	},
+	"postprocess_intensity": {
+		_const.RU:   `Постобработка`,
+		_const.EN:   `Post-processing`,
+		_const.ZhCN: `后处理`,
+	},
+	"camera_leading_travel": {
+		_const.RU:   `Опережение походной камеры`,
+		_const.EN:   `Travel camera lead`,
+		_const.ZhCN: `行进摄像机预置`,
+	},
+	"camera_combat_smoothing": {
+		_const.RU:   `Сглаживание боевой камеры`,
+		_const.EN:   `Combat camera smoothing`,
+		_const.ZhCN: `战斗摄像机平滑度`,
+	},
 }
