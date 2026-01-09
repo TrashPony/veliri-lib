@@ -104,6 +104,9 @@ func (g *Gunner) GetBurstOfShots() *burst_of_shots.BurstOfShots {
 
 func (g *Gunner) GetGunRotate(slotNumber int) float64 {
 	weaponSlot := g.GunUser.GetWeaponSlot(slotNumber)
+	if weaponSlot == nil {
+		return 0
+	}
 	return weaponSlot.GetGunRotate()
 }
 

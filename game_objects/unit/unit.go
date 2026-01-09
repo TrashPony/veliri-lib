@@ -52,9 +52,10 @@ type Unit struct {
 	movePath         *move_path.MovePath // специальный обьект для пути
 	DistanceTraveled int                 `json:"-"` // пока только для заданий
 
-	Inventory           *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
-	InventoryPercent    byte                            `json:"-"`
-	AdditionalInventory map[string]*inventory.Inventory `json:"-"`
+	Inventory            *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
+	InventoryPercent     byte                            `json:"-"`
+	InventoryFuelPercent byte                            `json:"-"`
+	AdditionalInventory  map[string]*inventory.Inventory `json:"-"`
 
 	weaponTarget    *target.Target
 	reservoirTarget *target.Target
