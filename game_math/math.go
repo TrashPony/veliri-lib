@@ -113,3 +113,11 @@ func ShortestBetweenAngle(angle1, angle2 float64) int {
 func SpeedAndAngleToVelocity(speed float64, radian float64) (float64, float64) {
 	return speed * Cos(radian), speed * Sin(radian)
 }
+
+func GetPercentage(a, b float64) float64 {
+	if b == 0 {
+		return 0
+	}
+
+	return (a / b) * 100
+}

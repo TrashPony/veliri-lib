@@ -224,12 +224,13 @@ func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable,
 	return command
 }
 
-func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, percentFull byte, slots map[int]*detail.ThoriumSlot) []byte {
+func StatusSquadBinaryMsg(hp, shieldHP, energyPercent byte, energy int, autopilot bool, percentFull byte, slots map[int]*detail.ThoriumSlot) []byte {
 	// [1[eventID], 4[hp], 4[energy], 1[autopilot]], 4[count_slot_install], 21 * slot_count[slots data]
 	command := []byte{14}
 
-	command = append(command, game_math.GetIntBytes(hp)...)
-	command = append(command, game_math.GetIntBytes(shieldHP)...)
+	command = append(command, byte(hp))
+	command = append(command, byte(shieldHP))
+	command = append(command, byte(energyPercent))
 	command = append(command, game_math.GetIntBytes(energy)...)
 	command = append(command, game_math.BoolToByte(autopilot))
 	command = append(command, percentFull)
@@ -254,9 +255,6 @@ func StatusSquadBinaryMsg(hp, shieldHP, energy int, autopilot bool, percentFull 
 		command = append(command, byte(slots[slot].Number))
 		command = append(command, game_math.GetIntBytes(worked)...)
 		command = append(command, game_math.GetIntBytes(slots[slot].CurrentFuel.EnergyCap)...)
-		command = append(command, byte(0))                     // TODO
-		command = append(command, game_math.GetIntBytes(0)...) // TODO
-		command = append(command, game_math.BoolToByte(false))
 	}
 
 	return command
