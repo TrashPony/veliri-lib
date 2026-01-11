@@ -24,7 +24,7 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 		if obj.GetReverse() < obj.GetMoveMaxPower()/startAntigravitySpeedK {
 			obj.SetReverse(obj.GetMoveMaxPower() / startAntigravitySpeedK)
 		} else {
-			obj.SetReverse(obj.GetPowerMove() + obj.GetPowerFactor())
+			obj.SetReverse(obj.GetReverse() + obj.GetPowerFactor())
 		}
 	} else {
 		obj.SetReverse(0)
