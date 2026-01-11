@@ -21,10 +21,10 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 	}
 
 	if obj.CheckGrowthRevers() {
-		if obj.GetReverse() < obj.GetMaxReverse()/startAntigravitySpeedK {
-			obj.SetReverse(obj.GetMaxReverse() / startAntigravitySpeedK)
+		if obj.GetReverse() < obj.GetMoveMaxPower()/startAntigravitySpeedK {
+			obj.SetReverse(obj.GetMoveMaxPower() / startAntigravitySpeedK)
 		} else {
-			obj.SetReverse(obj.GetReverse() + obj.GetReverseFactor())
+			obj.SetReverse(obj.GetPowerMove() + obj.GetPowerFactor())
 		}
 	} else {
 		obj.SetReverse(0)
@@ -51,7 +51,7 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 	}
 
 	obj.SetPowerMove(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerMove())))
-	obj.SetReverse(math.Max(0, math.Min(obj.GetMaxReverse(), obj.GetReverse())))
+	obj.SetReverse(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetReverse())))
 	obj.SetPowerLeft(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerLeft())))
 	obj.SetPowerRight(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerRight())))
 
