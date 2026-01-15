@@ -380,6 +380,95 @@ var expeditionMailTemplates = map[string]map[string]map[string]string{
 					</div>`,
 		},
 	},
+	"end_expedition_explores_1": {
+		_const.RU: {
+			"body": `
+				<div class="ipci_message">
+					<div class="unknown_icon"></div>
+
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;'">Входящее сообщение...</span><br> 
+						<span class="importantly">Неизвестный</span>
+					</p>
+
+					<p style="margin-left: 10px;">Ха-ха! Пока дурачье!</p>
+					<p style="margin-left: 10px;">Благодаря тебе мы сорвали куш и никто не подумает на нас!</p>
+				</div>
+			`,
+		},
+		_const.EN: {
+			"body": `
+				<div class="ipci_message">
+					<div class="unknown_icon"></div>
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;">Incoming message...</span><br>
+						<span class="importantly">Unknown</span>
+					</p>
+					<p style="margin-left: 10px;">Ha-ha! See you later, fools!</p>
+					<p style="margin-left: 10px;">Thanks to you, we scored big and no one will suspect us!</p>
+				</div>
+			`,
+		},
+		_const.ZhCN: {
+			"body": `
+				<div class="ipci_message">
+					<div class="unknown_icon"></div>
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;">收到消息...</span><br>
+						<span class="importantly">未知联系人</span>
+					</p>
+					<p style="margin-left: 10px;">哈哈！回头见了，蠢货们！</p>
+					<p style="margin-left: 10px;">多亏了你，我们大赚了一笔，而且没人会怀疑我们！</p>
+				</div>
+			`,
+		},
+	},
+	"end_expedition_explores_2": {
+		_const.RU: {
+			"body": `
+				<div class="ipci_message">
+					<div class="explores_icon"></div>
+
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;'">Входящее сообщение...</span><br> 
+						<span class="importantly">Fis-Delta</span>
+						<span class="ipci_sub_head">Старший научный сотрудник</span>
+					</p>
+
+					<p style="margin-left: 10px;">Приветствую!</p>
+					<p style="margin-left: 10px;">Вы спасли моих сотрудников от плена, а так же не допустили уничтожение обсерватории, вот вам небольшой бонус за ваши труды. Спасибо!</p>
+				</div>
+			`,
+		},
+		_const.EN: {
+			"body": `
+				<div class="ipci_message">
+					<div class="explores_icon"></div>
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;">Incoming message...</span><br>
+						<span class="importantly">Fis-Delta</span>
+						<span class="ipci_sub_head">Senior Research Fellow</span>
+					</p>
+					<p style="margin-left: 10px;">Greetings!</p>
+					<p style="margin-left: 10px;">You saved my staff from captivity and prevented the destruction of the observatory. Here is a small bonus for your efforts. Thank you!</p>
+				</div>
+			`,
+		},
+		_const.ZhCN: {
+			"body": `
+				<div class="ipci_message">
+					<div class="explores_icon"></div>
+					<p style="margin-top: 3px; margin-left: 10px;">
+						<span style="color: #a4abaf;">收到消息...</span><br>
+						<span class="importantly">Fis-Delta</span>
+						<span class="ipci_sub_head">高级研究员</span>
+					</p>
+					<p style="margin-left: 10px;">你好！</p>
+					<p style="margin-left: 10px;">你解救了我被俘的员工，并阻止了天文台被毁。这是给你的一点额外奖励，以感谢你的努力。谢谢！</p>
+				</div>
+			`,
+		},
+	},
 }
 
 func GetExpeditionMailTemplates(typeEvent string) map[string]map[string]string {

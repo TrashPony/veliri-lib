@@ -55,9 +55,11 @@ func GetBodyAttributes(u *unit.Unit) map[string]int {
 		copypm.SetAngularVelocity(copypm.GetAngularVelocity() * copypm.GetAngularDrag())
 	}
 
-	return map[string]int{
+	state := map[string]int{
 		"max_speed":   speed,
 		"time_racing": ticks * _const.ServerTick,
 		"turn_speed":  int(game_math.RadianToDeg(copypm.GetAngularVelocity()) * _const.ServerTickSecPart),
 	}
+
+	return state
 }
