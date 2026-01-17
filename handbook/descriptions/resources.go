@@ -49,7 +49,7 @@ var ResourceDescription = map[string]map[string]DescriptionItem{
 
 var RecycleDescription = map[string]map[string]DescriptionItem{
 	_const.EN: {
-		"enriched_thorium": {Name: "Stabilized Lithium", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
+		"enriched_thorium": {Name: "Lithium deuteride", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"copper":           {Name: "Copper", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"iron":             {Name: "Iron", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 		"plastic":          {Name: "Plastic", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
@@ -58,7 +58,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"carbon":           {Name: "Carbon", Description: "<p>A product of the mining industry that has gone through the processing stages and is now suitable for further exploitation - the creation of parts and equipment.</p>"},
 	},
 	_const.RU: {
-		"enriched_thorium": {Name: "Стабилизированый литий", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
+		"enriched_thorium": {Name: "Дейтерид лития", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"copper":           {Name: "Медь", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"iron":             {Name: "Железо", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 		"plastic":          {Name: "Пластик", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
@@ -67,7 +67,7 @@ var RecycleDescription = map[string]map[string]DescriptionItem{
 		"carbon":           {Name: "Углерод", Description: "<p>Продукт добывающей промышленности, что прошёл стадии обработки и теперь, пригоден для дальнейшей эксплуатации – создания деталей и снаряжения.</p>"},
 	},
 	_const.ZhCN: {
-		"enriched_thorium": {Name: "稳定锂", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
+		"enriched_thorium": {Name: "氘化锂", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"copper":           {Name: "铜", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"iron":             {Name: "铁", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},
 		"plastic":          {Name: "塑料", Description: "<p>采矿业的产品，经过加工阶段，现在适合进一步使用——用于制造零件和设备。</p>"},

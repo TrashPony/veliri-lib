@@ -40,55 +40,55 @@ func getResourceDropConfig(sectorType sectorType) *sectorResourceConfig {
 	case sectorSafe:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceThoriumOre, 32, 3},
-				{resourceCopperOre, 32, 3},
-				{resourceIronOre, 32, 3},
-				{resourceSiliconOre, 2, 1},
-				{resourceTitaniumOre, 2, 1},
+				{resourceID: resourceThoriumOre, weight: 32, maxCount: 3},
+				{resourceID: resourceCopperOre, weight: 32, maxCount: 3},
+				{resourceID: resourceIronOre, weight: 32, maxCount: 3},
+				{resourceID: resourceSiliconOre, weight: 2, maxCount: 1},
+				{resourceID: resourceTitaniumOre, weight: 2, maxCount: 1},
 			},
 		}
 	case sectorFactionDanger:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceThoriumOre, 30, 3},
-				{resourceCopperOre, 29, 3},
-				{resourceIronOre, 29, 3},
-				{resourceSiliconOre, 5, 1},
-				{resourceTitaniumOre, 5, 1},
-				{resourceOil, 2, 1},
+				{resourceID: resourceThoriumOre, weight: 30, maxCount: 3},
+				{resourceID: resourceCopperOre, weight: 29, maxCount: 3},
+				{resourceID: resourceIronOre, weight: 29, maxCount: 3},
+				{resourceID: resourceSiliconOre, weight: 5, maxCount: 1},
+				{resourceID: resourceTitaniumOre, weight: 5, maxCount: 1},
+				{resourceID: resourceOil, weight: 2, maxCount: 1},
 			},
 		}
 	case sectorPirate:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceThoriumOre, 20, 2},
-				{resourceCopperOre, 20, 2},
-				{resourceIronOre, 20, 2},
-				{resourceSiliconOre, 10, 2},
-				{resourceTitaniumOre, 10, 2},
-				{resourceOil, 20, 3},
+				{resourceID: resourceThoriumOre, weight: 20, maxCount: 2},
+				{resourceID: resourceCopperOre, weight: 20, maxCount: 2},
+				{resourceID: resourceIronOre, weight: 20, maxCount: 2},
+				{resourceID: resourceSiliconOre, weight: 10, maxCount: 2},
+				{resourceID: resourceTitaniumOre, weight: 10, maxCount: 2},
+				{resourceID: resourceOil, weight: 20, maxCount: 3},
 			},
 		}
 	case sectorWasteland:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceThoriumOre, 10, 1},
-				{resourceCopperOre, 10, 1},
-				{resourceIronOre, 10, 1},
-				{resourceSiliconOre, 25, 3},
-				{resourceTitaniumOre, 25, 3},
-				{resourceOil, 20, 3},
+				{resourceID: resourceThoriumOre, weight: 10, maxCount: 1},
+				{resourceID: resourceCopperOre, weight: 10, maxCount: 1},
+				{resourceID: resourceIronOre, weight: 10, maxCount: 1},
+				{resourceID: resourceSiliconOre, weight: 25, maxCount: 3},
+				{resourceID: resourceTitaniumOre, weight: 25, maxCount: 3},
+				{resourceID: resourceOil, weight: 20, maxCount: 3},
 			},
 		}
 	case sectorCombat:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceThoriumOre, 15, 1},
-				{resourceCopperOre, 20, 1},
-				{resourceIronOre, 20, 1},
-				{resourceSiliconOre, 10, 2},
-				{resourceTitaniumOre, 10, 2},
-				{resourceOil, 35, 3},
+				{resourceID: resourceThoriumOre, weight: 15, maxCount: 1},
+				{resourceID: resourceCopperOre, weight: 20, maxCount: 1},
+				{resourceID: resourceIronOre, weight: 20, maxCount: 1},
+				{resourceID: resourceSiliconOre, weight: 10, maxCount: 2},
+				{resourceID: resourceTitaniumOre, weight: 10, maxCount: 2},
+				{resourceID: resourceOil, weight: 35, maxCount: 3},
 			},
 		}
 	default:
