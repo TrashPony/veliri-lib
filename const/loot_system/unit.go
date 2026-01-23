@@ -20,6 +20,9 @@ const (
 	botMobMid    botType = "mob_mid"
 	botMobHeavy  botType = "mob_heavy"
 	botMobGigant botType = "mob_gigant"
+
+	minDetailCount = 33
+	maxDetailCount = 66
 )
 
 func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand) []LootDrop {
@@ -73,7 +76,7 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand) []LootDrop
 
 		if len(pool) > 0 {
 			lot := pool[rng.Intn(len(pool))]
-			count := game_math.GetRangeRand(50, 100, rng) * game_math.GetRangeRand(1, lot.BaseCount+1, rng)
+			count := game_math.GetRangeRand(minDetailCount, maxDetailCount, rng) * game_math.GetRangeRand(1, lot.BaseCount+1, rng)
 			drops = append(drops, LootDrop{LootLot: lot, Count: count})
 		}
 	}

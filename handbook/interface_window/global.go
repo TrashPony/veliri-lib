@@ -64,9 +64,9 @@ var Global = map[string]map[string]string{
 		_const.ZhCN: `要激活武器/装备，您需要在<span style="color: yellow">屏幕底部中心</span>的面板上选择它，或按下单元格中指示的键（<span style="color: yellow">2</span>或<span style="color: yellow">E</span>）。`,
 	},
 	"text_12": {
-		_const.RU:   `прицеливание.`,
-		_const.EN:   `aiming.`,
-		_const.ZhCN: `瞄准。`,
+		_const.RU:   `прицеливание (камера будет следовать за мышкой).`,
+		_const.EN:   `aiming (the camera will follow the mouse).`,
+		_const.ZhCN: `瞄准（摄像头将跟随鼠标移动）。`,
 	},
 	"text_13": {
 		_const.RU:   `ЛКМ`,
