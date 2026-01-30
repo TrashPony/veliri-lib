@@ -35,4 +35,39 @@ var GlobalMap = map[string]map[string]string{
 		_const.EN:   `Close`,
 		_const.ZhCN: `关闭`,
 	},
+	"tip_1": {
+		_const.RU:   `Сектор с пониженным уровнем безопасности`,
+		_const.EN:   `Low-security sector`,
+		_const.ZhCN: `低安全等级区域`,
+	},
+	"tip_2": {
+		_const.RU:   `Количество воинов вашей фракции в этом секторе`,
+		_const.EN:   `Number of your faction's warriors in this sector`,
+		_const.ZhCN: `本区域中你方势力的战士数量`,
+	},
+	"tip_3": {
+		_const.RU:   `В этом секторе находится аванпост фракции: <span class='importantly'>%FRACTION%</span>`,
+		_const.EN:   `This sector contains an outpost of the <span class='importantly'>%FRACTION%</span> faction`,
+		_const.ZhCN: `此区域有<span class='importantly'>%FRACTION%</span>势力的前哨站`,
+	},
+	"tip_4": {
+		_const.RU:   `Сектор находится под контролем фракции: <span class='importantly'>%FRACTION%</span>`,
+		_const.EN:   `Sector controlled by the <span class='importantly'>%FRACTION%</span> faction`,
+		_const.ZhCN: `此区域由<span class='importantly'>%FRACTION%</span>势力控制`,
+	},
+	"tip_5": {
+		_const.RU:   `На этот сектор готовится нападение`,
+		_const.EN:   `This sector is about to be attacked`,
+		_const.ZhCN: `此区域即将遭受攻击`,
+	},
+	"tip_6": {
+		_const.RU:   `Этот сектор является приоритетной целью`,
+		_const.EN:   `This sector is a priority target`,
+		_const.ZhCN: `此区域是优先目标`,
+	},
+	"tip_7": {
+		_const.RU:   `В этом секторе ведется сражение`,
+		_const.EN:   `Battle in progress in this sector`,
+		_const.ZhCN: `此区域正在发生战斗`,
+	},
 }
