@@ -175,8 +175,12 @@ func (o *Object) GetStartScale() {
 		o.SetScale(74)
 	}
 
-	if o.Texture == "storage" || o.Texture == "apd_vault_of_souls" {
+	if o.Texture == "storage" {
 		o.SetScale(74)
+	}
+
+	if o.Texture == "apd_vault_of_souls" {
+		o.SetScale(65)
 	}
 
 	if o.Texture == "mine_storage_1" || o.Texture == "mine_storage_2" || o.Texture == "mine_storage_3" || o.Texture == "mine_recycler" ||
