@@ -36,6 +36,7 @@ type DynObject struct {
 	CraftTime         int
 	CraftRun          int
 	CurrentBuildSlots []byte
+	ChampUUID         string
 }
 
 type ReservoirOption struct {
