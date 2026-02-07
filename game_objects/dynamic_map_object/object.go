@@ -38,6 +38,8 @@ type Object struct {
 	AnimateSpriteSheets string `json:"animate_sprite_sheets"`
 	AnimateLoop         bool   `json:"animate_loop"`
 	Core                bool   `json:"core"`
+	Champ               bool   `json:"champ"`
+	ChampUUID           string `json:"champ_uuid"`
 	Name                string `json:"name"`
 	Inventory           bool   `json:"inventory"`
 	InventoryCapacity   int    `json:"-"`
