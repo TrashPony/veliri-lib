@@ -37,6 +37,7 @@ type DynObject struct {
 	CraftRun          int
 	CurrentBuildSlots []byte
 	ChampUUID         string
+	Core              bool
 }
 
 type ReservoirOption struct {
