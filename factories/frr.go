@@ -2,6 +2,7 @@ package factories
 
 import (
 	"github.com/TrashPony/veliri-lib/game_objects/frr"
+	"math/rand"
 )
 
 const sizeFrr = 100
@@ -55,4 +56,14 @@ func GetFrr(id int) *frr.FRR {
 
 func GetAllFrr() map[int]frr.FRR {
 	return frrTypes
+}
+
+func GetRandomFrr() frr.FRR {
+	fs := make([]frr.FRR, 0)
+
+	for _, p := range frrTypes {
+		fs = append(fs, p)
+	}
+
+	return fs[rand.Intn(len(fs))]
 }

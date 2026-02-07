@@ -21,24 +21,57 @@ var expeditionMailTemplates = map[string]map[string]map[string]string{
 	},
 	"exp_value": {
 		_const.RU: {
-			"body": `<p><i>Заработано %v очков опыта.</i></p>`,
+			"body": `<p><i>Заработано <span class="importantly">%v</span> очков опыта.</i></p>`,
 		},
 		_const.EN: {
-			"body": `<p><i>%v experience points earned.</i></p>`,
+			"body": `<p><i><span class="importantly">%v</span> experience points earned.</i></p>`,
 		},
 		_const.ZhCN: {
-			"body": `<p><i>获得 %v 经验值。</i></p>`,
+			"body": `<p><i>获得 <span class="importantly">%v</span> 经验值。</i></p>`,
 		},
 	},
 	"cr_value": {
 		_const.RU: {
-			"body": `<p><i>Входящий перевод: %v cr.</i></p>`,
+			"body": `<p><i>Входящий перевод: <span class="importantly">%v</span> cr.</i></p>`,
 		},
 		_const.EN: {
-			"body": `<p><i>Incoming transfer: %v cr.</i></p>`,
+			"body": `<p><i>Incoming transfer: <span class="importantly">%v</span> cr.</i></p>`,
 		},
 		_const.ZhCN: {
-			"body": `<p><i>收到转账：%v 信用点</i></p>`,
+			"body": `<p><i>收到转账：<span class="importantly">%v</span> 信用点</i></p>`,
+		},
+	},
+	"rff_value": {
+		_const.RU: {
+			"body": `<p><i>Получено: <span class="importantly">%v</span> <span class="reward_frr %v"></span> %v.</i></p>`,
+		},
+		_const.EN: {
+			"body": `<p><i>Received: <span class="importantly">%v</span> <span class="reward_frr %v"></span> %v.</i></p>`,
+		},
+		_const.ZhCN: {
+			"body": `<p><i>已收到：<span class="importantly">%v</span> <span class="reward_frr %v"></span>%v。</i></p>`,
+		},
+	},
+	"relation_value": {
+		_const.RU: {
+			"body": `<p><i>Отношения с фракцией "<span class="%v_color">%v</span>" измененны на <span class="importantly">%v</span>%%.</i></p>`,
+		},
+		_const.EN: {
+			"body": `<p><i>Relations with the "<span class="%v_color">%v</span>" faction changed by <span class="importantly">%v</span>%%.</i></p>`,
+		},
+		_const.ZhCN: {
+			"body": `<p><i>与 "<span class="%v_color">%v</span>" 派系的关系改变了 <span class="importantly">%v</span>%%。</i></p>`,
+		},
+	},
+	"start_quest": {
+		_const.RU: {
+			"body": `<p><i>Начато задание "<span class="importantly">%v</span>".</i></p>`,
+		},
+		_const.EN: {
+			"body": `<p><i>Quest "<span class="importantly">%v</span>" has been started.</i></p>`,
+		},
+		_const.ZhCN: {
+			"body": `<p><i>已开始任务 "<span class="importantly">%v</span>"。</i></p>`,
 		},
 	},
 	"start_expedition": {
