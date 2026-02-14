@@ -169,6 +169,7 @@ func GobRegister() {
 
 	gob.Register([]unit.Decal{})
 	gob.Register(unit.Decal{})
+	gob.Register(unit.LootConfig{})
 
 	gob.Register(generate_map_config.GenerateMapConfig{})
 	gob.Register(builder_game_state.BuilderGameState{})

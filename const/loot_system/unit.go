@@ -25,15 +25,23 @@ const (
 	maxDetailCount = 66
 )
 
-func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand) []LootDrop {
+func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64) []LootDrop {
 	botType := getTypeBot(botRole, fraction)
 
 	cfg := getBotLootConfig(botType)
+	if k == 0 {
+		k = 1
+	}
+
+	cfg.CurrencyChance = int(float64(cfg.CurrencyChance) * k)
+	cfg.BlueprintChance = int(float64(cfg.BlueprintChance) * k)
+	cfg.PartChance = int(float64(cfg.PartChance) * k)
+
 	var drops []LootDrop
 
 	// Валюта: 1к–5к
 	if rng.Intn(100) < cfg.CurrencyChance {
-		amount := 1000 + rng.Intn(4001) // 1000–5000
+		amount := 1000 + int(float64(rng.Intn(3001))*k)
 		drops = append(drops, LootDrop{
 			LootLot: LootLot{ItemType: "trash", ItemID: 41}, // 1k_credits
 			Count:   amount / 1000,
@@ -60,7 +68,7 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand) []LootDrop
 		if len(blueprints) > 0 {
 			lot := blueprints[rng.Intn(len(blueprints))]
 			count := game_math.GetRangeRand(1, lot.BaseCount+1, rng)
-			drops = append(drops, LootDrop{LootLot: lot, Count: count})
+			drops = append(drops, LootDrop{LootLot: lot, Count: int(float64(count) * k)})
 		}
 	}
 
@@ -77,7 +85,7 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand) []LootDrop
 		if len(pool) > 0 {
 			lot := pool[rng.Intn(len(pool))]
 			count := game_math.GetRangeRand(minDetailCount, maxDetailCount, rng) * game_math.GetRangeRand(1, lot.BaseCount+1, rng)
-			drops = append(drops, LootDrop{LootLot: lot, Count: count})
+			drops = append(drops, LootDrop{LootLot: lot, Count: int(float64(count) * k)})
 		}
 	}
 

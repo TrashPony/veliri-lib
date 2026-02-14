@@ -38,7 +38,6 @@ type Object struct {
 	AnimateSpriteSheets string `json:"animate_sprite_sheets"`
 	AnimateLoop         bool   `json:"animate_loop"`
 	Core                bool   `json:"core"`
-	Champ               bool   `json:"champ"`
 	ChampUUID           string `json:"champ_uuid"`
 	Name                string `json:"name"`
 	Inventory           bool   `json:"inventory"`
@@ -165,6 +164,10 @@ type TrapUnit struct {
 	BreakOut int  `json:"breakOut"`
 	Skip     int  `json:"skip"`
 	Attack   bool `json:"attack"`
+}
+
+func (o *Object) IsChamp() bool {
+	return o.Core || o.ChampUUID != ""
 }
 
 func (o *Object) GetFraction() string {

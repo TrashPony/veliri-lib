@@ -95,13 +95,21 @@ type Unit struct {
 	radarRange            int
 	police                bool
 	fractionWarrior       bool
-	Role                  string  `json:"-"`
-	OldUnrepairableDamage int     `json:"-"`
-	UnrepairableDamage    int     `json:"-"`
-	FractionByte          byte    `json:"-"`
-	ReactorEfficiency     float64 `json:"-"`
+	Role                  string     `json:"-"`
+	OldUnrepairableDamage int        `json:"-"`
+	UnrepairableDamage    int        `json:"-"`
+	FractionByte          byte       `json:"-"`
+	ReactorEfficiency     float64    `json:"-"`
+	EliteType             int        `json:"-"`
+	LootConfig            LootConfig `json:"-"`
 
 	Decals []Decal
+}
+
+type LootConfig struct {
+	ChangeK float64
+	CountK  float64
+	Lvl     float64
 }
 
 type BossConfig struct {
@@ -642,6 +650,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.police))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.LightsWork()))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ForceView))
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, u.GetEliteType())
 
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.GetBody().Texture))))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, []byte(u.GetBody().Texture)...)
@@ -1022,4 +1031,8 @@ func (u *Unit) SetCorporationID(id int) {
 
 func (u *Unit) OwnerFraction() string {
 	return u.Fraction
+}
+
+func (u *Unit) GetEliteType() byte {
+	return byte(u.EliteType)
 }
