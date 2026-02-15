@@ -33,9 +33,9 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64)
 		k = 1
 	}
 
-	cfg.CurrencyChance = int(float64(cfg.CurrencyChance) * k)
-	cfg.BlueprintChance = int(float64(cfg.BlueprintChance) * k)
-	cfg.PartChance = int(float64(cfg.PartChance) * k)
+	cfg.CurrencyChance = int(float64(cfg.CurrencyChance) * (k * 3))
+	cfg.BlueprintChance = int(float64(cfg.BlueprintChance) * (k * 3))
+	cfg.PartChance = int(float64(cfg.PartChance) * (k * 3))
 
 	var drops []LootDrop
 
@@ -124,7 +124,7 @@ func getBotLootConfig(botType botType) *BotLootConfig {
 	case botMobGigant:
 		return &BotLootConfig{7, 11, 17, 1}
 	default:
-		return &BotLootConfig{0, 0, 0, 0}
+		return &BotLootConfig{3, 6, 10, 0}
 	}
 }
 
