@@ -117,3 +117,29 @@ func (s *SpecialHostile) GetJSON() []byte {
 	jsonData, _ := json.Marshal(s)
 	return jsonData
 }
+
+func (s *SpecialHostile) Copy() *SpecialHostile {
+	if s == nil {
+		return nil
+	}
+
+	s.mx.RLock()
+	defer s.mx.RUnlock()
+
+	copyHostile := &SpecialHostile{
+		UUID:       s.UUID,
+		ID:         s.ID,
+		Type:       s.Type,
+		Points:     s.Points,
+		LastUpdate: s.LastUpdate,
+	}
+
+	if len(s.Moderate) > 0 {
+		copyHostile.Moderate = make(map[string]*PointsModerate, len(s.Moderate))
+		for key, value := range s.Moderate {
+			copyHostile.Moderate[key] = value
+		}
+	}
+
+	return copyHostile
+}

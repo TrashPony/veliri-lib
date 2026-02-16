@@ -41,6 +41,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/skill"
 	"github.com/TrashPony/veliri-lib/game_objects/skin"
 	"github.com/TrashPony/veliri-lib/game_objects/spawn"
+	"github.com/TrashPony/veliri-lib/game_objects/special_hostiles"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/trash_item"
 	"github.com/TrashPony/veliri-lib/game_objects/unit"
@@ -181,6 +182,8 @@ func GobRegister() {
 	gob.Register(unit.BossConfig{})
 	gob.Register([]effect.Effect{})
 	gob.Register(visible_objects.VisibleObject{})
+
+	gob.Register(map[string]*special_hostiles.SpecialHostile{})
 
 	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})

@@ -107,6 +107,14 @@ func (s *Squad) SetHostilePoints(typeHostile string, id, hatePoint int) {
 	// TODO NODES
 }
 
+func (s *Squad) ClearHostiles() {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	s.specialHostiles.Clear()
+}
+
 func (s *Squad) ClearHostile() {
 
 	if s == nil {
@@ -116,12 +124,20 @@ func (s *Squad) ClearHostile() {
 	s.specialHostiles = &special_hostiles.SpecialHostiles{}
 }
 
-func (s *Squad) GetSpecialHostileData() ([]byte, []byte) {
+func (s *Squad) GetSpecialHostileJsonData() ([]byte, []byte) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
 
 	return s.specialHostiles.GetJsonData()
+}
+
+func (s *Squad) GetSpecialHostileData() (map[string]bool, map[string]*special_hostiles.SpecialHostile) {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	return s.specialHostiles.GetData()
 }
 
 func (s *Squad) LoadSpecialHostileFromJson(ignoreHate []byte, specialHostiles []byte) {
@@ -130,6 +146,14 @@ func (s *Squad) LoadSpecialHostileFromJson(ignoreHate []byte, specialHostiles []
 	}
 
 	s.specialHostiles.LoadFromJson(ignoreHate, specialHostiles)
+}
+
+func (s *Squad) LoadSpecialHostile(ignoreHate map[string]bool, specialHostiles map[string]*special_hostiles.SpecialHostile) {
+	if s.specialHostiles == nil {
+		s.specialHostiles = &special_hostiles.SpecialHostiles{}
+	}
+
+	s.specialHostiles.LoadData(ignoreHate, specialHostiles)
 }
 
 func (s *Squad) CheckHostile(typeHostile string, id int, ownerID int) (bool, int) {
