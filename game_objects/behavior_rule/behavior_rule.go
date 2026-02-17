@@ -131,47 +131,48 @@ func (s *SubGroup) LoadMembers(data []byte) {
 }
 
 type Meta struct {
-	Radius                        int               `json:"radius"`
-	Parameter                     string            `json:"parameter"`
-	Count                         int               `json:"count"`
-	Count2                        int               `json:"count_2"`
-	Current                       int               `json:"current"`
-	Percent                       bool              `json:"percent"`
-	MapID                         int               `json:"map_id"`
-	BaseID                        int               `json:"base_id"`
-	TypeTarget                    string            `json:"type_target"`
-	IDTargets                     []int             `json:"id_targets"`
-	IDTarget                      int               `json:"id_target"`
-	IDPlayerTarget                int               `json:"id_player_target"`
-	TypeInteraction               string            `json:"type_interaction"`
-	TypeID                        int               `json:"type_id"`
-	X                             int               `json:"x"`
-	Y                             int               `json:"y"`
-	Rotate                        int               `json:"rotate"`
-	UUID                          string            `json:"uuid"`
-	Slot                          int               `json:"slot"`
-	Try                           int               `json:"try"`
-	Type                          string            `json:"type"`
-	ForcePass                     bool              `json:"force_pass"`
-	Patrol                        *Patrol           `json:"patrol"`
-	SubGroup                      *SubGroup         `json:"sub_group"` // [user_id]
-	Ready                         bool              `json:"ready"`
-	ResourceTask                  *ResourceSendTask `json:"resource_task"`
-	SetBackToBaseWhenChangeSector bool              `json:"set_back_to_base_when_change_sector"`
-	BackToBase                    bool              `json:"back_to_base"`
-	Start                         int64             `json:"start"`
-	ID                            int               `json:"id"`
-	FixedSector                   bool              `json:"fixed_sector"`
-	Global                        bool              `json:"global"`
-	TimeOut                       int               `json:"time_out"`
-	Stop                          bool              `json:"stop"`
-	NotWarTypePath                string            `json:"not_war_type_path"`
-	MissionTarget                 int               `json:"mission_target"`
-	IgnoreBaseID                  int               `json:"ignore_base_id"`
-	IgnoreMapID                   int               `json:"ignore_map_id"`
-	Attributes                    map[string]int    `json:"attributes"`
-	robberyIgnore                 map[int]int64
-	mx                            sync.RWMutex
+	Radius                          int               `json:"radius"`
+	Parameter                       string            `json:"parameter"`
+	Count                           int               `json:"count"`
+	Count2                          int               `json:"count_2"`
+	Current                         int               `json:"current"`
+	Percent                         bool              `json:"percent"`
+	MapID                           int               `json:"map_id"`
+	BaseID                          int               `json:"base_id"`
+	TypeTarget                      string            `json:"type_target"`
+	IDTargets                       []int             `json:"id_targets"`
+	IDTarget                        int               `json:"id_target"`
+	IDPlayerTarget                  int               `json:"id_player_target"`
+	TypeInteraction                 string            `json:"type_interaction"`
+	TypeID                          int               `json:"type_id"`
+	X                               int               `json:"x"`
+	Y                               int               `json:"y"`
+	Rotate                          int               `json:"rotate"`
+	UUID                            string            `json:"uuid"`
+	Slot                            int               `json:"slot"`
+	Try                             int               `json:"try"`
+	Type                            string            `json:"type"`
+	ForcePass                       bool              `json:"force_pass"`
+	Patrol                          *Patrol           `json:"patrol"`
+	SubGroup                        *SubGroup         `json:"sub_group"` // [user_id]
+	Ready                           bool              `json:"ready"`
+	ResourceTask                    *ResourceSendTask `json:"resource_task"`
+	SetBackToBaseWhenChangeSector   bool              `json:"set_back_to_base_when_change_sector"`
+	BackToBase                      bool              `json:"back_to_base"`
+	Start                           int64             `json:"start"`
+	CheckProfitabilitySectorTimeOut int64             `json:"check_profitability_sector_time_out"`
+	ID                              int               `json:"id"`
+	FixedSector                     bool              `json:"fixed_sector"`
+	Global                          bool              `json:"global"`
+	TimeOut                         int               `json:"time_out"`
+	Stop                            bool              `json:"stop"`
+	NotWarTypePath                  string            `json:"not_war_type_path"`
+	MissionTarget                   int               `json:"mission_target"`
+	IgnoreBaseID                    int               `json:"ignore_base_id"`
+	IgnoreMapID                     int               `json:"ignore_map_id"`
+	Attributes                      map[string]int    `json:"attributes"`
+	robberyIgnore                   map[int]int64
+	mx                              sync.RWMutex
 }
 
 func (m *Meta) GetRobberyIgnore(unitID int) bool {

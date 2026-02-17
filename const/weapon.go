@@ -2,10 +2,11 @@ package _const
 
 // fraction/size/ []names
 var fractionWeapon = map[string][]string{
-	"Replics":  {"replic_weapon_1", "replic_weapon_2", "replic_weapon_3", "replic_weapon_4"},
-	"Explores": {"explores_weapon_1", "explores_weapon_2", "explores_weapon_3", "explores_weapon_4"},
-	"Reverses": {"reverses_weapon_1", "reverses_weapon_2", "reverses_weapon_3", "reverses_weapon_4", "reverses_weapon_5"},
-	"APD":      {"small_laser", "big_laser", "small_missile", "tank_gun", "artillery", "big_missile"},
+	Replicas:         {"replic_weapon_1", "replic_weapon_2", "replic_weapon_3", "replic_weapon_4"},
+	Explores:         {"explores_weapon_1", "explores_weapon_2", "explores_weapon_3", "explores_weapon_4"},
+	Reverses:         {"reverses_weapon_1", "reverses_weapon_2", "reverses_weapon_3", "reverses_weapon_4", "reverses_weapon_5"},
+	APD:              {"small_laser", "big_laser", "small_missile", "tank_gun", "artillery", "big_missile"},
+	RustbucketCartel: {"small_laser", "big_laser", "small_missile", "tank_gun", "artillery", "big_missile"},
 }
 
 var weaponDefaultSkin = map[string]string{

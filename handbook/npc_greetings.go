@@ -2257,6 +2257,163 @@ var npcGreetings = map[string]map[string]string{
 		_const.EN:   "*click* <span class=\"importantly\">*click*</span> *click*, *snap*?",
 		_const.ZhCN: "*咔哒* <span class=\"importantly\">*咔哒*</span> *咔哒*, *咔嚓*？",
 	},
+	// Pirates
+	_const.RustbucketCartel + "_in_scout_" + Neutral + "_1": {
+		_const.RU:   "Слышь, %UserName%, кошелек или жизнь?",
+		_const.EN:   "Hey, %UserName%, wallet or life?",
+		_const.ZhCN: "嘿，<span class=\"importantly\">%UserName%</span>，要钱还是要命？",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Neutral + "_2": {
+		_const.RU:   "Грузовой отсек чем-то набит? Дай угадаю - моим добром?",
+		_const.EN:   "Is your cargo hold full? Let me guess - with my stuff?",
+		_const.ZhCN: "货舱装满了？让我猜猜——都是我的东西吧？",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Neutral + "_3": {
+		_const.RU:   "О, свежая цель! %UserName%, ты как раз вовремя.",
+		_const.EN:   "Oh, fresh target! %UserName%, you're just in time.",
+		_const.ZhCN: "哦，新鲜目标！<span class=\"importantly\">%UserName%</span>，你来得正好。",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Neutral + "_4": {
+		_const.RU:   "Проезжая мимо, решил заплатить дань? Мудрое решение.",
+		_const.EN:   "Passing by, decided to pay tribute? Wise decision.",
+		_const.ZhCN: "路过顺便交个过路费？明智的选择。",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Good + "_1": {
+		_const.RU:   "%UserName%, братан! Давно не виделись!",
+		_const.EN:   "%UserName%, bro! Long time no see!",
+		_const.ZhCN: "<span class=\"importantly\">%UserName%</span>，兄弟！好久不见！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Good + "_2": {
+		_const.RU:   "Слышал, ты в прошлый раз неплохо поживился в караване. Респект!",
+		_const.EN:   "Heard you got a good haul from that caravan last time. Respect!",
+		_const.ZhCN: "听说你上次从那个车队捞了不少。佩服佩服！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Good + "_3": {
+		_const.RU:   "Если надумаешь на дело сходить - свистни. Вместе веселее!",
+		_const.EN:   "If you're planning a job - give a shout. More fun together!",
+		_const.ZhCN: "要是打算干一票——招呼一声。一起干更有意思！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Bad + "_1": {
+		_const.RU:   "А, это ты, крыса. Вали отсюда, пока цел.",
+		_const.EN:   "Ah, it's you, rat. Get out while you're still intact.",
+		_const.ZhCN: "啊，是你这老鼠。趁还完整赶紧滚。",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Bad + "_2": {
+		_const.RU:   "Мне сказали тебя пристрелить при встрече. Но сегодня я добрый - проваливай.",
+		_const.EN:   "I was told to shoot you on sight. But I'm feeling generous today - piss off.",
+		_const.ZhCN: "有人让我见到你就崩了。不过今天心情好——滚吧。",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Target + "_1": {
+		_const.RU:   "Груз на пол, и можешь валить!",
+		_const.EN:   "Drop the cargo and you can leave!",
+		_const.ZhCN: "货物留下，你可以走了！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Target + "_2": {
+		_const.RU:   "Сопротивляться бесполезно, %UserName%!",
+		_const.EN:   "Resistance is useless, %UserName%!",
+		_const.ZhCN: "反抗是没用的，<span class=\"importantly\">%UserName%</span>！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Target + "_3": {
+		_const.RU:   "Ща как дам из главного калибра!",
+		_const.EN:   "I'm about to hit you with the main gun!",
+		_const.ZhCN: "看我用主炮轰你！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Fear + "_1": {
+		_const.RU:   "Э-э, братан, давай не будем! Я же пошутил!",
+		_const.EN:   "Hey bro, let's not! I was just kidding!",
+		_const.ZhCN: "哎，兄弟，别这样！我开玩笑的！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Fear + "_2": {
+		_const.RU:   "Забери груз, только не стреляй!",
+		_const.EN:   "Take the cargo, just don't shoot!",
+		_const.ZhCN: "货物你拿走，别开枪！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Help + "_1": {
+		_const.RU:   "Братва, помоги! Тут фракционники на хвосте!",
+		_const.EN:   "Brothers, help! Faction guys on my tail!",
+		_const.ZhCN: "兄弟们，帮帮忙！派系的人追着我！",
+	},
+	_const.RustbucketCartel + "_in_scout_" + Help + "_2": {
+		_const.RU:   "%UserName%, подтягивайся, тут дележка халявы!",
+		_const.EN:   "%UserName%, get over here, free stuff to share!",
+		_const.ZhCN: "<span class=\"importantly\">%UserName%</span>，快过来，有免费的东西分！",
+	},
+
+	_const.RustbucketCartel + "_guard_" + Neutral + "_1": {
+		_const.RU:   "Слышь, %UserName%, у нас свои законы. Не нравятся - вали в другой сектор.",
+		_const.EN:   "Listen, %UserName%, we got our own rules. Don't like 'em - go to another sector.",
+		_const.ZhCN: "听着，<span class=\"importantly\">%UserName%</span>，我们有我们的规矩。不喜欢——去别的区域。",
+	},
+	_const.RustbucketCartel + "_guard_" + Neutral + "_2": {
+		_const.RU:   "За порядком следим. Бесплатно. Так что - не создавай проблем.",
+		_const.EN:   "We keep order here. Free of charge. So - don't cause trouble.",
+		_const.ZhCN: "我们维持秩序。免费的。所以——别找麻烦。",
+	},
+	_const.RustbucketCartel + "_guard_" + Neutral + "_3": {
+		_const.RU:   "Это место для своих. Будешь своим - поживешь. Чужим - извиняй.",
+		_const.EN:   "This place is for the locals. Be local - you'll live. Be outsider - sorry.",
+		_const.ZhCN: "这是给自己人的地方。当自己人——活下去。当外人——抱歉了。",
+	},
+	_const.RustbucketCartel + "_guard_" + Good + "_1": {
+		_const.RU:   "%UserName%, здорово! Проходи, тут сегодня тихо. Расслабься.",
+		_const.EN:   "%UserName%, good to see you! Come in, it's quiet today. Chill.",
+		_const.ZhCN: "<span class=\"importantly\">%UserName%</span>，好啊！进来吧，今天挺安静。放松放松。",
+	},
+	_const.RustbucketCartel + "_guard_" + Good + "_2": {
+		_const.RU:   "Слышал, ты в прошлый раз прилично наторговал. Молодец. Уважаю.",
+		_const.EN:   "Heard you made some good trades last time. Good for you. Respect.",
+		_const.ZhCN: "听说你上次做得不错。好样的。我佩服。",
+	},
+	_const.RustbucketCartel + "_guard_" + Bad + "_1": {
+		_const.RU:   "Опять ты? Я же сказал - вали. Или жди неприятностей.",
+		_const.EN:   "You again? I told you - get lost. Or wait for trouble.",
+		_const.ZhCN: "又是你？我说了——滚。否则有麻烦等着你。",
+	},
+	_const.RustbucketCartel + "_guard_" + Bad + "_2": {
+		_const.RU:   "Тут про тебя нехорошее говорят. Лишний раз не светись, понял?",
+		_const.EN:   "People are saying bad things about you. Keep a low profile, got it?",
+		_const.ZhCN: "有人说你坏话。别太显眼，明白吗？",
+	},
+	_const.RustbucketCartel + "_guard_" + Target + "_1": {
+		_const.RU:   "Ну все, договорился. Прощай, %UserName%.",
+		_const.EN:   "That's it, you asked for it. Goodbye, %UserName%.",
+		_const.ZhCN: "行了，你自找的。永别了，<span class=\"importantly\">%UserName%</span>。",
+	},
+	_const.RustbucketCartel + "_guard_" + Target + "_2": {
+		_const.RU:   "Я же просил - не надо проблем. Ты сам выбрал.",
+		_const.EN:   "I asked you - no trouble. Your choice.",
+		_const.ZhCN: "我提醒过你——别找麻烦。你自找的。",
+	},
+	_const.RustbucketCartel + "_guard_" + Target + "_3": {
+		_const.RU:   "Кто первый начал - нам пофиг. Оба в расход пойдете.",
+		_const.EN:   "Who started it - we don't give a damn. Both of you are going down.",
+		_const.ZhCN: "谁先动手的——我们不管。两个都干掉。",
+	},
+	_const.RustbucketCartel + "_guard_" + Fear + "_1": {
+		_const.RU:   "Ты че, попутал, %UserName%?",
+		_const.EN:   "The hell you thinking, %UserName%?",
+		_const.ZhCN: "你搞什么，%UserName%？",
+	},
+	_const.RustbucketCartel + "_guard_" + Fear + "_2": {
+		_const.RU:   "Оружие убрал, пока цел. Последний раз предупреждаю.",
+		_const.EN:   "Put the weapon away while you're still intact. Last warning.",
+		_const.ZhCN: "把武器收起来，趁你还没事。最后一次警告。",
+	},
+	_const.RustbucketCartel + "_guard_" + Fear + "_3": {
+		_const.RU:   "Хочешь проверить, быстро мы реагируем? Ну давай, рискни.",
+		_const.EN:   "Want to test how fast we react? Go ahead, take a risk.",
+		_const.ZhCN: "想试试我们反应多快？来啊，冒个险。",
+	},
+	_const.RustbucketCartel + "_guard_" + Help + "_1": {
+		_const.RU:   "Братва, нужна подмога! Тут один умник решил пошуметь.",
+		_const.EN:   "Brothers, need backup! One wise guy decided to make noise here.",
+		_const.ZhCN: "兄弟们，需要支援！有个自作聪明的家伙想闹事。",
+	},
+	_const.RustbucketCartel + "_guard_" + Help + "_2": {
+		_const.RU:   "Все на меня! Тут клиент нервный, будем успокаивать.",
+		_const.EN:   "Everyone on me! Got a nervous client here, need to calm him down.",
+		_const.ZhCN: "都跟我来！有个紧张的家伙，得给他冷静一下。",
+	},
 }
 
 func GetNpcGreetings(fraction, role, relation, number string) map[string]string {

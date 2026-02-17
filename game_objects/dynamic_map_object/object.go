@@ -475,6 +475,24 @@ func (o *Object) CheckHostile(typeHostile string, id int, ownerID int) (bool, in
 	return o.specialHostiles.CheckHostile(typeHostile, id)
 }
 
+func (o *Object) CheckHostileByMod(typeHostile string, id int, ownerID int, mod string) int {
+
+	if o == nil {
+		return 0
+	}
+
+	if o.specialHostiles == nil {
+		return 0
+	}
+
+	// хозяина ненадо бить)
+	if typeHostile == "unit" && ownerID > 0 && ownerID == o.OwnerID {
+		return 0
+	}
+
+	return o.specialHostiles.CheckHostileByMod(typeHostile, id, mod)
+}
+
 func (o *Object) SetPosFunc(fun func()) {
 	o.PosFunc = fun
 }

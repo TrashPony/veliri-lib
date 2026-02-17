@@ -95,6 +95,13 @@ func (s *SpecialHostiles) CheckHostile(typeHostile string, id int) (bool, int) {
 	return hatePoints > 100, hatePoints
 }
 
+func (s *SpecialHostiles) CheckHostileByMod(typeHostile string, id int, mod string) int {
+	hostile := s.getHostile(typeHostile, id)
+	hatePoints := hostile.GetPointsByMod(mod)
+
+	return hatePoints
+}
+
 func (s *SpecialHostiles) AddIgnore(typeHostile string, id int) {
 	uuid := typeHostile + strconv.Itoa(id)
 

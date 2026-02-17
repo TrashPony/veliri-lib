@@ -56,7 +56,10 @@ func (s *SpecialHostile) AddPoints(hatePoint int, mod string) {
 		}
 
 		s.LastUpdate = time.Now().UnixNano()
-		return
+
+		if mod == "" {
+			return
+		}
 	}
 
 	if mod == "fraction" {
@@ -97,6 +100,37 @@ func (s *SpecialHostile) GetPoints() int {
 
 	for _, m := range s.Moderate {
 		allPoints += m.GetPoints()
+	}
+
+	if allPoints > max {
+		allPoints = max
+	}
+
+	if allPoints < min {
+		allPoints = min
+	}
+
+	return allPoints
+}
+
+func (s *SpecialHostile) GetPointsByMod(mod string) int {
+	now := timecache.GetTimer().UnixNano()
+
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	if s.Points != 0 {
+		if now-s.LastUpdate > int64(time.Second*shortMemoryTime) {
+			s.Points = 0
+		}
+	}
+
+	allPoints := 0
+
+	for _, m := range s.Moderate {
+		if m.Key == mod {
+			allPoints += m.GetPoints()
+		}
 	}
 
 	if allPoints > max {

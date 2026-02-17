@@ -173,6 +173,23 @@ func (s *Squad) CheckHostile(typeHostile string, id int, ownerID int) (bool, int
 	return s.specialHostiles.CheckHostile(typeHostile, id)
 }
 
+func (s *Squad) CheckHostileByMod(typeHostile string, id int, ownerID int, mod string) int {
+
+	if s == nil {
+		return 0
+	}
+
+	if s.specialHostiles == nil {
+		return 0
+	}
+
+	if typeHostile == "unit" && s.GetMS().GetID() == id {
+		return 0
+	}
+
+	return s.specialHostiles.CheckHostileByMod(typeHostile, id, mod)
+}
+
 func (s *Squad) SetMS(ms *unit.Unit) {
 
 	if s.matherShip != nil {

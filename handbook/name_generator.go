@@ -22,11 +22,15 @@ var configs = map[string]nameConfigs{
 	},
 	_const.APD: {
 		names:     []string{"MadMachine", "InsaneBot", "Lunatic", "Deranged", "Maniac", "Psycho", "Frenzy", "Berserk", "Havoc", "Chaos", "Pandemonium", "Bedlam", "Rage", "Fury", "Wrath", "Mayhem"},
-		postfixes: []string{""}, //[]string{"X8", "MK-VIII", "7000", "Insane", "Madness", "Frenzy", "Chaos", "Rage", "X9", "MK-IX", "8000", "Havoc", "Pandemonium", "Bedlam", "Wrath", "Mayhem"}
+		postfixes: []string{"Broken", "Glitch", "Corrupted", "Malfunction", "X0", "MK-0", "Proto", "Beta"},
 	},
 	_const.FarGod: {
 		names:     []string{"Zealot", "Cultist", "Devotee", "Worshipper", "Acolyte", "Disciple", "Believer", "Prophet", "Oracle", "Seer", "Mystic", "Shaman", "Priest", "Cleric", "Monk", "Hermit"},
 		postfixes: []string{"Divine", "Holy", "Sacred", "Mystic", "Prophet", "X11", "MK-XI", "10000", "Oracle", "Seer", "Shaman", "Priest", "Cleric"},
+	},
+	_const.RustbucketCartel: {
+		names:     []string{"Rusty", "Scrap", "Junkyard", "Wreck", "Salvage", "Cog", "Ratchet", "Gear", "Patch", "Grime", "Rustbelt", "Scrapper", "Junker", "TinCan", "RustBucket", "RustyNail"},
+		postfixes: []string{"Scrap", "Junkyard", "Salvage", "Rusty", "X1", "MK-I", "1000", "Grime", "Patch", "Ratchet", "X2", "MK-II", "2000", "Scrapper", "Tin", "Rust", "Bucket"},
 	},
 }
 

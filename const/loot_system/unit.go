@@ -25,8 +25,8 @@ const (
 	maxDetailCount = 66
 )
 
-func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64) []LootDrop {
-	botType := getTypeBot(botRole, fraction)
+func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64, size int) []LootDrop {
+	botType := getTypeBot(botRole, fraction, size)
 
 	cfg := getBotLootConfig(botType)
 	if k == 0 {
@@ -128,7 +128,7 @@ func getBotLootConfig(botType botType) *BotLootConfig {
 	}
 }
 
-func getTypeBot(botRole string, fraction string) botType {
+func getTypeBot(botRole string, fraction string, size int) botType {
 	// дикие
 	if fraction == _const.APD {
 		if botRole == "in_scout" || botRole == "exp-in_scout" || botRole == "expansion-in_scout" {
@@ -149,7 +149,17 @@ func getTypeBot(botRole string, fraction string) botType {
 	}
 
 	if fraction == _const.RustbucketCartel {
-		return botMobSmall // todo заполнить когда будет готова фракция
+		if size <= 1 {
+			return botMobSmall
+		}
+
+		if size == 2 {
+			return botMobMid
+		}
+
+		if size >= 3 {
+			return botMobHeavy
+		}
 	}
 
 	// фракционные
