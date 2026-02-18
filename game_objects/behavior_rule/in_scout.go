@@ -1,5 +1,7 @@
 package behavior_rule
 
+import "math/rand"
+
 /* Роль пирата, вся его деятельность сводится к  атаке на мирные, агенский, игроков транспорты с требованиями выкинуть трюм или деньги */
 
 /* Когда у пирата враждебные отношения с защитниками сектора он идет в другой сектор, где еше все хорошо, он должен меть журнал посещения
@@ -35,6 +37,56 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 			},
 		},
 		Meta: &Meta{},
+	}
+
+	// мирный вариант только в своем секторе рекетит
+	variantPirate := &BehaviorRule{
+		Action: "check_profitability_sector",
+		StopRule: &BehaviorRule{
+			Action: "to_sector_target",
+			Meta:   &Meta{Type: "Fraction"},
+			PassRule: &BehaviorRule{
+				Action: "to_base",
+			},
+			StopRule: getBackRules2(),
+		},
+		PassRule: &BehaviorRule{
+			Action: "fixed_to_current_sector",
+			PassRule: &BehaviorRule{
+				Action: "send_npc_request", // запрос о грабеже, какомунить рандомному мирняке
+				Meta:   &Meta{Type: "demand"},
+				PassRule: &BehaviorRule{
+					// проверяем рентабельность сектора, если нет то выбираем любоей и следуем туда
+					Action: "scouting",
+				},
+			},
+		},
+	}
+
+	if rand.Intn(2) == 0 {
+		// агресивный, всех на пути
+		variantPirate = &BehaviorRule{
+			Action: "send_npc_request", // запрос о грабеже, какомунить рандомному мирняке
+			Meta:   &Meta{Type: "demand"},
+			PassRule: &BehaviorRule{
+				// проверяем рентабельность сектора, если нет то выбираем любоей и следуем туда
+				Action: "check_profitability_sector",
+				PassRule: &BehaviorRule{
+					Action: "fixed_to_current_sector",
+					PassRule: &BehaviorRule{
+						Action: "scouting",
+					},
+				},
+				StopRule: &BehaviorRule{
+					Action: "to_sector_target",
+					Meta:   &Meta{Type: "Fraction"},
+					PassRule: &BehaviorRule{
+						Action: "to_base",
+					},
+					StopRule: getBackRules2(),
+				},
+			},
+		}
 	}
 
 	var BehaviorInScoutOutRules = BehaviorRules{
@@ -103,15 +155,19 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 					},
 				},
 				StopRule: &BehaviorRule{
-					Action: "find_hostile_in_range_view",
+					Action: "find_hostile_in_range_view", // TODO если пират начал воевать с войнами или полицией он убегает
 					PassRule: &BehaviorRule{
 						Action: "warrior_check_battle_solution",
 						Meta:   &Meta{Type: "secure", Count: 50, Count2: -15},
 						PassRule: &BehaviorRule{
-							Action: "send_npc_request",
-							Meta:   &Meta{Type: "demand"},
-							PassRule: &BehaviorRule{
-								Action: "follow_attack_target",
+							Action:   "check_is_police_target",
+							PassRule: getBackRules2(),
+							StopRule: &BehaviorRule{
+								Action: "send_npc_request",
+								Meta:   &Meta{Type: "demand"},
+								PassRule: &BehaviorRule{
+									Action: "follow_attack_target",
+								},
 							},
 						},
 						StopRule: &BehaviorRule{
@@ -183,28 +239,7 @@ func GetInScoutRules() (*BehaviorRules, *BehaviorRules) {
 											Count:     90,
 											Percent:   true,
 										},
-										PassRule: &BehaviorRule{
-											Action: "check_profitability_sector",
-											StopRule: &BehaviorRule{
-												Action: "to_sector_target",
-												Meta:   &Meta{Type: "Fraction"},
-												PassRule: &BehaviorRule{
-													Action: "to_base",
-												},
-												StopRule: getBackRules2(),
-											},
-											PassRule: &BehaviorRule{
-												Action: "fixed_to_current_sector",
-												PassRule: &BehaviorRule{
-													Action: "send_npc_request", // запрос о грабеже, какомунить рандомному мирняке
-													Meta:   &Meta{Type: "demand"},
-													PassRule: &BehaviorRule{
-														// проверяем рентабельность сектора, если нет то выбираем любоей и следуем туда
-														Action: "scouting",
-													},
-												},
-											},
-										},
+										PassRule: variantPirate,
 										StopRule: getBackRules2(),
 									},
 								},
