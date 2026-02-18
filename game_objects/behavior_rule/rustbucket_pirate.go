@@ -72,7 +72,7 @@ func GetRustBucketPirateTradeRules() (*BehaviorRules, *BehaviorRules) {
 				Action: "find_hostile_in_range_view",
 				PassRule: &BehaviorRule{
 					Action: "warrior_check_battle_solution",
-					Meta:   &Meta{Type: "secure", Count: 60, Count2: 0}, // Count - minHPPercentToBase, Count2 (minK) - соотношение сил, торговцы трусливее обычных пиратов
+					Meta:   &Meta{Type: "secure", Count: 60, Count2: 25}, // Count - minHPPercentToBase, Count2 (minK) - соотношение сил, торговцы трусливее обычных пиратов
 					PassRule: &BehaviorRule{
 						Action: "send_npc_request",
 						Meta:   &Meta{Type: "demand"},
