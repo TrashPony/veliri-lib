@@ -39,6 +39,17 @@ func Rotate(unitRotate, needRotate *float64, step float64) float64 {
 	return countRotateAngle
 }
 
+func RotateSigned(current, target float64) float64 {
+	diff := math.Mod(target-current, 360.0)
+	if diff > 180 {
+		diff -= 360
+	}
+	if diff < -180 {
+		diff += 360
+	}
+	return diff
+}
+
 func DirectionRotate(unitAngle, needAngle float64) bool {
 
 	PrepareAngle(&unitAngle)

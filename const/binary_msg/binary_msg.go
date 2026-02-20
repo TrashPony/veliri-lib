@@ -1599,3 +1599,30 @@ func CreateAudioPlaylist(id int) []byte {
 
 	return command
 }
+
+type BossAttackMsg struct {
+	TypeAttack byte // line - 1, cone - 2, circle - 3
+	X          int
+	Y          int
+	Angle      int
+	A          int // В зависимости от типа эти переменные должны соотвествовать полям
+	B          int // line (A- Length, B- Width), cone (A- Spread (угол раскрытия конуса), B- Range (если не указано то бесконечная длина)), circle (A-Radius)
+}
+
+func CreateBossAttackMsg(msgs []BossAttackMsg) []byte {
+	command := []byte{123}
+
+	for _, msg := range msgs {
+
+		command = append(command, msg.TypeAttack)
+
+		command = append(command, game_math.GetIntBytes(msg.X)...)
+		command = append(command, game_math.GetIntBytes(msg.Y)...)
+		command = append(command, game_math.GetIntBytes(msg.Angle)...)
+
+		command = append(command, game_math.GetIntBytes(msg.A)...)
+		command = append(command, game_math.GetIntBytes(msg.B)...)
+	}
+
+	return command
+}
