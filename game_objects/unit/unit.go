@@ -42,7 +42,7 @@ type Unit struct {
 	MapID          int32            `json:"map_id"`
 	CurrentMapTime int64            `json:"-"`
 
-	BossConfig BossConfig
+	BossState BossState
 
 	evacuation      bool
 	forceEvacuation bool
@@ -104,6 +104,8 @@ type Unit struct {
 	LootConfig            LootConfig `json:"-"`
 
 	Decals []Decal
+
+	attributes map[string]int
 }
 
 type LootConfig struct {
@@ -112,10 +114,37 @@ type LootConfig struct {
 	Lvl     float64
 }
 
-type BossConfig struct {
+type BossState struct {
 	BossTypeID      int  `json:"boss_type_id"`
 	CurrentPhase    int  `json:"current_phase"`
 	NeedChangePhase bool `json:"need_change_phase"`
+	Hide            bool `json:"hide"`   // скрывает полоску хп боса
+	Active          bool `json:"active"` // включаем активную фазу босса если такая есть
+
+	// behaviorState
+	CurrentSkill      string
+	CurrentSkillID    int
+	CurrentStageIndex int // index из массива BehaviorPointLife
+	TimeOut           int // N(ms) - _const.serverTick, когда <= 0 переходим на следующую фазу
+	X, Y              int // позиция атаки, вычесляется по AttachX, AttachY. Если не указано то это центр босса
+	Angle             int // угол атаки
+	coolDowns         map[int]int64
+}
+
+func (b *BossState) GetBossSkillCoolDown(id int) int64 {
+	if b.coolDowns == nil {
+		b.coolDowns = map[int]int64{}
+	}
+
+	return b.coolDowns[id]
+}
+
+func (b *BossState) SetBossSkillCoolDown(id int) {
+	if b.coolDowns == nil {
+		b.coolDowns = map[int]int64{}
+	}
+
+	b.coolDowns[id] = time.Now().UnixMilli()
 }
 
 type EvacuationState struct {
@@ -1035,4 +1064,34 @@ func (u *Unit) OwnerFraction() string {
 
 func (u *Unit) GetEliteType() byte {
 	return byte(u.EliteType)
+}
+
+func (u *Unit) GetAttribute(key string) int {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	if u.attributes == nil {
+		u.attributes = make(map[string]int)
+	}
+
+	return u.attributes[key]
+}
+
+func (u *Unit) HasKey(key string) bool {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	_, ok := u.attributes[key]
+	return ok
+}
+
+func (u *Unit) SetAttribute(key string, v int) {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+
+	if u.attributes == nil {
+		u.attributes = make(map[string]int)
+	}
+
+	u.attributes[key] = v
 }

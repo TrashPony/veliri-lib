@@ -1,8 +1,8 @@
 package _const
 
 import (
+	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -21,7 +21,7 @@ func (c *appConfig) initConfig() {
 	p, _ := os.Getwd()
 	configFile, err := ioutil.ReadFile(p + "/main.ini")
 	if err != nil {
-		log.Fatal("фаил с конфигурацией ./main.ini - не найден")
+		fmt.Println("фаил с конфигурацией ./main.ini - не найден")
 	}
 
 	configLines := strings.Split(string(configFile), "\n")

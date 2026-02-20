@@ -179,7 +179,7 @@ func GobRegister() {
 
 	gob.Register(dynamic_map_object.MinObject{})
 	gob.Register([]drone.Job{})
-	gob.Register(unit.BossConfig{})
+	gob.Register(unit.BossState{})
 	gob.Register([]effect.Effect{})
 	gob.Register(visible_objects.VisibleObject{})
 
