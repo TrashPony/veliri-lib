@@ -73,4 +73,6 @@ type MoveObject interface {
 	GetMoveDestroyer() bool
 	GetForceNitro() bool
 	GetRadius() int
+
+	GetMeleeK() float64
 }

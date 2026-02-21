@@ -3,6 +3,7 @@ package unit
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/bullet"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
@@ -117,7 +118,8 @@ type LootConfig struct {
 type BossState struct {
 	BossTypeID      int  `json:"boss_type_id"`
 	CurrentPhase    int  `json:"current_phase"`
-	NeedChangePhase bool `json:"need_change_phase"`
+	NextPhase       int  `json:"next_phase"`
+	NeedChangePhase int  `json:"need_change_phase"`
 	Hide            bool `json:"hide"`   // скрывает полоску хп боса
 	Active          bool `json:"active"` // включаем активную фазу босса если такая есть
 
@@ -128,10 +130,16 @@ type BossState struct {
 	TimeOut           int // N(ms) - _const.serverTick, когда <= 0 переходим на следующую фазу
 	X, Y              int // позиция атаки, вычесляется по AttachX, AttachY. Если не указано то это центр босса
 	Angle             int // угол атаки
+	NeedNextPhase     bool
 	coolDowns         map[int]int64
+	bullets           []*bullet.Bullet
+	mx                sync.RWMutex
 }
 
 func (b *BossState) GetBossSkillCoolDown(id int) int64 {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+
 	if b.coolDowns == nil {
 		b.coolDowns = map[int]int64{}
 	}
@@ -140,11 +148,50 @@ func (b *BossState) GetBossSkillCoolDown(id int) int64 {
 }
 
 func (b *BossState) SetBossSkillCoolDown(id int) {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+
 	if b.coolDowns == nil {
 		b.coolDowns = map[int]int64{}
 	}
 
 	b.coolDowns[id] = time.Now().UnixMilli()
+}
+
+func (b *BossState) AddBossBullet(bul *bullet.Bullet) {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+
+	if b.bullets == nil {
+		b.bullets = make([]*bullet.Bullet, 0)
+	}
+
+	b.bullets = append(b.bullets, bul)
+}
+
+func (b *BossState) ClearBossBullet() {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+
+	return
+	// TODO только там где end
+	b.bullets = make([]*bullet.Bullet, 0)
+}
+
+func (b *BossState) GetBossBullets() []*bullet.Bullet {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+
+	if b.bullets == nil {
+		b.bullets = make([]*bullet.Bullet, 0)
+	}
+
+	bullets := make([]*bullet.Bullet, 0)
+	for _, b := range b.bullets {
+		bullets = append(bullets, b)
+	}
+
+	return bullets
 }
 
 type EvacuationState struct {

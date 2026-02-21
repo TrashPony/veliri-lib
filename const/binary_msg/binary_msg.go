@@ -1601,6 +1601,7 @@ func CreateAudioPlaylist(id int) []byte {
 }
 
 type BossAttackMsg struct {
+	ID         int
 	TypeAttack byte // line - 1, cone - 2, circle - 3
 	X          int
 	Y          int
@@ -1614,6 +1615,7 @@ func CreateBossAttackMsg(msgs []BossAttackMsg) []byte {
 
 	for _, msg := range msgs {
 
+		command = append(command, game_math.GetIntBytes(msg.ID)...)
 		command = append(command, msg.TypeAttack)
 
 		command = append(command, game_math.GetIntBytes(msg.X)...)

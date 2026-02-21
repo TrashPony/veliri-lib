@@ -102,3 +102,20 @@ func PrepareAngle(angle *float64) {
 		*angle -= 360
 	}
 }
+
+func PrepareAngle2(angle float64) float64 {
+	PrepareAngle(&angle)
+	return angle
+}
+
+// AngleDiff возвращает кратчайшую разницу между двумя углами в градусах (-180 до 180)
+func AngleDiff(a, b float64) float64 {
+	diff := math.Mod(b-a, 360.0)
+	if diff > 180 {
+		diff -= 360
+	}
+	if diff < -180 {
+		diff += 360
+	}
+	return diff
+}

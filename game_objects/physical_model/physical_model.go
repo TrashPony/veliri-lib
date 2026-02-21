@@ -58,6 +58,7 @@ type PhysicalModel struct {
 	DriftX                 float64                         `json:"-"` // поперечный импульс (в мировых координатах!)
 	DriftY                 float64                         `json:"-"`
 	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
+	MeleeK                 float64                         `json:"-"` // Коэфецент усиление или затухания урона ближнего боя
 	useCoordinates         []pointer.Pointer
 	mx                     sync.Mutex
 	polygon                *game_math.Polygon
@@ -447,4 +448,12 @@ func (m *PhysicalModel) GetTypeControl() int {
 
 func (m *PhysicalModel) GetAngleForClassicControl() float64 {
 	return m.ClassicControlsAdapter.TargetAngle
+}
+
+func (m *PhysicalModel) GetMeleeK() float64 {
+	if m.MeleeK == 0 {
+		return 1
+	}
+
+	return m.MeleeK
 }
