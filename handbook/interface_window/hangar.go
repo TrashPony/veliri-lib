@@ -151,6 +151,16 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `Transport:`,
 		_const.ZhCN: `运输工具：`,
 	},
+	"text_28": {
+		_const.RU:   `Транспорт`,
+		_const.EN:   `Transport`,
+		_const.ZhCN: `交通`,
+	},
+	"text_29": {
+		_const.RU:   `[не выбран]`,
+		_const.EN:   `[not selected]`,
+		_const.ZhCN: `[未选择]`,
+	},
 	// MSParams
 	"unitsec": {
 		_const.RU:   `ед/с`,

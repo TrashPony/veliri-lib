@@ -54,14 +54,14 @@ var Settings = map[string]map[string]string{
 		_const.ZhCN: `控制`,
 	},
 	"full": {
-		_const.RU:   `Полное`,
-		_const.EN:   `Full`,
-		_const.ZhCN: `完全的`,
+		_const.RU:   `Относительно корпуса`,
+		_const.EN:   `Relative to body`,
+		_const.ZhCN: `相对于身体`,
 	},
 	"simplified": {
-		_const.RU:   `Упрощенное`,
-		_const.EN:   `Simplified`,
-		_const.ZhCN: `简化版`,
+		_const.RU:   `Относительно экрана`,
+		_const.EN:   `Relative to screen`,
+		_const.ZhCN: `相对于屏幕`,
 	},
 	"alert_reload": {
 		_const.RU:   `Рекомендуется перезагрузить игру.`,

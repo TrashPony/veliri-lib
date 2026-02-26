@@ -248,7 +248,7 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	}
 
 	// Базовые параметры
-	k := 10
+	k := 1
 	sharpness := 1.0
 
 	if weaponPoint != nil {
