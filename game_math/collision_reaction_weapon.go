@@ -275,7 +275,7 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 
 	// Модификатор массы
 	massRatio := attackWeight / targetWeight
-	massFactor := math.Pow(math.Max(0.01, massRatio), 0.5)
+	massFactor := math.Pow(math.Max(0.01, massRatio), 0.25)
 
 	// Модификатор усиления урона
 	damageBoost := 1.0 + float64(k)/100.0
