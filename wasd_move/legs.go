@@ -4,13 +4,13 @@ import "github.com/TrashPony/veliri-lib/game_math"
 
 func legs(obj MoveObject) {
 
-	if obj.CheckGrowthPower() {
+	if obj.CheckGrowthPower() > 0 {
 		obj.SetPowerMove(obj.GetMoveMaxPower())
 	} else {
 		obj.SetPowerMove(0)
 	}
 
-	if obj.CheckGrowthRevers() {
+	if obj.CheckGrowthRevers() > 0 {
 		obj.SetReverse(obj.GetMaxReverse())
 	} else {
 		obj.SetReverse(0)
@@ -21,11 +21,11 @@ func legs(obj MoveObject) {
 		direction = -1
 	}
 
-	if obj.CheckLeftRotate() {
+	if obj.CheckLeftRotate() > 0 {
 		obj.SetAngularVelocity(obj.GetAngularVelocity() - (direction * obj.GetTurnSpeed()))
 	}
 
-	if obj.CheckRightRotate() {
+	if obj.CheckRightRotate() > 0 {
 		obj.SetAngularVelocity(obj.GetAngularVelocity() + (direction * obj.GetTurnSpeed()))
 	}
 

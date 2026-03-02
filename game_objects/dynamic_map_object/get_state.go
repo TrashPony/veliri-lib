@@ -139,7 +139,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(135)
 	}
 
-	if o.Texture == "shield_generator" {
+	if o.Texture == "shield_generator" || o.Texture == "shield_generator_cult" {
 		o.SetScale(50)
 	}
 
@@ -171,7 +171,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(35)
 	}
 
-	if o.Texture == "radar" {
+	if o.Texture == "radar" || o.Texture == "radar" {
 		o.SetScale(74)
 	}
 
@@ -198,7 +198,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(50)
 	}
 
-	if o.Texture == "zone_repair_station" {
+	if o.Texture == "zone_repair_station" || o.Texture == "zone_repair_station_сult" {
 		o.SetScale(75)
 	}
 

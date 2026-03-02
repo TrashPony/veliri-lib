@@ -44,7 +44,7 @@ func GetBodyAttributes(u *unit.Unit) map[string]int {
 	for speed != oldSpeed || speed == 0 {
 		oldSpeed = speed
 		ticks++
-		copypm.SetWASD(true, false, false, false, false, false, false, false, false)
+		copypm.SetSimpleWASD(true, false, false, false, false, false, false, false, false)
 		WasdMove(copypm, nil)
 		speed = int(copypm.GetCurrentSpeed() * 1000)
 		copypm.MultiplyVelocity(copypm.GetMoveDrag(), copypm.GetMoveDrag())

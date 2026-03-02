@@ -9,7 +9,7 @@ const startCaterpillarsSpeedK = 5
 
 func caterpillars(obj MoveObject) {
 
-	if obj.CheckGrowthPower() {
+	if obj.CheckGrowthPower() > 0 {
 		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startCaterpillarsSpeedK {
 			obj.SetPowerMove(obj.GetMoveMaxPower() / startCaterpillarsSpeedK)
 		} else {
@@ -19,7 +19,7 @@ func caterpillars(obj MoveObject) {
 		obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerFactor())
 	}
 
-	if obj.CheckGrowthRevers() {
+	if obj.CheckGrowthRevers() > 0 {
 		if obj.GetReverse() < obj.GetMaxReverse()/startCaterpillarsSpeedK {
 			obj.SetReverse(obj.GetMaxReverse() / startCaterpillarsSpeedK)
 		} else {
@@ -58,12 +58,12 @@ func caterpillars(obj MoveObject) {
 	move := obj.GetPowerMove() > 0 || obj.GetReverse() > 0
 
 	if obj.GetChassisType() == "caterpillars" || obj.GetChassisType() == "fly" || ((obj.GetChassisType() == "wheels" || obj.GetChassisType() == "fly-2") && move) {
-		if obj.CheckLeftRotate() {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() - (direction * obj.GetTurnSpeed()))
+		if obj.CheckLeftRotate() > 0 {
+			obj.SetAngularVelocity(obj.GetAngularVelocity() - (direction * getPercentF(obj.GetTurnSpeed(), obj.CheckLeftRotate())))
 		}
 
-		if obj.CheckRightRotate() {
-			obj.SetAngularVelocity(obj.GetAngularVelocity() + (direction * obj.GetTurnSpeed()))
+		if obj.CheckRightRotate() > 0 {
+			obj.SetAngularVelocity(obj.GetAngularVelocity() + (direction * getPercentF(obj.GetTurnSpeed(), obj.CheckRightRotate())))
 		}
 	}
 

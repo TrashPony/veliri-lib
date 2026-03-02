@@ -37,3 +37,7 @@ func wind(obj MoveObject) {
 
 	obj.SetNextPos(xR+xV, yR+yV)
 }
+
+func getPercentF(f float64, percent byte) float64 {
+	return f * float64(percent) / 100
+}

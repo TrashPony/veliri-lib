@@ -71,10 +71,10 @@ type MeleeWeaponData struct {
 }
 
 type ClassicControlsAdapter struct {
-	GrowthPower  bool
-	GrowthRevers bool
-	LeftRotate   bool
-	RightRotate  bool
+	GrowthPower  byte
+	GrowthRevers byte
+	LeftRotate   byte
+	RightRotate  byte
 	TargetAngle  float64
 	IsActive     bool
 }
@@ -204,36 +204,52 @@ func (m *PhysicalModel) GetRadius() int {
 	return m.Radius
 }
 
-func (m *PhysicalModel) CheckGrowthPower() bool {
-	if m.ClassicControlsAdapter.IsActive {
-		return m.ClassicControlsAdapter.GrowthPower && !m.BlockControl
+func (m *PhysicalModel) CheckGrowthPower() byte {
+	if m.BlockControl {
+		return 0
 	}
 
-	return m.wasd.GetW() && !m.BlockControl
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.GrowthPower
+	}
+
+	return m.wasd.GetW()
 }
 
-func (m *PhysicalModel) CheckGrowthRevers() bool {
-	if m.ClassicControlsAdapter.IsActive {
-		return m.ClassicControlsAdapter.GrowthRevers && !m.BlockControl
+func (m *PhysicalModel) CheckGrowthRevers() byte {
+	if m.BlockControl {
+		return 0
 	}
 
-	return m.wasd.GetS() && !m.BlockControl
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.GrowthRevers
+	}
+
+	return m.wasd.GetS()
 }
 
-func (m *PhysicalModel) CheckLeftRotate() bool {
-	if m.ClassicControlsAdapter.IsActive {
-		return m.ClassicControlsAdapter.LeftRotate && !m.BlockControl
+func (m *PhysicalModel) CheckLeftRotate() byte {
+	if m.BlockControl {
+		return 0
 	}
 
-	return m.wasd.GetA() && !m.BlockControl
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.LeftRotate
+	}
+
+	return m.wasd.GetA()
 }
 
-func (m *PhysicalModel) CheckRightRotate() bool {
-	if m.ClassicControlsAdapter.IsActive {
-		return m.ClassicControlsAdapter.RightRotate && !m.BlockControl
+func (m *PhysicalModel) CheckRightRotate() byte {
+	if m.BlockControl {
+		return 0
 	}
 
-	return m.wasd.GetD() && !m.BlockControl
+	if m.ClassicControlsAdapter.IsActive {
+		return m.ClassicControlsAdapter.RightRotate
+	}
+
+	return m.wasd.GetD()
 }
 
 func (m *PhysicalModel) SetReverse(reverse float64) {
@@ -322,15 +338,66 @@ func (m *PhysicalModel) GetWeight() float64 {
 	return m.Weight
 }
 
-func (m *PhysicalModel) SetWASD(w, a, s, d, sp, st, z, q, e bool) {
+func (m *PhysicalModel) SetWASD(w, a, s, d byte, sp, st, z, q, e bool) {
 	m.wasd.Set(w, a, s, d, sp, st, z, q, e)
 }
 
-func (m *PhysicalModel) SetClassicAdaterMove(w, a, s, d bool) {
+func (m *PhysicalModel) SetSimpleWASD(w, a, s, d, sp, st, z, q, e bool) {
+	wByte := 0
+	if w {
+		wByte = 100
+	}
+
+	aByte := 0
+	if a {
+		aByte = 100
+	}
+
+	sByte := 0
+	if s {
+		sByte = 100
+	}
+
+	dByte := 0
+	if d {
+		dByte = 100
+	}
+
+	m.wasd.Set(byte(wByte), byte(aByte), byte(sByte), byte(dByte), sp, st, z, q, e)
+}
+
+func (m *PhysicalModel) SetClassicAdaterMove(w, a, s, d byte) {
 	m.ClassicControlsAdapter.GrowthPower = w
 	m.ClassicControlsAdapter.GrowthRevers = s
 	m.ClassicControlsAdapter.LeftRotate = a
 	m.ClassicControlsAdapter.RightRotate = d
+}
+
+func (m *PhysicalModel) SetClassicAdaterMoveBool(w, a, s, d bool) {
+	wByte := 0
+	if w {
+		wByte = 100
+	}
+
+	sByte := 0
+	if s {
+		sByte = 100
+	}
+
+	aByte := 0
+	if a {
+		aByte = 100
+	}
+
+	dByte := 0
+	if d {
+		dByte = 100
+	}
+
+	m.ClassicControlsAdapter.GrowthPower = byte(wByte)
+	m.ClassicControlsAdapter.GrowthRevers = byte(sByte)
+	m.ClassicControlsAdapter.LeftRotate = byte(aByte)
+	m.ClassicControlsAdapter.RightRotate = byte(dByte)
 }
 
 func (m *PhysicalModel) GetMoveDrag() float64 {

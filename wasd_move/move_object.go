@@ -29,10 +29,10 @@ type MoveObject interface {
 	GetGeoData() []*obstacle_point.ObstaclePoint
 	GetVelocityRotate() float64
 
-	CheckGrowthPower() bool
-	CheckGrowthRevers() bool
-	CheckLeftRotate() bool
-	CheckRightRotate() bool
+	CheckGrowthPower() byte
+	CheckGrowthRevers() byte
+	CheckLeftRotate() byte
+	CheckRightRotate() byte
 	CheckHandBrake() bool
 	GetTypeControl() int
 	GetWasd() *physical_model.WASD
@@ -59,7 +59,9 @@ type MoveObject interface {
 	GetMoveDrag() float64
 	GetAngularDrag() float64
 
-	SetWASD(bool, bool, bool, bool, bool, bool, bool, bool, bool)
+	SetWASD(byte, byte, byte, byte, bool, bool, bool, bool, bool)
+	SetSimpleWASD(bool, bool, bool, bool, bool, bool, bool, bool, bool)
+
 	IsFly() bool
 	GetZ() float64
 	SetZ(float64)

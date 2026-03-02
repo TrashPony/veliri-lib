@@ -14,7 +14,7 @@ func wheel(obj MoveObject) {
 	massK := 8000.0 / pm.GetWeight()
 	massK = math.Max(0.3, math.Min(1.2, massK))
 
-	if obj.CheckGrowthPower() {
+	if obj.CheckGrowthPower() > 0 {
 		if obj.GetPowerMove() < obj.GetMoveMaxPower()/startWheelSpeedK {
 			obj.SetPowerMove(obj.GetMoveMaxPower() / startWheelSpeedK)
 		} else {
@@ -24,7 +24,7 @@ func wheel(obj MoveObject) {
 		obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerFactor())
 	}
 
-	if obj.CheckGrowthRevers() {
+	if obj.CheckGrowthRevers() > 0 {
 		if obj.GetReverse() < obj.GetMaxReverse()/startWheelSpeedK {
 			obj.SetReverse(obj.GetMaxReverse() / startWheelSpeedK)
 		} else {
@@ -39,7 +39,7 @@ func wheel(obj MoveObject) {
 
 	// ручной тормаз
 	if obj.CheckHandBrake() {
-		if obj.CheckGrowthPower() {
+		if obj.CheckGrowthPower() > 0 {
 			if obj.GetPowerMove() > obj.GetReverse() {
 				obj.SetPowerMove(obj.GetPowerMove() - obj.GetPowerMove()/40)
 			} else {
@@ -53,15 +53,15 @@ func wheel(obj MoveObject) {
 			}
 		}
 
-		if obj.CheckGrowthPower() || obj.CheckGrowthRevers() {
+		if obj.CheckGrowthPower() > 0 || obj.CheckGrowthRevers() > 0 {
 
-			if obj.CheckGrowthPower() {
+			if obj.CheckGrowthPower() > 0 {
 				if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
 					obj.SetPowerMove(obj.GetMoveMaxPower() / (startWheelSpeedK * 2))
 				}
 			}
 
-			if obj.CheckGrowthRevers() {
+			if obj.CheckGrowthRevers() > 0 {
 				if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
 					obj.SetReverse(obj.GetMaxReverse() / (startWheelSpeedK * 2))
 				}
@@ -90,7 +90,7 @@ func wheel(obj MoveObject) {
 
 	// Дрифт активен, если:
 	isDrifting := false
-	if pm.CheckHandBrake() && (pm.CheckLeftRotate() || pm.CheckRightRotate()) {
+	if pm.CheckHandBrake() && (pm.CheckLeftRotate() > 0 || pm.CheckRightRotate() > 0) {
 		isDrifting = true
 	} else {
 		// Инерционный дрифт: если угловая скорость велика, а продольная скорость мала
@@ -104,10 +104,10 @@ func wheel(obj MoveObject) {
 		// Направление дрифта: перпендикулярно корпусу!
 		// При повороте влево → зад уходит вправо → дрифт вправо (и наоборот)
 		driftDir := 0.0
-		if pm.CheckLeftRotate() {
+		if pm.CheckLeftRotate() > 0 {
 			driftDir = 1
 		} // вправо!
-		if pm.CheckRightRotate() {
+		if pm.CheckRightRotate() > 0 {
 			driftDir = -1
 		} // влево!
 
@@ -170,11 +170,11 @@ func wheel(obj MoveObject) {
 			ts = pm.GetTurnSpeed() / 5
 		}
 
-		if pm.CheckLeftRotate() {
-			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*ts)
+		if pm.CheckLeftRotate() > 0 {
+			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*getPercentF(ts, pm.CheckLeftRotate()))
 		}
-		if pm.CheckRightRotate() {
-			pm.SetAngularVelocity(pm.GetAngularVelocity() + direction*ts)
+		if pm.CheckRightRotate() > 0 {
+			pm.SetAngularVelocity(pm.GetAngularVelocity() + direction*getPercentF(ts, pm.CheckRightRotate()))
 		}
 	}
 
