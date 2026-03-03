@@ -38,6 +38,7 @@ type Target struct {
 	Key            string            `json:"key"`
 	Slots          []*inventory.Slot `json:"-"`
 	Time           int64             `json:"time"`
+	FireRadius     int               `json:"fire_radius"` // используем для расчета выстрела, если снаряда падает в этом радиусе то попали
 }
 
 func (t *Target) GetX() int {

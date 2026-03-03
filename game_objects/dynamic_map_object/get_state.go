@@ -171,7 +171,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(35)
 	}
 
-	if o.Texture == "radar" || o.Texture == "radar" {
+	if o.Texture == "radar" || o.Texture == "radar_cult" {
 		o.SetScale(74)
 	}
 

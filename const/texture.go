@@ -7,6 +7,10 @@ func GetTextureKostil(texture, objectType string) (bool, bool) {
 		return false, false
 	}
 
+	if slices.Contains([]string{"far_god_radar", "shield_generator_cult", "radar_cult", "tank_turret_cult", "missle_turret_cult", "arm_turret_cult", "laser_turret_cult"}, texture) {
+		return false, false
+	}
+
 	// TODO костыль :(
 	if !(texture == "replic_gauss_gun" || texture == "unknown_civilization_jammer" ||
 		texture == "explores_antenna" || texture == "explores_observatory" || texture == "mini_turret_1" ||
