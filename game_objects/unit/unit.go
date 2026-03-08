@@ -1032,12 +1032,11 @@ func (u *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 		return false, false
 	}
 
-	dist := game_math.GetBetweenDist(u.GetX(), u.GetY(), x, y)
-	if float64(u.GetRangeView()+radius) >= dist {
+	if game_math.IsColliding(u.GetX(), u.GetY(), x, y, u.GetRangeView(), radius) {
 		return true, true
 	}
 
-	if float64(u.GetRadarRange()+radius) >= dist {
+	if game_math.IsColliding(u.GetX(), u.GetY(), x, y, u.GetRadarRange(), radius) {
 		return false, true
 	}
 

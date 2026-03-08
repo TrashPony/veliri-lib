@@ -248,12 +248,15 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	}
 
 	// Базовые параметры
-	k := 1
+	k := 0
 	sharpness := 1.0
 
-	if weaponPoint != nil {
-		k = weaponPoint.K
+	// без оружия нет урона
+	if weaponPoint == nil {
+		return 0
 	}
+
+	k = weaponPoint.K
 
 	// 1. Скорость атакующего
 	attackSpeed := relativeDamageSpeed * efficiency

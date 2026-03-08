@@ -11,6 +11,15 @@ func GetBetweenDist(fromX, fromY, toX, toY int) float64 {
 	return math.Sqrt(dx*dx + dy*dy)
 }
 
+func IsColliding(dx1, dy1, dx2, dy2 int, radius1, radius2 int) bool {
+	dx := dx1 - dx2
+	dy := dy1 - dy2
+	distSquared := dx*dx + dy*dy
+	threshold := radius1 + radius2
+
+	return distSquared < threshold*threshold
+}
+
 func GetBetweenDistInt(fromX, fromY, toX, toY int) int {
 	var dx = toX - fromX
 	var dy = toY - fromY
