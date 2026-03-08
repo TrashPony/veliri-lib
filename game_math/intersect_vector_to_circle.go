@@ -55,3 +55,81 @@ func IntersectVectorToCircle(a, b, centerCircle *Point, radius int) (intersect b
 func fastPow(a float64) float64 {
 	return a * a
 }
+
+func IntersectVectorToCircleFast(a, b, centerCircle *Point, radius int) (intersect bool) {
+	// Быстрая проверка на nil
+	if a == nil || b == nil || centerCircle == nil {
+		return false
+	}
+
+	// Конвертируем float64 из Point в int для быстрой версии
+	ax, ay := int(a.X), int(a.Y)
+	bx, by := int(b.X), int(b.Y)
+	cx, cy := int(centerCircle.X), int(centerCircle.Y)
+
+	return intersectVectorToCircleFast(ax, ay, bx, by, cx, cy, radius)
+}
+
+// intersectVectorToCircleFast проверяет, пересекает ли отрезок [A, B] окружность.
+// Все координаты - целые числа (int).
+func intersectVectorToCircleFast(ax, ay, bx, by, cx, cy, radius int) bool {
+	// Переводим в int64 для безопасности умножения
+	Ax, Ay := int64(ax), int64(ay)
+	Bx, By := int64(bx), int64(by)
+	Cx, Cy := int64(cx), int64(cy)
+	r := int64(radius)
+
+	// Вектор AB
+	ABx := Bx - Ax
+	ABy := By - Ay
+
+	// Вектор AC
+	ACx := Cx - Ax
+	ACy := Cy - Ay
+
+	// Квадрат длины отрезка AB (|AB|^2). Используем int64.
+	AB2 := ABx*ABx + ABy*ABy
+
+	// Если отрезок - это точка (A == B)
+	if AB2 == 0 {
+		dist2ToA := ACx*ACx + ACy*ACy
+		return dist2ToA <= r*r
+	}
+
+	// Проекция вектора AC на AB. t - это параметр точки E (проекции C на прямую AB),
+	// умноженный на |AB|^2. Это позволяет нам работать в целых числах.
+	// t = (AC · AB)
+	t := ACx*ABx + ACy*ABy
+
+	var dist2ToLine int64 // Квадрат расстояния от C до отрезка AB
+
+	if t < 0 {
+		// Точка C проецируется за точку A, ближайшая точка отрезка - A
+		dist2ToLine = ACx*ACx + ACy*ACy
+	} else if t > AB2 {
+		// Точка C проецируется за точку B, ближайшая точка отрезка - B
+		BCx := Cx - Bx
+		BCy := Cy - By
+		dist2ToLine = BCx*BCx + BCy*BCy
+	} else {
+		// Проекция C попадает на отрезок AB. Ближайшая точка - E.
+		// Квадрат расстояния от C до E (LEC^2) считается по формуле:
+		// |CE|^2 = |AC|^2 - t^2/|AB|^2
+		// Чтобы избежать деления, домножим на AB2:
+		// CE2 * AB2 = AC2 * AB2 - t^2
+		AC2 := ACx*ACx + ACy*ACy
+		// Используем int128 или проверку на переполнение, если числа очень большие.
+		// В Go нет встроенного int128, но для большинства игровых карт (координаты до 1e6) int64 хватит.
+		// dist2ToLineAB2 = AC2 * AB2 - t*t
+		dist2ToLineTimesAB2 := AC2*AB2 - t*t
+		if dist2ToLineTimesAB2 < 0 {
+			dist2ToLineTimesAB2 = 0 // от небольших погрешностей вычислений
+		}
+		// Сравниваем (LEC^2) с (r^2). Так как у нас LEC^2 = dist2ToLineTimesAB2 / AB2,
+		// то условие LEC^2 <= r^2 эквивалентно dist2ToLineTimesAB2 <= r^2 * AB2
+		return dist2ToLineTimesAB2 <= r*r*AB2
+	}
+
+	// Сравниваем dist2ToLine (квадрат расстояния до конца отрезка) с r^2
+	return dist2ToLine <= r*r
+}

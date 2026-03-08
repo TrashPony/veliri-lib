@@ -47,7 +47,7 @@ func (r *Polygon) DetectCollisionRectToCircle(centerCircle *Point, radius int) b
 	}
 
 	// окруждность такая большая что помещает в себя весь прямоугольник, но центр круга не в прямоугольнике
-	if int(GetBetweenDistFloat(r.RotateSides[0].XY1.X, r.RotateSides[0].XY1.Y, centerCircle.X, centerCircle.Y)) < radius {
+	if IsColliding(int(r.RotateSides[0].XY1.X), int(r.RotateSides[0].XY1.Y), int(centerCircle.X), int(centerCircle.Y), 0, radius) {
 		return true
 	}
 
@@ -58,22 +58,22 @@ func (r *Polygon) DetectCollisionRectToCircle(centerCircle *Point, radius int) b
 		    intersectCircle(S, (D, A))
 	*/
 
-	intersect1, _, _, _, _ := IntersectVectorToCircle(r.RotateSides[0].XY1, r.RotateSides[1].XY1, centerCircle, radius)
+	intersect1 := IntersectVectorToCircleFast(r.RotateSides[0].XY1, r.RotateSides[1].XY1, centerCircle, radius)
 	if intersect1 {
 		return true
 	}
 
-	intersect2, _, _, _, _ := IntersectVectorToCircle(r.RotateSides[1].XY1, r.RotateSides[2].XY1, centerCircle, radius)
+	intersect2 := IntersectVectorToCircleFast(r.RotateSides[1].XY1, r.RotateSides[2].XY1, centerCircle, radius)
 	if intersect2 {
 		return true
 	}
 
-	intersect3, _, _, _, _ := IntersectVectorToCircle(r.RotateSides[2].XY1, r.RotateSides[3].XY1, centerCircle, radius)
+	intersect3 := IntersectVectorToCircleFast(r.RotateSides[2].XY1, r.RotateSides[3].XY1, centerCircle, radius)
 	if intersect3 {
 		return true
 	}
 
-	intersect4, _, _, _, _ := IntersectVectorToCircle(r.RotateSides[3].XY1, r.RotateSides[0].XY1, centerCircle, radius)
+	intersect4 := IntersectVectorToCircleFast(r.RotateSides[3].XY1, r.RotateSides[0].XY1, centerCircle, radius)
 	if intersect4 {
 		return true
 	}
@@ -134,7 +134,6 @@ func (r *Polygon) DetectPointInRectangle(x, y float64) bool {
 
 	// A - [0]1 B - [1]1 C = [2]1 D = [3]1
 	//0 ≤ AP·AB ≤ AB·AB and 0 ≤ AP·AD ≤ AD·AD
-	// TODO  invalid memory address or nil pointer dereference, у квадрата по какой то причин все 4 стороны были nil r.RotateSides
 	AB := VectorSub(r.RotateSides[0].XY1, r.RotateSides[1].XY1)
 	AM := VectorSub(r.RotateSides[0].XY1, &Point{X: x, Y: y})
 	BC := VectorSub(r.RotateSides[1].XY1, r.RotateSides[2].XY1)

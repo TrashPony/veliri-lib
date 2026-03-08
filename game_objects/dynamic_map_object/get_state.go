@@ -268,11 +268,15 @@ func (o *Object) GetType() string {
 
 func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 
-	if game_math.IsColliding(o.GetX(), o.GetY(), x, y, o.GetRangeView(), radius) {
+	if o.physicalModel == nil {
+		return false, false
+	}
+
+	if game_math.IsColliding(o.physicalModel.X, o.physicalModel.Y, x, y, o.GetRangeView(), radius) {
 		return true, true
 	}
 
-	if game_math.IsColliding(o.GetX(), o.GetY(), x, y, o.GetRadarRange(), radius) {
+	if game_math.IsColliding(o.physicalModel.X, o.physicalModel.Y, x, y, o.GetRadarRange(), radius) {
 		return false, true
 	}
 
