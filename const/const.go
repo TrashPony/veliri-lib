@@ -5,7 +5,7 @@ import "time"
 const (
 	CellSize              = 32
 	PlantCellSize         = 32
-	ObstacleZoneSize      = 256
+	ObstacleZoneSize      = 128
 	DiscreteFindPathSize  = 8 * CellSize
 	Gravity               = 980.0 / 2
 	UnitHeight            = 35
