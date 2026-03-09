@@ -248,11 +248,11 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	}
 
 	// Базовые параметры
-	k := 0
+	k := 3
 	sharpness := 1.0
 
 	// без оружия нет урона
-	if weaponPoint == nil {
+	if weaponPoint == nil && (attacker.GetType() == "unit" && target.GetType() == "unit") {
 		return 0
 	}
 
