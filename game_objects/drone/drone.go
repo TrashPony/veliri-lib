@@ -62,6 +62,11 @@ type Drone struct {
 	mx              sync.RWMutex
 }
 
+func (d *Drone) GetRadarRange() int {
+	// видим радаром так же как зрением, для оптимизации нада
+	return d.RangeView
+}
+
 type WarpMode struct {
 	Status          string
 	Path            []*coordinate.Coordinate
