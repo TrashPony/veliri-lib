@@ -231,6 +231,12 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 }
 
 func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight, efficiency, relativeDamageSpeed float64) int {
+
+	// без оружия нет урона
+	if attacker.GetType() == "unit" && target.GetType() == "unit" {
+		return 0
+	}
+
 	if efficiency <= 0 || math.IsNaN(efficiency) {
 		efficiency = 0.1
 	}
@@ -251,12 +257,9 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 	k := 3
 	sharpness := 1.0
 
-	// без оружия нет урона
-	if weaponPoint == nil && (attacker.GetType() == "unit" && target.GetType() == "unit") {
-		return 0
+	if weaponPoint != nil {
+		k = weaponPoint.K
 	}
-
-	k = weaponPoint.K
 
 	// 1. Скорость атакующего
 	attackSpeed := relativeDamageSpeed * efficiency
