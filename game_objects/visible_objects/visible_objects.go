@@ -94,6 +94,21 @@ func (v *VisibleObjectsStore) GetVisibleObjects() <-chan *VisibleObject {
 	return objs
 }
 
+// RangeVisibleObjects проходит по всем объектам и вызывает callback для каждого
+func (v *VisibleObjectsStore) RangeVisibleObjects(f func(*VisibleObject) bool) {
+	v.mx.RLock()
+	defer v.mx.RUnlock()
+
+	for _, objects := range v.visibleObjects {
+		for _, obj := range objects {
+			// Если callback вернул false - прерываем итерацию
+			if !f(obj) {
+				return
+			}
+		}
+	}
+}
+
 func (v *VisibleObjectsStore) countVisibleObjects() int {
 	total := 0
 	for _, objects := range v.visibleObjects {

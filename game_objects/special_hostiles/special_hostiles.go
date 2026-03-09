@@ -87,12 +87,23 @@ func (s *SpecialHostiles) getHostile(typeHostile string, id int) *SpecialHostile
 	var hostile *SpecialHostile
 	objects := s.SpecialHostiles[typeID]
 	if !(objects == nil || len(objects) == 0) {
-		index := sort.Search(len(objects), func(i int) bool {
-			return objects[i].ID >= id
-		})
 
-		if index < len(objects) && objects[index].ID == id {
-			hostile = objects[index]
+		// Для маленьких слайсов линейный поиск быстрее
+		if len(objects) < 20 {
+			for _, obj := range objects {
+				if obj.ID == id {
+					hostile = obj
+					break
+				}
+			}
+		} else {
+			index := sort.Search(len(objects), func(i int) bool {
+				return objects[i].ID >= id
+			})
+
+			if index < len(objects) && objects[index].ID == id {
+				hostile = objects[index]
+			}
 		}
 	}
 
@@ -100,12 +111,21 @@ func (s *SpecialHostiles) getHostile(typeHostile string, id int) *SpecialHostile
 	var ignore bool
 	iobjects := s.IgnoreHate[typeID]
 	if !(iobjects == nil || len(iobjects) == 0) {
-		indexI := sort.Search(len(iobjects), func(i int) bool {
-			return iobjects[i].ID >= id
-		})
+		if len(iobjects) < 20 {
+			for _, obj := range iobjects {
+				if obj.ID == id {
+					ignore = true
+					break
+				}
+			}
+		} else {
+			indexI := sort.Search(len(iobjects), func(i int) bool {
+				return iobjects[i].ID >= id
+			})
 
-		if indexI < len(iobjects) && iobjects[indexI].ID == id {
-			ignore = iobjects[indexI].ID == id
+			if indexI < len(iobjects) && iobjects[indexI].ID == id {
+				ignore = iobjects[indexI].ID == id
+			}
 		}
 	}
 

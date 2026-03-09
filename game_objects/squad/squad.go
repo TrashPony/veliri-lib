@@ -238,6 +238,11 @@ func (s *Squad) GetVisibleObjects() <-chan *visible_objects.VisibleObject {
 	return s.visibleObjects.GetVisibleObjects()
 }
 
+func (s *Squad) RangeVisibleObjects(f func(*visible_objects.VisibleObject) bool) {
+	s.checkVisibleObjectStore()
+	s.visibleObjects.RangeVisibleObjects(f)
+}
+
 func (s *Squad) AddVisibleObject(newObj *visible_objects.VisibleObject) {
 	s.checkVisibleObjectStore()
 	s.visibleObjects.AddVisibleObject(newObj)
