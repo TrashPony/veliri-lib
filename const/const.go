@@ -240,6 +240,7 @@ var MapBinItems = map[string]int{
 	"pollen_cloud":    16,
 	"map_item":        17,
 	"handler":         18,
+	"corporation":     19,
 }
 
 var FractionByte = map[string]byte{
