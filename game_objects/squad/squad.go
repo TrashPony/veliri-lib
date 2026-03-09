@@ -82,7 +82,7 @@ func (s *Squad) RangeHostiles() <-chan *special_hostiles.SpecialHostile {
 	return s.specialHostiles.RangeHostiles()
 }
 
-func (s *Squad) UnsafeRangeHostiles() (map[string]*special_hostiles.SpecialHostile, *sync.RWMutex) {
+func (s *Squad) UnsafeRangeHostiles() ([][]*special_hostiles.SpecialHostile, *sync.RWMutex) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
@@ -132,7 +132,7 @@ func (s *Squad) GetSpecialHostileJsonData() ([]byte, []byte) {
 	return s.specialHostiles.GetJsonData()
 }
 
-func (s *Squad) GetSpecialHostileData() (map[string]bool, map[string]*special_hostiles.SpecialHostile) {
+func (s *Squad) GetSpecialHostileData() ([][]*special_hostiles.IgnoreHostile, [][]*special_hostiles.SpecialHostile) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}
@@ -148,7 +148,7 @@ func (s *Squad) LoadSpecialHostileFromJson(ignoreHate []byte, specialHostiles []
 	s.specialHostiles.LoadFromJson(ignoreHate, specialHostiles)
 }
 
-func (s *Squad) LoadSpecialHostile(ignoreHate map[string]bool, specialHostiles map[string]*special_hostiles.SpecialHostile) {
+func (s *Squad) LoadSpecialHostile(ignoreHate [][]*special_hostiles.IgnoreHostile, specialHostiles [][]*special_hostiles.SpecialHostile) {
 	if s.specialHostiles == nil {
 		s.specialHostiles = &special_hostiles.SpecialHostiles{}
 	}

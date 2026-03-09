@@ -1,8 +1,8 @@
 package damage_manager
 
 import (
+	"github.com/TrashPony/veliri-lib/timecache"
 	"sync"
-	"time"
 )
 
 type DamageManager struct {
@@ -40,7 +40,7 @@ func (dm *DamageManager) SetLastDamage(playerID, damage int) *Damage {
 
 	newDamage := Damage{
 		PlayerID:   playerID,
-		TimeDamage: time.Now().Unix(),
+		TimeDamage: timecache.GetTimer().Unix(),
 		Damage:     damage,
 	}
 	dm.damage = append(dm.damage, newDamage)
@@ -57,7 +57,7 @@ func (dm *DamageManager) GetLastDamage(sec int64) int {
 
 	last := dm.damage[len(dm.damage)-1]
 	// если урон наносился больше чем 30 сек назад то он не учитывается
-	if time.Now().Unix()-last.TimeDamage > sec {
+	if timecache.GetTimer().Unix()-last.TimeDamage > sec {
 		dm.damage = dm.damage[:0]
 		return 0
 	}
@@ -76,7 +76,7 @@ func (dm *DamageManager) GetLastDamageByPlayerID(playerID, sec int) int {
 	allDamage := 0
 	for _, d := range dm.damage {
 		if d.PlayerID == playerID {
-			if time.Now().Unix()-d.TimeDamage < int64(sec) {
+			if timecache.GetTimer().Unix()-d.TimeDamage < int64(sec) {
 				allDamage += d.Damage
 			}
 		}
@@ -96,7 +96,7 @@ func (dm *DamageManager) GetAllDamage(t int64) map[int]int {
 	}
 
 	for _, d := range dm.damage {
-		if time.Now().Unix()-d.TimeDamage < t {
+		if timecache.GetTimer().Unix()-d.TimeDamage < t {
 			r[d.PlayerID] += d.Damage
 		}
 	}
@@ -115,7 +115,7 @@ func (dm *DamageManager) GetAllDamageInt(t int64) int {
 	}
 
 	for _, d := range dm.damage {
-		if time.Now().Unix()-d.TimeDamage < t {
+		if timecache.GetTimer().Unix()-d.TimeDamage < t {
 			damage += d.Damage
 		}
 	}

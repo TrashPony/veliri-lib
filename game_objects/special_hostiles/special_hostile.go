@@ -15,7 +15,6 @@ const (
 )
 
 type SpecialHostile struct {
-	UUID       string                     `json:"uuid"`
 	ID         int                        `json:"id"`
 	Type       string                     `json:"type"`
 	Points     int                        `json:"points"`          // коротковременная память
@@ -161,7 +160,6 @@ func (s *SpecialHostile) Copy() *SpecialHostile {
 	defer s.mx.RUnlock()
 
 	copyHostile := &SpecialHostile{
-		UUID:       s.UUID,
 		ID:         s.ID,
 		Type:       s.Type,
 		Points:     s.Points,

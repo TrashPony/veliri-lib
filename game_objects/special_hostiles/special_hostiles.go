@@ -2,7 +2,8 @@ package special_hostiles
 
 import (
 	"encoding/json"
-	"strconv"
+	_const "github.com/TrashPony/veliri-lib/const"
+	"sort"
 	"sync"
 )
 
@@ -11,14 +12,29 @@ import (
 // < 0 - дружаня, не атакует по причине фракционной вражды во фри, но атакуте в батл секторах, чаще помогает при запросах
 // > 0 - враг, атакует его даже если тот в той же фракции, активно принимает участие в запросах против цели и не помогует цели
 type SpecialHostiles struct {
-	IgnoreHate      map[string]bool            `json:"ignore_hate"`
-	SpecialHostiles map[string]*SpecialHostile `json:"special_hostiles"`
+	IgnoreHate      [][]*IgnoreHostile  `json:"ignore_hate"`
+	SpecialHostiles [][]*SpecialHostile `json:"special_hostiles"`
 	mx              sync.RWMutex
+}
+
+func (s *SpecialHostiles) initSpecialHostiles() {
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	s.SpecialHostiles = make([][]*SpecialHostile, len(_const.MapBinItems)+1)
+	for _, t := range _const.MapBinItems {
+		s.SpecialHostiles[t] = make([]*SpecialHostile, 0)
+	}
+
+	s.IgnoreHate = make([][]*IgnoreHostile, len(_const.MapBinItems)+1)
+	for _, t := range _const.MapBinItems {
+		s.IgnoreHate[t] = make([]*IgnoreHostile, 0)
+	}
 }
 
 func (s *SpecialHostiles) RangeHostiles() <-chan *SpecialHostile {
 	s.mx.RLock()
-	ch := make(chan *SpecialHostile, len(s.SpecialHostiles))
+	ch := make(chan *SpecialHostile, s.countHostiles())
 
 	go func() {
 		defer func() {
@@ -26,15 +42,25 @@ func (s *SpecialHostiles) RangeHostiles() <-chan *SpecialHostile {
 			s.mx.RUnlock()
 		}()
 
-		for _, s := range s.SpecialHostiles {
-			ch <- s
+		for _, sType := range s.SpecialHostiles {
+			for _, s := range sType {
+				ch <- s
+			}
 		}
 	}()
 
 	return ch
 }
 
-func (s *SpecialHostiles) UnsafeRangeHostiles() (map[string]*SpecialHostile, *sync.RWMutex) {
+func (s *SpecialHostiles) countHostiles() int {
+	total := 0
+	for _, objects := range s.SpecialHostiles {
+		total += len(objects)
+	}
+	return total
+}
+
+func (s *SpecialHostiles) UnsafeRangeHostiles() ([][]*SpecialHostile, *sync.RWMutex) {
 	s.mx.RLock()
 	return s.SpecialHostiles, &s.mx
 }
@@ -42,34 +68,112 @@ func (s *SpecialHostiles) UnsafeRangeHostiles() (map[string]*SpecialHostile, *sy
 func (s *SpecialHostiles) getHostile(typeHostile string, id int) *SpecialHostile {
 
 	if typeHostile == "meteorite" {
-		return &SpecialHostile{UUID: typeHostile} // отдаем фейк что бы нечего не сломать
+		return &SpecialHostile{} // отдаем фейк что бы нечего не сломать
 	}
 
 	if s.SpecialHostiles == nil {
-		s.mx.Lock()
-		s.SpecialHostiles = make(map[string]*SpecialHostile)
-		s.mx.Unlock()
+		s.initSpecialHostiles()
 	}
 
-	uuid := typeHostile + strconv.Itoa(id)
-
 	s.mx.RLock()
-	hostile := s.SpecialHostiles[uuid]
-	_, ignore := s.IgnoreHate[uuid]
+
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[typeHostile]
+	if !ok {
+		panic("Недопустимый тип врага 1: " + typeHostile)
+	}
+
+	// получаем обьект
+	var hostile *SpecialHostile
+	objects := s.SpecialHostiles[typeID]
+	if !(objects == nil || len(objects) == 0) {
+		index := sort.Search(len(objects), func(i int) bool {
+			return objects[i].ID >= id
+		})
+
+		if index < len(objects) && objects[index].ID == id {
+			hostile = objects[index]
+		}
+	}
+
+	// берем игнор
+	var ignore bool
+	iobjects := s.IgnoreHate[typeID]
+	if !(iobjects == nil || len(iobjects) == 0) {
+		indexI := sort.Search(len(iobjects), func(i int) bool {
+			return iobjects[i].ID >= id
+		})
+
+		if indexI < len(iobjects) && iobjects[indexI].ID == id {
+			ignore = iobjects[indexI].ID == id
+		}
+	}
+
 	s.mx.RUnlock()
 
 	if ignore {
-		return &SpecialHostile{UUID: uuid} // отдаем фейк что бы нечего не сломать
+		return &SpecialHostile{} // отдаем фейк что бы нечего не сломать
 	}
 
 	if hostile == nil {
-		hostile = &SpecialHostile{UUID: uuid, ID: id, Type: typeHostile}
-		s.mx.Lock()
-		s.SpecialHostiles[uuid] = hostile
-		s.mx.Unlock()
+		hostile = &SpecialHostile{ID: id, Type: typeHostile}
+		hostile = s.addHostile(hostile)
 	}
 
 	return hostile
+}
+
+func (s *SpecialHostiles) addHostile(h *SpecialHostile) *SpecialHostile {
+	if s.SpecialHostiles == nil {
+		s.initSpecialHostiles()
+	}
+
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[h.Type]
+	if !ok {
+		panic("Недопустимый тип объекта врага 2: " + h.Type)
+	}
+
+	// Добавляем объект в список
+	objects := s.SpecialHostiles[typeID]
+	objects = append(objects, h)
+
+	// Сортируем список по ID
+	sort.Slice(objects, func(i, j int) bool {
+		return objects[i].ID < objects[j].ID
+	})
+
+	s.SpecialHostiles[typeID] = objects
+	return h
+}
+
+func (s *SpecialHostiles) addIgnore(h *IgnoreHostile, typeHostile string) {
+	if s.IgnoreHate == nil {
+		s.initSpecialHostiles()
+	}
+
+	s.mx.Lock()
+	defer s.mx.Unlock()
+
+	// Получаем числовой идентификатор типа
+	typeID, ok := _const.MapBinItems[typeHostile]
+	if !ok {
+		panic("Недопустимый тип объекта врага 3: " + typeHostile)
+	}
+
+	// Добавляем объект в список
+	objects := s.IgnoreHate[typeID]
+	objects = append(objects, h)
+
+	// Сортируем список по ID
+	sort.Slice(objects, func(i, j int) bool {
+		return objects[i].ID < objects[j].ID
+	})
+
+	s.IgnoreHate[typeID] = objects
 }
 
 func (s *SpecialHostiles) SetPoints(typeHostile string, id, hatePoint int) {
@@ -103,16 +207,7 @@ func (s *SpecialHostiles) CheckHostileByMod(typeHostile string, id int, mod stri
 }
 
 func (s *SpecialHostiles) AddIgnore(typeHostile string, id int) {
-	uuid := typeHostile + strconv.Itoa(id)
-
-	s.mx.Lock()
-	defer s.mx.Unlock()
-
-	if s.IgnoreHate == nil {
-		s.IgnoreHate = make(map[string]bool)
-	}
-
-	s.IgnoreHate[uuid] = true
+	s.addIgnore(&IgnoreHostile{ID: id}, typeHostile)
 }
 
 func (s *SpecialHostiles) GetJsonData() ([]byte, []byte) {
@@ -129,14 +224,14 @@ func (s *SpecialHostiles) LoadFromJson(ignoreHate, specialHostiles []byte) {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	s.IgnoreHate = make(map[string]bool)
-	s.SpecialHostiles = make(map[string]*SpecialHostile)
+	s.IgnoreHate = make([][]*IgnoreHostile, 0)
+	s.SpecialHostiles = make([][]*SpecialHostile, 0)
 
-	json.Unmarshal(ignoreHate, &s.IgnoreHate)
-	json.Unmarshal(specialHostiles, &s.SpecialHostiles)
+	_ = json.Unmarshal(ignoreHate, &s.IgnoreHate)
+	_ = json.Unmarshal(specialHostiles, &s.SpecialHostiles)
 }
 
-func (s *SpecialHostiles) LoadData(ignoreHate map[string]bool, specialHostiles map[string]*SpecialHostile) {
+func (s *SpecialHostiles) LoadData(ignoreHate [][]*IgnoreHostile, specialHostiles [][]*SpecialHostile) {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
@@ -144,18 +239,24 @@ func (s *SpecialHostiles) LoadData(ignoreHate map[string]bool, specialHostiles m
 	s.SpecialHostiles = specialHostiles
 }
 
-func (s *SpecialHostiles) GetData() (map[string]bool, map[string]*SpecialHostile) {
+func (s *SpecialHostiles) GetData() ([][]*IgnoreHostile, [][]*SpecialHostile) {
 	s.mx.RLock()
 	defer s.mx.RUnlock()
 
-	ignoreCopy := make(map[string]bool, len(s.IgnoreHate))
+	ignoreCopy := make([][]*IgnoreHostile, len(s.IgnoreHate))
 	for k, v := range s.IgnoreHate {
-		ignoreCopy[k] = v
+		ignoreCopy[k] = make([]*IgnoreHostile, len(v))
+		for i, v2 := range v {
+			ignoreCopy[k][i] = &IgnoreHostile{v2.ID}
+		}
 	}
 
-	hostilesCopy := make(map[string]*SpecialHostile, len(s.SpecialHostiles))
+	hostilesCopy := make([][]*SpecialHostile, len(s.SpecialHostiles))
 	for k, v := range s.SpecialHostiles {
-		hostilesCopy[k] = v.Copy()
+		hostilesCopy[k] = make([]*SpecialHostile, len(v))
+		for i, v2 := range v {
+			hostilesCopy[k][i] = v2.Copy()
+		}
 	}
 
 	return ignoreCopy, hostilesCopy
@@ -165,9 +266,17 @@ func (s *SpecialHostiles) Clear() {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	for k, h := range s.SpecialHostiles {
-		if h.GetPoints() == 0 {
-			delete(s.SpecialHostiles, k)
+	for typeID, store := range s.SpecialHostiles {
+		// Новый слайс только для не-nil элементов
+		compact := make([]*SpecialHostile, 0, len(store))
+
+		for _, h := range store {
+			if h != nil && h.GetPoints() != 0 {
+				compact = append(compact, h)
+			}
 		}
+
+		// Заменяем старый слайс на компактный
+		s.SpecialHostiles[typeID] = compact
 	}
 }

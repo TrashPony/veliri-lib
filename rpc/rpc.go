@@ -183,7 +183,8 @@ func GobRegister() {
 	gob.Register([]effect.Effect{})
 	gob.Register(visible_objects.VisibleObject{})
 
-	gob.Register(map[string]*special_hostiles.SpecialHostile{})
+	gob.Register([][]*special_hostiles.SpecialHostile{})
+	gob.Register([][]*special_hostiles.IgnoreHostile{})
 
 	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})
