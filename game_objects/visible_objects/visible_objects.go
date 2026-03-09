@@ -37,7 +37,6 @@ func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int
 	}
 
 	v.mx.RLock()
-	defer v.mx.RUnlock()
 
 	// Получаем числовой идентификатор типа
 	typeID, ok := _const.MapBinItems[typeObj]
@@ -47,7 +46,20 @@ func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int
 
 	objects := v.visibleObjects[typeID]
 	if objects == nil || len(objects) == 0 {
+		v.mx.RUnlock()
 		return nil // Список пуст
+	}
+
+	// Для маленьких слайсов линейный поиск быстрее
+	if len(objects) < 20 {
+		for _, obj := range objects {
+			if obj.IDObject == id {
+				v.mx.RUnlock()
+				return obj
+			}
+		}
+		v.mx.RUnlock()
+		return nil
 	}
 
 	// Бинарный поиск по ID
@@ -56,9 +68,11 @@ func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int
 	})
 
 	if index < len(objects) && objects[index].IDObject == id {
+		v.mx.RUnlock()
 		return objects[index]
 	}
 
+	v.mx.RUnlock()
 	return nil
 }
 

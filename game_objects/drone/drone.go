@@ -457,7 +457,7 @@ func (d *Drone) GetRangeView() int {
 }
 
 func (d *Drone) CheckViewCoordinate(x, y, radius int) (bool, bool) {
-	if d.GetRangeView()+radius >= int(game_math.GetBetweenDist(d.GetPhysicalModel().X, d.GetPhysicalModel().Y, x, y)) {
+	if game_math.IsColliding(d.GetPhysicalModel().X, d.GetPhysicalModel().Y, x, y, d.GetRangeView(), radius) {
 		return true, true
 	}
 

@@ -406,6 +406,13 @@ func (s *Squad) GetRangeView() int {
 	return 0
 }
 
+func (s *Squad) GetRadarRange() int {
+	if s.GetMS() != nil {
+		return s.GetMS().GetRadarRange()
+	}
+	return 0
+}
+
 func (s *Squad) GetID() int {
 	return s.ID
 }

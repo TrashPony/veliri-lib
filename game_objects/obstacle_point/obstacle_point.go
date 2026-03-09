@@ -5,17 +5,18 @@ import (
 )
 
 type ObstaclePoint struct {
-	ID         int     `json:"-"`
-	X          int     `json:"x"`
-	Y          int     `json:"y"`
-	Radius     int     `json:"radius"`
-	Move       bool    `json:"move"`     // если тру то это только для пуль
-	Resource   bool    `json:"resource"` // не влияет на колизии с миром, но влияет на то что низя строить, или куда навести мыш
-	ParentID   int     `json:"-"`
-	ParentType string  `json:"-"`
-	Key        string  `json:"-"`
-	Height     float64 `json:"height"`
-	K          int     `json:"-"`
+	ID         int         `json:"-"`
+	X          int         `json:"x"`
+	Y          int         `json:"y"`
+	Radius     int         `json:"radius"`
+	Move       bool        `json:"move"`     // если тру то это только для пуль
+	Resource   bool        `json:"resource"` // не влияет на колизии с миром, но влияет на то что низя строить, или куда навести мыш
+	ParentID   int         `json:"-"`
+	ParentType string      `json:"-"`
+	Key        string      `json:"-"`
+	Height     float64     `json:"height"`
+	K          int         `json:"-"`
+	RefObj     interface{} `json:"-"`
 }
 
 func (o *ObstaclePoint) GetID() int {

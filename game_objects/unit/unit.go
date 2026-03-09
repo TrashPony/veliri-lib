@@ -1028,15 +1028,15 @@ func (u *Unit) GetEquipFirePos(typeEquip, numberSlot int) []*game_math.Positions
 
 func (u *Unit) CheckViewCoordinate(x, y, radius int) (bool, bool) {
 
-	if u == nil || u.getBody() == nil {
+	if u == nil || u.getBody() == nil || u.physicalModel == nil {
 		return false, false
 	}
 
-	if game_math.IsColliding(u.GetX(), u.GetY(), x, y, u.GetRangeView(), radius) {
+	if game_math.IsColliding(u.physicalModel.X, u.physicalModel.Y, x, y, u.GetRangeView(), radius) {
 		return true, true
 	}
 
-	if game_math.IsColliding(u.GetX(), u.GetY(), x, y, u.GetRadarRange(), radius) {
+	if game_math.IsColliding(u.physicalModel.X, u.physicalModel.Y, x, y, u.GetRadarRange(), radius) {
 		return false, true
 	}
 

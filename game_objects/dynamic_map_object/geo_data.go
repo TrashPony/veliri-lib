@@ -18,22 +18,29 @@ func (o *Object) CalculateScale() {
 	o.XShadowOffset = int(float64(o.TypeXShadowOffset) * (float64(o.GetScale()) / 100))
 	o.YShadowOffset = int(float64(o.TypeYShadowOffset) * (float64(o.GetScale()) / 100))
 
-	o.SetGeoData()
+	o.SetGeoData(false)
 }
 
-func (o *Object) SetGeoData() {
+func (o *Object) SetGeoData(static bool) {
 
 	if o.GetPhysicalModel().GeoData == nil {
 		o.GetPhysicalModel().GeoData = make([]*obstacle_point.ObstaclePoint, 0, len(o.TypeGeoData))
 		for _, gd := range o.TypeGeoData {
-			o.GetPhysicalModel().GeoData = append(o.GetPhysicalModel().GeoData, &obstacle_point.ObstaclePoint{
+
+			point := &obstacle_point.ObstaclePoint{
 				X:        gd.X,
 				Y:        gd.Y,
 				Radius:   gd.Radius,
 				Move:     gd.Move,
 				Resource: gd.Resource,
 				Height:   gd.Height,
-			})
+			}
+
+			if !static {
+				point.RefObj = o
+			}
+
+			o.GetPhysicalModel().GeoData = append(o.GetPhysicalModel().GeoData, point)
 		}
 	}
 
