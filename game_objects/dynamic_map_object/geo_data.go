@@ -37,7 +37,7 @@ func (o *Object) SetGeoData(static bool) {
 			}
 
 			if !static {
-				point.RefObj = o
+				point.SetRef(o)
 			}
 
 			o.GetPhysicalModel().GeoData = append(o.GetPhysicalModel().GeoData, point)
