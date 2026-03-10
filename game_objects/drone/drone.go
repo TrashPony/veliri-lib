@@ -53,6 +53,9 @@ type Drone struct {
 	LifeTime        int                            `json:"life_time"`
 	WorkTime        int                            `json:"-"`
 	Weapons         map[int]*detail.BodyWeaponSlot `json:"-"`
+	Destroy         bool                           `json:"destroy"`
+
+	zone            *game_math.Positions
 	effects         *effects_store.EffectsStore
 	jobs            []*Job
 	visibleObjects  *visible_objects.VisibleObjectsStore
@@ -60,6 +63,31 @@ type Drone struct {
 	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
+}
+
+func (d *Drone) GetTypeByte() int {
+	return _const.DroneTypeByte
+}
+
+func (d *Drone) SetObjectZone(x, y int) {
+	if d.zone == nil {
+		d.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	d.zone.X = x
+	d.zone.Y = y
+}
+
+func (d *Drone) GetObjectZone() *game_math.Positions {
+	if d.zone == nil {
+		d.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	return d.zone
+}
+
+func (d *Drone) IsDestroyed() bool {
+	return d.Destroy
 }
 
 func (d *Drone) GetRadarRange() int {

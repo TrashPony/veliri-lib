@@ -1,6 +1,7 @@
 package reservoir
 
 import (
+	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
@@ -30,12 +31,14 @@ type Reservoir struct {
 	Shadow  bool                            `json:"shadow"`
 	GeoData []*obstacle_point.ObstaclePoint `json:"geo_data"`
 	Height  float64                         `json:"height"`
+	Destroy bool                            `json:"destroy"`
 
 	Complexity int `json:"complexity"`
 	// все пользователи которые добывают эту руду отображаются тут [user_id] progress_points
 	// progress_points - % завершения циклы добычи
 	miningUsers map[int]float64
 	attributes  map[string]int
+	zone        *game_math.Positions
 
 	CacheJson      []byte       `json:"-"`
 	CreateJsonTime int64        `json:"-"`
@@ -44,6 +47,35 @@ type Reservoir struct {
 
 	useCoordinates []pointer.Pointer
 	mx             sync.RWMutex
+}
+
+func (m *Reservoir) GetID() int {
+	return m.ID
+}
+
+func (m *Reservoir) GetTypeByte() int {
+	return _const.ReservoirTypeByte
+}
+
+func (m *Reservoir) SetObjectZone(x, y int) {
+	if m.zone == nil {
+		m.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	m.zone.X = x
+	m.zone.Y = y
+}
+
+func (m *Reservoir) GetObjectZone() *game_math.Positions {
+	if m.zone == nil {
+		m.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	return m.zone
+}
+
+func (m *Reservoir) IsDestroyed() bool {
+	return m.Destroy
 }
 
 func (m *Reservoir) SetUseCoordinates(points []pointer.Pointer) {

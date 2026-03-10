@@ -21,11 +21,37 @@ type MapItem struct {
 	ToPath          move_path.To `json:"-"`
 	LastAction      string       `json:"-"`
 	Destroy         bool         `json:"-"`
+	zone            *game_math.Positions
 	ownerType       string
 	ownerID         int
 	ownerInv        int
 	inv             *inventory.Inventory
 	physicalModel   *physical_model.PhysicalModel
+}
+
+func (i *MapItem) GetTypeByte() int {
+	return _const.MapItemTypeByte
+}
+
+func (i *MapItem) SetObjectZone(x, y int) {
+	if i.zone == nil {
+		i.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	i.zone.X = x
+	i.zone.Y = y
+}
+
+func (i *MapItem) GetObjectZone() *game_math.Positions {
+	if i.zone == nil {
+		i.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	return i.zone
+}
+
+func (i *MapItem) IsDestroyed() bool {
+	return i.Destroy
 }
 
 type CacheData struct {
