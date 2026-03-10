@@ -1,6 +1,7 @@
 package dynamic_map_object
 
 import (
+	_const "github.com/TrashPony/veliri-lib/const"
 	"strings"
 
 	"github.com/TrashPony/veliri-lib/game_math"
@@ -264,6 +265,10 @@ func (o *Object) GetID() int {
 
 func (o *Object) GetType() string {
 	return "object"
+}
+
+func (o *Object) GetTypeByte() int {
+	return _const.ObjectTypeByte
 }
 
 func (o *Object) CheckViewCoordinate(x, y, radius int) (bool, bool) {

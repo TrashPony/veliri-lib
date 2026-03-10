@@ -5,7 +5,6 @@ import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
-	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"math"
 	"sort"
@@ -205,6 +204,10 @@ func (u *Unit) GetType() string {
 	return "unit"
 }
 
+func (u *Unit) GetTypeByte() int {
+	return _const.UnitTypeByte
+}
+
 func (u *Unit) GetRotate() float64 {
 	return u.GetPhysicalModel().Rotate
 }
@@ -227,10 +230,6 @@ func (u *Unit) GetLength() float64 {
 
 func (u *Unit) GetHeight() float64 {
 	return float64(u.body.Height) * 2
-}
-
-func (u *Unit) GetGeoData() []*obstacle_point.ObstaclePoint {
-	return nil
 }
 
 func (u *Unit) GetWeight() float64 {

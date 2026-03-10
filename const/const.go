@@ -221,26 +221,48 @@ var SourceItemBin = map[string]int{
 	"scannerAInv:fuel":     23,
 }
 
+const (
+	TransportTypeByte      = 1
+	BoxTypeByte            = 2
+	UnitTypeByte           = 3
+	DroneTypeByte          = 4
+	ReservoirTypeByte      = 5
+	DynamicObjectsTypeByte = 6
+	ShieldTypeByte         = 7
+	ItemTypeByte           = 8
+	ObjectTypeByte         = 9
+	BulletTypeByte         = 10
+	MarkTypeByte           = 11
+	RopeElementTypeByte    = 12
+	BaseTypeByte           = 13
+	MapTypeByte            = 14
+	EmptyTypeByte          = 15
+	PollenCloudTypeByte    = 16
+	MapItemTypeByte        = 17
+	HandlerTypeByte        = 18
+	CorporationTypeByte    = 19
+)
+
 var MapBinItems = map[string]int{
-	"transport":       1,
-	"box":             2,
-	"unit":            3,
-	"drone":           4,
-	"reservoir":       5,
-	"dynamic_objects": 6,
-	"shield":          7,
-	"item":            8,
-	"object":          9,
-	"bullet":          10,
-	"mark":            11,
-	"rope_element":    12,
-	"base":            13,
-	"map":             14,
-	"":                15,
-	"pollen_cloud":    16,
-	"map_item":        17,
-	"handler":         18,
-	"corporation":     19,
+	"transport":       TransportTypeByte,
+	"box":             BoxTypeByte,
+	"unit":            UnitTypeByte,
+	"drone":           DroneTypeByte,
+	"reservoir":       ReservoirTypeByte,
+	"dynamic_objects": DynamicObjectsTypeByte,
+	"shield":          ShieldTypeByte,
+	"item":            ItemTypeByte,
+	"object":          ObjectTypeByte,
+	"bullet":          BulletTypeByte,
+	"mark":            MarkTypeByte,
+	"rope_element":    RopeElementTypeByte,
+	"base":            BaseTypeByte,
+	"map":             MapTypeByte,
+	"":                EmptyTypeByte,
+	"pollen_cloud":    PollenCloudTypeByte,
+	"map_item":        MapItemTypeByte,
+	"handler":         HandlerTypeByte,
+	"corporation":     CorporationTypeByte,
 }
 
 var FractionByte = map[string]byte{

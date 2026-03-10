@@ -13,6 +13,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
+	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
@@ -90,12 +91,15 @@ type Unit struct {
 	gunner *gunner.Gunner
 	meller *gunner.Meleer
 
-	ghost                 bool
-	lockedControl         bool
-	viewRange             int
-	radarRange            int
-	police                bool
-	fractionWarrior       bool
+	ghost           bool
+	lockedControl   bool
+	viewRange       int
+	radarRange      int
+	police          bool
+	fractionWarrior bool
+	cachedGeoData   []*obstacle_point.ObstaclePoint
+	zone            *game_math.Positions
+
 	Role                  string     `json:"-"`
 	OldUnrepairableDamage int        `json:"-"`
 	UnrepairableDamage    int        `json:"-"`
@@ -1140,4 +1144,25 @@ func (u *Unit) SetAttribute(key string, v int) {
 	}
 
 	u.attributes[key] = v
+}
+
+func (u *Unit) SetObjectZone(x, y int) {
+	if u.zone == nil {
+		u.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	u.zone.X = x
+	u.zone.Y = y
+}
+
+func (u *Unit) GetObjectZone() *game_math.Positions {
+	if u.zone == nil {
+		u.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	return u.zone
+}
+
+func (u *Unit) IsDestroyed() bool {
+	return u.Destroy
 }

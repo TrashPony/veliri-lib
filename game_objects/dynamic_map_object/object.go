@@ -100,6 +100,7 @@ type Object struct {
 	EquipID              int                 `json:"equip_id"`
 	SpecialCell          bool                `json:"special_cell"`
 	Interactive          bool                `json:"interactive"`
+	Destroy              bool                `json:"destroy"`
 	placeUserSpecialCell map[string]bool
 
 	Weapons map[int]*detail.BodyWeaponSlot `json:"weapons"`
@@ -148,9 +149,10 @@ type Object struct {
 	countUpdateWeaponTarget int
 	fractionWarrior         bool
 	physicalModel           *physical_model.PhysicalModel
-	NoAutoDestroy           bool `json:"-"`
 	gunner                  *gunner.Gunner
 	damageManager           damage_manager.DamageManager
+	zone                    *game_math.Positions
+	NoAutoDestroy           bool                         `json:"-"`
 	burstOfShots            *burst_of_shots.BurstOfShots `json:"-"`
 	ToPath                  move_path.To                 `json:"-"`
 	BossWreckage            bool                         `json:"-"`
@@ -845,4 +847,25 @@ func (o *Object) SetAttribute(key string, v int) {
 	}
 
 	o.attributes[key] = v
+}
+
+func (o *Object) SetObjectZone(x, y int) {
+	if o.zone == nil {
+		o.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	o.zone.X = x
+	o.zone.Y = y
+}
+
+func (o *Object) GetObjectZone() *game_math.Positions {
+	if o.zone == nil {
+		o.zone = &game_math.Positions{X: -1, Y: -1}
+	}
+
+	return o.zone
+}
+
+func (o *Object) IsDestroyed() bool {
+	return o.Destroy
 }
