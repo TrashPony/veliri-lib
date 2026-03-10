@@ -25,3 +25,9 @@ type Request struct {
 	Y        int                          `json:"-"`
 	Data     interface{}                  `json:"-"`
 }
+
+type BatchEvent struct {
+	Api   string
+	Event string
+	Data  interface{}
+}

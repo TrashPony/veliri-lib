@@ -88,6 +88,9 @@ func CheckMsg(request interface{}) {
 }
 
 func GobRegister() {
+	gob.Register(rpc_request.Request{})
+	gob.Register([]rpc_request.BatchEvent{})
+
 	gob.Register(map[int]string{})
 	gob.Register(map[string]int{})
 	gob.Register(map[int][]byte{})
@@ -112,7 +115,6 @@ func GobRegister() {
 	gob.Register(map[int]map[int]*dynamic_map_object.Flore{})
 	gob.Register(map_item.MapItem{})
 	gob.Register([]drone.Drone{})
-	gob.Register(rpc_request.Request{})
 	gob.Register(violator.Violator{})
 	gob.Register(obstacle_point.ObstaclePoint{})
 	gob.Register(box_trap.BoxTrap{})
