@@ -26,6 +26,10 @@ type Request struct {
 	Data     interface{}                  `json:"-"`
 }
 
+type BatchWrapper struct {
+	Events []BatchEvent
+}
+
 type BatchEvent struct {
 	Api   string
 	Event string

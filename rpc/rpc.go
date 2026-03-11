@@ -90,6 +90,7 @@ func CheckMsg(request interface{}) {
 func GobRegister() {
 	gob.Register(rpc_request.Request{})
 	gob.Register([]rpc_request.BatchEvent{})
+	gob.Register(rpc_request.BatchWrapper{})
 
 	gob.Register(map[int]string{})
 	gob.Register(map[string]int{})
