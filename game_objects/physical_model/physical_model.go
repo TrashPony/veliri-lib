@@ -338,8 +338,8 @@ func (m *PhysicalModel) GetWeight() float64 {
 	return m.Weight
 }
 
-func (m *PhysicalModel) SetWASD(w, a, s, d byte, sp, st, z, q, e bool) {
-	m.wasd.Set(w, a, s, d, sp, st, z, q, e)
+func (m *PhysicalModel) SetWASD(w, a, s, d byte, sp, st, z, q, e bool, seqInput byte) {
+	m.wasd.Set(w, a, s, d, sp, st, z, q, e, seqInput)
 }
 
 func (m *PhysicalModel) SetSimpleWASD(w, a, s, d, sp, st, z, q, e bool) {
@@ -363,7 +363,7 @@ func (m *PhysicalModel) SetSimpleWASD(w, a, s, d, sp, st, z, q, e bool) {
 		dByte = 100
 	}
 
-	m.wasd.Set(byte(wByte), byte(aByte), byte(sByte), byte(dByte), sp, st, z, q, e)
+	m.wasd.Set(byte(wByte), byte(aByte), byte(sByte), byte(dByte), sp, st, z, q, e, 0)
 }
 
 func (m *PhysicalModel) SetClassicAdaterMove(w, a, s, d byte) {

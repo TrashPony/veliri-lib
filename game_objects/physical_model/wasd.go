@@ -5,16 +5,18 @@ import (
 )
 
 type WASD struct {
-	w      byte
-	a      byte
-	s      byte
-	d      byte
-	q      bool
-	e      bool
-	z      bool
-	sp     bool
-	st     bool
-	update int64
+	w               byte
+	a               byte
+	s               byte
+	d               byte
+	q               bool
+	e               bool
+	z               bool
+	sp              bool
+	st              bool
+	update          int64
+	pendingSeqInput byte
+	currentSeqInput byte
 }
 
 func (wasd *WASD) SetAllFalse() {
@@ -24,7 +26,7 @@ func (wasd *WASD) SetAllFalse() {
 	wasd.d = 0
 }
 
-func (wasd *WASD) Set(w, a, s, d byte, sp, st, z, q, e bool) {
+func (wasd *WASD) Set(w, a, s, d byte, sp, st, z, q, e bool, seqInput byte) {
 
 	wasd.w = w
 	wasd.a = a
@@ -35,6 +37,7 @@ func (wasd *WASD) Set(w, a, s, d byte, sp, st, z, q, e bool) {
 	wasd.z = z
 	wasd.q = q
 	wasd.e = e
+	wasd.pendingSeqInput = seqInput
 
 	wasd.update = timecache.GetTimer().UnixNano()
 }
@@ -93,4 +96,12 @@ func (wasd *WASD) GetShift() bool {
 
 func (wasd *WASD) GetUpdate() int64 {
 	return wasd.update
+}
+
+func (wasd *WASD) ApplySeq() {
+	wasd.currentSeqInput = wasd.pendingSeqInput
+}
+
+func (wasd *WASD) GetSeq() byte {
+	return wasd.currentSeqInput
 }

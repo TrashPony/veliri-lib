@@ -17,10 +17,10 @@ import (
 
 // [eventID, data]
 
-func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int) []byte {
+func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte) []byte {
 	// [1[eventID], 4[unitID], 4[speed], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 4[angularVelocity], 4[mpID] 1[animate], 1[direction], 1[sky]]
 
-	command := make([]byte, 45)
+	command := make([]byte, 46)
 
 	command[0] = 1
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(unitID))
@@ -42,6 +42,8 @@ func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity
 
 	game_math.ReuseByteSlice(&command, 37, game_math.GetIntBytes(vx))
 	game_math.ReuseByteSlice(&command, 41, game_math.GetIntBytes(vy))
+
+	command[45] = inputSeq
 
 	return command
 }
@@ -1625,6 +1627,26 @@ func CreateBossAttackMsg(msgs []BossAttackMsg) []byte {
 		command = append(command, game_math.GetIntBytes(msg.A)...)
 		command = append(command, game_math.GetIntBytes(msg.B)...)
 	}
+
+	return command
+}
+
+func CreateMoveSateMsg(speed, powerFactor, reverseSpeed, reverseFactor, turnSpeed, powerMove, reverse, angularVelocity, powerLeft, powerRight float64, typeControl byte) []byte {
+	command := []byte{124}
+
+	command = append(command, game_math.GetIntBytes(int(speed*10000))...)
+	command = append(command, game_math.GetIntBytes(int(powerFactor*10000))...)
+	command = append(command, game_math.GetIntBytes(int(reverseSpeed*10000))...)
+	command = append(command, game_math.GetIntBytes(int(reverseFactor*10000))...)
+	command = append(command, game_math.GetIntBytes(int(turnSpeed*10000))...)
+
+	command = append(command, game_math.GetIntBytes(int(powerMove*10000))...)
+	command = append(command, game_math.GetIntBytes(int(reverse*10000))...)
+	command = append(command, game_math.GetIntBytes(int(angularVelocity*10000))...)
+
+	command = append(command, game_math.GetIntBytes(int(powerLeft*10000))...)
+	command = append(command, game_math.GetIntBytes(int(powerRight*10000))...)
+	command = append(command, typeControl)
 
 	return command
 }

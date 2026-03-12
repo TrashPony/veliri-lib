@@ -59,7 +59,7 @@ type MoveObject interface {
 	GetMoveDrag() float64
 	GetAngularDrag() float64
 
-	SetWASD(byte, byte, byte, byte, bool, bool, bool, bool, bool)
+	SetWASD(byte, byte, byte, byte, bool, bool, bool, bool, bool, byte)
 	SetSimpleWASD(bool, bool, bool, bool, bool, bool, bool, bool, bool)
 
 	IsFly() bool
