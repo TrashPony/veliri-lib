@@ -139,16 +139,36 @@ func CreateBulletBinaryExplosion(typeID, x, y, z int) []byte {
 	return command
 }
 
-func CreateRotateGunBinaryMsg(id, ms, rotate, slot int, sound, melee bool) []byte {
+type RotateGunMessage struct {
+	ID         int  `json:"id"`
+	MS         int  `json:"ms"`
+	Rotate     int  `json:"rotate"`
+	SlotNumber int  `json:"slot_number"`
+	Sound      bool `json:"sound"`
+}
+
+func CreateRotateGunBinaryMsg(id int, rotatemsgs []*RotateGunMessage, melee bool, inputSeq byte) []byte {
 	// [1[eventID], 4[ID], 4[ms], 4[rotate]
 	command := []byte{8}
+	data := []byte{}
 
-	command = append(command, game_math.GetIntBytes(id)...)
-	command = append(command, byte(ms))
-	command = append(command, game_math.GetIntBytes(rotate)...)
-	command = append(command, byte(slot))
-	command = append(command, game_math.BoolToByte(sound))
-	command = append(command, game_math.BoolToByte(melee))
+	data = append(data, game_math.GetIntBytes(id)...)
+	data = append(data, game_math.BoolToByte(melee))
+	data = append(data, byte(inputSeq))
+
+	for _, msg := range rotatemsgs {
+		if msg == nil {
+			continue
+		}
+
+		data = append(data, byte(msg.MS))
+		data = append(data, game_math.GetIntBytes(msg.Rotate)...)
+		data = append(data, byte(msg.SlotNumber))
+		data = append(data, game_math.BoolToByte(msg.Sound))
+	}
+
+	command = append(command, game_math.GetIntBytes(len(data))...)
+	command = append(command, data...)
 
 	return command
 }
@@ -1657,6 +1677,23 @@ func CreateGunStateMsg(rangeWeapon, accuracy, hitDist int) []byte {
 	command = append(command, game_math.GetIntBytes(int(rangeWeapon))...)
 	command = append(command, game_math.GetIntBytes(int(accuracy))...)
 	command = append(command, game_math.GetIntBytes(int(hitDist))...)
+
+	return command
+}
+
+type GunState struct {
+	Number    int
+	GunRotate int
+}
+
+func CreateGunStateForPredictMsg(data []GunState) []byte {
+	command := []byte{126}
+
+	for _, d := range data {
+		command = append(command, game_math.GetIntBytes(d.Number)...)
+		command = append(command, game_math.GetIntBytes(d.GunRotate)...)
+
+	}
 
 	return command
 }
