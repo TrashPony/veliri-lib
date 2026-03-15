@@ -3,6 +3,7 @@ package unit
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/bullet"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
@@ -100,15 +101,16 @@ type Unit struct {
 	cachedGeoData   []*obstacle_point.ObstaclePoint
 	zone            *game_math.Positions
 
-	Role                  string     `json:"-"`
-	OldUnrepairableDamage int        `json:"-"`
-	UnrepairableDamage    int        `json:"-"`
-	FractionByte          byte       `json:"-"`
-	ReactorEfficiency     float64    `json:"-"`
-	EliteType             int        `json:"-"`
-	LootConfig            LootConfig `json:"-"`
-
-	Decals []Decal
+	Role                  string          `json:"-"`
+	OldUnrepairableDamage int             `json:"-"`
+	UnrepairableDamage    int             `json:"-"`
+	FractionByte          byte            `json:"-"`
+	ReactorEfficiency     float64         `json:"-"`
+	EliteType             int             `json:"-"`
+	LootConfig            LootConfig      `json:"-"`
+	FireInputState        *FireInputState `json:"-"`
+	aimFilter             *aim_filter.AimFilter
+	Decals                []Decal
 
 	attributes map[string]int
 }

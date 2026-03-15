@@ -6,6 +6,7 @@ import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/access_manager"
+	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
@@ -214,6 +215,10 @@ func (o *Object) initGunner() {
 	}
 
 	o.UpdateWeaponsState()
+}
+
+func (o *Object) GetAimFilter() *aim_filter.AimFilter {
+	return nil
 }
 
 func (o *Object) updateViewState() {

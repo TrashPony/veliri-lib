@@ -236,3 +236,19 @@ func (s *BodyWeaponSlot) AttenuationSpread() {
 		s.Spread = 0
 	}
 }
+
+func (s *BodyWeaponSlot) GetAccumulationCurrent() float64 {
+	return s.AccumulationCurrent
+}
+
+func (s *BodyWeaponSlot) GetAccumulationTimeOut() int {
+	return s.AccumulationTimeOut
+}
+
+func (s *BodyWeaponSlot) SetAccumulationCurrent(i float64) {
+	s.AccumulationCurrent = i
+}
+
+func (s *BodyWeaponSlot) SetAccumulationTimeOut(i int) {
+	s.AccumulationTimeOut = i
+}

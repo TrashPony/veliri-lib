@@ -5,33 +5,106 @@ import (
 	"math"
 )
 
-func GetReachAngle(xPlace, yPlace, xTarget, yTarget int, targetLvl, startLvlBullet, speed float64, artillery bool, weaponType string, g float64) float64 {
+func GetReachAngleWithVelocity(
+	xPlace, yPlace int,
+	vxUnit, vyUnit float64, // скорость носителя (пикс/тик)
+	xTarget, yTarget int,
+	targetLvl, startLvlBullet float64,
+	bulletSpeed float64, // скорость пули (пикс/сек)
+	artillery bool,
+	weaponType string,
+	g float64,
+) float64 {
 
-	// https://en.wikipedia.org/wiki/Projectile_motion#Angle_required_to_hit_coordinate_.28x.2Cy.29
-	// # Angle required to hit coordinate (x,y)
+	// Константа
+	const serverTickMs = 32.0
 
-	v := speed
-	y := targetLvl - startLvlBullet
+	// 1. Переводим скорость пули из пикс/сек в пикс/тик
+	bulletSpeedPerTick := bulletSpeed * (serverTickMs / 1000.0)
+
+	// 2. Гравитация (если не задана)
 	if g == 0 {
 		g = GetGravityByWeaponType(weaponType)
 	}
+	// Переводим гравитацию в пикс/тик²
+	gPerTick := g * (serverTickMs / 1000.0) * (serverTickMs / 1000.0)
 
-	// делаем из 3х мерной модели двумерную, за счет оси Х у нас будет дистанция от обьекта до цели Y - высота пули
-	// ху обьекта(0,0)
-	x := GetBetweenDist(xPlace, yPlace, xTarget, yTarget)
+	// 3. Относительные координаты цели
+	dx := float64(xTarget - xPlace)
+	dy := float64(yTarget - yPlace)
+	dist2D := math.Hypot(dx, dy) // горизонтальная дистанция
 
-	root := math.Pow(speed, 4) - g*(g*fastPow(x)+2*y*fastPow(v))
+	// 4. Разница высот
+	deltaZ := targetLvl - startLvlBullet
+
+	// 5. Начальное приближение угла (без учёта скорости носителя)
+	// Используем стандартную формулу
+	v := bulletSpeedPerTick
+	x := dist2D
+	y := deltaZ
+
+	// Формула: root = v^4 - g*(g*x^2 + 2*y*v^2)
+	v2 := v * v
+	v4 := v2 * v2
+	x2 := x * x
+
+	root := v4 - gPerTick*(gPerTick*x2+2*y*v2)
+
+	// Защита от отрицательного корня
+	if root < 0 {
+		root = 0
+	}
 	root = math.Sqrt(root)
 
-	y1 := fastPow(v) + root
-	y2 := fastPow(v) - root
-	gx := g * x
+	// Два возможных угла
+	y1 := v2 + root
+	y2 := v2 - root
+	gx := gPerTick * x
 
+	var angle float64
 	if artillery {
-		return math.Atan2(y1, gx)
+		angle = math.Atan2(y1, gx)
 	} else {
-		return math.Atan2(y2, gx)
+		angle = math.Atan2(y2, gx)
 	}
+
+	// 6. Коррекция угла с учётом скорости носителя
+	// Раскладываем скорость носителя на компоненты относительно направления стрельбы
+	cosAngle := math.Cos(angle)
+	sinAngle := math.Sin(angle)
+
+	// Проекция скорости носителя на направление стрельбы
+	vUnitParallel := vxUnit*cosAngle + vyUnit*sinAngle
+
+	// Корректируем эффективную скорость пули
+	vEffective := bulletSpeedPerTick + vUnitParallel
+
+	// 7. Пересчитываем угол с эффективной скоростью
+	if math.Abs(vEffective) > 0.001 {
+		v2Eff := vEffective * vEffective
+		v4Eff := v2Eff * v2Eff
+
+		rootEff := v4Eff - gPerTick*(gPerTick*x2+2*y*v2Eff)
+		if rootEff < 0 {
+			rootEff = 0
+		}
+		rootEff = math.Sqrt(rootEff)
+
+		y1Eff := v2Eff + rootEff
+		y2Eff := v2Eff - rootEff
+
+		var angleEff float64
+		if artillery {
+			angleEff = math.Atan2(y1Eff, gx)
+		} else {
+			angleEff = math.Atan2(y2Eff, gx)
+		}
+
+		// Плавно смешиваем углы (можно просто вернуть скорректированный)
+		angle = angleEff
+	}
+
+	return angle
 }
 
 func GetMaxDistBallisticWeapon(speed, targetLvl, startLvlBullet, radian float64, weaponType string, g float64) float64 {

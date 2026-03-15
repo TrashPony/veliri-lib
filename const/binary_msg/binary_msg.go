@@ -173,7 +173,7 @@ func CreateRotateGunBinaryMsg(id int, rotatemsgs []*RotateGunMessage, melee bool
 	return command
 }
 
-func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool, unit_id, type_slot, slot int) []byte {
+func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool, unit_id, type_slot, slot, position int) []byte {
 	// [1[eventID] 4[typeID], 4[x], 4[y], 4[z], 4[rotate], 4[mpID]]
 	command := []byte{9}
 
@@ -186,6 +186,7 @@ func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, fo
 	command = append(command, game_math.BoolToByte(force))
 	command = append(command, game_math.GetIntBytes(unit_id)...)
 	command = append(command, byte((type_slot*10)+slot))
+	command = append(command, byte(position))
 
 	return command
 }
@@ -1050,9 +1051,12 @@ func CreateUpRankBin(up bool) []byte {
 	return command
 }
 
-func ServerTime(unixTime int64) []byte {
+func ServerTime(unixTime int64, inputSeq byte) []byte {
 	command := []byte{87}
+
 	command = append(command, game_math.GetInt64Bytes(unixTime)...)
+	command = append(command, inputSeq)
+
 	return command
 }
 

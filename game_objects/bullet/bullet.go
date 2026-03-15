@@ -75,6 +75,9 @@ type Bullet struct {
 	EquipType           int             `json:"-"`
 	EquipNumber         int             `json:"-"`
 	State               int             `json:"-"`
+	ClientLag           float64         `json:"-"`
+	ParentVelX          float64         `json:"-"`
+	ParentVelY          float64         `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool

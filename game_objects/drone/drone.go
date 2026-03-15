@@ -3,6 +3,7 @@ package drone
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/anchor"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
@@ -63,6 +64,10 @@ type Drone struct {
 	burstOfShots    *burst_of_shots.BurstOfShots
 	fractionWarrior bool
 	mx              sync.RWMutex
+}
+
+func (d *Drone) GetAimFilter() *aim_filter.AimFilter {
+	return nil
 }
 
 func (d *Drone) GetTypeByte() int {

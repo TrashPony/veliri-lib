@@ -2,6 +2,8 @@ package gunner
 
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
+	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
@@ -32,12 +34,104 @@ type GunUser interface {
 	FractionWarrior() bool
 	OwnerFraction() string
 	GetCorporationID() int
+	GetAimFilter() *aim_filter.AimFilter
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) GetAimFilter() *aim_filter.AimFilter {
+	return g.GunUser.GetAimFilter()
+}
+
+func (g *Gunner) GetReload(weaponNumber int) bool {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		return ws.GetReload()
+	}
+
+	return false
+}
+
+func (g *Gunner) StartReload(weaponNumber, reloadTime int, ammoReload bool) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.StartReload(reloadTime, ammoReload)
+	}
+}
+
+func (g *Gunner) GetAmmoQuantity(weaponNumber int) int {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		return ws.GetAmmoQuantity()
+	}
+
+	return 0
+}
+
+func (g *Gunner) AddFireSpread(weaponNumber int) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.AddFireSpread()
+	}
+}
+
+func (g *Gunner) SetAmmoQuantity(weaponNumber, quantity int) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.SetAmmoQuantity(quantity)
+	}
+}
+
+func (g *Gunner) GetAccumulationCurrent(weaponNumber int) float64 {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		return ws.GetAccumulationCurrent()
+	}
+
+	return 0
+}
+
+func (g *Gunner) GetAccumulationTimeOut(weaponNumber int) int {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		return ws.GetAccumulationTimeOut()
+	}
+
+	return 0
+}
+
+func (g *Gunner) SetAccumulationCurrent(weaponNumber int, i float64) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.SetAccumulationCurrent(i)
+	}
+}
+
+func (g *Gunner) SetAccumulationTimeOut(weaponNumber int, i int) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.SetAccumulationTimeOut(i)
+	}
+}
+
+func (g *Gunner) GetAmmo(weaponNumber int) *ammo.Ammo {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		return ws.GetAmmo()
+	}
+
+	return nil
+}
+
+func (g *Gunner) SetAmmo(weaponNumber int, ammo *ammo.Ammo) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws != nil {
+		ws.SetAmmo(ammo)
+	}
 }
 
 func (g *Gunner) GetCorporationID() int {
