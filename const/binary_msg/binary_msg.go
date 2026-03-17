@@ -202,7 +202,7 @@ func RotateTurretGunBinaryMsg(id, rotate, ms int) []byte {
 	return command
 }
 
-func MoveCloudBinaryMsg(id, idType, x, y, mpID, alpha, rotate int) []byte {
+func MoveCloudBinaryMsg(id, idType, x, y, mpID, alpha, rotate, xSize, ySize int) []byte {
 	// [1[eventID], 4[id], 4[typeID], 4[x], 4[y], 4[mpID], 4[alpha], 4[rotate]]
 	command := []byte{11}
 
@@ -213,6 +213,8 @@ func MoveCloudBinaryMsg(id, idType, x, y, mpID, alpha, rotate int) []byte {
 	command = append(command, game_math.GetIntBytes(mpID)...)
 	command = append(command, game_math.GetIntBytes(alpha)...)
 	command = append(command, game_math.GetIntBytes(rotate)...)
+	command = append(command, byte(xSize))
+	command = append(command, byte(ySize))
 
 	return command
 }
