@@ -17,10 +17,10 @@ import (
 
 // [eventID, data]
 
-func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte) []byte {
+func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte, s bool) []byte {
 	// [1[eventID], 4[unitID], 4[speed], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 4[angularVelocity], 4[mpID] 1[animate], 1[direction], 1[sky]]
 
-	command := make([]byte, 46)
+	command := make([]byte, 47)
 
 	command[0] = 1
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(unitID))
@@ -44,6 +44,7 @@ func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity
 	game_math.ReuseByteSlice(&command, 41, game_math.GetIntBytes(vy))
 
 	command[45] = inputSeq
+	command[46] = game_math.BoolToByte(s)
 
 	return command
 }
@@ -354,7 +355,7 @@ func ObjectDeadBinaryMsg(id, x, y int, typeObject string) []byte {
 	return command
 }
 
-func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber, state int) []byte {
+func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber, state, weaponID, typeSlot, slot int, pos byte) []byte {
 	command := []byte{20}
 
 	command = append(command, byte(typeID))
@@ -367,6 +368,9 @@ func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, e
 	command = append(command, byte(equipType))
 	command = append(command, byte(equipNumber))
 	command = append(command, byte(state))
+	command = append(command, game_math.GetIntBytes(weaponID)...)
+	command = append(command, byte(pos))
+	command = append(command, byte((typeSlot*10)+slot))
 
 	return command
 }
