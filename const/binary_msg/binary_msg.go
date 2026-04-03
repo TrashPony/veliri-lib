@@ -440,13 +440,15 @@ func CreateBinaryUpdateObjMsg(typeObj string, id int, data []byte) []byte {
 	return command
 }
 
-func CreateBinaryJammerMsg(x, y, r, typeJamer int) []byte {
+func CreateBinaryJammerMsg(x, y, r, typeJamer, id, unitID int) []byte {
 	command := []byte{21}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(r)...)
 	command = append(command, byte(typeJamer))
+	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, game_math.GetIntBytes(unitID)...)
 
 	return command
 }
@@ -598,12 +600,14 @@ func RopeCatchMsg(x, y int) []byte {
 	return command
 }
 
-func ZoneHealRun(x, y, count int) []byte {
+func ZoneHealRun(x, y, count, radius, unitID int) []byte {
 	command := []byte{52}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, byte(count))
+	command = append(command, byte(radius))
+	command = append(command, game_math.GetIntBytes(unitID)...)
 
 	return command
 }
