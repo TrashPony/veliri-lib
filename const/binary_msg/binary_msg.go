@@ -692,47 +692,54 @@ func CreateInventoryBin(sourceType string, sourceID int, inventory *inventory.In
 	// [1[eventID], 1[source_type], 4[source_id] slots_data]
 	command := []byte{58, byte(_const.SourceItemBin[sourceType])}
 
+	size := 0
+	if inventory != nil {
+		size = inventory.GetSize()
+	}
+
 	command = append(command, game_math.GetIntBytes(sourceID)...)
-	command = append(command, game_math.GetIntBytes(inventory.GetSize())...)
+	command = append(command, game_math.GetIntBytes(size)...)
 	command = append(command, game_math.GetIntBytes(cap)...)
 	command = append(command, game_math.BoolToByte(forceOpen))
 	command = append(command, game_math.BoolToByte(objectOwner))
 	command = append(command, game_math.BoolToByte(remote))
 
-	for slot := range inventory.GetSlotsChan() {
-		// slots_data [4[quantity], 1[type], 4[item_id], 4[hp], 4[max_hp], 4[size], 4[number], 4[access_user_id], 1[infinite], 4[place_user_id], 4[tax], 1[find], 4[find_count],
-		// 1[in_map], 1[item_type], 1[name_size], ???[name], 1[item_item_name_size], ???[item_item_name], 1[icon_size], ???[icon]]
+	if inventory != nil {
+		for slot := range inventory.GetSlotsChan() {
+			// slots_data [4[quantity], 1[type], 4[item_id], 4[hp], 4[max_hp], 4[size], 4[number], 4[access_user_id], 1[infinite], 4[place_user_id], 4[tax], 1[find], 4[find_count],
+			// 1[in_map], 1[item_type], 1[name_size], ???[name], 1[item_item_name_size], ???[item_item_name], 1[icon_size], ???[icon]]
 
-		item := slot.Item
-		if item == nil {
-			continue
+			item := slot.Item
+			if item == nil {
+				continue
+			}
+
+			command = append(command, game_math.GetIntBytes(slot.Quantity)...)
+			command = append(command, byte(_const.ItemBinTypes[slot.Type]))
+			command = append(command, game_math.GetIntBytes(slot.ItemID)...)
+			command = append(command, game_math.GetIntBytes(slot.HP)...)
+			command = append(command, game_math.GetIntBytes(slot.MaxHP)...)
+			command = append(command, game_math.GetIntBytes(slot.GetSize())...)
+			command = append(command, game_math.GetIntBytes(slot.Number)...)
+			command = append(command, game_math.GetIntBytes(slot.AccessUserID)...)
+			command = append(command, game_math.BoolToByte(slot.Infinite))
+			command = append(command, game_math.GetIntBytes(slot.PlaceUserID)...)
+			command = append(command, game_math.GetIntBytes(slot.Tax)...)
+			command = append(command, game_math.BoolToByte(slot.Find))
+			command = append(command, game_math.GetIntBytes(slot.FindCount)...)
+			command = append(command, game_math.GetIntBytes(slot.Durability)...)
+
+			command = append(command, game_math.BoolToByte(item.InMap))
+			command = append(command, byte(_const.ItemBinTypes[item.ItemType]))
+			command = append(command, byte(item.TypeSlot))
+
+			command = append(command, byte(len([]byte(item.Name))))
+			command = append(command, []byte(item.Name)...)
+			command = append(command, byte(len([]byte(item.ItemName))))
+			command = append(command, []byte(item.ItemName)...)
+			command = append(command, byte(len([]byte(item.Icon))))
+			command = append(command, []byte(item.Icon)...)
 		}
-
-		command = append(command, game_math.GetIntBytes(slot.Quantity)...)
-		command = append(command, byte(_const.ItemBinTypes[slot.Type]))
-		command = append(command, game_math.GetIntBytes(slot.ItemID)...)
-		command = append(command, game_math.GetIntBytes(slot.HP)...)
-		command = append(command, game_math.GetIntBytes(slot.MaxHP)...)
-		command = append(command, game_math.GetIntBytes(slot.GetSize())...)
-		command = append(command, game_math.GetIntBytes(slot.Number)...)
-		command = append(command, game_math.GetIntBytes(slot.AccessUserID)...)
-		command = append(command, game_math.BoolToByte(slot.Infinite))
-		command = append(command, game_math.GetIntBytes(slot.PlaceUserID)...)
-		command = append(command, game_math.GetIntBytes(slot.Tax)...)
-		command = append(command, game_math.BoolToByte(slot.Find))
-		command = append(command, game_math.GetIntBytes(slot.FindCount)...)
-		command = append(command, game_math.GetIntBytes(slot.Durability)...)
-
-		command = append(command, game_math.BoolToByte(item.InMap))
-		command = append(command, byte(_const.ItemBinTypes[item.ItemType]))
-		command = append(command, byte(item.TypeSlot))
-
-		command = append(command, byte(len([]byte(item.Name))))
-		command = append(command, []byte(item.Name)...)
-		command = append(command, byte(len([]byte(item.ItemName))))
-		command = append(command, []byte(item.ItemName)...)
-		command = append(command, byte(len([]byte(item.Icon))))
-		command = append(command, []byte(item.Icon)...)
 	}
 
 	return command

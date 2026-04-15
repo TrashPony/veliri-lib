@@ -49,7 +49,7 @@ func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, star
 	return collisionPower
 }
 
-func CollisionReactionBallBall(collider1, collider2 collider, meleeData1, meleeData2 []*obstacle_point.ObstaclePoint, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, float64) {
+func CollisionReactionBallBall(collider1, collider2 collider, meleeData1, meleeData2 []*obstacle_point.ObstaclePoint, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, bool, bool, float64) {
 
 	// 1. Сначала проверяем столкновение оружия
 	weaponCollisionPoint1, weaponCollisionPoint2 := findWeaponCollision(meleeData1, meleeData2, collider1, collider2)

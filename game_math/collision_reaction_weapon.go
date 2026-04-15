@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weaponPoint2 *obstacle_point.ObstaclePoint, weight1, weight2 float64) (int, int, float64) {
+func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weaponPoint2 *obstacle_point.ObstaclePoint, weight1, weight2 float64) (int, int, bool, bool, float64) {
 
 	// Вычисляем относительную скорость
 	relativeDamageSpeed := calculateAttackerEfficiency(collider1, collider2)
@@ -107,7 +107,7 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 
 	applyCollisionRotation(collider1, collider2, dirX, dirY, totalForce, weight1, weight2)
 
-	return damage1, damage2, collisionPower
+	return damage1, damage2, weaponPoint1 != nil, weaponPoint2 != nil, collisionPower
 }
 
 func applyCollisionRotation(collider1, collider2 collider, dirX, dirY, totalForce, weight1, weight2 float64) {
@@ -231,12 +231,6 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 }
 
 func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponPoint *obstacle_point.ObstaclePoint, attackWeight, targetWeight, efficiency, relativeDamageSpeed float64) int {
-
-	// без оружия нет урона
-	if attacker.GetType() == "unit" && target.GetType() == "unit" {
-		return 0
-	}
-
 	if efficiency <= 0 || math.IsNaN(efficiency) {
 		efficiency = 0.1
 	}
