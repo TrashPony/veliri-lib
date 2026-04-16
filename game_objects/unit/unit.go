@@ -103,14 +103,17 @@ type Unit struct {
 
 	Role                  string          `json:"-"`
 	OldUnrepairableDamage int             `json:"-"`
-	UnrepairableDamage    int             `json:"-"`
+	UnrepairableDamage    int             `json:"unrepairable_damage"`
 	FractionByte          byte            `json:"-"`
 	ReactorEfficiency     float64         `json:"-"`
 	EliteType             int             `json:"-"`
 	LootConfig            LootConfig      `json:"-"`
 	FireInputState        *FireInputState `json:"-"`
-	aimFilter             *aim_filter.AimFilter
-	Decals                []Decal
+	LowPower              bool            `json:"low_power"`
+	Fuel                  *Fuel           `json:"-"`
+
+	aimFilter *aim_filter.AimFilter
+	Decals    []Decal
 
 	attributes map[string]int
 }

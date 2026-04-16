@@ -599,14 +599,10 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"sync_ore_saving_energy":           {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию буровых лазеров."},
 		"sync_dust_saving_energy":          {Description: "на <span class=\"importantly\">15%</span> уменьшает потребляемую энергию собирателя пыли."},
 
-		"effect_solid_fuel":        {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span>, <span class=\"importantly\">скорость зарядки аккумулятора</span> и <span class=\"importantly\">ходовые</span> характеристики транспорта."},
-		"effect_liquid_fuel":       {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и <span class=\"importantly\">дальность радара</span>."},
-		"effect_nuclear_fuel":      {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
-		"effect_synthetic_fuel":    {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и  <span class=\"importantly\">дальность радара</span>."},
-		"effect_jet_fuel":          {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта."},
-		"effect_emergency_fuel_t0": {Description: "На <span class=\"importantly\">10%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
-		"effect_emergency_fuel_t1": {Description: "На <span class=\"importantly\">7%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
-		"effect_emergency_fuel_t2": {Description: "На <span class=\"importantly\">5%</span> уменьшает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">скорость зарядки аккумулятора</span>."},
+		"effect_solid_fuel":     {Description: "На <span class=\"importantly\">2%</span> увеличивает <span class=\"importantly\">дальность обзора</span>, <span class=\"importantly\">дальность радара</span> и <span class=\"importantly\">ходовые</span> характеристики транспорта."},
+		"effect_liquid_fuel":    {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и <span class=\"importantly\">дальность радара</span>."},
+		"effect_synthetic_fuel": {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и  <span class=\"importantly\">дальность радара</span>."},
+		"effect_jet_fuel":       {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта."},
 
 		"empty": {Description: ""},
 	},

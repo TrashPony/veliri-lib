@@ -4,7 +4,6 @@ import (
 	"fmt"
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
-	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/rope"
 	"github.com/TrashPony/veliri-lib/game_objects/spawn"
@@ -12,7 +11,6 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/violator"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_anomaly"
 	"math"
-	"sort"
 )
 
 // [eventID, data]
@@ -250,7 +248,7 @@ func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable,
 	return command
 }
 
-func StatusSquadBinaryMsg(hp, shieldHP, energyPercent byte, energy int, autopilot bool, percentFull byte, slots map[int]*detail.ThoriumSlot) []byte {
+func StatusSquadBinaryMsg(hp, shieldHP, energyPercent byte, energy int, autopilot bool, percentFull byte, lowPower bool) []byte {
 	// [1[eventID], 4[hp], 4[energy], 1[autopilot]], 4[count_slot_install], 21 * slot_count[slots data]
 	command := []byte{14}
 
@@ -260,28 +258,29 @@ func StatusSquadBinaryMsg(hp, shieldHP, energyPercent byte, energy int, autopilo
 	command = append(command, game_math.GetIntBytes(energy)...)
 	command = append(command, game_math.BoolToByte(autopilot))
 	command = append(command, percentFull)
+	command = append(command, game_math.BoolToByte(lowPower))
 
-	command = append(command, byte(len(slots)))
-
-	keys := make([]int, 0, len(slots))
-
-	for k := range slots {
-		keys = append(keys, k)
-	}
-
-	sort.Ints(keys)
-
-	for _, slot := range keys {
-
-		worked := slots[slot].Worked
-		if worked == 0 && slots[slot].Reload {
-			worked = 1 // что бы на фронте не отображалось "нет энергии" когда запрос в пути
-		}
-
-		command = append(command, byte(slots[slot].Number))
-		command = append(command, game_math.GetIntBytes(worked)...)
-		command = append(command, game_math.GetIntBytes(slots[slot].CurrentFuel.EnergyCap)...)
-	}
+	//command = append(command, byte(len(slots)))
+	//
+	//keys := make([]int, 0, len(slots))
+	//
+	//for k := range slots {
+	//	keys = append(keys, k)
+	//}
+	//
+	//sort.Ints(keys)
+	//
+	//for _, slot := range keys {
+	//
+	//	worked := slots[slot].Worked
+	//	if worked == 0 && slots[slot].Reload {
+	//		worked = 1 // что бы на фронте не отображалось "нет энергии" когда запрос в пути
+	//	}
+	//
+	//	command = append(command, byte(slots[slot].Number))
+	//	command = append(command, game_math.GetIntBytes(worked)...)
+	//	command = append(command, game_math.GetIntBytes(slots[slot].CurrentFuel.EnergyCap)...)
+	//}
 
 	return command
 }

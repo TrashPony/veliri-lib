@@ -931,9 +931,9 @@ var DetailItem = map[string]map[string]string{
 		_const.ZhCN: `能量强度`,
 	},
 	"ch_171": {
-		_const.RU:   `Влияние на износ аккамулятора:`,
-		_const.EN:   `Effect on battery wear:`,
-		_const.ZhCN: `对电池损耗的影响：`,
+		"_const.RU":   `Влияние на скорость зарядки аккумулятора`,
+		"_const.EN":   `Effect on battery charging speed`,
+		"_const.ZhCN": `对电池充电速度的影响`,
 	},
 	"ch_172": {
 		_const.RU:   `Разрушается при замене`,

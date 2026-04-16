@@ -70,4 +70,14 @@ var GlobalMap = map[string]map[string]string{
 		_const.EN:   `Battle in progress in this sector`,
 		_const.ZhCN: `此区域正在发生战斗`,
 	},
+	"tip_8": {
+		_const.RU:   `Цель задания`,
+		_const.EN:   `Mission objective`,
+		_const.ZhCN: `任务目标`,
+	},
+	"tip_9": {
+		_const.RU:   `Сектор с повышенным уровнем безопасности`,
+		_const.EN:   `Sector with elevated security level`,
+		_const.ZhCN: `高安全等级区域`,
+	},
 }

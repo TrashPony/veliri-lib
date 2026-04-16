@@ -16,7 +16,13 @@ var fuelTypes = map[int]fuel.Fuel{
 		Size:           sizeFuel,
 		EnergyCap:      25000 * capK, // 25000
 		LostDurability: 200,
-		Bonuses:        []effect.Effect{},
+		Bonuses: []effect.Effect{
+			{
+				Parameter:   "charging_speed",
+				Quantity:    10,
+				Percentages: true,
+			},
+		},
 	},
 	2: {
 		ID:             2,
@@ -28,7 +34,7 @@ var fuelTypes = map[int]fuel.Fuel{
 			{
 				Name:        "effect_solid_fuel",
 				Parameter:   "charging_speed",
-				Quantity:    2,
+				Quantity:    10,
 				Percentages: true,
 			},
 			{
@@ -86,6 +92,11 @@ var fuelTypes = map[int]fuel.Fuel{
 				Quantity:    5,
 				Percentages: true,
 			},
+			{
+				Parameter:   "charging_speed",
+				Quantity:    15,
+				Percentages: true,
+			},
 		},
 	},
 	4: {
@@ -98,7 +109,7 @@ var fuelTypes = map[int]fuel.Fuel{
 			{
 				Name:        "effect_nuclear_fuel",
 				Parameter:   "charging_speed",
-				Quantity:    10,
+				Quantity:    40,
 				Percentages: true,
 			},
 		},
@@ -115,6 +126,11 @@ var fuelTypes = map[int]fuel.Fuel{
 				Name:        "effect_synthetic_fuel",
 				Parameter:   "view",
 				Quantity:    10,
+				Percentages: true,
+			},
+			{
+				Parameter:   "charging_speed",
+				Quantity:    25,
 				Percentages: true,
 			},
 			{
@@ -136,6 +152,11 @@ var fuelTypes = map[int]fuel.Fuel{
 				Name:        "effect_jet_fuel",
 				Parameter:   "speed",
 				Quantity:    5,
+				Percentages: true,
+			},
+			{
+				Parameter:   "charging_speed",
+				Quantity:    20,
 				Percentages: true,
 			},
 			{
@@ -169,27 +190,6 @@ var fuelTypes = map[int]fuel.Fuel{
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
 		LostDurability:   20,
-		Bonuses: []effect.Effect{
-			{
-				Name:        "effect_emergency_fuel_t0",
-				Parameter:   "charging_speed",
-				Quantity:    10,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "radar",
-				Quantity:    10,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "view",
-				Quantity:    10,
-				Percentages: true,
-				Subtract:    true,
-			},
-		},
 	},
 	8: {
 		ID:               8,
@@ -200,27 +200,6 @@ var fuelTypes = map[int]fuel.Fuel{
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
 		LostDurability:   20,
-		Bonuses: []effect.Effect{
-			{
-				Name:        "effect_emergency_fuel_t1",
-				Parameter:   "charging_speed",
-				Quantity:    7,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "radar",
-				Quantity:    7,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "view",
-				Quantity:    7,
-				Percentages: true,
-				Subtract:    true,
-			},
-		},
 	},
 	9: {
 		ID:               9,
@@ -231,27 +210,6 @@ var fuelTypes = map[int]fuel.Fuel{
 		DestroyOnExtract: true,
 		NonRefuelable:    true,
 		LostDurability:   20,
-		Bonuses: []effect.Effect{
-			{
-				Name:        "effect_emergency_fuel_t2",
-				Parameter:   "charging_speed",
-				Quantity:    5,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "radar",
-				Quantity:    5,
-				Percentages: true,
-				Subtract:    true,
-			},
-			{
-				Parameter:   "view",
-				Quantity:    5,
-				Percentages: true,
-				Subtract:    true,
-			},
-		},
 	},
 }
 

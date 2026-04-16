@@ -1,46 +1,76 @@
 package unit
 
 import (
-	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
+	"math"
 	"strconv"
 )
 
-func (u *Unit) WorkReactorPower(removeCount int, reloadCallBack func(u *Unit, slot *detail.ThoriumSlot)) {
+type Fuel struct {
+	CurrentFuel int  `json:"current_fuel"`
+	Reload      bool `json:"-"`
+	SendRequest bool `json:"-"`
+}
+
+func (u *Unit) GetFuel() *Fuel {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+	return u.getFuel()
+}
+
+func (u *Unit) getFuel() *Fuel {
+	if u.Fuel == nil {
+		u.Fuel = &Fuel{}
+	}
+
+	return u.Fuel
+}
+
+func (u *Unit) GetCapFuel() int {
+	u.mx.Lock()
+	defer u.mx.Unlock()
+	return u.getCapFuel()
+}
+
+func (u *Unit) getCapFuel() int {
+	cap := u.GetMaxPower() * 5 // базовое вместилище
+
+	for _, slot := range u.getBody().ThoriumSlots {
+		cap += slot.MaxCap
+	}
+
+	return cap
+}
+
+func (u *Unit) WorkReactorPower(removeCount int, reloadCallBack func(u *Unit, slot *Fuel)) {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
 	// если эффективность реактор изменилась то применяем изменения
 	defer func() {
-		eff := u.EfficiencyReactor()
-		if u.ReactorEfficiency != eff {
-			u.ReactorEfficiency = eff
+		eff, lowPower := u.EfficiencyReactor()
+		if u.ReactorEfficiency != eff || u.LowPower != lowPower {
 			u.AppendFuelModifier()
 		}
 	}()
 
 	if removeCount == 0 {
-		for _, slot := range u.getBody().ThoriumSlots {
-			if slot.Worked == 0 {
-				u.getNextFuel(slot, reloadCallBack)
-			}
+		if u.getFuel().CurrentFuel == 0 {
+			u.getNextFuel(reloadCallBack)
 		}
 	}
 
 	for i := 0; i < removeCount; i++ {
-		for _, slot := range u.getBody().ThoriumSlots {
+		if u.getFuel().CurrentFuel == 0 {
+			u.getNextFuel(reloadCallBack)
+		}
 
-			if slot.Worked == 0 {
-				u.getNextFuel(slot, reloadCallBack)
-			}
-
-			if slot.Worked > 0 {
-				slot.Worked--
-				if slot.Worked <= 0 {
-					slot.Worked = 0
-					slot.Reload = true
-					u.getNextFuel(slot, reloadCallBack)
-				}
+		if u.getFuel().CurrentFuel > 0 {
+			u.getFuel().CurrentFuel--
+			if u.getFuel().CurrentFuel <= 0 {
+				u.getFuel().CurrentFuel = 0
+				u.getFuel().Reload = true
+				u.getNextFuel(reloadCallBack)
 			}
 		}
 	}
@@ -51,101 +81,82 @@ func (u *Unit) ChargeReactorPower(chage int) bool {
 	defer u.mx.Unlock()
 
 	chargeHit := false
-	for _, slot := range u.GetBody().ThoriumSlots {
 
-		if slot.CurrentFuel.ID <= 0 {
-			continue
-		}
-
-		if slot.Worked < slot.CurrentFuel.EnergyCap/2 { // можно зарядить только четверть
-			slot.Worked += chage
-			slot.Reload = false
-			chargeHit = true
-		}
+	if u.getFuel().CurrentFuel < u.getCapFuel()/2 { // можно зарядить только половину
+		u.getFuel().CurrentFuel += chage
+		u.getFuel().Reload = false
+		chargeHit = true
 	}
 
 	return chargeHit
 }
 
-func (u *Unit) getNextFuel(slot *detail.ThoriumSlot, reloadCallBack func(u *Unit, slot *detail.ThoriumSlot)) {
-	if slot.SendRequest {
+func (u *Unit) getNextFuel(reloadCallBack func(u *Unit, slot *Fuel)) {
+	if u.Fuel.SendRequest {
 		return
 	}
 
-	slot.SendRequest = true
+	u.Fuel.SendRequest = true
 
 	go func() {
 		defer func() {
-			slot.SendRequest = false
+			u.Fuel.SendRequest = false
 		}()
 
-		reloadCallBack(u, slot)
+		reloadCallBack(u, u.getFuel())
 	}()
 }
 
-func (u *Unit) UpdateReactorState(slots map[int]*detail.ThoriumSlot, rs int) {
+func (u *Unit) UpdateReactorState(fuelAmount int) {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
-	update := false
-	for key, slot := range u.getBody().ThoriumSlots {
-		s := slots[key]
-		if s != nil {
-
-			if slot.Worked > 0 && s.Worked == 0 && slot.CurrentFuel.ID == s.CurrentFuel.ID {
-				update = true
-				break
-			}
-
-			update = update || slot.CurrentFuel.ID != s.CurrentFuel.ID // другое топливо может давать бонусы
-
-			slot.Worked = s.Worked
-			slot.CurrentFuel = s.CurrentFuel
-			slot.NextFuel = s.NextFuel
-			slot.Durability = s.Durability
-
-			if slot.Number == rs {
-				slot.Reload = false
-			}
-		}
-	}
-
-	if update {
-		u.AppendFuelModifier()
-	}
+	u.getFuel().CurrentFuel = fuelAmount
+	u.getFuel().Reload = false
+	u.AppendFuelModifier()
 }
 
-func (u *Unit) EfficiencyReactor() float64 {
-	full := 0.0
-	for _, slot := range u.getBody().ThoriumSlots {
-		if slot.Worked > 0 || slot.Reload {
-			full++
-		}
+func (u *Unit) EfficiencyReactor() (float64, bool) {
+	if u.getFuel().CurrentFuel == 0 {
+		// считаем что енергия кончается когда ее осталось меньше 33%, начинает мигать красным и все вот это
+		return 0, u.GetPower() < (u.GetMaxPower() / 3)
 	}
 
-	if full == 0 {
-		return 0
-	}
-
-	return full / float64(len(u.getBody().ThoriumSlots))
+	fuelPercent := math.Ceil((float64(u.getFuel().CurrentFuel) / float64(u.getCapFuel())) * 100)
+	return fuelPercent, false
 }
 
-var reactorChangeParameters = []string{"radar", "view", "turn_speed", "reverse_factor", "power_factor", "reverse_speed", "speed", "charging_speed"}
+// параметры для дебафа когда у реактора кончается топливо
+var reactorChangeParameters = []string{"charging_speed"}
+
+// параметры для дебафа когда кончилось топливо и не осталось енергии
+var lowPowerParameters = []string{"radar", "view", "turn_speed", "reverse_factor", "power_factor", "reverse_speed", "speed"}
 
 func (u *Unit) AppendFuelModifier() {
 	for _, parameter := range reactorChangeParameters {
 		u.RemoveEffect("fuel_" + parameter)
 		for _, slot := range u.getBody().ThoriumSlots {
-			u.RemoveEffect("fuelBonus_" + parameter + strconv.Itoa(slot.Number)) // TODO производительность?
+			u.RemoveEffect("fuelBonus_" + parameter + strconv.Itoa(slot.Number))
 		}
 	}
 
-	for _, slot := range u.getBody().ThoriumSlots {
-		if slot.Worked > 0 {
-			// с каждой ячейки добавляем баф, то есть если ячейки 3 то можно сделать баф х3 или 3 разных
+	for _, parameter := range lowPowerParameters {
+		u.RemoveEffect("fuel_" + parameter)
+		for _, slot := range u.getBody().ThoriumSlots {
+			u.RemoveEffect("fuelBonus_" + parameter + strconv.Itoa(slot.Number))
+		}
+	}
+
+	percentFuel, lowPower := u.EfficiencyReactor() // TODO общий пул енергии а не по ячейкам
+	u.ReactorEfficiency = percentFuel
+	u.LowPower = lowPower
+
+	percentFuel = percentFuel * 100
+	if int(percentFuel) > 0 {
+		for _, slot := range u.getBody().ThoriumSlots {
 			for _, ef := range slot.CurrentFuel.Bonuses {
 				u.AddEffect(&effect.Effect{
-					UUID:        "fuelBonus_" + ef.Parameter + strconv.Itoa(slot.Number), // TODO производительность?
+					UUID:        "fuelBonus_" + ef.Parameter + strconv.Itoa(slot.Number),
 					Parameter:   ef.Parameter,
 					Quantity:    ef.Quantity,
 					Percentages: ef.Percentages,
@@ -153,21 +164,31 @@ func (u *Unit) AppendFuelModifier() {
 				})
 			}
 		}
-	}
 
-	percentFuel := u.EfficiencyReactor() * 100
-	if int(percentFuel) == 100 {
 		return
 	}
 
-	doublePercentFuel := float64(50) * (percentFuel / 100.0)
+	doublePercentFuel := float64(90) * (percentFuel / 100.0)
 	for _, parameter := range reactorChangeParameters {
 		u.AddEffect(&effect.Effect{
 			UUID:        "fuel_" + parameter,
 			Parameter:   parameter,
-			Quantity:    50 - int(doublePercentFuel),
+			Quantity:    90 - int(doublePercentFuel),
 			Percentages: true,
 			Subtract:    true,
 		})
+	}
+
+	if u.LowPower {
+		doublePercentFuel = float64(50) * (percentFuel / 100.0)
+		for _, parameter := range lowPowerParameters {
+			u.AddEffect(&effect.Effect{
+				UUID:        "fuel_" + parameter,
+				Parameter:   parameter,
+				Quantity:    50 - int(doublePercentFuel),
+				Percentages: true,
+				Subtract:    true,
+			})
+		}
 	}
 }

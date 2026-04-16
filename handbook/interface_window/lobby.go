@@ -85,6 +85,11 @@ var Lobby = map[string]map[string]string{
 		_const.EN:   `Cargo hold full!`,
 		_const.ZhCN: `货舱已满！`,
 	},
+	"text_15": {
+		_const.RU:   `Тяжёлые повреждения, невосстановимые в полевых условиях. Только на базе как эта.`,
+		_const.EN:   `Severe damage that cannot be repaired in the field. Only on a base like this one.`,
+		_const.ZhCN: `严重的损伤，无法在现场修复。只能在这样的基地进行。`,
+	},
 	// Lobby
 	"text_4": {
 		_const.RU:   `Сектор атакован!`,

@@ -64,6 +64,10 @@ type StateMS struct {
 	KineticsDamage    int     `json:"kinetics_damage"`
 	ExplosionDamage   int     `json:"explosion_damage"`
 	ThermoDamage      int     `json:"thermo_damage"`
+
+	UnrepairableDamage int `json:"unrepairable_damage"`
+	CapFuel            int `json:"cap_fuel"`
+	CurrentFuel        int `json:"current_fuel"`
 }
 
 func (u *Unit) GetState() *StateMS {
@@ -72,6 +76,8 @@ func (u *Unit) GetState() *StateMS {
 	if u.GetWeaponSlot(1) != nil {
 		weapon = u.GetWeaponSlot(1).Weapon
 	}
+
+	efficiencyReactor, _ := u.EfficiencyReactor()
 
 	state := StateMS{
 		UseEnergy:                   u.getBody().GetUseEnergy(),
@@ -95,7 +101,7 @@ func (u *Unit) GetState() *StateMS {
 			weapon != nil &&
 			u.GetWeaponSlot(1).GetAmmo() != nil &&
 			u.GetWeaponSlot(1).GetAmmoQuantity() > 0,
-		EfficiencyReactor:  u.EfficiencyReactor(),
+		EfficiencyReactor:  efficiencyReactor,
 		CurrentSpeed:       u.GetPhysicalModel().GetCurrentSpeed(),
 		CapacitySize:       u.GetCapSize(),
 		MaxPower:           u.GetMaxPower(),
@@ -103,6 +109,9 @@ func (u *Unit) GetState() *StateMS {
 		RecoveryPowerCycle: u.body.RecoveryPowerCycle,
 		BodyType:           u.body.ChassisType,
 		BodySize:           u.body.StandardSize,
+		UnrepairableDamage: u.GetUnrepairableDamage(),
+		CapFuel:            u.GetCapFuel(),
+		CurrentFuel:        u.GetFuel().CurrentFuel,
 	}
 
 	if state.WeaponInstall {

@@ -457,9 +457,9 @@ var Hangar = map[string]map[string]string{
 		_const.ZhCN: `装备可用功率`,
 	},
 	"tip_9": {
-		_const.RU:   `Слот для топлива`,
-		_const.EN:   `Fuel slot`,
-		_const.ZhCN: `燃料槽`,
+		_const.RU:   `Слот для дополнительного аккумулятора`,
+		_const.EN:   `Slot for an additional battery`,
+		_const.ZhCN: `额外电池插槽`,
 	},
 	"tip_10": {
 		_const.RU:   `Слот питания L1`,
@@ -556,5 +556,10 @@ var Hangar = map[string]map[string]string{
 						<div>► 机体损耗越高，同步效果越差</div>
 						<div>► 最大损耗时，系统点数和技能失效</div>
 					</div>`,
+	},
+	"text_30": {
+		_const.RU:   `На складе нет подходящего снаряжения.`,
+		_const.EN:   `No suitable equipment in storage.`,
+		_const.ZhCN: `仓库中没有合适的装备。`,
 	},
 }

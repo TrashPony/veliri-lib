@@ -175,4 +175,9 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.EN:   `Not the most intuitive at the start, but gives full control over movement, maneuvers and combat.`,
 		_const.ZhCN: `一开始并不是最直观的，但可以完全控制运动、机动和战斗。`,
 	},
+	"text_2": {
+		_const.RU:   `Примечание: на высоком пинге машинка может подрагивать :\`,
+		_const.EN:   `Note: on high ping, the car may stutter/jitter :\`,
+		_const.ZhCN: `注意：在高延迟下，车辆可能会轻微抖动 :\`,
+	},
 }

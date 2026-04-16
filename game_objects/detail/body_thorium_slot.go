@@ -9,18 +9,13 @@ import (
 type ThoriumSlot struct {
 	ID          int64     `json:"id"`
 	Number      int       `json:"number_slot"`
-	Worked      int       `json:"worked_out"`
 	CurrentFuel fuel.Fuel `json:"fuel"`
-	NextFuel    fuel.Fuel `json:"next_fuel"`
 	Durability  int       `json:"durability"`
 	MaxCap      int       `json:"max_cap"`
-	Reload      bool      `json:"-"`
-	SendRequest bool      `json:"-"`
 }
 
 func (t *ThoriumSlot) SetFuel(fuel fuel.Fuel) {
 	t.CurrentFuel = fuel
-	t.Worked = fuel.EnergyCap
 	t.Durability = _const.StartDurability
 }
 

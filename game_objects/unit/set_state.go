@@ -5,6 +5,10 @@ import (
 )
 
 func (u *Unit) SetPower(power int) {
+	if power < 0 {
+		power = 0
+	}
+
 	u.Power = power
 }
 
