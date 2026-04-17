@@ -143,4 +143,19 @@ var Global = map[string]map[string]string{
 		_const.EN:   `Transport is in the sector...`,
 		_const.ZhCN: `运输工具在区域中...`,
 	},
+	"text_29": {
+		_const.RU:   `<span style="color: yellow">Заряд аккумулятора</span> отвечает за подачу <span style="color: yellow">энергии на накопитель</span> транспорта. Если заряд кончится, то генерируемой энергии едва хватит на простое движение.`,
+		_const.EN:   `<span style="color: yellow">Battery charge</span> is responsible for supplying <span style="color: yellow">energy to the vehicle's storage unit</span>. If the charge runs out, the generated energy will barely be enough for simple movement.`,
+		_const.ZhCN: `<span style="color: yellow">电池电量</span>负责向载具的<span style="color: yellow">储能装置输送能量</span>。如果电量耗尽，产生的能量仅够勉强维持简单移动。`,
+	},
+	"text_30": {
+		_const.RU:   `<span style="color: yellow">Энергия накопителя</span> расходуется на движение, ускорение и использование снаряжения.`,
+		_const.EN:   `<span style="color: yellow">Storage unit energy</span> is consumed for movement, acceleration, and equipment usage.`,
+		_const.ZhCN: `<span style="color: yellow">储能装置的能量</span>用于移动、加速和使用装备。`,
+	},
+	"text_31": {
+		_const.RU:   `Если <span style="color: yellow">заряд аккумулятора и накопителя</span> одновременно будут пусты, характеристики транспорта будут сильно снижены.`,
+		_const.EN:   `If the <span style="color: yellow">battery charge and storage unit</span> are both empty at the same time, the vehicle's characteristics will be greatly reduced.`,
+		_const.ZhCN: `如果<span style="color: yellow">电池电量和储能装置</span>同时耗尽，载具的性能将大幅下降。`,
+	},
 }
