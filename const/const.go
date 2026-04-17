@@ -76,7 +76,7 @@ const (
 	Strike = "strike"
 
 	TimePvpViolators = 30
-	TimePkViolators  = 900
+	TimePkViolators  = 30
 	TimeTakeStrike   = 180
 
 	ItemSizeRadius = 5
