@@ -33,10 +33,12 @@ func (u *Unit) GetCapFuel() int {
 }
 
 func (u *Unit) getCapFuel() int {
-	cap := u.GetMaxPower() * 5 // базовое вместилище
+	cap := u.GetMaxPower() * 10 // базовое вместилище
 
 	for _, slot := range u.getBody().ThoriumSlots {
-		cap += slot.MaxCap
+		if slot.CurrentFuel.ID > 0 {
+			cap += slot.MaxCap
+		}
 	}
 
 	return cap
@@ -80,15 +82,18 @@ func (u *Unit) ChargeReactorPower(chage int) bool {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
-	chargeHit := false
-
-	if u.getFuel().CurrentFuel < u.getCapFuel()/2 { // можно зарядить только половину
-		u.getFuel().CurrentFuel += chage
-		u.getFuel().Reload = false
-		chargeHit = true
+	if u.getFuel().CurrentFuel > u.getCapFuel()/2 {
+		return false
 	}
 
-	return chargeHit
+	u.getFuel().CurrentFuel += chage
+	u.getFuel().Reload = false
+
+	if u.getFuel().CurrentFuel > u.getCapFuel()/2 {
+		u.getFuel().CurrentFuel = u.getCapFuel() / 2
+	}
+
+	return true
 }
 
 func (u *Unit) getNextFuel(reloadCallBack func(u *Unit, slot *Fuel)) {
@@ -117,7 +122,7 @@ func (u *Unit) UpdateReactorState(fuelAmount int) {
 }
 
 func (u *Unit) EfficiencyReactor() (float64, bool) {
-	if u.getFuel().CurrentFuel == 0 {
+	if u.getFuel().CurrentFuel == 0 && !u.getFuel().Reload {
 		// считаем что енергия кончается когда ее осталось меньше 33%, начинает мигать красным и все вот это
 		return 0, u.GetPower() < (u.GetMaxPower() / 3)
 	}
