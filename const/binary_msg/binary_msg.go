@@ -601,7 +601,7 @@ func RopeCatchMsg(x, y int) []byte {
 	return command
 }
 
-func ZoneHealRun(x, y, count, radius, unitID int) []byte {
+func ZoneHealRun(x, y, count, radius, unitID, typeAnimate int) []byte {
 	command := []byte{52}
 
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -609,6 +609,7 @@ func ZoneHealRun(x, y, count, radius, unitID int) []byte {
 	command = append(command, byte(count))
 	command = append(command, byte(radius))
 	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, byte(typeAnimate))
 
 	return command
 }
