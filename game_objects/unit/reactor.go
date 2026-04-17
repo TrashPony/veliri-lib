@@ -89,8 +89,8 @@ func (u *Unit) ChargeReactorPower(chage int) bool {
 	u.getFuel().CurrentFuel += chage
 	u.getFuel().Reload = false
 
-	if u.getFuel().CurrentFuel > u.getCapFuel()/2 {
-		u.getFuel().CurrentFuel = u.getCapFuel() / 2
+	if u.getFuel().CurrentFuel > (u.getCapFuel()/2)+(u.getCapFuel()/10) {
+		u.getFuel().CurrentFuel = (u.getCapFuel() / 2) + (u.getCapFuel() / 10)
 	}
 
 	return true
