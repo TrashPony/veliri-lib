@@ -191,4 +191,6 @@ func GobRegister() {
 
 	gob.Register(map[string][]int{})
 	gob.Register(map[int]bool{})
+
+	gob.Register(map[int]unit.AvailableAmmoMsg{})
 }
