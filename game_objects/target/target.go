@@ -47,6 +47,9 @@ type Target struct {
 }
 
 func (t *Target) GetAttackWeaponGroup(group int) bool {
+	t.mx.Lock()
+	defer t.mx.Unlock()
+
 	if t.attackWeaponGroup == nil {
 		return false
 	}
@@ -67,6 +70,9 @@ func (t *Target) GetAttackWeaponGroup(group int) bool {
 }
 
 func (t *Target) SetAttackWeaponGroup(group int, attack bool) {
+	t.mx.Lock()
+	defer t.mx.Unlock()
+
 	if t.attackWeaponGroup == nil {
 		t.attackWeaponGroup = map[int]bool{}
 	}
@@ -115,7 +121,20 @@ func (t *Target) SetUpdate() {
 }
 
 func (t *Target) GetCopy() *Target {
+	t.mx.Lock()
+	defer t.mx.Unlock()
+
 	copyTarget := *t
+	copyTarget.mx = sync.Mutex{}
+
+	if t.attackWeaponGroup != nil {
+		copyTarget.attackWeaponGroup = map[int]bool{}
+
+		for k, v := range t.attackWeaponGroup {
+			copyTarget.attackWeaponGroup[k] = v
+		}
+	}
+
 	return &copyTarget
 }
 
