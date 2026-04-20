@@ -226,9 +226,9 @@ func RemoveCloudBinaryMsg(id int) []byte {
 }
 
 func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable, allAmmoAvailable, accumulationPercent int,
-	reload, chase, hide bool, targetType string, targetID, fireX, fireY, weaponAmmoCap, ammoID, mayChangeAmmo, percentReload int) []byte {
+	reload, chase, hide bool, targetType string, targetID, fireX, fireY, weaponAmmoCap, ammoID, mayChangeAmmo, percentReload, group int) []byte {
 
-	command := make([]byte, 50)
+	command := make([]byte, 51)
 
 	command[0] = 13
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(x))
@@ -250,6 +250,7 @@ func WeaponMouseTargetBinary(weaponSlot, x, y, radius, ammoCount, ammoAvailable,
 	game_math.ReuseByteSlice(&command, 41, game_math.GetIntBytes(ammoID))
 	game_math.ReuseByteSlice(&command, 45, game_math.GetIntBytes(mayChangeAmmo))
 	command[49] = byte(percentReload + 1)
+	command[50] = byte(group)
 
 	return command
 }
@@ -1698,13 +1699,14 @@ func CreateMoveSateMsg(speed, powerFactor, reverseSpeed, reverseFactor, turnSpee
 	return command
 }
 
-func CreateGunStateMsg(rangeWeapon, accuracy, hitDist, slotNumber int) []byte {
+func CreateGunStateMsg(rangeWeapon, accuracy, hitDist, slotNumber, group int) []byte {
 	command := []byte{125}
 
 	command = append(command, game_math.GetIntBytes(int(rangeWeapon))...)
 	command = append(command, game_math.GetIntBytes(int(accuracy))...)
 	command = append(command, game_math.GetIntBytes(int(hitDist))...)
 	command = append(command, game_math.GetIntBytes(int(slotNumber))...)
+	command = append(command, byte(group))
 
 	return command
 }

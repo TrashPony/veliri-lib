@@ -549,4 +549,9 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Price:`,
 		_const.ZhCN: `价格：`,
 	},
+	"text_37": {
+		_const.RU:   `Цена на рынке`,
+		_const.EN:   `Market price`,
+		_const.ZhCN: `市价`,
+	},
 }
