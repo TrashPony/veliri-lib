@@ -2,7 +2,6 @@ package gunner
 
 import (
 	"github.com/TrashPony/veliri-lib/game_math"
-	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
@@ -34,17 +33,12 @@ type GunUser interface {
 	FractionWarrior() bool
 	OwnerFraction() string
 	GetCorporationID() int
-	GetAimFilter() *aim_filter.AimFilter
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
-}
-
-func (g *Gunner) GetAimFilter() *aim_filter.AimFilter {
-	return g.GunUser.GetAimFilter()
 }
 
 func (g *Gunner) GetReload(weaponNumber int) bool {

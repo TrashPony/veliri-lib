@@ -3,6 +3,7 @@ package detail
 import (
 	"encoding/json"
 	"github.com/TrashPony/veliri-lib/game_math"
+	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"time"
@@ -43,6 +44,7 @@ type BodyWeaponSlot struct {
 	SpreadUp            bool       `json:"-"`
 	On                  bool       `json:"-"`
 	IgnorePassAngle     int64      `json:"-"`
+	aimFilter           *aim_filter.AimFilter
 	lastFirePosition    int
 	weaponTarget        *target.Target
 }
@@ -251,4 +253,12 @@ func (s *BodyWeaponSlot) SetAccumulationCurrent(i float64) {
 
 func (s *BodyWeaponSlot) SetAccumulationTimeOut(i int) {
 	s.AccumulationTimeOut = i
+}
+
+func (s *BodyWeaponSlot) GetAimFilter() *aim_filter.AimFilter {
+	if s.aimFilter == nil {
+		s.aimFilter = aim_filter.NewAimFilter()
+	}
+
+	return s.aimFilter
 }

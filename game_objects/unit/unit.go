@@ -3,7 +3,6 @@ package unit
 import (
 	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_math"
-	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/bullet"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
@@ -112,8 +111,7 @@ type Unit struct {
 	LowPower              bool            `json:"low_power"`
 	Fuel                  *Fuel           `json:"-"`
 
-	aimFilter *aim_filter.AimFilter
-	Decals    []Decal
+	Decals []Decal
 
 	attributes map[string]int
 }

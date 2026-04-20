@@ -1694,12 +1694,13 @@ func CreateMoveSateMsg(speed, powerFactor, reverseSpeed, reverseFactor, turnSpee
 	return command
 }
 
-func CreateGunStateMsg(rangeWeapon, accuracy, hitDist int) []byte {
+func CreateGunStateMsg(rangeWeapon, accuracy, hitDist, slotNumber int) []byte {
 	command := []byte{125}
 
 	command = append(command, game_math.GetIntBytes(int(rangeWeapon))...)
 	command = append(command, game_math.GetIntBytes(int(accuracy))...)
 	command = append(command, game_math.GetIntBytes(int(hitDist))...)
+	command = append(command, game_math.GetIntBytes(int(slotNumber))...)
 
 	return command
 }
