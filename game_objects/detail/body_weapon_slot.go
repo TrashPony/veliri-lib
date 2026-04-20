@@ -44,6 +44,7 @@ type BodyWeaponSlot struct {
 	SpreadUp            bool       `json:"-"`
 	On                  bool       `json:"-"`
 	IgnorePassAngle     int64      `json:"-"`
+	Group               int        `json:"group"`
 	aimFilter           *aim_filter.AimFilter
 	lastFirePosition    int
 	weaponTarget        *target.Target
@@ -57,12 +58,6 @@ func (s *BodyWeaponSlot) StartReload(reloadTime int, ammoReload bool) {
 	s.StartReloadTime = time.Now().UnixNano() / int64(time.Millisecond)
 	s.EndReloadTime = s.StartReloadTime + int64(reloadTime)
 }
-
-//func (s *BodyWeaponSlot) StartAmmoReload() {
-//	s.SetReload(true)
-//	s.setTimeReload(s.Weapon.ReloadAmmoTime)
-//	s.SetCurrentReload(s.Weapon.ReloadAmmoTime)
-//}
 
 func (s *BodyWeaponSlot) GetReload() bool {
 	return s.Reload
@@ -261,4 +256,29 @@ func (s *BodyWeaponSlot) GetAimFilter() *aim_filter.AimFilter {
 	}
 
 	return s.aimFilter
+}
+
+func (s *BodyWeaponSlot) GetReloadProgress() float64 {
+	if !s.Reload {
+		return -1.0
+	}
+
+	total := s.EndReloadTime - s.StartReloadTime
+	if total <= 256 {
+		return -1.0
+	}
+
+	remaining := float64(s.CurrentReload)
+	totalFloat := float64(total)
+	progress := (1.0 - remaining/totalFloat) * 100.0
+
+	if progress < 0 {
+		return 0.0
+	}
+
+	if progress > 100 {
+		return 100.0
+	}
+
+	return progress
 }

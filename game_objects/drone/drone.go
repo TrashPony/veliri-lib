@@ -328,7 +328,7 @@ func (d *Drone) SetWeaponTarget(_ int, target *target.Target) {
 	defer d.targetMX.Unlock()
 
 	if target != nil {
-		target.Attack = true
+		target.SetAttackWeaponGroup(0, true)
 	}
 
 	d.weaponTarget = target
