@@ -554,4 +554,14 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Market price`,
 		_const.ZhCN: `市价`,
 	},
+	"text_38": {
+		_const.RU:   `Назначить в группу 1`,
+		_const.EN:   `Assign to group 1`,
+		_const.ZhCN: `分配到第 1 组`,
+	},
+	"text_39": {
+		_const.RU:   `Назначить в группу 2`,
+		_const.EN:   `Assign to group 2`,
+		_const.ZhCN: `分配到第 2 组`,
+	},
 }
