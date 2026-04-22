@@ -224,6 +224,16 @@ func (e *EffectsStore) GetAllWeaponBonus(startValue float64, parameterName, type
 	return sumEffectsPercent.ToAccept(absoluteValue, parameterName)
 }
 
+func (e *EffectsStore) GetPercentAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	sumEffectsPercent := float64(e.GetCountByWeaponTypeAndSize(parameterName, true, typeWeapon, sizeWeapon))
+
+	if sumEffectsPercent < -90 {
+		sumEffectsPercent = -90 // что бы не уйти в минус)
+	}
+
+	return sumEffectsPercent
+}
+
 func (e *EffectsStore) GetAllBodyBonus(startValue float64, parameterName, typeBody string, sizeBody int) float64 {
 	sumEffects := effect.Effect{
 		Quantity:    e.GetCountByBodyTypeAndSize(parameterName, false, typeBody, sizeBody),

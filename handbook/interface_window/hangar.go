@@ -193,9 +193,9 @@ var Hangar = map[string]map[string]string{
 		_const.ZhCN: `基地中的运输工具：`,
 	},
 	"ch_1": {
-		_const.RU:   `Атака`,
-		_const.EN:   `Attack`,
-		_const.ZhCN: `攻击`,
+		_const.RU:   `Атака:`,
+		_const.EN:   `Attack:`,
+		_const.ZhCN: `攻击：`,
 	},
 	"ch_2": {
 		_const.RU:   `Урон`,
@@ -561,5 +561,15 @@ var Hangar = map[string]map[string]string{
 		_const.RU:   `На складе нет подходящего снаряжения.`,
 		_const.EN:   `No suitable equipment in storage.`,
 		_const.ZhCN: `仓库中没有合适的装备。`,
+	},
+	"tip_22": {
+		_const.RU:   `Группа оружия определяет, какой кнопкой производится выстрел. Группа 1 - левая кнопка мыши, группа 2 - правая.`,
+		_const.EN:   `The weapon group determines which button fires the weapon. Group 1 - left mouse button, Group 2 - right mouse button.`,
+		_const.ZhCN: `武器组决定用哪个键开火。第1组 - 鼠标左键，第2组 - 鼠标右键。`,
+	},
+	"s": {
+		_const.RU:   `c`,
+		_const.EN:   `s`,
+		_const.ZhCN: `秒`,
 	},
 }

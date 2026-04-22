@@ -3,7 +3,6 @@ package unit
 import (
 	"encoding/json"
 	_const "github.com/TrashPony/veliri-lib/const"
-	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"math"
@@ -40,42 +39,42 @@ type StateMS struct {
 	RangeRadar int `json:"range_radar"`
 
 	// генератор
-	MaxPower           int `json:"max_power"`
-	RecoveryPower      int `json:"recovery_power"`
-	RecoveryPowerCycle int `json:"recovery_power_cycle"`
+	MaxPower           int     `json:"max_power"`
+	RecoveryPower      int     `json:"recovery_power"`
+	RecoveryPowerCycle int     `json:"recovery_power_cycle"`
+	EfficiencyReactor  float64 `json:"efficiency_reactor"`
+	BodyType           string  `json:"bt"`
+	BodySize           int     `json:"bs"`
 
-	// оружие
-	WeaponType        string  `json:"wt"`
-	WeaponSize        int     `json:"ws"`
-	BodyType          string  `json:"bt"`
-	BodySize          int     `json:"bs"`
-	WeaponInstall     bool    `json:"install"`
-	WeaponMaxDamage   int     `json:"weapon_max_damage"`
-	WeaponMinDamage   int     `json:"weapon_min_damage"`
-	CountFireBullet   int     `json:"count_fire_bullet"`
-	WeaponMinRange    int     `json:"weapon_min_range"`
-	WeaponMaxRange    int     `json:"weapon_max_range"`
-	WeaponAccuracy    int     `json:"weapon_accuracy"`
-	GunRotateSpeed    int     `json:"gun_rotate_speed"`
-	BulletSpeed       float64 `json:"bullet_speed"`
-	ReloadTime        int     `json:"reload_time"`
-	ReloadAmmoTime    int     `json:"reload_ammo_time"`
-	EfficiencyReactor float64 `json:"efficiency_reactor"`
-	KineticsDamage    int     `json:"kinetics_damage"`
-	ExplosionDamage   int     `json:"explosion_damage"`
-	ThermoDamage      int     `json:"thermo_damage"`
+	Weapons []StateWeapon `json:"weapons"`
 
 	UnrepairableDamage int `json:"unrepairable_damage"`
 	CapFuel            int `json:"cap_fuel"`
 	CurrentFuel        int `json:"current_fuel"`
 }
 
-func (u *Unit) GetState() *StateMS {
+type StateWeapon struct {
+	WeaponID        int     `json:"weapon_id"`
+	Number          int     `json:"number"`
+	WeaponInstall   bool    `json:"install"`
+	WeaponType      string  `json:"wt"`
+	WeaponSize      int     `json:"ws"`
+	WeaponMaxDamage int     `json:"weapon_max_damage"`
+	WeaponMinDamage int     `json:"weapon_min_damage"`
+	CountFireBullet int     `json:"count_fire_bullet"`
+	WeaponMinRange  int     `json:"weapon_min_range"`
+	WeaponMaxRange  int     `json:"weapon_max_range"`
+	WeaponAccuracy  int     `json:"weapon_accuracy"`
+	GunRotateSpeed  int     `json:"gun_rotate_speed"`
+	BulletSpeed     float64 `json:"bullet_speed"`
+	ReloadTime      int     `json:"reload_time"`
+	ReloadAmmoTime  int     `json:"reload_ammo_time"`
+	KineticsDamage  int     `json:"kinetics_damage"`
+	ExplosionDamage int     `json:"explosion_damage"`
+	ThermoDamage    int     `json:"thermo_damage"`
+}
 
-	var weapon *detail.Weapon
-	if u.GetWeaponSlot(1) != nil {
-		weapon = u.GetWeaponSlot(1).Weapon
-	}
+func (u *Unit) GetState() *StateMS {
 
 	efficiencyReactor, _ := u.EfficiencyReactor()
 
@@ -97,42 +96,57 @@ func (u *Unit) GetState() *StateMS {
 		TurnSpeed:                   u.GetTurnSpeed(),
 		RangeView:                   u.GetRangeView(),
 		RangeRadar:                  u.GetRadarRange(),
-		WeaponInstall: u.GetWeaponSlot(1) != nil &&
-			weapon != nil &&
-			u.GetWeaponSlot(1).GetAmmo() != nil &&
-			u.GetWeaponSlot(1).GetAmmoQuantity() > 0,
-		EfficiencyReactor:  efficiencyReactor,
-		CurrentSpeed:       u.GetPhysicalModel().GetCurrentSpeed(),
-		CapacitySize:       u.GetCapSize(),
-		MaxPower:           u.GetMaxPower(),
-		RecoveryPower:      u.GetRecoveryPower(),
-		RecoveryPowerCycle: u.body.RecoveryPowerCycle,
-		BodyType:           u.body.ChassisType,
-		BodySize:           u.body.StandardSize,
-		UnrepairableDamage: u.GetUnrepairableDamage(),
-		CapFuel:            u.GetCapFuel(),
-		CurrentFuel:        u.GetFuel().CurrentFuel,
+		EfficiencyReactor:           efficiencyReactor,
+		CurrentSpeed:                u.GetPhysicalModel().GetCurrentSpeed(),
+		CapacitySize:                u.GetCapSize(),
+		MaxPower:                    u.GetMaxPower(),
+		RecoveryPower:               u.GetRecoveryPower(),
+		RecoveryPowerCycle:          u.body.RecoveryPowerCycle,
+		BodyType:                    u.body.ChassisType,
+		BodySize:                    u.body.StandardSize,
+		UnrepairableDamage:          u.GetUnrepairableDamage(),
+		CapFuel:                     u.GetCapFuel(),
+		CurrentFuel:                 u.GetFuel().CurrentFuel,
 	}
 
-	if state.WeaponInstall {
-		state.WeaponType = weapon.Type
-		state.WeaponSize = weapon.StandardSize
-		state.WeaponMaxDamage = u.GetGunner().GetMaxDamage(u.GetWeaponSlot(1).Number)
-		state.WeaponMinDamage = u.GetGunner().GetMinDamage(u.GetWeaponSlot(1).Number)
-		state.CountFireBullet = u.GetGunner().GetCountFireBullet(u.GetWeaponSlot(1).Number)
-		state.WeaponMinRange, _ = u.GetGunner().GetWeaponMinRange(0.0, u.GetWeaponSlot(1).Number)
-		state.WeaponMaxRange, _ = u.GetGunner().GetWeaponMaxRange(0.0, u.GetWeaponSlot(1).Number, false)
-		state.WeaponAccuracy = u.GetGunner().GetWeaponAccuracy(u.GetWeaponSlot(1).Number)
-		state.GunRotateSpeed = u.GetGunner().GetGunRotateSpeed(u.GetWeaponSlot(1).Number)
-		state.BulletSpeed = u.GetGunner().GetBulletSpeed(u.GetWeaponSlot(1).Number)
-		state.ReloadTime = u.GetGunner().GetWeaponReloadTime(u.GetWeaponSlot(1).Number)
-		state.ReloadAmmoTime = u.GetGunner().GetWeaponReloadAmmoTime(u.GetWeaponSlot(1).Number)
+	weapons := make([]StateWeapon, 0)
+	for _, ws := range u.RangeWeaponSlots() {
+		if ws == nil {
+			continue
+		}
 
-		k, t, e := u.GetGunner().GetDamageType(u.GetWeaponSlot(1).Number)
-		state.KineticsDamage = k
-		state.ThermoDamage = t
-		state.ExplosionDamage = e
+		weaponState := StateWeapon{Number: ws.Number}
+		if ws.Weapon != nil {
+			weaponState.WeaponID = ws.Weapon.ID
+		}
+
+		if ws.Weapon == nil || ws.Ammo == nil {
+			weaponState.WeaponInstall = false
+		} else {
+			weaponState.WeaponInstall = true
+			weaponState.WeaponType = ws.Weapon.Type
+			weaponState.WeaponSize = ws.Weapon.StandardSize
+			weaponState.WeaponMaxDamage = u.GetGunner().GetMaxDamage(ws.Number)
+			weaponState.WeaponMinDamage = u.GetGunner().GetMinDamage(ws.Number)
+			weaponState.CountFireBullet = u.GetGunner().GetCountFireBullet(ws.Number)
+			weaponState.WeaponMinRange, _ = u.GetGunner().GetWeaponMinRange(0.0, ws.Number)
+			weaponState.WeaponMaxRange, _ = u.GetGunner().GetWeaponMaxRange(0.0, ws.Number, false)
+			weaponState.WeaponAccuracy = u.GetGunner().GetWeaponAccuracy(ws.Number)
+			weaponState.GunRotateSpeed = u.GetGunner().GetGunRotateSpeed(ws.Number)
+			weaponState.BulletSpeed = u.GetGunner().GetBulletSpeed(ws.Number)
+			weaponState.ReloadTime = u.GetGunner().GetWeaponReloadTime(ws.Number)
+			weaponState.ReloadAmmoTime = u.GetGunner().GetWeaponReloadAmmoTime(ws.Number)
+
+			k, t, e := u.GetGunner().GetDamageType(ws.Number)
+			weaponState.KineticsDamage = k
+			weaponState.ThermoDamage = t
+			weaponState.ExplosionDamage = e
+		}
+
+		weapons = append(weapons, weaponState)
 	}
+
+	state.Weapons = weapons
 
 	return &state
 }
@@ -339,7 +353,17 @@ func (u *Unit) getGunAccuracy(weaponSlotNumber int) int {
 	if weaponSlot == nil || weaponSlot.Weapon == nil {
 		return 0
 	}
-	return int(math.Ceil(u.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+
+	return weaponSlot.Weapon.Accuracy
+}
+
+func (u *Unit) getGunAccuracySpread(weaponSlotNumber int) float64 {
+	weaponSlot := u.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil {
+		return 0
+	}
+
+	return u.GetEffects().GetPercentAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)
 }
 
 func (u *Unit) getGunRotateSpeed(weaponSlotNumber int) int {

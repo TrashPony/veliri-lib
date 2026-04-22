@@ -419,6 +419,7 @@ func (u *Unit) UpdateWeaponsState() {
 
 		if wSlot.Weapon != nil {
 			slotState.Accuracy = u.getGunAccuracy(wSlot.Number)
+			slotState.AccuracySpread = u.getGunAccuracySpread(wSlot.Number)
 			slotState.RotateSpeed = u.getGunRotateSpeed(wSlot.Number)
 			slotState.ReloadTime = u.getWeaponReloadTime(wSlot.Number)
 			slotState.ReloadAmmoTime = u.getWeaponAmmoReloadTime(wSlot.Number)

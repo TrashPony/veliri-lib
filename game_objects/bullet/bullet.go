@@ -43,6 +43,7 @@ type Bullet struct {
 	EquipDamage          int            `json:"-"`
 	IgnoreOwner          bool           `json:"ignore_owner"`
 	NoDamageNoMessage    bool           `json:"-"`
+	OldDistToTarget      float64        `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool

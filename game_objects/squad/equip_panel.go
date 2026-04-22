@@ -30,6 +30,7 @@ func (s *Squad) GetEquipPanel() map[int]*EquipSell {
 		s.mx.Lock()
 		s.equipPanel = make(map[int]*EquipSell)
 		s.equipPanel[0] = &EquipSell{TypeSlot: -1, Source: "empty"}
+		s.equipPanel[1] = &EquipSell{TypeSlot: 4, Source: "weapon"}
 		s.mx.Unlock()
 	}
 
@@ -108,28 +109,28 @@ func (s *Squad) fillStateEquip() {
 		}
 
 		if slot.Source == "Constructor" {
-			if slot.TypeSlot == 4 {
-				weaponSlot := s.GetMS().GetWeaponSlot(slot.Slot)
-				if weaponSlot != nil && weaponSlot.Weapon != nil {
-					slot.StartReload = weaponSlot.StartReloadTime
-					slot.EndReload = weaponSlot.EndReloadTime
-					slot.AmmoQuantity = weaponSlot.GetAmmoQuantity()
-					slot.AmmoReload = weaponSlot.AmmoReload
-					slot.On = weaponSlot.On
-				} else {
-					//slot.Source = ""
-					//slot.TypeSlot = 0
-					//slot.Slot = 0
-				}
-			}
+			//if slot.TypeSlot == 4 {
+			//weaponSlot := s.GetMS().GetWeaponSlot(slot.Slot)
+			//if weaponSlot != nil && weaponSlot.Weapon != nil {
+			//	slot.StartReload = weaponSlot.StartReloadTime
+			//	slot.EndReload = weaponSlot.EndReloadTime
+			//	slot.AmmoQuantity = weaponSlot.GetAmmoQuantity()
+			//	slot.AmmoReload = weaponSlot.AmmoReload
+			//	slot.On = weaponSlot.On
+			//} else {
+			//	//slot.Source = ""
+			//	//slot.TypeSlot = 0
+			//	//slot.Slot = 0
+			//}
+			//}
 
-			if slot.TypeSlot == 6 {
-				weaponSlot := s.GetMS().GetMeleeWeaponSlot(slot.Slot)
-				if weaponSlot != nil && weaponSlot.Weapon != nil {
-					slot.AmmoReload = false
-					slot.On = weaponSlot.On
-				}
-			}
+			//if slot.TypeSlot == 6 {
+			//	weaponSlot := s.GetMS().GetMeleeWeaponSlot(slot.Slot)
+			//	if weaponSlot != nil && weaponSlot.Weapon != nil {
+			//		slot.AmmoReload = false
+			//		slot.On = weaponSlot.On
+			//	}
+			//}
 
 			if slot.TypeSlot == 1 || slot.TypeSlot == 2 || slot.TypeSlot == 3 || slot.TypeSlot == 5 {
 				equipSlot := s.GetMS().GetBodyEquipSlot(slot.TypeSlot, slot.Slot)
@@ -153,9 +154,10 @@ func (s *Squad) SetEquipPanelCell(sell int, source string, typeSlot, slot int) {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	if sell > 12 || sell < 1 {
+	if sell > 12 || sell < 2 {
 		return
 	}
+
 	s.equipPanelRerender = true
 	s.equipPanel[sell] = &EquipSell{
 		Source:   source,
@@ -187,6 +189,7 @@ func (s *Squad) SetEquipPanelFromJSON(jsonData []byte) {
 	s.equipPanel = make(map[int]*EquipSell)
 	_ = json.Unmarshal(jsonData, &s.equipPanel)
 	s.equipPanel[0] = &EquipSell{TypeSlot: -1, Source: "empty"}
+	s.equipPanel[1] = &EquipSell{TypeSlot: 4, Source: "weapon"}
 	s.equipPanelRerender = true
 }
 

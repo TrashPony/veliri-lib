@@ -149,6 +149,7 @@ type WeaponSlotState struct {
 	MaxDamage      int
 	MinDamage      int
 	Accuracy       int
+	AccuracySpread float64
 	RotateSpeed    int
 	ReloadTime     int
 	ReloadAmmoTime int
@@ -306,6 +307,16 @@ func (g *Gunner) GetWeaponAccuracy(slotNumber int) int {
 	}
 
 	return 999
+}
+
+func (g *Gunner) GetWeaponAccuracySpread(slotNumber int) float64 {
+	weaponSlot := g.GunUser.GetWeaponSlot(slotNumber)
+	slotState := g.getSlotState(slotNumber)
+	if weaponSlot != nil && weaponSlot.Weapon != nil && slotState != nil {
+		return slotState.AccuracySpread
+	}
+
+	return 0
 }
 
 func (g *Gunner) GetWeaponPosInMap(slotNumber int) (int, int) {
