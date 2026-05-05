@@ -44,9 +44,9 @@ var Global = map[string]map[string]string{
 		_const.ZhCN: `移动方向。`,
 	},
 	"text_9": {
-		_const.RU:   `Уничтожьте бочки и баки на пути <span style="color: grey; font-size: 12px">(рекомендуется активировать щит)</span>.`,
-		_const.EN:   `Destroy the barrels and tanks on the way <span style="color: grey; font-size: 12px">(it is recommended to activate the shield)</span>.`,
-		_const.ZhCN: `摧毁途中的桶和罐子 <span style="color: grey; font-size: 12px">（建议激活护盾）</span>。`,
+		_const.RU:   `Уничтожьте бочки и баки на пути.`,
+		_const.EN:   `Destroy the barrels and tanks on the way.`,
+		_const.ZhCN: `摧毁途中的桶和罐子。`,
 	},
 	"text_10": {
 		_const.RU:   `Примечание:`,
@@ -64,9 +64,9 @@ var Global = map[string]map[string]string{
 		_const.ZhCN: `要激活武器/装备，您需要在<span style="color: yellow">屏幕底部中心</span>的面板上选择它，或按下单元格中指示的键（<span style="color: yellow">2</span>或<span style="color: yellow">E</span>）。`,
 	},
 	"text_12": {
-		_const.RU:   `прицеливание (камера будет следовать за мышкой).`,
-		_const.EN:   `aiming (the camera will follow the mouse).`,
-		_const.ZhCN: `瞄准（摄像头将跟随鼠标移动）。`,
+		_const.RU:   `прицеливание.`,
+		_const.EN:   `aiming.`,
+		_const.ZhCN: `瞄准。`,
 	},
 	"text_13": {
 		_const.RU:   `ЛКМ`,
@@ -79,9 +79,9 @@ var Global = map[string]map[string]string{
 		_const.ZhCN: `攻击。`,
 	},
 	"text_15": {
-		_const.RU:   `Красный круг`,
-		_const.EN:   `Red circle`,
-		_const.ZhCN: `红色圆圈`,
+		_const.RU:   `Зеленая дуга`,
+		_const.EN:   `Green arc`,
+		_const.ZhCN: `绿弧`,
 	},
 	"text_16": {
 		_const.RU:   `зона поражения.`,
