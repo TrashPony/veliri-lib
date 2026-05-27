@@ -39,7 +39,7 @@ type nameConfigs struct {
 	postfixes []string
 }
 
-func GetFractionName(fraction string) string {
+func GetFractionName(id int, fraction string) string {
 
 	cfg, ok := configs[fraction]
 	if !ok {
@@ -55,7 +55,7 @@ func GetFractionName(fraction string) string {
 	minName := 3
 	maxName := 10
 
-	return mc.generateWitchPrefix(rand.Intn(maxName-minName)+minName, cfg.postfixes)
+	return mc.generateWitchPrefix(id, rand.Intn(maxName-minName)+minName, cfg.postfixes)
 }
 
 // MarkovChain представляет цепь Маркова
@@ -96,8 +96,8 @@ func (mc *MarkovChain) generate(start string, length int) string {
 }
 
 // generateWitchPrefix генерирует имя
-func (mc *MarkovChain) generateWitchPrefix(length int, postfixes []string) string {
-	rand.Seed(time.Now().UnixNano())
+func (mc *MarkovChain) generateWitchPrefix(id int, length int, postfixes []string) string {
+	rand.Seed(time.Now().UnixNano() + int64(id))
 
 	start := mc.getRandomStart()
 	name := mc.generate(start, length)
