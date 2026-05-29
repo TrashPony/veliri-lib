@@ -37,7 +37,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"rust_2":            {Name: "rust_2", Description: "<p>rust_2</p>"},
 		"rust_3":            {Name: "rust_3", Description: "<p>rust_3</p>"},
 		"rust_4":            {Name: "rust_4", Description: "<p>rust_4</p>"},
-		"rust_5":            {Name: "rust_1", Description: "<p>rust_5</p>"},
+		"rust_5":            {Name: "rust_5", Description: "<p>rust_5</p>"},
 
 		"reverses_weapon_5": {Name: "Torpedo complex", Description: "<p>A rack with a small launch tube capable of firing unguided small-sized missiles. The standard weapon set of all synthetics who joined Reverses.</p>"},
 		"explores_weapon_5": {Name: "Beam amplifier", Description: "<p>Multi-tonnage Explores beam weapon characterized by its operation based on the principles of local decay of charged particles. In addition to tangible direct damage, it also carries out an area attack.</p>"},
@@ -77,7 +77,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"rust_2":            {Name: "rust_2", Description: "<p>rust_2</p>"},
 		"rust_3":            {Name: "rust_3", Description: "<p>rust_3</p>"},
 		"rust_4":            {Name: "rust_4", Description: "<p>rust_4</p>"},
-		"rust_5":            {Name: "rust_1", Description: "<p>rust_5</p>"},
+		"rust_5":            {Name: "rust_5", Description: "<p>rust_5</p>"},
 
 		"reverses_weapon_5": {Name: "Торпедный комплекс", Description: "<p>Стойка с малым пусковым тубусом, способная вести огонь неуправляемыми малогабаритными ракетами. Стандартный оружейный набор всех синтетов вступивших к Reverses.</p>"},
 		"explores_weapon_5": {Name: "Пучковый усилитель", Description: "<p>Многотоннажное лучевое орудие Explores, характеризующееся работой на принципах локального распада заряженных частиц. Помимо ощутимого прямого урона, осуществляет также атаку по площади.</p>"},
@@ -117,7 +117,7 @@ var WeaponDescription = map[string]map[string]DescriptionItem{
 		"rust_2":            {Name: "rust_2", Description: "<p>rust_2</p>"},
 		"rust_3":            {Name: "rust_3", Description: "<p>rust_3</p>"},
 		"rust_4":            {Name: "rust_4", Description: "<p>rust_4</p>"},
-		"rust_5":            {Name: "rust_1", Description: "<p>rust_5</p>"},
+		"rust_5":            {Name: "rust_5", Description: "<p>rust_5</p>"},
 
 		"reverses_weapon_5": {Name: "鱼雷复合系统", Description: "<p>紧凑型非制导火箭发射架，Reverses新兵标准配置。</p>"},
 		"explores_weapon_5": {Name: "集束增幅器", Description: "<p>Explores重型粒子分解炮，除直接伤害外还可造成范围打击效果。</p>"},
