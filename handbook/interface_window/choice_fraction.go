@@ -248,24 +248,56 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `受到推崇的`,
 	},
 	"relative_to_screen_text_1": {
-		_const.RU:   `Классическое управление, привычное большинству игроков.`,
-		_const.EN:   `Classic controls, familiar to most players.`,
-		_const.ZhCN: `经典控制，大多数玩家都熟悉。`,
-	},
-	"relative_to_screen_text_2": {
-		_const.RU:   `Подходит для тех, кто хочет быстрее погрузиться в игру, не перестраивая рефлексы.`,
-		_const.EN:   `Suitable for those who want to quickly immerse themselves in the game without having to retrain their reflexes.`,
-		_const.ZhCN: `适合那些想要快速沉浸在游戏中而又不必重新训练反应能力的人。`,
+		_const.RU: `
+		<ul>
+			<li><b>W</b> — вверх экрана</li>
+			<li><b>S</b> — вниз экрана</li>
+			<li><b>A/D</b> — влево/вправо экрана</li>
+		</ul>
+		<p style="color:#aaa;">Транспорт автоматически поворачивается в указанную сторону.</p>
+	`,
+		_const.EN: `
+		<ul>
+			<li><b>W</b> — Screen Up</li>
+			<li><b>S</b> — Screen Down</li>
+			<li><b>A/D</b> — Screen Left/Right</li>
+		</ul>
+		<p style="color:#aaa;">The vehicle automatically turns in the indicated direction.</p>
+	`,
+		_const.ZhCN: `
+		<ul>
+			<li><b>W</b> — 屏幕上</li>
+			<li><b>S</b> — 屏幕下</li>
+			<li><b>A/D</b> — 屏幕左/右</li>
+		</ul>
+		<p style="color:#aaa;">车辆会自动朝指定方向转弯。</p>
+	`,
 	},
 	"relative_to_body_text_1": {
-		_const.RU:   `Управление осуществляется относительно самого транспорта.`,
-		_const.EN:   `Control is exercised relative to the transport itself.`,
-		_const.ZhCN: `控制是针对运输本身进行的。`,
-	},
-	"relative_to_body_text_2": {
-		_const.RU:   `Не самое интуитивное на старте, но даёт полный контроль над движением, манёврами и боём.`,
-		_const.EN:   `Not the most intuitive at the start, but gives full control over movement, maneuvers and combat.`,
-		_const.ZhCN: `一开始并不是最直观的，但可以完全控制运动、机动和战斗。`,
+		_const.RU: `
+		<ul>
+			<li><b>W</b> — вперёд (по носу)</li>
+			<li><b>S</b> — назад (по корме)</li>
+			<li><b>A/D</b> — поворот корпуса</li>
+		</ul>
+		<p style="color:#aaa;">Направление корпуса отслеживается синей стрелкой.</p>
+	`,
+		_const.EN: `
+		<ul>
+			<li><b>W</b> — Forward (facing)</li>
+			<li><b>S</b> — Backward (rear)</li>
+			<li><b>A/D</b> — Rotate hull</li>
+		</ul>
+		<p style="color:#aaa;">Hull direction is tracked by the blue arrow.</p>
+	`,
+		_const.ZhCN: `
+		<ul>
+			<li><b>W</b> — 前进（车头方向）</li>
+			<li><b>S</b> — 后退（车尾方向）</li>
+			<li><b>A/D</b> — 旋转车身</li>
+		</ul>
+		<p style="color:#aaa;">车身方向由蓝色箭头追踪。</p>
+	`,
 	},
 	"text_2": {
 		_const.RU:   `Примечание: на высоком пинге машинка может подрагивать :\`,
