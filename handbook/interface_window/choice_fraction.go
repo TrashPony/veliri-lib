@@ -56,14 +56,41 @@ var ChoiceFraction = map[string]map[string]string{
    					<p>你是否有足够的勇气尝试成为“先驱者”的选中者？完成伟大的目标——进化革命，最终将生命播撒到荒芜的宇宙中。</p>`,
 	},
 	"Replics_weaponText": {
-		_const.RU:   `<span class="importantly">Replics</span> предпочитают баллистическое орудие. Это оружие обладает высокую дальность поражения и вариативность боеприпасов.`,
-		_const.EN:   `<span class="importantly">Replics</span> prefer ballistic weapons. These weapons have a long range and offer a variety of ammunition options.`,
-		_const.ZhCN: `<span class="importantly">Replics</span>偏爱弹道武器。这些武器射程远，弹药种类多样。`,
+		_const.RU: `<span class="importantly">Replics</span> предпочитают баллистическое орудие. 
+				  <ul>
+					<li>Высокая дальность</li>
+					<li>Малая точность</li>
+				  </ul>`,
+		_const.EN: `<span class="importantly">Replics</span> prefer ballistic weapons. 
+				  <ul>
+					<li>Long range</li>
+					<li>Low accuracy</li>
+				  </ul>`,
+		_const.ZhCN: `<span class="importantly">Replics</span> 偏好弹道武器。 
+				  <ul>
+					<li>远程</li>
+					<li>低精度</li>
+				  </ul>`,
 	},
 	"Replics_bodyText": {
-		_const.RU:   `<span class="importantly">Replics</span> используют тяжелые транспорты на гусеничном шасси. <span class="importantly">Гусеницы</span> позволяют крутиться на месте и не имеют штрафа при движении назад.`,
-		_const.EN:   `<span class="importantly">Replics</span> use heavy vehicles on a tracked chassis. The tracks allow them to spin in place and there is no movement penalty when moving backward.`,
-		_const.ZhCN: `<span class="importantly">Replics</span>使用履带式底盘的重型运输工具。<span class="importantly">履带</span>允许原地旋转，且向后移动时没有惩罚。`,
+		_const.RU: `<span class="importantly">Replics</span> используют тяжелые транспорты на гусеничном шасси.
+				<ul>
+				  <li>Позволяют крутиться на месте</li>
+				  <li>Без штрафа при движении назад</li>
+				  <li>Тягучее, но предсказуемое управление</li>
+				</ul>`,
+		_const.EN: `<span class="importantly">Replics</span> use heavy tracked vehicles.
+				<ul>
+				  <li>Can spin in place</li>
+				  <li>No penalty when reversing</li>
+				  <li>Heavy but predictable handling</li>
+				</ul>`,
+		_const.ZhCN: `<span class="importantly">Replics</span> 使用重型履带载具。
+				<ul>
+				  <li>可原地旋转</li>
+				  <li>倒车无惩罚</li>
+				  <li>沉重但可预测的操控</li>
+				</ul>`,
 	},
 	"Replics_bonus": {
 		_const.RU:   `<span class="importantly">Защита</span> от всего урона повышена на <span class="importantly">5%</span>.`,
@@ -71,14 +98,44 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `<span class="importantly">防护</span>所有伤害增加<span class="importantly">5%</span>。`,
 	},
 	"Explores_weaponText": {
-		_const.RU:   `<span class="importantly">Explores</span> предпочитают лазерное орудие. Это оружие обладает высокою точностью и способны мгновенно поражать цель, однако их дальность оставляет желать лучшего.`,
-		_const.EN:   `<span class="importantly">Explores</span> prefer laser weapons. These weapons have high accuracy and can instantly hit the target, but their range leaves much to be desired.`,
-		_const.ZhCN: `<span class="importantly">Explores</span>偏爱激光武器。这些武器精度高，能瞬间击中目标，但射程不尽如人意。`,
+		_const.RU: `<span class="importantly">Explores</span> предпочитают лазерное орудие.
+				  <ul>
+					<li>Малая дальность</li>
+					<li>Мгновенно поражает цель</li>
+					<li>Высокий термический урон</li>
+				  </ul>`,
+		_const.EN: `<span class="importantly">Explores</span> prefer laser weapons.
+				  <ul>
+					<li>Short range</li>
+					<li>Hits instantly</li>
+					<li>High thermal damage</li>
+				  </ul>`,
+		_const.ZhCN: `<span class="importantly">Explores</span> 偏好激光武器。
+				  <ul>
+					<li>短射程</li>
+					<li>瞬间命中</li>
+					<li>高热伤害</li>
+				  </ul>`,
 	},
 	"Explores_bodyText": {
-		_const.RU:   `<p><span class="importantly">Explores</span> используют легкие транспорты на антиграве. <span class="importantly">Антиграв</span> дает вам большую свободу и гибкость. Оно позволяет вам управлять направлением корпуса мышкой и двигаться боком без поворота корпуса.</p><p><span class="importantly">Внимание!</span> этот стиль управления требует привыкания.</p>`,
-		_const.EN:   `<p><span class="importantly">Explorers</span> use light anti-grav transports. <span class="importantly">Anti-grav</span> grants you great freedom and flexibility. It allows you to control the hull direction with your mouse and move sideways without rotating the hull.</p><p><span class="importantly">Note!</span> This control style requires some getting used to.</p>`,
-		_const.ZhCN: `<p><span class="importantly">勘探者</span>使用轻型反重力载具。<span class="importantly">反重力</span>技术赋予您极高的自由度和灵活性。您可以使用鼠标控制车体朝向，无需转动车体即可进行侧向移动。</p><p><span class="importantly">注意！</span>此操控风格需要时间适应。</p>`,
+		_const.RU: `<span class="importantly">Explores</span> используют легкие транспорты на антиграве. 
+				<ul>
+					<li>Направление корпуса определяется мышкой</li>
+					<li>Высокая дальность обзора</li>
+					<li>Корпус компенсирует поворот оружия</li>
+				</ul>`,
+		_const.EN: `<span class="importantly">Explores</span> use light anti-gravity vehicles.
+				<ul>
+					<li>Mouse controls hull direction</li>
+					<li>Long view range</li>
+					<li>Hull compensates for weapon rotation</li>
+				</ul>`,
+		_const.ZhCN: `<span class="importantly">Explores</span> 使用轻型反重力载具。
+				<ul>
+					<li>鼠标控制车身方向</li>
+					<li>长视野范围</li>
+					<li>车身补偿武器旋转</li>
+				</ul>`,
 	},
 	"Explores_bonus": {
 		_const.RU:   `<span class="importantly">Дальность обзора</span> увеличена на <span class="importantly">5%</span>.`,
@@ -86,14 +143,44 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `<span class="importantly">视野范围</span>增加<span class="importantly">5%</span>。`,
 	},
 	"Reverses_weaponText": {
-		_const.RU:   `<span class="importantly">Reverses</span> предпочитают ракетные пусковые установки. Ракеты обладают высокой поражающей способностью, однако существует снаряжение способное их сбивать.`,
-		_const.EN:   `The <span class="importantly">Reverses</span> prefer rocket launchers. Rockets have a high destructive capacity, but there is equipment that can shoot them down.`,
-		_const.ZhCN: `<span class="importantly">Reverses</span>偏爱火箭发射器。火箭具有高破坏力，但有装备可以将其击落。`,
+		_const.RU: `<span class="importantly">Reverses</span> предпочитают ракетные пусковые установки. 
+				  <ul>
+					<li>Средняя дальность</li>
+					<li>Высокий урон по площади (включая себя)</li>
+					<li>Уязвимы для РЭБ и ПРО систем</li>
+				  </ul>`,
+		_const.EN: `<span class="importantly">Reverses</span> prefer rocket launchers.
+				  <ul>
+					<li>Medium range</li>
+					<li>High area damage (self-damage included)</li>
+					<li>Vulnerable to EW and CIWS systems</li>
+				  </ul>`,
+		_const.ZhCN: `<span class="importantly">Reverses</span> 偏好火箭发射器。
+				  <ul>
+					<li>中程</li>
+					<li>高范围伤害 (包括自身)</li>
+					<li>易受电子战和近防系统影响</li>
+				  </ul>`,
 	},
 	"Reverses_bodyText": {
-		_const.RU:   `<span class="importantly">Reverses</span> используют транспорты на колесах. <span class="importantly">Колеса</span> не имеет особых особенностей. Оно является самым простым и надежным типом шасси. Оно подходит для тех, кто предпочитает классический стиль управления.`,
-		_const.EN:   `The <span class="importantly">Reverses</span> use wheeled vehicles. The wheels do not have any special features. They are the simplest and most reliable type of chassis. They suit those who prefer a classic style of control.`,
-		_const.ZhCN: `<span class="importantly">Reverses</span>使用轮式运输工具。<span class="importantly">轮子</span>没有特殊功能。它们是最简单、最可靠的底盘类型。适合那些喜欢经典操控风格的人。`,
+		_const.RU: `<span class="importantly">Reverses</span> используют транспорты на колесах. 
+				<ul>
+					<li>Высокая скорость</li>
+					<li>Высокая маневренность</li>
+					<li>Классическое колесное управление</li>
+				</ul>`,
+		_const.EN: `<span class="importantly">Reverses</span> use wheeled vehicles.
+				<ul>
+					<li>High speed</li>
+					<li>High maneuverability</li>
+					<li>Classic wheeled handling</li>
+				</ul>`,
+		_const.ZhCN: `<span class="importantly">Reverses</span> 使用轮式载具。
+				<ul>
+					<li>高速度</li>
+					<li>高机动性</li>
+					<li>经典轮式操控</li>
+				</ul>`,
 	},
 	"Reverses_bonus": {
 		_const.RU:   `<span class="importantly">Вместимость грузового отсека</span> увеличена на <span class="importantly">5%</span>.`,
@@ -129,6 +216,11 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.RU:   `транспорт`,
 		_const.EN:   `transport`,
 		_const.ZhCN: `运输`,
+	},
+	"head_4": {
+		_const.RU:   `История`,
+		_const.EN:   `Lore`,
+		_const.ZhCN: `背景`,
 	},
 	"control_head": {
 		_const.RU:   `Выбор управления`,

@@ -67,30 +67,17 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 		game_math.Sin(radRotate2)*(obj.GetPowerLeft()-obj.GetPowerRight()),
 	)
 
-	if obj.GetTypeControl() == 0 {
-		wt := g.GetWeaponTarget(0)
-		if wt != nil {
-			needAngle := game_math.GetBetweenAngle(float64(wt.GetX()), float64(wt.GetY()), float64(obj.GetX()), float64(obj.GetY()))
-			diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), needAngle)
+	wt := g.GetWeaponTarget(0)
+	if wt != nil {
+		needAngle := game_math.GetBetweenAngle(float64(wt.GetX()), float64(wt.GetY()), float64(obj.GetX()), float64(obj.GetY()))
+		diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), needAngle)
 
-			if diffAngle > 2 {
-				obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
-			}
-
-			if diffAngle < -2 {
-				obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
-			}
+		if diffAngle > 2 {
+			obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
 		}
-	} else {
-		if obj.GetAngleForClassicControl() >= 0 {
-			diffAngle := game_math.ShortestBetweenAngle(obj.GetRotate(), obj.GetAngleForClassicControl())
-			if diffAngle > 2 {
-				obj.SetAngularVelocity(obj.GetAngularVelocity() + obj.GetTurnSpeed())
-			}
 
-			if diffAngle < -2 {
-				obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
-			}
+		if diffAngle < -2 {
+			obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
 		}
 	}
 
