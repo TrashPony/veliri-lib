@@ -238,7 +238,7 @@ var ChoiceFraction = map[string]map[string]string{
 		_const.ZhCN: `相对于身体`,
 	},
 	"control_tip": {
-		_const.RU:   `Управление можно сменить в будущем через <span class="importantly">меню настроек</span>.`,
+		_const.RU:   `Управление можно сменить через <span class="importantly">меню настроек</span>.`,
 		_const.EN:   `The controls can be changed in the future via the settings menu.`,
 		_const.ZhCN: `将来可以通过设置菜单更改控件。`,
 	},
