@@ -139,8 +139,17 @@ type BossState struct {
 	Angle             int // угол атаки
 	NeedNextPhase     bool
 	coolDowns         map[int]int64
+	targetUnit        *Unit
 	bullets           []*bullet.Bullet
 	mx                sync.RWMutex
+}
+
+func (b *BossState) GetTargetUnit() *Unit {
+	return b.targetUnit
+}
+
+func (b *BossState) SetTargetUnit(u *Unit) {
+	b.targetUnit = u
 }
 
 func (b *BossState) GetBossSkillCoolDown(id int) int64 {

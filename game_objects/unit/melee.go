@@ -90,7 +90,7 @@ func (u *Unit) GetMeleeWeaponData() []*obstacle_point.ObstaclePoint {
 	meleePositions := make([]*obstacle_point.ObstaclePoint, 0) // TODO кеширование массива что бы каждый раз заного не создавать
 
 	for k, slot := range u.RangeMeleeWeaponSlots() {
-		if slot.On && slot.Weapon != nil {
+		if slot.On && slot.Weapon != nil { // TODO slot.On
 			for _, firePosition := range u.meller.GetWeaponFirePos(k) {
 				if !firePosition.Collision {
 					continue
