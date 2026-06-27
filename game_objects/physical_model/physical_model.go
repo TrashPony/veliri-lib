@@ -59,6 +59,7 @@ type PhysicalModel struct {
 	DriftY                 float64                         `json:"-"`
 	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
 	MeleeK                 float64                         `json:"-"` // Коэфецент усиление или затухания урона ближнего боя
+	changeHeight           float64
 	useCoordinates         []pointer.Pointer
 	mx                     sync.Mutex
 	polygon                *game_math.Polygon
@@ -523,4 +524,16 @@ func (m *PhysicalModel) GetMeleeK() float64 {
 	}
 
 	return m.MeleeK
+}
+
+func (m *PhysicalModel) GetChangeHeight() float64 {
+	if m.changeHeight == 0 {
+		return 2
+	}
+
+	return m.changeHeight
+}
+
+func (m *PhysicalModel) SetChangeHeight(ch float64) {
+	m.changeHeight = ch
 }

@@ -22,6 +22,7 @@ type InfoMap struct {
 	IsIndoors           bool                     `json:"is_indoors"`
 	GameTime            gameTime                 `json:"-"`
 	ForceDayCycleH      int                      `json:"force_day_cycle_h"`
+	Evacuation          bool                     `json:"evacuation"`
 }
 
 type gameTime struct {
