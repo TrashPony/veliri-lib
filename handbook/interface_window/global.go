@@ -158,4 +158,55 @@ var Global = map[string]map[string]string{
 		_const.EN:   `If the <span style="color: yellow">battery charge and storage unit</span> are both empty at the same time, the vehicle's characteristics will be greatly reduced.`,
 		_const.ZhCN: `如果<span style="color: yellow">电池电量和储能装置</span>同时耗尽，载具的性能将大幅下降。`,
 	},
+	"text_32": {
+		_const.RU: `<p>В боевом режиме камера старается следовать <span style="color: yellow">за мышкой</span>, зум позволяет
+              сосредоточиться на цели или обозревать местность с высоты.</p>
+            <p>Для наивысшей боевой эффективности <span
+              style="color: yellow">оружие и корпус должны работать в тандеме</span>, но это приходит с опытом
+              :)</p>`,
+		_const.EN: `<p>In combat mode, the camera tries to follow <span style="color: yellow">the mouse</span>, and the zoom allows you to focus on a target or survey the terrain from above.</p>
+            <p>For maximum combat effectiveness, <span style="color: yellow">weapons and the hull must work together</span>, but that comes with experience :)</p>`,
+		_const.ZhCN: `<p>在战斗模式下，摄像头会尽量跟随<span style="color: yellow">鼠标</span>，缩放功能可以让你集中瞄准目标或从高处观察地形。</p>
+            <p>为了达到最佳战斗效果，<span style="color: yellow">武器和车身需要协同配合</span>，但这需要经验的积累 :)</p>`,
+	},
+	"text_33": {
+		_const.RU: `Следи за <span style="color: yellow">количеством боеприпасов</span> в показателях около курсора. Если они
+              кончились, их можно получить на зарядной станции.`,
+		_const.EN:   `Keep an eye on <span style="color: yellow">ammunition count</span> in the indicators near the cursor. If you run out, you can resupply at a charging station.`,
+		_const.ZhCN: `注意光标附近指标中的<span style="color: yellow">弹药数量</span>。如果弹药耗尽，可以在充电站补充。`,
+	},
+	"text_34": {
+		_const.RU: `Тормоз [<span
+              style="color: yellow">space</span>] -
+              помогает точнее позиционировать машинку в мире.`,
+		_const.EN:   `Brake [<span style="color: yellow">space</span>] - helps position your vehicle more precisely in the world.`,
+		_const.ZhCN: `刹车 [<span style="color: yellow">空格</span>] - 帮助你在世界中更精准地定位载具。`,
+	},
+	"text_35": {
+		_const.RU: `<p>Для повышения выживаемости активируй щит [<span
+              style="color: yellow">3/F</span>].</p>`,
+		_const.EN:   `<p>To increase survivability, activate your shield [<span style="color: yellow">3/F</span>].</p>`,
+		_const.ZhCN: `<p>为了提高生存能力，激活护盾 [<span style="color: yellow">3/F</span>]。</p>`,
+	},
+	"text_36": {
+		_const.RU:   `У каждого корпуса в игре есть как уязвимые, так и бронированные участки.`,
+		_const.EN:   `Every hull in the game has both vulnerable and armored areas.`,
+		_const.ZhCN: `游戏中的每个载具车身都有既脆弱又装甲的区域。`,
+	},
+	"text_37": {
+		_const.RU:   `Попадание в броню помечается щитом, а в уязвимое место - крестом.`,
+		_const.EN:   `Hitting armor is marked with a shield, and hitting a vulnerable spot is marked with a cross.`,
+		_const.ZhCN: `击中装甲部位会显示盾牌标记，击中弱点会显示十字标记。`,
+	},
+	"text_38": {
+		_const.RU:   `Уязвимые места обычно с тыльной стороны корпуса.`,
+		_const.EN:   `Vulnerable spots are usually on the rear side of the hull.`,
+		_const.ZhCN: `弱点通常位于车身的后侧。`,
+	},
+	"text_39": {
+		_const.RU: `Для перемещения без боя рекомендуется выбрать "походный режим" по клавише
+              [<span style="color: yellow">1</span>].`,
+		_const.EN:   `For moving without combat, it is recommended to select "travel mode" with the [<span style="color: yellow">1</span>] key.`,
+		_const.ZhCN: `为了在不战斗的情况下移动，建议按 [<span style="color: yellow">1</span>] 键选择“行军模式”。`,
+	},
 }
