@@ -46,7 +46,7 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 		dirY /= length
 	}
 
-	// Сила удара основана на ОТНОСИТЕЛЬНОЙ скорости
+	// Сила удара основана на относительной скорости
 	speed1 := collider1.GetCurrentSpeed()
 	speed2 := collider2.GetCurrentSpeed()
 	relativeSpeed := math.Abs(speed1 - speed2)
@@ -59,23 +59,21 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 		ejectForce = maxEjectForce
 	}
 
-	impactForce := relativeSpeed * 0.5
+	impactForce := relativeSpeed
 	minForce := 1.0
 	if impactForce < minForce {
 		impactForce = minForce
 	}
 
-	totalForce := impactForce + ejectForce
+	totalForce := (impactForce + ejectForce) * 5
 	maxTotalForce := 5.0
 	if totalForce > maxTotalForce {
 		totalForce = maxTotalForce
 	}
 
-	// Применяем силу к ОБОИМ участникам
 	vx1, vy1 := collider1.GetVelocity()
 	vx2, vy2 := collider2.GetVelocity()
 
-	// В твоем коде:
 	if collider2.GetType() != "map_item" {
 		powerLoss1 := calculatePowerLoss(collider1, collider2, dirX, dirY, totalForce, weight2)
 		collider1.SetPowerMove(collider1.GetPowerMove() * powerLoss1)
@@ -129,13 +127,13 @@ func applyCollisionRotation(collider1, collider2 collider, dirX, dirY, totalForc
 	vx1, vy1 := collider1.GetVelocity()
 	tangentialDot := (vx1*normalVector.X + vy1*normalVector.Y) * 0.2
 
-	rotationMultiplier := 0.033
+	rotationMultiplier := 0.013
 	rotationForce := 0.03 + (tangentialDot * totalForce * rotationMultiplier)
 
 	massFactor := math.Max(weight2/weight1, 2.0) / 3
 	rotationForce *= massFactor
 
-	maxRotation := 0.5
+	maxRotation := 0.2
 	if math.Abs(rotationForce) > maxRotation {
 		rotationForce = math.Copysign(maxRotation, rotationForce)
 	}
@@ -197,7 +195,7 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 	// Косинус угла между движением и направлением удара
 	dotProduct := currentDirX*dirX + currentDirY*dirY
 
-	// Для подвижных целей проверяем ОТНОСИТЕЛЬНОЕ движение
+	// Для подвижных целей проверяем относительное движение
 	if otherWeight < 20000 {
 		otherVX, otherVY := other.GetVelocity()
 
@@ -205,8 +203,8 @@ func calculatePowerLoss(collider, other collider, dirX, dirY, impactForce, other
 		mySpeedProj := currentVX*dirX + currentVY*dirY
 		otherSpeedProj := otherVX*dirX + otherVY*dirY
 
-		// УНИВЕРСАЛЬНОЕ условие для догоняющих ударов:
-		// Я движусь быстрее цели ВДОЛЬ вектора удара И в том же направлении
+		// универсальное условие для догоняющих ударов:
+		// Я движусь быстрее цели вдоль вектора удара И в том же направлении
 		if mySpeedProj > otherSpeedProj && dotProduct > 0 {
 			// Догоняющий удар - минимальные потери
 			return 0.9 // Всего 10% потерь

@@ -104,8 +104,9 @@ type Object struct {
 	Destroy              bool                `json:"destroy"`
 	placeUserSpecialCell map[string]bool
 
-	Weapons map[int]*detail.BodyWeaponSlot `json:"weapons"`
-	Equips  map[int]*detail.BodyEquipSlot  `json:"equips"`
+	Weapons      map[int]*detail.BodyWeaponSlot `json:"weapons"`
+	Equips       map[int]*detail.BodyEquipSlot  `json:"equips"`
+	IsGameStatic bool                           `json:"-"`
 
 	viewRange  int
 	radarRange int
