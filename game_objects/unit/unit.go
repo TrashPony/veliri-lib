@@ -43,6 +43,7 @@ type Unit struct {
 	BodyTexture    string           `json:"body_texture"`
 	MapID          int32            `json:"map_id"`
 	CurrentMapTime int64            `json:"-"`
+	PlaceType      byte             `json:"-"`
 
 	BossState BossState
 
@@ -744,6 +745,7 @@ func (u *Unit) GetJSON(mapTime int64) []byte {
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.LightsWork()))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, game_math.BoolToByte(u.ForceView))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, u.GetEliteType())
+	u.CacheCreateData.Data = append(u.CacheCreateData.Data, u.PlaceType)
 
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, byte(len([]byte(u.GetBody().Texture))))
 	u.CacheCreateData.Data = append(u.CacheCreateData.Data, []byte(u.GetBody().Texture)...)
@@ -850,6 +852,7 @@ func (u *Unit) GetUpdateData(mapTime int64) []byte {
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.BoolToByte(u.LightsWork()))
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, game_math.GetIntBytes(u.ShieldHP)...)
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, _const.FractionByte[u.Fraction])
+	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, u.PlaceType)
 
 	u.CacheUpdateData.Time = mapTime
 
