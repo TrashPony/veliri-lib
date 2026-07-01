@@ -101,7 +101,7 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 	}
 
 	// Звук удара
-	collisionPower := math.Min(totalForce/10.0, 1.0)
+	collisionPower := math.Min(totalForce/10.0/5.0, 1.0)
 
 	applyCollisionRotation(collider1, collider2, dirX, dirY, totalForce, weight1, weight2)
 
