@@ -91,7 +91,10 @@ func GetWeaponFirePosition(ownerX, ownerY, ownerScale int, ownerRotate float64, 
 	// берем реальную позицию оружия на карте
 	xWeapon, yWeapon := GetWeaponPosInMap(ownerX, ownerY, ownerScale, slotXAttach, slotYAttach, ownerRotate)
 
-	pos := weaponFirePositions[position]
+	pos := &coordinate.Coordinate{}
+	if position < len(weaponFirePositions) {
+		pos = weaponFirePositions[position]
+	}
 
 	// тупо прибовляем позицию атаки, незабывая отнять смещение оружия от 0
 	x := float64(xWeapon) + (float64(pos.X-weaponXAttach) * sizeOffset)

@@ -560,12 +560,13 @@ func CreateBinaryDeactivateInvisibilityMsg(id, x, y int) []byte {
 	return command
 }
 
-func CreateBinaryGravitySquareMsg(x, y, r int) []byte {
+func CreateBinaryGravitySquareMsg(x, y, r, id int) []byte {
 	command := []byte{22}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(r)...)
+	command = append(command, game_math.GetIntBytes(id)...)
 
 	return command
 }

@@ -274,9 +274,15 @@ func (c *Constraints) ApplyConstraint(currentLen float64) {
 			a1 := midPoint.VecTo(p.Position)
 			a2 := a1.Resize((currentLen - c.Length) / 5)
 
-			k := (float64(p.Pinned.Weight) / 2000) * 0.5
-			if k < 1 {
-				k = 1
+			// ммм мои костыли
+			step := 0.25
+			if p.Pinned.ChassisType == "antigravity" {
+				step = 0.75
+			}
+
+			k := (float64(p.Pinned.Weight) / 2000) * step * p.Pinned.GetMoveDrag()
+			if k < 0.5 {
+				k = 0.5
 			}
 
 			if k > 3 {
