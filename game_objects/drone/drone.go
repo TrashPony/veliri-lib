@@ -66,6 +66,14 @@ type Drone struct {
 	mx              sync.RWMutex
 }
 
+func (d *Drone) GetPower() int {
+	return math.MaxInt
+}
+
+func (d *Drone) SetPower(i int) {
+
+}
+
 func (d *Drone) GetAimFilter() *aim_filter.AimFilter {
 	return nil
 }

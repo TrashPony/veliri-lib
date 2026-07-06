@@ -15,10 +15,10 @@ import (
 
 // [eventID, data]
 
-func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte, s bool) []byte {
+func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte, s bool, driftX, driftY int) []byte {
 	// [1[eventID], 4[unitID], 4[speed], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 4[angularVelocity], 4[mpID] 1[animate], 1[direction], 1[sky]]
 
-	command := make([]byte, 47)
+	command := make([]byte, 56)
 
 	command[0] = 1
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(unitID))
@@ -43,6 +43,9 @@ func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity
 
 	command[45] = inputSeq
 	command[46] = game_math.BoolToByte(s)
+
+	game_math.ReuseByteSlice(&command, 47, game_math.GetIntBytes(driftX))
+	game_math.ReuseByteSlice(&command, 51, game_math.GetIntBytes(driftY))
 
 	return command
 }

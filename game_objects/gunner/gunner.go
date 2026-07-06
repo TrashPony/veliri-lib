@@ -33,12 +33,22 @@ type GunUser interface {
 	FractionWarrior() bool
 	OwnerFraction() string
 	GetCorporationID() int
+	GetPower() int
+	SetPower(int)
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) GetPower() int {
+	return g.GunUser.GetPower()
+}
+
+func (g *Gunner) SetPower(e int) {
+	g.GunUser.SetPower(e)
 }
 
 func (g *Gunner) GetReload(weaponNumber int) bool {
