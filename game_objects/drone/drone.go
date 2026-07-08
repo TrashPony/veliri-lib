@@ -11,6 +11,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
+	"github.com/TrashPony/veliri-lib/game_objects/missile_target"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
@@ -56,14 +57,23 @@ type Drone struct {
 	Weapons         map[int]*detail.BodyWeaponSlot `json:"-"`
 	Destroy         bool                           `json:"destroy"`
 
-	zone            *game_math.Positions
-	effects         *effects_store.EffectsStore
-	jobs            []*Job
-	visibleObjects  *visible_objects.VisibleObjectsStore
-	gunner          *gunner.Gunner
-	burstOfShots    *burst_of_shots.BurstOfShots
-	fractionWarrior bool
-	mx              sync.RWMutex
+	missileTargetList *missile_target.MissileTargetList
+	zone              *game_math.Positions
+	effects           *effects_store.EffectsStore
+	jobs              []*Job
+	visibleObjects    *visible_objects.VisibleObjectsStore
+	gunner            *gunner.Gunner
+	burstOfShots      *burst_of_shots.BurstOfShots
+	fractionWarrior   bool
+	mx                sync.RWMutex
+}
+
+func (d *Drone) GetMissileTargetList() *missile_target.MissileTargetList {
+	if d.missileTargetList == nil {
+		d.missileTargetList = &missile_target.MissileTargetList{}
+	}
+
+	return d.missileTargetList
 }
 
 func (d *Drone) GetPower() int {

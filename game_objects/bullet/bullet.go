@@ -57,10 +57,15 @@ type Bullet struct {
 	RadRotate        float64 `json:"-"`
 	AttackUnitID     int     `json:"-"`
 	AttackStructID   int     `json:"-"`
+	LaunchAngle      float64 `json:"-"`
+	TicksAlive       int     `json:"-"`
 
 	AngularVelocity float64 `json:"angular_velocity"`
 	XVelocity       float64 `json:"x_velocity"`
 	YVelocity       float64 `json:"y_velocity"`
+	TargetXVelocity float64 `json:"-"`
+	TargetYVelocity float64 `json:"-"`
+	TargetRotate    float64 `json:"-"`
 
 	CacheJson      []byte `json:"-"`
 	CreateJsonTime int64  `json:"-"`

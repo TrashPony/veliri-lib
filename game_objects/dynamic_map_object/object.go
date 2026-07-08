@@ -14,6 +14,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
+	"github.com/TrashPony/veliri-lib/game_objects/missile_target"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
@@ -150,6 +151,7 @@ type Object struct {
 	attributes              map[string]int
 	countUpdateWeaponTarget int
 	fractionWarrior         bool
+	missileTargetList       *missile_target.MissileTargetList
 	physicalModel           *physical_model.PhysicalModel
 	gunner                  *gunner.Gunner
 	damageManager           damage_manager.DamageManager
@@ -161,6 +163,14 @@ type Object struct {
 	ForceView               bool                         `json:"-"` // видим обьект даже через туман войны, но не получаем его обзор
 	MissionKey              string                       `json:"-"`
 	mx                      sync.RWMutex
+}
+
+func (o *Object) GetMissileTargetList() *missile_target.MissileTargetList {
+	if o.missileTargetList == nil {
+		o.missileTargetList = &missile_target.MissileTargetList{}
+	}
+
+	return o.missileTargetList
 }
 
 type TrapUnit struct {

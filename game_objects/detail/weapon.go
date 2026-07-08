@@ -36,6 +36,7 @@ type Weapon struct {
 	AllowAmmo          []int                    `json:"allow_ammo"`
 	Tech               int                      `json:"tech"`
 	UseEnergyPerShoot  int                      `json:"use_energy_per_shoot"`
+	UseEnergyPerReload int                      `json:"use_energy_per_reload"`
 
 	// оружие накопительного типа (зажатая мышка коит энергию, отпускание выпускает снаряд)
 	AccumulationType             string  `json:"accumulation_type"`

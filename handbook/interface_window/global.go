@@ -149,9 +149,9 @@ var Global = map[string]map[string]string{
 		_const.ZhCN: `<span style="color: yellow">电池电量</span>负责向载具的<span style="color: yellow">储能装置输送能量</span>。如果电量耗尽，产生的能量仅够勉强维持简单移动。`,
 	},
 	"text_30": {
-		_const.RU:   `<span style="color: yellow">Энергия накопителя</span> расходуется на движение, ускорение и использование снаряжения.`,
-		_const.EN:   `<span style="color: yellow">Storage unit energy</span> is consumed for movement, acceleration, and equipment usage.`,
-		_const.ZhCN: `<span style="color: yellow">储能装置的能量</span>用于移动、加速和使用装备。`,
+		_const.RU:   `<span style="color: yellow">Энергия накопителя</span> расходуется на движение, ускорение, использование снаряжения и на выстрелы или перезарядку в зависимости от типа вооружения.`,
+		_const.EN:   `<span style="color: yellow">Storage energy</span> is consumed for movement, acceleration, equipment usage, and for firing or reloading depending on the weapon type.`,
+		_const.ZhCN: `<span style="color: yellow">储能装置的能量</span>用于移动、加速、使用装备，以及根据武器类型进行射击或装填。`,
 	},
 	"text_31": {
 		_const.RU:   `Если <span style="color: yellow">заряд аккумулятора и накопителя</span> одновременно будут пусты, характеристики транспорта будут сильно снижены.`,

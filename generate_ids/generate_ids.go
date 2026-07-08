@@ -11,6 +11,7 @@ var (
 	markIDGenerate           = 0
 	droneIDGenerate          = 0
 	bulletIDGenerate         = 0
+	missileIDGenerate        = 0
 )
 
 func Init(startItems, startBoxes, startDynamicObjects, startReservoirs int) {
@@ -106,4 +107,16 @@ func GetBulletID() int {
 	}
 
 	return bulletIDGenerate
+}
+
+func GetMissileIDGenerate() int {
+	idMx.Lock()
+	defer idMx.Unlock()
+
+	missileIDGenerate++
+	if missileIDGenerate < 0 {
+		missileIDGenerate = 1
+	}
+
+	return missileIDGenerate
 }

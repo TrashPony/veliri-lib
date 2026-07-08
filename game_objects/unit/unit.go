@@ -12,6 +12,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
+	"github.com/TrashPony/veliri-lib/game_objects/missile_target"
 	"github.com/TrashPony/veliri-lib/game_objects/move_path"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
@@ -81,13 +82,14 @@ type Unit struct {
 	FearTimer      int     `json:"-"`
 	FearAngle      float64 `json:"-"`
 
-	effects        *effects_store.EffectsStore
-	visibleObjects *visible_objects.VisibleObjectsStore
-	damageManager  damage_manager.DamageManager
-	BurstOfShots   *burst_of_shots.BurstOfShots `json:"-"`
-	physicalModel  *physical_model.PhysicalModel
-	lights         *LightState
-	pelengator     Pelengator
+	effects           *effects_store.EffectsStore
+	visibleObjects    *visible_objects.VisibleObjectsStore
+	damageManager     damage_manager.DamageManager
+	BurstOfShots      *burst_of_shots.BurstOfShots `json:"-"`
+	physicalModel     *physical_model.PhysicalModel
+	lights            *LightState
+	pelengator        Pelengator
+	missileTargetList *missile_target.MissileTargetList
 
 	gunner *gunner.Gunner
 	meller *gunner.Meleer
@@ -115,6 +117,14 @@ type Unit struct {
 	Decals []Decal
 
 	attributes map[string]int
+}
+
+func (u *Unit) GetMissileTargetList() *missile_target.MissileTargetList {
+	if u.missileTargetList == nil {
+		u.missileTargetList = &missile_target.MissileTargetList{}
+	}
+
+	return u.missileTargetList
 }
 
 type LootConfig struct {

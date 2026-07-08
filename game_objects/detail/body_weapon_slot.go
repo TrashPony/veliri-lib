@@ -6,6 +6,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/aim_filter"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
+	"sync"
 	"time"
 )
 
@@ -45,6 +46,8 @@ type BodyWeaponSlot struct {
 	On                  bool       `json:"-"`
 	IgnorePassAngle     int64      `json:"-"`
 	Group               int        `json:"group"`
+	reloadLock          bool
+	reloadMX            sync.Mutex
 	aimFilter           *aim_filter.AimFilter
 	lastFirePosition    int
 	weaponTarget        *target.Target
@@ -161,7 +164,11 @@ func (s *BodyWeaponSlot) GetLastFirePosition() int {
 }
 
 func (w *Weapon) GetWeaponMaxRange(ammo *ammo.Ammo, lvlMap, mapHeight float64, realBallistic bool) (int, float64) {
-	if (w.Type == "laser" || w.Type == "missile") || (w.MaxRange > 0 && !realBallistic) {
+	if w.Type == "missile" {
+		return ammo.MaxRange, float64(w.MaxAngle)
+	}
+
+	if (w.Type == "laser") || (w.MaxRange > 0 && !realBallistic) {
 		return w.MaxRange, float64(w.MaxAngle)
 	}
 
@@ -281,4 +288,19 @@ func (s *BodyWeaponSlot) GetReloadProgress() float64 {
 	}
 
 	return progress
+}
+
+func (s *BodyWeaponSlot) ReloadLock() bool {
+	if s.reloadLock {
+		return true
+	}
+
+	s.reloadMX.Lock()
+	s.reloadLock = true
+	return false
+}
+
+func (s *BodyWeaponSlot) ReloadUnlock() {
+	s.reloadLock = false
+	s.reloadMX.Unlock()
 }

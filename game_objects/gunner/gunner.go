@@ -5,6 +5,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/burst_of_shots"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"github.com/TrashPony/veliri-lib/game_objects/missile_target"
 	"github.com/TrashPony/veliri-lib/game_objects/physical_model"
 	"github.com/TrashPony/veliri-lib/game_objects/target"
 	"github.com/TrashPony/veliri-lib/game_objects/visible_objects"
@@ -35,12 +36,35 @@ type GunUser interface {
 	GetCorporationID() int
 	GetPower() int
 	SetPower(int)
+	GetMissileTargetList() *missile_target.MissileTargetList
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) GetMissileTargetList() *missile_target.MissileTargetList {
+	return g.GunUser.GetMissileTargetList()
+}
+
+func (g *Gunner) ReloadLock(weaponNumber int) bool {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws == nil {
+		return false
+	}
+
+	return ws.ReloadLock()
+}
+
+func (g *Gunner) ReloadUnlock(weaponNumber int) {
+	ws := g.GunUser.GetWeaponSlot(weaponNumber)
+	if ws == nil {
+		return
+	}
+
+	ws.ReloadUnlock()
 }
 
 func (g *Gunner) GetPower() int {
@@ -284,7 +308,11 @@ func (g *Gunner) GetWeaponMinRange(lvlMap float64, slotNumber int) (int, float64
 		return 0, 0
 	}
 
-	if weaponSlot.Weapon.Type == "laser" || weaponSlot.Weapon.Type == "missile" {
+	if weaponSlot.Weapon.Type == "missile" {
+		return weaponSlot.Ammo.MaxRange, float64(weaponSlot.Weapon.MinAngle)
+	}
+
+	if weaponSlot.Weapon.Type == "laser" {
 		return weaponSlot.Weapon.MinRange, float64(weaponSlot.Weapon.MinAngle)
 	}
 

@@ -36,6 +36,7 @@ type Ammo struct {
 	DistSpread             int         `json:"dist_spread"` // 1-100, 100 - нет рассеивания, 1 - рассеивание х100
 	AdditionalAmmoID       int         `json:"additional_ammo_id"`
 	Tech                   int         `json:"tech"`
+	MaxRange               int         `json:"max_range"`
 }
 
 func (a *Ammo) GetName() string {
