@@ -617,7 +617,7 @@ func ZoneHealRun(x, y, count, radius, unitID, typeAnimate int) []byte {
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
-	command = append(command, byte(count))
+	command = append(command, byte(count/100))
 	command = append(command, byte(radius))
 	command = append(command, game_math.GetIntBytes(unitID)...)
 	command = append(command, byte(typeAnimate))
