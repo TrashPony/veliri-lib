@@ -15,8 +15,14 @@ type Effect struct {
 	Fraction     string `json:"-"`
 	StandardSize int    `json:"ss"`
 	// ячейки эквипа, что бы удалять потом эффекты
-	SlotType   int `json:"-"`
-	SlotNumber int `json:"-"`
+	SlotType   int    `json:"-"`
+	SlotNumber int    `json:"-"`
+	Angle      int    `json:"-"`
+	X          int    `json:"-"`
+	Y          int    `json:"-"`
+	IsModule   bool   `json:"-"`
+	ModuleID   byte   `json:"-"`
+	ModuleType string `json:"-"`
 }
 
 func (e *Effect) ToAccept(startValue float64, parameter string) float64 {

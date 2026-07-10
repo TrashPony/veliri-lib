@@ -80,9 +80,10 @@ type Body struct {
 	Attributes          map[string]int                 `json:"attributes"`
 	AdditionalInventory map[string]AdditionalInventory `json:"additional_inventory"`
 
-	DamageZones []DamageZone `json:"damage_zones"`
-	Variants    []int        `json:"variants"`
-	mx          sync.RWMutex
+	DamageZones   []DamageZone   `json:"damage_zones"`
+	DamageModules []DamageModule `json:"damage_modules"`
+	Variants      []int          `json:"variants"`
+	mx            sync.RWMutex
 }
 
 type AdditionalInventory struct {
@@ -99,6 +100,18 @@ func (a *AdditionalInventory) SetCapSize(c int) {
 	a.CapacitySize = c
 }
 
+type DamageModule struct {
+	StartAngle int    `json:"start_angle"`
+	EndAngle   int    `json:"end_angle"`
+	Type       string `json:"type"` // "chassis", "weapon", "reactor", "engine", "ammo_storage", "sensors", "shield_generator"
+	MaxHP      int    `json:"max_hp"`
+	CurrentHP  int    `json:"current_hp"`
+	Count      int    `json:"count"`
+	Damage     bool   `json:"damage"`
+	RepairTime int    `json:"repair_time"`
+	ID         byte   `json:"id"`
+}
+
 type DamageZone struct {
 	StartAngle int     `json:"start_angle"`
 	EndAngle   int     `json:"end_angle"`
@@ -109,6 +122,22 @@ func (body *Body) GetDamageZoneByAngle(angle int) *DamageZone {
 	for _, z := range body.DamageZones {
 		if z.StartAngle <= angle && z.EndAngle >= angle {
 			return &z
+		}
+	}
+
+	for _, z := range body.DamageZones {
+		if z.StartAngle <= z.EndAngle {
+			// Обычный случай: модуль не пересекает 0°
+			// Проверяем: start <= angle <= end
+			if z.StartAngle <= angle && z.EndAngle >= angle {
+				return &z
+			}
+		} else {
+			// Модуль пересекает 0° (например, 350-10)
+			// Проверяем: angle >= start ИЛИ angle <= end
+			if angle >= z.StartAngle || angle <= z.EndAngle {
+				return &z
+			}
 		}
 	}
 

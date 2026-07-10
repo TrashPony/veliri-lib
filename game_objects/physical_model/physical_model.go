@@ -24,6 +24,7 @@ type PhysicalModel struct {
 	PowerLeft              float64                         `json:"power_left"`       // сила движения влево для антиграва
 	PowerRight             float64                         `json:"power_right"`      // сила движения влево для антиграва
 	AngularVelocity        float64                         `json:"angular_velocity"` // скорость поворота, текущая
+	AngularVelocityTilt    float64                         `json:"angular_velocity_tilt"`
 	AngularVelocityK       float64                         `json:"angular_velocity_k"`
 	XVelocity              float64                         `json:"x_velocity"`     // вектор х
 	YVelocity              float64                         `json:"y_velocity"`     // вектор у
@@ -308,6 +309,10 @@ func (m *PhysicalModel) SetAngularVelocityK(ak float64) {
 func (m *PhysicalModel) GetAngularVelocity() float64 {
 	if m.AngularVelocityK > 0 {
 		return m.AngularVelocity * m.AngularVelocityK
+	}
+
+	if m.AngularVelocityTilt != 0 {
+		return m.AngularVelocity + (m.AngularVelocityTilt * (m.GetCurrentSpeed() * 0.05))
 	}
 
 	return m.AngularVelocity

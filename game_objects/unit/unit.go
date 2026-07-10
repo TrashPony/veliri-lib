@@ -90,6 +90,7 @@ type Unit struct {
 	lights            *LightState
 	pelengator        Pelengator
 	missileTargetList *missile_target.MissileTargetList
+	damageModules     damageModuleManager
 
 	gunner *gunner.Gunner
 	meller *gunner.Meleer
@@ -383,6 +384,14 @@ func (u *Unit) Invisibility() bool {
 
 func (u *Unit) GetEffectByUUID(uuid string) *effect.Effect {
 	return u.GetEffects().GetEffectByUUID(uuid)
+}
+
+func (u *Unit) GetEffectByUUIDContains(uuid string) *effect.Effect {
+	return u.GetEffects().GetEffectByUUIDContains(uuid)
+}
+
+func (u *Unit) GetDamageModuleEffects() []*effect.Effect {
+	return u.GetEffects().GetDamageModuleEffects()
 }
 
 func (u *Unit) GetGunner() *gunner.Gunner {

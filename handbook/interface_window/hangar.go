@@ -572,4 +572,9 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `s`,
 		_const.ZhCN: `秒`,
 	},
+	"text_31": {
+		_const.RU:   `Нельзя упаковать повреждённый корпус.`,
+		_const.EN:   `Cannot pack a damaged hull.`,
+		_const.ZhCN: `无法打包损坏的船体。`,
+	},
 }

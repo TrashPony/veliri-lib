@@ -1740,3 +1740,17 @@ func CreateLockTargetMsg(data []byte) []byte {
 
 	return command
 }
+
+func CreateDamagModuleMsg(data []byte) []byte {
+	command := []byte{128}
+	command = append(command, data...)
+
+	return command
+}
+
+func CreateAffectDamageModuleMsg(data []byte) []byte {
+	command := []byte{129}
+	command = append(command, data...)
+
+	return command
+}

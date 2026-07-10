@@ -2,6 +2,7 @@ package effects_store
 
 import (
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
+	"strings"
 	"sync"
 )
 
@@ -93,6 +94,33 @@ func (e *EffectsStore) GetEffectByUUID(uuid string) *effect.Effect {
 	}
 
 	return nil
+}
+
+func (e *EffectsStore) GetEffectByUUIDContains(uuid string) *effect.Effect {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+
+	for _, ef := range e.Effects {
+		if strings.Contains(ef.UUID, uuid) {
+			return ef
+		}
+	}
+
+	return nil
+}
+
+func (e *EffectsStore) GetDamageModuleEffects() []*effect.Effect {
+	e.mx.Lock()
+	defer e.mx.Unlock()
+
+	effects := make([]*effect.Effect, 0)
+	for _, ef := range e.Effects {
+		if ef.IsModule {
+			effects = append(effects, ef)
+		}
+	}
+
+	return effects
 }
 
 func (e *EffectsStore) GetCountByName(parameter string, percent bool) int {
