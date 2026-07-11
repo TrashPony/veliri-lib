@@ -116,7 +116,7 @@ func (u *Unit) DamageModule(bulletX, bulletY, damage int) (string, int, byte) {
 			}
 		}
 
-		z.CurrentHP -= damage
+		z.CurrentHP -= int(float64(damage) * 0.01)
 		if z.CurrentHP <= 0 {
 
 			z.Damage = true
