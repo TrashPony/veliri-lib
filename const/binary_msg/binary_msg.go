@@ -1754,3 +1754,16 @@ func CreateAffectDamageModuleMsg(data []byte) []byte {
 
 	return command
 }
+
+func CreateBulletBinaryExplosionByUnitID(typeID, x, y, z, unitID int) []byte {
+
+	command := []byte{130}
+
+	command = append(command, byte(typeID))
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(z)...)
+	command = append(command, game_math.GetIntBytes(unitID)...)
+
+	return command
+}
