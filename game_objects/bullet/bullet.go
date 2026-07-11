@@ -47,6 +47,8 @@ type Bullet struct {
 	IgnoreShieldUnitID   int            `json:"-"`
 	NoExplosion          bool           `json:"-"`
 	AttachUnitID         int            `json:"-"`
+	TimeOut              int            `json:"-"`
+	UpdatePos            func()         `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
