@@ -238,6 +238,7 @@ func (u *Unit) GetBinDataModules() []byte {
 	for _, m := range u.damageModules.damageModules {
 		bytes = append(bytes, moduleToByte[m.Type])
 		bytes = append(bytes, byte((float64(m.CurrentHP)/float64(m.MaxHP))*100))
+		bytes = append(bytes, game_math.BoolToByte(m.Damage))
 	}
 
 	return bytes
