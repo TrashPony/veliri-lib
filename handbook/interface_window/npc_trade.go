@@ -48,4 +48,20 @@ var NPCTrade = map[string]map[string]string{
 		_const.EN:   `Buy`,
 		_const.ZhCN: `购买`,
 	},
+	"tip_1": {
+		_const.RU:   `<span class="importantly" style="color: #faca3e;">Внимание!</span> Торговля нелегальным товаром приведёт к потере репутации.`,
+		_const.EN:   `<span class="importantly" style="color: #faca3e;">Warning!</span> Trading illegal goods will lead to a loss of reputation.`,
+		_const.ZhCN: `<span class="importantly" style="color: #faca3e;">注意！</span> 交易非法商品将导致声望下降。`,
+	},
+	"tip_2": {
+		_const.RU: `<p>Налогообразующий товар.</p>
+        <p>Минимальный налог базы доступен, если количество всех необходимых товаров превышает 20%. Если товаров меньше 20%, налог базы начинает расти.</p>
+        <p>Если необходимого товара совсем нет на базе, налог растёт по формуле: 75% / количество налогообразующих товаров.</p>`,
+		_const.EN: `<p>Tax-forming goods.</p>
+        <p>The minimum base tax is available if the quantity of all required goods exceeds 20%. If the goods are below 20%, the base tax begins to increase.</p>
+        <p>If a required good is completely absent from the base, the tax increases according to the formula: 75% / number of tax-forming goods.</p>`,
+		_const.ZhCN: `<p>税基商品。</p>
+        <p>当所有必需商品的数量超过20%时，基地适用最低税率。若商品数量低于20%，税率将开始上升。</p>
+        <p>如果基地完全没有某种必需商品，则税率按公式计算：75% / 税基商品数量。</p>`,
+	},
 }

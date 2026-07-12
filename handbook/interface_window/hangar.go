@@ -577,4 +577,44 @@ var Hangar = map[string]map[string]string{
 		_const.EN:   `Cannot pack a damaged hull.`,
 		_const.ZhCN: `无法打包损坏的船体。`,
 	},
+	"module_chassis_antigravity": {
+		_const.RU:   "<p><b>Антиграв</b> - обеспечивает полёт и маневрирование транспорта.</p><p>При разрушении транспорт теряет управление на 3 секунды, после чего получает постоянный штраф к скорости и повороту.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Antigrav</b> - provides flight and maneuvering of the vehicle.</p><p>Upon destruction, the vehicle loses control for 3 seconds, after which it receives a permanent penalty to speed and turning.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>反重力</b> - 提供载具的飞行和机动能力。</p><p>摧毁后，载具失去控制3秒，之后获得速度和转向的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_chassis": {
+		_const.RU:   "<p><b>Ходовая часть</b> - обеспечивает передвижение транспорта.</p><p>При разрушении транспорт полностью останавливается на 3 секунды, после чего получает постоянный штраф к скорости и повороту.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Chassis</b> - provides vehicle movement.</p><p>Upon destruction, the vehicle stops completely for 3 seconds, after which it receives a permanent penalty to speed and turning.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>底盘</b> - 提供载具移动能力。</p><p>摧毁后，载具完全停止3秒，之后获得速度和转向的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_weapon": {
+		_const.RU:   "<p><b>Орудие</b> - нельзя уничтожить, если не установлено.</p><p>При разрушении происходит взрыв, наносящий урон транспорту. Оружие нельзя использовать 3 секунды, а также получает постоянный штраф к урону и скорости поворота.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Weapon</b> - cannot be destroyed if not installed.</p><p>Upon destruction, an explosion occurs, damaging the vehicle. The weapon cannot be used for 3 seconds and receives a permanent penalty to damage and rotation speed.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>武器</b> - 若未安装则无法摧毁。</p><p>摧毁时发生爆炸，对载具造成伤害。武器3秒内无法使用，并获得伤害和旋转速度的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_reactor": {
+		_const.RU:   "<p><b>Аккумулятор</b> - отвечает за накопление энергии.</p><p>При разрушении происходит взрыв, наносящий урон транспорту. После взрыва модуль получает постоянный штраф к скорости зарядки.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Battery</b> - responsible for energy storage.</p><p>Upon destruction, an explosion occurs, damaging the vehicle. After the explosion, the module receives a permanent penalty to recharge speed.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>电池</b> - 负责能量储存。</p><p>摧毁时发生爆炸，对载具造成伤害。爆炸后，模块获得充电速度的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_engine": {
+		_const.RU:   "<p><b>Двигатель</b> - отвечает за ускорение.</p><p>При разрушении транспорт останавливается на 3 секунды. После получает штраф к максимальной скорости и ускорению.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Engine</b> - responsible for acceleration.</p><p>Upon destruction, the vehicle stops for 3 seconds. After that, it receives a penalty to maximum speed and acceleration.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>引擎</b> - 负责加速。</p><p>摧毁后，载具停止3秒，之后获得最大速度和加速的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_ammo_storage": {
+		_const.RU:   "<p><b>Боеприпасы</b> - если в орудии есть боеприпасы, они могут детонировать.</p><p>При детонации транспорт получает урон от взрыва. Оружие нельзя использовать 3 секунды, а также получает постоянный штраф к скорострельности и перезарядке.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Ammo Storage</b> - if the weapon has ammunition, they may detonate.</p><p>Upon detonation, the vehicle takes damage from the explosion. The weapon cannot be used for 3 seconds and receives a permanent penalty to fire rate and reload speed.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>弹药储存</b> - 如果武器中有弹药，可能引发爆炸。</p><p>爆炸时载具受到伤害。武器3秒内无法使用，并获得射速和装填速度的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_sensors": {
+		_const.RU:   "<p><b>Оптика</b> - отвечает за дальность обзора.</p><p>При разрушении транспорт полностью слепнет на 3 секунды. После получает штраф к дальности обзора.</p><p>Штраф: <b>%COUNT%%</b></p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Sensors</b> - responsible for view range.</p><p>Upon destruction, the vehicle is completely blind for 3 seconds. After that, it receives a penalty to view range.</p><p>Penalty: <b>%COUNT%%</b></p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>传感器</b> - 负责视野范围。</p><p>摧毁后，载具完全失明3秒，之后获得视野范围的永久惩罚。</p><p>惩罚：<b>%COUNT%%</b></p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
+	"module_shield_generator": {
+		_const.RU:   "<p><b>Щиты</b> - отвечают за поддержание и регенерацию щита корпуса.</p><p>При разрушении транспорт теряет свой щит.</p><p>Прочность: <b>%MAXHP% HP</b></p>",
+		_const.EN:   "<p><b>Shields</b> - responsible for maintaining and regenerating the hull shield.</p><p>Upon destruction, the vehicle loses its shield.</p><p>Durability: <b>%MAXHP% HP</b></p>",
+		_const.ZhCN: "<p><b>护盾</b> - 负责维持和恢复船体护盾。</p><p>摧毁后，载具失去护盾。</p><p>耐久度：<b>%MAXHP% HP</b></p>",
+	},
 }
