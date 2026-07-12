@@ -94,12 +94,12 @@ const (
 	DefaultUnionRelations   = 50
 	DefaultHostileRelations = -50
 
-	ChangeRelationFailTrade       = 0.0001   // 0.001% * (count + default_price)
-	ChangeRelationTrade           = 0.000002 // 0.000001% * (count + default_price)
-	ChangeRelationProcess         = 0.0001   // 0.01% * count
-	ChangeRelationKill            = 0.006    // 6%
-	ChangeRelationMissionComplete = 0.05     // 20%
-	ChangeRelationSectorCapture   = 0.05     // 20%
+	ChangeRelationFailTrade       = 0.00005 // 0.001% * (count + default_price)
+	ChangeRelationTrade           = 0.00002 // 0.000001% * (count + default_price)
+	ChangeRelationProcess         = 0.0001  // 0.01% * count
+	ChangeRelationKill            = 0.006   // 6%
+	ChangeRelationMissionComplete = 0.05    // 20%
+	ChangeRelationSectorCapture   = 0.05    // 20%
 
 	LaserWeapon    = "laser"
 	FirearmsWeapon = "firearms"
