@@ -98,4 +98,19 @@ var Mail = map[string]map[string]string{
 		_const.EN:   `The message has been sent.`,
 		_const.ZhCN: `消息已发送。`,
 	},
+	"error_2": {
+		_const.RU:   `Нельзя отправить сообщение самому себе.`,
+		_const.EN:   `You cannot send a message to yourself.`,
+		_const.ZhCN: `不能给自己发送消息。`,
+	},
+	"map": {
+		_const.RU:   `карта`,
+		_const.EN:   `map`,
+		_const.ZhCN: `地图`,
+	},
+	"cancel": {
+		_const.RU:   `Отмена`,
+		_const.EN:   `Cancel`,
+		_const.ZhCN: `取消`,
+	},
 }

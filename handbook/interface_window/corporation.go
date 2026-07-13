@@ -1150,4 +1150,9 @@ var Corporation = map[string]map[string]string{
 		_const.EN:   `Tax`,
 		_const.ZhCN: `税收`,
 	},
+	"no_allow_change_role": {
+		_const.RU:   `Нельзя сменить роль лидера или свою.`,
+		_const.EN:   `Cannot change leader or your own role.`,
+		_const.ZhCN: `不能更改领导者或自己的角色。`,
+	},
 }

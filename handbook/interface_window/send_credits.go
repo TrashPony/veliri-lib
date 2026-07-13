@@ -258,4 +258,24 @@ var SendCredits = map[string]map[string]string{
 		_const.EN:   `Created chips sent to warehouse`,
 		_const.ZhCN: `芯片已发送到仓库`,
 	},
+	"send_credits_not_allow": {
+		_const.RU:   `Перевод кредитов запрещён.`,
+		_const.EN:   `Credit transfer is not allowed.`,
+		_const.ZhCN: `禁止转账信用点。`,
+	},
+	"send_credits_player_not_find": {
+		_const.RU:   `Пользователь не найден.`,
+		_const.EN:   `User not found.`,
+		_const.ZhCN: `用户未找到。`,
+	},
+	"send_credits_player_is_bot": {
+		_const.RU:   `Невозможно перевести кредиты этому пользователю.`,
+		_const.EN:   `Cannot transfer credits to this user.`,
+		_const.ZhCN: `无法向此用户转账信用点。`,
+	},
+	"send_credits_send_to_myself": {
+		_const.RU:   `Нельзя перевести кредиты самому себе.`,
+		_const.EN:   `You cannot transfer credits to yourself.`,
+		_const.ZhCN: `不能给自己转账信用点。`,
+	},
 }
