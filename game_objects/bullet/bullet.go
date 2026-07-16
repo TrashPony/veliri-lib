@@ -49,6 +49,9 @@ type Bullet struct {
 	AttachUnitID         int            `json:"-"`
 	TimeOut              int            `json:"-"`
 	UpdatePos            func()         `json:"-"`
+	DrawTargetZone       bool           `json:"-"`
+	PredictedX           int            `json:"-"`
+	PredictedY           int            `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool

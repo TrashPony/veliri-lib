@@ -34,15 +34,39 @@ type MissileTarget struct {
 
 type MissileTargetList struct {
 	targets []*MissileTarget
+	update  bool
 	mx      sync.Mutex
+}
+
+func (m *MissileTargetList) ClearUpdate(time int) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	if !m.update {
+		m.add(nil, time)
+	}
+
+	m.update = false
 }
 
 func (m *MissileTargetList) Add(target *MissileTarget, time int) {
 	m.mx.Lock()
 	defer m.mx.Unlock()
+	m.add(target, time)
+}
+
+func (m *MissileTargetList) add(target *MissileTarget, time int) {
 
 	if m.targets == nil {
 		m.targets = make([]*MissileTarget, 0)
+	}
+
+	if m.update {
+		return
+	}
+
+	if target != nil {
+		m.update = true
 	}
 
 	found := false

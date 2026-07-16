@@ -315,6 +315,10 @@ func (body *Body) InitEquipSlots() {
 	body.equippingV = make(map[int]*BodyEquipSlot)
 }
 
+func (body *Body) AddWeaponSlot(slot *BodyWeaponSlot) {
+	body.Weapons[slot.Number] = slot
+}
+
 func (body *Body) AddEquipSlot(slot *BodyEquipSlot) {
 	if slot.Type == 1 {
 		body.equippingI[slot.Number] = slot

@@ -15,10 +15,11 @@ import (
 
 // [eventID, data]
 
-func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool, unixMs int64, vx, vy int, inputSeq byte, s bool, driftX, driftY int) []byte {
+func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity int, animate, direction, sky, a, d, w, sp bool,
+	unixMs int64, vx, vy int, inputSeq byte, s bool, driftX, driftY int, teleport bool) []byte {
 	// [1[eventID], 4[unitID], 4[speed], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 4[angularVelocity], 4[mpID] 1[animate], 1[direction], 1[sky]]
 
-	command := make([]byte, 56)
+	command := make([]byte, 57)
 
 	command[0] = 1
 	game_math.ReuseByteSlice(&command, 1, game_math.GetIntBytes(unitID))
@@ -46,6 +47,7 @@ func CreateBinaryUnitMoveMsg(unitID, speed, x, y, z, ms, rotate, angularVelocity
 
 	game_math.ReuseByteSlice(&command, 47, game_math.GetIntBytes(driftX))
 	game_math.ReuseByteSlice(&command, 51, game_math.GetIntBytes(driftY))
+	command[55] = game_math.BoolToByte(teleport)
 
 	return command
 }
@@ -485,12 +487,14 @@ func CreateBinaryMissileDefenseMsg(x, y, toX, toY int) []byte {
 	return command
 }
 
-func CreateBinaryPlaneMineMsg(x, y, r int) []byte {
+func CreateBinaryPlaneMineMsg(x, y, r, t, unitID int) []byte {
 	command := []byte{28}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(r)...)
+	command = append(command, byte(t))
+	command = append(command, game_math.GetIntBytes(unitID)...)
 
 	return command
 }
@@ -528,12 +532,18 @@ func CreateBodyCollision(x, y, m int) []byte {
 	return command
 }
 
-func CreateBinaryJumpMsg(x, y, a int) []byte {
+func CreateBinaryJumpMsg(x, y, radius, duration, t, unitID, angle int) []byte {
 	command := []byte{31}
+
+	// duration 1 == 10 ms
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
-	command = append(command, game_math.GetIntBytes(a)...)
+	command = append(command, game_math.GetIntBytes(radius)...)
+	command = append(command, byte(duration/10))
+	command = append(command, byte(t))
+	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, game_math.GetIntBytes(angle)...)
 
 	return command
 }
@@ -1664,6 +1674,8 @@ type BossAttackMsg struct {
 	Angle      int
 	A          int // В зависимости от типа эти переменные должны соотвествовать полям
 	B          int // line (A- Length, B- Width), cone (A- Spread (угол раскрытия конуса), B- Range (если не указано то бесконечная длина)), circle (A-Radius)
+	MS         int // time_out, если 0 то не пропадает
+	Alpha      int // прозрачность 0-100%
 }
 
 func CreateBossAttackMsg(msgs []BossAttackMsg) []byte {
@@ -1680,6 +1692,9 @@ func CreateBossAttackMsg(msgs []BossAttackMsg) []byte {
 
 		command = append(command, game_math.GetIntBytes(msg.A)...)
 		command = append(command, game_math.GetIntBytes(msg.B)...)
+
+		command = append(command, byte(msg.MS))
+		command = append(command, byte(msg.Alpha))
 	}
 
 	return command
@@ -1764,6 +1779,33 @@ func CreateBulletBinaryExplosionByUnitID(typeID, x, y, z, unitID int) []byte {
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(z)...)
 	command = append(command, game_math.GetIntBytes(unitID)...)
+
+	return command
+}
+
+func CreateEnergyTetherBinMsg(x, y, toX, toY, ms int, t string, id int, tt string, tid, te int) []byte {
+
+	command := []byte{131}
+
+	command = append(command, game_math.GetIntBytes(x)...)
+	command = append(command, game_math.GetIntBytes(y)...)
+	command = append(command, game_math.GetIntBytes(toX)...)
+	command = append(command, game_math.GetIntBytes(toY)...)
+	command = append(command, game_math.GetIntBytes(ms)...)
+	command = append(command, byte(_const.MapBinItems[t]))
+	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, byte(_const.MapBinItems[tt]))
+	command = append(command, game_math.GetIntBytes(tid)...)
+	command = append(command, byte(te))
+
+	return command
+}
+
+func CreateWarCamBinMsg(warCam bool) []byte {
+
+	command := []byte{132}
+
+	command = append(command, game_math.BoolToByte(warCam))
 
 	return command
 }

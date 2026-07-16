@@ -79,3 +79,11 @@ func (j *Jammer) GetEquipSlot() *detail.BodyEquipSlot {
 func (j *Jammer) SetEquipSlot(equip *detail.BodyEquipSlot) {
 	j.equipSlot = equip
 }
+
+func (j *Jammer) GetCurrentReload() int {
+	return j.CurrentReload
+}
+
+func (j *Jammer) SetCurrentReload(reload int) {
+	j.CurrentReload = reload
+}

@@ -71,12 +71,12 @@ func (s *BodyEquipSlot) StartReload() {
 	}
 }
 
-func (s *BodyEquipSlot) StartReloadWithMultiplier(k int) {
+func (s *BodyEquipSlot) StartReloadWithMultiplier(k float64) {
 	if k <= 0 {
 		return
 	}
 
-	reload := s.Equip.Reload * k
+	reload := int(float64(s.Equip.Reload) * k)
 	s.SetReload(true)
 	s.SetCurrentReload(reload)
 

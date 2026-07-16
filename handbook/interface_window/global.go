@@ -73,10 +73,20 @@ var Global = map[string]map[string]string{
 		_const.EN:   `LMB`,
 		_const.ZhCN: `左键`,
 	},
+	"text_40": {
+		_const.RU:   `ПКМ`,
+		_const.EN:   `RMB`,
+		_const.ZhCN: `右键`,
+	},
 	"text_14": {
-		_const.RU:   `атака.`,
-		_const.EN:   `attack.`,
-		_const.ZhCN: `攻击。`,
+		_const.RU:   `атака орудием 1.`,
+		_const.EN:   `gun attack 1.`,
+		_const.ZhCN: `火炮攻击1.`,
+	},
+	"text_41": {
+		_const.RU:   `атака орудием 2.`,
+		_const.EN:   `gun attack 2.`,
+		_const.ZhCN: `火炮攻击2.`,
 	},
 	"text_15": {
 		_const.RU:   `Зеленая дуга`,
@@ -181,6 +191,11 @@ var Global = map[string]map[string]string{
               помогает точнее позиционировать машинку в мире.`,
 		_const.EN:   `Brake [<span style="color: yellow">space</span>] - helps position your vehicle more precisely in the world.`,
 		_const.ZhCN: `刹车 [<span style="color: yellow">空格</span>] - 帮助你在世界中更精准地定位载具。`,
+	},
+	"text_43": {
+		_const.RU:   `Используй снаряжение для повышения боевой эффективности [<span style="color: yellow">F</span>][<span style="color: yellow">Q</span>][<span style="color: yellow">5</span>].`,
+		_const.EN:   `Use equipment to enhance combat effectiveness [<span style="color: yellow">F</span>][<span style="color: yellow">Q</span>][<span style="color: yellow">5</span>].`,
+		_const.ZhCN: `使用装备提升战斗效率 [<span style="color: yellow">F</span>][<span style="color: yellow">Q</span>][<span style="color: yellow">5</span>].`,
 	},
 	"text_35": {
 		_const.RU: `<p>Для повышения выживаемости активируй щит [<span

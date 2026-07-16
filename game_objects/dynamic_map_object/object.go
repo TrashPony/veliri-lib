@@ -12,6 +12,8 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/coordinate"
 	"github.com/TrashPony/veliri-lib/game_objects/damage_manager"
 	"github.com/TrashPony/veliri-lib/game_objects/detail"
+	"github.com/TrashPony/veliri-lib/game_objects/effect"
+	"github.com/TrashPony/veliri-lib/game_objects/effects_store"
 	"github.com/TrashPony/veliri-lib/game_objects/gunner"
 	"github.com/TrashPony/veliri-lib/game_objects/inventory"
 	"github.com/TrashPony/veliri-lib/game_objects/missile_target"
@@ -148,6 +150,7 @@ type Object struct {
 	DestroyTimer     int    `json:"-"`
 	CacheGeoData     []byte `json:"-"`
 
+	effects                 *effects_store.EffectsStore
 	attributes              map[string]int
 	countUpdateWeaponTarget int
 	fractionWarrior         bool
@@ -251,6 +254,7 @@ func (o *Object) UpdateWeaponsState() {
 		}
 
 		if wSlot.Weapon != nil {
+			o.appendWeaponDamageModifier(wSlot.Number)
 			slotState.Accuracy = wSlot.Weapon.Accuracy
 			slotState.RotateSpeed = wSlot.Weapon.RotateSpeed
 			slotState.ReloadTime = wSlot.Weapon.ReloadTime
@@ -258,8 +262,8 @@ func (o *Object) UpdateWeaponsState() {
 		}
 
 		if wSlot.Ammo != nil {
-			slotState.MaxDamage = int(float64(wSlot.Ammo.MaxDamage) * wSlot.Weapon.DamageModifier)
-			slotState.MinDamage = int(float64(wSlot.Ammo.MinDamage) * wSlot.Weapon.DamageModifier)
+			slotState.MaxDamage = o.getMaxDamage(wSlot.Number)
+			slotState.MinDamage = o.getMinDamage(wSlot.Number)
 		}
 
 		o.gunner.WeaponSlotsState = append(o.gunner.WeaponSlotsState, slotState)
@@ -884,4 +888,62 @@ func (o *Object) GetObjectZone() *game_math.Positions {
 
 func (o *Object) IsDestroyed() bool {
 	return o.Destroy
+}
+
+func (o *Object) AddEffect(newEffect *effect.Effect) bool {
+	add := o.GetEffects().AddEffect(newEffect)
+	if add {
+		o.UpdateWeaponsState()
+	}
+
+	return add
+}
+
+func (o *Object) RemoveEffect(uuid string) bool {
+	remove, _ := o.GetEffects().RemoveEffect(uuid)
+	return remove
+}
+
+func (o *Object) GetEffects() *effects_store.EffectsStore {
+	if o.effects == nil {
+		o.effects = &effects_store.EffectsStore{}
+	}
+
+	return o.effects
+}
+
+func (o *Object) getMaxDamage(weaponSlotNumber int) int {
+	weaponSlot := o.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(math.Ceil(o.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MaxDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (o *Object) getMinDamage(weaponSlotNumber int) int {
+	weaponSlot := o.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot == nil || weaponSlot.Weapon == nil || weaponSlot.Ammo == nil {
+		return 0
+	}
+	return int(math.Ceil(o.GetEffects().GetAllWeaponBonus(float64(weaponSlot.Ammo.MinDamage), "damage", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)))
+}
+
+func (o *Object) appendWeaponDamageModifier(weaponSlotNumber int) {
+	o.RemoveEffect("weapon_damage_modifier")
+	weaponSlot := o.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot != nil && weaponSlot.Weapon != nil && weaponSlot.Weapon.DamageModifier != 1 {
+		damageModifier := 100 - (weaponSlot.Weapon.DamageModifier * 100)
+		subtract := damageModifier > 0
+		if damageModifier < 0 {
+			damageModifier *= -1
+		}
+
+		o.GetEffects().AddEffect(&effect.Effect{
+			UUID:        "weapon_damage_modifier",
+			Parameter:   "damage",
+			Quantity:    int(damageModifier),
+			Percentages: true,
+			Subtract:    subtract,
+		})
+	}
 }

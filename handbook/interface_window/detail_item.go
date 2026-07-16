@@ -960,6 +960,21 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   "Periodic contact damage",
 		_const.ZhCN: "接触周期性伤害",
 	},
+	"ch_174": {
+		_const.RU:   "Шанс попасть в ракету",
+		_const.EN:   "Chance to hit a rocket",
+		_const.ZhCN: "命中火箭的概率",
+	},
+	"ch_175": {
+		_const.RU:   "Шанс попасть в дрона",
+		_const.EN:   "Chance to hit a drone",
+		_const.ZhCN: "命中无人机的概率",
+	},
+	"ch_176": {
+		_const.RU:   "Перезарядка после отключения",
+		_const.EN:   "Reload after shutdown",
+		_const.ZhCN: "关机后重新装填",
+	},
 	// DetailItem
 	"text_1": {
 		_const.RU:   `примерная цена: <span class="importantly">%credits_count%</span> cr.`,

@@ -30,4 +30,5 @@ type Object struct {
 	UnitShield        bool                            `json:"-"`
 	DestroyUnitShield bool                            `json:"-"`
 	Type              byte                            `json:"-"`
+	OwnerPlayerID     int                             `json:"-"`
 }

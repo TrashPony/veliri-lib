@@ -56,6 +56,7 @@ type Drone struct {
 	WorkTime        int                            `json:"-"`
 	Weapons         map[int]*detail.BodyWeaponSlot `json:"-"`
 	Destroy         bool                           `json:"destroy"`
+	Reload          bool                           `json:"reload"`
 
 	missileTargetList *missile_target.MissileTargetList
 	zone              *game_math.Positions
@@ -264,6 +265,7 @@ func (d *Drone) UpdateWeaponsState() {
 		}
 
 		if wSlot.Weapon != nil {
+			d.appendWeaponDamageModifier(wSlot.Number)
 			slotState.Accuracy = d.getGunAccuracy(wSlot.Number)
 			slotState.RotateSpeed = d.getGunRotateSpeed(wSlot.Number)
 			slotState.ReloadTime = d.getWeaponReloadTime(wSlot.Number)
@@ -321,7 +323,18 @@ func (d *Drone) initPhysicalModel() {
 }
 
 func (d *Drone) UpdatePhysicalModel() {
-	// todo обонление параметров типо изменилась скорость из за скила например
+
+	if d.physicalModel == nil {
+		d.initPhysicalModel() // инициируем по умолчания, и ток в методе UpdatePhysicalModel уже докидываем скилы и тд
+	}
+
+	d.physicalModel.ID = d.ID
+	d.physicalModel.Speed = d.GetEffects().GetAllBodyBonus(0.75, "speed", "", 0)
+	//d.physicalModel.ReverseSpeed = d.GetMaxReverse() / _const.ServerTickSecPart
+	d.physicalModel.PowerFactor = d.GetEffects().GetAllBodyBonus(0.15, "power_factor", "", 0)
+	//d.physicalModel.ReverseFactor = d.GetReverseFactor() / _const.ServerTickSecPart
+	//d.physicalModel.TurnSpeed = d.GetTurnSpeed() / _const.ServerTickSecPart
+	//d.physicalModel.Weight = d.GetWeight()
 }
 
 func (d *Drone) GetID() int {
@@ -605,4 +618,24 @@ func (d *Drone) getMinDamage(weaponSlotNumber int) int {
 
 func (d *Drone) OwnerFraction() string {
 	return d.Fraction
+}
+
+func (d *Drone) appendWeaponDamageModifier(weaponSlotNumber int) {
+	d.RemoveEffect("weapon_damage_modifier")
+	weaponSlot := d.GetWeaponSlot(weaponSlotNumber)
+	if weaponSlot != nil && weaponSlot.Weapon != nil && weaponSlot.Weapon.DamageModifier != 1 {
+		damageModifier := 100 - (weaponSlot.Weapon.DamageModifier * 100)
+		subtract := damageModifier > 0
+		if damageModifier < 0 {
+			damageModifier *= -1
+		}
+
+		d.GetEffects().AddEffect(&effect.Effect{
+			UUID:        "weapon_damage_modifier",
+			Parameter:   "damage",
+			Quantity:    int(damageModifier),
+			Percentages: true,
+			Subtract:    subtract,
+		})
+	}
 }

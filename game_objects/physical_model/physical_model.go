@@ -60,6 +60,7 @@ type PhysicalModel struct {
 	DriftY                 float64                         `json:"-"`
 	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
 	MeleeK                 float64                         `json:"-"` // Коэфецент усиление или затухания урона ближнего боя
+	Teleport               bool                            `json:"teleport"`
 	changeHeight           float64
 	useCoordinates         []pointer.Pointer
 	mx                     sync.Mutex

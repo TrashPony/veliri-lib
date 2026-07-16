@@ -153,7 +153,7 @@ func (s *Shield) Damage(damage int) {
 		s.SetWork(false)
 	}
 
-	s.SetCurrentReload(s.Reload) // включаем перегрузку на щит
+	s.SetCurrentReload(int(float64(s.Reload) * 0.25)) // включаем перегрузку на щит
 }
 
 func (s *Shield) GetJSON(mapTime int64) []byte {
