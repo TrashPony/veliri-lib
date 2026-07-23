@@ -1199,5 +1199,5 @@ func (u *Unit) GetObjectZone() *game_math.Positions {
 }
 
 func (u *Unit) IsDestroyed() bool {
-	return u.Destroy
+	return u == nil || u.Destroy
 }

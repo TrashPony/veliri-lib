@@ -75,7 +75,7 @@ func (m *Reservoir) GetObjectZone() *game_math.Positions {
 }
 
 func (m *Reservoir) IsDestroyed() bool {
-	return m.Destroy
+	return m == nil || m.Destroy
 }
 
 func (m *Reservoir) SetUseCoordinates(points []pointer.Pointer) {

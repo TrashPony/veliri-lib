@@ -887,7 +887,7 @@ func (o *Object) GetObjectZone() *game_math.Positions {
 }
 
 func (o *Object) IsDestroyed() bool {
-	return o.Destroy
+	return o == nil || o.Destroy
 }
 
 func (o *Object) AddEffect(newEffect *effect.Effect) bool {

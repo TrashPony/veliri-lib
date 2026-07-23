@@ -51,7 +51,7 @@ func (i *MapItem) GetObjectZone() *game_math.Positions {
 }
 
 func (i *MapItem) IsDestroyed() bool {
-	return i.Destroy
+	return i == nil || i.Destroy
 }
 
 type CacheData struct {

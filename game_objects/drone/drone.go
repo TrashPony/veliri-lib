@@ -111,7 +111,7 @@ func (d *Drone) GetObjectZone() *game_math.Positions {
 }
 
 func (d *Drone) IsDestroyed() bool {
-	return d.Destroy
+	return d == nil || d.Destroy
 }
 
 func (d *Drone) GetRadarRange() int {
