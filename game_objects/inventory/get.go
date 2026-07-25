@@ -66,6 +66,10 @@ func (inv *Inventory) GetSlot(number, userID int) (*Slot, bool) {
 }
 
 func (inv *Inventory) getSlot(number, userID int) (*Slot, bool) {
+	if inv == nil || inv.slots == nil {
+		return nil, false
+	}
+
 	slot, ok := inv.slots[number]
 	if slot != nil && (slot.AccessUserID == 0 || slot.AccessUserID == userID || userID == -1) {
 		return slot, ok

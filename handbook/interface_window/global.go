@@ -197,12 +197,6 @@ var Global = map[string]map[string]string{
 		_const.EN:   `Use equipment to enhance combat effectiveness [<span style="color: yellow">F</span>][<span style="color: yellow">Q</span>][<span style="color: yellow">5</span>].`,
 		_const.ZhCN: `使用装备提升战斗效率 [<span style="color: yellow">F</span>][<span style="color: yellow">Q</span>][<span style="color: yellow">5</span>].`,
 	},
-	"text_35": {
-		_const.RU: `<p>Для повышения выживаемости активируй щит [<span
-              style="color: yellow">3/F</span>].</p>`,
-		_const.EN:   `<p>To increase survivability, activate your shield [<span style="color: yellow">3/F</span>].</p>`,
-		_const.ZhCN: `<p>为了提高生存能力，激活护盾 [<span style="color: yellow">3/F</span>]。</p>`,
-	},
 	"text_36": {
 		_const.RU:   `У каждого корпуса в игре есть как уязвимые, так и бронированные участки.`,
 		_const.EN:   `Every hull in the game has both vulnerable and armored areas.`,
@@ -223,5 +217,15 @@ var Global = map[string]map[string]string{
               [<span style="color: yellow">1</span>].`,
 		_const.EN:   `For moving without combat, it is recommended to select "travel mode" with the [<span style="color: yellow">1</span>] key.`,
 		_const.ZhCN: `为了在不战斗的情况下移动，建议按 [<span style="color: yellow">1</span>] 键选择“行军模式”。`,
+	},
+	"text_35": {
+		_const.RU:   `<p>Повреждение критических моделей может вызывать негативные эффекты, например слепота или остановка движения. Прогресс ремонта модулей показан у транспорта.</p>`,
+		_const.EN:   `<p>Damage to critical modules can cause negative effects, such as blindness or immobilization. Module repair progress is shown on the vehicle.</p>`,
+		_const.ZhCN: `<p>关键模块损坏可能造成负面效果，例如致盲或停止移动。模块修复进度显示在载具上。</p>`,
+	},
+	"text_42": {
+		_const.RU:   `<p>После ремонта остаются эффекты понижающие характеристики транспорта. Подробнее о модулях можно будет узнать в будущем в меню ангара.</p>`,
+		_const.EN:   `<p>After repair, effects that reduce vehicle characteristics remain. More information about modules will be available in the future in the hangar menu.</p>`,
+		_const.ZhCN: `<p>修复后仍会保留降低载具性能的效果。关于模块的更多信息将在未来的机库菜单中提供。</p>`,
 	},
 }
