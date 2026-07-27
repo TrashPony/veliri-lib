@@ -1119,6 +1119,10 @@ func getVioTypeInt(vType string, time int) byte {
 		vTypeInt = 3
 	}
 
+	if vType == "exit_time" {
+		vTypeInt = 10
+	}
+
 	return vTypeInt
 }
 
@@ -1806,6 +1810,17 @@ func CreateWarCamBinMsg(warCam bool) []byte {
 	command := []byte{132}
 
 	command = append(command, game_math.BoolToByte(warCam))
+
+	return command
+}
+
+func CreateTimeCastMsg(unitID, equipID, progress, slot int) []byte {
+	command := []byte{133}
+
+	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, game_math.GetIntBytes(equipID)...)
+	command = append(command, byte(progress))
+	command = append(command, byte(slot))
 
 	return command
 }

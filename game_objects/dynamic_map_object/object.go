@@ -69,6 +69,7 @@ type Object struct {
 	TypeBaseData  []*coordinate.Coordinate        `json:"type_base_data"`
 	AccessManager access_manager.AccessManager    `json:"-"`
 	HeightType    float64                         `json:"-"`
+	ForceHeight   float64                         `json:"-"`
 
 	Fraction     string `json:"fraction"`
 	FractionByte byte   `json:"-"`
@@ -105,6 +106,7 @@ type Object struct {
 	SpecialCell          bool                `json:"special_cell"`
 	Interactive          bool                `json:"interactive"`
 	Destroy              bool                `json:"destroy"`
+	DestroyCallback      func() interface{}  `json:"-"`
 	placeUserSpecialCell map[string]bool
 
 	Weapons      map[int]*detail.BodyWeaponSlot `json:"weapons"`

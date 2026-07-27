@@ -299,6 +299,14 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_emergency_fuel_t1": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">7%</span>."},
 		"effect_emergency_fuel_t2": {Description: "Decreases <span class=\"importantly\">view range</span>, <span class=\"importantly\">radar range</span>, and <span class=\"importantly\">battery recharge speed</span> by <span class=\"importantly\">5%</span>."},
 
+		"accuracy_25p":          {Description: "<span class=\"importantly\">Gun accuracy</span> increased by <span class=\"importantly\">25%</span>"},
+		"gun_speed_rotate_25p":  {Description: "<span class=\"importantly\">Gun rotation speed</span> increased by <span class=\"importantly\">25%</span>"},
+		"weapon_rate_20p":       {Description: "<span class=\"importantly\">Rate of fire</span> increased by <span class=\"importantly\">20%</span>"},
+		"weapon_reload_20p":     {Description: "<span class=\"importantly\">Reload speed</span> increased by <span class=\"importantly\">20%</span>"},
+		"protect_explosion_50p": {Description: "<span class=\"importantly\">Explosion damage</span> resistance increased by <span class=\"importantly\">20%"},
+
+		"move_freeze_reduced": {Description: "Movement locked"},
+
 		"empty": {Description: ""},
 	},
 	_const.RU: {
@@ -604,6 +612,13 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_synthetic_fuel": {Description: "На <span class=\"importantly\">10%</span> увеличивает <span class=\"importantly\">дальность обзора</span> и  <span class=\"importantly\">дальность радара</span>."},
 		"effect_jet_fuel":       {Description: "На <span class=\"importantly\">5%</span> увеличивает <span class=\"importantly\">ходовые</span> характеристики транспорта."},
 
+		"accuracy_25p":          {Description: "<span class=\"importantly\">Точность орудий</span> увеличена на <span class=\"importantly\">25%</span>"},
+		"gun_speed_rotate_25p":  {Description: "<span class=\"importantly\">Скорость поворота орудий</span> увеличена на <span class=\"importantly\">25%</span>"},
+		"weapon_rate_20p":       {Description: "<span class=\"importantly\">Скорострельность орудий</span> увеличена на <span class=\"importantly\">20%</span>"},
+		"weapon_reload_20p":     {Description: "<span class=\"importantly\">Скорость перезарядки орудий</span> увеличена на <span class=\"importantly\">20%</span>"},
+		"protect_explosion_50p": {Description: "Увеличение защиты от <span class=\"importantly\">взрывного</span> урона на <span class=\"importantly\">20%"},
+		"move_freeze_reduced":   {Description: "Движение заблокировано"},
+
 		"empty": {Description: ""},
 	},
 	_const.ZhCN: {
@@ -831,6 +846,14 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"effect_emergency_fuel_t0": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">10%</span>。"},
 		"effect_emergency_fuel_t1": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">7%</span>。"},
 		"effect_emergency_fuel_t2": {Description: "将<span class=\"importantly\">视野范围</span>、<span class=\"importantly\">雷达范围</span>和<span class=\"importantly\">电池充能速度</span>降低<span class=\"importantly\">5%</span>。"},
+
+		"accuracy_25p":          {Description: "<span class=\"importantly\">火炮精度</span>提高 <span class=\"importantly\">25%</span>"},
+		"gun_speed_rotate_25p":  {Description: "<span class=\"importantly\">火炮旋转速度</span>提高 <span class=\"importantly\">25%</span>"},
+		"weapon_rate_20p":       {Description: "<span class=\"importantly\">射速</span>提高 <span class=\"importantly\">20%</span>"},
+		"weapon_reload_20p":     {Description: "<span class=\"importantly\">装填速度</span>提高 <span class=\"importantly\">20%</span>"},
+		"protect_explosion_50p": {Description: "<span class=\"importantly\">爆炸伤害</span>抗性提高 <span class=\"importantly\">20%"},
+
+		"move_freeze_reduced": {Description: "移动已锁定"},
 
 		"empty": {Description: ""},
 	},

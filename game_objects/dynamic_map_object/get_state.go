@@ -215,7 +215,7 @@ func (o *Object) GetStartScale() {
 		o.SetScale(20)
 	}
 
-	if o.Texture == "wall_1" {
+	if o.Texture == "wall_1" || o.Texture == "wall_2" || o.Texture == "wall_3" {
 		o.SetScale(40)
 	}
 

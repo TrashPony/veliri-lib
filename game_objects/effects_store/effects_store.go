@@ -18,7 +18,7 @@ func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
 	}
 
 	if newEffect.Parameter == "reload" || newEffect.Parameter == "reload_ammo" || newEffect.Parameter == "accuracy" {
-		newEffect.Subtract = !newEffect.Subtract // TODO так нельзя делать
+		newEffect.Subtract = !newEffect.Subtract // TODO костыль
 	}
 
 	e.mx.Lock()
@@ -252,7 +252,7 @@ func (e *EffectsStore) GetAllWeaponBonus(startValue float64, parameterName, type
 	return sumEffectsPercent.ToAccept(absoluteValue, parameterName)
 }
 
-func (e *EffectsStore) GetPercentAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+func (e *EffectsStore) GetPercentAllWeaponBonus(parameterName, typeWeapon string, sizeWeapon int) float64 {
 	sumEffectsPercent := float64(e.GetCountByWeaponTypeAndSize(parameterName, true, typeWeapon, sizeWeapon))
 
 	if sumEffectsPercent < -90 {

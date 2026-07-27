@@ -363,7 +363,7 @@ func (u *Unit) getGunAccuracySpread(weaponSlotNumber int) float64 {
 		return 0
 	}
 
-	return u.GetEffects().GetPercentAllWeaponBonus(float64(weaponSlot.Weapon.Accuracy), "accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)
+	return -1 * u.GetEffects().GetPercentAllWeaponBonus("accuracy", weaponSlot.Weapon.Type, weaponSlot.Weapon.StandardSize)
 }
 
 func (u *Unit) getGunRotateSpeed(weaponSlotNumber int) int {

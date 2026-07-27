@@ -61,11 +61,15 @@ type PhysicalModel struct {
 	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
 	MeleeK                 float64                         `json:"-"` // Коэфецент усиление или затухания урона ближнего боя
 	Teleport               bool                            `json:"teleport"`
-	changeHeight           float64
-	useCoordinates         []pointer.Pointer
-	mx                     sync.Mutex
-	polygon                *game_math.Polygon
-	nextPolygon            *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+	// Ключом является уникальный идентификатор источника эффекта
+	// (например, ID предмета, ID скилла или UUID сущности).
+	freezeEffects              map[string]func() bool
+	ignoreMoveCollisionEffects map[string]func() bool
+	changeHeight               float64
+	useCoordinates             []pointer.Pointer
+	mx                         sync.Mutex
+	polygon                    *game_math.Polygon
+	nextPolygon                *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
 }
 
 type MeleeWeaponData struct {
@@ -157,11 +161,23 @@ func (m *PhysicalModel) GetY() int {
 }
 
 func (m *PhysicalModel) MultiplyVelocity(x float64, y float64) {
+	if m.Freeze() {
+		m.XVelocity = 0
+		m.YVelocity = 0
+		return
+	}
+
 	m.XVelocity *= x
 	m.YVelocity *= y
 }
 
 func (m *PhysicalModel) AddVelocity(x float64, y float64) {
+	if m.Freeze() {
+		m.XVelocity = 0
+		m.YVelocity = 0
+		return
+	}
+
 	m.XVelocity += x
 	m.YVelocity += y
 }
@@ -260,22 +276,42 @@ func (m *PhysicalModel) SetReverse(reverse float64) {
 }
 
 func (m *PhysicalModel) GetMoveMaxPower() float64 {
+	if m.Freeze() {
+		return 0
+	}
+
 	return m.Speed
 }
 
 func (m *PhysicalModel) GetMaxReverse() float64 {
+	if m.Freeze() {
+		return 0
+	}
+
 	return m.ReverseSpeed
 }
 
 func (m *PhysicalModel) GetPowerFactor() float64 {
+	if m.Freeze() {
+		return 0
+	}
+
 	return m.PowerFactor
 }
 
 func (m *PhysicalModel) GetReverseFactor() float64 {
+	if m.Freeze() {
+		return 0
+	}
+
 	return m.ReverseFactor
 }
 
 func (m *PhysicalModel) GetTurnSpeed() float64 {
+	if m.Freeze() {
+		return 0
+	}
+
 	return m.TurnSpeed
 }
 
@@ -324,6 +360,12 @@ func (m *PhysicalModel) SetAngularVelocity(angularVelocity float64) {
 }
 
 func (m *PhysicalModel) SetVelocity(x float64, y float64) {
+	if m.Freeze() {
+		m.XVelocity = 0
+		m.YVelocity = 0
+		return
+	}
+
 	m.XVelocity, m.YVelocity = x, y
 }
 
@@ -542,4 +584,60 @@ func (m *PhysicalModel) GetChangeHeight() float64 {
 
 func (m *PhysicalModel) SetChangeHeight(ch float64) {
 	m.changeHeight = ch
+}
+
+func (m *PhysicalModel) initEffects() {
+	if m.freezeEffects == nil {
+		m.freezeEffects = make(map[string]func() bool)
+	}
+	if m.ignoreMoveCollisionEffects == nil {
+		m.ignoreMoveCollisionEffects = make(map[string]func() bool)
+	}
+}
+
+func (m *PhysicalModel) AddFreezeEffect(id string, fn func() bool) {
+	m.initEffects()
+	m.freezeEffects[id] = fn
+}
+
+// RemoveFreezeEffect удаляет проверку по ID источника
+func (m *PhysicalModel) RemoveFreezeEffect(id string) {
+	if m.freezeEffects != nil {
+		delete(m.freezeEffects, id)
+	}
+}
+
+func (m *PhysicalModel) Freeze() bool {
+	if m.freezeEffects == nil {
+		return false
+	}
+	for _, fn := range m.freezeEffects {
+		if fn() {
+			return true
+		}
+	}
+	return false
+}
+
+func (m *PhysicalModel) AddIgnoreMoveCollisionEffect(id string, fn func() bool) {
+	m.initEffects()
+	m.ignoreMoveCollisionEffects[id] = fn
+}
+
+func (m *PhysicalModel) RemoveIgnoreMoveCollisionEffect(id string) {
+	if m.ignoreMoveCollisionEffects != nil {
+		delete(m.ignoreMoveCollisionEffects, id)
+	}
+}
+
+func (m *PhysicalModel) IgnoreMoveCollision() bool {
+	if m.ignoreMoveCollisionEffects == nil {
+		return false
+	}
+	for _, fn := range m.ignoreMoveCollisionEffects {
+		if fn() {
+			return true
+		}
+	}
+	return false
 }

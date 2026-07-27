@@ -45,6 +45,9 @@ func (o *Object) SetGeoData(static bool) {
 	}
 
 	o.GetPhysicalModel().SetHeight(o.HeightType * (float64(o.GetScale()) / 100))
+	if o.ForceHeight > 0 {
+		o.GetPhysicalModel().SetHeight(o.ForceHeight)
+	}
 
 	for i, geoPoint := range o.GetPhysicalModel().GeoData {
 

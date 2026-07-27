@@ -179,14 +179,14 @@ func (g *Gunner) GetOwnerPlayerID() int {
 }
 
 type WeaponSlotState struct {
-	Number         int
-	MaxDamage      int
-	MinDamage      int
-	Accuracy       int
-	AccuracySpread float64
-	RotateSpeed    int
-	ReloadTime     int
-	ReloadAmmoTime int
+	Number                int
+	MaxDamage             int
+	MinDamage             int
+	Accuracy              int
+	AccuracyPercentSpread float64
+	RotateSpeed           int
+	ReloadTime            int
+	ReloadAmmoTime        int
 }
 
 func (g *Gunner) UnsafeRangeVisibleObjects() ([][]*visible_objects.VisibleObject, *sync.RWMutex) {
@@ -347,11 +347,11 @@ func (g *Gunner) GetWeaponAccuracy(slotNumber int) int {
 	return 999
 }
 
-func (g *Gunner) GetWeaponAccuracySpread(slotNumber int) float64 {
+func (g *Gunner) GetWeaponAccuracyPercentSpread(slotNumber int) float64 {
 	weaponSlot := g.GunUser.GetWeaponSlot(slotNumber)
 	slotState := g.getSlotState(slotNumber)
 	if weaponSlot != nil && weaponSlot.Weapon != nil && slotState != nil {
-		return slotState.AccuracySpread
+		return slotState.AccuracyPercentSpread
 	}
 
 	return 0

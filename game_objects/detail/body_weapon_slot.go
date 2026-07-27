@@ -225,7 +225,7 @@ func (s *BodyWeaponSlot) AddFireSpread() {
 	}
 }
 
-func (s *BodyWeaponSlot) AttenuationSpread() {
+func (s *BodyWeaponSlot) AttenuationSpread(percent float64) {
 	if s.Weapon == nil || s.Weapon.KAttenuationSpread == 0 {
 		return
 	}
@@ -235,7 +235,30 @@ func (s *BodyWeaponSlot) AttenuationSpread() {
 		return
 	}
 
-	s.Spread -= s.Spread / s.Weapon.KAttenuationSpread
+	// 1. Рассчитываем модификатор на основе процентов
+	var kModifier float64
+	if percent >= 0 {
+		// 0% -> 1.0, 100% -> 2.0
+		kModifier = 1.0 + (percent / 100.0)
+	} else {
+		// 0% -> 1.0, -100% -> 0.5
+		// Делим на 200.0, чтобы при -100 получить: 1.0 + (-100 / 200) = 0.5
+		kModifier = 1.0 + (percent / 200.0)
+	}
+
+	// 2. Вычисляем эффективное значение затухания для текущего выстрела/тика
+	effectiveK := float64(s.Weapon.KAttenuationSpread) * kModifier
+
+	// Защита от деления на ноль или экстремально малых значений.
+	// Если effectiveK будет близок к 0, s.Spread / effectiveK даст огромный скачок,
+	// мгновенно обнуляя разброс, что может сломать баланс.
+	if effectiveK < 0.1 {
+		effectiveK = 0.1
+	}
+
+	// 3. Применяем затухание (attenuation) к текущему разбросу
+	s.Spread -= int(float64(s.Spread) / effectiveK)
+
 	if s.Spread < 0 {
 		s.Spread = 0
 	}
