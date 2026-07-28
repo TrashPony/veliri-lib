@@ -368,8 +368,14 @@ func ObjectDeadBinaryMsg(id, x, y int, typeObject string) []byte {
 	return command
 }
 
-func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber, state, weaponID, typeSlot, slot int, pos byte) []byte {
+func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, equipType, equipNumber, state, weaponID,
+	typeSlot, slot int, pos byte, typeTarget string, idTarget int) []byte {
 	command := []byte{20}
+
+	d, ok := _const.MapBinItems[typeTarget]
+	if !ok {
+		fmt.Println("unknown type object: ", typeTarget)
+	}
 
 	command = append(command, byte(typeID))
 	command = append(command, game_math.GetIntBytes(x)...)
@@ -384,6 +390,8 @@ func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, e
 	command = append(command, game_math.GetIntBytes(weaponID)...)
 	command = append(command, byte(pos))
 	command = append(command, byte((typeSlot*10)+slot))
+	command = append(command, byte(d))
+	command = append(command, byte(idTarget))
 
 	return command
 }
@@ -575,13 +583,15 @@ func CreateBinaryDeactivateInvisibilityMsg(id, x, y int) []byte {
 	return command
 }
 
-func CreateBinaryGravitySquareMsg(x, y, r, id int) []byte {
+func CreateBinaryGravitySquareMsg(x, y, r, id, unitID int, direction bool) []byte {
 	command := []byte{22}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, game_math.GetIntBytes(r)...)
 	command = append(command, game_math.GetIntBytes(id)...)
+	command = append(command, game_math.BoolToByte(!direction))
+	command = append(command, game_math.GetIntBytes(unitID)...)
 
 	return command
 }

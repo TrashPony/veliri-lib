@@ -39,6 +39,7 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"wall_1":                         {Name: "Mobile Barricade", Description: "<p>Remotely erected engineering structure that acts as a protective wall, allowing you to hide from enemy fire or even block their escape route.</p>"},
 		"energy_shield_mini_structure_1": {Name: "Mobile Force Field Mark-2", Description: "<p>Remotely erected engineering structure acting as a power plant that projects an energy dome. Inside the impenetrable dome, you can hide from most types of small arms.</p>"},
 		"mine_bomb_1":                    {Name: "Mine Layer", Description: "<p>A product of military engineering, a self-defense tool that drops a cumulative mine behind the Synthetic's hull, which reacts to approaching enemy signatures and self-detonates.</p>"},
+		"drone_siphon_1":                 {Name: "Drone \"Siphon\"", Description: "<p>Orbital module for forced energy exchange. Politely but persistently extracts charge from opponents within range, while simultaneously intercepting enemy missiles. Accumulated energy is transferred to the drone owner.</p>"},
 
 		// пассивное
 		"radar_booster_1":                {Name: "Sensor Repeater", Description: "<p>A set of amplifiers that provide increased range for an already installed radar system.</p><p>The radar allows you to detect and identify objects in the world, such as resources, structures, vehicles, drones/missiles.</p>"},
@@ -85,6 +86,9 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"inventory_scanner_1": {Name: "Cargo Scanner", Description: "<p>A conditionally-illegal device in all factions that enables detection of cargo hold contents in various transports.</p>"},
 		"reverses_combine":    {Name: "Harvester", Description: "<p>Auxiliary module that is a device for harvesting organic material from the surrounding flora of the planet.</p>"},
 		"scientific_module_1": {Name: "Ocular-1", Description: "<p>A cheap but reliable housing for research modules.</p><p>Equipped with reinforced lenses and a manipulator for interacting with the environment.</p>"},
+
+		"tesla_discharge_module_1": {Name: "Tesla Discharge Module", Description: "<p>A directed electromagnetic weapon system. It releases an unstable plasma flow that, like lightning, automatically seeks the path of least resistance among targets within its firing cone. Capable of striking multiple objects in a single discharge cycle, leaving behind the distinctive smell of ozone and scorched microchips.</p>"},
+		"kinetic_repulsor_1":       {Name: "Kinetic Repulsor Module", Description: "<p>An emergency perimeter control device. Generates a short-duration, high-intensity energy pulse, converting thermal energy into kinetic force. Inflicts moderate structural damage to all targets within its radius and forcibly displaces them from the epicenter, disrupting enemy formations.</p>"},
 	},
 	_const.RU: {
 		"repair_kit":                     {Name: "Модуль само-ремонта", Description: "<p>Около миллиона наноботов, вооружённых микроэлементами запчастей и при активации, приступающих к незамедлительным восстановительным работам повреждённого корпуса и систем.</p>"},
@@ -122,6 +126,7 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"wall_1":                         {Name: "Мобильная баррикада", Description: "<p>Дистанционно возводимое инженерное сооружение выполняющее функцию защитной стены, что позволяет укрыться от огня неприятеля или, даже заблокировать тому путь к отступлению.</p>"},
 		"energy_shield_mini_structure_1": {Name: "Мобильное силовое поле Марк-2", Description: "<p>Дистанционно возводимое инженерное сооружение выполняющее функцию силовой установки, проектирующей энергетический купол. Внутри непроницаемого купола можно укрыться от большинства видов стрелкового вооружения. </p>"},
 		"mine_bomb_1":                    {Name: "Миноукладчик", Description: "<p>Разработка военной инженерии - средство самообороны, которое откидывает позади корпуса Синтета кумулятивную мину, что реагирует на приближение вражеских сигнатур и производящая самоподрыв.</p>"},
+		"drone_siphon_1":                 {Name: "Дрон \"Сифон»\"", Description: "<p>Орбитальный модуль принудительного энергообмена. Вежливо, но настойчиво изымает заряд у противников в радиусе действия, параллельно сбивает вражеские ракеты. Накопленная энергия передается владельцу дрона.</p>"},
 
 		// пассивное
 		"radar_booster_1":                {Name: "Репитер сенсоров", Description: "<p>Станция набора усилителей, обеспечивающих увеличенную дальность действия уже установленной радарной системы.</p><p>Радар позволяет обнаруживать и идентифицировать объекты в мире, такие как ресурсы, структуры, транспорты и дроны/ракеты.</p>"},
@@ -168,6 +173,9 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"inventory_scanner_1": {Name: "Считывающий сканер", Description: "<p>Условно-нелегальное во всех фракциях приспособление, что способствует распознаванию наполненности грузового отсека у различных транспортов.</p>"},
 		"reverses_combine":    {Name: "Сборщик", Description: "<p>Вспомогательный модуль, представляющий из себя устройство для заготовления органического материала из окружающей флоры планеты. </p>"},
 		"scientific_module_1": {Name: "Окуляр-1", Description: "<p>Дешёвый, но надёжный корпус для исследовательских модулей.</p><p>Оснащён усиленными линзами и манипулятором для взаимодействия с окружающей средой.</p>"},
+
+		"tesla_discharge_module_1": {Name: "Модуль разряда \"Тесла\"", Description: "<p>Устройство направленного электромагнитного воздействия. Выпускает нестабильный поток плазмы, который, подобно молнии, самостоятельно ищет путь наименьшего сопротивления среди целей в заданном конусе. Способен поражать несколько объектов за один цикл разряда, оставляя после себя характерный запах озона и выжженные микросхемы.</p>"},
+		"kinetic_repulsor_1":       {Name: "Модуль кинетического отторжения", Description: "<p>Устройство экстренного контроля периметра. Генерирует кратковременный, но высокоинтенсивный энергетический импульс, преобразующий тепловую энергию в кинетическую. Наносит умеренный структурный урон всем целям в радиусе действия и принудительно смещает их от эпицентра, нарушая строй атакующих.</p>"},
 	},
 	_const.ZhCN: {
 		"repair_kit":                        {Name: "自我修复模块", Description: "<p>大约一百万个纳米机器人，配备微型零件，激活后立即开始修复受损的机身和系统。</p>"},
@@ -247,5 +255,8 @@ var EquipDescription = map[string]map[string]DescriptionItem{
 		"inventory_scanner_1":               {Name: "货舱扫描仪", Description: "<p>所有派系均视为半违禁装置的扫描设备，可识别各类运输载具的货舱内容物。</p>"},
 		"reverses_combine":                  {Name: "采集器", Description: "<p>辅助模块，用于从行星周围的植物中采集有机材料。</p>"},
 		"scientific_module_1":               {Name: "目镜-1", Description: "<p>一种廉价但可靠的研究模块外壳。</p><p>配备加固镜头和用于与环境交互的机械臂。"},
+		"tesla_discharge_module_1":          {Name: "特斯拉放电模块", Description: "<p>定向电磁武器系统。释放不稳定的等离子体流，像闪电一样自动寻找射击锥内目标之间的最小电阻路径。能够在单次放电周期中打击多个目标，留下独特的臭氧气味和烧焦的芯片。</p>"},
+		"kinetic_repulsor_1":                {Name: "动能排斥模块", Description: "<p>一种紧急周界控制设备。能产生短暂但高强度的能量脉冲，将热能转化为动能。对作用半径内的所有目标造成中度结构损伤，并强制将其从震中推开，从而打乱敌方的攻击阵型。</p>"},
+		"drone_siphon_1":                    {Name: "无人机 \"虹吸\"", Description: "<p>轨道强制能量交换模块。礼貌但坚持地从范围内的对手处提取能量，同时拦截敌方导弹。积累的能量传递给无人机所有者。</p>"},
 	},
 }

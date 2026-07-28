@@ -52,6 +52,8 @@ type Bullet struct {
 	DrawTargetZone       bool           `json:"-"`
 	PredictedX           int            `json:"-"`
 	PredictedY           int            `json:"-"`
+	AllPush              bool           `json:"-"`
+	AllDamage            bool           `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
@@ -92,11 +94,14 @@ type Bullet struct {
 	ClientLag           float64         `json:"-"`
 	ParentVelX          float64         `json:"-"`
 	ParentVelY          float64         `json:"-"`
+	ExcludeUnitIDs      []int           `json:"-"`
+	ExcludeObjectIDs    []int           `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool
 	AccumulationPercent int `json:"accumulation_percent"`
 	CallBack            func(b *Bullet, damageObjects interface{})
+	ChainCount          int `json:"-"`
 	ghost               bool
 	stopTimeMS          int
 	mx                  sync.RWMutex
