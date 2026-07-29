@@ -144,10 +144,16 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 50134, ItemID: 202, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50135, ItemID: 203, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 
-	//// todo временное
+	// todo временное
 	//{ID: 40000, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40001, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40002, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+
+	// todo временное
+	{ID: 50136, ItemID: 242, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50137, ItemID: 243, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50138, ItemID: 244, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50139, ItemID: 245, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
 
 var ExploresAssortment = []AssortmentPoint{
@@ -287,6 +293,12 @@ var ExploresAssortment = []AssortmentPoint{
 	//{ID: 40003, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40004, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40005, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+
+	// todo временное
+	{ID: 50140, ItemID: 242, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50141, ItemID: 243, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50142, ItemID: 244, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50143, ItemID: 245, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
 
 var ReversesAssortment = []AssortmentPoint{
@@ -423,4 +435,10 @@ var ReversesAssortment = []AssortmentPoint{
 	//{ID: 40006, ItemID: 1, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40007, ItemID: 2, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
 	//{ID: 40008, ItemID: 3, ItemType: "mine_drone", Count: 1, Points: 0, Credits: 500000, MinRank: 1},
+
+	// todo временное
+	{ID: 50144, ItemID: 242, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50145, ItemID: 243, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50146, ItemID: 244, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50147, ItemID: 245, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
