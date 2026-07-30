@@ -664,6 +664,12 @@ func RopeMovePoint(point *rope.Point) []byte {
 	command = append(command, game_math.GetIntBytes(int(point.Position.X))...)
 	command = append(command, game_math.GetIntBytes(int(point.Position.Y))...)
 
+	if point.Pinned != nil && point.Pinned.Type == "unit" {
+		command = append(command, game_math.GetIntBytes(point.Pinned.ID)...)
+	} else {
+		command = append(command, game_math.GetIntBytes(0)...)
+	}
+
 	return command
 }
 

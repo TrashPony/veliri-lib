@@ -1,6 +1,7 @@
 package game_math
 
 import (
+	_const "github.com/TrashPony/veliri-lib/const"
 	"github.com/TrashPony/veliri-lib/game_objects/obstacle_point"
 	"math"
 )
@@ -237,12 +238,12 @@ func calculateMeleeWeaponDamageWithEfficiency(attacker, target collider, weaponP
 		efficiency = 1.0
 	}
 
-	if targetWeight > maxWeight {
-		targetWeight = maxWeight
+	if targetWeight > _const.MaxWeight {
+		targetWeight = _const.MaxWeight
 	}
 
-	if attackWeight > maxWeight {
-		attackWeight = maxWeight
+	if attackWeight > _const.MaxWeight {
+		attackWeight = _const.MaxWeight
 	}
 
 	// Базовые параметры

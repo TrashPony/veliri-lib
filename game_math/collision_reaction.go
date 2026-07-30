@@ -27,8 +27,6 @@ type collider interface {
 	GetGeoData() []*obstacle_point.ObstaclePoint
 }
 
-const maxWeight = 20000
-
 func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) float64 {
 	// 1. Рассчитываем относительную скорость столкновения
 	relSpeedX := startXV1 - startXV2
