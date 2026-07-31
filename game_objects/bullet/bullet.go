@@ -57,6 +57,7 @@ type Bullet struct {
 	AllDamage            bool           `json:"-"`
 	OwnerPlayer          interface{}    `json:"-"`
 	Hide                 bool           `json:"-"`
+	NoDamage             bool           `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool

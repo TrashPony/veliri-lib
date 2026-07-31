@@ -177,7 +177,7 @@ func CreateRotateGunBinaryMsg(id int, rotatemsgs []*RotateGunMessage, melee bool
 	return command
 }
 
-func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool, unit_id, type_slot, slot, position int) []byte {
+func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, force bool, unit_id, type_slot, slot, position, equipID int) []byte {
 	// [1[eventID] 4[typeID], 4[x], 4[y], 4[z], 4[rotate], 4[mpID]]
 	command := []byte{9}
 
@@ -191,6 +191,7 @@ func CreateFireGunBinaryMsg(typeID, x, y, z, rotate, accumulationPercent int, fo
 	command = append(command, game_math.GetIntBytes(unit_id)...)
 	command = append(command, byte((type_slot*10)+slot))
 	command = append(command, byte(position))
+	command = append(command, game_math.GetIntBytes(equipID)...)
 
 	return command
 }
@@ -632,15 +633,23 @@ func RopeCatchMsg(x, y int) []byte {
 	return command
 }
 
-func ZoneHealRun(x, y, count, radius, unitID, typeAnimate int) []byte {
+func ZoneHealRun(x, y, count, radius, targetID int, targetType string, typeAnimate, nnCount, lifeTime int) []byte {
 	command := []byte{52}
+
+	t, ok := _const.MapBinItems[targetType]
+	if !ok {
+		fmt.Println("unknown type object: ", targetType)
+	}
 
 	command = append(command, game_math.GetIntBytes(x)...)
 	command = append(command, game_math.GetIntBytes(y)...)
 	command = append(command, byte(count/100))
 	command = append(command, byte(radius))
-	command = append(command, game_math.GetIntBytes(unitID)...)
+	command = append(command, game_math.GetIntBytes(targetID)...)
 	command = append(command, byte(typeAnimate))
+	command = append(command, byte(nnCount)) // кол-во "крестиков" в анимации
+	command = append(command, game_math.GetIntBytes(lifeTime)...)
+	command = append(command, byte(t))
 
 	return command
 }
