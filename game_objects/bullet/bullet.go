@@ -28,6 +28,7 @@ type Bullet struct {
 	OwnerType            string         `json:"owner_type"` // unit, structure
 	OwnerPlayerID        int            `json:"owner_player_id"`
 	OwnerFractionWarrior bool           `json:"-"`
+	OwnerGroupID         int            `json:"owner_group_id"`
 	Fraction             string         `json:"-"`
 	MaxRange             int            `json:"max_range"`
 	FirePos              int            `json:"-"`
@@ -54,6 +55,8 @@ type Bullet struct {
 	PredictedY           int            `json:"-"`
 	AllPush              bool           `json:"-"`
 	AllDamage            bool           `json:"-"`
+	OwnerPlayer          interface{}    `json:"-"`
+	Hide                 bool           `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
@@ -77,8 +80,9 @@ type Bullet struct {
 	TargetYVelocity float64 `json:"-"`
 	TargetRotate    float64 `json:"-"`
 
-	CacheJson      []byte `json:"-"`
-	CreateJsonTime int64  `json:"-"`
+	CacheJson       []byte    `json:"-"`
+	CacheUpdateData CacheData `json:"-"`
+	CreateJsonTime  int64     `json:"-"`
 
 	ForceExplosion      bool            `json:"-"`
 	AutoActivate        bool            `json:"-"`
@@ -96,6 +100,7 @@ type Bullet struct {
 	ParentVelY          float64         `json:"-"`
 	ExcludeUnitIDs      []int           `json:"-"`
 	ExcludeObjectIDs    []int           `json:"-"`
+	RemoveTarget        bool            `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool
@@ -105,6 +110,19 @@ type Bullet struct {
 	ghost               bool
 	stopTimeMS          int
 	mx                  sync.RWMutex
+}
+
+type CacheData struct {
+	Data []byte `json:"-"`
+	Time int64  `json:"-"`
+}
+
+func (b *Bullet) GetFirePos(i int) *game_math.Positions {
+	return &game_math.Positions{X: b.X, Y: b.Y}
+}
+
+func (b *Bullet) GetMapHeight() float64 {
+	return b.Z
 }
 
 func (b *Bullet) Ghost() bool {
@@ -209,6 +227,8 @@ func (b *Bullet) GetJSON(mapTime int64) []byte {
 		command = append(command, game_math.GetIntBytes(int(b.GetRotate()))...)
 	}
 
+	command = append(command, game_math.BoolToByte(b.Hide))
+
 	b.CacheJson = command
 	b.CreateJsonTime = mapTime
 
@@ -216,7 +236,21 @@ func (b *Bullet) GetJSON(mapTime int64) []byte {
 }
 
 func (b *Bullet) GetUpdateData(mapTime int64) []byte {
-	return []byte{}
+	if b.CacheUpdateData.Time == mapTime && len(b.CacheUpdateData.Data) > 0 {
+		return b.CacheUpdateData.Data
+	}
+
+	if b.CacheUpdateData.Data == nil {
+		b.CacheUpdateData.Data = []byte{}
+	}
+
+	b.CacheUpdateData.Data = b.CacheUpdateData.Data[:0]
+
+	b.CacheUpdateData.Data = append(b.CacheUpdateData.Data, game_math.BoolToByte(b.Hide))
+
+	b.CacheUpdateData.Time = mapTime
+
+	return b.CacheUpdateData.Data
 }
 
 func (b *Bullet) GetOwnerPlayerID() int {
