@@ -37,6 +37,7 @@ type Ammo struct {
 	AdditionalAmmoID       int         `json:"additional_ammo_id"`
 	Tech                   int         `json:"tech"`
 	MaxRange               int         `json:"max_range"`
+	Attach                 int         `json:"-"`
 }
 
 func (a *Ammo) GetName() string {

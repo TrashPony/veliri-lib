@@ -77,6 +77,9 @@ type Unit struct {
 	Interactive bool `json:"-"`
 	ForceView   bool `json:"-"`
 
+	// VisionLinkManager содержит ID юнитов, которым этот юнит передает свой обзор
+	visionLinkManager *VisionLinkManager
+
 	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
 	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
 	FearTimer      int     `json:"-"`

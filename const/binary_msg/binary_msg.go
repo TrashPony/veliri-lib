@@ -1671,6 +1671,7 @@ type VisibleUnit struct {
 	IsWeapon         bool
 	InventoryPercent byte
 	EnergyPercent    byte
+	ForceView        bool
 }
 
 func CreateVisibleUnitsMsg(vUnits []VisibleUnit) []byte {
@@ -1682,6 +1683,7 @@ func CreateVisibleUnitsMsg(vUnits []VisibleUnit) []byte {
 		command = append(command, game_math.BoolToByte(u.IsWeapon))
 		command = append(command, u.InventoryPercent)
 		command = append(command, u.EnergyPercent)
+		command = append(command, game_math.BoolToByte(u.ForceView))
 	}
 
 	return command

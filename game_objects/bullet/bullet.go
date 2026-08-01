@@ -46,6 +46,7 @@ type Bullet struct {
 	NoDamageNoMessage    bool           `json:"-"`
 	OldDistToTarget      float64        `json:"-"`
 	IgnoreShieldUnitID   int            `json:"-"`
+	IgnoreAllShield      bool           `json:"-"`
 	NoExplosion          bool           `json:"-"`
 	AttachUnitID         int            `json:"-"`
 	TimeOut              int            `json:"-"`
@@ -58,6 +59,9 @@ type Bullet struct {
 	OwnerPlayer          interface{}    `json:"-"`
 	Hide                 bool           `json:"-"`
 	NoDamage             bool           `json:"-"`
+	AmmoRadius           int            `json:"-"`
+	AttachConfig         AttachConfig   `json:"-"`
+	NoStopForCollision   bool           `json:"-"`
 
 	ImmediateDestruction bool `json:"immediate_destruction"`
 	end                  bool
@@ -110,7 +114,16 @@ type Bullet struct {
 	ChainCount          int `json:"-"`
 	ghost               bool
 	stopTimeMS          int
+	rWAttributes        map[string]int
 	mx                  sync.RWMutex
+}
+
+type AttachConfig struct {
+	AttachedToType string  `json:"attached_to_type"` // "unit", "object", "flore"
+	AttachedToID   int     `json:"attached_to_id"`
+	AttachDist     float64 `json:"attach_dist"`
+	AttachAngle    float64 `json:"attach_angle"`
+	RelativeAngle  float64 `json:"relative_angle"`
 }
 
 type CacheData struct {
@@ -264,4 +277,22 @@ func (b *Bullet) FractionWarrior() bool {
 
 func (b *Bullet) OwnerFraction() string {
 	return b.Fraction
+}
+
+func (b *Bullet) GetRWAttribute(key string) int {
+	b.mx.RLock()
+	defer b.mx.RUnlock()
+	if b.rWAttributes == nil {
+		b.rWAttributes = make(map[string]int)
+	}
+	return b.rWAttributes[key]
+}
+
+func (b *Bullet) SetRWAttribute(key string, value int) {
+	b.mx.Lock()
+	defer b.mx.Unlock()
+	if b.rWAttributes == nil {
+		b.rWAttributes = make(map[string]int)
+	}
+	b.rWAttributes[key] = value
 }
