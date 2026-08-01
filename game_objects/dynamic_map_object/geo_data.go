@@ -34,6 +34,7 @@ func (o *Object) SetGeoData(static bool) {
 				Move:     gd.Move,
 				Resource: gd.Resource,
 				Height:   gd.Height,
+				Border:   static, // означает что это не созданные обьект а стена которая была изначально
 			}
 
 			if !static {

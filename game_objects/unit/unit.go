@@ -117,6 +117,7 @@ type Unit struct {
 	FireInputState        *FireInputState `json:"-"`
 	LowPower              bool            `json:"low_power"`
 	Fuel                  *Fuel           `json:"-"`
+	CheckIsArea           int             `json:"fraction"`
 
 	Decals []Decal
 

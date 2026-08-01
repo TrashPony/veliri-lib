@@ -25,6 +25,7 @@ type Squad struct {
 	LastGlobalPosition *coordinate.Coordinate `json:"last_global_position"` // если отряд был в данже, но по какой то причине сервак вырубило и данж пропал, эта та точка куда упадет отряд при заходе в игру
 	RemoveInBase       bool                   `json:"remove_in_base"`
 	softTransition     int
+	SendTextTimeOut    int
 
 	matherShip *unit.Unit
 

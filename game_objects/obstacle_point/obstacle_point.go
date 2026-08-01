@@ -11,6 +11,7 @@ type ObstaclePoint struct {
 	Radius     int     `json:"radius"`
 	Move       bool    `json:"move"`     // если тру то это только для пуль
 	Resource   bool    `json:"resource"` // не влияет на колизии с миром, но влияет на то что низя строить, или куда навести мыш
+	Border     bool    `json:"-"`
 	ParentID   int     `json:"-"`
 	ParentType string  `json:"-"`
 	Key        string  `json:"-"`
