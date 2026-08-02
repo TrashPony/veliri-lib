@@ -7,7 +7,6 @@ import (
 
 func GetReachAngleWithVelocity(
 	xPlace, yPlace int,
-	vxUnit, vyUnit float64, // скорость носителя (пикс/тик)
 	xTarget, yTarget int,
 	targetLvl, startLvlBullet float64,
 	bulletSpeed float64, // скорость пули (пикс/сек)
@@ -66,42 +65,6 @@ func GetReachAngleWithVelocity(
 		angle = math.Atan2(y1, gx)
 	} else {
 		angle = math.Atan2(y2, gx)
-	}
-
-	// 6. Коррекция угла с учётом скорости носителя
-	// Раскладываем скорость носителя на компоненты относительно направления стрельбы
-	cosAngle := math.Cos(angle)
-	sinAngle := math.Sin(angle)
-
-	// Проекция скорости носителя на направление стрельбы
-	vUnitParallel := vxUnit*cosAngle + vyUnit*sinAngle
-
-	// Корректируем эффективную скорость пули
-	vEffective := bulletSpeedPerTick + vUnitParallel
-
-	// 7. Пересчитываем угол с эффективной скоростью
-	if math.Abs(vEffective) > 0.001 {
-		v2Eff := vEffective * vEffective
-		v4Eff := v2Eff * v2Eff
-
-		rootEff := v4Eff - gPerTick*(gPerTick*x2+2*y*v2Eff)
-		if rootEff < 0 {
-			rootEff = 0
-		}
-		rootEff = math.Sqrt(rootEff)
-
-		y1Eff := v2Eff + rootEff
-		y2Eff := v2Eff - rootEff
-
-		var angleEff float64
-		if artillery {
-			angleEff = math.Atan2(y1Eff, gx)
-		} else {
-			angleEff = math.Atan2(y2Eff, gx)
-		}
-
-		// Плавно смешиваем углы (можно просто вернуть скорректированный)
-		angle = angleEff
 	}
 
 	return angle
