@@ -80,10 +80,11 @@ type Unit struct {
 	// VisionLinkManager содержит ID юнитов, которым этот юнит передает свой обзор
 	visionLinkManager *VisionLinkManager
 
-	LastDamageTime int64   `json:"-"` // время последнего урона неважно от кого
-	LastFireTime   int64   `json:"-"` // время последнего выстрела, включая активные модули
-	FearTimer      int     `json:"-"`
-	FearAngle      float64 `json:"-"`
+	LastDamageTime    int64   `json:"-"` // время последнего урона неважно от кого
+	LastFireTime      int64   `json:"-"` // время последнего выстрела, включая активные модули
+	FearTimer         int     `json:"-"`
+	FearAngle         float64 `json:"-"`
+	IsAreaTraversable int     `json:"-"`
 
 	effects           *effects_store.EffectsStore
 	visibleObjects    *visible_objects.VisibleObjectsStore
