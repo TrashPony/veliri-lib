@@ -330,6 +330,16 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ballistic_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">Ballistic</span> weapons accuracy reduced by <span class=\"importantly\">20%</span>"},
 		"ballistic_shot_energy_reduced_500p": {Description: "Energy consumption per shot from <span class=\"importantly\">ballistic</span> weapons increased <span class=\"importantly\">5</span> times"},
 
+		"missile_rate_20p":                 {Description: "<span class=\"importantly\">Missile launcher</span> fire rate increased by <span class=\"importantly\">20%</span>"},
+		"missile_reload_20p":               {Description: "<span class=\"importantly\">Missile launcher</span> reload speed increased by <span class=\"importantly\">20%</span>"},
+		"missile_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">Missile launcher</span> accuracy reduced by <span class=\"importantly\">20%</span>"},
+		"missile_shot_energy_reduced_500p": {Description: "Energy consumption per shot from <span class=\"importantly\">missile launcher</span> increased <span class=\"importantly\">5</span> times"},
+
+		"laser_rate_20p":                 {Description: "<span class=\"importantly\">Laser</span> weapons fire rate increased by <span class=\"importantly\">20%</span>"},
+		"laser_reload_20p":               {Description: "<span class=\"importantly\">Laser</span> weapons reload speed increased by <span class=\"importantly\">20%</span>"},
+		"laser_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">Laser</span> weapons accuracy reduced by <span class=\"importantly\">20%</span>"},
+		"laser_shot_energy_reduced_500p": {Description: "Energy consumption per shot from <span class=\"importantly\">laser</span> weapons increased <span class=\"importantly\">5</span> times"},
+
 		"empty": {Description: ""},
 	},
 	_const.RU: {
@@ -473,6 +483,16 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ballistic_reload_20p":               {Description: "Скорость перезарядки <span class=\"importantly\">баллистических</span> орудий увеличена на <span class=\"importantly\">20%</span>"},
 		"ballistic_accuracy_reduced_20p":     {Description: "Точность <span class=\"importantly\">баллистических</span> орудий уменьшена на <span class=\"importantly\">20%</span>"},
 		"ballistic_shot_energy_reduced_500p": {Description: "Количество потребляемой энергии за выстрел из <span class=\"importantly\">баллистических</span> орудий увеличено в <span class=\"importantly\">5</span> раз"},
+
+		"missile_rate_20p":                 {Description: "Скорострельность <span class=\"importantly\">пусковых установок</span> увеличена на <span class=\"importantly\">20%</span>"},
+		"missile_reload_20p":               {Description: "Скорость перезарядки <span class=\"importantly\">пусковых установок</span> увеличена на <span class=\"importantly\">20%</span>"},
+		"missile_accuracy_reduced_20p":     {Description: "Точность <span class=\"importantly\">пусковых установок</span> уменьшена на <span class=\"importantly\">20%</span>"},
+		"missile_shot_energy_reduced_500p": {Description: "Количество потребляемой энергии за выстрел из <span class=\"importantly\">пусковой установки</span> увеличено в <span class=\"importantly\">5</span> раз"},
+
+		"laser_rate_20p":                 {Description: "Скорострельность <span class=\"importantly\">лазерных</span> орудий увеличена на <span class=\"importantly\">20%</span>"},
+		"laser_reload_20p":               {Description: "Скорость перезарядки <span class=\"importantly\">лазерных</span> орудий увеличена на <span class=\"importantly\">20%</span>"},
+		"laser_accuracy_reduced_20p":     {Description: "Точность <span class=\"importantly\">лазерных</span> орудий уменьшена на <span class=\"importantly\">20%</span>"},
+		"laser_shot_energy_reduced_500p": {Description: "Количество потребляемой энергии за выстрел из <span class=\"importantly\">лазерных</span> орудий увеличено в <span class=\"importantly\">5</span> раз"},
 
 		"ballistic_small_rate_20p": {Description: "<span class=\"importantly\">Скорострельность малых баллистических орудий</span> увеличен на <span class=\"importantly\">20%</span>"},
 		"ballistic_small_rate_15p": {Description: "<span class=\"importantly\">Скорострельность малых баллистических орудий</span> увеличен на <span class=\"importantly\">15%</span>"},
@@ -923,6 +943,16 @@ var EffectsDescription = map[string]map[string]DescriptionItem{
 		"ballistic_reload_20p":               {Description: "<span class=\"importantly\">弹道</span>武器装填速度提升<span class=\"importantly\">20%</span>"},
 		"ballistic_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">弹道</span>武器精准度降低<span class=\"importantly\">20%</span>"},
 		"ballistic_shot_energy_reduced_500p": {Description: "<span class=\"importantly\">弹道</span>武器每次射击能量消耗增加<span class=\"importantly\">5</span>倍"},
+
+		"missile_rate_20p":                 {Description: "<span class=\"importantly\">导弹发射器</span>射速提升<span class=\"importantly\">20%</span>"},
+		"missile_reload_20p":               {Description: "<span class=\"importantly\">导弹发射器</span>装填速度提升<span class=\"importantly\">20%</span>"},
+		"missile_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">导弹发射器</span>精准度降低<span class=\"importantly\">20%</span>"},
+		"missile_shot_energy_reduced_500p": {Description: "<span class=\"importantly\">导弹发射器</span>每次射击能量消耗增加<span class=\"importantly\">5</span>倍"},
+
+		"laser_rate_20p":                 {Description: "<span class=\"importantly\">激光</span>武器射速提升<span class=\"importantly\">20%</span>"},
+		"laser_reload_20p":               {Description: "<span class=\"importantly\">激光</span>武器装填速度提升<span class=\"importantly\">20%</span>"},
+		"laser_accuracy_reduced_20p":     {Description: "<span class=\"importantly\">激光</span>武器精准度降低<span class=\"importantly\">20%</span>"},
+		"laser_shot_energy_reduced_500p": {Description: "<span class=\"importantly\">激光</span>武器每次射击能量消耗增加<span class=\"importantly\">5</span>倍"},
 
 		"empty": {Description: ""},
 	},

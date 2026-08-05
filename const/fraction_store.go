@@ -157,6 +157,17 @@ var ReplicAssortment = []AssortmentPoint{
 	{ID: 50148, ItemID: 246, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50151, ItemID: 66, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50152, ItemID: 247, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+
+	{ID: 50157, ItemID: 248, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50158, ItemID: 249, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50159, ItemID: 250, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50160, ItemID: 251, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50161, ItemID: 252, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50162, ItemID: 253, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50163, ItemID: 254, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50164, ItemID: 255, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50165, ItemID: 256, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50166, ItemID: 257, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
 
 var ExploresAssortment = []AssortmentPoint{
@@ -305,6 +316,17 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 50149, ItemID: 246, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50153, ItemID: 66, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50154, ItemID: 247, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+
+	{ID: 50167, ItemID: 248, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50168, ItemID: 249, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50169, ItemID: 250, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50170, ItemID: 251, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50171, ItemID: 252, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50172, ItemID: 253, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50173, ItemID: 254, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50174, ItemID: 255, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50175, ItemID: 256, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50176, ItemID: 257, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
 
 var ReversesAssortment = []AssortmentPoint{
@@ -450,4 +472,15 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 50150, ItemID: 246, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50155, ItemID: 66, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 	{ID: 50156, ItemID: 247, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+
+	{ID: 50177, ItemID: 248, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50178, ItemID: 249, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50179, ItemID: 250, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50180, ItemID: 251, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50181, ItemID: 252, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50182, ItemID: 253, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50183, ItemID: 254, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50184, ItemID: 255, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50185, ItemID: 256, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
+	{ID: 50186, ItemID: 257, ItemType: "blueprints", Count: 1, Points: 30000, MinRank: 1, Priority: 1},
 }
