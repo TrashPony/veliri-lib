@@ -46,6 +46,7 @@ type BodyWeaponSlot struct {
 	On                  bool       `json:"-"`
 	IgnorePassAngle     int64      `json:"-"`
 	Group               int        `json:"group"`
+	BulletState         int        `json:"bullet_state"`
 	reloadLock          bool
 	reloadMX            sync.Mutex
 	aimFilter           *aim_filter.AimFilter

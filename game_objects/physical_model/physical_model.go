@@ -61,15 +61,17 @@ type PhysicalModel struct {
 	SpinoutLevel           float64                         `json:"-"` // 0..1: насколько мы «вне контроля» // 0 = норма, 0.5 = частичный срыв, 1.0 = полный спин
 	MeleeK                 float64                         `json:"-"` // Коэфецент усиление или затухания урона ближнего боя
 	Teleport               bool                            `json:"teleport"`
+
 	// Ключом является уникальный идентификатор источника эффекта
 	// (например, ID предмета, ID скилла или UUID сущности).
-	freezeEffects              map[string]func() bool
-	ignoreMoveCollisionEffects map[string]func() bool
-	changeHeight               float64
-	useCoordinates             []pointer.Pointer
-	mx                         sync.Mutex
-	polygon                    *game_math.Polygon
-	nextPolygon                *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
+	freezeEffects                map[string]func() bool
+	ignoreMoveCollisionEffects   map[string]func() bool
+	ignoreBulletCollisionEffects map[string]func() bool
+	changeHeight                 float64
+	useCoordinates               []pointer.Pointer
+	mx                           sync.Mutex
+	polygon                      *game_math.Polygon
+	nextPolygon                  *game_math.Polygon // todo полигон для проверки следующей позиции, что бы не создавать каждый раз заного
 }
 
 type MeleeWeaponData struct {
@@ -593,21 +595,33 @@ func (m *PhysicalModel) initEffects() {
 	if m.ignoreMoveCollisionEffects == nil {
 		m.ignoreMoveCollisionEffects = make(map[string]func() bool)
 	}
+	if m.ignoreBulletCollisionEffects == nil {
+		m.ignoreBulletCollisionEffects = make(map[string]func() bool)
+	}
 }
 
 func (m *PhysicalModel) AddFreezeEffect(id string, fn func() bool) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	m.initEffects()
 	m.freezeEffects[id] = fn
 }
 
 // RemoveFreezeEffect удаляет проверку по ID источника
 func (m *PhysicalModel) RemoveFreezeEffect(id string) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	if m.freezeEffects != nil {
 		delete(m.freezeEffects, id)
 	}
 }
 
 func (m *PhysicalModel) Freeze() bool {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	if m.freezeEffects == nil {
 		return false
 	}
@@ -620,21 +634,62 @@ func (m *PhysicalModel) Freeze() bool {
 }
 
 func (m *PhysicalModel) AddIgnoreMoveCollisionEffect(id string, fn func() bool) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	m.initEffects()
 	m.ignoreMoveCollisionEffects[id] = fn
 }
 
 func (m *PhysicalModel) RemoveIgnoreMoveCollisionEffect(id string) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	if m.ignoreMoveCollisionEffects != nil {
 		delete(m.ignoreMoveCollisionEffects, id)
 	}
 }
 
 func (m *PhysicalModel) IgnoreMoveCollision() bool {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
 	if m.ignoreMoveCollisionEffects == nil {
 		return false
 	}
 	for _, fn := range m.ignoreMoveCollisionEffects {
+		if fn() {
+			return true
+		}
+	}
+	return false
+}
+
+func (m *PhysicalModel) AddIgnoreBulletCollisionEffect(id string, fn func() bool) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	m.initEffects()
+	m.ignoreBulletCollisionEffects[id] = fn
+}
+
+func (m *PhysicalModel) RemoveIgnoreBulletCollisionEffect(id string) {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	if m.ignoreBulletCollisionEffects != nil {
+		delete(m.ignoreBulletCollisionEffects, id)
+	}
+}
+
+func (m *PhysicalModel) IgnoreBulletCollision() bool {
+	m.mx.Lock()
+	defer m.mx.Unlock()
+
+	if m.ignoreBulletCollisionEffects == nil {
+		return false
+	}
+	for _, fn := range m.ignoreBulletCollisionEffects {
 		if fn() {
 			return true
 		}

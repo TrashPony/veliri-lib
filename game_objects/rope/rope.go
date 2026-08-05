@@ -162,12 +162,19 @@ func (r *Rope) SetPinned(p *Point, ph *physical_model.PhysicalModel, pos *game_m
 		p.PinnedPosition = func() *game_math.Vector {
 			return &game_math.Vector{X: float64(p.Pinned.X), Y: float64(p.Pinned.Y)}
 		}
+	} else {
+		p.PinnedPosition = nil
 	}
 
 	if pos != nil {
 		p.PinnedPosition = func() *game_math.Vector {
 			return pos
 		}
+	}
+
+	if p.Pinned == nil && pos == nil {
+		p.PinnedPosition = nil
+		return
 	}
 
 	neighborsCount := 5

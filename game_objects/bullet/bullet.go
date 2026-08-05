@@ -242,6 +242,7 @@ func (b *Bullet) GetJSON(mapTime int64) []byte {
 	}
 
 	command = append(command, game_math.BoolToByte(b.Hide))
+	command = append(command, byte(b.State))
 
 	b.CacheJson = command
 	b.CreateJsonTime = mapTime

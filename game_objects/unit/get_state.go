@@ -556,3 +556,7 @@ func (u *Unit) AddUrepairableDamage(d int) int {
 	u.UnrepairableDamage += add
 	return add
 }
+
+func (u *Unit) GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	return math.Ceil(u.GetEffects().GetAllWeaponBonus(startValue, parameterName, typeWeapon, sizeWeapon))
+}

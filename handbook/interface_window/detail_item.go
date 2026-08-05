@@ -1187,4 +1187,9 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   `Skills`,
 		_const.ZhCN: `技能`,
 	},
+	"text_29": {
+		_const.RU:   `При активации: `,
+		_const.EN:   `Upon activation: `,
+		_const.ZhCN: `激活后：`,
+	},
 }

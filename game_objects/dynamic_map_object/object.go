@@ -233,6 +233,14 @@ func (o *Object) initGunner() {
 	o.UpdateWeaponsState()
 }
 
+func (o *Object) GetEffectByParameter(startValue float64, parameterName string) float64 {
+	return o.GetEffects().GetAllBonus(startValue, parameterName)
+}
+
+func (o *Object) GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	return math.Ceil(o.GetEffects().GetAllWeaponBonus(startValue, parameterName, typeWeapon, sizeWeapon))
+}
+
 func (o *Object) GetAimFilter() *aim_filter.AimFilter {
 	return nil
 }

@@ -252,6 +252,14 @@ func (d *Drone) initGunner() {
 	d.UpdateWeaponsState()
 }
 
+func (d *Drone) GetEffectByParameter(startValue float64, parameterName string) float64 {
+	return d.GetEffects().GetAllBonus(startValue, parameterName)
+}
+
+func (d *Drone) GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	return math.Ceil(d.GetEffects().GetAllWeaponBonus(startValue, parameterName, typeWeapon, sizeWeapon))
+}
+
 func (d *Drone) UpdateWeaponsState() {
 	if d.gunner == nil {
 		d.initGunner()

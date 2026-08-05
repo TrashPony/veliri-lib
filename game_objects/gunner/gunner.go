@@ -37,6 +37,8 @@ type GunUser interface {
 	GetPower() int
 	SetPower(int)
 	GetMissileTargetList() *missile_target.MissileTargetList
+	GetEffectByParameter(startValue float64, parameterName string) float64
+	GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64
 }
 
 type Gunner struct {
@@ -47,6 +49,14 @@ type Gunner struct {
 
 func (g *Gunner) GetMissileTargetList() *missile_target.MissileTargetList {
 	return g.GunUser.GetMissileTargetList()
+}
+
+func (g *Gunner) GetEffectByParameter(startValue float64, parameterName string) float64 {
+	return g.GunUser.GetEffectByParameter(startValue, parameterName)
+}
+
+func (g *Gunner) GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64 {
+	return g.GunUser.GetAllWeaponBonus(startValue, parameterName, typeWeapon, sizeWeapon)
 }
 
 func (g *Gunner) ReloadLock(weaponNumber int) bool {
