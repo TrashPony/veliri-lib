@@ -68,16 +68,16 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 		totalForce = maxTotalForce
 	}
 
-	if penetrationDepth > 0 && penetrationDepth <= 10 {
+	if penetrationDepth > 0 && penetrationDepth <= 25 {
 		totalForce = totalForce * (1 + (penetrationDepth * 0.01))
 	}
 
-	if penetrationDepth > 10 && penetrationDepth <= 15 {
-		totalForce = totalForce * (1 + (penetrationDepth * 0.02))
+	if penetrationDepth > 25 && penetrationDepth <= 40 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.04))
 	}
 
-	if penetrationDepth > 15 {
-		totalForce = totalForce * (1 + (penetrationDepth * 0.05))
+	if penetrationDepth > 40 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.5))
 	}
 
 	vx1, vy1 := collider1.GetVelocity()

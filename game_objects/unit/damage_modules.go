@@ -188,7 +188,7 @@ func (u *Unit) appendModuleDebuff() {
 			}
 
 			if z.Type == "chassis" {
-				angularVelocityTilt += u.GetPhysicalModel().TurnSpeed * float64(game_math.GetRangeRand(0, 50, nil)-25) * 0.01
+				angularVelocityTilt += u.GetPhysicalModel().TurnSpeed * float64(game_math.GetRangeRand(0, 50, nil)-25) * 0.005
 			}
 		}
 	}

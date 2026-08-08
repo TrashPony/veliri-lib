@@ -44,7 +44,6 @@ type PhysicalModel struct {
 	Radius                 int                             `json:"radius"` // радиус окружности обьекта
 	GeoData                []*obstacle_point.ObstaclePoint `json:"-"`
 	MeleeWeaponData        MeleeWeaponData                 `json:"-"` // если у кого то есть оружие ближнего боя то это тоже часть физической модели
-	PosFunc                func() int                      `json:"-"` // функция для принятия положения в конце сервертика
 	Type                   string                          `json:"type"`
 	ID                     int                             `json:"id"`
 	SenderPos              bool                            `json:"-"`
@@ -372,20 +371,6 @@ func (m *PhysicalModel) SetVelocity(x float64, y float64) {
 	m.XVelocity, m.YVelocity = x, y
 }
 
-func (m *PhysicalModel) GetPosFunc() func() int {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
-	return m.PosFunc
-}
-
-func (m *PhysicalModel) SetPosFunc(fun func() int) {
-	m.mx.Lock()
-	defer m.mx.Unlock()
-
-	m.PosFunc = fun
-}
-
 func (m *PhysicalModel) GetWeight() float64 {
 	return m.Weight
 }
@@ -480,7 +465,6 @@ func (m *PhysicalModel) SetPos(realX, realY, angle float64) {
 	}
 
 	m.Rotate = angle
-	m.PosFunc = nil
 }
 
 func (m *PhysicalModel) SetRotate(angle float64) {

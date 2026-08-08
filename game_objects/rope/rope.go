@@ -382,7 +382,7 @@ func (c *Constraints) ApplyConstraint(currentLen float64, source *Point, updateP
 			var accel float64
 
 			// Базовая сила натяжения
-			basePull := stretch * 1.5 * p.Stiffness * massFactor
+			basePull := stretch * 0.5 * p.Stiffness * massFactor
 
 			// Демпфирование: гасит скорость, если объект уже движется в направлении натяжения
 			damping := (-velAlongRope) * 0.8 * p.Stiffness * massFactor
@@ -398,14 +398,6 @@ func (c *Constraints) ApplyConstraint(currentLen float64, source *Point, updateP
 			}
 
 			accel = accel * (1.0 - drag)
-
-			// 5. Спец. условия для антигравов
-			if p.Pinned.ChassisType == "antigravity" {
-				accel = accel * 0.3
-				if accel > 5.0 {
-					accel = 5.0
-				}
-			}
 
 			// 6. Финальные ограничители
 			if accel < 0 {
