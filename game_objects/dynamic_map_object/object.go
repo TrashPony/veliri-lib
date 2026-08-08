@@ -170,6 +170,10 @@ type Object struct {
 	mx                      sync.RWMutex
 }
 
+func (o *Object) GetOwnerType() string {
+	return o.OwnerType
+}
+
 func (o *Object) GetMissileTargetList() *missile_target.MissileTargetList {
 	if o.missileTargetList == nil {
 		o.missileTargetList = &missile_target.MissileTargetList{}

@@ -89,23 +89,24 @@ type Bullet struct {
 	CacheUpdateData CacheData `json:"-"`
 	CreateJsonTime  int64     `json:"-"`
 
-	ForceExplosion      bool            `json:"-"`
-	AutoActivate        bool            `json:"-"`
-	DetonationDistance  int             `json:"-"`
-	DetonationTimeOut   int             `json:"detonation_time_out"`
-	Attributes          map[string]int  `json:"-"`
-	ObjectID            int             `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
-	DetonationForceView bool            `json:"-"` // все видят взрыв, независимо от тумана войны
-	MapItem             *inventory.Slot `json:"-"`
-	EquipType           int             `json:"-"`
-	EquipNumber         int             `json:"-"`
-	State               int             `json:"-"`
-	ClientLag           float64         `json:"-"`
-	ParentVelX          float64         `json:"-"`
-	ParentVelY          float64         `json:"-"`
-	ExcludeUnitIDs      []int           `json:"-"`
-	ExcludeObjectIDs    []int           `json:"-"`
-	RemoveTarget        bool            `json:"-"`
+	ForceExplosion            bool            `json:"-"`
+	AutoActivate              bool            `json:"-"`
+	DetonationDistance        int             `json:"-"`
+	DetonationTimeOut         int             `json:"detonation_time_out"`
+	Attributes                map[string]int  `json:"-"`
+	ObjectID                  int             `json:"-"` // ид обьекта которые вызывает снаряжения (турель/стена)
+	DetonationForceView       bool            `json:"-"` // все видят взрыв, независимо от тумана войны
+	MapItem                   *inventory.Slot `json:"-"`
+	EquipType                 int             `json:"-"`
+	EquipNumber               int             `json:"-"`
+	State                     int             `json:"-"`
+	ClientLag                 float64         `json:"-"`
+	ParentVelX                float64         `json:"-"`
+	ParentVelY                float64         `json:"-"`
+	ExcludeUnitIDs            []int           `json:"-"`
+	ExcludeObjectIDs          []int           `json:"-"`
+	ExcludeDronesByPlayersIDs []int           `json:"-"`
+	RemoveTarget              bool            `json:"-"`
 
 	BodyRotateValue     int // что бы на фронте пуля имела положение тела не по направлению а по значению
 	BodyRotate          bool

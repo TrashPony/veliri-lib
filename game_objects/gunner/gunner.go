@@ -39,12 +39,22 @@ type GunUser interface {
 	GetMissileTargetList() *missile_target.MissileTargetList
 	GetEffectByParameter(startValue float64, parameterName string) float64
 	GetAllWeaponBonus(startValue float64, parameterName, typeWeapon string, sizeWeapon int) float64
+	GetOwnerType() string
+	GetOwnerID() int
 }
 
 type Gunner struct {
 	GunUser          GunUser
 	WeaponSlotsState []*WeaponSlotState
 	r                *rand.Rand
+}
+
+func (g *Gunner) GetOwnerType() string {
+	return g.GunUser.GetOwnerType()
+}
+
+func (g *Gunner) GetOwnerID() int {
+	return g.GunUser.GetOwnerID()
 }
 
 func (g *Gunner) GetMissileTargetList() *missile_target.MissileTargetList {

@@ -69,6 +69,14 @@ type Drone struct {
 	mx                sync.RWMutex
 }
 
+func (d *Drone) GetOwnerType() string {
+	return d.OwnerType
+}
+
+func (d *Drone) GetOwnerID() int {
+	return d.OwnerID
+}
+
 func (d *Drone) GetMissileTargetList() *missile_target.MissileTargetList {
 	if d.missileTargetList == nil {
 		d.missileTargetList = &missile_target.MissileTargetList{}

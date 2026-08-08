@@ -117,11 +117,15 @@ type Unit struct {
 	FireInputState        *FireInputState `json:"-"`
 	LowPower              bool            `json:"low_power"`
 	Fuel                  *Fuel           `json:"-"`
-	CheckIsArea           int             `json:"fraction"`
+	CheckIsArea           int             `json:"-"`
 
 	Decals []Decal
 
 	attributes map[string]int
+}
+
+func (u *Unit) GetOwnerType() string {
+	return "player"
 }
 
 func (u *Unit) GetMissileTargetList() *missile_target.MissileTargetList {
