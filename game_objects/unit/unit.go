@@ -53,8 +53,7 @@ type Unit struct {
 	inSky           bool            /* отряд по той или иной причине летит Оо */
 	EvacuationState EvacuationState // юнит летити в трюме транспортника
 
-	movePath         *move_path.MovePath // специальный обьект для пути
-	DistanceTraveled int                 `json:"-"` // пока только для заданий
+	movePath *move_path.MovePath // специальный обьект для пути
 
 	Inventory            *inventory.Inventory            `json:"inventory"` // в роли ключей карты выступают номера слотов где содержиться итем
 	InventoryPercent     byte                            `json:"-"`

@@ -54,22 +54,30 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 
 	penetrationDepth := calculateObjectPenetrationDepth(collider1, collider2)
 
-	ejectForce := penetrationDepth * 0.5 // Коэффициент можно настроить
+	ejectForce := penetrationDepth * 0.5
 	maxEjectForce := 3.0
 	if ejectForce > maxEjectForce {
 		ejectForce = maxEjectForce
 	}
 
 	impactForce := relativeSpeed
-	minForce := 1.0
-	if impactForce < minForce {
-		impactForce = minForce
-	}
 
 	totalForce := (impactForce + ejectForce) * 5
-	maxTotalForce := 5.0
+	maxTotalForce := 3.0
 	if totalForce > maxTotalForce {
 		totalForce = maxTotalForce
+	}
+
+	if penetrationDepth > 0 && penetrationDepth <= 10 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.01))
+	}
+
+	if penetrationDepth > 10 && penetrationDepth <= 15 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.02))
+	}
+
+	if penetrationDepth > 15 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.05))
 	}
 
 	vx1, vy1 := collider1.GetVelocity()
@@ -77,6 +85,10 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 
 	if collider2.GetType() != "map_item" {
 		powerLoss1 := calculatePowerLoss(collider1, collider2, dirX, dirY, totalForce, weight2)
+		if penetrationDepth >= 8 {
+			powerLoss1 = 0.1
+		}
+
 		collider1.SetPowerMove(collider1.GetPowerMove() * powerLoss1)
 
 		collider1.SetVelocity(

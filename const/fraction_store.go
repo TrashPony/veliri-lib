@@ -196,7 +196,6 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 109, ItemID: 145, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 3, Priority: 2},
 	{ID: 110, ItemID: 147, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 3, Priority: 2},
 	{ID: 111, ItemID: 149, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 3, Priority: 2},
-	{ID: 112, ItemID: 155, ItemType: "blueprints", Count: 1, Points: 250000, MinRank: 3, Priority: 2},
 	{ID: 113, ItemID: 156, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 3, Priority: 2},
 	{ID: 114, ItemID: 158, ItemType: "blueprints", Count: 1, Points: 400000, MinRank: 3, Priority: 2},
 	{ID: 115, ItemID: 159, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 3, Priority: 2},
@@ -239,7 +238,6 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 2010, ItemID: 174, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 	{ID: 2011, ItemID: 177, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 	{ID: 2012, ItemID: 179, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
-	{ID: 2013, ItemID: 183, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 
 	// ammo +
 	{ID: 89, ItemID: 5, ItemType: "ammo", Count: 5 * 8, Points: 1800 * 3, MinRank: 1},
@@ -354,7 +352,6 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 149, ItemID: 148, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 3, Priority: 2},
 	{ID: 150, ItemID: 150, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 3, Priority: 2},
 	{ID: 151, ItemID: 146, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 3, Priority: 2},
-	{ID: 152, ItemID: 153, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 3, Priority: 2},
 	{ID: 153, ItemID: 154, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 3, Priority: 2},
 	{ID: 154, ItemID: 158, ItemType: "blueprints", Count: 1, Points: 400000, MinRank: 3, Priority: 2},
 	{ID: 155, ItemID: 159, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 3, Priority: 2},
@@ -393,7 +390,6 @@ var ReversesAssortment = []AssortmentPoint{
 	{ID: 2016, ItemID: 175, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 	{ID: 2017, ItemID: 176, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 	{ID: 2018, ItemID: 180, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
-	{ID: 2019, ItemID: 184, ItemType: "blueprints", Count: 1, Points: 150000, MinRank: 1, Priority: 2},
 
 	// ammo +
 	{ID: 135, ItemID: 33, ItemType: "ammo", Count: 5 * 10, Points: 2500 * 3, MinRank: 1},

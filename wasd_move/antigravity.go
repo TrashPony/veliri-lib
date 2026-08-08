@@ -55,16 +55,37 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 	obj.SetPowerLeft(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerLeft())))
 	obj.SetPowerRight(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerRight())))
 
+	// Считаем ускорения по осям
+	forwardAccel := obj.GetPowerMove() - obj.GetReverse()
+	lateralAccel := obj.GetPowerLeft() - obj.GetPowerRight()
+
+	// Длина суммарного вектора ускорения
+	accelMag := math.Sqrt(forwardAccel*forwardAccel + lateralAccel*lateralAccel)
+
+	// Максимальное ускорение (максимальная мощность)
+	maxAccel := obj.GetMoveMaxPower()
+
+	// Если суммарное ускорение превышает максимум - нормализуем
+	// Коэффициент 1.0 = нет бонуса, 1.4 = бонус при диагонали
+	const diagonalBonus = 1.2 // или 1.2 для небольшого бонуса
+
+	if accelMag > maxAccel*diagonalBonus && accelMag > 0 {
+		scale := (maxAccel * diagonalBonus) / accelMag
+		forwardAccel *= scale
+		lateralAccel *= scale
+	}
+
+	// Применяем нормализованные ускорения
 	radRotate := game_math.DegToRadian(obj.GetRotate())
 	obj.AddVelocity(
-		game_math.Cos(radRotate)*(obj.GetPowerMove()-obj.GetReverse()),
-		game_math.Sin(radRotate)*(obj.GetPowerMove()-obj.GetReverse()),
+		game_math.Cos(radRotate)*forwardAccel,
+		game_math.Sin(radRotate)*forwardAccel,
 	)
 
 	radRotate2 := game_math.DegToRadian(obj.GetRotate() - 90)
 	obj.AddVelocity(
-		game_math.Cos(radRotate2)*(obj.GetPowerLeft()-obj.GetPowerRight()),
-		game_math.Sin(radRotate2)*(obj.GetPowerLeft()-obj.GetPowerRight()),
+		game_math.Cos(radRotate2)*lateralAccel,
+		game_math.Sin(radRotate2)*lateralAccel,
 	)
 
 	wt := g.GetWeaponTarget(0)
@@ -80,6 +101,9 @@ func antigravity(obj MoveObject, g *gunner.Gunner) {
 			obj.SetAngularVelocity(obj.GetAngularVelocity() - obj.GetTurnSpeed())
 		}
 	}
+
+	obj.MultiplyVelocity(obj.GetMoveDrag(), obj.GetMoveDrag())
+	obj.SetAngularVelocity(obj.GetAngularVelocity() * obj.GetAngularDrag())
 
 	xV, yV := obj.GetVelocity()
 	xR, yR := obj.GetRealPos()

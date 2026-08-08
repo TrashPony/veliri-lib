@@ -101,34 +101,35 @@ func wheel(obj MoveObject) {
 	}
 
 	if isDrifting {
-		// Направление дрифта: перпендикулярно корпусу!
-		// При повороте влево → зад уходит вправо → дрифт вправо (и наоборот)
 		driftDir := 0.0
 		if pm.CheckLeftRotate() > 0 {
 			driftDir = 1
-		} // вправо!
+		}
 		if pm.CheckRightRotate() > 0 {
 			driftDir = -1
-		} // влево!
-
-		// Сила дрифта: зависит от скорости и резкости
-		as := (pm.GetAngularVelocity() * 8)
-		if as < 0 {
-			as *= -1
 		}
 
-		baseDrift := obj.GetCurrentSpeed() * as * massK
+		if driftDir == 0 {
+			if pm.GetAngularVelocity() > 0 {
+				driftDir = -1
+			} else if pm.GetAngularVelocity() < 0 {
+				driftDir = 1
+			}
+		}
+
+		as := math.Abs(pm.GetAngularVelocity() * 5) // было 8
+		currentSpeed := obj.GetCurrentSpeed()
+
+		baseDrift := as * massK * 12
 		if pm.CheckHandBrake() {
-			baseDrift *= 2.0 // ручной тормоз = мощный дрифт
+			baseDrift *= 2.0
 		}
 
-		driftAccelX = -game_math.Sin(rad) * driftDir * baseDrift
-		driftAccelY = game_math.Cos(rad) * driftDir * baseDrift
+		driftAccelX = -game_math.Sin(rad) * driftDir * baseDrift * currentSpeed
+		driftAccelY = game_math.Cos(rad) * driftDir * baseDrift * currentSpeed
 	}
 
-	// === 3. Обновляем Drift-вектор (с инерцией!) ===
-	// Новый импульс добавляется, старый — затухает
-	cs := obj.GetCurrentSpeed() * 0.008 * massK
+	cs := 0.01 * massK
 	pm.DriftX = pm.DriftX*0.9 + driftAccelX*cs
 	pm.DriftY = pm.DriftY*0.9 + driftAccelY*cs
 
@@ -139,11 +140,6 @@ func wheel(obj MoveObject) {
 		pm.DriftY = pm.DriftY / driftMag * 20
 	}
 
-	// === 4. Итоговая скорость = основная + дрифт ===
-	totalX := pm.XVelocity + pm.DriftX
-	totalY := pm.YVelocity + pm.DriftY
-
-	// === 5. Поворот (оставь как есть, но можно добавить grip-ослабление позже) ===
 	direction := 1.0
 	if pm.GetPowerMove() < pm.GetReverse() {
 		direction = -1
@@ -178,7 +174,12 @@ func wheel(obj MoveObject) {
 		}
 	}
 
-	// === 6. Следующая позиция — по ИТОГОВОЙ скорости ===
+	obj.MultiplyVelocity(obj.GetMoveDrag(), obj.GetMoveDrag())
+	obj.SetAngularVelocity(obj.GetAngularVelocity() * obj.GetAngularDrag())
+
+	totalX := pm.XVelocity + pm.DriftX
+	totalY := pm.YVelocity + pm.DriftY
+
 	xR, yR := pm.GetRealPos()
 	pm.SetNextPos(xR+totalX, yR+totalY)
 }

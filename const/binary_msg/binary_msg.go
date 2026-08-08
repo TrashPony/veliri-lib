@@ -1116,10 +1116,11 @@ func CreateUpRankBin(up bool) []byte {
 	return command
 }
 
-func ServerTime(unixTime int64, inputSeq byte) []byte {
+func ServerTime(unixTime, mapTick int64, inputSeq byte) []byte {
 	command := []byte{87}
 
 	command = append(command, game_math.GetInt64Bytes(unixTime)...)
+	command = append(command, game_math.GetInt64Bytes(mapTick)...)
 	command = append(command, inputSeq)
 
 	return command

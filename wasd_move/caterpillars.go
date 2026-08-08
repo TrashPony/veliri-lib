@@ -73,6 +73,9 @@ func caterpillars(obj MoveObject) {
 		game_math.Sin(radRotate)*(obj.GetPowerMove()-obj.GetReverse()),
 	)
 
+	obj.MultiplyVelocity(obj.GetMoveDrag(), obj.GetMoveDrag())
+	obj.SetAngularVelocity(obj.GetAngularVelocity() * obj.GetAngularDrag())
+
 	xV, yV := obj.GetVelocity()
 	xR, yR := obj.GetRealPos()
 
