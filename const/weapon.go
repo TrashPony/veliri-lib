@@ -21,7 +21,6 @@ var weaponDefaultSkin = map[string]string{
 	"explores_weapon_4": "_skin_1",
 	"reverses_weapon_1": "_skin_1",
 	"reverses_weapon_2": "_skin_1",
-	"reverses_weapon_3": "_skin_1",
 	"reverses_weapon_4": "_skin_1",
 	"reverses_weapon_5": "_skin_1",
 	"artillery":         "_skin_1",

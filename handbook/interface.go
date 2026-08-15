@@ -67,4 +67,5 @@ var GameInterface = map[string]map[string]map[string]string{
 	"ClearRelationModal":  interface_window.ClearRelationModal,
 	"Laboratory":          interface_window.Laboratory,
 	"DeadLog":             interface_window.DeadLog,
+	"BpEditor":            interface_window.BpEditor,
 }

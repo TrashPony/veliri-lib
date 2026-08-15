@@ -51,17 +51,17 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64,
 	// Чертежи: фракционные, 1 шт (с BaseCount)
 	if rng.Intn(100) < cfg.BlueprintChance {
 
-		blueprints := filterByFraction(t0BluePrints, fraction)
+		blueprints := filterByFraction(T0BluePrints, fraction)
 		if cfg.PartTier == 1 { // Т1 чертежи — у агентов, строителей, гигантов
-			blueprints = filterByFraction(t1BluePrints, fraction)
+			blueprints = filterByFraction(T1BluePrints, fraction)
 		}
 
 		if len(blueprints) == 0 {
 			// fallback
 			if cfg.PartTier == 1 {
-				blueprints = t1BluePrints
+				blueprints = T1BluePrints
 			} else {
-				blueprints = t0BluePrints
+				blueprints = T0BluePrints
 			}
 		}
 
@@ -77,9 +77,9 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64,
 	// Значит: min=50, max=100 всегда, tier — по cfg.PartTier
 	if rng.Intn(100) < cfg.PartChance {
 
-		pool := t0Details
+		pool := T0Details
 		if cfg.PartTier == 1 {
-			pool = t1Details
+			pool = T1Details
 		}
 
 		if len(pool) > 0 {
@@ -93,10 +93,10 @@ func GenerateBotLoot(botRole string, fraction string, rng *rand.Rand, k float64,
 }
 
 type BotLootConfig struct {
-	CurrencyChance  int // 5 = 5%
-	BlueprintChance int
-	PartChance      int
-	PartTier        int // 0 или 1
+	CurrencyChance  int `json:"currency_chance"` // 5 = 5%
+	BlueprintChance int `json:"blueprint_chance"`
+	PartChance      int `json:"part_chance"`
+	PartTier        int `json:"part_tier"` // 0 или 1
 }
 
 func getBotLootConfig(botType botType) *BotLootConfig {

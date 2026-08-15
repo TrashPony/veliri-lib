@@ -14,7 +14,7 @@ type LootLot struct {
 }
 
 // Детали для изготовления не требуются другие детали
-var t0Details = []LootLot{
+var T0Details = []LootLot{
 	{ItemType: "detail", ItemID: 2},
 	{ItemType: "detail", ItemID: 3},
 	{ItemType: "detail", ItemID: 5},
@@ -23,7 +23,7 @@ var t0Details = []LootLot{
 }
 
 // Детали которые делаютяс из другиз деталей
-var t1Details = []LootLot{
+var T1Details = []LootLot{
 	{ItemType: "detail", ItemID: 1},
 	{ItemType: "detail", ItemID: 4},
 	{ItemType: "detail", ItemID: 7},
@@ -31,7 +31,7 @@ var t1Details = []LootLot{
 }
 
 // Чертежи снаряжения, снарядов, деталей, некоторых видов оружи, корпусов и модулей. Составлялся ручками
-var t0BluePrints = []LootLot{
+var T0BluePrints = []LootLot{
 	// detail
 	{ItemType: "blueprints", ItemID: 230}, //electronics_500_bp
 	{ItemType: "blueprints", ItemID: 231}, //steel_500_bp
@@ -50,8 +50,6 @@ var t0BluePrints = []LootLot{
 	{ItemType: "blueprints", ItemID: 188}, // piu-piu_6
 	{ItemType: "blueprints", ItemID: 189}, // ballistics_artillery_bullet_3
 	{ItemType: "blueprints", ItemID: 190}, // ballistics_artillery_bullet_4
-	{ItemType: "blueprints", ItemID: 192}, // big_lens_1
-	{ItemType: "blueprints", ItemID: 194}, // medium_lens_beam
 
 	// equip
 	{ItemType: "blueprints", ItemID: 198, Fraction: _const.Reverses}, // reverses_combine_bp
@@ -95,9 +93,7 @@ var t0BluePrints = []LootLot{
 	{ItemType: "blueprints", ItemID: 150}, // wheels_mobility_booster_1_bp
 	{ItemType: "blueprints", ItemID: 151}, // ballistic_rotate_booster_1
 	{ItemType: "blueprints", ItemID: 152}, // ballistic_damage_booster_1
-	{ItemType: "blueprints", ItemID: 153}, // missile_rotate_booster_1
 	{ItemType: "blueprints", ItemID: 154}, // missile_damage_booster_1
-	{ItemType: "blueprints", ItemID: 155}, // laser_rotate_booster_1
 	{ItemType: "blueprints", ItemID: 156}, // laser_damage_booster_1
 	{ItemType: "blueprints", ItemID: 157}, // energy_capacity_1
 	{ItemType: "blueprints", ItemID: 158}, // energy_charging_speed_1
@@ -114,7 +110,6 @@ var t0BluePrints = []LootLot{
 	{ItemType: "blueprints", ItemID: 83, Fraction: _const.Explores},  //explores_weapon_3_bp
 	{ItemType: "blueprints", ItemID: 84, Fraction: _const.Explores},  //explores_weapon_4_bp
 	{ItemType: "blueprints", ItemID: 86, Fraction: _const.Reverses},  //reverses_weapon_2_bp
-	{ItemType: "blueprints", ItemID: 87, Fraction: _const.Reverses},  //reverses_weapon_3_bp
 
 	// body
 	{ItemType: "blueprints", ItemID: 100, Fraction: _const.Replicas}, //replic_miner_bp
@@ -129,7 +124,7 @@ var t0BluePrints = []LootLot{
 }
 
 // Чертежи снаряжения, снарядов, деталей, некоторых видов оружи, корпусов и модулей. Составлялся ручками
-var t1BluePrints = []LootLot{
+var T1BluePrints = []LootLot{
 	// detail
 	{ItemType: "blueprints", ItemID: 230, BaseCount: 3}, //electronics_500_bp
 	{ItemType: "blueprints", ItemID: 231, BaseCount: 3}, //steel_500_bp
@@ -148,8 +143,6 @@ var t1BluePrints = []LootLot{
 	{ItemType: "blueprints", ItemID: 188, BaseCount: 3}, // piu-piu_6
 	{ItemType: "blueprints", ItemID: 189, BaseCount: 3}, // ballistics_artillery_bullet_3
 	{ItemType: "blueprints", ItemID: 190, BaseCount: 3}, // ballistics_artillery_bullet_4
-	{ItemType: "blueprints", ItemID: 192, BaseCount: 3}, // big_lens_1
-	{ItemType: "blueprints", ItemID: 194, BaseCount: 3}, // medium_lens_beam
 
 	// equip
 	{ItemType: "blueprints", ItemID: 165}, // rig_armored
@@ -170,22 +163,36 @@ var t1BluePrints = []LootLot{
 	{ItemType: "blueprints", ItemID: 180}, // rig_laser_damage_booster_1
 	{ItemType: "blueprints", ItemID: 181}, // rig_ballistic_damage_booster_1
 	{ItemType: "blueprints", ItemID: 182}, // rig_ballistic_rotate_booster_1
-	{ItemType: "blueprints", ItemID: 183}, // rig_missile_rotate_booster_1
-	{ItemType: "blueprints", ItemID: 184}, // rig_laser_rotate_booster_1
 
 	{ItemType: "blueprints", ItemID: 69, Fraction: _const.Replicas}, // replic_builder_bp
 	{ItemType: "blueprints", ItemID: 71, Fraction: _const.Explores}, // explores_builder_bp
 	{ItemType: "blueprints", ItemID: 73, Fraction: _const.Reverses}, // reverses_builder_bp
 	{ItemType: "blueprints", ItemID: 143},                           // inventory_scanner_1_bp
 
+	{ItemID: 242, ItemType: "blueprints"}, // tesla_discharge_module_1_bp
+	{ItemID: 243, ItemType: "blueprints"}, // kinetic_repulsor_1_bp
+	{ItemID: 244, ItemType: "blueprints"}, // drone_siphon_1_bp
+	{ItemID: 245, ItemType: "blueprints"}, // gravity_square_bp
+	{ItemID: 246, ItemType: "blueprints"}, // harpoon_1_bp
+	{ItemID: 66, ItemType: "blueprints"},  // distance_repair_bp
+	{ItemID: 247, ItemType: "blueprints"}, // siphon_1_bp
+	{ItemID: 248, ItemType: "blueprints"}, // core_bleed_generator_1_bp
+	{ItemID: 249, ItemType: "blueprints"}, // deep_scan_sensor_suite_1_bp
+	{ItemID: 250, ItemType: "blueprints"}, // phase_shift_bunker_1_bp
+	{ItemID: 251, ItemType: "blueprints"}, // emergency_nanite_welder_1_bp
+	{ItemID: 252, ItemType: "blueprints"}, // auto_loader_override_1_bp
+	{ItemID: 253, ItemType: "blueprints"}, // stripped_systems_redline_1_bp
+	{ItemID: 254, ItemType: "blueprints"}, // ballistic_weapon_up_1_bp
+	{ItemID: 255, ItemType: "blueprints"}, // missile_weapon_up_1_bp
+	{ItemID: 256, ItemType: "blueprints"}, // laser_weapon_up_1_bp
+	{ItemID: 257, ItemType: "blueprints"}, // armored_up_1_bp
+
 	// weapon
-	{ItemType: "blueprints", ItemID: 222},                            //melee_2_bp
-	{ItemType: "blueprints", ItemID: 77, Fraction: _const.Replicas},  //replic_weapon_1_bp
-	{ItemType: "blueprints", ItemID: 195, Fraction: _const.Explores}, //explores_weapon_5
-	{ItemType: "blueprints", ItemID: 196, Fraction: _const.Explores}, //explores_weapon_6
-	{ItemType: "blueprints", ItemID: 81, Fraction: _const.Explores},  //explores_weapon_1_bp
-	{ItemType: "blueprints", ItemID: 85, Fraction: _const.Reverses},  //reverses_weapon_1_bp
-	{ItemType: "blueprints", ItemID: 88, Fraction: _const.Reverses},  //reverses_weapon_4_bp
+	{ItemType: "blueprints", ItemID: 222},                           //melee_2_bp
+	{ItemType: "blueprints", ItemID: 77, Fraction: _const.Replicas}, //replic_weapon_1_bp
+	{ItemType: "blueprints", ItemID: 81, Fraction: _const.Explores}, //explores_weapon_1_bp
+	{ItemType: "blueprints", ItemID: 85, Fraction: _const.Reverses}, //reverses_weapon_1_bp
+	{ItemType: "blueprints", ItemID: 88, Fraction: _const.Reverses}, //reverses_weapon_4_bp
 
 	// body
 	{ItemType: "blueprints", ItemID: 48, Fraction: _const.Replicas},  //replic_builder_body_bp
@@ -207,7 +214,7 @@ var t1BluePrints = []LootLot{
 }
 
 // Научные данные — типы
-var frr = []LootLot{
+var Frr = []LootLot{
 	{ItemType: "frr", ItemID: 1},
 	{ItemType: "frr", ItemID: 2},
 	{ItemType: "frr", ItemID: 3},
@@ -218,7 +225,7 @@ var frr = []LootLot{
 }
 
 // Товары — по грейдам
-var products = map[int][]LootLot{
+var Products = map[int][]LootLot{
 	1: {
 		{ItemType: "product", ItemID: 4},
 	},
@@ -280,9 +287,9 @@ func getTypeSector(id int, fraction string, freeLand, battle, secure bool) secto
 
 // Вспомогательные функции — чистые, переиспользуемые
 func generateParts(tier, minCount, maxCount int, rng *rand.Rand) []LootDrop {
-	pool := t0Details
+	pool := T0Details
 	if tier == 1 {
-		pool = t1Details
+		pool = T1Details
 	}
 
 	if len(pool) == 0 {
@@ -297,11 +304,11 @@ func generateParts(tier, minCount, maxCount int, rng *rand.Rand) []LootDrop {
 
 func generateGoods(minGrade, maxGrade, minCount, maxCount int, rng *rand.Rand) []LootDrop {
 	grade := minGrade + rng.Intn(maxGrade-minGrade+1)
-	pool, ok := products[grade]
+	pool, ok := Products[grade]
 	if !ok || len(pool) == 0 {
 		// fallback на первый непустой
 		for g := minGrade; g <= maxGrade; g++ {
-			if p, exists := products[g]; exists && len(p) > 0 {
+			if p, exists := Products[g]; exists && len(p) > 0 {
 				pool = p
 				break
 			}
@@ -319,17 +326,17 @@ func generateGoods(minGrade, maxGrade, minCount, maxCount int, rng *rand.Rand) [
 }
 
 func generateBlueprint(tier int, fraction string, rng *rand.Rand) []LootDrop {
-	pool := filterByFraction(t0BluePrints, fraction)
+	pool := filterByFraction(T0BluePrints, fraction)
 	if tier == 1 {
-		pool = filterByFraction(t1BluePrints, fraction)
+		pool = filterByFraction(T1BluePrints, fraction)
 	}
 
 	if len(pool) == 0 {
 		// fallback: любая фракция
 		if tier == 0 {
-			pool = t0BluePrints
+			pool = T0BluePrints
 		} else {
-			pool = t1BluePrints
+			pool = T1BluePrints
 		}
 	}
 
@@ -342,11 +349,11 @@ func generateBlueprint(tier int, fraction string, rng *rand.Rand) []LootDrop {
 }
 
 func generateScience(minCount, maxCount int, rng *rand.Rand) []LootDrop {
-	if len(frr) == 0 {
+	if len(Frr) == 0 {
 		return nil
 	}
 
-	lot := frr[rng.Intn(len(frr))]
+	lot := Frr[rng.Intn(len(Frr))]
 
 	count := game_math.GetRangeRand(minCount, maxCount, rng) * (game_math.GetRangeRand(1, lot.BaseCount+1, rng))
 	return []LootDrop{{LootLot: lot, Count: count}}

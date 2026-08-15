@@ -305,6 +305,11 @@ var DetailItem = map[string]map[string]string{
 		_const.EN:   `Energy consumption`,
 		_const.ZhCN: `能量消耗`,
 	},
+	"ch_39_2": {
+		_const.RU:   `Потребляемая энергия при восстановлении`,
+		_const.EN:   `Energy consumed during recovery`,
+		_const.ZhCN: `恢复时消耗的能量`,
+	},
 	"ch_40": {
 		_const.RU:   `Потребляемая энергия в простое`,
 		_const.EN:   `Energy consumption when idle`,
@@ -974,6 +979,136 @@ var DetailItem = map[string]map[string]string{
 		_const.RU:   "Перезарядка после отключения",
 		_const.EN:   "Reload after shutdown",
 		_const.ZhCN: "关机后重新装填",
+	},
+	"ch_177": {
+		_const.RU:   `Время подготовки`,
+		_const.EN:   `Cast time`,
+		_const.ZhCN: `准备时间`,
+	},
+	"ch_178": {
+		_const.RU:   `Дальность действия`,
+		_const.EN:   `Range`,
+		_const.ZhCN: `距离`,
+	},
+	"ch_179": {
+		_const.RU:   `Ширина захвата`,
+		_const.EN:   `Grab width`,
+		_const.ZhCN: `抓取宽度`,
+	},
+	"ch_180": {
+		_const.RU:   `Длительность эффекта`,
+		_const.EN:   `Effect duration`,
+		_const.ZhCN: `效果持续时间`,
+	},
+	"ch_181": {
+		_const.RU:   `Дальность основного разряда`,
+		_const.EN:   `Main discharge range`,
+		_const.ZhCN: `主放电距离`,
+	},
+	"ch_182": {
+		_const.RU:   `Урон основного разряда`,
+		_const.EN:   `Main discharge damage`,
+		_const.ZhCN: `主放电伤害`,
+	},
+	"ch_183": {
+		_const.RU:   `Количество цепных разрядов`,
+		_const.EN:   `Chain discharge count`,
+		_const.ZhCN: `连锁放电次数`,
+	},
+	"ch_184": {
+		_const.RU:   `Дальность цепных разрядов`,
+		_const.EN:   `Chain discharge range`,
+		_const.ZhCN: `连锁放电距离`,
+	},
+	"ch_185": {
+		_const.RU:   `Урон цепных разрядов`,
+		_const.EN:   `Chain discharge damage`,
+		_const.ZhCN: `连锁放电伤害`,
+	},
+	"ch_186": {
+		_const.RU:   `Радиус действия`,
+		_const.EN:   `Action radius`,
+		_const.ZhCN: `作用半径`,
+	},
+	"ch_187": {
+		_const.RU:   `Сила отталкивания`,
+		_const.EN:   `Push force`,
+		_const.ZhCN: `推力`,
+	},
+	"ch_drone_orbit": {
+		_const.RU:   `Радиус орбиты`,
+		_const.EN:   `Orbit radius`,
+		_const.ZhCN: `轨道半径`,
+	},
+	"ch_drone_md_radius": {
+		_const.RU:   `Дальность ПРО`,
+		_const.EN:   `Missile defense range`,
+		_const.ZhCN: `导弹防御距离`,
+	},
+	"ch_drone_md_reload": {
+		_const.RU:   `Скорострельность ПРО`,
+		_const.EN:   `Missile defense fire rate`,
+		_const.ZhCN: `导弹防御射速`,
+	},
+	"ch_drone_energy_radius": {
+		_const.RU:   `Дальность кражи энергии`,
+		_const.EN:   `Energy theft range`,
+		_const.ZhCN: `能量窃取距离`,
+	},
+	"ch_drone_energy_per_sec": {
+		_const.RU:   `Кража энергии`,
+		_const.EN:   `Energy theft`,
+		_const.ZhCN: `能量窃取`,
+	},
+	"ch_drone_reload": {
+		_const.RU:   `Время восстановления дрона`,
+		_const.EN:   `Drone recovery time`,
+		_const.ZhCN: `无人机恢复时间`,
+	},
+	"ch_harpoon_duration": {
+		_const.RU:   `Время удержания`,
+		_const.EN:   `Hold duration`,
+		_const.ZhCN: `保持时间`,
+	},
+	"ch_core_energy_per_sec": {
+		_const.RU:   `Генерация энергии`,
+		_const.EN:   `Energy generation`,
+		_const.ZhCN: `能量生成`,
+	},
+	"ch_core_damage_per_sec": {
+		_const.RU:   `Урон корпусу`,
+		_const.EN:   `Hull damage`,
+		_const.ZhCN: `船体伤害`,
+	},
+	"ch_core_min_hp": {
+		_const.RU:   `Минимальный порог HP`,
+		_const.EN:   `Min HP threshold`,
+		_const.ZhCN: `最低HP阈值`,
+	},
+	"ch_nanite_heal": {
+		_const.RU:   `Восстановление HP`,
+		_const.EN:   `HP recovery`,
+		_const.ZhCN: `HP恢复`,
+	},
+	"ch_nanite_repair_count": {
+		_const.RU:   `Кол-во восстанавливаемых модулей`,
+		_const.EN:   `Repairable modules count`,
+		_const.ZhCN: `可修复模块数量`,
+	},
+	"ch_siphon_hit_damage": {
+		_const.RU:   `Урон при попадании`,
+		_const.EN:   `Hit damage`,
+		_const.ZhCN: `命中伤害`,
+	},
+	"ch_siphon_energy_per_sec": {
+		_const.RU:   `Кража энергии`,
+		_const.EN:   `Energy theft`,
+		_const.ZhCN: `能量窃取`,
+	},
+	"ch_siphon_damage_per_sec": {
+		_const.RU:   `Урон`,
+		_const.EN:   `Damage`,
+		_const.ZhCN: `伤害`,
 	},
 	// DetailItem
 	"text_1": {

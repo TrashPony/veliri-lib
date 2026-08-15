@@ -175,8 +175,6 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 13, ItemID: 25, ItemType: "blueprints", Count: 5, Points: 1800, MinRank: 1, Priority: 1},
 	{ID: 88, ItemID: 161, ItemType: "blueprints", Count: 5, Points: 2500, MinRank: 3, Priority: 1},
 	{ID: 14, ItemID: 26, ItemType: "blueprints", Count: 5, Points: 7000, MinRank: 6, Priority: 1},
-	{ID: 2026, ItemID: 194, ItemType: "blueprints", Count: 5, Points: 70000, MinRank: 6, Priority: 2},
-	{ID: 2027, ItemID: 192, ItemType: "blueprints", Count: 5, Points: 90000, MinRank: 6, Priority: 2},
 
 	// equip bp +
 	// rang 1
@@ -214,8 +212,6 @@ var ExploresAssortment = []AssortmentPoint{
 	{ID: 20, ItemID: 82, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	{ID: 21, ItemID: 83, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 1, Priority: 1},
 	{ID: 22, ItemID: 84, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 1},
-	{ID: 2029, ItemID: 196, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
-	{ID: 2028, ItemID: 195, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
 
 	{ID: 50203, ItemID: 222, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 2},
 	{ID: 50204, ItemID: 223, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
@@ -366,7 +362,6 @@ var ReversesAssortment = []AssortmentPoint{
 	// weapon bp +
 	{ID: 125, ItemID: 162, ItemType: "blueprints", Count: 1, Points: 200000, MinRank: 1, Priority: 1},
 	{ID: 126, ItemID: 86, ItemType: "blueprints", Count: 1, Points: 300000, MinRank: 2, Priority: 1},
-	{ID: 127, ItemID: 87, ItemType: "blueprints", Count: 1, Points: 500000, MinRank: 5, Priority: 2},
 	{ID: 128, ItemID: 88, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
 	{ID: 129, ItemID: 85, ItemType: "blueprints", Count: 1, Points: 650000, MinRank: 10, Priority: 3},
 

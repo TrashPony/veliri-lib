@@ -141,13 +141,13 @@ func TestGenerateScienceEdgeCases(t *testing.T) {
 	// Тест с пустым массивом frr (временная модификация)
 	t.Run("EmptyFrrArray", func(t *testing.T) {
 		// Сохраняем оригинальный массив
-		originalFrr := frr
+		originalFrr := Frr
 		// Временно заменяем на пустой
-		frr = []LootLot{}
+		Frr = []LootLot{}
 
 		defer func() {
 			// Восстанавливаем оригинальный массив
-			frr = originalFrr
+			Frr = originalFrr
 		}()
 
 		result := generateScience(1, 5, rng)

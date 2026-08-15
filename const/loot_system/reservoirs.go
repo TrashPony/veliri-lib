@@ -40,59 +40,58 @@ func getResourceDropConfig(sectorType sectorType) *sectorResourceConfig {
 	case sectorSafe:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 32, maxCount: 3},
-				{resourceID: resourceCopperOre, weight: 32, maxCount: 3},
-				{resourceID: resourceIronOre, weight: 32, maxCount: 3},
-				{resourceID: resourceSiliconOre, weight: 2, maxCount: 1},
-				{resourceID: resourceTitaniumOre, weight: 2, maxCount: 1},
+				{resourceID: resourceThoriumOre, weight: 15, maxCount: 2},
+				{resourceID: resourceCopperOre, weight: 35, maxCount: 3},
+				{resourceID: resourceIronOre, weight: 35, maxCount: 3},
+				{resourceID: resourceSiliconOre, weight: 8, maxCount: 1},
+				{resourceID: resourceTitaniumOre, weight: 7, maxCount: 1},
 			},
 		}
 	case sectorFactionDanger:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 30, maxCount: 3},
-				{resourceID: resourceCopperOre, weight: 29, maxCount: 3},
-				{resourceID: resourceIronOre, weight: 29, maxCount: 3},
-				{resourceID: resourceSiliconOre, weight: 5, maxCount: 1},
-				{resourceID: resourceTitaniumOre, weight: 5, maxCount: 1},
-				{resourceID: resourceOil, weight: 2, maxCount: 1},
+				{resourceID: resourceThoriumOre, weight: 15, maxCount: 2},
+				{resourceID: resourceCopperOre, weight: 30, maxCount: 3},
+				{resourceID: resourceIronOre, weight: 30, maxCount: 3},
+				{resourceID: resourceSiliconOre, weight: 8, maxCount: 1},
+				{resourceID: resourceTitaniumOre, weight: 8, maxCount: 1},
+				{resourceID: resourceOil, weight: 9, maxCount: 1},
 			},
 		}
 	case sectorPirate:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 20, maxCount: 2},
-				{resourceID: resourceCopperOre, weight: 20, maxCount: 2},
-				{resourceID: resourceIronOre, weight: 20, maxCount: 2},
-				{resourceID: resourceSiliconOre, weight: 10, maxCount: 2},
-				{resourceID: resourceTitaniumOre, weight: 10, maxCount: 2},
+				{resourceID: resourceThoriumOre, weight: 12, maxCount: 2},
+				{resourceID: resourceCopperOre, weight: 22, maxCount: 2},
+				{resourceID: resourceIronOre, weight: 22, maxCount: 2},
+				{resourceID: resourceSiliconOre, weight: 12, maxCount: 2},
+				{resourceID: resourceTitaniumOre, weight: 12, maxCount: 2},
 				{resourceID: resourceOil, weight: 20, maxCount: 3},
 			},
 		}
 	case sectorWasteland:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 10, maxCount: 1},
-				{resourceID: resourceCopperOre, weight: 10, maxCount: 1},
-				{resourceID: resourceIronOre, weight: 10, maxCount: 1},
-				{resourceID: resourceSiliconOre, weight: 25, maxCount: 3},
-				{resourceID: resourceTitaniumOre, weight: 25, maxCount: 3},
-				{resourceID: resourceOil, weight: 20, maxCount: 3},
+				{resourceID: resourceThoriumOre, weight: 8, maxCount: 1},
+				{resourceID: resourceCopperOre, weight: 12, maxCount: 1},
+				{resourceID: resourceIronOre, weight: 12, maxCount: 1},
+				{resourceID: resourceSiliconOre, weight: 28, maxCount: 3},
+				{resourceID: resourceTitaniumOre, weight: 28, maxCount: 3},
+				{resourceID: resourceOil, weight: 12, maxCount: 2},
 			},
 		}
 	case sectorCombat:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 15, maxCount: 1},
-				{resourceID: resourceCopperOre, weight: 20, maxCount: 1},
-				{resourceID: resourceIronOre, weight: 20, maxCount: 1},
-				{resourceID: resourceSiliconOre, weight: 10, maxCount: 2},
-				{resourceID: resourceTitaniumOre, weight: 10, maxCount: 2},
-				{resourceID: resourceOil, weight: 35, maxCount: 3},
+				{resourceID: resourceThoriumOre, weight: 10, maxCount: 1},
+				{resourceID: resourceCopperOre, weight: 22, maxCount: 1},
+				{resourceID: resourceIronOre, weight: 22, maxCount: 1},
+				{resourceID: resourceSiliconOre, weight: 12, maxCount: 2},
+				{resourceID: resourceTitaniumOre, weight: 12, maxCount: 2},
+				{resourceID: resourceOil, weight: 22, maxCount: 3},
 			},
 		}
 	default:
-		// fallback — безопасный сектор
 		return getResourceDropConfig(sectorSafe)
 	}
 }

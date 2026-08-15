@@ -32,12 +32,12 @@ var frrTypes = map[int]frr.FRR{
 	},
 	5: {
 		ID:   5,
-		Name: "frr_vhc_hov", // Field Research Report, Mobility, Wheeled
+		Name: "frr_vhc_hov", // Field Research Report, Mobility, Hover
 		Size: sizeFrr,
 	},
 	6: {
 		ID:   6,
-		Name: "frr_vhc_trd", // Field Research Report, Mobility, Wheeled
+		Name: "frr_vhc_trd", // Field Research Report, Mobility, Track
 		Size: sizeFrr,
 	},
 	// equipment

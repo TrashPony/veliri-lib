@@ -19,21 +19,26 @@ type anomalyDrop struct {
 
 // TreasureConfig — параметры содержимого "сокровища" для конкретного типа сектора
 type TreasureConfig struct {
-	PartTier         int
-	PartMin, PartMax int
+	PartTier int `json:"part_tier"`
+	PartMin  int `json:"part_min"`
+	PartMax  int `json:"part_max"`
 
-	GoodsMinGrade, GoodsMaxGrade int
-	GoodsMinCount, GoodsMaxCount int
+	GoodsMinGrade int `json:"goods_min_grade"`
+	GoodsMaxGrade int `json:"goods_max_grade"`
 
-	BlueprintTier int
+	GoodsMinCount int `json:"goods_min_count"`
+	GoodsMaxCount int `json:"goods_max_count"`
 
-	ScienceMin, ScienceMax int
+	BlueprintTier int `json:"blueprint_tier"`
+
+	ScienceMin int `json:"science_min"`
+	ScienceMax int `json:"science_max"`
 
 	// Веса (в процентах) — можно менять без перекомпиляции!
-	WeightParts     int // 40
-	WeightGoods     int // 40
-	WeightBlueprint int // 10
-	WeightScience   int // 10
+	WeightParts     int `json:"weight_parts"`     // 40
+	WeightGoods     int `json:"weight_goods"`     // 40
+	WeightBlueprint int `json:"weight_blueprint"` // 10
+	WeightScience   int `json:"weight_science"`   // 10
 }
 
 // anomalyConfig — конфиг для типа сектора

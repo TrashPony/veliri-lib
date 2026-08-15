@@ -16,13 +16,19 @@ const (
 )
 
 type OutpostLootConfig struct {
-	PartMin, PartMax             int // детали Т1
-	BlueprintMin, BlueprintMax   int // чертежи Т1 (шт)
-	CurrencyMin, CurrencyMax     int // валюта
-	ScienceMin, ScienceMax       int // научные данные
-	GoodsMinGrade, GoodsMaxGrade int
-	GoodsMinCount, GoodsMaxCount int
-	FractionAny                  bool // true = любые чертежи, false = только фракционные
+	PartMin       int  `json:"part_min"`
+	PartMax       int  `json:"part_max"` // детали Т1
+	BlueprintMin  int  `json:"blueprint_min"`
+	BlueprintMax  int  `json:"blueprint_max"` // чертежи Т1 (шт)
+	CurrencyMin   int  `json:"currency_min"`
+	CurrencyMax   int  `json:"currency_max"` // валюта
+	ScienceMin    int  `json:"science_min"`
+	ScienceMax    int  `json:"science_max"` // научные данные
+	GoodsMinGrade int  `json:"goods_min_grade"`
+	GoodsMaxGrade int  `json:"goods_max_grade"`
+	GoodsMinCount int  `json:"goods_min_count"`
+	GoodsMaxCount int  `json:"goods_max_count"`
+	FractionAny   bool `json:"fraction_any"` // true = любые чертежи, false = только фракционные
 }
 
 func getOutpostLootConfig(outpostType OutpostType) *OutpostLootConfig {
@@ -71,8 +77,8 @@ func GenerateOutpostLoot(structureType, fraction string, core bool, rng *rand.Ra
 
 	// Детали Т1 (всегда)
 	count := game_math.GetRangeRand(cfg.PartMin, cfg.PartMax, rng)
-	if count > 0 && len(t1Details) > 0 {
-		lot := t1Details[rng.Intn(len(t1Details))]
+	if count > 0 && len(T1Details) > 0 {
+		lot := T1Details[rng.Intn(len(T1Details))]
 		total := count * game_math.GetRangeRand(1, lot.BaseCount+1, rng)
 		drops = append(drops, LootDrop{LootLot: lot, Count: total})
 	}
@@ -81,12 +87,12 @@ func GenerateOutpostLoot(structureType, fraction string, core bool, rng *rand.Ra
 	if cfg.BlueprintMin > 0 {
 		blueprintCount := game_math.GetRangeRand(cfg.BlueprintMin, cfg.BlueprintMax, rng)
 		for i := 0; i < blueprintCount; i++ {
-			pool := filterByFraction(t1BluePrints, fraction)
+			pool := filterByFraction(T1BluePrints, fraction)
 			if cfg.FractionAny {
-				pool = t1BluePrints // любые
+				pool = T1BluePrints // любые
 			}
 			if len(pool) == 0 {
-				pool = t1BluePrints // fallback
+				pool = T1BluePrints // fallback
 			}
 			if len(pool) > 0 {
 				lot := pool[rng.Intn(len(pool))]
@@ -108,19 +114,19 @@ func GenerateOutpostLoot(structureType, fraction string, core bool, rng *rand.Ra
 	}
 
 	// Научные данные
-	if cfg.ScienceMin > 0 && len(frr) > 0 {
+	if cfg.ScienceMin > 0 && len(Frr) > 0 {
 		count := game_math.GetRangeRand(cfg.ScienceMin, cfg.ScienceMax, rng)
-		lot := frr[rng.Intn(len(frr))]
+		lot := Frr[rng.Intn(len(Frr))]
 		drops = append(drops, LootDrop{LootLot: lot, Count: count})
 	}
 
 	// Товары (только у OutpostCore)
 	if cfg.GoodsMinGrade > 0 {
 		grade := game_math.GetRangeRand(cfg.GoodsMinGrade, cfg.GoodsMaxGrade, rng)
-		pool, ok := products[grade]
+		pool, ok := Products[grade]
 		if !ok || len(pool) == 0 {
 			for g := cfg.GoodsMinGrade; g <= cfg.GoodsMaxGrade; g++ {
-				if p, exists := products[g]; exists && len(p) > 0 {
+				if p, exists := Products[g]; exists && len(p) > 0 {
 					pool = p
 					break
 				}
