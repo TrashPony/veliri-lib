@@ -69,8 +69,23 @@ var Laboratory = map[string]map[string]string{
 		_const.ZhCN: `未选择蓝图`,
 	},
 	"button_1": {
-		_const.RU:   `Улучшить (%percent%%)`,
-		_const.EN:   `Upgrade (%percent%%)`,
-		_const.ZhCN: `升级(%percent%%)`,
+		_const.RU:   `Улучшить`,
+		_const.EN:   `Upgrade`,
+		_const.ZhCN: `升级`,
+	},
+	"text_5": {
+		_const.RU:   `Выберите вариант улучшения`,
+		_const.EN:   `Select an upgrade variant`,
+		_const.ZhCN: `选择升级方案`,
+	},
+	"chance_label": {
+		_const.RU:   `Шанс успеха`,
+		_const.EN:   `Success chance`,
+		_const.ZhCN: `成功几率`,
+	},
+	"no_blueprints": {
+		_const.RU:   `Нет доступных чертежей`,
+		_const.EN:   `No blueprints available`,
+		_const.ZhCN: `没有可用的蓝图`,
 	},
 }
