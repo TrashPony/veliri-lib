@@ -37,7 +37,6 @@ func wheel(obj MoveObject) {
 	obj.SetPowerMove(math.Max(0, math.Min(obj.GetMoveMaxPower(), obj.GetPowerMove())))
 	obj.SetReverse(math.Max(0, math.Min(obj.GetMaxReverse(), obj.GetReverse())))
 
-	// ручной тормаз
 	if obj.CheckHandBrake() {
 		if obj.CheckGrowthPower() > 0 {
 			if obj.GetPowerMove() > obj.GetReverse() {
@@ -54,24 +53,20 @@ func wheel(obj MoveObject) {
 		}
 
 		if obj.CheckGrowthPower() > 0 || obj.CheckGrowthRevers() > 0 {
-
 			if obj.CheckGrowthPower() > 0 {
 				if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
 					obj.SetPowerMove(obj.GetMoveMaxPower() / (startWheelSpeedK * 2))
 				}
 			}
-
 			if obj.CheckGrowthRevers() > 0 {
 				if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
 					obj.SetReverse(obj.GetMaxReverse() / (startWheelSpeedK * 2))
 				}
 			}
-
 		} else {
 			if obj.GetPowerMove() <= obj.GetMoveMaxPower()/startWheelSpeedK {
 				obj.SetPowerMove(0)
 			}
-
 			if obj.GetReverse() <= obj.GetMaxReverse()/startWheelSpeedK {
 				obj.SetReverse(0)
 			}
@@ -79,28 +74,32 @@ func wheel(obj MoveObject) {
 	}
 
 	rad := game_math.DegToRadian(pm.GetRotate())
+	cosRad := game_math.Cos(rad)
+	sinRad := game_math.Sin(rad)
+
 	forwardAccel := pm.GetPowerMove() - pm.GetReverse()
 
-	// === 1. Ускорение вперёд (вдоль корпуса) → добавляем к ОСНОВНОЙ скорости
-	pm.XVelocity += game_math.Cos(rad) * forwardAccel
-	pm.YVelocity += game_math.Sin(rad) * forwardAccel
+	pm.XVelocity += cosRad * forwardAccel
+	pm.YVelocity += sinRad * forwardAccel
 
-	// === 2. Рассчитываем дрифт-импульс ===
-	driftAccelX, driftAccelY := 0.0, 0.0
+	currentSpeed := math.Hypot(pm.XVelocity, pm.YVelocity)
 
-	// Дрифт активен, если:
-	isDrifting := false
+	inertialSlip := math.Abs(pm.GetAngularVelocity()) * currentSpeed * 0.75
+	if inertialSlip > 0.9 {
+		inertialSlip = 0.9
+	}
+
+	driftFactor := inertialSlip
+
 	if pm.CheckHandBrake() && (pm.CheckLeftRotate() > 0 || pm.CheckRightRotate() > 0) {
-		isDrifting = true
-	} else {
-		// Инерционный дрифт: если угловая скорость велика, а продольная скорость мала
-		currentSpeed := math.Hypot(pm.XVelocity, pm.YVelocity)
-		if math.Abs(pm.GetAngularVelocity()) > 0.001 && currentSpeed > 5 {
-			isDrifting = true
+		if driftFactor < 0.9 {
+			driftFactor = 0.9
 		}
 	}
 
-	if isDrifting {
+	driftAccelX, driftAccelY := 0.0, 0.0
+
+	if driftFactor > 0.05 {
 		driftDir := 0.0
 		if pm.CheckLeftRotate() > 0 {
 			driftDir = 1
@@ -117,54 +116,57 @@ func wheel(obj MoveObject) {
 			}
 		}
 
-		as := math.Abs(pm.GetAngularVelocity() * 5) // было 8
-		currentSpeed := obj.GetCurrentSpeed()
-
-		baseDrift := as * massK * 12
+		as := math.Abs(pm.GetAngularVelocity() * 5)
+		baseDrift := as * massK * 8.0
 		if pm.CheckHandBrake() {
-			baseDrift *= 2.0
+			baseDrift *= 1.5
 		}
 
-		driftAccelX = -game_math.Sin(rad) * driftDir * baseDrift * currentSpeed
-		driftAccelY = game_math.Cos(rad) * driftDir * baseDrift * currentSpeed
+		driftAccelX = -sinRad * driftDir * baseDrift * currentSpeed * driftFactor
+		driftAccelY = cosRad * driftDir * baseDrift * currentSpeed * driftFactor
 	}
 
-	cs := 0.01 * massK
-	pm.DriftX = pm.DriftX*0.9 + driftAccelX*cs
-	pm.DriftY = pm.DriftY*0.9 + driftAccelY*cs
+	driftDecay := 0.90
+	if driftFactor > 0.3 {
+		driftDecay = 0.96
+	}
 
-	// Ограничиваем, чтобы не улетал в космос
+	pm.DriftX = pm.DriftX*driftDecay + driftAccelX*(0.01*massK)
+	pm.DriftY = pm.DriftY*driftDecay + driftAccelY*(0.01*massK)
+
 	driftMag := math.Hypot(pm.DriftX, pm.DriftY)
-	if driftMag > 20 { // подбери под масштаб (20 юнит/сек — много)
+	if driftMag > 20 {
 		pm.DriftX = pm.DriftX / driftMag * 20
 		pm.DriftY = pm.DriftY / driftMag * 20
 	}
 
+	currentForwardSpeed := pm.XVelocity*cosRad + pm.YVelocity*sinRad
+
 	direction := 1.0
-	if pm.GetPowerMove() < pm.GetReverse() {
-		direction = -1
+	if currentForwardSpeed < 0 {
+		direction = -1.0
 	}
 
-	if (obj.GetPowerMove() > 0 && direction > 0) || (obj.GetReverse() > 0 && direction < 0) {
+	if currentSpeed > 0.5 || pm.GetPowerMove() > 0 || pm.GetReverse() > 0 {
 
-		speedK := (obj.GetPowerMove() / obj.GetMoveMaxPower()) / 4
-		if speedK > 0.5 {
-			speedK = 0.5
+		ts := pm.GetTurnSpeed()
+
+		// 3. Снижение чувствительности от скорости (currentSpeed)
+		// speedThreshold: скорость, при которой чувствительность начнет заметно падать.
+		speedThreshold := 20.0
+
+		speedRatio := currentSpeed / speedThreshold
+		if speedRatio > 1.0 {
+			speedRatio = 1.0 // Ограничиваем максимум, чтобы руль не инвертировался
 		}
 
-		ts := direction * pm.GetTurnSpeed() * (1 - speedK)
+		ts *= (1.0 - speedRatio*0.3)
+
 		if direction < 0 {
-			// назад большая чувствительность ts = direction * pm.GetTurnSpeed() * speedK
 			ts = pm.GetTurnSpeed()
 		}
 
-		if ts > pm.GetTurnSpeed() {
-			ts = pm.GetTurnSpeed()
-		}
-
-		if ts < pm.GetTurnSpeed()/5 {
-			ts = pm.GetTurnSpeed() / 5
-		}
+		ts = math.Max(pm.GetTurnSpeed()*0.7, ts)
 
 		if pm.CheckLeftRotate() > 0 {
 			pm.SetAngularVelocity(pm.GetAngularVelocity() - direction*getPercentF(ts, pm.CheckLeftRotate()))
@@ -174,11 +176,32 @@ func wheel(obj MoveObject) {
 		}
 	}
 
-	obj.MultiplyVelocity(obj.GetMoveDrag(), obj.GetMoveDrag())
+	totalVX := pm.XVelocity + pm.DriftX
+	totalVY := pm.YVelocity + pm.DriftY
+
+	forwardSpeed := totalVX*cosRad + totalVY*sinRad
+	lateralSpeed := -totalVX*sinRad + totalVY*cosRad
+
+	forwardDrag := obj.GetMoveDrag()
+
+	baseLateralGrip := 0.2
+	maxLateralSlip := forwardDrag
+
+	lateralDrag := baseLateralGrip + (maxLateralSlip-baseLateralGrip)*driftFactor
+
+	forwardSpeed *= forwardDrag
+	lateralSpeed *= lateralDrag
+
+	pm.XVelocity = forwardSpeed*cosRad - lateralSpeed*sinRad
+	pm.YVelocity = forwardSpeed*sinRad + lateralSpeed*cosRad
+
+	pm.DriftX *= driftFactor * 0.7
+	pm.DriftY *= driftFactor * 0.7
+
 	obj.SetAngularVelocity(obj.GetAngularVelocity() * obj.GetAngularDrag())
 
-	totalX := pm.XVelocity + pm.DriftX
-	totalY := pm.YVelocity + pm.DriftY
+	totalX := pm.XVelocity
+	totalY := pm.YVelocity
 
 	xR, yR := pm.GetRealPos()
 	pm.SetNextPos(xR+totalX, yR+totalY)
