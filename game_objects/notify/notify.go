@@ -14,6 +14,7 @@ type Notify struct {
 	Event             string              `json:"event,omitempty"`
 	Send              bool                `json:"send,omitempty"`
 	Data              interface{}         `json:"data,omitempty"`
+	Parent            string              `json:"parent,omitempty"`
 	Time              int64               `json:"time,omitempty"` // unix nano utc
 	TimeOut           int                 `json:"time_out,omitempty"`
 	Destroy           bool                `json:"destroy,omitempty"`
