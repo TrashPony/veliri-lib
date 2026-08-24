@@ -27,26 +27,6 @@ type collider interface {
 	GetGeoData() []*obstacle_point.ObstaclePoint
 }
 
-func calculateCollisionSound(c1, c2 collider, startXV1, startYV1, startXV2, startYV2, m1, m2 float64) float64 {
-	// 1. Рассчитываем относительную скорость столкновения
-	relSpeedX := startXV1 - startXV2
-	relSpeedY := startYV1 - startYV2
-	impactSpeed := math.Sqrt(relSpeedX*relSpeedX + relSpeedY*relSpeedY)
-
-	// 2. Минимальная скорость для воспроизведения звука
-	const minImpactSpeed = 0.3
-	if impactSpeed < minImpactSpeed {
-		return 0 // Слишком слабое столкновение
-	}
-
-	// 3. Рассчитываем "силу" столкновения
-	massFactor := math.Min((m1+m2)/1000, 1.0)
-	speedFactor := math.Min(impactSpeed/10.0, 1.0)
-	collisionPower := massFactor * speedFactor
-
-	return collisionPower
-}
-
 func CollisionReactionBallBall(collider1, collider2 collider, meleeData1, meleeData2 []*obstacle_point.ObstaclePoint, weight1, weight2, pf1, pf2, x2, y2 float64) (int, int, bool, bool, float64) {
 
 	// 1. Сначала проверяем столкновение оружия

@@ -62,22 +62,14 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 
 	impactForce := relativeSpeed
 
-	totalForce := (impactForce + ejectForce) * 5
+	totalForce := impactForce + ejectForce
 	maxTotalForce := 3.0
 	if totalForce > maxTotalForce {
 		totalForce = maxTotalForce
 	}
 
-	if penetrationDepth > 0 && penetrationDepth <= 25 {
-		totalForce = totalForce * (1 + (penetrationDepth * 0.01))
-	}
-
-	if penetrationDepth > 25 && penetrationDepth <= 40 {
-		totalForce = totalForce * (1 + (penetrationDepth * 0.04))
-	}
-
-	if penetrationDepth > 40 {
-		totalForce = totalForce * (1 + (penetrationDepth * 0.5))
+	if penetrationDepth > 0 {
+		totalForce = totalForce * (1 + (penetrationDepth * 0.005))
 	}
 
 	vx1, vy1 := collider1.GetVelocity()
@@ -85,9 +77,6 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 
 	if collider2.GetType() != "map_item" {
 		powerLoss1 := calculatePowerLoss(collider1, collider2, dirX, dirY, totalForce, weight2)
-		if penetrationDepth >= 8 {
-			powerLoss1 = 0.1
-		}
 
 		collider1.SetPowerMove(collider1.GetPowerMove() * powerLoss1)
 
@@ -114,7 +103,13 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 	}
 
 	// Звук удара
-	collisionPower := math.Min(totalForce/10.0/5.0, 1.0)
+	soundForce := impactForce + ejectForce
+	maxSoundForce := 20.0
+	if soundForce > maxSoundForce {
+		soundForce = maxSoundForce
+	}
+
+	collisionPower := math.Min(soundForce/maxSoundForce, 1.0)
 
 	applyCollisionRotation(collider1, collider2, dirX, dirY, totalForce, weight1, weight2)
 
@@ -122,7 +117,8 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 }
 
 func applyCollisionRotation(collider1, collider2 collider, dirX, dirY, totalForce, weight1, weight2 float64) {
-	if collider1.GetType() == "unit" && collider2.GetType() == "object" {
+
+	if collider2.GetType() == "map_item" {
 		return
 	}
 
@@ -136,28 +132,43 @@ func applyCollisionRotation(collider1, collider2 collider, dirX, dirY, totalForc
 		impactVector.Y /= impactLength
 	}
 
+	if totalForce < 0.5 {
+		return
+	}
+
 	normalVector := Vector{X: -impactVector.Y, Y: impactVector.X}
 	vx1, vy1 := collider1.GetVelocity()
-	tangentialDot := (vx1*normalVector.X + vy1*normalVector.Y) * 0.2
 
-	rotationMultiplier := 0.013
-	rotationForce := 0.03 + (tangentialDot * totalForce * rotationMultiplier)
+	normalDot := vx1*impactVector.X + vy1*impactVector.Y
+	tangentialDot := vx1*normalVector.X + vy1*normalVector.Y
+
+	totalSpeed := math.Sqrt(vx1*vx1 + vy1*vy1)
+	if totalSpeed < 0.1 {
+		return
+	}
+
+	slideFactor := math.Abs(tangentialDot) / totalSpeed
+	headOnFactor := math.Abs(normalDot) / totalSpeed
+	if headOnFactor > 0.9 {
+		slideFactor *= (1.0 - headOnFactor) * 10.0
+	}
+
+	if slideFactor < 0.1 {
+		return
+	}
+
+	rotationMultiplier := 0.002
+	rotationForce := tangentialDot * totalForce * rotationMultiplier
 
 	massFactor := math.Max(weight2/weight1, 2.0) / 3
 	rotationForce *= massFactor
 
-	maxRotation := 0.2
+	maxRotation := 0.1
 	if math.Abs(rotationForce) > maxRotation {
 		rotationForce = math.Copysign(maxRotation, rotationForce)
 	}
 
-	if collider2.GetType() != "map_item" {
-		collider1.SetAngularVelocity(collider1.GetAngularVelocity() + rotationForce)
-	}
-
-	if collider1.GetType() != "map_item" && collider1.GetType() != "object" {
-		collider2.SetAngularVelocity(collider2.GetAngularVelocity() - rotationForce*0.5)
-	}
+	collider1.SetAngularVelocity(collider1.GetAngularVelocity() + rotationForce*0.2*slideFactor)
 }
 
 func calculateObjectPenetrationDepth(collider1, collider2 collider) float64 {
