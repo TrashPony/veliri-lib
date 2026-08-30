@@ -92,7 +92,8 @@ func wheel(obj MoveObject) {
 	driftFactor := inertialSlip
 
 	if pm.CheckHandBrake() && (pm.CheckLeftRotate() > 0 || pm.CheckRightRotate() > 0) {
-		if driftFactor < 0.9 {
+		driftFactor = inertialSlip * 1.3
+		if driftFactor > 0.9 {
 			driftFactor = 0.9
 		}
 	}
@@ -117,9 +118,9 @@ func wheel(obj MoveObject) {
 		}
 
 		as := math.Abs(pm.GetAngularVelocity() * 5)
-		baseDrift := as * massK * 8.0
+		baseDrift := as * massK * 6.0
 		if pm.CheckHandBrake() {
-			baseDrift *= 1.5
+			baseDrift *= 1.3
 		}
 
 		driftAccelX = -sinRad * driftDir * baseDrift * currentSpeed * driftFactor
@@ -184,7 +185,7 @@ func wheel(obj MoveObject) {
 
 	forwardDrag := obj.GetMoveDrag()
 
-	baseLateralGrip := 0.2
+	baseLateralGrip := forwardDrag * 0.5
 	maxLateralSlip := forwardDrag
 
 	lateralDrag := baseLateralGrip + (maxLateralSlip-baseLateralGrip)*driftFactor
@@ -195,8 +196,8 @@ func wheel(obj MoveObject) {
 	pm.XVelocity = forwardSpeed*cosRad - lateralSpeed*sinRad
 	pm.YVelocity = forwardSpeed*sinRad + lateralSpeed*cosRad
 
-	pm.DriftX *= driftFactor * 0.7
-	pm.DriftY *= driftFactor * 0.7
+	pm.DriftX *= driftFactor * 0.9
+	pm.DriftY *= driftFactor * 0.9
 
 	obj.SetAngularVelocity(obj.GetAngularVelocity() * obj.GetAngularDrag())
 

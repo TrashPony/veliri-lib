@@ -55,7 +55,7 @@ func weaponCollisionReaction(collider1, collider2 collider, weaponPoint1, weapon
 	penetrationDepth := calculateObjectPenetrationDepth(collider1, collider2)
 
 	ejectForce := penetrationDepth * 0.5
-	maxEjectForce := 3.0
+	maxEjectForce := 20.0
 	if ejectForce > maxEjectForce {
 		ejectForce = maxEjectForce
 	}
