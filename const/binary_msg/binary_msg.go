@@ -392,7 +392,7 @@ func CreateBulletLaserFly(typeID, x, y, toX, toY, unitID, AccumulationPercent, e
 	command = append(command, byte(pos))
 	command = append(command, byte((typeSlot*10)+slot))
 	command = append(command, byte(d))
-	command = append(command, byte(idTarget))
+	command = append(command, game_math.GetIntBytes(idTarget)...)
 
 	return command
 }
