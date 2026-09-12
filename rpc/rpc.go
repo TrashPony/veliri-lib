@@ -8,6 +8,7 @@ import (
 	"github.com/TrashPony/veliri-lib/game_math"
 	"github.com/TrashPony/veliri-lib/game_objects/ammo"
 	"github.com/TrashPony/veliri-lib/game_objects/anomaly"
+	"github.com/TrashPony/veliri-lib/game_objects/base"
 	"github.com/TrashPony/veliri-lib/game_objects/behavior_rule"
 	"github.com/TrashPony/veliri-lib/game_objects/blueprints"
 	"github.com/TrashPony/veliri-lib/game_objects/box"
@@ -195,4 +196,7 @@ func GobRegister() {
 
 	gob.Register(map[int]unit.AvailableAmmoMsg{})
 	gob.Register([]*detail.DamageModule{})
+
+	gob.Register([]*base.Base{})
+	gob.Register(base.Base{})
 }
