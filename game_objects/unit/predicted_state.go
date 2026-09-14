@@ -107,15 +107,14 @@ func (u *Unit) AddFireInput(clientSeq, serverInputSeq, currentInputSeq, weaponNu
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
-	for i, _ := range u.FireInputState.PendingInputs {
-		if i == 0 {
+	// один pending-инпут на оружейный слот: у разных слотов не должны затирать
+	// друг друга (было: любой второй вызов в этом тике перезаписывал элемент 0
+	// целиком, независимо от того, к какому слоту он относился)
+	for i, input := range u.FireInputState.PendingInputs {
+		if input.WeaponSlot == weaponNumber {
 			u.FireInputState.PendingInputs[i] = data
 			return true, "update"
 		}
-		//if input.WeaponSlot == weaponNumber && input.ServerInputSeq == serverInputSeq {
-		//	u.FireInputState.PendingInputs[i] = data
-		//	return true, "update"
-		//}
 	}
 
 	u.FireInputState.PendingInputs = append(u.FireInputState.PendingInputs, data)
@@ -131,11 +130,18 @@ func (u *Unit) GetFireInputs(ws int) []*FireInput {
 	}
 
 	var toProcess []*FireInput
+	// вычитанные под этот слот записи сразу убираем из очереди (once-off потребление),
+	// иначе устаревший ClientLag того же слота может "выстрелить" повторно на
+	// одном из следующих тиков, когда для него ничего нового не пришло
+	remaining := u.FireInputState.PendingInputs[:0]
 	for _, input := range u.FireInputState.PendingInputs {
 		if byte(ws) == input.WeaponSlot {
 			toProcess = append(toProcess, input)
+		} else {
+			remaining = append(remaining, input)
 		}
 	}
+	u.FireInputState.PendingInputs = remaining
 
 	return toProcess
 }

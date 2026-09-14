@@ -1765,8 +1765,22 @@ func CreateGunStateMsg(rangeWeapon, accuracy, hitDist, slotNumber, group int) []
 }
 
 type GunState struct {
-	Number    int
-	GunRotate int
+	Number         int
+	GunRotate      int
+	WeaponID       int
+	AmmoID         int
+	Group          int
+	Direction      int
+	SlotPassAngle  int
+	ReloadTime     int
+	ReloadAmmoTime int
+	// AmmoReload — настоящий, авторитетный флаг BodyWeaponSlot.AmmoReload (не
+	// путать с общим Reload, который взводится и на короткий пост-выстрельный
+	// кулдаун — тот слишком быстро мигает, чтобы клиент успевал его надёжно
+	// увидеть по сети, см. NETCODE.md §5.4). AmmoReload живёт секундами, так
+	// что сетевая задержка тут не проблема — клиент может ему доверять
+	// напрямую вместо эвристик по времени.
+	AmmoReload bool
 }
 
 func CreateGunStateForPredictMsg(data []GunState) []byte {
@@ -1775,7 +1789,14 @@ func CreateGunStateForPredictMsg(data []GunState) []byte {
 	for _, d := range data {
 		command = append(command, game_math.GetIntBytes(d.Number)...)
 		command = append(command, game_math.GetIntBytes(d.GunRotate)...)
-
+		command = append(command, game_math.GetIntBytes(d.WeaponID)...)
+		command = append(command, game_math.GetIntBytes(d.AmmoID)...)
+		command = append(command, game_math.GetIntBytes(d.Group)...)
+		command = append(command, game_math.GetIntBytes(d.Direction)...)
+		command = append(command, game_math.GetIntBytes(d.SlotPassAngle)...)
+		command = append(command, game_math.GetIntBytes(d.ReloadTime)...)
+		command = append(command, game_math.GetIntBytes(d.ReloadAmmoTime)...)
+		command = append(command, game_math.BoolToByte(d.AmmoReload))
 	}
 
 	return command
