@@ -169,7 +169,7 @@ func (u *Unit) ClearFireInput() {
 func calculateClientLag(serverInputSeq, clientSeq byte) byte {
 	lag := (int(serverInputSeq) - int(clientSeq)) - 2
 	if lag < 0 {
-		lag += 256
+		lag = 0
 	}
 
 	if lag > 2 {
