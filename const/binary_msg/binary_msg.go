@@ -114,8 +114,23 @@ func CreateMarkBinaryMove(id, x, y, ms int) []byte {
 	return command
 }
 
-func CreateBulletBinaryFly(typeID, id, x, y, z, ms, rotate int) []byte {
-	// [1[eventID] 4[typeID], 4[id], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 4[mpID]]
+func CreateBulletBinaryFly(typeID, id, x, y, z, ms, rotate int, clientBulletID uint16, ownerID int) []byte {
+	// [1[eventID] 4[typeID], 4[id], 4[x], 4[y], 4[z], 4[ms], 4[rotate], 2[clientBulletID], 4[ownerID]]
+	// clientBulletID и ownerID добавлены 2026-09-15 (см. NETCODE.md §5.5) для
+	// клиентского предсказания полёта СВОЕГО снаряда:
+	// - clientBulletID — токен корреляции с локально предсказанным снарядом на
+	//   клиенте; 0, если пуля не была предсказана (не своя, оружие без
+	//   клиентского предсказания, или это не первая пуля залпа). 2 байта, не 1 —
+	//   при нескольких стволах/скорострельном оружии счётчик на клиенте мог бы
+	//   обернуться через 256 быстрее, чем живёт окно корреляции.
+	// - ownerID — id стреляющего юнита (bullet.OwnerID). НАЙДЕНО пользователем:
+	//   без него clientBulletID одного игрока мог бы случайно совпасть с
+	//   clientBulletID совсем другого игрока (у каждого клиента свой независимый
+	//   счётчик с малых значений) — клиент обязан сверять owner_id === свой
+	//   unit_id ПЕРЕД тем как пытаться сопоставить clientBulletID.
+	// Оба big-endian — как и остальные многобайтовые поля этого сообщения
+	// (через GetIntBytes выше), а не как x/y в клиент->сервер направлении
+	// другого пакета (attack, event 2) — разные сообщения, разное направление.
 
 	command := []byte{6}
 
@@ -126,6 +141,8 @@ func CreateBulletBinaryFly(typeID, id, x, y, z, ms, rotate int) []byte {
 	command = append(command, game_math.GetIntBytes(z)...)
 	command = append(command, byte(ms))
 	command = append(command, game_math.GetIntBytes(rotate)...)
+	command = append(command, byte(clientBulletID>>8), byte(clientBulletID))
+	command = append(command, game_math.GetIntBytes(ownerID)...)
 
 	return command
 }

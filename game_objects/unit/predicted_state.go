@@ -82,9 +82,16 @@ type FireInput struct {
 	WeaponSlot     byte `json:"-"`
 	ClientLag      byte `json:"-"`
 	Tick           byte `json:"-"`
+	// ClientBulletID — базовый id, который клиент присвоил своему локально
+	// предсказанному "призрачному" снаряду для ЭТОГО конкретного предсказанного
+	// выстрела (см. bullet.Bullet.ClientBulletID). НЕ то же самое, что clientSeq
+	// (использован только для ClientLag выше) — clientSeq идентифицирует ТИК
+	// инпута, а этот — конкретный ПРЕДСКАЗАННЫЙ ВЫСТРЕЛ, т.к. один Fire() может
+	// создать несколько пуль залпом за один тик, и им всем нужны разные id.
+	ClientBulletID uint16 `json:"-"`
 }
 
-func (u *Unit) AddFireInput(clientSeq, serverInputSeq, currentInputSeq, weaponNumber byte, x, y int, serverTime int64) (bool, string) {
+func (u *Unit) AddFireInput(clientSeq, serverInputSeq, currentInputSeq, weaponNumber byte, x, y int, serverTime int64, clientBulletID uint16) (bool, string) {
 	if u.FireInputState == nil {
 		// u.FireInputState = &FireInputState{PendingInputs: make([]*FireInput, 0, 256), FireInputStateSnapshot: make([][]*FireInputStateSnapshot, 256)}
 		u.FireInputState = &FireInputState{PendingInputs: make([]*FireInput, 0, 256)}
@@ -102,6 +109,7 @@ func (u *Unit) AddFireInput(clientSeq, serverInputSeq, currentInputSeq, weaponNu
 		ServerInputSeq: serverInputSeq,
 		WeaponSlot:     weaponNumber,
 		ClientLag:      calculateClientLag(currentInputSeq, serverInputSeq),
+		ClientBulletID: clientBulletID,
 	}
 
 	u.mx.Lock()
