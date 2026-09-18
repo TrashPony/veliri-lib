@@ -1798,6 +1798,17 @@ type GunState struct {
 	// что сетевая задержка тут не проблема — клиент может ему доверять
 	// напрямую вместо эвристик по времени.
 	AmmoReload bool
+	// UseShotEnergy (2026-09-18, NETCODE.md §5.4) — реальная, бонус-скорректированная
+	// стоимость одного выстрела в энергии (attack.ShotEnergy, тот же расчёт, что
+	// fire.go использует перед тем как реально списать energy/gunner.GetPower()).
+	// Раньше не отправлялась вовсе — клиентское предсказание выстрела не проверяло
+	// энергию совсем, хотя сервер молча отклоняет выстрел при её нехватке
+	// (fire.go: `if usePower > 0 && gunner.GetPower() < usePower { return }`),
+	// точно так же, как раньше отклонял его при недостатке патронов/во время
+	// перезарядки. Каталожное weapon.use_energy_per_shoot клиенту уже доступно,
+	// но это чистое (без бонусов навыков/модулей) значение — как и с ReloadTime
+	// выше, нужен реальный расчёт с сервера.
+	UseShotEnergy int
 }
 
 func CreateGunStateForPredictMsg(data []GunState) []byte {
@@ -1814,6 +1825,7 @@ func CreateGunStateForPredictMsg(data []GunState) []byte {
 		command = append(command, game_math.GetIntBytes(d.ReloadTime)...)
 		command = append(command, game_math.GetIntBytes(d.ReloadAmmoTime)...)
 		command = append(command, game_math.BoolToByte(d.AmmoReload))
+		command = append(command, game_math.GetIntBytes(d.UseShotEnergy)...)
 	}
 
 	return command
