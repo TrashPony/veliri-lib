@@ -15,13 +15,15 @@ func (v *VisibleObjectsStore) AddDynamicObject(object *VisibleObject) {
 	v.mx.Lock()
 	defer v.mx.Unlock()
 
+	// Список отсортирован по ID: бинарная вставка вместо append + sort.Slice (см. AddVisibleObject)
 	objects := v.visibleObjects[idMemoryType]
-	objects = append(objects, object)
-
-	// Сортируем список по ID
-	sort.Slice(objects, func(i, j int) bool {
-		return objects[i].ID < objects[j].ID
+	index := sort.Search(len(objects), func(i int) bool {
+		return objects[i].ID > object.ID
 	})
+
+	objects = append(objects, nil)
+	copy(objects[index+1:], objects[index:])
+	objects[index] = object
 
 	v.visibleObjects[idMemoryType] = objects
 }

@@ -4,11 +4,22 @@ import (
 	"github.com/TrashPony/veliri-lib/game_objects/effect"
 	"strings"
 	"sync"
+	"sync/atomic"
 )
 
 type EffectsStore struct {
 	Effects []*effect.Effect `json:"-"`
 	mx      sync.RWMutex
+
+	// version растёт при каждом добавлении/удалении эффекта. Кэши значений, зависящих от набора эффектов (дальность
+	// обзора дрона), сверяются с ним. Эффекты, чей Quantity меняется на месте (invisibility, suicide), кэшировать по
+	// version нельзя - для них кэш по тику (Unit.InvisibilityAt).
+	version atomic.Uint64
+}
+
+// Version - счётчик изменений набора эффектов (добавление/удаление).
+func (e *EffectsStore) Version() uint64 {
+	return e.version.Load()
 }
 
 func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
@@ -29,6 +40,7 @@ func (e *EffectsStore) AddEffect(newEffect *effect.Effect) bool {
 	}
 
 	e.Effects = append(e.Effects, newEffect)
+	e.version.Add(1)
 	return true
 }
 
@@ -52,6 +64,7 @@ func (e *EffectsStore) RemoveEffect(uuid string) (bool, *effect.Effect) {
 
 	if index >= 0 {
 		e.Effects = append(e.Effects[:index], e.Effects[index+1:]...)
+		e.version.Add(1)
 	}
 
 	return index >= 0, removeEffect

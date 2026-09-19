@@ -266,6 +266,53 @@ var MapBinItems = map[string]int{
 	"corporation":     CorporationTypeByte,
 }
 
+// MapBinItemID - то же, что MapBinItems[name], но через switch: без хэширования строки и обращения к map на каждой
+// проверке видимости (визуальные хранилища зовут его на каждый check). Актуальность гарантирует const_test.go.
+func MapBinItemID(name string) (int, bool) {
+	switch name {
+	case "transport":
+		return TransportTypeByte, true
+	case "box":
+		return BoxTypeByte, true
+	case "unit":
+		return UnitTypeByte, true
+	case "drone":
+		return DroneTypeByte, true
+	case "reservoir":
+		return ReservoirTypeByte, true
+	case "dynamic_objects":
+		return DynamicObjectsTypeByte, true
+	case "shield":
+		return ShieldTypeByte, true
+	case "item":
+		return ItemTypeByte, true
+	case "object":
+		return ObjectTypeByte, true
+	case "bullet":
+		return BulletTypeByte, true
+	case "mark":
+		return MarkTypeByte, true
+	case "rope_element":
+		return RopeElementTypeByte, true
+	case "base":
+		return BaseTypeByte, true
+	case "map":
+		return MapTypeByte, true
+	case "":
+		return EmptyTypeByte, true
+	case "pollen_cloud":
+		return PollenCloudTypeByte, true
+	case "map_item":
+		return MapItemTypeByte, true
+	case "handler":
+		return HandlerTypeByte, true
+	case "corporation":
+		return CorporationTypeByte, true
+	}
+
+	return 0, false
+}
+
 var FractionByte = map[string]byte{
 	Empty:            EmptyByte,
 	Replicas:         ReplicasByte,

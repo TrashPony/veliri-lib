@@ -76,8 +76,8 @@ type Unit struct {
 	Interactive bool `json:"-"`
 	ForceView   bool `json:"-"`
 
-	// VisionLinkManager содержит ID юнитов, которым этот юнит передает свой обзор
-	visionLinkManager *VisionLinkManager
+	// VisionLinkManager (ссылки обзора) и кэш Invisibility по тику - см. view_cache.go
+	viewCache unitViewCache
 
 	LastDamageTime    int64   `json:"-"` // время последнего урона неважно от кого
 	LastFireTime      int64   `json:"-"` // время последнего выстрела, включая активные модули
@@ -244,6 +244,7 @@ type EvacuationState struct {
 type CacheData struct {
 	Data []byte `json:"-"`
 	Time int64  `json:"-"`
+	Hash uint64 `json:"-"` // хэш Data (см. Unit.GetUpdateHash), 0 = не посчитан для этого Time
 }
 
 type Decal struct {
@@ -882,6 +883,7 @@ func (u *Unit) GetUpdateData(mapTime int64) []byte {
 	u.CacheUpdateData.Data = append(u.CacheUpdateData.Data, u.PlaceType)
 
 	u.CacheUpdateData.Time = mapTime
+	u.CacheUpdateData.Hash = 0
 
 	return u.CacheUpdateData.Data
 }

@@ -39,7 +39,7 @@ func (v *VisibleObjectsStore) GetVisibleObjectByTypeAndID(typeObj string, id int
 	v.mx.RLock()
 
 	// Получаем числовой идентификатор типа
-	typeID, ok := _const.MapBinItems[typeObj]
+	typeID, ok := _const.MapBinItemID(typeObj)
 	if !ok {
 		panic("Недопустимый тип объекта 1: " + typeObj)
 	}
@@ -126,19 +126,22 @@ func (v *VisibleObjectsStore) AddVisibleObject(newObj *VisibleObject) {
 	defer v.mx.Unlock()
 
 	// Получаем числовой идентификатор типа
-	typeID, ok := _const.MapBinItems[newObj.TypeObject]
+	typeID, ok := _const.MapBinItemID(newObj.TypeObject)
 	if !ok {
 		panic("Недопустимый тип объекта 2: " + newObj.TypeObject)
 	}
 
-	// Добавляем объект в список
+	// Список уже отсортирован по IDObject: вставляем в нужное место бинарным поиском (memmove) вместо append +
+	// sort.Slice (полная сортировка через reflect на каждую метку: 13.6 мкс при 2000 меток). Среди равных ID новая
+	// метка встаёт последней - как при append + сортировке.
 	objects := v.visibleObjects[typeID]
-	objects = append(objects, newObj)
-
-	// Сортируем список по ID
-	sort.Slice(objects, func(i, j int) bool {
-		return objects[i].IDObject < objects[j].IDObject
+	index := sort.Search(len(objects), func(i int) bool {
+		return objects[i].IDObject > newObj.IDObject
 	})
+
+	objects = append(objects, nil)
+	copy(objects[index+1:], objects[index:])
+	objects[index] = newObj
 
 	v.visibleObjects[typeID] = objects
 }
@@ -148,7 +151,7 @@ func (v *VisibleObjectsStore) RemoveVisibleObject(removeObj *VisibleObject) {
 	defer v.mx.Unlock()
 
 	// Получаем числовой идентификатор типа
-	typeID, ok := _const.MapBinItems[removeObj.TypeObject]
+	typeID, ok := _const.MapBinItemID(removeObj.TypeObject)
 	if !ok {
 		panic("Недопустимый тип объекта 3: " + removeObj.TypeObject)
 	}
@@ -195,8 +198,12 @@ type VisibleObject struct {
 	Object        interface{} `json:"-"`
 	ObjectJSON    []byte      `json:"-"`
 	UpdateChecker []byte      `json:"-"`
-	Work          bool        `json:"-"`
-	ForceView     bool        `json:"-"`
+	// UpdateHash - хэш последних отправленных данных обновления (0 = не задан). Для типов, умеющих считать хэш
+	// (Unit.GetUpdateHash), radar.CheckObjects сравнивает его вместо байтов UpdateChecker: два uint64 в уже прогретых
+	// кэш-линиях вместо перехода по двум указателям на срезы.
+	UpdateHash uint64 `json:"-"`
+	Work       bool   `json:"-"`
+	ForceView  bool   `json:"-"`
 
 	UpdateMsg *UpdateObjMap `json:"-"`
 
@@ -247,4 +254,19 @@ func (v *VisibleObject) GetRadar() bool {
 
 func (v *VisibleObject) SetRadar(radar bool) {
 	v.Radar = radar
+}
+
+// HashUpdateData - FNV-1a 64 от данных обновления; 0 зарезервирован как "хэш не задан".
+func HashUpdateData(b []byte) uint64 {
+	h := uint64(14695981039346656037)
+	for _, c := range b {
+		h ^= uint64(c)
+		h *= 1099511628211
+	}
+
+	if h == 0 {
+		h = 1
+	}
+
+	return h
 }

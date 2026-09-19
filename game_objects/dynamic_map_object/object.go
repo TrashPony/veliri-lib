@@ -144,6 +144,7 @@ type Object struct {
 	MemoryID     int    `json:"-"`
 	GrowLeftTime int    `json:"-"`
 
+	updateDataCache        objectUpdateDataCache
 	CacheJson              []byte `json:"-"`
 	CreateJsonTime         int64  `json:"-"`
 	countUpdateViewObjects int
@@ -694,8 +695,14 @@ func (o *Object) GetJSON(mapTime int64) []byte {
 	return o.CacheJson
 }
 
+// GetUpdateData считается один раз за тик на объект (раньше - новый срез на каждый вызов, а зовут его для каждого
+// наблюдателя): как Unit.GetUpdateData, кэш по mapTime. Возвращаемый срез нельзя менять.
 func (o *Object) GetUpdateData(mapTime int64) []byte {
-	command := []byte{}
+	if c := o.updateDataCache.Load(); c != nil && c.time == mapTime {
+		return c.data
+	}
+
+	command := make([]byte, 0, 32)
 
 	command = append(command, game_math.GetIntBytes(o.HP)...)
 	command = append(command, game_math.GetIntBytes(o.CurrentEnergy)...)
@@ -703,6 +710,8 @@ func (o *Object) GetUpdateData(mapTime int64) []byte {
 	command = append(command, game_math.GetIntBytes(o.GetRangeView())...)
 	command = append(command, game_math.BoolToByte(o.Work))
 	command = append(command, byte(o.Complete))
+
+	o.updateDataCache.Store(&objectUpdateData{time: mapTime, data: command})
 
 	return command
 }

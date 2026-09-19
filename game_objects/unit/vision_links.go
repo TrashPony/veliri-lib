@@ -24,26 +24,28 @@ func NewVisionLinkManager() *VisionLinkManager {
 	}
 }
 
+// VisionLinkHasPlayer вызывается для каждого юнита карты для каждого наблюдателя каждый тик (radar.GetSmallWatchers),
+// поэтому без единой ссылки обзора (почти всегда) - без блокировок и без создания менеджера.
 func (u *Unit) VisionLinkHasPlayer(targetID int) bool {
-	u.mx.Lock()
-	defer u.mx.Unlock()
-
-	if u.visionLinkManager == nil {
-		u.visionLinkManager = NewVisionLinkManager()
+	m := u.viewCache.visionLinks.Load()
+	if m == nil {
+		return false
 	}
 
-	return u.visionLinkManager.Has(targetID)
+	return m.Has(targetID)
 }
 
 func (u *Unit) VisionLinkAddPlayer(targetID int, ttl time.Duration) {
 	u.mx.Lock()
 	defer u.mx.Unlock()
 
-	if u.visionLinkManager == nil {
-		u.visionLinkManager = NewVisionLinkManager()
+	m := u.viewCache.visionLinks.Load()
+	if m == nil {
+		m = NewVisionLinkManager()
+		u.viewCache.visionLinks.Store(m)
 	}
 
-	u.visionLinkManager.Add(targetID, ttl)
+	m.Add(targetID, ttl)
 }
 
 // Has проверяет, есть ли активная (не протухшая) ссылка на targetID.

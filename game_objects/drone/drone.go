@@ -61,6 +61,7 @@ type Drone struct {
 	missileTargetList *missile_target.MissileTargetList
 	zone              *game_math.Positions
 	effects           *effects_store.EffectsStore
+	viewRangeCache    droneViewRangeCache
 	jobs              []*Job
 	visibleObjects    *visible_objects.VisibleObjectsStore
 	gunner            *gunner.Gunner
@@ -537,8 +538,20 @@ func (d *Drone) GetVisibleObjectByTypeAndID(typeObj string, id int) *visible_obj
 	return d.visibleObjectStore().GetVisibleObjectByTypeAndID(typeObj, id)
 }
 
+// GetRangeView зовётся на каждую проверку видимости против дрона-наблюдателя: значение кэшируется и пересчитывается
+// только при смене набора эффектов или базовой дальности (см. view_cache.go).
 func (d *Drone) GetRangeView() int {
-	return int(math.Ceil(d.GetEffects().GetAllBonus(float64(d.RangeView), "view")))
+	ef := d.GetEffects()
+	version := ef.Version()
+
+	if c := d.viewRangeCache.Load(); c != nil && c.version == version && c.base == d.RangeView {
+		return c.value
+	}
+
+	value := int(math.Ceil(ef.GetAllBonus(float64(d.RangeView), "view")))
+	d.viewRangeCache.Store(&droneViewRange{version: version, base: d.RangeView, value: value})
+
+	return value
 }
 
 func (d *Drone) CheckViewCoordinate(x, y, radius int) (bool, bool) {
