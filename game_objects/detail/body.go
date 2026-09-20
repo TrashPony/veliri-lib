@@ -190,7 +190,7 @@ type Bonus struct {
 }
 
 func (body *Body) GetAllEquips() []*BodyEquipSlot {
-	equips := make([]*BodyEquipSlot, 0)
+	equips := make([]*BodyEquipSlot, 0, 8)
 
 	var addEquips = func(equip map[int]*BodyEquipSlot, typeSlot int) {
 		for slot, s := range equip {
