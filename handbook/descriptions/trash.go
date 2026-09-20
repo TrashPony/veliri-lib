@@ -48,6 +48,7 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"siphil_contract":               {Name: "Forged Replic Communicator", Description: "<p>You were recommended as someone who can solve problems. He is one of them.</p><p>Try to resolve the matter quietly and without unnecessary witnesses.</p><p>Any assistants - also eliminate after completion.</p><p><br>I.</p>"},
 		"repair_supplies":               {Name: "Repair modules", Description: ""},
 		"loot_box":                      {Name: "Safe", Description: "<p>A mysterious safe with equally mysterious contents.</p>"},
+		"inair_datasheet":               {Name: "Датапад Inair", Description: ""},
 	},
 	_const.RU: {
 		"card":                          {Name: "Карта", Description: "<p>Похоже на ключ от какого то замка.</p>"},
@@ -91,9 +92,10 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"ground_drone_3":                {Name: "Древний дрон", Description: "<p>Крайне примитивная по технологическим меркам синтетов самоуправляемая техника. Несмотря на сносные ходовые качества и достаточно отсталое вооружение, защита дрона не в силах противостоять стратегиям взлома синтетов, что позволяет получить над ним полный контроль.</p>"},
 		"Replic_label":                  {Name: "Ярлык фракции \"Replic\"", Description: "<p>Выгравированное символическое отображение одной из фракций на планете. В данном случае, изображён символ Replics - ярых экспансионистов и милитаристов из всех прочих фракций синтетов.</p>"},
 		"teleport_hack":                 {Name: "Взлом телепорта", Description: "<p>Устройство удалённого доступа и переписи авторизации. Позволяет блокировать доступ к телепортационным вратам, а также делает базы синтетов во время фракционной войны - уязвимыми к уничтожению.</p>"},
-		"siphil_contract":               {Name: "Поддельный коммуникатор Replic", Description: "<p>Тебя посоветовали, как умеющего разрешать проблемы. Он - одна из таких.</p><p>Постарайся решить вопрос тихо и без лишних свидетелей.</p><p>Любых помощников - также распыли по окончании.</p><p><br>И.</p>"},
+		"siphil_contract":               {Name: "Поддельный коммуникатор Replic", Description: "<p>Тебя посоветовали, как умеющего разрешать проблемы. Он - одна из таких.</p><p>Постарайся решить вопрос тихо и без лишних свидетелей.</p><p>Любых помощников - также распыли по окончании.</p><p><br>I.</p>"},
 		"repair_supplies":               {Name: "Ремотные модули", Description: ""},
 		"loot_box":                      {Name: "Сейф", Description: "<p>Таинственный сейф с неменее таинственным содержимым</p>"},
+		"inair_datasheet":               {Name: "Датапад Inair", Description: "<p>Я всё жду и жду, что ты выполнишь свою часть сделки Inair. Ранее, средства от тебя поступали всегда в срок и это не вызывало промедления в ходе раскопок. Какие бы там у тебя не были проблемы - разберись с ними побыстрее! Терреус чем-то взволнован и желает ускорить результат нашей общей работы. </p><p>Я же, отправлюсь в промышленную часть Explores. Пора бы задействовать тамошнюю спящую ячейку. Заодно выменяю так остро необходимое нам оборудование.</p>"},
 	},
 	_const.ZhCN: {
 		"card":                          {Name: "卡片", Description: "<p>看起来像是某种锁的钥匙。</p>"},
@@ -140,5 +142,6 @@ var TrashDescription = map[string]map[string]DescriptionItem{
 		"siphil_contract":               {Name: "Replic伪造通讯器", Description: "<p>有人推荐你作为能解决问题的人。他就是其中一个问题。</p><p>尽量安静地解决，不要留下多余目击者。</p><p>所有助手——完成后也一并处理掉。</p><p><br>I.</p>"},
 		"repair_supplies":               {Name: "维修模块", Description: ""},
 		"loot_box":                      {Name: "安全的", Description: "<p>一个神秘的保险箱，里面装着同样神秘的东西。</p>"},
+		"inair_datasheet":               {Name: "Датапад Inair", Description: ""},
 	},
 }
