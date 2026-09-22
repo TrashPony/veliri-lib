@@ -1809,6 +1809,16 @@ type GunState struct {
 	// но это чистое (без бонусов навыков/модулей) значение — как и с ReloadTime
 	// выше, нужен реальный расчёт с сервера.
 	UseShotEnergy int
+	// GunStop (2026-09-22, NETCODE.md §5.4, по предложению пользователя) — единая
+	// проверка attack.IsGunStopped: weapon_stop/ammo_stop (сломанный модуль,
+	// mechanics/damage/damage_modules.go, ИЛИ разворачивающаяся стена,
+	// mechanics/equip/wall.go) либо fire_stop (эффект из базы) — юнит временно не
+	// может ни стрелять, ни поворачивать оружие этим слотом. Раньше клиентское
+	// предсказание выстрела не знало об этих эффектах вовсе (HUD-индикаторы
+	// повреждённых модулей, событие 129, не покрывают стену и не были для этого
+	// предназначены) — один готовый bool с сервера проще и надёжнее, чем
+	// реконструировать это на клиенте из разных источников.
+	GunStop bool
 }
 
 func CreateGunStateForPredictMsg(data []GunState) []byte {
@@ -1826,6 +1836,7 @@ func CreateGunStateForPredictMsg(data []GunState) []byte {
 		command = append(command, game_math.GetIntBytes(d.ReloadAmmoTime)...)
 		command = append(command, game_math.BoolToByte(d.AmmoReload))
 		command = append(command, game_math.GetIntBytes(d.UseShotEnergy)...)
+		command = append(command, game_math.BoolToByte(d.GunStop))
 	}
 
 	return command
