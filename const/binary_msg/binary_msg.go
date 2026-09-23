@@ -1913,3 +1913,36 @@ func CreateTimeCastMsg(unitID, equipID, progress, slot int) []byte {
 
 	return command
 }
+
+// CreateMissionPathBin — путь (A*, не прямая линия), посчитанный нодой до текущей цели задания.
+// Формат идентичен CreateUnitPathBin: только код команды другой (134, а не 113), чтобы фронт не путал
+// путь до цели квеста с путём автопилота — эти каналы независимы (см. docs/MISSION_HINTS.md).
+func CreateMissionPathBin(points []Pointer) []byte {
+	command := []byte{134}
+
+	pointData := make([]byte, 0, len(points)*8)
+	for _, p := range points {
+		pointData = append(pointData, game_math.GetIntBytes(p.GetX())...)
+		pointData = append(pointData, game_math.GetIntBytes(p.GetY())...)
+	}
+
+	command = append(command, pointData...)
+	return command
+}
+
+// CreateGlobalPathBin — путь (A*, не прямая линия), посчитанный нодой до текущей "просто цели"/автопилота
+// (MoveToSector) — независимый канал от CreateMissionPathBin (134): игрок может одновременно лететь к
+// цели задания и держать отдельную "просто цель" глобальной карты, у них разные линии на мини-карте
+// (см. docs/MISSION_HINTS.md). Формат идентичен CreateUnitPathBin/CreateMissionPathBin.
+func CreateGlobalPathBin(points []Pointer) []byte {
+	command := []byte{135}
+
+	pointData := make([]byte, 0, len(points)*8)
+	for _, p := range points {
+		pointData = append(pointData, game_math.GetIntBytes(p.GetX())...)
+		pointData = append(pointData, game_math.GetIntBytes(p.GetY())...)
+	}
+
+	command = append(command, pointData...)
+	return command
+}
