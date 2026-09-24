@@ -15,6 +15,7 @@ type InfoMap struct {
 	OccupiedFraction    string                   `json:"occupied_fraction"`
 	PossibleBattle      bool                     `json:"possible_battle"`
 	Battle              int                      `json:"battle"`
+	BaseOwners          map[string]int           `json:"base_owners"` // боевой сектор: фракция -> сколько точек захвата она держит (пишет war.Checker, рисует глобальная карта)
 	FreeLand            bool                     `json:"free_land"`
 	HandlersCoordinates []*coordinate.Coordinate `json:"handlers_coordinates"`
 	CorporationID       int                      `json:"corporation_id"`

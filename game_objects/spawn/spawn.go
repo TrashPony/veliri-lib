@@ -21,4 +21,5 @@ type Spawn struct {
 	ReloadTime   int         `json:"-"`
 	Count        int         `json:"-"`
 	TickPoint    int
+	LastCombat   int64 // unix: когда у базы войны последний раз был бой (враги рядом/потеря HP укрепления), пишет game_loop_war, читает мастер (гарнизон)
 }

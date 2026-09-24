@@ -167,6 +167,8 @@ type Meta struct {
 	TimeOut                         int               `json:"time_out"`
 	Stop                            bool              `json:"stop"`
 	NotWarTypePath                  string            `json:"not_war_type_path"`
+	HostileRadius                   int               `json:"hostile_radius"` // >0: цели берутся только в этом радиусе от точки Meta.X/Y (в целевом секторе), армии не гоняются за врагом через карту
+	HealAtBase                      bool              `json:"heal_at_base"`   // в патруле/обороне при HP ниже порога идти лечиться на свою базу войны (to_heal_base)
 	MissionTarget                   int               `json:"mission_target"`
 	IgnoreBaseID                    int               `json:"ignore_base_id"`
 	IgnoreMapID                     int               `json:"ignore_map_id"`

@@ -24,6 +24,7 @@ type Squad struct {
 	BaseID             int                    `json:"base_id"`              /* если отряд не у игрока то он храниться на этой базе */
 	LastGlobalPosition *coordinate.Coordinate `json:"last_global_position"` // если отряд был в данже, но по какой то причине сервак вырубило и данж пропал, эта та точка куда упадет отряд при заходе в игру
 	RemoveInBase       bool                   `json:"remove_in_base"`
+	Observer           bool                   `json:"-"` // временный отряд игрока без юнита на базе войны (камера мира), в БД не пишется
 	softTransition     int
 	SendTextTimeOut    int
 

@@ -220,6 +220,7 @@ var SourceItemBin = map[string]int{
 	"scannerAInv:oil":      21,
 	"scannerAInv:dust":     22,
 	"scannerAInv:fuel":     23,
+	"shared_stock":         24, // общий склад базы, docs/INVENTORY.md §6
 }
 
 const (

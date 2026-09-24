@@ -192,7 +192,7 @@ func (o *Object) GetStartScale() {
 	}
 
 	if o.Texture == "beacon" {
-		o.SetScale(74)
+		o.SetScale(120)
 	}
 
 	if o.Texture == "repair_station" {
