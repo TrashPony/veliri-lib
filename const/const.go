@@ -55,13 +55,13 @@ const (
 	ReversesQuickBaseID = -3
 
 	// session exp multipliers
-	KillsK              = 0.5 * 100
-	AssistK             = 0.25 * 100
-	Damage              = 0.3 * 100
+	KillsK              = 0.1
+	AssistK             = 0.1
+	Damage              = 0.05
 	IntelligenceDamageK = 1 * 100
-	DestroyStructure    = 200 * 100
-	CaptureK            = 250 * 100
-	CaptureSector       = 1000 * 100
+	DestroyStructure    = 100 * 100
+	CaptureK            = 500 * 100
+	CaptureSector       = 3000 * 100
 
 	//MaxBaseTax = 50
 	//MinBaseTax = 10

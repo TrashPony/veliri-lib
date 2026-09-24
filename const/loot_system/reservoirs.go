@@ -83,12 +83,12 @@ func getResourceDropConfig(sectorType sectorType) *sectorResourceConfig {
 	case sectorCombat:
 		return &sectorResourceConfig{
 			drops: []resourceDrop{
-				{resourceID: resourceThoriumOre, weight: 10, maxCount: 1},
-				{resourceID: resourceCopperOre, weight: 22, maxCount: 1},
-				{resourceID: resourceIronOre, weight: 22, maxCount: 1},
-				{resourceID: resourceSiliconOre, weight: 12, maxCount: 2},
-				{resourceID: resourceTitaniumOre, weight: 12, maxCount: 2},
-				{resourceID: resourceOil, weight: 22, maxCount: 3},
+				{resourceID: resourceThoriumOre, weight: 10, maxCount: 4},
+				{resourceID: resourceCopperOre, weight: 22, maxCount: 4},
+				{resourceID: resourceIronOre, weight: 22, maxCount: 4},
+				{resourceID: resourceSiliconOre, weight: 12, maxCount: 8},
+				{resourceID: resourceTitaniumOre, weight: 12, maxCount: 8},
+				{resourceID: resourceOil, weight: 22, maxCount: 9},
 			},
 		}
 	default:

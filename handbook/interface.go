@@ -68,4 +68,5 @@ var GameInterface = map[string]map[string]map[string]string{
 	"Laboratory":          interface_window.Laboratory,
 	"DeadLog":             interface_window.DeadLog,
 	"BpEditor":            interface_window.BpEditor,
+	"WarBoard":            interface_window.WarBoard,
 }

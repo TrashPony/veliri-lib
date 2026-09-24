@@ -177,7 +177,7 @@ var BaseDescription = map[string]map[string]DescriptionItem{
 		"war_42": {ID: 159, Name: "Аванпост «Гарпун»"},
 		"war_43": {ID: 152, Name: "Аванпост «Маяк»"},
 		"war_44": {ID: 150, Name: "Аванпост «Страж»"},
-		"war_45": {ID: 151, Name: "Аванпост «Таран»"},
+		"war_45": {ID: 151, Name: "Аванпост «Таракан»"},
 		"war_46": {ID: 147, Name: "Аванпост «Оплот»"},
 		"war_47": {ID: 149, Name: "Аванпост «Сокол»"},
 		"war_48": {ID: 148, Name: "Аванпост «Кордон»"},

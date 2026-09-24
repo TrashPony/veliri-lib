@@ -9,6 +9,9 @@ type AssortmentPoint struct {
 	Count    int    `json:"count"`
 	MinRank  int    `json:"min_rank"`
 	Priority int    `json:"priority"`
+	// NeedIndustry сколько секторов специализации industry должна удерживать фракция, что бы позиция открылась (0 - без условия);
+	// если таких секторов на карте меньше, требуется столько, сколько есть. docs/WAR_ECONOMY.md
+	NeedIndustry int `json:"need_industry"`
 }
 
 var ReplicAssortment = []AssortmentPoint{

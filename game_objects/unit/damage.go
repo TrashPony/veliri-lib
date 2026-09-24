@@ -98,7 +98,7 @@ func (u *Unit) SetLastDamage(playerID, damage int) *damage_manager.Damage {
 		return nil
 	}
 
-	return u.damageManager.SetLastDamage(playerID, damage)
+	return u.damageManager.SetLastDamage(playerID, int(float64(damage)*0.01)) // TODO костыль тк весь урон у нас был домножен на 100, а читатели нет
 }
 
 func (u *Unit) GetLastDamage(sec int64) int {
