@@ -165,6 +165,21 @@ var WarBoard = map[string]map[string]string{
 		_const.EN:   `Base garrison: fighters now / allowed.<br>Size depends on supply:<br>above 66% - 3 fighters<br>above 33% - 2 fighters<br>below - 1 fighter`,
 		_const.ZhCN: `基地驻军:当前 / 上限人数。<br>规模取决于补给:<br>高于66% - 3人<br>高于33% - 2人<br>否则 - 1人`,
 	},
+	"caravan": {
+		_const.RU:   `Караван`,
+		_const.EN:   `Caravan`,
+		_const.ZhCN: `商队`,
+	},
+	"caravan_hint": {
+		_const.RU:   `Караван снабжения: возит товары с мирных баз фракции на эту базу.<br>Бойцов и хуллеров сейчас / в составе.<br>Если караван уничтожен, новый появится через 10 минут.`,
+		_const.EN:   `Supply caravan: carries goods from peaceful fraction bases to this base.<br>Fighters and haulers now / in the group.<br>If the caravan is destroyed, a new one appears in 10 minutes.`,
+		_const.ZhCN: `补给商队:把货物从阵营和平基地运往此基地。<br>当前 / 编制人数。<br>商队被摧毁后,10分钟后会出现新的商队。`,
+	},
+	"caravan_respawn": {
+		_const.RU:   `через %n% мин`,
+		_const.EN:   `in %n% min`,
+		_const.ZhCN: `%n%分钟后`,
+	},
 	"needs": {
 		_const.RU:   `Нужно`,
 		_const.EN:   `Needed`,
