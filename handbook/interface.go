@@ -69,4 +69,6 @@ var GameInterface = map[string]map[string]map[string]string{
 	"DeadLog":             interface_window.DeadLog,
 	"BpEditor":            interface_window.BpEditor,
 	"WarBoard":            interface_window.WarBoard,
+	"ServerSelect":        interface_window.ServerSelect, // офлайн: выбор сервера (Veliri-private/docs/OFFLINE_MODE.md)
+	"OfflineGame":         interface_window.OfflineGame,  // офлайн: сохранения, смена мира, пауза
 }
