@@ -24,6 +24,11 @@ var Inventory = map[string]map[string]string{
 		_const.EN:   `Close`,
 		_const.ZhCN: `关闭`,
 	},
+	"arm_max": {
+		_const.RU:   `Максимум`,
+		_const.EN:   `Max`,
+		_const.ZhCN: `最大`,
+	},
 	"button_2": {
 		_const.RU:   `Зарядить`,
 		_const.EN:   `Arm`,

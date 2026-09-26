@@ -13,9 +13,13 @@ type SearchMap struct {
 	Map    *info_map.InfoMap
 	Wave   int
 	F      float64
+	G      float64 // длина пути по картам от старта до точки появления на этой карте (px) + штраф за каждый переход
 	Parent *SearchMap
 	Entry  *coordinate.Coordinate
 }
+
+// globalJumpCost штраф за переход между секторами (px): при почти равной длине выбирается путь с меньшим числом переходов
+const globalJumpCost = 300.0
 
 var cache = &cachePaths{}
 
@@ -67,9 +71,15 @@ OnlyFraction - по всем только фракционным
 func FindGlobalPath(store map[int]*info_map.InfoMap, startSectorID, endSectorID int, typePath, fraction string,
 	questHandler map[int][]*coordinate.Coordinate, pID, cID int, pFraction string) ([]*SearchMap, []*coordinate.Coordinate) { // возращает ячейки пеереходов из сектора в сектор
 
-	cPath := cache.getPath(strconv.Itoa(startSectorID) + ":" + strconv.Itoa(endSectorID))
-	if cPath != nil {
-		return cPath.maps, cPath.path
+	// ключ кеша учитывает все, от чего зависит путь: тип пути, фракцию и доступ (игрок, корпорация, фракция игрока). Раньше ключом был
+	// только старт:финиш, и путь, найденный для одного типа (или с доступом одного игрока), отдавался всем. Квестовые переходы
+	// (questHandler) у каждого свои - такие пути не кешируются
+	cacheKey := strconv.Itoa(startSectorID) + ":" + strconv.Itoa(endSectorID) + ":" + typePath + ":" + fraction + ":" +
+		strconv.Itoa(pID) + ":" + strconv.Itoa(cID) + ":" + pFraction
+	if len(questHandler) == 0 {
+		if cPath := cache.getPath(cacheKey); cPath != nil {
+			return cPath.maps, cPath.path
+		}
 	}
 
 	startSector := store[startSectorID]
@@ -98,10 +108,13 @@ func FindGlobalPath(store map[int]*info_map.InfoMap, startSectorID, endSectorID 
 		return path, nil
 	}
 
-	openPoints, closePoints := make(map[string]*SearchMap), make(map[string]*SearchMap) // создаем 2 карты для посещенных (open) и непосещеных (close) точек
-	openPoints[start.ID] = start                                                        // кладем в карту посещенных точек стартовую точку
+	// Дейкстра по длине пути в пикселях: узел - карта + переход, которым на нее попали (точка появления), цена ребра - путь внутри
+	// карты от точки появления до следующего перехода + штраф за переход. Раньше поиск шел по волнам (число переходов), расстояние
+	// внутри секторов не учитывалось, а равные по числу переходов пути выбирались случайно (порядок обхода map) - маршрут
+	// выходил длинным и мог отличаться от вызова к вызову
+	openPoints, closePoints := make(map[string]*SearchMap), make(map[string]*SearchMap)
+	openPoints[start.ID] = start
 
-	// перменная добавляет в цену номер волны
 	wave := 0
 
 	for {
@@ -111,7 +124,7 @@ func FindGlobalPath(store map[int]*info_map.InfoMap, startSectorID, endSectorID 
 		}
 
 		wave++
-		current := getOpenPoint(openPoints) // Берем точку с мин стоимостью пути
+		current := getOpenPoint(openPoints) // точка с минимальной длиной пути
 		if current.MapID == end.MapID {     // если текущая точка и есть конец начинаем генерить путь
 			for !(current.MapID == start.MapID) {
 				current = current.Parent
@@ -143,7 +156,9 @@ func FindGlobalPath(store map[int]*info_map.InfoMap, startSectorID, endSectorID 
 		}
 	}
 
-	cache.addPath(strconv.Itoa(startSectorID)+":"+strconv.Itoa(endSectorID), path, transitionPoints)
+	if len(questHandler) == 0 {
+		cache.addPath(cacheKey, path, transitionPoints)
+	}
 	return path, transitionPoints
 }
 
@@ -187,50 +202,68 @@ func parseNeighbours(current *SearchMap, openPoints, closePoints map[string]*Sea
 			}
 		}
 
-		// проверяем что карта существует, и что мы ее уже не обработали
-		if closePoints[strconv.Itoa(mp.Id)+entry.Key()] != nil || openPoints[strconv.Itoa(mp.Id)+entry.Key()] != nil {
+		// в стартовый сектор не возвращаемся: восстановление пути идет до первой встречи стартовой карты
+		root := current
+		for root.Parent != nil {
+			root = root.Parent
+		}
+		if mp.Id == root.MapID {
 			continue
 		}
 
-		openPoints[strconv.Itoa(mp.Id)+entry.Key()] = &SearchMap{
-			ID:     strconv.Itoa(mp.Id) + entry.Key(),
+		id := strconv.Itoa(mp.Id) + entry.Key()
+		if closePoints[id] != nil {
+			continue
+		}
+
+		// путь внутри текущей карты: от точки, где на нее попали, до этого перехода
+		ax, ay := arrivalPoint(current, questHandler)
+		g := current.G + GetBetweenDist(ax, ay, entry.X, entry.Y) + globalJumpCost
+
+		if old := openPoints[id]; old != nil && old.G <= g {
+			continue
+		}
+
+		openPoints[id] = &SearchMap{
+			ID:     id,
 			MapID:  mp.Id,
 			Map:    mp,
 			Parent: current,
 			Entry:  entry,
-		}
-
-		// добавяем номер волны что бы все последующие волны имели большую цену
-		openPoints[strconv.Itoa(mp.Id)+entry.Key()].Wave = wave
-
-		if current.Entry.Positions != nil && len(current.Entry.Positions) > 0 {
-			// учитывать растояние от тп до выхода из него, todo походу это не работает
-			openPoints[strconv.Itoa(mp.Id)+entry.Key()].F = GetBetweenDist(entry.X, entry.Y, current.Entry.Positions[0].X, current.Entry.Positions[0].Y)
+			Wave:   wave,
+			G:      g,
+			F:      g,
 		}
 	}
 }
 
-func getOpenPoint(openMaps map[string]*SearchMap) *SearchMap {
-	minWall := -1
-
-	var minMap *SearchMap
-
-	for _, p := range openMaps {
-		if p.Wave < minWall || minWall < 0 {
-			minWall = p.Wave
+// arrivalPoint где оказываемся на карте узла: старт - центр карты старта, иначе точка появления перехода (Positions), если ее нет -
+// переход обратно на карту, с которой пришли (появляемся рядом с ним), иначе центр карты
+func arrivalPoint(n *SearchMap, questHandler map[int][]*coordinate.Coordinate) (int, int) {
+	if n.Parent == nil {
+		if n.Entry != nil {
+			return n.Entry.X, n.Entry.Y
 		}
+		return n.Map.XSize / 2, n.Map.YSize / 2
 	}
 
-	minF := -1.0
+	if n.Entry != nil && len(n.Entry.Positions) > 0 && n.Entry.Positions[0] != nil {
+		return n.Entry.Positions[0].X, n.Entry.Positions[0].Y
+	}
+
+	if back := GetEntryTySector(n.Map, questHandler, n.Parent.MapID); back != nil {
+		return back.X, back.Y
+	}
+
+	return n.Map.XSize / 2, n.Map.YSize / 2
+}
+
+// getOpenPoint открытая точка с минимальной длиной пути; при равенстве - по ID, что бы результат не зависел от порядка обхода map
+func getOpenPoint(openMaps map[string]*SearchMap) *SearchMap {
+	var minMap *SearchMap
 	for _, p := range openMaps {
-
-		if p.Wave != minWall {
-			continue
-		}
-
-		if p.F < minF || minF < 0 {
+		if minMap == nil || p.G < minMap.G || (p.G == minMap.G && p.ID < minMap.ID) {
 			minMap = p
-			minF = p.F
 		}
 	}
 
